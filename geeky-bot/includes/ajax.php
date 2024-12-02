@@ -1,0 +1,29 @@
+<?php
+
+if (!defined('ABSPATH'))
+    die('Restricted Access');
+
+class GEEKYBOTajax {
+
+    function __construct() {
+        add_action("wp_ajax_geekybot_ajax", array($this, "GEEKYBOT_ajaxhandler")); // when user is login
+        add_action("wp_ajax_nopriv_geekybot_ajax", array($this, "GEEKYBOT_ajaxhandler")); // when user is not login
+    }
+
+    function GEEKYBOT_ajaxhandler() {
+        $fucntin_allowed = array( 'getUserChatHistoryMessages','deleteBotCustomImage','deleteWelcomeMessageImg','deleteSupportUserImage', 'saveUserInputAjax', 'saveResponsesAjax', 'saveCustomeActionAjax', 'saveCustomeFormAjax', 'updateFormsValueFormAjax', 'updateActionValueOnPopupFormAjax', 'savedefaultFallbackFormAjax', 'updateStoryAjax', 'getVariablesValuesForSelect', 'bindValuesOnSelectAjax', 'getUserInputFormBodyHTMLAjax', 'getResponseTextFormBodyHTMLAjax', 'getResponseFunctionFormBodyHTMLAjax', 'getResponseActionFormBodyHTMLAjax', 'getResponseFormFormBodyHTMLAjax', 'resetStory', 'getDefaultFallbackFormBodyHTMLAjax', 'geekybotBuildAIStoryFromTemplate', 'geekybotBuildWooCommerceStory', 'geekybotEnableWebSearch', 'geekybotDisableWebSearch', 'geekybotEnableDisableNewPostTypes', 'hideVideoPopupFromAdmin', 'getTextForTooltip', 'addIntentToStory', 'getNextChatHistorySessions', 'geekybotEditStoryName', 'geekybotConfigPreview', 'saveVariableFromButtonIntent');
+        $task = GEEKYBOTrequest::GEEKYBOT_getVar('task');
+        if($task != '' && in_array($task, $fucntin_allowed)){
+            $module = GEEKYBOTrequest::GEEKYBOT_getVar('geekybotme');
+            $result = GEEKYBOTincluder::GEEKYBOT_getModel($module)->$task();
+            echo wp_kses($result, GEEKYBOT_ALLOWED_TAGS);
+            die();
+        }else{
+            die('Not Allowed!');
+        }
+    }
+
+}
+
+$jsajax = new GEEKYBOTajax();
+?>

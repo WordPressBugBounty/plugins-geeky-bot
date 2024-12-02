@@ -1,0 +1,11 @@
+/* http://docs.jquery.com/UI/Autocomplete#theming*/
+.geekybot-ui-autocomplete { position: absolute; cursor: default; background:#fff;display: block;}
+/* workarounds */
+html .geekybot-ui-autocomplete { width:1px; } /* without this, the menu expands to 100% in IE6 */
+.geekybot-ui-autocomplete {list-style:none;padding: 10px;margin: 0;display:block;float: left;position: absolute;color: hsl(35, 50%, 20%);text-shadow: 0 1px 1px white;background: #f8fafc;border: 1px solid #d1d3d3;box-shadow: unset;}
+.geekybot-ui-autocomplete .ui-menu {margin-top: -3px;}
+.geekybot-ui-autocomplete .ui-menu-item {margin:0;padding: 0;zoom: 1;float: left;clear: left;width: 100%;}
+.geekybot-ui-autocomplete .ui-menu-item a {text-decoration:none;display:block;padding:.2em .4em;line-height:1.5;zoom:1;color: black;}
+.geekybot-ui-autocomplete .ui-menu-item a.ui-state-hover,
+.geekybot-ui-autocomplete .ui-menu-item a.ui-state-active {font-weight: normal;margin: -1px;color: black;}
+.geekybot-ui-autocomplete .ui-menu-item .ui-menu-item-wrapper.ui-state-active {color: #000;background: #d4d4d5;}

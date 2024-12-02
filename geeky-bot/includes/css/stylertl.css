@@ -1,0 +1,38 @@
+/*----------------------------------------------
+ 			Geeky Bot CSS 
+------------------------------------------------*/
+/**********************
+	Chat POPUP
+**********************/
+.chat-popup{right: auto;left: 40px;}
+div.chat-open-dialog-main{right: auto;left: 40px;}
+button.chat-button-destroy.active::after{right: auto;left: 12px;}
+.chat-popup.chat-init .chat-windows {transform: translateX(0);float: left;}
+.chat-popup .chat-windows .chat-window-one{float: right;}
+.chat-popup .chat-windows .chat-window-two{float: left !important;}
+.chat-popup .chat-windows .chat-start .chat-start-inner{padding-right: 20px;padding-left: 11px;}
+.chat-popup .chat-windows .chat-start .chat-start-inner span.chat-start-img{margin-left: 0;margin-right: 15px;float: left;}
+button.chat-open-dialog, button.chat-button-destroy, .chat-button-destroy.active, .chat-open-dialog.active{right: auto;left: 50px;}
+.chat-popup .chat-windows .chat-start .chat-start-inner span.chat-start-img img{transform: scaleX(-1);}
+.chat-popup .chat-windows .chat-powered-by .chat-powered-by-inner .chat-powered-by-inner-img, .chat-popup .chat-windows .chat-powered-by .chat-powered-by-inner .chat-powered-by-inner-cnt{float: right;}
+.chat-popup .chat-windows .chat-window-two .window-two-top .window-two-top-inner .window-two-top-inner-left{float: right;}
+.chat-popup .chat-windows .chat-window-two .window-two-top .window-two-top-inner .window-two-top-inner-left .window-two-profile{left: auto;right: 15px;}
+.chat-popup .chat-windows .chat-window-two .window-two-top .window-two-top-inner .window-two-top-inner-left i.fa.fa-circle{left: auto;right: 75px;}
+.chat-popup .chat-windows .chat-window-two .window-two-top .window-two-top-inner .window-two-top-inner-left .window-two-profile-text .window-two-text span{margin-left: 0;margin-right: 15px;}
+.chat-popup .chat-windows .chat-window-two .window-two-top .window-two-top-inner .window-two-top-inner-left .window-two-profile-text{text-align: right;float: left;}
+#send-message .window-two-btm-inner .window-two-btm-inner-right .window-two-btm-send-img{float: left;}
+#send-message{left: 0;bottom: 0;}
+.dropdown-content{right: auto;left: 0;}
+.chat-popup .chat-windows .chat-window-two .window-two-top .window-two-top-inner .window-two-top-inner-right{float: right;}
+.chat-popup .chat-windows .chat-window-two .window-two-top .window-two-top-inner .window-two-top-inner-right .window-two-top-dot-img img{right: auto;left: 15px;}
+#send-message .window-two-btm-inner .window-two-btm-inner-left .fa-microphone{border-right: unset;border-left: 1px solid #bdbfc1;}
+#send-message .window-two-btm-inner .window-two-btm-inner-right .window-two-btm-send-img img{transform: scaleX(-1);}
+.chat-popup .chat-windows .chat-window-two div.chat-content li.actual_msg{text-align: left;float: left;}
+.chat-popup .chat-windows .chat-window-two div.chat-content li.actual_msg.actual_msg_user section.actual_msg_user-img{margin-left: 0;margin-right: 8px;float: left;}
+.chat-popup .chat-windows .chat-window-two div.chat-content li.actual_msg.actual_msg_user section.actual_msg_text{float: left;}
+.chat-popup .chat-windows .chat-window-two div.chat-content li.actual_msg.actual_msg_adm section.actual_msg_adm-img{float: right;margin-left: 8px;margin-right: 0;}
+.chat-popup .chat-windows .chat-window-two div.chat-content li.actual_msg.actual_msg_adm{float: right;text-align: right;}
+.chat-popup .chat-windows .chat-window-two div.chat-content li.actual_msg.actual_msg_adm section.actual_msg_text{float: right;}
+.dropdown-content div{text-align: right;}
+#send-message .border-0{padding-right:20px;padding-left: 6px;}
+div.chat-open-outer-popup-dialog{right: auto;left: 50px;}

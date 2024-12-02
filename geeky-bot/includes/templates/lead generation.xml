@@ -1,0 +1,182 @@
+<?xml version="1.0"?>
+<story>
+    <slots>
+        <slot>
+            <name>geekybot_user_name</name>
+            <type>PersonName</type>
+            <possible_values>john</possible_values>
+        </slot>
+        <slot>
+            <name>geekybot_company_email</name>
+            <type>Facility</type>
+            <possible_values>email@gmail.com</possible_values>
+        </slot>
+        <slot>
+            <name>geekybot_team_size</name>
+            <type>Quantity</type>
+            <possible_values>1,2,3</possible_values>
+        </slot>
+        <slot>
+            <name>geekybot_message</name>
+            <type>Organization</type>
+        </slot>
+    </slots>
+    <intents>
+        <intent_group>
+            <intent>
+                <user_inputs>
+                    <user_input>Hi</user_input>
+                    <user_input>Hi there</user_input>
+                    <user_input>Hello</user_input>
+                    <user_input>Greeting</user_input>
+                    <user_input>Greetings</user_input>
+                    <user_input>Hey</user_input>
+                    <user_input>What's up</user_input>
+                    <user_input>Good morning</user_input>
+                    <user_input>Good afternoon</user_input>
+                    <user_input>Good evening</user_input>
+                </user_inputs>
+            </intent>
+            <responses>
+                <response>
+                    <text>Hi there! I'm ChatBot, and I'll do my best to help you out.</text>
+                    <buttons>
+                        <button>
+                            <text>Let's go!</text>
+                            <type>intent</type>
+                            <value>Let's go</value>
+                        </button>
+                    </buttons>
+                </response>
+            </responses>
+        </intent_group>
+        <intent_group>
+            <intent>
+                <user_inputs>
+                    <user_input>let's go</user_input>
+                    <user_input>start</user_input>
+                    <user_input>begin</user_input>
+                    <user_input>go on</user_input>
+                </user_inputs>
+            </intent>
+            <responses>
+                <response>
+                    <text>Awesome, Let's get started then!</text>
+                </response>
+                <response>
+                    <text>What's your [name](geekybot_user_name)?</text>
+                </response>
+            </responses>
+        </intent_group>
+        <intent_group>
+            <intent>
+                <user_inputs>
+                    <user_input>my name is [John](geekybot_user_name)</user_input>
+                    <user_input>i am [John](geekybot_user_name)</user_input>
+                    <user_input>it's [John](geekybot_user_name).</user_input>
+                </user_inputs>
+            </intent>
+            <responses>
+                <response>
+                    <text>Thanks, [John](geekybot_user_name)! what's your company's [email](geekybot_company_email) address</text>
+                </response>
+            </responses>
+        </intent_group>
+        <intent_group>
+            <intent>
+                <user_inputs>
+                    <user_input>my company email address is [email@gmail.com](geekybot_company_email)</user_input>
+                    <user_input>the email address of my company  is [email@gmail.com](geekybot_company_email)</user_input>
+                </user_inputs>
+            </intent>
+            <responses>
+                <response>
+                    <text>Got it! Let's move forward.</text>
+                </response>
+                <response>
+                    <text>How big is your [team](geekybot_team_size)?</text>
+                    <buttons>
+                        <button>
+                            <text>Just me</text>
+                            <type>intent</type>
+                            <value>Our team consists of 1 members</value>
+                        </button>
+                        <button>
+                            <text>2-10</text>
+                            <type>intent</type>
+                            <value>Our team consists of 2-10 members</value>
+                        </button>
+                        <button>
+                            <text>10-100</text>
+                            <type>intent</type>
+                            <value>Our team consists of 10 - 100 members</value>
+                        </button>
+                        <button>
+                            <text>100+</text>
+                            <type>intent</type>
+                            <value>Our team consists of 100+ members</value>
+                        </button>
+                    </buttons>
+                </response>
+            </responses>
+        </intent_group>
+        <intent_group>
+            <intent>
+                <user_inputs>
+                    <user_input>Our team consists of [team](geekybot_team_size) members</user_input>
+                    <user_input>We have a team of [team](geekybot_team_size) members.</user_input>
+                    <user_input>Our group is made up of [team](geekybot_team_size) members.</user_input>
+                    <user_input>We are a team of [team](geekybot_team_size) people.</user_input>
+                </user_inputs>
+            </intent>
+            <responses>
+                <response>
+                    <text>What's your [need](geekybot_message)?</text>
+                </response>
+                <response>
+                    <text>What would you like to achieve? How can we help you? Let me know by typing your [message](geekybot_message) below.</text>
+                </response>
+            </responses>
+        </intent_group>
+        <intent_group>
+            <intent>
+                <user_inputs>
+                    <user_input>[message](geekybot_message)</user_input>
+                </user_inputs>
+            </intent>
+            <responses>
+                <response>
+                    <text>Thank you!</text>
+                </response>
+                <response>
+                    <text>That's all! Thank you, [John](geekybot_user_name). We'll reach out to you as soon as possible. Have a good day!</text>
+                </response>
+            </responses>
+        </intent_group>
+        <intent_group>
+            <intent>
+                <user_inputs>
+                    <user_input>Bye</user_input>
+                    <user_input>Goodbye</user_input>
+                    <user_input>See you</user_input>
+                    <user_input>Bye for now</user_input>
+                    <user_input>Talk to you later</user_input>
+                    <user_input>Catch you later</user_input>
+                    <user_input>Thanks, I'm done</user_input>
+                    <user_input>That's all</user_input>
+                    <user_input>I'm all set</user_input>
+                    <user_input>No more questions</user_input>
+                    <user_input>Exit</user_input>
+                </user_inputs>
+            </intent>
+            <responses>
+                <response>
+                    <text>Thank you for chatting with us! If you need any more assistance, feel free to reach out. Have a great day!</text>
+                </response>
+                <response>
+                    <function>SendChatToAdmin</function>
+                </response>
+            </responses>
+        </intent_group>
+    </intents>
+</story>

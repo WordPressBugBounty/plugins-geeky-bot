@@ -1,0 +1,172 @@
+<?xml version="1.0"?>
+<story>
+    <intents>
+        <intent_group>
+            <intent>
+                <user_inputs>
+                    <user_input>Hi</user_input>
+                    <user_input>Hi there</user_input>
+                    <user_input>Hello</user_input>
+                    <user_input>Greeting</user_input>
+                    <user_input>Greetings</user_input>
+                    <user_input>Hey</user_input>
+                    <user_input>What's up</user_input>
+                    <user_input>Good morning</user_input>
+                    <user_input>Good afternoon</user_input>
+                    <user_input>Good evening</user_input>
+                </user_inputs>
+            </intent>
+            <responses>
+                <response>
+                    <text>Hello! Welcome to [University Name]. How can I help you today?</text>
+                    <buttons>
+                        <button>
+                            <text>Admissions Inquiry</text>
+                            <type>intent</type>
+                            <value>I am interested in admissions</value>
+                        </button>
+                        <button>
+                            <text>Courses</text>
+                            <type>intent</type>
+                            <value>I have a question about courses</value>
+                        </button>
+                        <button>
+                            <text>Application Help</text>
+                            <type>intent</type>
+                            <value>I need help with my application</value>
+                        </button>
+                        <button>
+                            <text>Scholarship Information</text>
+                            <type>intent</type>
+                            <value>How do I apply for scholarships?</value>
+                        </button>
+                    </buttons>
+                </response>
+            </responses>
+        </intent_group>
+        <intent_group>
+            <intent>
+                <user_inputs>
+                    <user_input>I am interested in admissions</user_input>
+                </user_inputs>
+            </intent>
+            <responses>
+                <response>
+                    <text>Great! You're interested in admissions. Could you please specify if you're looking for undergraduate or graduate programs?</text>
+                </response>
+            </responses>
+        </intent_group>
+        <intent_group>
+            <intent>
+                <user_inputs>
+                    <user_input>Undergraduate</user_input>
+                    <user_input>Graduate</user_input>
+                    <user_input>Not sure</user_input>
+                </user_inputs>
+            </intent>
+            <responses>
+                <response>
+                    <text>Thanks! We offer a variety of programs. You can find more information about our program on our website.</text>
+                </response>
+            </responses>
+        </intent_group>
+        <intent_group>
+            <intent>
+                <user_inputs>
+                    <user_input>I have a question about courses</user_input>
+                </user_inputs>
+            </intent>
+            <responses>
+                <response>
+                    <text>I see you're interested in courses. Could you please tell me which department or subject you're looking into? e.g., "Engineering," "Humanities," etc.</text>
+                </response>
+            </responses>
+        </intent_group>
+        <intent_group>
+            <intent>
+                <user_inputs>
+                    <user_input>Engineering</user_input>
+                    <user_input>Humanities</user_input>
+                </user_inputs>
+            </intent>
+            <responses>
+                <response>
+                    <text>We offer a range of courses in this department. Would you like to know about specific courses, schedules, or something else?</text>
+                </response>
+            </responses>
+        </intent_group>
+        <intent_group>
+            <intent>
+                <user_inputs>
+                    <user_input>I need help with my application</user_input>
+                </user_inputs>
+            </intent>
+            <responses>
+                <response>
+                    <text>If you need help with your application, you've come to the right place. What stage are you at—starting, in progress, or almost finished?</text>
+                </response>
+            </responses>
+        </intent_group>
+        <intent_group>
+            <intent>
+                <user_inputs>
+                    <user_input>at starting stage</user_input>
+                    <user_input>in progress stage</user_input>
+                    <user_input>almost finished stage</user_input>
+                </user_inputs>
+            </intent>
+            <responses>
+                <response>
+                    <text>Understood. I can guide you through the next steps or answer specific questions. What would you like to know?</text>
+                </response>
+            </responses>
+        </intent_group>
+        <intent_group>
+            <intent>
+                <user_inputs>
+                    <user_input>How do I apply for scholarships?</user_input>
+                </user_inputs>
+            </intent>
+            <responses>
+                <response>
+                    <text>Scholarships are a great way to fund your education. Are you looking for need-based, merit-based, or specific program scholarships?</text>
+                </response>
+            </responses>
+        </intent_group>
+        <intent_group>
+            <intent>
+                <user_inputs>
+                    <user_input>merit based</user_input>
+                    <user_input>need based</user_input>
+                </user_inputs>
+            </intent>
+            <responses>
+                <response>
+                    <text>We offer several scholarships that might fit your criteria. Would you like more information on eligibility and application processes?</text>
+                </response>
+            </responses>
+        </intent_group>
+        <intent_group>
+            <intent>
+                <user_inputs>
+                    <user_input>Bye</user_input>
+                    <user_input>Goodbye</user_input>
+                    <user_input>See you</user_input>
+                    <user_input>Bye for now</user_input>
+                    <user_input>Talk to you later</user_input>
+                    <user_input>Catch you later</user_input>
+                    <user_input>Thanks, I'm done</user_input>
+                    <user_input>That's all</user_input>
+                    <user_input>I'm all set</user_input>
+                    <user_input>No more questions</user_input>
+                    <user_input>Exit</user_input>
+                </user_inputs>
+            </intent>
+            <responses>
+                <response>
+                    <text>Thank you for chatting with us! If you need any more assistance, feel free to reach out. Have a great day!</text>
+                </response>
+            </responses>
+        </intent_group>
+    </intents>
+</story>
