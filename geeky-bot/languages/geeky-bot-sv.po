@@ -1,0 +1,2657 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"POT-Creation-Date: \n"
+"PO-Revision-Date: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: sv\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 3.5\n"
+
+msgid "Logo"
+msgstr "Logotyp"
+
+msgid "Template Field 1"
+msgstr "Mallfält 1"
+
+msgid "Title"
+msgstr "Titel"
+
+msgid "Template Field 2"
+msgstr "Mallfält 2"
+
+msgid "Template Field 3"
+msgstr "Mallfält 3"
+
+msgid "Template Field 4"
+msgstr "Mallfält 4"
+
+msgid "Template Field 10"
+msgstr "Mallfält 10"
+
+msgid "Simple Link here"
+msgstr "Enkel länk här"
+
+msgid "Button"
+msgstr "Knapp"
+
+msgid "Selected"
+msgstr "Vald"
+
+msgid "Template Content"
+msgstr "Mallinnehåll"
+
+msgid "Template Field"
+msgstr "Mallfält"
+
+msgid "Show On Listing"
+msgstr "Visa på notering"
+
+msgid "Select Field"
+msgstr "Välj Fält"
+
+msgid "Label"
+msgstr "Märka"
+
+msgid "Select Type"
+msgstr "Välj Typ"
+
+msgid "Set Value"
+msgstr "Ange värde"
+
+msgid "No template fields are available!"
+msgstr "Inga mallfält är tillgängliga!"
+
+msgid "Set Values"
+msgstr "Ställ in värden"
+
+msgid "Field Name :"
+msgstr "Fältnamn:"
+
+msgid "Save"
+msgstr "Spara"
+
+msgid "Something went wrong try again later!"
+msgstr "Något gick fel försök igen senare!"
+
+msgid "Info"
+msgstr "Info"
+
+msgid "An empty expected value or display value field."
+msgstr "Ett tomt fält för förväntat värde eller visningsvärde."
+
+msgid "Values set successfully."
+msgstr "Värdena har angetts framgångsrikt."
+
+msgid "Expected Value"
+msgstr "Förväntat värde"
+
+msgid "Display Value"
+msgstr "Visa värde"
+
+msgid "Delete"
+msgstr "Radera"
+
+msgid "Add Value"
+msgstr "Lägg till värde"
+
+msgid "Edit"
+msgstr "Redigera"
+
+msgid "Text Field"
+msgstr "Textfält"
+
+msgid "Checkbox"
+msgstr "Kryssruta"
+
+msgid "Radio Button"
+msgstr "Radioknapp"
+
+msgid "Dropdown"
+msgstr "Dropdown"
+
+msgid "Link"
+msgstr "Länk"
+
+msgid ""
+"It is a long established fact that a reader will be distracted by the "
+"readable content of a page when looking at its layout Content here, content "
+"here..."
+msgstr ""
+"Det är ett sedan länge etablerat faktum att en läsare kommer att distraheras "
+"av det läsbara innehållet på en sida när man tittar på dess layout. Innehåll "
+"här, innehåll här..."
+
+msgid "Description"
+msgstr "Beskrivning"
+
+msgid "Content Description"
+msgstr "Innehållsbeskrivning"
+
+msgid "Max Number Of Sentance"
+msgstr "Max antal meningar"
+
+msgid "1"
+msgstr "1"
+
+msgid "2"
+msgstr "2"
+
+msgid "3"
+msgstr "3"
+
+msgid "4"
+msgstr "4"
+
+msgid "5"
+msgstr "5"
+
+msgid "6"
+msgstr "6"
+
+msgid "Please wait a moment; this may take some time."
+msgstr "Vänta ett ögonblick; detta kan ta lite tid."
+
+msgid "Synchronize"
+msgstr "Synkronisera"
+
+msgid "Data Synchronization Uncomplete"
+msgstr "Datasynkronisering ofullständig"
+
+msgid ""
+"Your GeekyBot data is not updated. To ensure accurate results, please "
+"synchronize your AI web search data."
+msgstr ""
+"Din GeekyBot-data uppdateras inte. För att säkerställa korrekta resultat, "
+"synkronisera din AI-webbsökningsdata."
+
+msgid "Synchronize Data"
+msgstr "Synkronisera data"
+
+msgid "user"
+msgstr "användare"
+
+msgid "Dashboard"
+msgstr "Instrumentbräda"
+
+msgid "key check"
+msgstr "nyckelkontroll"
+
+msgid "keys"
+msgstr "nycklar"
+
+msgid "Stories"
+msgstr "Berättelser"
+
+msgid "AI Web Search"
+msgstr "AI webbsökning"
+
+msgid "Settings"
+msgstr "Inställningar"
+
+msgid "Chatbot"
+msgstr "Chatbot"
+
+msgid "Install Add-ons"
+msgstr "Installera tillägg"
+
+msgid "export"
+msgstr "exportera"
+
+msgid "import"
+msgstr "importera"
+
+msgid "Chat History"
+msgstr "Chatthistorik"
+
+msgid "build"
+msgstr "bygga"
+
+msgid "Build"
+msgstr "Bygga"
+
+msgid "Variables"
+msgstr "Variabler"
+
+msgid "forms"
+msgstr "formulär"
+
+msgid "Forms"
+msgstr "Blanketter"
+
+msgid "actions"
+msgstr "åtgärder"
+
+msgid "Actions"
+msgstr "Åtgärder"
+
+msgid "File ext. is mismatched"
+msgstr "Fil ext. är felaktig"
+
+msgid "File size is greater then allowed file size"
+msgstr "Filstorleken är större än den tillåtna filstorleken"
+
+msgid "Total Stats"
+msgstr "Total statistik"
+
+msgid "Intents"
+msgstr "Avsikter"
+
+msgid "No record found"
+msgstr "Ingen post hittades"
+
+msgid "Control Panel"
+msgstr "Kontrollpanelen"
+
+msgid "GeekyBot"
+msgstr "GeekyBot"
+
+msgid "Keys"
+msgstr "Nycklar"
+
+msgid "Post Installation"
+msgstr "Efter installation"
+
+msgid "Premium Addon"
+msgstr "Premium-tillägg"
+
+msgid "Could not find any matching results"
+msgstr "Det gick inte att hitta några matchande resultat"
+
+msgid "no record"
+msgstr "inget rekord"
+
+msgid "No record found !..."
+msgstr "Inget register hittat!..."
+
+msgid "system offline"
+msgstr "systemet offline"
+
+msgid ""
+"Unfortunately sytem is offline for a bit of maintenance right now. But soon "
+"we will be up."
+msgstr ""
+"Tyvärr är systemet offline för lite underhåll just nu. Men snart är vi uppe."
+
+msgid "user ban"
+msgstr "användarförbud"
+
+msgid "Your account is disabled, please contact system administrator !..."
+msgstr "Ditt konto är inaktiverat, kontakta systemadministratören!..."
+
+msgid "login"
+msgstr "inloggning"
+
+msgid "To Access This Page Please Login !..."
+msgstr "Logga in för att komma åt denna sida!..."
+
+msgid "Back to control panel"
+msgstr "Tillbaka till kontrollpanelen"
+
+msgid "You are not logged in"
+msgstr "Du är inte inloggad"
+
+msgid "User Is Disabled By Admin"
+msgstr "Användaren är inaktiverad av admin"
+
+msgid "The page you are looking for no longer exists"
+msgstr "Sidan du letar efter finns inte längre"
+
+msgid "You are already logged in"
+msgstr "Du är redan inloggad"
+
+msgid "Please select your role"
+msgstr "Välj din roll"
+
+msgid "You are not allowed"
+msgstr "Du är inte tillåten"
+
+msgid "You are Not Allowed To add More than One"
+msgstr "Du får inte lägga till fler än en"
+
+msgid "Contact Adminstrator"
+msgstr "Kontakta administratören"
+
+msgid "not allowed"
+msgstr "inte tillåtet"
+
+msgid "You are already logged in !..."
+msgstr "Du är redan inloggad!..."
+
+msgid "Logout"
+msgstr "Utloggning"
+
+msgid "Please first make a selection from the list"
+msgstr "Gör först ett urval från listan"
+
+msgid "Unknown"
+msgstr "Okänd"
+
+msgid "Invalid request"
+msgstr "Ogiltig begäran"
+
+msgid "has been successfully applied."
+msgstr "har tillämpats framgångsrikt."
+
+msgid "Error applying the new theme."
+msgstr "Det gick inte att tillämpa det nya temat."
+
+msgid "has been successfully saved."
+msgstr "har sparats."
+
+msgid "has not been saved."
+msgstr "har inte sparats."
+
+msgid "has been successfully reset."
+msgstr "har återställts."
+
+msgid "Every Story must have a name."
+msgstr "Varje berättelse måste ha ett namn."
+
+msgid "Every Story must have at least 1 intent."
+msgstr "Varje berättelse måste ha minst en avsikt."
+
+msgid "has been successfully deleted."
+msgstr "har raderats."
+
+msgid "has been successfully exported."
+msgstr "har exporterats."
+
+msgid "Data has not been exported."
+msgstr "Data har inte exporterats."
+
+msgid "Record not exist."
+msgstr "Posten finns inte."
+
+msgid "has not been deleted."
+msgstr "har inte raderats."
+
+msgid "Please insert key."
+msgstr "Vänligen sätt i nyckeln."
+
+msgid "key is not Valid."
+msgstr "nyckeln är inte giltig."
+
+msgid "transaction has been successfully verified."
+msgstr "transaktionen har verifierats."
+
+msgid "transaction has been successfully un-verified."
+msgstr "transaktionen har avverifierats."
+
+msgid "transaction has not been successfully verified."
+msgstr "transaktionen har inte verifierats."
+
+msgid "transaction has not been successfully un-verified."
+msgstr "transaktionen har inte avverifierats."
+
+msgid "Fields has been successfully required."
+msgstr "Fält har blivit obligatoriska."
+
+msgid "Field has not been required."
+msgstr "Fält har inte behövts."
+
+msgid "Fields has not been required."
+msgstr "Fält har inte behövts."
+
+msgid "Fields has been successfully not required."
+msgstr "Fält har inte varit obligatoriska."
+
+msgid "Field has not been not required."
+msgstr "Fältet har inte behövts."
+
+msgid "Fields has not been not required."
+msgstr "Fält har inte behövts."
+
+msgid "status has been updated."
+msgstr "status har uppdaterats."
+
+msgid "status has not been updated."
+msgstr "status har inte uppdaterats."
+
+msgid "data has been synchronized."
+msgstr "data har synkroniserats."
+
+msgid "data has not been synchronized."
+msgstr "data har inte synkroniserats."
+
+msgid "in use cannot deleted."
+msgstr "som används kan inte raderas."
+
+msgid "already exist."
+msgstr "finns redan."
+
+msgid "File type error."
+msgstr "Filtypsfel."
+
+msgid "File size error."
+msgstr "Filstorleksfel."
+
+msgid "Intent"
+msgstr "Avsikt"
+
+msgid "Response"
+msgstr "Svar"
+
+msgid "Intent Group"
+msgstr "Avsiktsgrupp"
+
+msgid "Variable"
+msgstr "Variabel"
+
+msgid "Story"
+msgstr "Berättelse"
+
+msgid "Post type"
+msgstr "Typ av inlägg"
+
+msgid "AI web search"
+msgstr "AI webbsökning"
+
+msgid "Action"
+msgstr "Handling"
+
+msgid "Changes"
+msgstr "Ändringar"
+
+msgid "Data"
+msgstr "Data"
+
+msgid "Message"
+msgstr "Meddelande"
+
+msgid "Configuration"
+msgstr "Konfiguration"
+
+msgid "Previous"
+msgstr "Tidigare"
+
+msgid "Next"
+msgstr "Nästa"
+
+msgid "Guest"
+msgstr "Gäst"
+
+msgid "User ID"
+msgstr "Användar-ID"
+
+msgid "Add to Story"
+msgstr "Lägg till i berättelsen"
+
+msgid "Add to story"
+msgstr "Lägg till berättelse"
+
+msgid "Search"
+msgstr "Söka"
+
+msgid "Search with user name"
+msgstr "Sök med användarnamn"
+
+msgid "reset"
+msgstr "återställa"
+
+msgid "Select Chat"
+msgstr "Välj Chatta"
+
+msgid "Sender"
+msgstr "Avsändare"
+
+msgid "select chat"
+msgstr "välj chatt"
+
+msgid "Chat history is not selected."
+msgstr "Chatthistorik är inte vald."
+
+msgid "Please select a conversation to view the user's chat history."
+msgstr "Välj en konversation för att se användarens chatthistorik."
+
+msgid "Add User Input To Story"
+msgstr "Lägg till användarinmatning till berättelse"
+
+msgid "Select"
+msgstr "Välja"
+
+msgid "Add User Input"
+msgstr "Lägg till användarinmatning"
+
+msgid "You must choose a story; it cannot be empty."
+msgstr "Du måste välja en berättelse; det kan inte vara tomt."
+
+msgid "Security verification Failed, Please restart you chat to continue."
+msgstr ""
+"Säkerhetsverifieringen misslyckades. Starta om chatten för att fortsätta."
+
+msgid "Your session has expired; please restart your chat."
+msgstr "Din session har löpt ut; vänligen starta om din chatt."
+
+msgid "Hi, I am Chatbot. I do not have specific knowledge."
+msgstr "Hej, jag är Chatbot. Jag har ingen specifik kunskap."
+
+msgid "Your message is too long. Please enter only a username or email."
+msgstr ""
+"Ditt meddelande är för långt. Ange endast ett användarnamn eller e-"
+"postadress."
+
+msgid "Invalid username or email. Try again with the correct one."
+msgstr "Ogiltigt användarnamn eller e-postadress. Försök igen med rätt."
+
+msgid "Show More"
+msgstr "Visa mer"
+
+msgid "Show Articles"
+msgstr "Visa artiklar"
+
+msgid "session time out"
+msgstr "session timeout"
+
+msgid "Data directory can not empty."
+msgstr "Datakatalogen kan inte tömmas."
+
+msgid "Data directory is not proper."
+msgstr "Datakatalogen är inte korrekt."
+
+msgid "Data directory is not writable."
+msgstr "Datakatalogen är inte skrivbar."
+
+msgid "Default fallback message can not be empty."
+msgstr "Standard reservmeddelande kan inte vara tomt."
+
+msgid "Admin pagination not saved."
+msgstr "Adminpaginering har inte sparats."
+
+msgid "User pagination not saved."
+msgstr "Användarpaginering har inte sparats."
+
+msgid ""
+"The title of your chatbot or the primary title displayed on your chat "
+"interface."
+msgstr ""
+"Titeln på din chatbot eller den primära titeln som visas i ditt "
+"chattgränssnitt."
+
+msgid "Default Fallback Message"
+msgstr "Standard reservmeddelande"
+
+msgid "The message displayed when the chatbot cannot understand."
+msgstr "Meddelandet visas när chatboten inte kan förstå."
+
+msgid "Offline"
+msgstr "Off-line"
+
+msgid "Online"
+msgstr "Online"
+
+msgid "Set your plugin offline for front end."
+msgstr "Ställ in ditt plugin offline för gränssnittet."
+
+msgid "Data Directory"
+msgstr "Datakatalog"
+
+msgid "The directory where all chatbot data files are stored."
+msgstr "Katalogen där alla chatbotdatafiler lagras."
+
+msgid "Admin Pagination"
+msgstr "Admin paginering"
+
+msgid "The number of items displayed in a paginated list in the admin panel."
+msgstr "Antalet objekt som visas i en sidnumrerad lista på adminpanelen."
+
+msgid "User Pagination"
+msgstr "Användarpaginering"
+
+msgid "The number of items displayed in a paginated list on the user side."
+msgstr "Antalet objekt som visas i en paginerad lista på användarsidan."
+
+msgid "Save Settings"
+msgstr "Spara inställningar"
+
+msgid "Add Icon"
+msgstr "Lägg till ikon"
+
+msgid "years"
+msgstr "år"
+
+msgid "year"
+msgstr "år"
+
+msgid "ago"
+msgstr "sedan"
+
+msgid "months"
+msgstr "månader"
+
+msgid "month"
+msgstr "månad"
+
+msgid "days"
+msgstr "dagar"
+
+msgid "day"
+msgstr "dag"
+
+msgid "hours"
+msgstr "timmar"
+
+msgid "hour"
+msgstr "timme"
+
+msgid "minutes"
+msgstr "minuter"
+
+msgid "minute"
+msgstr "minut"
+
+msgid "Just now"
+msgstr "Just nu"
+
+msgid "AI ChatBot is disabled."
+msgstr "AI ChatBot är inaktiverad."
+
+msgid "Active Now"
+msgstr "Aktiv nu"
+
+msgid "AI ChatBot story not built."
+msgstr "AI ChatBot-berättelsen är inte byggd."
+
+msgid "Built Now"
+msgstr "Byggt nu"
+
+msgid "WooCommerce plugin is not installed."
+msgstr "WooCommerce-plugin är inte installerat."
+
+msgid "Install Now"
+msgstr "Installera nu"
+
+msgid "WooCommerce plugin is not activated."
+msgstr "WooCommerce-plugin är inte aktiverad."
+
+msgid "WooCommerce Bot is disabled."
+msgstr "WooCommerce Bot är inaktiverad."
+
+msgid "WooCommerce story not built."
+msgstr "WooCommerce-berättelsen är inte byggd."
+
+msgid "Post Type not found."
+msgstr "Posttyp hittades inte."
+
+msgid "AI Web Search is disabled!"
+msgstr "AI-webbsökning är inaktiverad!"
+
+msgid "AI ChatBot Sessions"
+msgstr "AI ChatBot-sessioner"
+
+msgid "Session Card"
+msgstr "Sessionskort"
+
+msgid "Graph"
+msgstr "Graf"
+
+msgid "Card"
+msgstr "Kort"
+
+msgid "WooCommerce Sessions"
+msgstr "WooCommerce-sessioner"
+
+msgid "AI Web Search Sessions"
+msgstr "AI webbsökningssessioner"
+
+msgid "Icon"
+msgstr "Ikon"
+
+msgid "GeekyBot Setup and Usage Guides"
+msgstr "Installations- och användningsguider för GeekyBot"
+
+msgid "Explore installation, training, and effective usage guides."
+msgstr "Utforska installations-, utbildnings- och effektiva användningsguider."
+
+msgid "Play"
+msgstr "Spela"
+
+msgid "Youtube Icon"
+msgstr "Youtube-ikon"
+
+msgid "How to add Story"
+msgstr "Hur man lägger till Story"
+
+msgid "How to add Variable"
+msgstr "Hur man lägger till variabel"
+
+msgid "Change Settings"
+msgstr "Ändra inställningar"
+
+msgid "Change Color"
+msgstr "Ändra färg"
+
+msgid "Remove"
+msgstr "Ta bort"
+
+msgid "Cross Icon"
+msgstr "Kors ikon"
+
+msgid "Stories Date"
+msgstr "Berättelser datum"
+
+msgid "View Stories"
+msgstr "Visa berättelser"
+
+msgid "AI Chatbot"
+msgstr "AI Chatbot"
+
+msgid "WooCommerce"
+msgstr "WooCommerce"
+
+msgid "Bot Icon"
+msgstr "Bot ikon"
+
+msgid "AI ChatBot"
+msgstr "AI ChatBot"
+
+msgid "Last Month Stats"
+msgstr "Förra månadens statistik"
+
+msgid "Woo Icon"
+msgstr "Woo ikon"
+
+msgid "AI Web Search "
+msgstr "AI webbsökning"
+
+msgid "Manage Post Types"
+msgstr "Hantera inläggstyper"
+
+msgid "Enable AI Web Search"
+msgstr "Aktivera AI-webbsökning"
+
+msgid "Search Icon"
+msgstr "Sök ikon"
+
+msgid "History"
+msgstr "Historia"
+
+msgid "WooCommerce Bot"
+msgstr "WooCommerce Bot"
+
+msgid "logo"
+msgstr "logotyp"
+
+msgid "No of Conversation"
+msgstr "Antal konversationer"
+
+msgid "View History"
+msgstr "Visa historik"
+
+msgid "No data"
+msgstr "Inga data"
+
+msgid "No Data"
+msgstr "Inga data"
+
+msgid "Addons"
+msgstr "Tillägg"
+
+msgid "addon"
+msgstr "tillägg"
+
+msgid "Custom Listing Style"
+msgstr "Anpassad liststil"
+
+msgid "Custom Listing Text"
+msgstr "Anpassad annonstext"
+
+msgid "WooCommerce Features"
+msgstr "WooCommerce-funktioner"
+
+msgid "Addon List"
+msgstr "Tilläggslista"
+
+msgid "WooCommerce "
+msgstr "WooCommerce"
+
+msgid "Lead Generation"
+msgstr "Generering av leads"
+
+msgid ""
+"GeekyBot simplifies the WooCommerce experience with intelligent product "
+"discovery and purchasing. It seamlessly integrates with WooCommerce for "
+"efficient product searches, detailed listings, and a smooth shopping "
+"experience."
+msgstr ""
+"GeekyBot förenklar WooCommerce-upplevelsen med intelligent produktupptäckt "
+"och inköp. Den integreras sömlöst med WooCommerce för effektiva "
+"produktsökningar, detaljerade listor och en smidig shoppingupplevelse."
+
+msgid "Find Product"
+msgstr "Hitta produkt"
+
+msgid "Find Products"
+msgstr "Hitta produkter"
+
+msgid "Find products by name, category, or price range via chat."
+msgstr "Hitta produkter efter namn, kategori eller prisklass via chatt."
+
+msgid "List Product"
+msgstr "Lista produkt"
+
+msgid "List Products"
+msgstr "Lista produkter"
+
+msgid "Show relevant products with details and prices based on preferences."
+msgstr ""
+"Visa relevanta produkter med detaljer och priser baserat på preferenser."
+
+msgid "Add To Cart Product"
+msgstr "Lägg i kundvagn Produkt"
+
+msgid "Add to Cart"
+msgstr "Lägg till i varukorgen"
+
+msgid "Easily add products to the cart list directly through chat."
+msgstr "Lägg enkelt till produkter i kundvagnslistan direkt via chatten."
+
+msgid "Watch Video"
+msgstr "Titta på video"
+
+msgid "AI Chat"
+msgstr "AI Chat"
+
+msgid "Custom"
+msgstr "Beställnings"
+
+msgid " AI Chat Bot "
+msgstr "AI Chat Bot"
+
+msgid "Conversation Handling"
+msgstr "Konversationshantering"
+
+msgid ""
+"AI Chat Conversation provides intelligent and context-aware interactions to "
+"enhance user engagement. Define key conversation elements to capture "
+"specific user inputs dynamically and adapt responses based on the context."
+msgstr ""
+"AI Chat Conversation ger intelligenta och sammanhangsmedvetna interaktioner "
+"för att öka användarens engagemang. Definiera viktiga konversationselement "
+"för att fånga specifika användarinmatningar dynamiskt och anpassa svar "
+"baserat på sammanhanget."
+
+msgid "Capture and process inputs dynamically for personalized responses."
+msgstr "Fånga och bearbeta indata dynamiskt för personliga svar."
+
+msgid "Adjust interactions based on the ongoing conversation for relevance."
+msgstr "Justera interaktioner baserat på det pågående samtalet för relevans."
+
+msgid "Use collected data to tailor responses and improve satisfaction."
+msgstr ""
+"Använd insamlad data för att skräddarsy svar och förbättra "
+"tillfredsställelsen."
+
+msgid "Discover Our "
+msgstr "Upptäck vår"
+
+msgid " AI Web Search"
+msgstr "AI webbsökning"
+
+msgid "Bot"
+msgstr "Bot"
+
+msgid ""
+"AI Web Search improves user experience by delivering advanced, intuitive "
+"content discovery on your WordPress site. With powerful searches, users can "
+"quickly find relevant information, enhancing overall interest and "
+"accessibility."
+msgstr ""
+"AI Web Search förbättrar användarupplevelsen genom att leverera avancerad, "
+"intuitiv innehållsupptäckt på din WordPress-webbplats. Med kraftfulla "
+"sökningar kan användare snabbt hitta relevant information, vilket ökar det "
+"övergripande intresset och tillgängligheten."
+
+msgid "GeekyBot swiftly retrieves posts and pages based on user queries."
+msgstr "GeekyBot hämtar snabbt inlägg och sidor baserat på användarfrågor."
+
+msgid "Displays full content or excerpts that match search terms."
+msgstr "Visar fullständigt innehåll eller utdrag som matchar söktermer."
+
+msgid "Activate GeekyBot’s search for an AI web search with one click."
+msgstr "Aktivera GeekyBots sökning efter en AI-webbsökning med ett klick."
+
+msgid "Web Search"
+msgstr "Webbsökning"
+
+msgid "GeekyBot Supported Plugins"
+msgstr "Plugins som stöds av GeekyBot"
+
+msgid "Plugin"
+msgstr "Plugin"
+
+msgid "WP Job Manager"
+msgstr "WP Job Manager"
+
+msgid "Tutor LMS"
+msgstr "Handledare LMS"
+
+msgid "bbPress"
+msgstr "bbPress"
+
+msgid "LearnPress"
+msgstr "Lär Press"
+
+msgid "Knowledge Base"
+msgstr "Kunskapsbas"
+
+msgid "BetterDocs"
+msgstr "BetterDocs"
+
+msgid "Motors"
+msgstr "Motorer"
+
+msgid "Estatik Real Estate"
+msgstr "Estatik Fastigheter"
+
+msgid "Auto Listings"
+msgstr "Billistor"
+
+msgid "Welcome to GeekyBot Features"
+msgstr "Välkommen till GeekyBot-funktioner"
+
+msgid "GeekyBot Features"
+msgstr "GeekyBot-funktioner"
+
+msgid "WooCommerce Integration"
+msgstr "WooCommerce-integration"
+
+msgid "Quick Installation"
+msgstr "Snabb installation"
+
+msgid "Version: 1.0.0"
+msgstr "Version: 1.0.0"
+
+msgid "AI Chat Bot"
+msgstr "AI Chat Bot"
+
+msgid "Enable/Disable"
+msgstr "Aktivera/inaktivera"
+
+msgid "Enable/Disable Bot"
+msgstr "Aktivera/inaktivera bot"
+
+msgid "Select Template"
+msgstr "Välj Mall"
+
+msgid ""
+"AI Chat in GeekyBot provides instant, personalized responses to user "
+"queries, ensuring seamless support around the clock. With its ability to "
+"engage users at any time, GeekyBot enhances the reliability of your service, "
+"making sure that your customers' needs are always met."
+msgstr ""
+"AI Chat i GeekyBot ger omedelbara, personliga svar på användarfrågor, vilket "
+"säkerställer sömlös support dygnet runt. Med sin förmåga att engagera "
+"användare när som helst, förbättrar GeekyBot tillförlitligheten för din "
+"tjänst och ser till att dina kunders behov alltid tillgodoses."
+
+msgid ""
+"By training GeekyBot with your specific data, you can create dynamic, "
+"tailored interactions that reflect your business's unique voice and "
+"services. This customization allows for more relevant, effective "
+"conversations that build stronger connections with your users."
+msgstr ""
+"Genom att träna GeekyBot med din specifika data kan du skapa dynamiska, "
+"skräddarsydda interaktioner som speglar ditt företags unika röst och "
+"tjänster. Denna anpassning möjliggör mer relevanta, effektiva konversationer "
+"som bygger starkare kontakter med dina användare."
+
+msgid "Bot Image"
+msgstr "Bot bild"
+
+msgid "image"
+msgstr "bild"
+
+msgid "Watch AI ChatBot Video"
+msgstr "Titta på AI ChatBot-video"
+
+msgid "AI Web Search Bot"
+msgstr "AI Web Search Bot"
+
+msgid ""
+"Effortlessly search for specific posts and content across your entire site "
+"using our powerful AI web search tool. GeekyBot goes beyond standard "
+"searches, delivering results from all types of data on your site. Whether "
+"you're looking for posts, pages, custom post types, or other information, "
+"GeekyBot ensures you find what you need quickly and efficiently by "
+"displaying relevant articles, posts, and more in a single, streamlined "
+"search experience."
+msgstr ""
+"Sök enkelt efter specifika inlägg och innehåll på hela din webbplats med "
+"vårt kraftfulla AI-webbsökverktyg. GeekyBot går utöver vanliga sökningar och "
+"levererar resultat från alla typer av data på din webbplats. Oavsett om du "
+"letar efter inlägg, sidor, anpassade inläggstyper eller annan information, "
+"säkerställer GeekyBot att du hittar det du behöver snabbt och effektivt "
+"genom att visa relevanta artiklar, inlägg och mer i en enda, "
+"strömlinjeformad sökupplevelse."
+
+msgid "New Post Type Search"
+msgstr "Sök efter ny inläggstyp"
+
+msgid ""
+"Enable this option to directly include new post types in search results, "
+"enhancing user access to all content."
+msgstr ""
+"Aktivera det här alternativet för att direkt inkludera nya inläggstyper i "
+"sökresultaten, vilket förbättrar användaråtkomsten till allt innehåll."
+
+msgid "Watch AI Web Search Video"
+msgstr "Titta på AI Web Search-video"
+
+msgid "Back"
+msgstr "Tillbaka"
+
+msgid "Finish"
+msgstr "Avsluta"
+
+msgid "WooCommerce is not installed"
+msgstr "WooCommerce är inte installerat"
+
+msgid ""
+"WooCommerce plugin is not installed on your site, you won't be able to "
+"integrate GeekyBot with WooCommerce."
+msgstr ""
+"WooCommerce plugin är inte installerat på din webbplats, du kommer inte att "
+"kunna integrera GeekyBot med WooCommerce."
+
+msgid ""
+"Easily integrate AI with WooCommerce to enhance your online store’s "
+"performance. GeekyBot boosts lead generation and customer interactions, "
+"automating key processes for a more effective and engaging shopping "
+"experience."
+msgstr ""
+"Integrera enkelt AI med WooCommerce för att förbättra din onlinebutiks "
+"prestanda. GeekyBot ökar leadsgenereringen och kundinteraktioner, och "
+"automatiserar nyckelprocesser för en mer effektiv och engagerande "
+"shoppingupplevelse."
+
+msgid ""
+"GeekyBot also streamlines customer inquiries and provides real-time, "
+"intelligent responses. By improving retention and customer satisfaction, it "
+"ensures your store delivers an exceptional experience that keeps shoppers "
+"coming back."
+msgstr ""
+"GeekyBot effektiviserar också kundförfrågningar och ger intelligenta svar i "
+"realtid. Genom att förbättra retentionen och kundnöjdheten säkerställer det "
+"att din butik levererar en exceptionell upplevelse som får kunder att komma "
+"tillbaka."
+
+msgid "Watch WooCommerce Video"
+msgstr "Se WooCommerce-video"
+
+msgid "Welcome to GeekyBot !..."
+msgstr "Välkommen till GeekyBot!..."
+
+msgid ""
+"The ultimate AI chatbot for WooCommerce lead generation, intelligent content "
+"search, and interactive customer engagement on your WordPress website."
+msgstr ""
+"Den ultimata AI-chatboten för WooCommerce-leadgenerering, intelligent "
+"innehållssökning och interaktivt kundengagemang på din WordPress-webbplats."
+
+msgid ""
+"Personalize interactions by dynamically processing user inputs using slots "
+"and variables."
+msgstr ""
+"Anpassa interaktioner genom att dynamiskt bearbeta användarindata med hjälp "
+"av slots och variabler."
+
+msgid ""
+"Enhance shopping by enabling users to find products and add them to their "
+"cart seamlessly."
+msgstr ""
+"Förbättra shoppingen genom att göra det möjligt för användare att hitta "
+"produkter och lägga till dem i sin varukorg sömlöst."
+
+msgid "Website Search"
+msgstr "Webbplatssökning"
+
+msgid ""
+"Streamline discovery by helping users find relevant information on your "
+"WordPress site."
+msgstr ""
+"Effektivisera upptäckten genom att hjälpa användare att hitta relevant "
+"information på din WordPress-webbplats."
+
+msgid "Please insert activation key to proceed"
+msgstr "Vänligen sätt i aktiveringsnyckeln för att fortsätta"
+
+msgid "Addon Installation Failed"
+msgstr "Installation av tillägg misslyckades"
+
+msgid "Addon installation failed"
+msgstr "Installation av tillägg misslyckades"
+
+msgid "Addon Installation Failed, File download error"
+msgstr "Tilläggsinstallationen misslyckades, filnedladdningsfel"
+
+msgid "Activated"
+msgstr "Aktiverad"
+
+msgid "Deactivate"
+msgstr "Avaktivera"
+
+msgid "Deactivated"
+msgstr "Inaktiverad"
+
+msgid "Activate"
+msgstr "Aktivera"
+
+msgid "Not Installed"
+msgstr "Ej installerad"
+
+msgid "Addon Installed Successfully"
+msgstr "Addon har installerats framgångsrikt"
+
+msgid "Ticket Actions"
+msgstr "Biljettåtgärder"
+
+msgid "Agents"
+msgstr "Agenter"
+
+msgid "Ticket Auto Close"
+msgstr "Biljett stängs automatiskt"
+
+msgid "left image"
+msgstr "vänster bild"
+
+msgid "right image"
+msgstr "höger bild"
+
+msgid "Add-ons For Majestic Support"
+msgstr "Tillägg för Majestic Support"
+
+msgid ""
+"Get trusted WordPress add-ons. Guaranteed to work fast, safe to use, "
+"beautifully coded, packed with features, and are easy to use."
+msgstr ""
+"Få pålitliga WordPress-tillägg. Garanterat att arbeta snabbt, säkert att "
+"använda, vackert kodat, fullmatat med funktioner och är lätta att använda."
+
+msgid "Save big today with an exclusive membership plan!"
+msgstr "Spara stort idag med en exklusiv medlemskapsplan!"
+
+msgid "Show"
+msgstr "Visa"
+
+msgid "show bundle pack"
+msgstr "visa paketpaket"
+
+msgid "Agent"
+msgstr "Ombud"
+
+msgid ""
+"Add agents and assign roles and permissions to provide assistance and "
+"support for customer support tickets."
+msgstr ""
+"Lägg till agenter och tilldela roller och behörigheter för att ge hjälp och "
+"support för kundsupportbiljetter."
+
+msgid "buy now"
+msgstr "köp nu"
+
+msgid "Installed"
+msgstr "Installerad"
+
+msgid "multiform"
+msgstr "mångformig"
+
+msgid "Multi Forms"
+msgstr "Flera formulär"
+
+msgid ""
+"Create multiple custom ticket forms with different custom fields for each "
+"request type that you support."
+msgstr ""
+"Skapa flera anpassade ärendeformulär med olika anpassade fält för varje "
+"förfrågningstyp som du stöder."
+
+msgid "Email Piping"
+msgstr "E-post rörledning"
+
+msgid ""
+"Email piping is the process of automatically turning incoming emails into "
+"support tickets without manual data entry."
+msgstr ""
+"E-postpiping är processen att automatiskt omvandla inkommande e-"
+"postmeddelanden till supportbiljetter utan manuell datainmatning."
+
+msgid "agent auto assign"
+msgstr "agent auto tilldela"
+
+msgid "Agent Auto Assign"
+msgstr "Agent Auto Tilldela"
+
+msgid ""
+"Make the ticket assignment process automatic and assign the most qualified "
+"agent to your tickets with conditions."
+msgstr ""
+"Gör biljetttilldelningsprocessen automatisk och tilldela den mest "
+"kvalificerade agenten till dina biljetter med villkor."
+
+msgid "private note"
+msgstr "privat anteckning"
+
+msgid "Private Note"
+msgstr "Privat anteckning"
+
+msgid ""
+"Add private notes to a ticket and share crucial information internally with "
+"your agents, this private note is not visible to the customer."
+msgstr ""
+"Lägg till privata anteckningar till en biljett och dela viktig information "
+"internt med dina agenter, denna privata anteckning är inte synlig för kunden."
+
+msgid "merge tickets"
+msgstr "slå samman biljetter"
+
+msgid "Merge Tickets"
+msgstr "Slå samman biljetter"
+
+msgid ""
+"Merge one or more tickets into another if you receive two support requests "
+"from the same end user about the same issue."
+msgstr ""
+"Slå samman en eller flera biljetter till en annan om du får två "
+"supportförfrågningar från samma slutanvändare om samma problem."
+
+msgid "helptopic"
+msgstr "hjälpämne"
+
+msgid "Help Topics"
+msgstr "Hjälpämnen"
+
+msgid ""
+"The user can search for and choose the topic for which they need help using "
+"help topics"
+msgstr ""
+"Användaren kan söka efter och välja det ämne som de behöver hjälp med att "
+"använda hjälpämnen"
+
+msgid "Auto Close Ticket"
+msgstr "Autostäng biljett"
+
+msgid ""
+"Manage abandoned tickets, and set rules for tickets over time, and those "
+"tickets will be closed automatically after a certain period."
+msgstr ""
+"Hantera övergivna biljetter och ställ in regler för biljetter över tid, och "
+"dessa biljetter stängs automatiskt efter en viss period."
+
+msgid "Knowledgebase"
+msgstr "Kunskapsbas"
+
+msgid ""
+"Stop wasting time on repetitive inquiries, build your knowledge base, and "
+"organize your solutions into categories for users."
+msgstr ""
+"Sluta slösa tid på repetitiva förfrågningar, bygg upp din kunskapsbas och "
+"organisera dina lösningar i kategorier för användare."
+
+msgid "Ticket Overdue"
+msgstr "Försenad biljett"
+
+msgid ""
+"Define rules or set a specific time interval for making tickets "
+"automatically overdue."
+msgstr ""
+"Definiera regler eller ställ in ett specifikt tidsintervall för att göra "
+"biljetter automatiskt försenade."
+
+msgid "time tracking"
+msgstr "tidsspårning"
+
+msgid "Time Tracking"
+msgstr "Tidsspårning"
+
+msgid ""
+"Track the amount of time spent on each customer support ticket without "
+"losing focus and enhance team productivity."
+msgstr ""
+"Spåra hur mycket tid som spenderas på varje kundsupportbiljett utan att "
+"tappa fokus och förbättra teamets produktivitet."
+
+msgid "Ticket History"
+msgstr "Biljetthistorik"
+
+msgid ""
+"Show the whole history of the ticket, including its status and any action "
+"taken in response to it."
+msgstr ""
+"Visa hela historiken för biljetten, inklusive dess status och alla åtgärder "
+"som vidtagits som svar på den."
+
+msgid "Paid Support"
+msgstr "Betald support"
+
+msgid ""
+"The simplest approach to effectively manage payments for premium help is "
+"through paid support."
+msgstr ""
+"Det enklaste sättet att effektivt hantera betalningar för premiumhjälp är "
+"genom betald support."
+
+msgid "Private Credentials"
+msgstr "Privata inloggningsuppgifter"
+
+msgid ""
+"Customers will enter sensitive information on tickets, and this add-on is "
+"designed to help you keep that information secure."
+msgstr ""
+"Kunder kommer att ange känslig information på biljetter, och detta tillägg "
+"är utformat för att hjälpa dig att hålla den informationen säker."
+
+msgid "Ticket close reason"
+msgstr "Biljett nära anledning"
+
+msgid "Ticket Closed Reason"
+msgstr "Biljett stängd anledning"
+
+msgid ""
+"Empowers users to provide clear and concise explanations for why customer "
+"service tickets are being closed."
+msgstr ""
+"Ger användare möjlighet att ge tydliga och koncisa förklaringar till varför "
+"kundtjänstbiljetter stängs."
+
+msgid "Premade Responses"
+msgstr "Förberedda svar"
+
+msgid ""
+"Make ready-made responses to the most common questions in the tickets to "
+"swiftly address client issues."
+msgstr ""
+"Ge färdiga svar på de vanligaste frågorna i biljetterna för att snabbt lösa "
+"kundproblem."
+
+msgid "max ticket"
+msgstr "max biljett"
+
+msgid "Max Tickets"
+msgstr "Max biljetter"
+
+msgid ""
+"Admins can limit the number of tickets that users can create as well as the "
+"number of tickets that agents can open individually."
+msgstr ""
+"Administratörer kan begränsa antalet biljetter som användare kan skapa samt "
+"antalet biljetter som agenter kan öppna individuellt."
+
+msgid "Feedback"
+msgstr "Feed-back"
+
+msgid ""
+"To enhance the quality of your services, ask your customers to complete a "
+"survey when a ticket is closed."
+msgstr ""
+"För att förbättra kvaliteten på dina tjänster, be dina kunder att fylla i en "
+"undersökning när en biljett är stängd."
+
+msgid "ticket actions"
+msgstr "biljettåtgärder"
+
+msgid ""
+"Ticket action options allow you to execute additional actions on tickets."
+msgstr ""
+"Biljettåtgärdsalternativ låter dig utföra ytterligare åtgärder på biljetter."
+
+msgid "Export"
+msgstr "Exportera"
+
+msgid ""
+"Easily export ticket data and performance report data from your majestic "
+"support to an Excel spreadsheet with our efficient and user-friendly "
+"solution."
+msgstr ""
+"Exportera enkelt biljettdata och resultatrapportdata från din majestätiska "
+"support till ett Excel-kalkylblad med vår effektiva och användarvänliga "
+"lösning."
+
+msgid "email cc"
+msgstr "e-post cc"
+
+msgid "Email CC"
+msgstr "E-post CC"
+
+msgid ""
+"Send the exact copy of the email to the provided email address with Email CC "
+"or BCC."
+msgstr ""
+"Skicka den exakta kopian av e-postmeddelandet till den angivna e-"
+"postadressen med Email CC eller BCC."
+
+msgid "user options"
+msgstr "användaralternativ"
+
+msgid "User Options"
+msgstr "Användaralternativ"
+
+msgid ""
+"User options enable you to define roles for new users when they are "
+"registered."
+msgstr ""
+"Användaralternativ gör att du kan definiera roller för nya användare när de "
+"är registrerade."
+
+msgid "SMTP"
+msgstr "SMTP"
+
+msgid ""
+"SMTP enables you to add  custom mail protocols to send and receive emails "
+"with the support ticket system."
+msgstr ""
+"SMTP gör att du kan lägga till anpassade e-postprotokoll för att skicka och "
+"ta emot e-postmeddelanden med supportärendesystemet."
+
+msgid "Multi Language Email Templates"
+msgstr "Flerspråkiga e-postmallar"
+
+msgid ""
+"Create multi-language email templates for all default email templates to "
+"send customers emails in the language that they prefer."
+msgstr ""
+"Skapa flerspråkiga e-postmallar för alla standard-e-postmallar för att "
+"skicka e-post till kunder på det språk de föredrar."
+
+msgid "Downloads"
+msgstr "Nedladdningar"
+
+msgid ""
+"Downloads can be very helpful for users who are looking to obtain the "
+"necessary information to resolve issues."
+msgstr ""
+"Nedladdningar kan vara till stor hjälp för användare som vill få nödvändig "
+"information för att lösa problem."
+
+msgid "Announcements"
+msgstr "Meddelanden"
+
+msgid ""
+"Make an unlimited number of announcements related to the support system to "
+"encourage customer interaction."
+msgstr ""
+"Gör ett obegränsat antal meddelanden relaterade till supportsystemet för att "
+"uppmuntra kundinteraktion."
+
+msgid "Ban Email"
+msgstr "Förbjud e-post"
+
+msgid ""
+"With Ban Email, you can limit a users ability to create new tickets by "
+"blocking their email address."
+msgstr ""
+"Med Ban Email kan du begränsa en användares möjlighet att skapa nya "
+"biljetter genom att blockera deras e-postadress."
+
+msgid "FAQ"
+msgstr "FAQ"
+
+msgid ""
+"Provide answers to common user questions with the FAQ extension before they "
+"become tickets."
+msgstr ""
+"Ge svar på vanliga användarfrågor med FAQ-tillägget innan de blir biljetter."
+
+msgid "admin widgets"
+msgstr "admin widgets"
+
+msgid "Admin Widgets"
+msgstr "Admin-widgetar"
+
+msgid ""
+"Get immediate data on your support operations as soon as you log into your "
+"WordPress administration area."
+msgstr ""
+"Få omedelbar information om din supportverksamhet så snart du loggar in på "
+"ditt WordPress-administrationsområde."
+
+msgid "desktop notifications"
+msgstr "skrivbordsaviseringar"
+
+msgid "Desktop Notifications"
+msgstr "Skrivbordsmeddelanden"
+
+msgid ""
+"You will be informed of anything that occurs on your support system by the "
+"desktop notifications."
+msgstr ""
+"Du kommer att informeras om allt som inträffar på ditt supportsystem genom "
+"skrivbordsmeddelanden."
+
+msgid "woocommerce"
+msgstr "woocommerce"
+
+msgid ""
+"The integration of the support ticket system for WooCommerce with your e-"
+"shop makes your support better and more professional."
+msgstr ""
+"Integrationen av supportbiljettsystemet för WooCommerce med din e-butik gör "
+"din support bättre och mer professionell."
+
+msgid "mail chimp"
+msgstr "mailchimp"
+
+msgid "Mail Chimp"
+msgstr "Mailchimp"
+
+msgid ""
+"Manage your email marketing campaigns directly from your majestic support by "
+"adding new user accounts to your Mailchimp email list."
+msgstr ""
+"Hantera dina e-postmarknadsföringskampanjer direkt från din majestätiska "
+"support genom att lägga till nya användarkonton till din Mailchimp-e-"
+"postlista."
+
+msgid "internal mail"
+msgstr "intern post"
+
+msgid "Internal Mail"
+msgstr "Intern post"
+
+msgid ""
+"Send messages internally about support tickets and other issues between "
+"agents with internal mail."
+msgstr ""
+"Skicka meddelanden internt om supportbiljetter och andra problem mellan "
+"agenter med intern post."
+
+msgid "frontend widget"
+msgstr "frontend-widget"
+
+msgid "Front-End Widgets"
+msgstr "Front-end-widgets"
+
+msgid ""
+"Frontend Widgets include several widgets that can be used to enhance the "
+"plugin's functionality in various areas of the website."
+msgstr ""
+"Frontend-widgets inkluderar flera widgets som kan användas för att förbättra "
+"pluginens funktionalitet i olika delar av webbplatsen."
+
+msgid "envato"
+msgstr "envato"
+
+msgid "Envato"
+msgstr "Envato"
+
+msgid ""
+"Clients won't be able to open a new ticket using the Envato Validation "
+"plugin if they don't have a valid Envato license."
+msgstr ""
+"Kunder kommer inte att kunna öppna en ny biljett med Envato Validation-"
+"plugin om de inte har en giltig Envato-licens."
+
+msgid "easy digital download"
+msgstr "enkel digital nedladdning"
+
+msgid "Easy Digital Download"
+msgstr "Enkel digital nedladdning"
+
+msgid ""
+"Learn about a customer's purchase directly from the support dashboard by "
+"integrating Majestic Support with your EDD store."
+msgstr ""
+"Lär dig mer om en kunds köp direkt från supportpanelen genom att integrera "
+"Majestic Support med din EDD-butik."
+
+msgid "Majestic Support Add-ons Bundle Pack"
+msgstr "Majestic Support Add-ons Bundle Pack"
+
+msgid "Basic"
+msgstr "Grundläggande"
+
+msgid "Unlimited Agents"
+msgstr "Obegränsat antal agenter"
+
+msgid "Helptopic"
+msgstr "Hjälpämne"
+
+msgid "Show all"
+msgstr "Visa alla"
+
+msgid "Standard"
+msgstr "Standard"
+
+msgid "Everything in basic included and "
+msgstr "Allt i basic ingår och"
+
+msgid "Premade Response"
+msgstr "Färdigt svar"
+
+msgid "Professional"
+msgstr "Professionell"
+
+msgid "Everything in standard included and"
+msgstr "Allt i standard ingår och"
+
+msgid "All Future Addons"
+msgstr "Alla framtida tillägg"
+
+msgid "spinning wheel"
+msgstr "spinnrock"
+
+msgid "New Update Version"
+msgstr "Ny uppdateringsversion"
+
+msgid "is Available"
+msgstr "är tillgänglig"
+
+msgid "Status: "
+msgstr "Status:"
+
+msgid "Version"
+msgstr "Version"
+
+msgid "addon in no longer active"
+msgstr "tillägget är inte längre aktivt"
+
+msgid "Please Insert Your Activation Key"
+msgstr "Vänligen sätt i din aktiveringsnyckel"
+
+msgid "XXXX-XXXX-XXXXX-XXXXX"
+msgstr "XXXX-XXXX-XXXXX-XXXX"
+
+msgid "Proceed"
+msgstr "Fortsätta"
+
+msgid "GeekyBot Addon Installer"
+msgstr "GeekyBot Addon Installer"
+
+msgid "Select All Addons"
+msgstr "Välj Alla tillägg"
+
+msgid "All allowed add ons are already installed"
+msgstr "Alla tillåtna tillägg är redan installerade"
+
+msgid "You are not allowed to install any add on"
+msgstr "Du får inte installera något tillägg"
+
+msgid "Something went wrong"
+msgstr "Något gick fel"
+
+msgid "Addons Installed Successfully"
+msgstr "Tillägg installerade framgångsrikt"
+
+msgid "Open Dashboard"
+msgstr "Öppna Dashboard"
+
+msgid "Open Plugins Page"
+msgstr "Öppna Plugins-sidan"
+
+msgid "PersonName"
+msgstr "Personnamn"
+
+msgid "Facility"
+msgstr "Facilitet"
+
+msgid "Organization"
+msgstr "Organisation"
+
+msgid "Location"
+msgstr "Plats"
+
+msgid "Location_NON_GPE"
+msgstr "Plats_NON_GPE"
+
+msgid "Product"
+msgstr "Produkt"
+
+msgid "Event"
+msgstr "Händelse"
+
+msgid "ArtWork"
+msgstr "Konstverk"
+
+msgid "LawDocument"
+msgstr "LawDocument"
+
+msgid "Language"
+msgstr "Språk"
+
+msgid "Date"
+msgstr "Datum"
+
+msgid "Time"
+msgstr "Tid"
+
+msgid "Percentage"
+msgstr "Procentsats"
+
+msgid "Money"
+msgstr "Pengar"
+
+msgid "Quantity"
+msgstr "Kvantitet"
+
+msgid "Ordinal"
+msgstr "Ordinal"
+
+msgid "Cardinal"
+msgstr "Kardinal"
+
+msgid "Select Variable For"
+msgstr "Välj Variabel för"
+
+msgid "Attribute"
+msgstr "Attribut"
+
+msgid "Name"
+msgstr "Namn"
+
+msgid "Varibale Name"
+msgstr "Variabelnamn"
+
+msgid "Type"
+msgstr "Typ"
+
+msgid "Possible Field Values"
+msgstr "Möjliga fältvärden"
+
+msgid "Add Comma Seprated Values"
+msgstr "Lägg till kommaseparerade värden"
+
+msgid "Variable For"
+msgstr "Variabel för"
+
+msgid "Select Variable For in case of Woocommerce Variable"
+msgstr "Välj variabel för vid Woocommerce-variabel"
+
+msgid "cancel"
+msgstr "avboka"
+
+msgid "Cancel"
+msgstr "Avboka"
+
+msgid "Save Changes"
+msgstr "Spara ändringar"
+
+msgid "Save Variable"
+msgstr "Spara variabel"
+
+msgid "Reset"
+msgstr "Återställa"
+
+msgid "Are you sure to delete it?"
+msgstr "Är du säker på att ta bort den?"
+
+msgid "Delete Variable"
+msgstr "Ta bort variabel"
+
+msgid "Add Variable"
+msgstr "Lägg till variabel"
+
+msgid "name"
+msgstr "namn"
+
+msgid "type"
+msgstr "typ"
+
+msgid "Possible Values Here"
+msgstr "Möjliga värden här"
+
+msgid "Edit Variable"
+msgstr "Redigera variabel"
+
+msgid "Are you sure to delete it"
+msgstr "Är du säker på att ta bort den"
+
+msgid "Add New"
+msgstr "Lägg till ny"
+
+msgid "User Input"
+msgstr "Användarinmatning"
+
+msgid "Close"
+msgstr "Nära"
+
+msgid "Add"
+msgstr "Tillägga"
+
+msgid "Add More"
+msgstr "Lägg till mer"
+
+msgid "Available Variables"
+msgstr "Tillgängliga variabler"
+
+msgid "Enter bot response here..."
+msgstr "Ange bot-svar här..."
+
+msgid "Button text here"
+msgstr "Knapptext här"
+
+msgid "URL"
+msgstr "URL"
+
+msgid "Button value here"
+msgstr "Knappvärde här"
+
+msgid "Enter URL here"
+msgstr "Ange URL här"
+
+msgid "Add New Button"
+msgstr "Lägg till ny knapp"
+
+msgid "Select Predefined Function"
+msgstr "Välj Fördefinierad funktion"
+
+msgid "Select Action"
+msgstr "Välj Åtgärd"
+
+msgid "Add New Action"
+msgstr "Lägg till ny åtgärd"
+
+msgid "Add New Form"
+msgstr "Lägg till nytt formulär"
+
+msgid "Enter default fallback here..."
+msgstr "Ange standardalternativ här..."
+
+msgid "Enter default fallback for intent here..."
+msgstr "Ange standardalternativ för avsikt här..."
+
+msgid "Start Point"
+msgstr "Startpunkt"
+
+msgid "Error: The template file does not exist."
+msgstr "Fel: Mallfilen finns inte."
+
+msgid "Text"
+msgstr "Text"
+
+msgid "Function"
+msgstr "Fungera"
+
+msgid "Error: The"
+msgstr "Fel: The"
+
+msgid "tag in"
+msgstr "tagga in"
+
+msgid "at position"
+msgstr "vid position"
+
+msgid "is missing."
+msgstr "saknas."
+
+msgid "is empty."
+msgstr "är tom."
+
+msgid "tag associated with the user input"
+msgstr "taggen som är kopplad till användarinmatningen"
+
+msgid "in"
+msgstr "i"
+
+msgid "tag of the"
+msgstr "taggen av"
+
+msgid "block associated with the user input"
+msgstr "block associerat med användarinmatningen"
+
+msgid "or"
+msgstr "eller"
+
+msgid "Error: The function name"
+msgstr "Fel: Funktionens namn"
+
+msgid "in the"
+msgstr "i"
+
+msgid "is invalid."
+msgstr "är ogiltig."
+
+msgid "Error: The type name"
+msgstr "Fel: Typnamnet"
+
+msgid "is invalid. This should be"
+msgstr "är ogiltig. Detta borde vara"
+
+msgid "You might like these products."
+msgstr "Du kanske gillar dessa produkter."
+
+msgid "No exact match was found. Explore these similar products."
+msgstr "Ingen exakt matchning hittades. Utforska dessa liknande produkter."
+
+msgid "Here are some suggestions."
+msgstr "Här är några förslag."
+
+msgid "Showing"
+msgstr "Visande"
+
+msgid "of"
+msgstr "av"
+
+msgid "Add to cart"
+msgstr "Lägg till i varukorgen"
+
+msgid "Empty Story"
+msgstr "Tom berättelse"
+
+msgid "Show All Products"
+msgstr "Visa alla produkter"
+
+msgid "Search Product"
+msgstr "Sök produkt"
+
+msgid "Get Products Under Price"
+msgstr "Få produkter under pris"
+
+msgid "Get Products Above Price"
+msgstr "Få produkter över priset"
+
+msgid "View Cart/Remove Items"
+msgstr "Visa varukorg/ta bort artiklar"
+
+msgid "Checkout"
+msgstr "Kassa"
+
+msgid "Reset Password"
+msgstr "Återställ lösenord"
+
+msgid "Send Chat To Admin"
+msgstr "Skicka chatt till admin"
+
+msgid "Integer"
+msgstr "Heltal"
+
+msgid "Float"
+msgstr "Flyta"
+
+msgid "Boolean"
+msgstr "Boolean"
+
+msgid "String"
+msgstr "Sträng"
+
+msgid "Default Fallback"
+msgstr "Standard reserv"
+
+msgid "Are you sure to reset it?"
+msgstr "Är du säker på att du återställer den?"
+
+msgid "Parameter Name *"
+msgstr "Parameternamn *"
+
+msgid "Varibale Name *"
+msgstr "Variabelnamn *"
+
+msgid "User input has been successfully saved."
+msgstr "Användarinmatning har sparats."
+
+msgid "An empty user input field."
+msgstr "Ett tomt användarinmatningsfält."
+
+msgid "An empty bot response."
+msgstr "Ett tomt botsvar."
+
+msgid "Response Successfully Saved!"
+msgstr "Svaret har sparats!"
+
+msgid "Action Successfully Saved!"
+msgstr "Åtgärden har sparats!"
+
+msgid "Form Successfully Saved!"
+msgstr "Formuläret har sparats!"
+
+msgid "Default Fallback Successfully Saved!"
+msgstr "Standardalternativet har sparats!"
+
+msgid "Store relevant user input first, then fallback."
+msgstr "Lagra relevant användarinmatning först och sedan reserv."
+
+msgid "An empty default fallback."
+msgstr "En tom standardreserv."
+
+msgid "Default Intent Fallback Successfully Saved!"
+msgstr "Default Intent Fallback har sparats!"
+
+msgid "Discard"
+msgstr "Kassera"
+
+msgid "Temporary discard"
+msgstr "Tillfälligt kassering"
+
+msgid "Automate"
+msgstr "Automatisera"
+
+msgid "User input"
+msgstr "Användarinmatning"
+
+msgid "Form"
+msgstr "Form"
+
+msgid "Fallback"
+msgstr "Reserv"
+
+msgid "Chat "
+msgstr "Chatta"
+
+msgid "Available Variable"
+msgstr "Tillgänglig Variabel"
+
+msgid "Product Name"
+msgstr "Produktnamn"
+
+msgid "Minimum Price"
+msgstr "Lägsta pris"
+
+msgid "Maximum Price"
+msgstr "Maxpris"
+
+msgid "User Login"
+msgstr "Användarinloggning"
+
+msgid "Action Icon"
+msgstr "Åtgärd ikon"
+
+msgid "User Icon"
+msgstr "Användarikon"
+
+msgid "User"
+msgstr "Användare"
+
+msgid "Bot Response"
+msgstr "Bot svar"
+
+msgid "User Text Icon"
+msgstr "Användartextikon"
+
+msgid "Bot Function Icon"
+msgstr "Bot funktionsikon"
+
+msgid "Bot Function"
+msgstr "Bot funktion"
+
+msgid "Predefined Function"
+msgstr "Fördefinierad funktion"
+
+msgid "Bot Action Icon"
+msgstr "Bot Action Ikon"
+
+msgid "Bot Action"
+msgstr "Bot Action"
+
+msgid "Bot Form Icon"
+msgstr "Bot Form ikon"
+
+msgid "Bot Form"
+msgstr "Botform"
+
+msgid "Fallback Icon"
+msgstr "Reservikon"
+
+msgid "Fallback Massege"
+msgstr "Reservmeddelande"
+
+msgid "Save & Close"
+msgstr "Spara & Stäng"
+
+msgid "Info Icon"
+msgstr "Informationsikon"
+
+msgid "How to add parameters"
+msgstr "Hur man lägger till parametrar"
+
+msgid "User form Icon"
+msgstr "Användarformulärikon"
+
+msgid "Form Name *"
+msgstr "Formulärnamn *"
+
+msgid "Add New Variable"
+msgstr "Lägg till ny variabel"
+
+msgid "Function Form"
+msgstr "Funktionsformulär"
+
+msgid "Action Form"
+msgstr "Åtgärdsformulär"
+
+msgid "Custom Action"
+msgstr "Anpassad åtgärd"
+
+msgid "Add New Custom Action"
+msgstr "Lägg till ny anpassad åtgärd"
+
+msgid "Add New Parameter"
+msgstr "Lägg till ny parameter"
+
+msgid "Intent Fallback"
+msgstr "Intent Fallback"
+
+msgid "Save Story"
+msgstr "Spara berättelse"
+
+msgid "Reset Story"
+msgstr "Återställ berättelse"
+
+msgid "Story has been successfully saved."
+msgstr "Berättelsen har sparats."
+
+msgid "WooCommerce is not active!"
+msgstr "WooCommerce är inte aktiv!"
+
+msgid "Error encountered in template."
+msgstr "Ett fel påträffades i mallen."
+
+msgid "An empty story name."
+msgstr "Ett tomt berättelsenamn."
+
+msgid "An empty story template."
+msgstr "En tom berättelsemall."
+
+msgid "title"
+msgstr "titel"
+
+msgid "Active"
+msgstr "Aktiv"
+
+msgid "Disable"
+msgstr "Inaktivera"
+
+msgid "Edit Story"
+msgstr "Redigera berättelse"
+
+msgid "Are you sure to delete"
+msgstr "Är du säker på att ta bort"
+
+msgid "Delete Story"
+msgstr "Ta bort berättelse"
+
+msgid "Built Story"
+msgstr "Byggd berättelse"
+
+msgid "Built"
+msgstr "Inbyggd"
+
+msgid "WooCommerce Story"
+msgstr "WooCommerce Story"
+
+msgid "Story Name *"
+msgstr "Berättelsens namn *"
+
+msgid "Edit Story Name"
+msgstr "Redigera berättelsens namn"
+
+msgid "Invalid username or email."
+msgstr "Ogiltigt användarnamn eller e-postadress."
+
+msgid "Looks like there was a problem resetting your password:"
+msgstr ""
+"Det verkar som att det uppstod ett problem med att återställa ditt lösenord:"
+
+msgid "User not found!"
+msgstr "Användaren hittades inte!"
+
+msgid "Okay, I have sent the recovery email. Thank you for your patience."
+msgstr ""
+"Okej, jag har skickat återställningsmeddelandet. Tack för ditt tålamod."
+
+msgid "Your query is sent to the admin."
+msgstr "Din fråga skickas till administratören."
+
+msgid "Enable"
+msgstr "Aktivera"
+
+msgid "Smart Popup"
+msgstr "Smart popup"
+
+msgid "Standard Popup"
+msgstr "Standard popup"
+
+msgid "Appearance"
+msgstr "Utseende"
+
+msgid "Choose File"
+msgstr "Välj Arkiv"
+
+msgid "User Default Image"
+msgstr "Användarstandardbild"
+
+msgid "Primary Color"
+msgstr "Grundfärg"
+
+msgid "Choose Color"
+msgstr "Välj Färg"
+
+msgid "User Text Background"
+msgstr "Användartextbakgrund"
+
+msgid "User Text Color"
+msgstr "Användartextfärg"
+
+msgid "Bot Link Color"
+msgstr "Bot Link Färg"
+
+msgid "Presets"
+msgstr "Förinställningar"
+
+msgid "Preset"
+msgstr "Förinställa"
+
+msgid "online"
+msgstr "online"
+
+msgid "User Image"
+msgstr "Användarbild"
+
+msgid "Hi I am John"
+msgstr "Hej jag är John"
+
+msgid "Hi John! How can I help you?"
+msgstr "Hej John! Behöver du hjälp?"
+
+msgid "Can you help me find a new backpack?"
+msgstr "Kan du hjälpa mig att hitta en ny ryggsäck?"
+
+msgid "Product Icon"
+msgstr "Produktikon"
+
+msgid "Fusion Backpack"
+msgstr "Fusion ryggsäck"
+
+msgid "$"
+msgstr "$"
+
+msgid "59"
+msgstr "59"
+
+msgid "Send message"
+msgstr "Skicka meddelande"
+
+msgid "Welcome Message"
+msgstr "Välkomstmeddelande"
+
+msgid "Welcome Image"
+msgstr "Välkommen bild"
+
+msgid "Chat Auto-Popup"
+msgstr "Chatt automatisk popup"
+
+msgid "Controls whether the chat popup appears automatically on your site."
+msgstr "Styr om chatt-popupen visas automatiskt på din webbplats."
+
+msgid "Chat Pop-up Style"
+msgstr "Chatt popup-stil"
+
+msgid "Choose how the chat will appear: Smart or Standard pop-up."
+msgstr "Välj hur chatten ska se ut: Smart eller Standard popup."
+
+msgid "Chat Auto-Popup Timing"
+msgstr "Timing för automatisk popup för chatt"
+
+msgid ""
+"Define the delay time in seconds for the chatbot to auto-appear on the site."
+msgstr ""
+"Definiera fördröjningstiden i sekunder för chatboten att automatiskt dyka "
+"upp på webbplatsen."
+
+msgid "Note"
+msgstr "Notera"
+
+msgid ""
+"If the colors have been saved but the user-side colors are still the same, "
+"it is advised to clear the cache."
+msgstr ""
+"Om färgerna har sparats men färgerna på användarsidan fortfarande är "
+"desamma, rekommenderas det att rensa cachen."
+
+msgid "Also"
+msgstr "Också"
+
+msgid "Found"
+msgstr "Hittade"
+
+msgid "Here are some"
+msgstr "Här är några"
+
+msgid "Help"
+msgstr "Hjälp"
+
+msgid "Have any problem?"
+msgstr "Har du några problem?"
+
+msgid ""
+"If you experience any difficulties, we're here to help! Simply click the"
+msgstr ""
+"Om du upplever några svårigheter finns vi här för att hjälpa dig! Klicka "
+"bara på"
+
+msgid "Create A Ticket"
+msgstr "Skapa en biljett"
+
+msgid ""
+"button to report your issue, and our dedicated support team will assist you "
+"promptly."
+msgstr ""
+"knappen för att rapportera ditt problem, så hjälper vårt dedikerade "
+"supportteam dig snabbt."
+
+msgid "Create Ticket"
+msgstr "Skapa biljett"
+
+msgid "Post Type"
+msgstr "Typ av inlägg"
+
+msgid "post type"
+msgstr "inläggstyp"
+
+msgid "Post Label"
+msgstr "Postetikett"
+
+msgid "Associated Plugin"
+msgstr "Tillhörande plugin"
+
+msgid "Add associated plugin's name"
+msgstr "Lägg till tillhörande pluginnamn"
+
+msgid "For better data consistency, please provide a associated plugin's name."
+msgstr "För bättre datakonsistens, ange ett tillhörande pluginnamn."
+
+msgid "Status"
+msgstr "Status"
+
+msgid "For status changes, please use the options available in the listing."
+msgstr "För statusändringar, använd de tillgängliga alternativen i listan."
+
+msgid "Template Section"
+msgstr "Mallsektion"
+
+msgid ""
+"Fields are currently auto-filled for preview purposes only. Please save your "
+"changes to apply them."
+msgstr ""
+"Fält är för närvarande automatiskt ifyllda endast för förhandsgranskning. "
+"Spara dina ändringar för att tillämpa dem."
+
+msgid "Choose one template style from the given below"
+msgstr "Välj en mallstil från nedanstående"
+
+msgid "Add Button /Link"
+msgstr "Lägg till knapp/länk"
+
+msgid "Add New Button /Link"
+msgstr "Lägg till ny knapp/länk"
+
+msgid "Show on Listing"
+msgstr "Visa på notering"
+
+msgid "View Details"
+msgstr "Visa detaljer"
+
+msgid "detail page link"
+msgstr "detaljsida länk"
+
+msgid "Save Template"
+msgstr "Spara mall"
+
+msgid "Create a Post"
+msgstr "Skapa ett inlägg"
+
+msgid "Please first create a sample post to use template section."
+msgstr "Skapa först ett exempelinlägg för att använda mallen."
+
+msgid "AI web search enabled successfully."
+msgstr "AI-webbsökning har aktiverats."
+
+msgid "AI web search already enabled."
+msgstr "AI-webbsökning är redan aktiverad."
+
+msgid "Something went wrong."
+msgstr "Något gick fel."
+
+msgid "AI web search disabled successfully."
+msgstr "AI-webbsökning inaktiverades framgångsrikt."
+
+msgid "New post type search enabled successfully."
+msgstr "Ny sökning av inläggstyp har aktiverats."
+
+msgid "New post type search disabled successfully."
+msgstr "Sökning av ny inläggstyp har inaktiverats."
+
+msgid "Data Synchronization Needed"
+msgstr "Datasynkronisering behövs"
+
+msgid ""
+"Your data is not updated. To ensure accurate results, please synchronize "
+"your AI web search data."
+msgstr ""
+"Dina data uppdateras inte. För att säkerställa korrekta resultat, "
+"synkronisera din AI-webbsökningsdata."
+
+msgid "Enable AI web Search"
+msgstr "Aktivera AI-webbsökning"
+
+msgid ""
+"Enable this feature to provide users with direct AI web search results in "
+"the chat, offering them a broader context for their queries."
+msgstr ""
+"Aktivera den här funktionen för att ge användarna direkta AI-webbsökresultat "
+"i chatten, vilket ger dem ett bredare sammanhang för sina frågor."
+
+msgid "Enable New Post Type Search"
+msgstr "Aktivera sökning efter ny inläggstyp"
+
+msgid "Lable"
+msgstr "Etikett"
+
+msgid "Post lable"
+msgstr "Postetikett"
+
+msgid "WooCommerce is currently inactive."
+msgstr "WooCommerce är för närvarande inaktivt."
+
+msgid "No product was found."
+msgstr "Ingen produkt hittades."
+
+msgid "Please enter a valid product or category name."
+msgstr "Ange ett giltigt produkt- eller kategorinamn."
+
+msgid "Please enter a valid price."
+msgstr "Ange ett giltigt pris."
+
+msgid "Please enter a valid price range."
+msgstr "Ange ett giltigt prisintervall."
+
+msgid "Your cart is currently empty."
+msgstr "Din varukorg är för närvarande tom."
+
+msgid "Cart Details"
+msgstr "Kundvagnsdetaljer"
+
+msgid "Price"
+msgstr "Pris"
+
+msgid "Change"
+msgstr "Ändra"
+
+msgid "Total Price"
+msgstr "Totalt pris"
+
+msgid "Remove Item"
+msgstr "Ta bort objekt"
+
+msgid "Subtotal"
+msgstr "Delsumma"
+
+msgid "Total"
+msgstr "Total"
+
+msgid "Proceed to Checkout"
+msgstr "Fortsätt till kassan"
+
+msgid "is out of stock."
+msgstr "är slut i lager."
+
+msgid "You cannot add another “"
+msgstr "Du kan inte lägga till en annan \""
+
+msgid "” to your cart."
+msgstr "” till din varukorg."
+
+msgid "You cannot add more than"
+msgstr "Du kan inte lägga till mer än"
+
+msgid "of this product to your cart."
+msgstr "av denna produkt till din varukorg."
+
+msgid "has been added to your cart."
+msgstr "har lagts till i din kundvagn."
+
+msgid "has not been added to your cart. Please try again."
+msgstr "har inte lagts till i din kundvagn. Försök igen."
+
+msgid "View Cart"
+msgstr "Visa kundvagn"
+
+msgid "Please select a product!"
+msgstr "Välj en produkt!"
+
+msgid "There are no variations available."
+msgstr "Det finns inga tillgängliga varianter."
+
+msgid "Product not found or not a variable product."
+msgstr "Produkten hittades inte eller inte en variabel produkt."
+
+msgid "You can't add another “"
+msgstr "Du kan inte lägga till en annan \""
+
+msgid "There was an error while adding the product to the cart."
+msgstr "Det uppstod ett fel när produkten lades till i kundvagnen."
+
+msgid ""
+"The requested variation with the specified attributes could not be found."
+msgstr "Den begärda varianten med de angivna attributen kunde inte hittas."
+
+msgid "Change Quantity"
+msgstr "Ändra kvantitet"
+
+msgid "Update"
+msgstr "Uppdatera"
+
+msgid "The cart is empty."
+msgstr "Vagnen är tom."
+
+msgid "Cart item is not found."
+msgstr "Varukorgsartikeln hittades inte."
+
+msgid "The item was not found in the cart."
+msgstr "Varan hittades inte i varukorgen."
+
+msgid "Quantity updated successfully!"
+msgstr "Kvantiteten har uppdaterats framgångsrikt!"
+
+msgid "Change quantity"
+msgstr "Ändra kvantitet"
+
+msgid "Edit Post Type"
+msgstr "Redigera inläggstyp"
+
+msgid "Parameter"
+msgstr "Parameter"
+
+msgid "delete"
+msgstr "radera"
+
+msgid "add intent"
+msgstr "lägga till avsikt"
+
+msgid "plus icon"
+msgstr "plusikon"
+
+msgid "Add Intents"
+msgstr "Lägg till avsikter"
+
+msgid ""
+"On the responses listing page, all the responses are listed here; you can "
+"check them out."
+msgstr "På svarslistan listas alla svar här; du kan kolla upp dem."
+
+msgid "Add Intent"
+msgstr "Lägg till avsikt"
+
+msgid ""
+"On the form listing page, all the forms are listed here; you can check them "
+"out."
+msgstr ""
+"På formulärsidan finns alla formulär listade här; du kan kolla upp dem."
+
+msgid "Add Forms"
+msgstr "Lägg till formulär"
+
+msgid "On the add form page, you can add a new form."
+msgstr "På sidan Lägg till formulär kan du lägga till ett nytt formulär."
+
+msgid "Responses"
+msgstr "Svar"
+
+msgid "Add Response"
+msgstr "Lägg till svar"
+
+msgid "On the add Response page, you can add a new Response."
+msgstr "På sidan Lägg till svar kan du lägga till ett nytt svar."
+
+msgid ""
+"On the actions listing page, all the actions are listed here; you can check "
+"them out."
+msgstr "På åtgärdslistan listas alla åtgärder här; du kan kolla upp dem."
+
+msgid "Add  Action"
+msgstr "Lägg till åtgärd"
+
+msgid "On the add action page, you can add a new action."
+msgstr "På sidan Lägg till åtgärd kan du lägga till en ny åtgärd."
+
+msgid "Add Intent Group"
+msgstr "Lägg till avsiktsgrupp"
+
+msgid "Import"
+msgstr "Importera"
+
+msgid "Menu"
+msgstr "Meny"
+
+msgid "End Chat"
+msgstr "Avsluta chatten"
+
+msgid "Restart Chat"
+msgstr "Starta om chatten"
+
+msgid "Image"
+msgstr "Bild"
+
+msgid "Send Icon"
+msgstr "Skicka ikon"
+
+msgid "Welcome to GeekyBot! Let me know how I can assist you today."
+msgstr "Välkommen till GeekyBot! Låt mig veta hur jag kan hjälpa dig idag."
+
+msgid "admin."
+msgstr "administration."
+
+msgid "Account Assistance"
+msgstr "Kontohjälp"
+
+msgid "Diet Plan Assistant"
+msgstr "Kostplansassistent"
+
+msgid "Job Application"
+msgstr "Arbetsansökan"
+
+msgid "Offline Form"
+msgstr "Offlineformulär"
+
+msgid "Real Estate"
+msgstr "Fastighet"
+
+msgid "Sales Support"
+msgstr "Säljsupport"
+
+msgid "University"
+msgstr "Universitet"
+
+msgid "Vacation Planner"
+msgstr "Semesterplanerare"

@@ -609,8 +609,8 @@ class GEEKYBOTwebsearchModel {
         $query = "SET SESSION group_concat_max_len = 5000000";
         geekybot::$_db->query($query);
         // Increase CONCAT limit
-        $query = "SET GLOBAL max_allowed_packet = 15000000";
-        geekybot::$_db->query($query);
+        //$query = "SET GLOBAL max_allowed_packet = 15000000";
+        //geekybot::$_db->query($query);
         // Convert the array into a comma-separated string
         $post_ids_str = implode(',', array_map('intval', $batch_data));
 

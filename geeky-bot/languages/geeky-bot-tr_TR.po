@@ -1,0 +1,2682 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"POT-Creation-Date: \n"
+"PO-Revision-Date: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: tr_TR\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 3.5\n"
+
+msgid "Logo"
+msgstr "Logo"
+
+msgid "Template Field 1"
+msgstr "Şablon Alanı 1"
+
+msgid "Title"
+msgstr "Başlık"
+
+msgid "Template Field 2"
+msgstr "Şablon Alanı 2"
+
+msgid "Template Field 3"
+msgstr "Şablon Alanı 3"
+
+msgid "Template Field 4"
+msgstr "Şablon Alanı 4"
+
+msgid "Template Field 10"
+msgstr "Şablon Alanı 10"
+
+msgid "Simple Link here"
+msgstr "Basit Bağlantı burada"
+
+msgid "Button"
+msgstr "Düğme"
+
+msgid "Selected"
+msgstr "Seçildi"
+
+msgid "Template Content"
+msgstr "Şablon İçeriği"
+
+msgid "Template Field"
+msgstr "Şablon Alanı"
+
+msgid "Show On Listing"
+msgstr "İlanda Göster"
+
+msgid "Select Field"
+msgstr "Alan Seç"
+
+msgid "Label"
+msgstr "Etiket"
+
+msgid "Select Type"
+msgstr "Tür Seçin"
+
+msgid "Set Value"
+msgstr "Değeri Ayarla"
+
+msgid "No template fields are available!"
+msgstr "Hiçbir şablon alanı mevcut değil!"
+
+msgid "Set Values"
+msgstr "Değerleri Ayarla"
+
+msgid "Field Name :"
+msgstr "Alan Adı :"
+
+msgid "Save"
+msgstr "Kaydetmek"
+
+msgid "Something went wrong try again later!"
+msgstr "Bir şeyler ters gitti, daha sonra tekrar deneyin!"
+
+msgid "Info"
+msgstr "Bilgi"
+
+msgid "An empty expected value or display value field."
+msgstr "Boş bir beklenen değer veya görüntü değeri alanı."
+
+msgid "Values set successfully."
+msgstr "Değerler başarıyla ayarlandı."
+
+msgid "Expected Value"
+msgstr "Beklenen Değer"
+
+msgid "Display Value"
+msgstr "Ekran Değeri"
+
+msgid "Delete"
+msgstr "Silmek"
+
+msgid "Add Value"
+msgstr "Değer Katın"
+
+msgid "Edit"
+msgstr "Düzenlemek"
+
+msgid "Text Field"
+msgstr "Metin Alanı"
+
+msgid "Checkbox"
+msgstr "Onay kutusu"
+
+msgid "Radio Button"
+msgstr "Radyo Düğmesi"
+
+msgid "Dropdown"
+msgstr "Yıkılmak"
+
+msgid "Link"
+msgstr "Bağlantı"
+
+msgid ""
+"It is a long established fact that a reader will be distracted by the "
+"readable content of a page when looking at its layout Content here, content "
+"here..."
+msgstr ""
+"Bir okuyucunun sayfa düzenine bakarken sayfanın okunabilir içeriğinin "
+"dikkatini dağıtacağı uzun süredir bilinen bir gerçektir. İçerik burada, "
+"içerik burada..."
+
+msgid "Description"
+msgstr "Tanım"
+
+msgid "Content Description"
+msgstr "İçerik Açıklaması"
+
+msgid "Max Number Of Sentance"
+msgstr "Maksimum Cümle Sayısı"
+
+msgid "1"
+msgstr "1"
+
+msgid "2"
+msgstr "2"
+
+msgid "3"
+msgstr "3"
+
+msgid "4"
+msgstr "4"
+
+msgid "5"
+msgstr "5"
+
+msgid "6"
+msgstr "6"
+
+msgid "Please wait a moment; this may take some time."
+msgstr "Lütfen biraz bekleyin; bu biraz zaman alabilir."
+
+msgid "Synchronize"
+msgstr "Senkronize et"
+
+msgid "Data Synchronization Uncomplete"
+msgstr "Veri Senkronizasyonu Tamamlanmadı"
+
+msgid ""
+"Your GeekyBot data is not updated. To ensure accurate results, please "
+"synchronize your AI web search data."
+msgstr ""
+"GeekyBot verileriniz güncellenmedi. Doğru sonuçlar elde etmek için lütfen AI "
+"web arama verilerinizi senkronize edin."
+
+msgid "Synchronize Data"
+msgstr "Verileri Senkronize Et"
+
+msgid "user"
+msgstr "kullanıcı"
+
+msgid "Dashboard"
+msgstr "Kontrol Paneli"
+
+msgid "key check"
+msgstr "anahtar kontrolü"
+
+msgid "keys"
+msgstr "anahtarlar"
+
+msgid "Stories"
+msgstr "Hikayeler"
+
+msgid "AI Web Search"
+msgstr "Yapay Zeka Web Araması"
+
+msgid "Settings"
+msgstr "Ayarlar"
+
+msgid "Chatbot"
+msgstr "Sohbet robotu"
+
+msgid "Install Add-ons"
+msgstr "Eklentileri Yükle"
+
+msgid "export"
+msgstr "ihracat"
+
+msgid "import"
+msgstr "içe aktarmak"
+
+msgid "Chat History"
+msgstr "Sohbet Geçmişi"
+
+msgid "build"
+msgstr "inşa etmek"
+
+msgid "Build"
+msgstr "İnşa etmek"
+
+msgid "Variables"
+msgstr "Değişkenler"
+
+msgid "forms"
+msgstr "formlar"
+
+msgid "Forms"
+msgstr "Formlar"
+
+msgid "actions"
+msgstr "eylemler"
+
+msgid "Actions"
+msgstr "Eylemler"
+
+msgid "File ext. is mismatched"
+msgstr "Dosya uzantısı uyumsuz"
+
+msgid "File size is greater then allowed file size"
+msgstr "Dosya boyutu izin verilen dosya boyutundan daha büyük"
+
+msgid "Total Stats"
+msgstr "Toplam İstatistikler"
+
+msgid "Intents"
+msgstr "Niyetler"
+
+msgid "No record found"
+msgstr "Kayıt bulunamadı"
+
+msgid "Control Panel"
+msgstr "Kontrol Paneli"
+
+msgid "GeekyBot"
+msgstr "GeekyBot"
+
+msgid "Keys"
+msgstr "Anahtarlar"
+
+msgid "Post Installation"
+msgstr "Kurulum Sonrası"
+
+msgid "Premium Addon"
+msgstr "Premium Eklenti"
+
+msgid "Could not find any matching results"
+msgstr "Eşleşen sonuç bulunamadı"
+
+msgid "no record"
+msgstr "kayıt yok"
+
+msgid "No record found !..."
+msgstr "Kayıt bulunamadı!..."
+
+msgid "system offline"
+msgstr "sistem çevrimdışı"
+
+msgid ""
+"Unfortunately sytem is offline for a bit of maintenance right now. But soon "
+"we will be up."
+msgstr ""
+"Ne yazık ki sistem şu anda bakım nedeniyle çevrimdışı. Ama yakında ayağa "
+"kalkacağız."
+
+msgid "user ban"
+msgstr "kullanıcı yasağı"
+
+msgid "Your account is disabled, please contact system administrator !..."
+msgstr ""
+"Hesabınız devre dışı bırakıldı, lütfen sistem yöneticisine başvurun!..."
+
+msgid "login"
+msgstr "giriş yapmak"
+
+msgid "To Access This Page Please Login !..."
+msgstr "Bu Sayfaya Erişmek İçin Lütfen Giriş Yapın!..."
+
+msgid "Back to control panel"
+msgstr "Kontrol paneline geri dön"
+
+msgid "You are not logged in"
+msgstr "Oturum açmadınız"
+
+msgid "User Is Disabled By Admin"
+msgstr "Kullanıcı Yönetici Tarafından Devre Dışı Bırakıldı"
+
+msgid "The page you are looking for no longer exists"
+msgstr "Aradığınız sayfa artık mevcut değil"
+
+msgid "You are already logged in"
+msgstr "Zaten giriş yaptınız"
+
+msgid "Please select your role"
+msgstr "Lütfen rolünüzü seçin"
+
+msgid "You are not allowed"
+msgstr "sana izin verilmiyor"
+
+msgid "You are Not Allowed To add More than One"
+msgstr "Birden Fazla Eklemeniz Yasaktır"
+
+msgid "Contact Adminstrator"
+msgstr "Yöneticiyle İletişime Geçin"
+
+msgid "not allowed"
+msgstr "izin verilmiyor"
+
+msgid "You are already logged in !..."
+msgstr "Zaten giriş yaptınız!..."
+
+msgid "Logout"
+msgstr "Oturumu kapat"
+
+msgid "Please first make a selection from the list"
+msgstr "Lütfen önce listeden bir seçim yapın"
+
+msgid "Unknown"
+msgstr "Bilinmiyor"
+
+msgid "Invalid request"
+msgstr "Geçersiz istek"
+
+msgid "has been successfully applied."
+msgstr "başarıyla uygulanmıştır."
+
+msgid "Error applying the new theme."
+msgstr "Yeni tema uygulanırken hata oluştu."
+
+msgid "has been successfully saved."
+msgstr "başarıyla kaydedildi."
+
+msgid "has not been saved."
+msgstr "kaydedilmedi."
+
+msgid "has been successfully reset."
+msgstr "başarıyla sıfırlandı."
+
+msgid "Every Story must have a name."
+msgstr "Her Hikayenin bir adı olmalıdır."
+
+msgid "Every Story must have at least 1 intent."
+msgstr "Her Hikayenin en az 1 amacı olmalıdır."
+
+msgid "has been successfully deleted."
+msgstr "başarıyla silindi."
+
+msgid "has been successfully exported."
+msgstr "başarıyla dışa aktarıldı."
+
+msgid "Data has not been exported."
+msgstr "Veriler dışa aktarılmadı."
+
+msgid "Record not exist."
+msgstr "Kayıt mevcut değil."
+
+msgid "has not been deleted."
+msgstr "silinmedi."
+
+msgid "Please insert key."
+msgstr "Lütfen anahtarı takın."
+
+msgid "key is not Valid."
+msgstr "anahtar Geçerli değil."
+
+msgid "transaction has been successfully verified."
+msgstr "işlem başarıyla doğrulandı."
+
+msgid "transaction has been successfully un-verified."
+msgstr "işlem başarıyla doğrulanmadı."
+
+msgid "transaction has not been successfully verified."
+msgstr "işlem başarıyla doğrulanmadı."
+
+msgid "transaction has not been successfully un-verified."
+msgstr "işlem başarıyla doğrulanmadı."
+
+msgid "Fields has been successfully required."
+msgstr "Alanlar başarıyla dolduruldu."
+
+msgid "Field has not been required."
+msgstr "Alan gerekli değildir."
+
+msgid "Fields has not been required."
+msgstr "Alanlar gerekli değildir."
+
+msgid "Fields has been successfully not required."
+msgstr "Alanlar başarıyla zorunlu kılınmadı."
+
+msgid "Field has not been not required."
+msgstr "Alan zorunlu değildir."
+
+msgid "Fields has not been not required."
+msgstr "Alanlar gerekli değildir."
+
+msgid "status has been updated."
+msgstr "durumu güncellendi."
+
+msgid "status has not been updated."
+msgstr "durumu güncellenmedi."
+
+msgid "data has been synchronized."
+msgstr "veriler senkronize edildi."
+
+msgid "data has not been synchronized."
+msgstr "veriler senkronize edilmedi."
+
+msgid "in use cannot deleted."
+msgstr "kullanımda silinemez."
+
+msgid "already exist."
+msgstr "zaten var."
+
+msgid "File type error."
+msgstr "Dosya türü hatası."
+
+msgid "File size error."
+msgstr "Dosya boyutu hatası."
+
+msgid "Intent"
+msgstr "Niyet"
+
+msgid "Response"
+msgstr "Cevap"
+
+msgid "Intent Group"
+msgstr "Amaç Grubu"
+
+msgid "Variable"
+msgstr "Değişken"
+
+msgid "Story"
+msgstr "Hikaye"
+
+msgid "Post type"
+msgstr "Gönderi türü"
+
+msgid "AI web search"
+msgstr "Yapay zeka web araması"
+
+msgid "Action"
+msgstr "Aksiyon"
+
+msgid "Changes"
+msgstr "Değişiklikler"
+
+msgid "Data"
+msgstr "Veri"
+
+msgid "Message"
+msgstr "Mesaj"
+
+msgid "Configuration"
+msgstr "Yapılandırma"
+
+msgid "Previous"
+msgstr "Öncesi"
+
+msgid "Next"
+msgstr "Sonraki"
+
+msgid "Guest"
+msgstr "Misafir"
+
+msgid "User ID"
+msgstr "Kullanıcı kimliği"
+
+msgid "Add to Story"
+msgstr "Hikayeye Ekle"
+
+msgid "Add to story"
+msgstr "Hikayeye ekle"
+
+msgid "Search"
+msgstr "Aramak"
+
+msgid "Search with user name"
+msgstr "Kullanıcı adı ile arama"
+
+msgid "reset"
+msgstr "sıfırlama"
+
+msgid "Select Chat"
+msgstr "Sohbet'i seçin"
+
+msgid "Sender"
+msgstr "Gönderen"
+
+msgid "select chat"
+msgstr "sohbeti seç"
+
+msgid "Chat history is not selected."
+msgstr "Sohbet geçmişi seçili değil."
+
+msgid "Please select a conversation to view the user's chat history."
+msgstr ""
+"Lütfen kullanıcının sohbet geçmişini görüntülemek için bir görüşme seçin."
+
+msgid "Add User Input To Story"
+msgstr "Hikayeye Kullanıcı Girişi Ekle"
+
+msgid "Select"
+msgstr "Seçme"
+
+msgid "Add User Input"
+msgstr "Kullanıcı Girişi Ekle"
+
+msgid "You must choose a story; it cannot be empty."
+msgstr "Bir hikaye seçmelisiniz; boş olamaz."
+
+msgid "Security verification Failed, Please restart you chat to continue."
+msgstr ""
+"Güvenlik doğrulaması Başarısız. Devam etmek için lütfen sohbetinizi yeniden "
+"başlatın."
+
+msgid "Your session has expired; please restart your chat."
+msgstr "Oturumunuzun süresi doldu; lütfen sohbetinizi yeniden başlatın."
+
+msgid "Hi, I am Chatbot. I do not have specific knowledge."
+msgstr "Merhaba ben Chatbot. Spesifik bir bilgim yok."
+
+msgid "Your message is too long. Please enter only a username or email."
+msgstr ""
+"Mesajınız çok uzun. Lütfen yalnızca bir kullanıcı adı veya e-posta girin."
+
+msgid "Invalid username or email. Try again with the correct one."
+msgstr "Geçersiz kullanıcı adı veya e-posta. Doğru olanla tekrar deneyin."
+
+msgid "Show More"
+msgstr "Daha Fazla Göster"
+
+msgid "Show Articles"
+msgstr "Makaleleri Göster"
+
+msgid "session time out"
+msgstr "oturum zaman aşımı"
+
+msgid "Data directory can not empty."
+msgstr "Veri dizini boş olamaz."
+
+msgid "Data directory is not proper."
+msgstr "Veri dizini uygun değil."
+
+msgid "Data directory is not writable."
+msgstr "Veri dizini yazılabilir değil."
+
+msgid "Default fallback message can not be empty."
+msgstr "Varsayılan geri dönüş mesajı boş olamaz."
+
+msgid "Admin pagination not saved."
+msgstr "Yönetici sayfalandırması kaydedilmedi."
+
+msgid "User pagination not saved."
+msgstr "Kullanıcı sayfalandırması kaydedilmedi."
+
+msgid ""
+"The title of your chatbot or the primary title displayed on your chat "
+"interface."
+msgstr ""
+"Sohbet robotunuzun başlığı veya sohbet arayüzünüzde görüntülenen birincil "
+"başlık."
+
+msgid "Default Fallback Message"
+msgstr "Varsayılan Geri Dönme Mesajı"
+
+msgid "The message displayed when the chatbot cannot understand."
+msgstr "Chatbot anlayamadığında görüntülenen mesaj."
+
+msgid "Offline"
+msgstr "Çevrimdışı"
+
+msgid "Online"
+msgstr "Çevrimiçi"
+
+msgid "Set your plugin offline for front end."
+msgstr "Eklentinizi ön uç için çevrimdışı olarak ayarlayın."
+
+msgid "Data Directory"
+msgstr "Veri Dizini"
+
+msgid "The directory where all chatbot data files are stored."
+msgstr "Tüm chatbot veri dosyalarının saklandığı dizin."
+
+msgid "Admin Pagination"
+msgstr "Yönetici Sayfalandırması"
+
+msgid "The number of items displayed in a paginated list in the admin panel."
+msgstr ""
+"Yönetici panelinde sayfalandırılmış bir listede görüntülenen öğe sayısı."
+
+msgid "User Pagination"
+msgstr "Kullanıcı Sayfalandırması"
+
+msgid "The number of items displayed in a paginated list on the user side."
+msgstr ""
+"Kullanıcı tarafında sayfalandırılmış bir listede görüntülenen öğe sayısı."
+
+msgid "Save Settings"
+msgstr "Ayarları Kaydet"
+
+msgid "Add Icon"
+msgstr "Simge Ekle"
+
+msgid "years"
+msgstr "yıllar"
+
+msgid "year"
+msgstr "yıl"
+
+msgid "ago"
+msgstr "evvel"
+
+msgid "months"
+msgstr "aylar"
+
+msgid "month"
+msgstr "ay"
+
+msgid "days"
+msgstr "günler"
+
+msgid "day"
+msgstr "gün"
+
+msgid "hours"
+msgstr "saat"
+
+msgid "hour"
+msgstr "saat"
+
+msgid "minutes"
+msgstr "dakika"
+
+msgid "minute"
+msgstr "dakika"
+
+msgid "Just now"
+msgstr "Şu anda"
+
+msgid "AI ChatBot is disabled."
+msgstr "AI ChatBot devre dışı."
+
+msgid "Active Now"
+msgstr "Şimdi Aktif"
+
+msgid "AI ChatBot story not built."
+msgstr "AI ChatBot hikayesi oluşturulmadı."
+
+msgid "Built Now"
+msgstr "Şimdi Oluşturuldu"
+
+msgid "WooCommerce plugin is not installed."
+msgstr "WooCommerce eklentisi yüklü değil."
+
+msgid "Install Now"
+msgstr "Şimdi Yükle"
+
+msgid "WooCommerce plugin is not activated."
+msgstr "WooCommerce eklentisi etkinleştirilmedi."
+
+msgid "WooCommerce Bot is disabled."
+msgstr "WooCommerce Bot devre dışı bırakıldı."
+
+msgid "WooCommerce story not built."
+msgstr "WooCommerce hikayesi oluşturulmadı."
+
+msgid "Post Type not found."
+msgstr "Gönderi Türü bulunamadı."
+
+msgid "AI Web Search is disabled!"
+msgstr "AI Web Araması devre dışı bırakıldı!"
+
+msgid "AI ChatBot Sessions"
+msgstr "AI ChatBot Oturumları"
+
+msgid "Session Card"
+msgstr "Oturum Kartı"
+
+msgid "Graph"
+msgstr "Grafik"
+
+msgid "Card"
+msgstr "Kart"
+
+msgid "WooCommerce Sessions"
+msgstr "WooCommerce Oturumları"
+
+msgid "AI Web Search Sessions"
+msgstr "Yapay Zeka Web Arama Oturumları"
+
+msgid "Icon"
+msgstr "Simge"
+
+msgid "GeekyBot Setup and Usage Guides"
+msgstr "GeekyBot Kurulum ve Kullanım Kılavuzları"
+
+msgid "Explore installation, training, and effective usage guides."
+msgstr "Kurulum, eğitim ve etkili kullanım kılavuzlarını keşfedin."
+
+msgid "Play"
+msgstr "Oynamak"
+
+msgid "Youtube Icon"
+msgstr "Youtube Simgesi"
+
+msgid "How to add Story"
+msgstr "Hikaye nasıl eklenir"
+
+msgid "How to add Variable"
+msgstr "Değişken nasıl eklenir"
+
+msgid "Change Settings"
+msgstr "Ayarları Değiştir"
+
+msgid "Change Color"
+msgstr "Rengi Değiştir"
+
+msgid "Remove"
+msgstr "Kaldırmak"
+
+msgid "Cross Icon"
+msgstr "Çapraz Simge"
+
+msgid "Stories Date"
+msgstr "Hikaye Tarihi"
+
+msgid "View Stories"
+msgstr "Hikayeleri Görüntüle"
+
+msgid "AI Chatbot"
+msgstr "Yapay Zeka Sohbet Robotu"
+
+msgid "WooCommerce"
+msgstr "WooCommerce"
+
+msgid "Bot Icon"
+msgstr "Bot Simgesi"
+
+msgid "AI ChatBot"
+msgstr "Yapay Zeka Sohbet Robotu"
+
+msgid "Last Month Stats"
+msgstr "Geçen Ay İstatistikleri"
+
+msgid "Woo Icon"
+msgstr "Woo Simgesi"
+
+msgid "AI Web Search "
+msgstr "Yapay Zeka Web Araması"
+
+msgid "Manage Post Types"
+msgstr "Gönderi Türlerini Yönet"
+
+msgid "Enable AI Web Search"
+msgstr "AI Web Aramasını Etkinleştir"
+
+msgid "Search Icon"
+msgstr "Arama Simgesi"
+
+msgid "History"
+msgstr "Tarih"
+
+msgid "WooCommerce Bot"
+msgstr "WooCommerce Botu"
+
+msgid "logo"
+msgstr "logo"
+
+msgid "No of Conversation"
+msgstr "Konuşma Sayısı"
+
+msgid "View History"
+msgstr "Geçmişi Görüntüle"
+
+msgid "No data"
+msgstr "Veri yok"
+
+msgid "No Data"
+msgstr "Veri Yok"
+
+msgid "Addons"
+msgstr "Eklentiler"
+
+msgid "addon"
+msgstr "Ayriyeten"
+
+msgid "Custom Listing Style"
+msgstr "Özel Listeleme Stili"
+
+msgid "Custom Listing Text"
+msgstr "Özel Listeleme Metni"
+
+msgid "WooCommerce Features"
+msgstr "WooCommerce Özellikleri"
+
+msgid "Addon List"
+msgstr "Eklenti Listesi"
+
+msgid "WooCommerce "
+msgstr "WooCommerce"
+
+msgid "Lead Generation"
+msgstr "Olası Satış Yaratımı"
+
+msgid ""
+"GeekyBot simplifies the WooCommerce experience with intelligent product "
+"discovery and purchasing. It seamlessly integrates with WooCommerce for "
+"efficient product searches, detailed listings, and a smooth shopping "
+"experience."
+msgstr ""
+"GeekyBot, akıllı ürün keşfi ve satın alma ile WooCommerce deneyimini "
+"basitleştirir. Verimli ürün aramaları, ayrıntılı listeler ve sorunsuz bir "
+"alışveriş deneyimi için WooCommerce ile sorunsuz bir şekilde bütünleşir."
+
+msgid "Find Product"
+msgstr "Ürün Bul"
+
+msgid "Find Products"
+msgstr "Ürün Bul"
+
+msgid "Find products by name, category, or price range via chat."
+msgstr ""
+"Sohbet aracılığıyla ürünleri ada, kategoriye veya fiyat aralığına göre bulun."
+
+msgid "List Product"
+msgstr "Ürünü Listele"
+
+msgid "List Products"
+msgstr "Ürünleri Listele"
+
+msgid "Show relevant products with details and prices based on preferences."
+msgstr "Tercihlere göre ilgili ürünleri ayrıntıları ve fiyatlarıyla gösterin."
+
+msgid "Add To Cart Product"
+msgstr "Sepete Ekle Ürün"
+
+msgid "Add to Cart"
+msgstr "Sepete ekle"
+
+msgid "Easily add products to the cart list directly through chat."
+msgstr "Ürünleri doğrudan sohbet yoluyla sepet listesine kolayca ekleyin."
+
+msgid "Watch Video"
+msgstr "Videoyu İzle"
+
+msgid "AI Chat"
+msgstr "Yapay Zeka Sohbeti"
+
+msgid "Custom"
+msgstr "Gelenek"
+
+msgid " AI Chat Bot "
+msgstr "Yapay Zeka Sohbet Botu"
+
+msgid "Conversation Handling"
+msgstr "Konuşmayı Yönetme"
+
+msgid ""
+"AI Chat Conversation provides intelligent and context-aware interactions to "
+"enhance user engagement. Define key conversation elements to capture "
+"specific user inputs dynamically and adapt responses based on the context."
+msgstr ""
+"AI Chat Conversation, kullanıcı katılımını artırmak için akıllı ve bağlama "
+"duyarlı etkileşimler sağlar. Belirli kullanıcı girişlerini dinamik olarak "
+"yakalamak ve yanıtları bağlama göre uyarlamak için temel konuşma öğelerini "
+"tanımlayın."
+
+msgid "Capture and process inputs dynamically for personalized responses."
+msgstr ""
+"Kişiselleştirilmiş yanıtlar için girdileri dinamik olarak yakalayın ve "
+"işleyin."
+
+msgid "Adjust interactions based on the ongoing conversation for relevance."
+msgstr "İlgi açısından devam eden konuşmaya göre etkileşimleri ayarlayın."
+
+msgid "Use collected data to tailor responses and improve satisfaction."
+msgstr ""
+"Yanıtları uyarlamak ve memnuniyeti artırmak için toplanan verileri kullanın."
+
+msgid "Discover Our "
+msgstr "Ürünlerimizi Keşfedin"
+
+msgid " AI Web Search"
+msgstr "Yapay Zeka Web Araması"
+
+msgid "Bot"
+msgstr "Bot"
+
+msgid ""
+"AI Web Search improves user experience by delivering advanced, intuitive "
+"content discovery on your WordPress site. With powerful searches, users can "
+"quickly find relevant information, enhancing overall interest and "
+"accessibility."
+msgstr ""
+"AI Web Arama, WordPress sitenizde gelişmiş, sezgisel içerik keşfi sunarak "
+"kullanıcı deneyimini geliştirir. Güçlü aramalar sayesinde kullanıcılar "
+"ilgili bilgileri hızlı bir şekilde bulabilir, bu da genel ilgiyi ve "
+"erişilebilirliği artırır."
+
+msgid "GeekyBot swiftly retrieves posts and pages based on user queries."
+msgstr ""
+"GeekyBot, kullanıcı sorgularına göre gönderileri ve sayfaları hızlı bir "
+"şekilde alır."
+
+msgid "Displays full content or excerpts that match search terms."
+msgstr "Arama terimleriyle eşleşen tam içeriği veya alıntıları görüntüler."
+
+msgid "Activate GeekyBot’s search for an AI web search with one click."
+msgstr "GeekyBot'un yapay zeka web aramasını tek tıklamayla etkinleştirin."
+
+msgid "Web Search"
+msgstr "Web Araması"
+
+msgid "GeekyBot Supported Plugins"
+msgstr "GeekyBot Destekli Eklentiler"
+
+msgid "Plugin"
+msgstr "Eklenti"
+
+msgid "WP Job Manager"
+msgstr "WP İş Yöneticisi"
+
+msgid "Tutor LMS"
+msgstr "Öğretmen ÖYS/ÖYS'si"
+
+msgid "bbPress"
+msgstr "bbPress"
+
+msgid "LearnPress"
+msgstr "LearnPress"
+
+msgid "Knowledge Base"
+msgstr "Bilgi Bankası"
+
+msgid "BetterDocs"
+msgstr "Daha İyi Dokümanlar"
+
+msgid "Motors"
+msgstr "Motorlar"
+
+msgid "Estatik Real Estate"
+msgstr "Estatik Gayrimenkul"
+
+msgid "Auto Listings"
+msgstr "Otomatik Listelemeler"
+
+msgid "Welcome to GeekyBot Features"
+msgstr "GeekyBot Özelliklerine Hoş Geldiniz"
+
+msgid "GeekyBot Features"
+msgstr "GeekyBot'un Özellikleri"
+
+msgid "WooCommerce Integration"
+msgstr "WooCommerce Entegrasyonu"
+
+msgid "Quick Installation"
+msgstr "Hızlı Kurulum"
+
+msgid "Version: 1.0.0"
+msgstr "Sürüm: 1.0.0"
+
+msgid "AI Chat Bot"
+msgstr "Yapay Zeka Sohbet Botu"
+
+msgid "Enable/Disable"
+msgstr "Etkinleştir/Devre Dışı Bırak"
+
+msgid "Enable/Disable Bot"
+msgstr "Botu Etkinleştir/Devre Dışı Bırak"
+
+msgid "Select Template"
+msgstr "Şablon Seçin"
+
+msgid ""
+"AI Chat in GeekyBot provides instant, personalized responses to user "
+"queries, ensuring seamless support around the clock. With its ability to "
+"engage users at any time, GeekyBot enhances the reliability of your service, "
+"making sure that your customers' needs are always met."
+msgstr ""
+"GeekyBot'taki AI Sohbet, kullanıcı sorgularına anında, kişiselleştirilmiş "
+"yanıtlar sağlayarak günün her saati kesintisiz destek sağlar. GeekyBot, "
+"kullanıcılarla her an etkileşime geçme yeteneği sayesinde hizmetinizin "
+"güvenilirliğini artırır ve müşterilerinizin ihtiyaçlarının her zaman "
+"karşılandığından emin olur."
+
+msgid ""
+"By training GeekyBot with your specific data, you can create dynamic, "
+"tailored interactions that reflect your business's unique voice and "
+"services. This customization allows for more relevant, effective "
+"conversations that build stronger connections with your users."
+msgstr ""
+"GeekyBot'u özel verilerinizle eğiterek işletmenizin benzersiz sesini ve "
+"hizmetlerini yansıtan dinamik, özel etkileşimler oluşturabilirsiniz. Bu "
+"özelleştirme, kullanıcılarınızla daha güçlü bağlantılar kuran daha alakalı, "
+"etkili konuşmalara olanak tanır."
+
+msgid "Bot Image"
+msgstr "Bot Resmi"
+
+msgid "image"
+msgstr "görüntü"
+
+msgid "Watch AI ChatBot Video"
+msgstr "AI ChatBot Videosunu İzleyin"
+
+msgid "AI Web Search Bot"
+msgstr "Yapay Zeka Web Arama Botu"
+
+msgid ""
+"Effortlessly search for specific posts and content across your entire site "
+"using our powerful AI web search tool. GeekyBot goes beyond standard "
+"searches, delivering results from all types of data on your site. Whether "
+"you're looking for posts, pages, custom post types, or other information, "
+"GeekyBot ensures you find what you need quickly and efficiently by "
+"displaying relevant articles, posts, and more in a single, streamlined "
+"search experience."
+msgstr ""
+"Güçlü yapay zeka web arama aracımızı kullanarak sitenizin tamamında belirli "
+"gönderileri ve içerikleri zahmetsizce arayın. GeekyBot, sitenizdeki her "
+"türlü veriden sonuçlar sunarak standart aramaların ötesine geçer. İster "
+"gönderiler, sayfalar, özel gönderi türleri veya başka bilgiler arıyor olun, "
+"GeekyBot ilgili makaleleri, gönderileri ve daha fazlasını tek, "
+"kolaylaştırılmış bir arama deneyiminde görüntüleyerek ihtiyacınız olanı "
+"hızlı ve verimli bir şekilde bulmanızı sağlar."
+
+msgid "New Post Type Search"
+msgstr "Yeni Gönderi Türü Arama"
+
+msgid ""
+"Enable this option to directly include new post types in search results, "
+"enhancing user access to all content."
+msgstr ""
+"Arama sonuçlarına yeni gönderi türlerini doğrudan dahil etmek ve "
+"kullanıcıların tüm içeriğe erişimini geliştirmek için bu seçeneği "
+"etkinleştirin."
+
+msgid "Watch AI Web Search Video"
+msgstr "Yapay Zeka Web Arama Videosunu İzleyin"
+
+msgid "Back"
+msgstr "Geri"
+
+msgid "Finish"
+msgstr "Sona ermek"
+
+msgid "WooCommerce is not installed"
+msgstr "WooCommerce yüklü değil"
+
+msgid ""
+"WooCommerce plugin is not installed on your site, you won't be able to "
+"integrate GeekyBot with WooCommerce."
+msgstr ""
+"Sitenizde WooCommerce eklentisi yüklü değilse GeekyBot'u WooCommerce ile "
+"entegre edemezsiniz."
+
+msgid ""
+"Easily integrate AI with WooCommerce to enhance your online store’s "
+"performance. GeekyBot boosts lead generation and customer interactions, "
+"automating key processes for a more effective and engaging shopping "
+"experience."
+msgstr ""
+"Çevrimiçi mağazanızın performansını artırmak için yapay zekayı WooCommerce "
+"ile kolayca entegre edin. GeekyBot, daha etkili ve ilgi çekici bir alışveriş "
+"deneyimi için temel süreçleri otomatikleştirerek olası satış yaratmayı ve "
+"müşteri etkileşimlerini artırır."
+
+msgid ""
+"GeekyBot also streamlines customer inquiries and provides real-time, "
+"intelligent responses. By improving retention and customer satisfaction, it "
+"ensures your store delivers an exceptional experience that keeps shoppers "
+"coming back."
+msgstr ""
+"GeekyBot ayrıca müşteri sorgularını kolaylaştırır ve gerçek zamanlı, akıllı "
+"yanıtlar sağlar. Müşteri elde tutmayı ve müşteri memnuniyetini iyileştirerek "
+"mağazanızın, alışveriş yapanların geri gelmesini sağlayan olağanüstü bir "
+"deneyim sunmasını sağlar."
+
+msgid "Watch WooCommerce Video"
+msgstr "WooCommerce Videosunu İzleyin"
+
+msgid "Welcome to GeekyBot !..."
+msgstr "GeekyBot'a hoş geldiniz!..."
+
+msgid ""
+"The ultimate AI chatbot for WooCommerce lead generation, intelligent content "
+"search, and interactive customer engagement on your WordPress website."
+msgstr ""
+"WordPress web sitenizde WooCommerce potansiyel müşteri yaratma, akıllı "
+"içerik arama ve etkileşimli müşteri etkileşimi için nihai yapay zeka sohbet "
+"robotu."
+
+msgid ""
+"Personalize interactions by dynamically processing user inputs using slots "
+"and variables."
+msgstr ""
+"Yuvaları ve değişkenleri kullanarak kullanıcı girişlerini dinamik olarak "
+"işleyerek etkileşimleri kişiselleştirin."
+
+msgid ""
+"Enhance shopping by enabling users to find products and add them to their "
+"cart seamlessly."
+msgstr ""
+"Kullanıcıların ürünleri bulmasını ve bunları sorunsuz bir şekilde "
+"sepetlerine eklemesini sağlayarak alışverişi geliştirin."
+
+msgid "Website Search"
+msgstr "Web Sitesi Arama"
+
+msgid ""
+"Streamline discovery by helping users find relevant information on your "
+"WordPress site."
+msgstr ""
+"Kullanıcıların WordPress sitenizde alakalı bilgileri bulmasına yardımcı "
+"olarak keşfi kolaylaştırın."
+
+msgid "Please insert activation key to proceed"
+msgstr "Devam etmek için lütfen aktivasyon anahtarını girin"
+
+msgid "Addon Installation Failed"
+msgstr "Eklenti Kurulumu Başarısız"
+
+msgid "Addon installation failed"
+msgstr "Eklenti kurulumu başarısız oldu"
+
+msgid "Addon Installation Failed, File download error"
+msgstr "Eklenti Kurulumu Başarısız Oldu, Dosya indirme hatası"
+
+msgid "Activated"
+msgstr "Etkinleştirildi"
+
+msgid "Deactivate"
+msgstr "Devre dışı bırak"
+
+msgid "Deactivated"
+msgstr "Devre dışı bırakıldı"
+
+msgid "Activate"
+msgstr "Etkinleştir"
+
+msgid "Not Installed"
+msgstr "Kurulu Değil"
+
+msgid "Addon Installed Successfully"
+msgstr "Eklenti Başarıyla Yüklendi"
+
+msgid "Ticket Actions"
+msgstr "Bilet İşlemleri"
+
+msgid "Agents"
+msgstr "Temsilciler"
+
+msgid "Ticket Auto Close"
+msgstr "Bilet Otomatik Kapatma"
+
+msgid "left image"
+msgstr "sol resim"
+
+msgid "right image"
+msgstr "doğru görüntü"
+
+msgid "Add-ons For Majestic Support"
+msgstr "Majestic Destek İçin Eklentiler"
+
+msgid ""
+"Get trusted WordPress add-ons. Guaranteed to work fast, safe to use, "
+"beautifully coded, packed with features, and are easy to use."
+msgstr ""
+"Güvenilir WordPress eklentilerini edinin. Hızlı çalışacağı garantilidir, "
+"kullanımı güvenlidir, güzel bir şekilde kodlanmıştır, özelliklerle doludur "
+"ve kullanımı kolaydır."
+
+msgid "Save big today with an exclusive membership plan!"
+msgstr "Özel bir üyelik planıyla bugün büyük tasarruf edin!"
+
+msgid "Show"
+msgstr "Göstermek"
+
+msgid "show bundle pack"
+msgstr "paket paketini göster"
+
+msgid "Agent"
+msgstr "Ajan"
+
+msgid ""
+"Add agents and assign roles and permissions to provide assistance and "
+"support for customer support tickets."
+msgstr ""
+"Müşteri destek bildirimlerine yardım ve destek sağlamak için aracılar "
+"ekleyin ve roller ve izinler atayın."
+
+msgid "buy now"
+msgstr "Şimdi satın al"
+
+msgid "Installed"
+msgstr "Yüklendi"
+
+msgid "multiform"
+msgstr "çok biçimli"
+
+msgid "Multi Forms"
+msgstr "Çoklu Formlar"
+
+msgid ""
+"Create multiple custom ticket forms with different custom fields for each "
+"request type that you support."
+msgstr ""
+"Desteklediğiniz her istek türü için farklı özel alanlara sahip birden fazla "
+"özel bilet formu oluşturun."
+
+msgid "Email Piping"
+msgstr "E-posta Gönderimi"
+
+msgid ""
+"Email piping is the process of automatically turning incoming emails into "
+"support tickets without manual data entry."
+msgstr ""
+"E-posta yönlendirme, gelen e-postaları manuel veri girişi olmadan otomatik "
+"olarak destek bildirimlerine dönüştürme işlemidir."
+
+msgid "agent auto assign"
+msgstr "temsilci otomatik atama"
+
+msgid "Agent Auto Assign"
+msgstr "Temsilci Otomatik Atama"
+
+msgid ""
+"Make the ticket assignment process automatic and assign the most qualified "
+"agent to your tickets with conditions."
+msgstr ""
+"Bilet tahsis sürecini otomatik hale getirin ve en nitelikli acenteyi "
+"koşullarıyla biletlerinize atayın."
+
+msgid "private note"
+msgstr "özel not"
+
+msgid "Private Note"
+msgstr "Özel Not"
+
+msgid ""
+"Add private notes to a ticket and share crucial information internally with "
+"your agents, this private note is not visible to the customer."
+msgstr ""
+"Bir bilete özel notlar ekleyin ve önemli bilgileri dahili olarak "
+"temsilcilerinizle paylaşın; bu özel not müşteri tarafından görülemez."
+
+msgid "merge tickets"
+msgstr "biletleri birleştir"
+
+msgid "Merge Tickets"
+msgstr "Biletleri Birleştir"
+
+msgid ""
+"Merge one or more tickets into another if you receive two support requests "
+"from the same end user about the same issue."
+msgstr ""
+"Aynı son kullanıcıdan aynı sorunla ilgili iki destek talebi alırsanız bir "
+"veya daha fazla destek talebini başka bir destek talebiyle birleştirin."
+
+msgid "helptopic"
+msgstr "yardım konusu"
+
+msgid "Help Topics"
+msgstr "Yardım Konuları"
+
+msgid ""
+"The user can search for and choose the topic for which they need help using "
+"help topics"
+msgstr ""
+"Kullanıcı, yardım konularını kullanarak yardıma ihtiyaç duyduğu konuyu "
+"arayabilir ve seçebilir."
+
+msgid "Auto Close Ticket"
+msgstr "Otomatik Kapanış Bileti"
+
+msgid ""
+"Manage abandoned tickets, and set rules for tickets over time, and those "
+"tickets will be closed automatically after a certain period."
+msgstr ""
+"Terk edilmiş biletleri yönetin ve zaman içinde biletler için kurallar "
+"belirleyin; bu biletler belirli bir süre sonra otomatik olarak "
+"kapatılacaktır."
+
+msgid "Knowledgebase"
+msgstr "Bilgi Bankası"
+
+msgid ""
+"Stop wasting time on repetitive inquiries, build your knowledge base, and "
+"organize your solutions into categories for users."
+msgstr ""
+"Tekrarlanan sorgularla zaman kaybetmeyi bırakın, bilgi tabanınızı oluşturun "
+"ve çözümlerinizi kullanıcılar için kategoriler halinde düzenleyin."
+
+msgid "Ticket Overdue"
+msgstr "Bilet Gecikmesi"
+
+msgid ""
+"Define rules or set a specific time interval for making tickets "
+"automatically overdue."
+msgstr ""
+"Biletlerin otomatik olarak geciktirilmesi için kuralları tanımlayın veya "
+"belirli bir zaman aralığı belirleyin."
+
+msgid "time tracking"
+msgstr "zaman takibi"
+
+msgid "Time Tracking"
+msgstr "Zaman Takibi"
+
+msgid ""
+"Track the amount of time spent on each customer support ticket without "
+"losing focus and enhance team productivity."
+msgstr ""
+"Odağınızı kaybetmeden her müşteri destek bildirimine harcanan süreyi takip "
+"edin ve ekip üretkenliğini artırın."
+
+msgid "Ticket History"
+msgstr "Bilet Geçmişi"
+
+msgid ""
+"Show the whole history of the ticket, including its status and any action "
+"taken in response to it."
+msgstr ""
+"Durumu ve buna yanıt olarak yapılan işlemler de dahil olmak üzere biletin "
+"tüm geçmişini gösterin."
+
+msgid "Paid Support"
+msgstr "Ücretli Destek"
+
+msgid ""
+"The simplest approach to effectively manage payments for premium help is "
+"through paid support."
+msgstr ""
+"Prim yardımına ilişkin ödemeleri etkili bir şekilde yönetmenin en basit "
+"yaklaşımı ücretli destektir."
+
+msgid "Private Credentials"
+msgstr "Özel Kimlik Bilgileri"
+
+msgid ""
+"Customers will enter sensitive information on tickets, and this add-on is "
+"designed to help you keep that information secure."
+msgstr ""
+"Müşteriler biletlere hassas bilgiler girecektir ve bu eklenti, bu bilgileri "
+"güvende tutmanıza yardımcı olmak için tasarlanmıştır."
+
+msgid "Ticket close reason"
+msgstr "Bilet kapatma nedeni"
+
+msgid "Ticket Closed Reason"
+msgstr "Bilet Kapanma Sebebi"
+
+msgid ""
+"Empowers users to provide clear and concise explanations for why customer "
+"service tickets are being closed."
+msgstr ""
+"Kullanıcıların, müşteri hizmetleri biletlerinin neden kapatıldığı konusunda "
+"net ve kısa açıklamalar yapmalarına olanak tanır."
+
+msgid "Premade Responses"
+msgstr "Önceden Hazırlanmış Yanıtlar"
+
+msgid ""
+"Make ready-made responses to the most common questions in the tickets to "
+"swiftly address client issues."
+msgstr ""
+"Müşteri sorunlarını hızlı bir şekilde çözmek için destek bildirimlerindeki "
+"en sık sorulan sorulara hazır yanıtlar hazırlayın."
+
+msgid "max ticket"
+msgstr "maksimum bilet"
+
+msgid "Max Tickets"
+msgstr "Maksimum Bilet"
+
+msgid ""
+"Admins can limit the number of tickets that users can create as well as the "
+"number of tickets that agents can open individually."
+msgstr ""
+"Yöneticiler, kullanıcıların oluşturabileceği destek talebi sayısını ve "
+"ayrıca temsilcilerin bireysel olarak açabileceği destek talebi sayısını "
+"sınırlayabilir."
+
+msgid "Feedback"
+msgstr "Geri bildirim"
+
+msgid ""
+"To enhance the quality of your services, ask your customers to complete a "
+"survey when a ticket is closed."
+msgstr ""
+"Hizmetlerinizin kalitesini artırmak için müşterilerinizden bilet "
+"kapatıldığında bir anket doldurmalarını isteyin."
+
+msgid "ticket actions"
+msgstr "bilet işlemleri"
+
+msgid ""
+"Ticket action options allow you to execute additional actions on tickets."
+msgstr ""
+"Bilet eylemi seçenekleri, biletler üzerinde ek eylemler gerçekleştirmenize "
+"olanak tanır."
+
+msgid "Export"
+msgstr "İhracat"
+
+msgid ""
+"Easily export ticket data and performance report data from your majestic "
+"support to an Excel spreadsheet with our efficient and user-friendly "
+"solution."
+msgstr ""
+"Etkin ve kullanıcı dostu çözümümüzle, görkemli desteğinizden bilet "
+"verilerini ve performans raporu verilerini bir Excel elektronik tablosuna "
+"kolayca aktarın."
+
+msgid "email cc"
+msgstr "e-posta bilgisi"
+
+msgid "Email CC"
+msgstr "CC'ye e-posta gönder"
+
+msgid ""
+"Send the exact copy of the email to the provided email address with Email CC "
+"or BCC."
+msgstr ""
+"E-postanın tam kopyasını, Email CC veya BCC ile sağlanan e-posta adresine "
+"gönderin."
+
+msgid "user options"
+msgstr "kullanıcı seçenekleri"
+
+msgid "User Options"
+msgstr "Kullanıcı Seçenekleri"
+
+msgid ""
+"User options enable you to define roles for new users when they are "
+"registered."
+msgstr ""
+"Kullanıcı seçenekleri, yeni kullanıcılar kaydolduklarında onlar için rolleri "
+"tanımlamanıza olanak sağlar."
+
+msgid "SMTP"
+msgstr "SMTP"
+
+msgid ""
+"SMTP enables you to add  custom mail protocols to send and receive emails "
+"with the support ticket system."
+msgstr ""
+"SMTP, destek bildirim sistemiyle e-posta gönderip almak için özel posta "
+"protokolleri eklemenizi sağlar."
+
+msgid "Multi Language Email Templates"
+msgstr "Çok Dilli E-posta Şablonları"
+
+msgid ""
+"Create multi-language email templates for all default email templates to "
+"send customers emails in the language that they prefer."
+msgstr ""
+"Müşterilere tercih ettikleri dilde e-posta göndermek amacıyla tüm varsayılan "
+"e-posta şablonları için çok dilli e-posta şablonları oluşturun."
+
+msgid "Downloads"
+msgstr "İndirilenler"
+
+msgid ""
+"Downloads can be very helpful for users who are looking to obtain the "
+"necessary information to resolve issues."
+msgstr ""
+"İndirmeler, sorunları çözmek için gerekli bilgileri edinmek isteyen "
+"kullanıcılar için çok yararlı olabilir."
+
+msgid "Announcements"
+msgstr "Duyurular"
+
+msgid ""
+"Make an unlimited number of announcements related to the support system to "
+"encourage customer interaction."
+msgstr ""
+"Müşteri etkileşimini teşvik etmek için destek sistemi ile ilgili sınırsız "
+"sayıda duyuru yapın."
+
+msgid "Ban Email"
+msgstr "E-postayı Yasakla"
+
+msgid ""
+"With Ban Email, you can limit a users ability to create new tickets by "
+"blocking their email address."
+msgstr ""
+"E-postayı Yasakla ile, bir kullanıcının e-posta adresini engelleyerek yeni "
+"bilet oluşturma olanağını sınırlayabilirsiniz."
+
+msgid "FAQ"
+msgstr "SSS"
+
+msgid ""
+"Provide answers to common user questions with the FAQ extension before they "
+"become tickets."
+msgstr ""
+"Sık sorulan kullanıcı sorularına, bilet haline gelmeden önce SSS uzantısıyla "
+"yanıtlar sağlayın."
+
+msgid "admin widgets"
+msgstr "yönetici widget'ları"
+
+msgid "Admin Widgets"
+msgstr "Yönetici Widget'ları"
+
+msgid ""
+"Get immediate data on your support operations as soon as you log into your "
+"WordPress administration area."
+msgstr ""
+"WordPress yönetim alanınıza giriş yaptığınız anda destek operasyonlarınızla "
+"ilgili verileri anında alın."
+
+msgid "desktop notifications"
+msgstr "masaüstü bildirimleri"
+
+msgid "Desktop Notifications"
+msgstr "Masaüstü Bildirimleri"
+
+msgid ""
+"You will be informed of anything that occurs on your support system by the "
+"desktop notifications."
+msgstr ""
+"Destek sisteminizde meydana gelen her şeyden masaüstü bildirimleri "
+"aracılığıyla haberdar olacaksınız."
+
+msgid "woocommerce"
+msgstr "WooCommerce"
+
+msgid ""
+"The integration of the support ticket system for WooCommerce with your e-"
+"shop makes your support better and more professional."
+msgstr ""
+"WooCommerce destek bileti sisteminin e-mağazanızla entegrasyonu, desteğinizi "
+"daha iyi ve daha profesyonel hale getirir."
+
+msgid "mail chimp"
+msgstr "posta şempanzesi"
+
+msgid "Mail Chimp"
+msgstr "Posta şempanzesi"
+
+msgid ""
+"Manage your email marketing campaigns directly from your majestic support by "
+"adding new user accounts to your Mailchimp email list."
+msgstr ""
+"Mailchimp e-posta listenize yeni kullanıcı hesapları ekleyerek e-posta "
+"pazarlama kampanyalarınızı doğrudan görkemli desteğinizden yönetin."
+
+msgid "internal mail"
+msgstr "dahili posta"
+
+msgid "Internal Mail"
+msgstr "Dahili Posta"
+
+msgid ""
+"Send messages internally about support tickets and other issues between "
+"agents with internal mail."
+msgstr ""
+"Dahili posta yoluyla temsilciler arasındaki destek bildirimleri ve diğer "
+"sorunlar hakkında dahili olarak mesajlar gönderin."
+
+msgid "frontend widget"
+msgstr "ön uç widget'ı"
+
+msgid "Front-End Widgets"
+msgstr "Ön Uç Widget'lar"
+
+msgid ""
+"Frontend Widgets include several widgets that can be used to enhance the "
+"plugin's functionality in various areas of the website."
+msgstr ""
+"Ön Uç Widget'ları, web sitesinin çeşitli alanlarında eklentinin "
+"işlevselliğini geliştirmek için kullanılabilecek çeşitli widget'lar içerir."
+
+msgid "envato"
+msgstr "envato"
+
+msgid "Envato"
+msgstr "Envato"
+
+msgid ""
+"Clients won't be able to open a new ticket using the Envato Validation "
+"plugin if they don't have a valid Envato license."
+msgstr ""
+"Geçerli bir Envato lisansına sahip olmayan müşteriler, Envato Doğrulama "
+"eklentisini kullanarak yeni bir bilet açamaz."
+
+msgid "easy digital download"
+msgstr "kolay dijital indirme"
+
+msgid "Easy Digital Download"
+msgstr "Kolay Dijital İndirme"
+
+msgid ""
+"Learn about a customer's purchase directly from the support dashboard by "
+"integrating Majestic Support with your EDD store."
+msgstr ""
+"Majestic Support'u EDD mağazanızla entegre ederek bir müşterinin satın alma "
+"işlemi hakkında doğrudan destek panosundan bilgi edinin."
+
+msgid "Majestic Support Add-ons Bundle Pack"
+msgstr "Majestic Support Eklenti Paketi Paketi"
+
+msgid "Basic"
+msgstr "Temel"
+
+msgid "Unlimited Agents"
+msgstr "Sınırsız Temsilci"
+
+msgid "Helptopic"
+msgstr "Yardım konusu"
+
+msgid "Show all"
+msgstr "Tümünü göster"
+
+msgid "Standard"
+msgstr "Standart"
+
+msgid "Everything in basic included and "
+msgstr "Temeldeki her şey dahil ve"
+
+msgid "Premade Response"
+msgstr "Önceden Hazırlanmış Yanıt"
+
+msgid "Professional"
+msgstr "Profesyonel"
+
+msgid "Everything in standard included and"
+msgstr "Standarttaki her şey dahil ve"
+
+msgid "All Future Addons"
+msgstr "Gelecekteki Tüm Eklentiler"
+
+msgid "spinning wheel"
+msgstr "çıkrık"
+
+msgid "New Update Version"
+msgstr "Yeni Güncelleme Sürümü"
+
+msgid "is Available"
+msgstr "Mevcut"
+
+msgid "Status: "
+msgstr "Durum:"
+
+msgid "Version"
+msgstr "Sürüm"
+
+msgid "addon in no longer active"
+msgstr "eklenti artık aktif değil"
+
+msgid "Please Insert Your Activation Key"
+msgstr "Lütfen Aktivasyon Anahtarınızı Girin"
+
+msgid "XXXX-XXXX-XXXXX-XXXXX"
+msgstr "XXXX-XXXX-XXXXX-XXXXX"
+
+msgid "Proceed"
+msgstr "İlerlemek"
+
+msgid "GeekyBot Addon Installer"
+msgstr "GeekyBot Eklenti Yükleyicisi"
+
+msgid "Select All Addons"
+msgstr "Tüm Eklentileri Seç"
+
+msgid "All allowed add ons are already installed"
+msgstr "İzin verilen tüm eklentiler zaten yüklü"
+
+msgid "You are not allowed to install any add on"
+msgstr "Herhangi bir eklenti yüklemenize izin verilmiyor"
+
+msgid "Something went wrong"
+msgstr "Bir şeyler ters gitti"
+
+msgid "Addons Installed Successfully"
+msgstr "Eklentiler Başarıyla Yüklendi"
+
+msgid "Open Dashboard"
+msgstr "Kontrol Panelini Aç"
+
+msgid "Open Plugins Page"
+msgstr "Eklentiler Sayfasını Aç"
+
+msgid "PersonName"
+msgstr "KişiAdı"
+
+msgid "Facility"
+msgstr "Tesis"
+
+msgid "Organization"
+msgstr "Organizasyon"
+
+msgid "Location"
+msgstr "Konum"
+
+msgid "Location_NON_GPE"
+msgstr "Location_NON_GPE"
+
+msgid "Product"
+msgstr "Ürün"
+
+msgid "Event"
+msgstr "Etkinlik"
+
+msgid "ArtWork"
+msgstr "Sanat Çalışması"
+
+msgid "LawDocument"
+msgstr "HukukBelge"
+
+msgid "Language"
+msgstr "Dil"
+
+msgid "Date"
+msgstr "Tarih"
+
+msgid "Time"
+msgstr "Zaman"
+
+msgid "Percentage"
+msgstr "Yüzde"
+
+msgid "Money"
+msgstr "Para"
+
+msgid "Quantity"
+msgstr "Miktar"
+
+msgid "Ordinal"
+msgstr "sıralı"
+
+msgid "Cardinal"
+msgstr "Kardinal"
+
+msgid "Select Variable For"
+msgstr "İçin Değişken Seçin"
+
+msgid "Attribute"
+msgstr "Bağlanmak"
+
+msgid "Name"
+msgstr "İsim"
+
+msgid "Varibale Name"
+msgstr "Değişken Adı"
+
+msgid "Type"
+msgstr "Tip"
+
+msgid "Possible Field Values"
+msgstr "Olası Alan Değerleri"
+
+msgid "Add Comma Seprated Values"
+msgstr "Virgülle Ayrılmış Değerler Ekle"
+
+msgid "Variable For"
+msgstr "Değişken"
+
+msgid "Select Variable For in case of Woocommerce Variable"
+msgstr "WooCommerce Değişkeni durumunda Değişkeni Seçin"
+
+msgid "cancel"
+msgstr "iptal etmek"
+
+msgid "Cancel"
+msgstr "İptal etmek"
+
+msgid "Save Changes"
+msgstr "Değişiklikleri Kaydet"
+
+msgid "Save Variable"
+msgstr "Değişkeni Kaydet"
+
+msgid "Reset"
+msgstr "Sıfırla"
+
+msgid "Are you sure to delete it?"
+msgstr "Silmek istediğinizden emin misiniz?"
+
+msgid "Delete Variable"
+msgstr "Değişkeni Sil"
+
+msgid "Add Variable"
+msgstr "Değişken Ekle"
+
+msgid "name"
+msgstr "isim"
+
+msgid "type"
+msgstr "tip"
+
+msgid "Possible Values Here"
+msgstr "Burada Olası Değerler"
+
+msgid "Edit Variable"
+msgstr "Değişkeni Düzenle"
+
+msgid "Are you sure to delete it"
+msgstr "Silmek istediğinizden emin misiniz?"
+
+msgid "Add New"
+msgstr "Yeni Ekle"
+
+msgid "User Input"
+msgstr "Kullanıcı Girişi"
+
+msgid "Close"
+msgstr "Kapalı"
+
+msgid "Add"
+msgstr "Eklemek"
+
+msgid "Add More"
+msgstr "Daha Fazla Ekle"
+
+msgid "Available Variables"
+msgstr "Mevcut Değişkenler"
+
+msgid "Enter bot response here..."
+msgstr "Bot yanıtını buraya girin..."
+
+msgid "Button text here"
+msgstr "Düğme metni burada"
+
+msgid "URL"
+msgstr "URL'si"
+
+msgid "Button value here"
+msgstr "Buradaki düğme değeri"
+
+msgid "Enter URL here"
+msgstr "URL'yi buraya girin"
+
+msgid "Add New Button"
+msgstr "Yeni Düğme Ekle"
+
+msgid "Select Predefined Function"
+msgstr "Önceden Tanımlanmış İşlevi Seçin"
+
+msgid "Select Action"
+msgstr "Eylem Seç"
+
+msgid "Add New Action"
+msgstr "Yeni Eylem Ekle"
+
+msgid "Add New Form"
+msgstr "Yeni Form Ekle"
+
+msgid "Enter default fallback here..."
+msgstr "Varsayılan geri dönüşü buraya girin..."
+
+msgid "Enter default fallback for intent here..."
+msgstr "Amaç için varsayılan geri dönüşü buraya girin..."
+
+msgid "Start Point"
+msgstr "Başlangıç ​​Noktası"
+
+msgid "Error: The template file does not exist."
+msgstr "Hata: Şablon dosyası mevcut değil."
+
+msgid "Text"
+msgstr "Metin"
+
+msgid "Function"
+msgstr "İşlev"
+
+msgid "Error: The"
+msgstr "Hata:"
+
+msgid "tag in"
+msgstr "etiketlemek"
+
+msgid "at position"
+msgstr "pozisyonda"
+
+msgid "is missing."
+msgstr "kayıp."
+
+msgid "is empty."
+msgstr "boş."
+
+msgid "tag associated with the user input"
+msgstr "kullanıcı girişiyle ilişkili etiket"
+
+msgid "in"
+msgstr "içinde"
+
+msgid "tag of the"
+msgstr "etiketi"
+
+msgid "block associated with the user input"
+msgstr "kullanıcı girişiyle ilişkili blok"
+
+msgid "or"
+msgstr "veya"
+
+msgid "Error: The function name"
+msgstr "Hata: İşlev adı"
+
+msgid "in the"
+msgstr "içinde"
+
+msgid "is invalid."
+msgstr "geçersiz."
+
+msgid "Error: The type name"
+msgstr "Hata: Tür adı"
+
+msgid "is invalid. This should be"
+msgstr "geçersiz. Bu olmalı"
+
+msgid "You might like these products."
+msgstr "Bu ürünleri beğenebilirsiniz."
+
+msgid "No exact match was found. Explore these similar products."
+msgstr "Tam bir eşleşme bulunamadı. Bu benzer ürünleri keşfedin."
+
+msgid "Here are some suggestions."
+msgstr "İşte bazı öneriler."
+
+msgid "Showing"
+msgstr "Gösterilen"
+
+msgid "of"
+msgstr "ile ilgili"
+
+msgid "Add to cart"
+msgstr "Sepete ekle"
+
+msgid "Empty Story"
+msgstr "Boş Hikaye"
+
+msgid "Show All Products"
+msgstr "Tüm Ürünleri Göster"
+
+msgid "Search Product"
+msgstr "Ürün Ara"
+
+msgid "Get Products Under Price"
+msgstr "Ürünleri Fiyatının Altında Alın"
+
+msgid "Get Products Above Price"
+msgstr "Fiyatların Üstündeki Ürünleri Alın"
+
+msgid "View Cart/Remove Items"
+msgstr "Sepeti Görüntüle/Ürünleri Kaldır"
+
+msgid "Checkout"
+msgstr "Çıkış yapmak"
+
+msgid "Reset Password"
+msgstr "Şifreyi Sıfırla"
+
+msgid "Send Chat To Admin"
+msgstr "Yöneticiye Sohbet Gönder"
+
+msgid "Integer"
+msgstr "Tamsayı"
+
+msgid "Float"
+msgstr "Batmadan yüzmek"
+
+msgid "Boolean"
+msgstr "Boolean"
+
+msgid "String"
+msgstr "Sicim"
+
+msgid "Default Fallback"
+msgstr "Varsayılan Geri Dönüş"
+
+msgid "Are you sure to reset it?"
+msgstr "Sıfırladığınızdan emin misiniz?"
+
+msgid "Parameter Name *"
+msgstr "Parametre Adı *"
+
+msgid "Varibale Name *"
+msgstr "Değişken Adı *"
+
+msgid "User input has been successfully saved."
+msgstr "Kullanıcı girişi başarıyla kaydedildi."
+
+msgid "An empty user input field."
+msgstr "Boş bir kullanıcı giriş alanı."
+
+msgid "An empty bot response."
+msgstr "Boş bir bot yanıtı."
+
+msgid "Response Successfully Saved!"
+msgstr "Yanıt Başarıyla Kaydedildi!"
+
+msgid "Action Successfully Saved!"
+msgstr "İşlem Başarıyla Kaydedildi!"
+
+msgid "Form Successfully Saved!"
+msgstr "Form Başarıyla Kaydedildi!"
+
+msgid "Default Fallback Successfully Saved!"
+msgstr "Varsayılan Geri Dönüş Başarıyla Kaydedildi!"
+
+msgid "Store relevant user input first, then fallback."
+msgstr "Önce ilgili kullanıcı girişini, ardından geri dönüşü saklayın."
+
+msgid "An empty default fallback."
+msgstr "Boş bir varsayılan geri dönüş."
+
+msgid "Default Intent Fallback Successfully Saved!"
+msgstr "Varsayılan Amaç Geri Dönüşü Başarıyla Kaydedildi!"
+
+msgid "Discard"
+msgstr "At"
+
+msgid "Temporary discard"
+msgstr "Geçici olarak atma"
+
+msgid "Automate"
+msgstr "Otomatikleştirmek"
+
+msgid "User input"
+msgstr "Kullanıcı girişi"
+
+msgid "Form"
+msgstr "Biçim"
+
+msgid "Fallback"
+msgstr "Geri çekilmek"
+
+msgid "Chat "
+msgstr "Sohbet"
+
+msgid "Available Variable"
+msgstr "Mevcut Değişken"
+
+msgid "Product Name"
+msgstr "Ürün Adı"
+
+msgid "Minimum Price"
+msgstr "Asgari Fiyat"
+
+msgid "Maximum Price"
+msgstr "Maksimum Fiyat"
+
+msgid "User Login"
+msgstr "Kullanıcı Girişi"
+
+msgid "Action Icon"
+msgstr "Eylem Simgesi"
+
+msgid "User Icon"
+msgstr "Kullanıcı Simgesi"
+
+msgid "User"
+msgstr "Kullanıcı"
+
+msgid "Bot Response"
+msgstr "Bot Yanıtı"
+
+msgid "User Text Icon"
+msgstr "Kullanıcı Metni Simgesi"
+
+msgid "Bot Function Icon"
+msgstr "Bot İşlev Simgesi"
+
+msgid "Bot Function"
+msgstr "Bot İşlevi"
+
+msgid "Predefined Function"
+msgstr "Önceden Tanımlanmış İşlev"
+
+msgid "Bot Action Icon"
+msgstr "Bot Eylem Simgesi"
+
+msgid "Bot Action"
+msgstr "Bot Eylemi"
+
+msgid "Bot Form Icon"
+msgstr "Bot Formu Simgesi"
+
+msgid "Bot Form"
+msgstr "Bot Formu"
+
+msgid "Fallback Icon"
+msgstr "Geri Dönüş Simgesi"
+
+msgid "Fallback Massege"
+msgstr "Geri Dönüş Mesajı"
+
+msgid "Save & Close"
+msgstr "Kaydet ve Kapat"
+
+msgid "Info Icon"
+msgstr "Bilgi Simgesi"
+
+msgid "How to add parameters"
+msgstr "Parametreler nasıl eklenir?"
+
+msgid "User form Icon"
+msgstr "Kullanıcı formu simgesi"
+
+msgid "Form Name *"
+msgstr "Form Adı *"
+
+msgid "Add New Variable"
+msgstr "Yeni Değişken Ekle"
+
+msgid "Function Form"
+msgstr "Fonksiyon Formu"
+
+msgid "Action Form"
+msgstr "Eylem Formu"
+
+msgid "Custom Action"
+msgstr "Özel Eylem"
+
+msgid "Add New Custom Action"
+msgstr "Yeni Özel Eylem Ekle"
+
+msgid "Add New Parameter"
+msgstr "Yeni Parametre Ekle"
+
+msgid "Intent Fallback"
+msgstr "Amaç Geri Dönüşü"
+
+msgid "Save Story"
+msgstr "Hikayeyi Kaydet"
+
+msgid "Reset Story"
+msgstr "Hikayeyi Sıfırla"
+
+msgid "Story has been successfully saved."
+msgstr "Hikaye başarıyla kaydedildi."
+
+msgid "WooCommerce is not active!"
+msgstr "WooCommerce aktif değil!"
+
+msgid "Error encountered in template."
+msgstr "Şablonda hatayla karşılaşıldı."
+
+msgid "An empty story name."
+msgstr "Boş bir hikaye adı."
+
+msgid "An empty story template."
+msgstr "Boş bir hikaye şablonu."
+
+msgid "title"
+msgstr "başlık"
+
+msgid "Active"
+msgstr "Aktif"
+
+msgid "Disable"
+msgstr "Devre dışı bırakmak"
+
+msgid "Edit Story"
+msgstr "Hikayeyi Düzenle"
+
+msgid "Are you sure to delete"
+msgstr "Silmek istediğinizden emin misiniz?"
+
+msgid "Delete Story"
+msgstr "Hikayeyi Sil"
+
+msgid "Built Story"
+msgstr "İnşa Edilmiş Hikaye"
+
+msgid "Built"
+msgstr "inşa edilmiş"
+
+msgid "WooCommerce Story"
+msgstr "WooCommerce Hikayesi"
+
+msgid "Story Name *"
+msgstr "Hikaye Adı *"
+
+msgid "Edit Story Name"
+msgstr "Hikaye Adını Düzenle"
+
+msgid "Invalid username or email."
+msgstr "Geçersiz kullanıcı adı veya e-posta."
+
+msgid "Looks like there was a problem resetting your password:"
+msgstr "Şifrenizi sıfırlarken bir sorun olduğu anlaşılıyor:"
+
+msgid "User not found!"
+msgstr "Kullanıcı bulunamadı!"
+
+msgid "Okay, I have sent the recovery email. Thank you for your patience."
+msgstr "Tamam, kurtarma e-postasını gönderdim. Sabrınız için teşekkür ederiz."
+
+msgid "Your query is sent to the admin."
+msgstr "Sorunuz yöneticiye gönderildi."
+
+msgid "Enable"
+msgstr "Olanak vermek"
+
+msgid "Smart Popup"
+msgstr "Akıllı Açılır Pencere"
+
+msgid "Standard Popup"
+msgstr "Standart Açılır Pencere"
+
+msgid "Appearance"
+msgstr "Dış görünüş"
+
+msgid "Choose File"
+msgstr "Dosya Seç"
+
+msgid "User Default Image"
+msgstr "Kullanıcı Varsayılan Resmi"
+
+msgid "Primary Color"
+msgstr "Ana Renk"
+
+msgid "Choose Color"
+msgstr "Renk Seç"
+
+msgid "User Text Background"
+msgstr "Kullanıcı Metni Arka Planı"
+
+msgid "User Text Color"
+msgstr "Kullanıcı Metin Rengi"
+
+msgid "Bot Link Color"
+msgstr "Bot Bağlantı Rengi"
+
+msgid "Presets"
+msgstr "Ön ayarlar"
+
+msgid "Preset"
+msgstr "Ön ayar"
+
+msgid "online"
+msgstr "çevrimiçi"
+
+msgid "User Image"
+msgstr "Kullanıcı Resmi"
+
+msgid "Hi I am John"
+msgstr "Merhaba ben John"
+
+msgid "Hi John! How can I help you?"
+msgstr "Merhaba John! Size nasıl yardım edebilirim?"
+
+msgid "Can you help me find a new backpack?"
+msgstr "Yeni bir sırt çantası bulmama yardım eder misin?"
+
+msgid "Product Icon"
+msgstr "Ürün Simgesi"
+
+msgid "Fusion Backpack"
+msgstr "Füzyon Sırt Çantası"
+
+msgid "$"
+msgstr "$"
+
+msgid "59"
+msgstr "59"
+
+msgid "Send message"
+msgstr "Mesaj gönder"
+
+msgid "Welcome Message"
+msgstr "Hoş Geldiniz Mesajı"
+
+msgid "Welcome Image"
+msgstr "Hoş Geldiniz Resmi"
+
+msgid "Chat Auto-Popup"
+msgstr "Otomatik Açılan Sohbet Penceresi"
+
+msgid "Controls whether the chat popup appears automatically on your site."
+msgstr ""
+"Sohbet açılır penceresinin sitenizde otomatik olarak görünüp görünmeyeceğini "
+"kontrol eder."
+
+msgid "Chat Pop-up Style"
+msgstr "Sohbet Açılır Stili"
+
+msgid "Choose how the chat will appear: Smart or Standard pop-up."
+msgstr ""
+"Sohbetin nasıl görüneceğini seçin: Akıllı veya Standart açılır pencere."
+
+msgid "Chat Auto-Popup Timing"
+msgstr "Sohbet Otomatik Açılan Pencere Zamanlaması"
+
+msgid ""
+"Define the delay time in seconds for the chatbot to auto-appear on the site."
+msgstr ""
+"Chatbotun sitede otomatik olarak görünmesi için gecikme süresini saniye "
+"cinsinden tanımlayın."
+
+msgid "Note"
+msgstr "Not"
+
+msgid ""
+"If the colors have been saved but the user-side colors are still the same, "
+"it is advised to clear the cache."
+msgstr ""
+"Renkler kaydedilmişse ancak kullanıcı tarafındaki renkler hala aynıysa "
+"önbelleğin temizlenmesi önerilir."
+
+msgid "Also"
+msgstr "Ayrıca"
+
+msgid "Found"
+msgstr "Kurmak"
+
+msgid "Here are some"
+msgstr "İşte bazıları"
+
+msgid "Help"
+msgstr "Yardım"
+
+msgid "Have any problem?"
+msgstr "Herhangi bir sorun var mı?"
+
+msgid ""
+"If you experience any difficulties, we're here to help! Simply click the"
+msgstr ""
+"Herhangi bir zorlukla karşılaşırsanız, yardım etmek için buradayız! Basitçe "
+"tıklayın"
+
+msgid "Create A Ticket"
+msgstr "Bilet Oluştur"
+
+msgid ""
+"button to report your issue, and our dedicated support team will assist you "
+"promptly."
+msgstr ""
+"Sorununuzu bildirmek için düğmesine basın; özel destek ekibimiz size en kısa "
+"sürede yardımcı olacaktır."
+
+msgid "Create Ticket"
+msgstr "Bilet Oluştur"
+
+msgid "Post Type"
+msgstr "Gönderi Türü"
+
+msgid "post type"
+msgstr "posta türü"
+
+msgid "Post Label"
+msgstr "Gönderi Etiketi"
+
+msgid "Associated Plugin"
+msgstr "İlgili Eklenti"
+
+msgid "Add associated plugin's name"
+msgstr "İlişkili eklentinin adını ekleyin"
+
+msgid "For better data consistency, please provide a associated plugin's name."
+msgstr ""
+"Daha iyi veri tutarlılığı için lütfen ilgili eklentinin adını belirtin."
+
+msgid "Status"
+msgstr "Durum"
+
+msgid "For status changes, please use the options available in the listing."
+msgstr "Durum değişiklikleri için lütfen listede bulunan seçenekleri kullanın."
+
+msgid "Template Section"
+msgstr "Şablon Bölümü"
+
+msgid ""
+"Fields are currently auto-filled for preview purposes only. Please save your "
+"changes to apply them."
+msgstr ""
+"Alanlar şu anda yalnızca önizleme amacıyla otomatik olarak doldurulmaktadır. "
+"Lütfen değişikliklerinizi uygulamak için kaydedin."
+
+msgid "Choose one template style from the given below"
+msgstr "Aşağıda verilenlerden bir şablon stili seçin"
+
+msgid "Add Button /Link"
+msgstr "Düğme / Bağlantı Ekle"
+
+msgid "Add New Button /Link"
+msgstr "Yeni Düğme / Bağlantı Ekle"
+
+msgid "Show on Listing"
+msgstr "İlanda Göster"
+
+msgid "View Details"
+msgstr "Ayrıntıları Görüntüle"
+
+msgid "detail page link"
+msgstr "detay sayfası linki"
+
+msgid "Save Template"
+msgstr "Şablonu Kaydet"
+
+msgid "Create a Post"
+msgstr "Gönderi Oluştur"
+
+msgid "Please first create a sample post to use template section."
+msgstr ""
+"Lütfen önce şablon bölümünü kullanmak için örnek bir gönderi oluşturun."
+
+msgid "AI web search enabled successfully."
+msgstr "AI web araması başarıyla etkinleştirildi."
+
+msgid "AI web search already enabled."
+msgstr "AI web araması zaten etkin."
+
+msgid "Something went wrong."
+msgstr "Bir şeyler ters gitti."
+
+msgid "AI web search disabled successfully."
+msgstr "AI web araması başarıyla devre dışı bırakıldı."
+
+msgid "New post type search enabled successfully."
+msgstr "Yeni gönderi türü araması başarıyla etkinleştirildi."
+
+msgid "New post type search disabled successfully."
+msgstr "Yeni gönderi türü araması başarıyla devre dışı bırakıldı."
+
+msgid "Data Synchronization Needed"
+msgstr "Veri Senkronizasyonu Gerekli"
+
+msgid ""
+"Your data is not updated. To ensure accurate results, please synchronize "
+"your AI web search data."
+msgstr ""
+"Verileriniz güncellenmiyor. Doğru sonuçlar elde etmek için lütfen AI web "
+"arama verilerinizi senkronize edin."
+
+msgid "Enable AI web Search"
+msgstr "AI web aramasını etkinleştir"
+
+msgid ""
+"Enable this feature to provide users with direct AI web search results in "
+"the chat, offering them a broader context for their queries."
+msgstr ""
+"Kullanıcılara sohbette doğrudan AI web araması sonuçları sunmak ve onlara "
+"sorguları için daha geniş bir bağlam sunmak için bu özelliği etkinleştirin."
+
+msgid "Enable New Post Type Search"
+msgstr "Yeni Gönderi Türü Aramayı Etkinleştir"
+
+msgid "Lable"
+msgstr "Etiket"
+
+msgid "Post lable"
+msgstr "Gönderi etiketi"
+
+msgid "WooCommerce is currently inactive."
+msgstr "WooCommerce şu anda etkin değil."
+
+msgid "No product was found."
+msgstr "Ürün bulunamadı."
+
+msgid "Please enter a valid product or category name."
+msgstr "Lütfen geçerli bir ürün veya kategori adı girin."
+
+msgid "Please enter a valid price."
+msgstr "Lütfen geçerli bir fiyat girin."
+
+msgid "Please enter a valid price range."
+msgstr "Lütfen geçerli bir fiyat aralığı girin."
+
+msgid "Your cart is currently empty."
+msgstr "Sepetiniz şu anda boş."
+
+msgid "Cart Details"
+msgstr "Sepet Detayları"
+
+msgid "Price"
+msgstr "Fiyat"
+
+msgid "Change"
+msgstr "Değiştirmek"
+
+msgid "Total Price"
+msgstr "Toplam Fiyat"
+
+msgid "Remove Item"
+msgstr "Öğeyi Kaldır"
+
+msgid "Subtotal"
+msgstr "Ara toplam"
+
+msgid "Total"
+msgstr "Toplam"
+
+msgid "Proceed to Checkout"
+msgstr "Çıkışa doğru devam et"
+
+msgid "is out of stock."
+msgstr "stokta yok."
+
+msgid "You cannot add another “"
+msgstr "Başka bir tane ekleyemezsiniz”"
+
+msgid "” to your cart."
+msgstr "”sepetinize."
+
+msgid "You cannot add more than"
+msgstr "Birden fazlasını ekleyemezsiniz"
+
+msgid "of this product to your cart."
+msgstr "Bu ürünü sepetinize ekleyin."
+
+msgid "has been added to your cart."
+msgstr "sepetinize eklendi."
+
+msgid "has not been added to your cart. Please try again."
+msgstr "sepetinize eklenmedi. Lütfen tekrar deneyin."
+
+msgid "View Cart"
+msgstr "Sepeti Görüntüle"
+
+msgid "Please select a product!"
+msgstr "Lütfen bir ürün seçin!"
+
+msgid "There are no variations available."
+msgstr "Hiçbir varyasyon mevcut değil."
+
+msgid "Product not found or not a variable product."
+msgstr "Ürün bulunamadı veya değişken bir ürün değil."
+
+msgid "You can't add another “"
+msgstr "Başka bir tane ekleyemezsiniz”"
+
+msgid "There was an error while adding the product to the cart."
+msgstr "Ürünü sepete eklerken bir hata oluştu."
+
+msgid ""
+"The requested variation with the specified attributes could not be found."
+msgstr "Belirtilen özelliklere sahip istenen varyasyon bulunamadı."
+
+msgid "Change Quantity"
+msgstr "Miktarı Değiştir"
+
+msgid "Update"
+msgstr "Güncelleme"
+
+msgid "The cart is empty."
+msgstr "Sepet boş."
+
+msgid "Cart item is not found."
+msgstr "Sepet öğesi bulunamadı."
+
+msgid "The item was not found in the cart."
+msgstr "Ürün sepette bulunamadı."
+
+msgid "Quantity updated successfully!"
+msgstr "Miktar başarıyla güncellendi!"
+
+msgid "Change quantity"
+msgstr "Miktarı değiştir"
+
+msgid "Edit Post Type"
+msgstr "Gönderi Türünü Düzenle"
+
+msgid "Parameter"
+msgstr "Parametre"
+
+msgid "delete"
+msgstr "silmek"
+
+msgid "add intent"
+msgstr "amaç ekle"
+
+msgid "plus icon"
+msgstr "artı simgesi"
+
+msgid "Add Intents"
+msgstr "Amaç Ekle"
+
+msgid ""
+"On the responses listing page, all the responses are listed here; you can "
+"check them out."
+msgstr ""
+"Yanıtların listelendiği sayfada tüm yanıtlar burada listelenir; bunları "
+"kontrol edebilirsiniz."
+
+msgid "Add Intent"
+msgstr "Amaç Ekle"
+
+msgid ""
+"On the form listing page, all the forms are listed here; you can check them "
+"out."
+msgstr ""
+"Form listeleme sayfasında tüm formlar burada listelenir; bunları kontrol "
+"edebilirsiniz."
+
+msgid "Add Forms"
+msgstr "Form Ekle"
+
+msgid "On the add form page, you can add a new form."
+msgstr "Form ekleme sayfasında yeni bir form ekleyebilirsiniz."
+
+msgid "Responses"
+msgstr "Yanıtlar"
+
+msgid "Add Response"
+msgstr "Yanıt Ekle"
+
+msgid "On the add Response page, you can add a new Response."
+msgstr "Yanıt ekleme sayfasında yeni bir Yanıt ekleyebilirsiniz."
+
+msgid ""
+"On the actions listing page, all the actions are listed here; you can check "
+"them out."
+msgstr ""
+"Eylem listeleme sayfasında tüm eylemler burada listelenir; bunları kontrol "
+"edebilirsiniz."
+
+msgid "Add  Action"
+msgstr "Eylem Ekle"
+
+msgid "On the add action page, you can add a new action."
+msgstr "Eylem ekleme sayfasında yeni bir eylem ekleyebilirsiniz."
+
+msgid "Add Intent Group"
+msgstr "Amaç Grubu Ekle"
+
+msgid "Import"
+msgstr "İçe aktarmak"
+
+msgid "Menu"
+msgstr "Menü"
+
+msgid "End Chat"
+msgstr "Sohbeti Bitir"
+
+msgid "Restart Chat"
+msgstr "Sohbeti Yeniden Başlat"
+
+msgid "Image"
+msgstr "Resim"
+
+msgid "Send Icon"
+msgstr "Gönder Simgesi"
+
+msgid "Welcome to GeekyBot! Let me know how I can assist you today."
+msgstr ""
+"GeekyBot'a hoş geldiniz! Bugün size nasıl yardımcı olabileceğimi bana "
+"bildirin."
+
+msgid "admin."
+msgstr "yönetici."
+
+msgid "Account Assistance"
+msgstr "Hesap Yardımı"
+
+msgid "Diet Plan Assistant"
+msgstr "Diyet Planı Asistanı"
+
+msgid "Job Application"
+msgstr "İş Başvurusu"
+
+msgid "Offline Form"
+msgstr "Çevrimdışı Form"
+
+msgid "Real Estate"
+msgstr "Gayrimenkul"
+
+msgid "Sales Support"
+msgstr "Satış Desteği"
+
+msgid "University"
+msgstr "Üniversite"
+
+msgid "Vacation Planner"
+msgstr "Tatil Planlayıcısı"

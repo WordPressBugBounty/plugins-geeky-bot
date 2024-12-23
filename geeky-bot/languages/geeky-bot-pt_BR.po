@@ -1,0 +1,2677 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"POT-Creation-Date: \n"
+"PO-Revision-Date: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: pt_BR\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 3.5\n"
+
+msgid "Logo"
+msgstr "Logotipo"
+
+msgid "Template Field 1"
+msgstr "Campo de modelo 1"
+
+msgid "Title"
+msgstr "Título"
+
+msgid "Template Field 2"
+msgstr "Campo de modelo 2"
+
+msgid "Template Field 3"
+msgstr "Campo de modelo 3"
+
+msgid "Template Field 4"
+msgstr "Campo de modelo 4"
+
+msgid "Template Field 10"
+msgstr "Campo de modelo 10"
+
+msgid "Simple Link here"
+msgstr "Link simples aqui"
+
+msgid "Button"
+msgstr "Botão"
+
+msgid "Selected"
+msgstr "Selecionado"
+
+msgid "Template Content"
+msgstr "Conteúdo do modelo"
+
+msgid "Template Field"
+msgstr "Campo de modelo"
+
+msgid "Show On Listing"
+msgstr "Mostrar na listagem"
+
+msgid "Select Field"
+msgstr "Selecione o campo"
+
+msgid "Label"
+msgstr "Rótulo"
+
+msgid "Select Type"
+msgstr "Selecione o tipo"
+
+msgid "Set Value"
+msgstr "Definir valor"
+
+msgid "No template fields are available!"
+msgstr "Nenhum campo de modelo está disponível!"
+
+msgid "Set Values"
+msgstr "Definir valores"
+
+msgid "Field Name :"
+msgstr "Nome do campo:"
+
+msgid "Save"
+msgstr "Salvar"
+
+msgid "Something went wrong try again later!"
+msgstr "Algo deu errado, tente novamente mais tarde!"
+
+msgid "Info"
+msgstr "Informações"
+
+msgid "An empty expected value or display value field."
+msgstr "Um campo de valor esperado ou valor de exibição vazio."
+
+msgid "Values set successfully."
+msgstr "Valores definidos com sucesso."
+
+msgid "Expected Value"
+msgstr "Valor Esperado"
+
+msgid "Display Value"
+msgstr "Valor de exibição"
+
+msgid "Delete"
+msgstr "Excluir"
+
+msgid "Add Value"
+msgstr "Adicione valor"
+
+msgid "Edit"
+msgstr "Editar"
+
+msgid "Text Field"
+msgstr "Campo de texto"
+
+msgid "Checkbox"
+msgstr "Caixa de seleção"
+
+msgid "Radio Button"
+msgstr "Botão de rádio"
+
+msgid "Dropdown"
+msgstr "Suspenso"
+
+msgid "Link"
+msgstr "Link"
+
+msgid ""
+"It is a long established fact that a reader will be distracted by the "
+"readable content of a page when looking at its layout Content here, content "
+"here..."
+msgstr ""
+"É um fato estabelecido há muito tempo que um leitor se distrairá com o "
+"conteúdo legível de uma página ao observar seu layout. Conteúdo aqui, "
+"conteúdo aqui..."
+
+msgid "Description"
+msgstr "Descrição"
+
+msgid "Content Description"
+msgstr "Descrição do conteúdo"
+
+msgid "Max Number Of Sentance"
+msgstr "Número máximo de frase"
+
+msgid "1"
+msgstr "1"
+
+msgid "2"
+msgstr "2"
+
+msgid "3"
+msgstr "3"
+
+msgid "4"
+msgstr "4"
+
+msgid "5"
+msgstr "5"
+
+msgid "6"
+msgstr "6"
+
+msgid "Please wait a moment; this may take some time."
+msgstr "Por favor, espere um momento; isso pode levar algum tempo."
+
+msgid "Synchronize"
+msgstr "Sincronizar"
+
+msgid "Data Synchronization Uncomplete"
+msgstr "Sincronização de dados incompleta"
+
+msgid ""
+"Your GeekyBot data is not updated. To ensure accurate results, please "
+"synchronize your AI web search data."
+msgstr ""
+"Seus dados do GeekyBot não são atualizados. Para garantir resultados "
+"precisos, sincronize seus dados de pesquisa na web com IA."
+
+msgid "Synchronize Data"
+msgstr "Sincronizar dados"
+
+msgid "user"
+msgstr "usuário"
+
+msgid "Dashboard"
+msgstr "Painel"
+
+msgid "key check"
+msgstr "verificação de chave"
+
+msgid "keys"
+msgstr "chaves"
+
+msgid "Stories"
+msgstr "Histórias"
+
+msgid "AI Web Search"
+msgstr "Pesquisa na Web com IA"
+
+msgid "Settings"
+msgstr "Configurações"
+
+msgid "Chatbot"
+msgstr "Bot de bate-papo"
+
+msgid "Install Add-ons"
+msgstr "Instalar complementos"
+
+msgid "export"
+msgstr "exportar"
+
+msgid "import"
+msgstr "importar"
+
+msgid "Chat History"
+msgstr "Histórico de bate-papo"
+
+msgid "build"
+msgstr "construir"
+
+msgid "Build"
+msgstr "Construir"
+
+msgid "Variables"
+msgstr "Variáveis"
+
+msgid "forms"
+msgstr "formulários"
+
+msgid "Forms"
+msgstr "Formulários"
+
+msgid "actions"
+msgstr "ações"
+
+msgid "Actions"
+msgstr "Ações"
+
+msgid "File ext. is mismatched"
+msgstr "Extensão do arquivo é incompatível"
+
+msgid "File size is greater then allowed file size"
+msgstr "O tamanho do arquivo é maior que o tamanho permitido"
+
+msgid "Total Stats"
+msgstr "Estatísticas totais"
+
+msgid "Intents"
+msgstr "Intenções"
+
+msgid "No record found"
+msgstr "Nenhum registro encontrado"
+
+msgid "Control Panel"
+msgstr "Painel de controle"
+
+msgid "GeekyBot"
+msgstr "GeekyBot"
+
+msgid "Keys"
+msgstr "Chaves"
+
+msgid "Post Installation"
+msgstr "Pós-instalação"
+
+msgid "Premium Addon"
+msgstr "Complemento Premium"
+
+msgid "Could not find any matching results"
+msgstr "Não foi possível encontrar nenhum resultado correspondente"
+
+msgid "no record"
+msgstr "sem registro"
+
+msgid "No record found !..."
+msgstr "Nenhum registro encontrado!..."
+
+msgid "system offline"
+msgstr "sistema off-line"
+
+msgid ""
+"Unfortunately sytem is offline for a bit of maintenance right now. But soon "
+"we will be up."
+msgstr ""
+"Infelizmente o sistema está offline para uma pequena manutenção no momento. "
+"Mas em breve estaremos de pé."
+
+msgid "user ban"
+msgstr "proibição de usuário"
+
+msgid "Your account is disabled, please contact system administrator !..."
+msgstr ""
+"Sua conta está desativada, entre em contato com o administrador do sistema!..."
+
+msgid "login"
+msgstr "Conecte-se"
+
+msgid "To Access This Page Please Login !..."
+msgstr "Para acessar esta página, faça login!..."
+
+msgid "Back to control panel"
+msgstr "Voltar ao painel de controle"
+
+msgid "You are not logged in"
+msgstr "Você não está logado"
+
+msgid "User Is Disabled By Admin"
+msgstr "O usuário foi desativado pelo administrador"
+
+msgid "The page you are looking for no longer exists"
+msgstr "A página que você procura não existe mais"
+
+msgid "You are already logged in"
+msgstr "Você já está logado"
+
+msgid "Please select your role"
+msgstr "Selecione sua função"
+
+msgid "You are not allowed"
+msgstr "Você não tem permissão"
+
+msgid "You are Not Allowed To add More than One"
+msgstr "Você não tem permissão para adicionar mais de um"
+
+msgid "Contact Adminstrator"
+msgstr "Entrar em contato com o administrador"
+
+msgid "not allowed"
+msgstr "não permitido"
+
+msgid "You are already logged in !..."
+msgstr "Você já está logado!..."
+
+msgid "Logout"
+msgstr "Sair"
+
+msgid "Please first make a selection from the list"
+msgstr "Primeiro faça uma seleção na lista"
+
+msgid "Unknown"
+msgstr "Desconhecido"
+
+msgid "Invalid request"
+msgstr "Solicitação inválida"
+
+msgid "has been successfully applied."
+msgstr "foi aplicado com sucesso."
+
+msgid "Error applying the new theme."
+msgstr "Erro ao aplicar o novo tema."
+
+msgid "has been successfully saved."
+msgstr "foi salvo com sucesso."
+
+msgid "has not been saved."
+msgstr "não foi salvo."
+
+msgid "has been successfully reset."
+msgstr "foi redefinido com sucesso."
+
+msgid "Every Story must have a name."
+msgstr "Toda história deve ter um nome."
+
+msgid "Every Story must have at least 1 intent."
+msgstr "Cada história deve ter pelo menos 1 intenção."
+
+msgid "has been successfully deleted."
+msgstr "foi excluído com sucesso."
+
+msgid "has been successfully exported."
+msgstr "foi exportado com sucesso."
+
+msgid "Data has not been exported."
+msgstr "Os dados não foram exportados."
+
+msgid "Record not exist."
+msgstr "Registro não existe."
+
+msgid "has not been deleted."
+msgstr "não foi excluído."
+
+msgid "Please insert key."
+msgstr "Por favor insira a chave."
+
+msgid "key is not Valid."
+msgstr "chave não é válida."
+
+msgid "transaction has been successfully verified."
+msgstr "a transação foi verificada com sucesso."
+
+msgid "transaction has been successfully un-verified."
+msgstr "a transação foi desverificada com sucesso."
+
+msgid "transaction has not been successfully verified."
+msgstr "a transação não foi verificada com sucesso."
+
+msgid "transaction has not been successfully un-verified."
+msgstr "a transação não foi verificada com sucesso."
+
+msgid "Fields has been successfully required."
+msgstr "Os campos foram obrigatórios com sucesso."
+
+msgid "Field has not been required."
+msgstr "O campo não foi obrigatório."
+
+msgid "Fields has not been required."
+msgstr "Os campos não foram obrigatórios."
+
+msgid "Fields has been successfully not required."
+msgstr "Os campos não foram obrigatórios com sucesso."
+
+msgid "Field has not been not required."
+msgstr "O campo não foi obrigatório."
+
+msgid "Fields has not been not required."
+msgstr "Os campos não foram obrigatórios."
+
+msgid "status has been updated."
+msgstr "o status foi atualizado."
+
+msgid "status has not been updated."
+msgstr "o status não foi atualizado."
+
+msgid "data has been synchronized."
+msgstr "os dados foram sincronizados."
+
+msgid "data has not been synchronized."
+msgstr "os dados não foram sincronizados."
+
+msgid "in use cannot deleted."
+msgstr "em uso não pode ser excluído."
+
+msgid "already exist."
+msgstr "já existe."
+
+msgid "File type error."
+msgstr "Erro de tipo de arquivo."
+
+msgid "File size error."
+msgstr "Erro no tamanho do arquivo."
+
+msgid "Intent"
+msgstr "Intenção"
+
+msgid "Response"
+msgstr "Resposta"
+
+msgid "Intent Group"
+msgstr "Grupo de intenções"
+
+msgid "Variable"
+msgstr "Variável"
+
+msgid "Story"
+msgstr "História"
+
+msgid "Post type"
+msgstr "Tipo de postagem"
+
+msgid "AI web search"
+msgstr "Pesquisa na web com IA"
+
+msgid "Action"
+msgstr "Ação"
+
+msgid "Changes"
+msgstr "Mudanças"
+
+msgid "Data"
+msgstr "Dados"
+
+msgid "Message"
+msgstr "Mensagem"
+
+msgid "Configuration"
+msgstr "Configuração"
+
+msgid "Previous"
+msgstr "Anterior"
+
+msgid "Next"
+msgstr "Próximo"
+
+msgid "Guest"
+msgstr "Convidado"
+
+msgid "User ID"
+msgstr "ID do usuário"
+
+msgid "Add to Story"
+msgstr "Adicionar à história"
+
+msgid "Add to story"
+msgstr "Adicionar à história"
+
+msgid "Search"
+msgstr "Procurar"
+
+msgid "Search with user name"
+msgstr "Pesquisar com nome de usuário"
+
+msgid "reset"
+msgstr "reiniciar"
+
+msgid "Select Chat"
+msgstr "Selecione Bate-papo"
+
+msgid "Sender"
+msgstr "Remetente"
+
+msgid "select chat"
+msgstr "selecione bate-papo"
+
+msgid "Chat history is not selected."
+msgstr "O histórico de bate-papo não está selecionado."
+
+msgid "Please select a conversation to view the user's chat history."
+msgstr ""
+"Selecione uma conversa para visualizar o histórico de bate-papo do usuário."
+
+msgid "Add User Input To Story"
+msgstr "Adicionar entrada do usuário à história"
+
+msgid "Select"
+msgstr "Selecione"
+
+msgid "Add User Input"
+msgstr "Adicionar entrada do usuário"
+
+msgid "You must choose a story; it cannot be empty."
+msgstr "Você deve escolher uma história; não pode estar vazio."
+
+msgid "Security verification Failed, Please restart you chat to continue."
+msgstr ""
+"Falha na verificação de segurança. Reinicie seu bate-papo para continuar."
+
+msgid "Your session has expired; please restart your chat."
+msgstr "Sua sessão expirou; por favor reinicie seu chat."
+
+msgid "Hi, I am Chatbot. I do not have specific knowledge."
+msgstr "Olá, eu sou o Chatbot. Não tenho conhecimentos específicos."
+
+msgid "Your message is too long. Please enter only a username or email."
+msgstr ""
+"Sua mensagem é muito longa. Por favor, insira apenas um nome de usuário ou e-"
+"mail."
+
+msgid "Invalid username or email. Try again with the correct one."
+msgstr "Nome de usuário ou e-mail inválido. Tente novamente com o correto."
+
+msgid "Show More"
+msgstr "Mostrar mais"
+
+msgid "Show Articles"
+msgstr "Mostrar artigos"
+
+msgid "session time out"
+msgstr "tempo limite da sessão"
+
+msgid "Data directory can not empty."
+msgstr "O diretório de dados não pode ficar vazio."
+
+msgid "Data directory is not proper."
+msgstr "O diretório de dados não é adequado."
+
+msgid "Data directory is not writable."
+msgstr "O diretório de dados não é gravável."
+
+msgid "Default fallback message can not be empty."
+msgstr "A mensagem de fallback padrão não pode estar vazia."
+
+msgid "Admin pagination not saved."
+msgstr "Paginação de administrador não salva."
+
+msgid "User pagination not saved."
+msgstr "Paginação do usuário não salva."
+
+msgid ""
+"The title of your chatbot or the primary title displayed on your chat "
+"interface."
+msgstr ""
+"O título do seu chatbot ou o título principal exibido na interface do chat."
+
+msgid "Default Fallback Message"
+msgstr "Mensagem substituta padrão"
+
+msgid "The message displayed when the chatbot cannot understand."
+msgstr "A mensagem exibida quando o chatbot não consegue entender."
+
+msgid "Offline"
+msgstr "Off-line"
+
+msgid "Online"
+msgstr "On-line"
+
+msgid "Set your plugin offline for front end."
+msgstr "Defina seu plugin offline para front-end."
+
+msgid "Data Directory"
+msgstr "Diretório de dados"
+
+msgid "The directory where all chatbot data files are stored."
+msgstr "O diretório onde todos os arquivos de dados do chatbot são armazenados."
+
+msgid "Admin Pagination"
+msgstr "Paginação de administrador"
+
+msgid "The number of items displayed in a paginated list in the admin panel."
+msgstr ""
+"O número de itens exibidos em uma lista paginada no painel de administração."
+
+msgid "User Pagination"
+msgstr "Paginação do usuário"
+
+msgid "The number of items displayed in a paginated list on the user side."
+msgstr "O número de itens exibidos em uma lista paginada do lado do usuário."
+
+msgid "Save Settings"
+msgstr "Salvar configurações"
+
+msgid "Add Icon"
+msgstr "Adicionar ícone"
+
+msgid "years"
+msgstr "anos"
+
+msgid "year"
+msgstr "ano"
+
+msgid "ago"
+msgstr "atrás"
+
+msgid "months"
+msgstr "meses"
+
+msgid "month"
+msgstr "mês"
+
+msgid "days"
+msgstr "dias"
+
+msgid "day"
+msgstr "dia"
+
+msgid "hours"
+msgstr "horas"
+
+msgid "hour"
+msgstr "hora"
+
+msgid "minutes"
+msgstr "minutos"
+
+msgid "minute"
+msgstr "minuto"
+
+msgid "Just now"
+msgstr "Agora mesmo"
+
+msgid "AI ChatBot is disabled."
+msgstr "AI ChatBot está desativado."
+
+msgid "Active Now"
+msgstr "Ativo agora"
+
+msgid "AI ChatBot story not built."
+msgstr "A história do AI ChatBot não foi construída."
+
+msgid "Built Now"
+msgstr "Construído agora"
+
+msgid "WooCommerce plugin is not installed."
+msgstr "O plug-in WooCommerce não está instalado."
+
+msgid "Install Now"
+msgstr "Instale agora"
+
+msgid "WooCommerce plugin is not activated."
+msgstr "O plugin WooCommerce não está ativado."
+
+msgid "WooCommerce Bot is disabled."
+msgstr "O bot WooCommerce está desativado."
+
+msgid "WooCommerce story not built."
+msgstr "História do WooCommerce não construída."
+
+msgid "Post Type not found."
+msgstr "Tipo de postagem não encontrado."
+
+msgid "AI Web Search is disabled!"
+msgstr "A Pesquisa na Web AI está desativada!"
+
+msgid "AI ChatBot Sessions"
+msgstr "Sessões de IA ChatBot"
+
+msgid "Session Card"
+msgstr "Cartão de Sessão"
+
+msgid "Graph"
+msgstr "Gráfico"
+
+msgid "Card"
+msgstr "Cartão"
+
+msgid "WooCommerce Sessions"
+msgstr "Sessões WooCommerce"
+
+msgid "AI Web Search Sessions"
+msgstr "Sessões de pesquisa na Web com IA"
+
+msgid "Icon"
+msgstr "Ícone"
+
+msgid "GeekyBot Setup and Usage Guides"
+msgstr "Guias de configuração e uso do GeekyBot"
+
+msgid "Explore installation, training, and effective usage guides."
+msgstr "Explore guias de instalação, treinamento e uso eficaz."
+
+msgid "Play"
+msgstr "Jogar"
+
+msgid "Youtube Icon"
+msgstr "Ícone do YouTube"
+
+msgid "How to add Story"
+msgstr "Como adicionar história"
+
+msgid "How to add Variable"
+msgstr "Como adicionar variável"
+
+msgid "Change Settings"
+msgstr "Alterar configurações"
+
+msgid "Change Color"
+msgstr "Alterar cor"
+
+msgid "Remove"
+msgstr "Remover"
+
+msgid "Cross Icon"
+msgstr "Ícone de cruz"
+
+msgid "Stories Date"
+msgstr "Data das histórias"
+
+msgid "View Stories"
+msgstr "Ver histórias"
+
+msgid "AI Chatbot"
+msgstr "Bot de bate-papo com IA"
+
+msgid "WooCommerce"
+msgstr "WooCommerce"
+
+msgid "Bot Icon"
+msgstr "Ícone do bot"
+
+msgid "AI ChatBot"
+msgstr "Bot de bate-papo com IA"
+
+msgid "Last Month Stats"
+msgstr "Estatísticas do último mês"
+
+msgid "Woo Icon"
+msgstr "Ícone Woo"
+
+msgid "AI Web Search "
+msgstr "Pesquisa na Web com IA"
+
+msgid "Manage Post Types"
+msgstr "Gerenciar tipos de postagem"
+
+msgid "Enable AI Web Search"
+msgstr "Ativar pesquisa na Web com IA"
+
+msgid "Search Icon"
+msgstr "Ícone de pesquisa"
+
+msgid "History"
+msgstr "História"
+
+msgid "WooCommerce Bot"
+msgstr "Bot WooCommerce"
+
+msgid "logo"
+msgstr "logotipo"
+
+msgid "No of Conversation"
+msgstr "Não de conversa"
+
+msgid "View History"
+msgstr "Ver histórico"
+
+msgid "No data"
+msgstr "Sem dados"
+
+msgid "No Data"
+msgstr "Sem dados"
+
+msgid "Addons"
+msgstr "Complementos"
+
+msgid "addon"
+msgstr "adicionar"
+
+msgid "Custom Listing Style"
+msgstr "Estilo de listagem personalizado"
+
+msgid "Custom Listing Text"
+msgstr "Texto de listagem personalizado"
+
+msgid "WooCommerce Features"
+msgstr "Recursos do WooCommerce"
+
+msgid "Addon List"
+msgstr "Lista de complementos"
+
+msgid "WooCommerce "
+msgstr "WooCommerce"
+
+msgid "Lead Generation"
+msgstr "Geração de leads"
+
+msgid ""
+"GeekyBot simplifies the WooCommerce experience with intelligent product "
+"discovery and purchasing. It seamlessly integrates with WooCommerce for "
+"efficient product searches, detailed listings, and a smooth shopping "
+"experience."
+msgstr ""
+"GeekyBot simplifica a experiência WooCommerce com descoberta e compra "
+"inteligente de produtos. Ele se integra perfeitamente ao WooCommerce para "
+"pesquisas eficientes de produtos, listagens detalhadas e uma experiência de "
+"compra tranquila."
+
+msgid "Find Product"
+msgstr "Encontre o produto"
+
+msgid "Find Products"
+msgstr "Encontre produtos"
+
+msgid "Find products by name, category, or price range via chat."
+msgstr "Encontre produtos por nome, categoria ou faixa de preço via chat."
+
+msgid "List Product"
+msgstr "Listar produto"
+
+msgid "List Products"
+msgstr "Listar produtos"
+
+msgid "Show relevant products with details and prices based on preferences."
+msgstr ""
+"Mostre produtos relevantes com detalhes e preços baseados nas preferências."
+
+msgid "Add To Cart Product"
+msgstr "Adicionar produto ao carrinho"
+
+msgid "Add to Cart"
+msgstr "adicionar ao carrinho"
+
+msgid "Easily add products to the cart list directly through chat."
+msgstr "Adicione produtos facilmente à lista do carrinho diretamente pelo chat."
+
+msgid "Watch Video"
+msgstr "Assistir ao vídeo"
+
+msgid "AI Chat"
+msgstr "Bate-papo com IA"
+
+msgid "Custom"
+msgstr "Personalizado"
+
+msgid " AI Chat Bot "
+msgstr "Bot de bate-papo com IA"
+
+msgid "Conversation Handling"
+msgstr "Tratamento de conversas"
+
+msgid ""
+"AI Chat Conversation provides intelligent and context-aware interactions to "
+"enhance user engagement. Define key conversation elements to capture specific "
+"user inputs dynamically and adapt responses based on the context."
+msgstr ""
+"AI Chat Conversation fornece interações inteligentes e conscientes do "
+"contexto para melhorar o envolvimento do usuário. Defina os principais "
+"elementos de conversa para capturar entradas específicas do usuário de forma "
+"dinâmica e adaptar as respostas com base no contexto."
+
+msgid "Capture and process inputs dynamically for personalized responses."
+msgstr ""
+"Capture e processe entradas dinamicamente para obter respostas personalizadas."
+
+msgid "Adjust interactions based on the ongoing conversation for relevance."
+msgstr ""
+"Ajuste as interações com base na conversa em andamento para obter relevância."
+
+msgid "Use collected data to tailor responses and improve satisfaction."
+msgstr ""
+"Use os dados coletados para adaptar as respostas e melhorar a satisfação."
+
+msgid "Discover Our "
+msgstr "Descubra o nosso"
+
+msgid " AI Web Search"
+msgstr "Pesquisa na Web com IA"
+
+msgid "Bot"
+msgstr "Robô"
+
+msgid ""
+"AI Web Search improves user experience by delivering advanced, intuitive "
+"content discovery on your WordPress site. With powerful searches, users can "
+"quickly find relevant information, enhancing overall interest and "
+"accessibility."
+msgstr ""
+"AI Web Search melhora a experiência do usuário, fornecendo descoberta de "
+"conteúdo avançada e intuitiva em seu site WordPress. Com pesquisas poderosas, "
+"os usuários podem encontrar rapidamente informações relevantes, aumentando o "
+"interesse geral e a acessibilidade."
+
+msgid "GeekyBot swiftly retrieves posts and pages based on user queries."
+msgstr ""
+"GeekyBot recupera rapidamente postagens e páginas com base nas consultas dos "
+"usuários."
+
+msgid "Displays full content or excerpts that match search terms."
+msgstr ""
+"Exibe conteúdo completo ou trechos que correspondem aos termos de pesquisa."
+
+msgid "Activate GeekyBot’s search for an AI web search with one click."
+msgstr ""
+"Ative a pesquisa do GeekyBot para uma pesquisa na web com IA com um clique."
+
+msgid "Web Search"
+msgstr "Pesquisa na Web"
+
+msgid "GeekyBot Supported Plugins"
+msgstr "Plug-ins suportados pelo GeekyBot"
+
+msgid "Plugin"
+msgstr "Plug-in"
+
+msgid "WP Job Manager"
+msgstr "Gerenciador de tarefas WP"
+
+msgid "Tutor LMS"
+msgstr "Tutor LMS"
+
+msgid "bbPress"
+msgstr "bbPress"
+
+msgid "LearnPress"
+msgstr "AprendaPress"
+
+msgid "Knowledge Base"
+msgstr "Base de conhecimento"
+
+msgid "BetterDocs"
+msgstr "MelhoresDocs"
+
+msgid "Motors"
+msgstr "Motores"
+
+msgid "Estatik Real Estate"
+msgstr "Estatik Imobiliária"
+
+msgid "Auto Listings"
+msgstr "Listagens automáticas"
+
+msgid "Welcome to GeekyBot Features"
+msgstr "Bem-vindo aos recursos do GeekyBot"
+
+msgid "GeekyBot Features"
+msgstr "Recursos do GeekyBot"
+
+msgid "WooCommerce Integration"
+msgstr "Integração WooCommerce"
+
+msgid "Quick Installation"
+msgstr "Instalação rápida"
+
+msgid "Version: 1.0.0"
+msgstr "Versão: 1.0.0"
+
+msgid "AI Chat Bot"
+msgstr "Bot de bate-papo com IA"
+
+msgid "Enable/Disable"
+msgstr "Ativar/Desativar"
+
+msgid "Enable/Disable Bot"
+msgstr "Ativar/desativar bot"
+
+msgid "Select Template"
+msgstr "Selecione o modelo"
+
+msgid ""
+"AI Chat in GeekyBot provides instant, personalized responses to user queries, "
+"ensuring seamless support around the clock. With its ability to engage users "
+"at any time, GeekyBot enhances the reliability of your service, making sure "
+"that your customers' needs are always met."
+msgstr ""
+"O AI Chat no GeekyBot fornece respostas instantâneas e personalizadas às "
+"dúvidas dos usuários, garantindo suporte contínuo 24 horas por dia. Com sua "
+"capacidade de envolver os usuários a qualquer momento, o GeekyBot aumenta a "
+"confiabilidade do seu serviço, garantindo que as necessidades dos seus "
+"clientes sejam sempre atendidas."
+
+msgid ""
+"By training GeekyBot with your specific data, you can create dynamic, "
+"tailored interactions that reflect your business's unique voice and services. "
+"This customization allows for more relevant, effective conversations that "
+"build stronger connections with your users."
+msgstr ""
+"Ao treinar o GeekyBot com seus dados específicos, você pode criar interações "
+"dinâmicas e personalizadas que refletem a voz e os serviços exclusivos da sua "
+"empresa. Essa personalização permite conversas mais relevantes e eficazes que "
+"constroem conexões mais fortes com seus usuários."
+
+msgid "Bot Image"
+msgstr "Imagem do bot"
+
+msgid "image"
+msgstr "imagem"
+
+msgid "Watch AI ChatBot Video"
+msgstr "Assista ao vídeo do AI ChatBot"
+
+msgid "AI Web Search Bot"
+msgstr "Bot de pesquisa na Web com IA"
+
+msgid ""
+"Effortlessly search for specific posts and content across your entire site "
+"using our powerful AI web search tool. GeekyBot goes beyond standard "
+"searches, delivering results from all types of data on your site. Whether "
+"you're looking for posts, pages, custom post types, or other information, "
+"GeekyBot ensures you find what you need quickly and efficiently by displaying "
+"relevant articles, posts, and more in a single, streamlined search experience."
+msgstr ""
+"Pesquise facilmente postagens e conteúdos específicos em todo o seu site "
+"usando nossa poderosa ferramenta de pesquisa na web com IA. O GeekyBot vai "
+"além das pesquisas padrão, entregando resultados de todos os tipos de dados "
+"do seu site. Esteja você procurando postagens, páginas, tipos de postagens "
+"personalizadas ou outras informações, o GeekyBot garante que você encontre o "
+"que precisa de forma rápida e eficiente, exibindo artigos, postagens "
+"relevantes e muito mais em uma experiência de pesquisa única e simplificada."
+
+msgid "New Post Type Search"
+msgstr "Pesquisa de novo tipo de postagem"
+
+msgid ""
+"Enable this option to directly include new post types in search results, "
+"enhancing user access to all content."
+msgstr ""
+"Habilite esta opção para incluir diretamente novos tipos de postagem nos "
+"resultados da pesquisa, melhorando o acesso do usuário a todo o conteúdo."
+
+msgid "Watch AI Web Search Video"
+msgstr "Assista ao vídeo do AI Web Search"
+
+msgid "Back"
+msgstr "Voltar"
+
+msgid "Finish"
+msgstr "Terminar"
+
+msgid "WooCommerce is not installed"
+msgstr "WooCommerce não está instalado"
+
+msgid ""
+"WooCommerce plugin is not installed on your site, you won't be able to "
+"integrate GeekyBot with WooCommerce."
+msgstr ""
+"O plugin WooCommerce não está instalado em seu site, você não conseguirá "
+"integrar GeekyBot com WooCommerce."
+
+msgid ""
+"Easily integrate AI with WooCommerce to enhance your online store’s "
+"performance. GeekyBot boosts lead generation and customer interactions, "
+"automating key processes for a more effective and engaging shopping "
+"experience."
+msgstr ""
+"Integre facilmente IA com WooCommerce para melhorar o desempenho da sua loja "
+"online. GeekyBot aumenta a geração de leads e as interações com os clientes, "
+"automatizando processos-chave para uma experiência de compra mais eficaz e "
+"envolvente."
+
+msgid ""
+"GeekyBot also streamlines customer inquiries and provides real-time, "
+"intelligent responses. By improving retention and customer satisfaction, it "
+"ensures your store delivers an exceptional experience that keeps shoppers "
+"coming back."
+msgstr ""
+"O GeekyBot também agiliza as consultas dos clientes e fornece respostas "
+"inteligentes e em tempo real. Ao melhorar a retenção e a satisfação do "
+"cliente, garante que sua loja ofereça uma experiência excepcional que faz com "
+"que os clientes voltem sempre."
+
+msgid "Watch WooCommerce Video"
+msgstr "Assista ao vídeo WooCommerce"
+
+msgid "Welcome to GeekyBot !..."
+msgstr "Bem-vindo ao GeekyBot!..."
+
+msgid ""
+"The ultimate AI chatbot for WooCommerce lead generation, intelligent content "
+"search, and interactive customer engagement on your WordPress website."
+msgstr ""
+"O chatbot de IA definitivo para geração de leads WooCommerce, pesquisa "
+"inteligente de conteúdo e envolvimento interativo do cliente em seu site "
+"WordPress."
+
+msgid ""
+"Personalize interactions by dynamically processing user inputs using slots "
+"and variables."
+msgstr ""
+"Personalize as interações processando dinamicamente as entradas do usuário "
+"usando slots e variáveis."
+
+msgid ""
+"Enhance shopping by enabling users to find products and add them to their "
+"cart seamlessly."
+msgstr ""
+"Aprimore as compras, permitindo que os usuários encontrem produtos e os "
+"adicionem ao carrinho sem problemas."
+
+msgid "Website Search"
+msgstr "Pesquisa de sites"
+
+msgid ""
+"Streamline discovery by helping users find relevant information on your "
+"WordPress site."
+msgstr ""
+"Simplifique a descoberta ajudando os usuários a encontrar informações "
+"relevantes em seu site WordPress."
+
+msgid "Please insert activation key to proceed"
+msgstr "Por favor insira a chave de ativação para continuar"
+
+msgid "Addon Installation Failed"
+msgstr "Falha na instalação do complemento"
+
+msgid "Addon installation failed"
+msgstr "Falha na instalação do complemento"
+
+msgid "Addon Installation Failed, File download error"
+msgstr "Falha na instalação do complemento, erro no download do arquivo"
+
+msgid "Activated"
+msgstr "Ativado"
+
+msgid "Deactivate"
+msgstr "Desativar"
+
+msgid "Deactivated"
+msgstr "Desativado"
+
+msgid "Activate"
+msgstr "Ativar"
+
+msgid "Not Installed"
+msgstr "Não instalado"
+
+msgid "Addon Installed Successfully"
+msgstr "Addon instalado com sucesso"
+
+msgid "Ticket Actions"
+msgstr "Ações de ingressos"
+
+msgid "Agents"
+msgstr "Agentes"
+
+msgid "Ticket Auto Close"
+msgstr "Fechamento automático do ticket"
+
+msgid "left image"
+msgstr "imagem esquerda"
+
+msgid "right image"
+msgstr "imagem certa"
+
+msgid "Add-ons For Majestic Support"
+msgstr "Complementos para suporte Majestic"
+
+msgid ""
+"Get trusted WordPress add-ons. Guaranteed to work fast, safe to use, "
+"beautifully coded, packed with features, and are easy to use."
+msgstr ""
+"Obtenha complementos confiáveis ​​para WordPress. Garantido para funcionar de "
+"forma rápida, segura de usar, lindamente codificada, repleta de recursos e "
+"fácil de usar."
+
+msgid "Save big today with an exclusive membership plan!"
+msgstr "Economize muito hoje com um plano de associação exclusivo!"
+
+msgid "Show"
+msgstr "Mostrar"
+
+msgid "show bundle pack"
+msgstr "mostrar pacote de pacotes"
+
+msgid "Agent"
+msgstr "Agente"
+
+msgid ""
+"Add agents and assign roles and permissions to provide assistance and support "
+"for customer support tickets."
+msgstr ""
+"Adicione agentes e atribua funções e permissões para fornecer assistência e "
+"suporte para tickets de suporte ao cliente."
+
+msgid "buy now"
+msgstr "comprar agora"
+
+msgid "Installed"
+msgstr "Instalado"
+
+msgid "multiform"
+msgstr "multiforme"
+
+msgid "Multi Forms"
+msgstr "Vários formulários"
+
+msgid ""
+"Create multiple custom ticket forms with different custom fields for each "
+"request type that you support."
+msgstr ""
+"Crie vários formulários de ticket personalizados com diferentes campos "
+"personalizados para cada tipo de solicitação compatível."
+
+msgid "Email Piping"
+msgstr "Canalização de e-mail"
+
+msgid ""
+"Email piping is the process of automatically turning incoming emails into "
+"support tickets without manual data entry."
+msgstr ""
+"O encaminhamento de e-mail é o processo de transformar automaticamente e-"
+"mails recebidos em tickets de suporte sem entrada manual de dados."
+
+msgid "agent auto assign"
+msgstr "atribuição automática de agente"
+
+msgid "Agent Auto Assign"
+msgstr "Atribuição automática de agente"
+
+msgid ""
+"Make the ticket assignment process automatic and assign the most qualified "
+"agent to your tickets with conditions."
+msgstr ""
+"Automatize o processo de atribuição de tickets e atribua o agente mais "
+"qualificado aos seus tickets com condições."
+
+msgid "private note"
+msgstr "nota privada"
+
+msgid "Private Note"
+msgstr "Nota privada"
+
+msgid ""
+"Add private notes to a ticket and share crucial information internally with "
+"your agents, this private note is not visible to the customer."
+msgstr ""
+"Adicione notas privadas a um ticket e compartilhe informações cruciais "
+"internamente com seus agentes. Essa nota privada não fica visível para o "
+"cliente."
+
+msgid "merge tickets"
+msgstr "mesclar tickets"
+
+msgid "Merge Tickets"
+msgstr "Mesclar ingressos"
+
+msgid ""
+"Merge one or more tickets into another if you receive two support requests "
+"from the same end user about the same issue."
+msgstr ""
+"Mescle um ou mais tickets em outro se você receber duas solicitações de "
+"suporte do mesmo usuário final sobre o mesmo problema."
+
+msgid "helptopic"
+msgstr "tópico de ajuda"
+
+msgid "Help Topics"
+msgstr "Tópicos de ajuda"
+
+msgid ""
+"The user can search for and choose the topic for which they need help using "
+"help topics"
+msgstr ""
+"O usuário pode pesquisar e escolher o tópico para o qual precisa de ajuda "
+"usando tópicos de ajuda"
+
+msgid "Auto Close Ticket"
+msgstr "Tíquete de fechamento automático"
+
+msgid ""
+"Manage abandoned tickets, and set rules for tickets over time, and those "
+"tickets will be closed automatically after a certain period."
+msgstr ""
+"Gerencie tickets abandonados e defina regras para tickets ao longo do tempo, "
+"e esses tickets serão fechados automaticamente após um determinado período."
+
+msgid "Knowledgebase"
+msgstr "Base de conhecimento"
+
+msgid ""
+"Stop wasting time on repetitive inquiries, build your knowledge base, and "
+"organize your solutions into categories for users."
+msgstr ""
+"Pare de perder tempo com consultas repetitivas, construa sua base de "
+"conhecimento e organize suas soluções em categorias para os usuários."
+
+msgid "Ticket Overdue"
+msgstr "Bilhete vencido"
+
+msgid ""
+"Define rules or set a specific time interval for making tickets automatically "
+"overdue."
+msgstr ""
+"Defina regras ou defina um intervalo de tempo específico para tornar os "
+"tickets vencidos automaticamente."
+
+msgid "time tracking"
+msgstr "rastreamento de tempo"
+
+msgid "Time Tracking"
+msgstr "Controle de tempo"
+
+msgid ""
+"Track the amount of time spent on each customer support ticket without losing "
+"focus and enhance team productivity."
+msgstr ""
+"Acompanhe a quantidade de tempo gasto em cada ticket de suporte ao cliente "
+"sem perder o foco e aumente a produtividade da equipe."
+
+msgid "Ticket History"
+msgstr "Histórico de ingressos"
+
+msgid ""
+"Show the whole history of the ticket, including its status and any action "
+"taken in response to it."
+msgstr ""
+"Mostre todo o histórico do ticket, incluindo seu status e qualquer ação "
+"tomada em resposta a ele."
+
+msgid "Paid Support"
+msgstr "Suporte pago"
+
+msgid ""
+"The simplest approach to effectively manage payments for premium help is "
+"through paid support."
+msgstr ""
+"A abordagem mais simples para gerir eficazmente os pagamentos de ajuda "
+"premium é através de apoio pago."
+
+msgid "Private Credentials"
+msgstr "Credenciais Privadas"
+
+msgid ""
+"Customers will enter sensitive information on tickets, and this add-on is "
+"designed to help you keep that information secure."
+msgstr ""
+"Os clientes inserirão informações confidenciais nos tickets, e este "
+"complemento foi projetado para ajudá-lo a manter essas informações seguras."
+
+msgid "Ticket close reason"
+msgstr "Motivo de fechamento do ticket"
+
+msgid "Ticket Closed Reason"
+msgstr "Motivo de fechamento do ticket"
+
+msgid ""
+"Empowers users to provide clear and concise explanations for why customer "
+"service tickets are being closed."
+msgstr ""
+"Permite que os usuários forneçam explicações claras e concisas sobre o motivo "
+"pelo qual os tickets de atendimento ao cliente estão sendo fechados."
+
+msgid "Premade Responses"
+msgstr "Respostas pré-fabricadas"
+
+msgid ""
+"Make ready-made responses to the most common questions in the tickets to "
+"swiftly address client issues."
+msgstr ""
+"Faça respostas prontas para as perguntas mais comuns nos tickets para "
+"resolver rapidamente os problemas dos clientes."
+
+msgid "max ticket"
+msgstr "bilhete máximo"
+
+msgid "Max Tickets"
+msgstr "Máximo de ingressos"
+
+msgid ""
+"Admins can limit the number of tickets that users can create as well as the "
+"number of tickets that agents can open individually."
+msgstr ""
+"Os administradores podem limitar o número de tickets que os usuários podem "
+"criar, bem como o número de tickets que os agentes podem abrir "
+"individualmente."
+
+msgid "Feedback"
+msgstr "Opinião"
+
+msgid ""
+"To enhance the quality of your services, ask your customers to complete a "
+"survey when a ticket is closed."
+msgstr ""
+"Para melhorar a qualidade dos seus serviços, peça aos seus clientes que "
+"preencham uma pesquisa quando um ticket for fechado."
+
+msgid "ticket actions"
+msgstr "ações de ticket"
+
+msgid ""
+"Ticket action options allow you to execute additional actions on tickets."
+msgstr ""
+"As opções de ação de ticket permitem executar ações adicionais em tickets."
+
+msgid "Export"
+msgstr "Exportar"
+
+msgid ""
+"Easily export ticket data and performance report data from your majestic "
+"support to an Excel spreadsheet with our efficient and user-friendly solution."
+msgstr ""
+"Exporte facilmente dados de tickets e dados de relatórios de desempenho do "
+"seu suporte majestoso para uma planilha Excel com nossa solução eficiente e "
+"fácil de usar."
+
+msgid "email cc"
+msgstr "e-mail CC"
+
+msgid "Email CC"
+msgstr "E-mail CC"
+
+msgid ""
+"Send the exact copy of the email to the provided email address with Email CC "
+"or BCC."
+msgstr ""
+"Envie a cópia exata do e-mail para o endereço de e-mail fornecido com Email "
+"CC ou BCC."
+
+msgid "user options"
+msgstr "opções do usuário"
+
+msgid "User Options"
+msgstr "Opções do usuário"
+
+msgid ""
+"User options enable you to define roles for new users when they are "
+"registered."
+msgstr ""
+"As opções de usuário permitem definir funções para novos usuários quando eles "
+"são registrados."
+
+msgid "SMTP"
+msgstr "SMTP"
+
+msgid ""
+"SMTP enables you to add  custom mail protocols to send and receive emails "
+"with the support ticket system."
+msgstr ""
+"O SMTP permite adicionar protocolos de e-mail personalizados para enviar e "
+"receber e-mails com o sistema de tickets de suporte."
+
+msgid "Multi Language Email Templates"
+msgstr "Modelos de e-mail em vários idiomas"
+
+msgid ""
+"Create multi-language email templates for all default email templates to send "
+"customers emails in the language that they prefer."
+msgstr ""
+"Crie modelos de email em vários idiomas para todos os modelos de email padrão "
+"para enviar emails aos clientes no idioma de sua preferência."
+
+msgid "Downloads"
+msgstr "Transferências"
+
+msgid ""
+"Downloads can be very helpful for users who are looking to obtain the "
+"necessary information to resolve issues."
+msgstr ""
+"Os downloads podem ser muito úteis para usuários que desejam obter as "
+"informações necessárias para resolver problemas."
+
+msgid "Announcements"
+msgstr "Anúncios"
+
+msgid ""
+"Make an unlimited number of announcements related to the support system to "
+"encourage customer interaction."
+msgstr ""
+"Faça um número ilimitado de anúncios relacionados ao sistema de suporte para "
+"incentivar a interação com o cliente."
+
+msgid "Ban Email"
+msgstr "Banir e-mail"
+
+msgid ""
+"With Ban Email, you can limit a users ability to create new tickets by "
+"blocking their email address."
+msgstr ""
+"Com Ban Email, você pode limitar a capacidade de um usuário criar novos "
+"tickets bloqueando seu endereço de email."
+
+msgid "FAQ"
+msgstr "Perguntas frequentes"
+
+msgid ""
+"Provide answers to common user questions with the FAQ extension before they "
+"become tickets."
+msgstr ""
+"Forneça respostas a perguntas comuns dos usuários com a extensão FAQ antes "
+"que elas se tornem tickets."
+
+msgid "admin widgets"
+msgstr "widgets de administração"
+
+msgid "Admin Widgets"
+msgstr "Widgets de administração"
+
+msgid ""
+"Get immediate data on your support operations as soon as you log into your "
+"WordPress administration area."
+msgstr ""
+"Obtenha dados imediatos sobre suas operações de suporte assim que fizer login "
+"na área de administração do WordPress."
+
+msgid "desktop notifications"
+msgstr "notificações na área de trabalho"
+
+msgid "Desktop Notifications"
+msgstr "Notificações na área de trabalho"
+
+msgid ""
+"You will be informed of anything that occurs on your support system by the "
+"desktop notifications."
+msgstr ""
+"Você será informado sobre tudo o que ocorrer em seu sistema de suporte pelas "
+"notificações na área de trabalho."
+
+msgid "woocommerce"
+msgstr "woocommerce"
+
+msgid ""
+"The integration of the support ticket system for WooCommerce with your e-shop "
+"makes your support better and more professional."
+msgstr ""
+"A integração do sistema de tickets de suporte do WooCommerce com sua loja "
+"virtual torna seu suporte melhor e mais profissional."
+
+msgid "mail chimp"
+msgstr "mailchimp"
+
+msgid "Mail Chimp"
+msgstr "MailChimp"
+
+msgid ""
+"Manage your email marketing campaigns directly from your majestic support by "
+"adding new user accounts to your Mailchimp email list."
+msgstr ""
+"Gerencie suas campanhas de marketing por e-mail diretamente do seu suporte "
+"majestoso, adicionando novas contas de usuário à sua lista de e-mail do "
+"Mailchimp."
+
+msgid "internal mail"
+msgstr "correio interno"
+
+msgid "Internal Mail"
+msgstr "Correio Interno"
+
+msgid ""
+"Send messages internally about support tickets and other issues between "
+"agents with internal mail."
+msgstr ""
+"Envie mensagens internamente sobre tickets de suporte e outros problemas "
+"entre agentes com correspondência interna."
+
+msgid "frontend widget"
+msgstr "widget de front-end"
+
+msgid "Front-End Widgets"
+msgstr "Widgets de front-end"
+
+msgid ""
+"Frontend Widgets include several widgets that can be used to enhance the "
+"plugin's functionality in various areas of the website."
+msgstr ""
+"Os widgets frontend incluem vários widgets que podem ser usados ​​para "
+"aprimorar a funcionalidade do plugin em diversas áreas do site."
+
+msgid "envato"
+msgstr "envato"
+
+msgid "Envato"
+msgstr "Envato"
+
+msgid ""
+"Clients won't be able to open a new ticket using the Envato Validation plugin "
+"if they don't have a valid Envato license."
+msgstr ""
+"Os clientes não poderão abrir um novo ticket usando o plugin Envato "
+"Validation se não tiverem uma licença Envato válida."
+
+msgid "easy digital download"
+msgstr "download digital fácil"
+
+msgid "Easy Digital Download"
+msgstr "Download digital fácil"
+
+msgid ""
+"Learn about a customer's purchase directly from the support dashboard by "
+"integrating Majestic Support with your EDD store."
+msgstr ""
+"Saiba mais sobre a compra de um cliente diretamente no painel de suporte, "
+"integrando o Majestic Support à sua loja EDD."
+
+msgid "Majestic Support Add-ons Bundle Pack"
+msgstr "Pacote de complementos de suporte Majestic"
+
+msgid "Basic"
+msgstr "Básico"
+
+msgid "Unlimited Agents"
+msgstr "Agentes Ilimitados"
+
+msgid "Helptopic"
+msgstr "Tópico de ajuda"
+
+msgid "Show all"
+msgstr "Mostrar tudo"
+
+msgid "Standard"
+msgstr "Padrão"
+
+msgid "Everything in basic included and "
+msgstr "Tudo no básico incluído e"
+
+msgid "Premade Response"
+msgstr "Resposta pré-fabricada"
+
+msgid "Professional"
+msgstr "Profissional"
+
+msgid "Everything in standard included and"
+msgstr "Tudo em padrão incluído e"
+
+msgid "All Future Addons"
+msgstr "Todos os complementos futuros"
+
+msgid "spinning wheel"
+msgstr "roda giratória"
+
+msgid "New Update Version"
+msgstr "Nova versão de atualização"
+
+msgid "is Available"
+msgstr "está disponível"
+
+msgid "Status: "
+msgstr "Status:"
+
+msgid "Version"
+msgstr "Versão"
+
+msgid "addon in no longer active"
+msgstr "addon não está mais ativo"
+
+msgid "Please Insert Your Activation Key"
+msgstr "Insira sua chave de ativação"
+
+msgid "XXXX-XXXX-XXXXX-XXXXX"
+msgstr "XXXX-XXXX-XXXXX-XXXXX"
+
+msgid "Proceed"
+msgstr "Prosseguir"
+
+msgid "GeekyBot Addon Installer"
+msgstr "Instalador do complemento GeekyBot"
+
+msgid "Select All Addons"
+msgstr "Selecione todos os complementos"
+
+msgid "All allowed add ons are already installed"
+msgstr "Todos os complementos permitidos já estão instalados"
+
+msgid "You are not allowed to install any add on"
+msgstr "Você não tem permissão para instalar nenhum complemento"
+
+msgid "Something went wrong"
+msgstr "Algo deu errado"
+
+msgid "Addons Installed Successfully"
+msgstr "Complementos instalados com sucesso"
+
+msgid "Open Dashboard"
+msgstr "Abrir painel"
+
+msgid "Open Plugins Page"
+msgstr "Abrir página de plug-ins"
+
+msgid "PersonName"
+msgstr "PessoaNome"
+
+msgid "Facility"
+msgstr "Instalação"
+
+msgid "Organization"
+msgstr "Organização"
+
+msgid "Location"
+msgstr "Localização"
+
+msgid "Location_NON_GPE"
+msgstr "Localização_NON_GPE"
+
+msgid "Product"
+msgstr "Produto"
+
+msgid "Event"
+msgstr "Evento"
+
+msgid "ArtWork"
+msgstr "Obra de arte"
+
+msgid "LawDocument"
+msgstr "Documento Jurídico"
+
+msgid "Language"
+msgstr "Linguagem"
+
+msgid "Date"
+msgstr "Data"
+
+msgid "Time"
+msgstr "Tempo"
+
+msgid "Percentage"
+msgstr "Percentagem"
+
+msgid "Money"
+msgstr "Dinheiro"
+
+msgid "Quantity"
+msgstr "Quantidade"
+
+msgid "Ordinal"
+msgstr "Ordinal"
+
+msgid "Cardinal"
+msgstr "Cardeal"
+
+msgid "Select Variable For"
+msgstr "Selecione variável para"
+
+msgid "Attribute"
+msgstr "Atributo"
+
+msgid "Name"
+msgstr "Nome"
+
+msgid "Varibale Name"
+msgstr "Nome da variável"
+
+msgid "Type"
+msgstr "Tipo"
+
+msgid "Possible Field Values"
+msgstr "Valores de campo possíveis"
+
+msgid "Add Comma Seprated Values"
+msgstr "Adicionar valores separados por vírgula"
+
+msgid "Variable For"
+msgstr "Variável para"
+
+msgid "Select Variable For in case of Woocommerce Variable"
+msgstr "Selecione Variável para no caso de Variável Woocommerce"
+
+msgid "cancel"
+msgstr "cancelar"
+
+msgid "Cancel"
+msgstr "Cancelar"
+
+msgid "Save Changes"
+msgstr "Salvar alterações"
+
+msgid "Save Variable"
+msgstr "Salvar variável"
+
+msgid "Reset"
+msgstr "Reiniciar"
+
+msgid "Are you sure to delete it?"
+msgstr "Tem certeza de excluí-lo?"
+
+msgid "Delete Variable"
+msgstr "Excluir variável"
+
+msgid "Add Variable"
+msgstr "Adicionar variável"
+
+msgid "name"
+msgstr "nome"
+
+msgid "type"
+msgstr "tipo"
+
+msgid "Possible Values Here"
+msgstr "Valores possíveis aqui"
+
+msgid "Edit Variable"
+msgstr "Editar variável"
+
+msgid "Are you sure to delete it"
+msgstr "Tem certeza de excluí-lo"
+
+msgid "Add New"
+msgstr "Adicionar novo"
+
+msgid "User Input"
+msgstr "Entrada do usuário"
+
+msgid "Close"
+msgstr "Fechar"
+
+msgid "Add"
+msgstr "Adicionar"
+
+msgid "Add More"
+msgstr "Adicionar mais"
+
+msgid "Available Variables"
+msgstr "Variáveis ​​Disponíveis"
+
+msgid "Enter bot response here..."
+msgstr "Digite a resposta do bot aqui..."
+
+msgid "Button text here"
+msgstr "Texto do botão aqui"
+
+msgid "URL"
+msgstr "URL"
+
+msgid "Button value here"
+msgstr "Valor do botão aqui"
+
+msgid "Enter URL here"
+msgstr "Insira o URL aqui"
+
+msgid "Add New Button"
+msgstr "Adicionar novo botão"
+
+msgid "Select Predefined Function"
+msgstr "Selecione a função predefinida"
+
+msgid "Select Action"
+msgstr "Selecione Ação"
+
+msgid "Add New Action"
+msgstr "Adicionar nova ação"
+
+msgid "Add New Form"
+msgstr "Adicionar novo formulário"
+
+msgid "Enter default fallback here..."
+msgstr "Insira o substituto padrão aqui..."
+
+msgid "Enter default fallback for intent here..."
+msgstr "Insira o substituto padrão para a intenção aqui..."
+
+msgid "Start Point"
+msgstr "Ponto inicial"
+
+msgid "Error: The template file does not exist."
+msgstr "Erro: O arquivo de modelo não existe."
+
+msgid "Text"
+msgstr "Texto"
+
+msgid "Function"
+msgstr "Função"
+
+msgid "Error: The"
+msgstr "Erro: O"
+
+msgid "tag in"
+msgstr "marcar em"
+
+msgid "at position"
+msgstr "na posição"
+
+msgid "is missing."
+msgstr "está faltando."
+
+msgid "is empty."
+msgstr "está vazio."
+
+msgid "tag associated with the user input"
+msgstr "tag associada à entrada do usuário"
+
+msgid "in"
+msgstr "em"
+
+msgid "tag of the"
+msgstr "etiqueta do"
+
+msgid "block associated with the user input"
+msgstr "bloco associado à entrada do usuário"
+
+msgid "or"
+msgstr "ou"
+
+msgid "Error: The function name"
+msgstr "Erro: o nome da função"
+
+msgid "in the"
+msgstr "no"
+
+msgid "is invalid."
+msgstr "é inválido."
+
+msgid "Error: The type name"
+msgstr "Erro: o nome do tipo"
+
+msgid "is invalid. This should be"
+msgstr "é inválido. Isso deveria ser"
+
+msgid "You might like these products."
+msgstr "Você pode gostar desses produtos."
+
+msgid "No exact match was found. Explore these similar products."
+msgstr ""
+"Nenhuma correspondência exata foi encontrada. Explore esses produtos "
+"semelhantes."
+
+msgid "Here are some suggestions."
+msgstr "Aqui estão algumas sugestões."
+
+msgid "Showing"
+msgstr "Mostrando"
+
+msgid "of"
+msgstr "de"
+
+msgid "Add to cart"
+msgstr "Adicionar ao carrinho"
+
+msgid "Empty Story"
+msgstr "História Vazia"
+
+msgid "Show All Products"
+msgstr "Mostrar todos os produtos"
+
+msgid "Search Product"
+msgstr "Pesquisar produto"
+
+msgid "Get Products Under Price"
+msgstr "Obtenha produtos abaixo do preço"
+
+msgid "Get Products Above Price"
+msgstr "Obtenha produtos acima do preço"
+
+msgid "View Cart/Remove Items"
+msgstr "Ver carrinho/remover itens"
+
+msgid "Checkout"
+msgstr "Confira"
+
+msgid "Reset Password"
+msgstr "Redefinir senha"
+
+msgid "Send Chat To Admin"
+msgstr "Enviar bate-papo para administrador"
+
+msgid "Integer"
+msgstr "Inteiro"
+
+msgid "Float"
+msgstr "Flutuador"
+
+msgid "Boolean"
+msgstr "Booleano"
+
+msgid "String"
+msgstr "Corda"
+
+msgid "Default Fallback"
+msgstr "Reserva padrão"
+
+msgid "Are you sure to reset it?"
+msgstr "Tem certeza de que deseja redefini-lo?"
+
+msgid "Parameter Name *"
+msgstr "Nome do parâmetro *"
+
+msgid "Varibale Name *"
+msgstr "Nome da variável *"
+
+msgid "User input has been successfully saved."
+msgstr "A entrada do usuário foi salva com sucesso."
+
+msgid "An empty user input field."
+msgstr "Um campo de entrada do usuário vazio."
+
+msgid "An empty bot response."
+msgstr "Uma resposta de bot vazia."
+
+msgid "Response Successfully Saved!"
+msgstr "Resposta salva com sucesso!"
+
+msgid "Action Successfully Saved!"
+msgstr "Ação salva com sucesso!"
+
+msgid "Form Successfully Saved!"
+msgstr "Formulário salvo com sucesso!"
+
+msgid "Default Fallback Successfully Saved!"
+msgstr "Fallback padrão salvo com sucesso!"
+
+msgid "Store relevant user input first, then fallback."
+msgstr ""
+"Armazene primeiro a entrada relevante do usuário e depois a alternativa."
+
+msgid "An empty default fallback."
+msgstr "Um substituto padrão vazio."
+
+msgid "Default Intent Fallback Successfully Saved!"
+msgstr "Fallback de intenção padrão salvo com sucesso!"
+
+msgid "Discard"
+msgstr "Descartar"
+
+msgid "Temporary discard"
+msgstr "Descarte temporário"
+
+msgid "Automate"
+msgstr "Automatizar"
+
+msgid "User input"
+msgstr "Entrada do usuário"
+
+msgid "Form"
+msgstr "Forma"
+
+msgid "Fallback"
+msgstr "Cair pra trás"
+
+msgid "Chat "
+msgstr "Bater papo"
+
+msgid "Available Variable"
+msgstr "Variável disponível"
+
+msgid "Product Name"
+msgstr "Nome do produto"
+
+msgid "Minimum Price"
+msgstr "Preço Mínimo"
+
+msgid "Maximum Price"
+msgstr "Preço Máximo"
+
+msgid "User Login"
+msgstr "Login do usuário"
+
+msgid "Action Icon"
+msgstr "Ícone de ação"
+
+msgid "User Icon"
+msgstr "Ícone do usuário"
+
+msgid "User"
+msgstr "Usuário"
+
+msgid "Bot Response"
+msgstr "Resposta do bot"
+
+msgid "User Text Icon"
+msgstr "Ícone de texto do usuário"
+
+msgid "Bot Function Icon"
+msgstr "Ícone de função do bot"
+
+msgid "Bot Function"
+msgstr "Função do bot"
+
+msgid "Predefined Function"
+msgstr "Função Predefinida"
+
+msgid "Bot Action Icon"
+msgstr "Ícone de ação do bot"
+
+msgid "Bot Action"
+msgstr "Ação do bot"
+
+msgid "Bot Form Icon"
+msgstr "Ícone de formulário de bot"
+
+msgid "Bot Form"
+msgstr "Formulário de bot"
+
+msgid "Fallback Icon"
+msgstr "Ícone substituto"
+
+msgid "Fallback Massege"
+msgstr "Mensagem substituta"
+
+msgid "Save & Close"
+msgstr "Salvar e fechar"
+
+msgid "Info Icon"
+msgstr "Ícone de informações"
+
+msgid "How to add parameters"
+msgstr "Como adicionar parâmetros"
+
+msgid "User form Icon"
+msgstr "Ícone de formulário de usuário"
+
+msgid "Form Name *"
+msgstr "Nome do formulário *"
+
+msgid "Add New Variable"
+msgstr "Adicionar nova variável"
+
+msgid "Function Form"
+msgstr "Formulário de Função"
+
+msgid "Action Form"
+msgstr "Formulário de Ação"
+
+msgid "Custom Action"
+msgstr "Ação personalizada"
+
+msgid "Add New Custom Action"
+msgstr "Adicionar nova ação personalizada"
+
+msgid "Add New Parameter"
+msgstr "Adicionar novo parâmetro"
+
+msgid "Intent Fallback"
+msgstr "Substituição de intenção"
+
+msgid "Save Story"
+msgstr "Salvar história"
+
+msgid "Reset Story"
+msgstr "Redefinir história"
+
+msgid "Story has been successfully saved."
+msgstr "A história foi salva com sucesso."
+
+msgid "WooCommerce is not active!"
+msgstr "WooCommerce não está ativo!"
+
+msgid "Error encountered in template."
+msgstr "Erro encontrado no modelo."
+
+msgid "An empty story name."
+msgstr "Um nome de história vazio."
+
+msgid "An empty story template."
+msgstr "Um modelo de história vazio."
+
+msgid "title"
+msgstr "título"
+
+msgid "Active"
+msgstr "Ativo"
+
+msgid "Disable"
+msgstr "Desativar"
+
+msgid "Edit Story"
+msgstr "Editar história"
+
+msgid "Are you sure to delete"
+msgstr "Tem certeza de excluir"
+
+msgid "Delete Story"
+msgstr "Excluir história"
+
+msgid "Built Story"
+msgstr "História Construída"
+
+msgid "Built"
+msgstr "Construído"
+
+msgid "WooCommerce Story"
+msgstr "História do WooCommerce"
+
+msgid "Story Name *"
+msgstr "Nome da história *"
+
+msgid "Edit Story Name"
+msgstr "Editar nome da história"
+
+msgid "Invalid username or email."
+msgstr "Nome de usuário ou e-mail inválido."
+
+msgid "Looks like there was a problem resetting your password:"
+msgstr "Parece que houve um problema ao redefinir sua senha:"
+
+msgid "User not found!"
+msgstr "Usuário não encontrado!"
+
+msgid "Okay, I have sent the recovery email. Thank you for your patience."
+msgstr "Ok, enviei o e-mail de recuperação. Obrigado pela sua paciência."
+
+msgid "Your query is sent to the admin."
+msgstr "Sua consulta é enviada ao administrador."
+
+msgid "Enable"
+msgstr "Habilitar"
+
+msgid "Smart Popup"
+msgstr "Pop-up inteligente"
+
+msgid "Standard Popup"
+msgstr "Pop-up padrão"
+
+msgid "Appearance"
+msgstr "Aparência"
+
+msgid "Choose File"
+msgstr "Escolha arquivo"
+
+msgid "User Default Image"
+msgstr "Imagem padrão do usuário"
+
+msgid "Primary Color"
+msgstr "Cor Primária"
+
+msgid "Choose Color"
+msgstr "Escolha a cor"
+
+msgid "User Text Background"
+msgstr "Plano de fundo do texto do usuário"
+
+msgid "User Text Color"
+msgstr "Cor do texto do usuário"
+
+msgid "Bot Link Color"
+msgstr "Cor do link do bot"
+
+msgid "Presets"
+msgstr "Predefinições"
+
+msgid "Preset"
+msgstr "Predefinido"
+
+msgid "online"
+msgstr "on-line"
+
+msgid "User Image"
+msgstr "Imagem do usuário"
+
+msgid "Hi I am John"
+msgstr "Olá, eu sou o João"
+
+msgid "Hi John! How can I help you?"
+msgstr "Oi John! Como posso ajudá-lo?"
+
+msgid "Can you help me find a new backpack?"
+msgstr "Você pode me ajudar a encontrar uma mochila nova?"
+
+msgid "Product Icon"
+msgstr "Ícone do produto"
+
+msgid "Fusion Backpack"
+msgstr "Mochila Fusão"
+
+msgid "$"
+msgstr "$"
+
+msgid "59"
+msgstr "59"
+
+msgid "Send message"
+msgstr "Enviar mensagem"
+
+msgid "Welcome Message"
+msgstr "Mensagem de boas-vindas"
+
+msgid "Welcome Image"
+msgstr "Imagem de boas-vindas"
+
+msgid "Chat Auto-Popup"
+msgstr "Pop-up automático de bate-papo"
+
+msgid "Controls whether the chat popup appears automatically on your site."
+msgstr "Controla se o pop-up de bate-papo aparece automaticamente em seu site."
+
+msgid "Chat Pop-up Style"
+msgstr "Estilo pop-up de bate-papo"
+
+msgid "Choose how the chat will appear: Smart or Standard pop-up."
+msgstr "Escolha como o chat aparecerá: pop-up inteligente ou padrão."
+
+msgid "Chat Auto-Popup Timing"
+msgstr "Tempo de pop-up automático do bate-papo"
+
+msgid ""
+"Define the delay time in seconds for the chatbot to auto-appear on the site."
+msgstr ""
+"Defina o tempo de atraso em segundos para o chatbot aparecer automaticamente "
+"no site."
+
+msgid "Note"
+msgstr "Observação"
+
+msgid ""
+"If the colors have been saved but the user-side colors are still the same, it "
+"is advised to clear the cache."
+msgstr ""
+"Se as cores foram salvas, mas as cores do usuário ainda são as mesmas, é "
+"aconselhável limpar o cache."
+
+msgid "Also"
+msgstr "Também"
+
+msgid "Found"
+msgstr "Encontrado"
+
+msgid "Here are some"
+msgstr "Aqui estão alguns"
+
+msgid "Help"
+msgstr "Ajuda"
+
+msgid "Have any problem?"
+msgstr "Tem algum problema?"
+
+msgid "If you experience any difficulties, we're here to help! Simply click the"
+msgstr ""
+"Se você tiver alguma dificuldade, estamos aqui para ajudar! Basta clicar no"
+
+msgid "Create A Ticket"
+msgstr "Crie um ingresso"
+
+msgid ""
+"button to report your issue, and our dedicated support team will assist you "
+"promptly."
+msgstr ""
+"para relatar seu problema, e nossa equipe de suporte dedicada irá ajudá-lo "
+"imediatamente."
+
+msgid "Create Ticket"
+msgstr "Criar ingresso"
+
+msgid "Post Type"
+msgstr "Tipo de postagem"
+
+msgid "post type"
+msgstr "tipo de postagem"
+
+msgid "Post Label"
+msgstr "Etiqueta de postagem"
+
+msgid "Associated Plugin"
+msgstr "Plug-in associado"
+
+msgid "Add associated plugin's name"
+msgstr "Adicione o nome do plugin associado"
+
+msgid "For better data consistency, please provide a associated plugin's name."
+msgstr ""
+"Para melhor consistência dos dados, forneça o nome de um plugin associado."
+
+msgid "Status"
+msgstr "Status"
+
+msgid "For status changes, please use the options available in the listing."
+msgstr "Para alterações de status, utilize as opções disponíveis na listagem."
+
+msgid "Template Section"
+msgstr "Seção de modelo"
+
+msgid ""
+"Fields are currently auto-filled for preview purposes only. Please save your "
+"changes to apply them."
+msgstr ""
+"Atualmente, os campos são preenchidos automaticamente apenas para fins de "
+"visualização. Salve suas alterações para aplicá-las."
+
+msgid "Choose one template style from the given below"
+msgstr "Escolha um estilo de modelo abaixo"
+
+msgid "Add Button /Link"
+msgstr "Adicionar botão/link"
+
+msgid "Add New Button /Link"
+msgstr "Adicionar novo botão/link"
+
+msgid "Show on Listing"
+msgstr "Mostrar na listagem"
+
+msgid "View Details"
+msgstr "Ver detalhes"
+
+msgid "detail page link"
+msgstr "link da página de detalhes"
+
+msgid "Save Template"
+msgstr "Salvar modelo"
+
+msgid "Create a Post"
+msgstr "Crie uma postagem"
+
+msgid "Please first create a sample post to use template section."
+msgstr "Primeiro crie um post de exemplo para usar a seção de modelos."
+
+msgid "AI web search enabled successfully."
+msgstr "Pesquisa na Web com IA ativada com sucesso."
+
+msgid "AI web search already enabled."
+msgstr "A pesquisa na web com IA já está ativada."
+
+msgid "Something went wrong."
+msgstr "Algo deu errado."
+
+msgid "AI web search disabled successfully."
+msgstr "Pesquisa na web AI desativada com sucesso."
+
+msgid "New post type search enabled successfully."
+msgstr "Nova pesquisa de tipo de postagem ativada com sucesso."
+
+msgid "New post type search disabled successfully."
+msgstr "Pesquisa de novo tipo de postagem desativada com sucesso."
+
+msgid "Data Synchronization Needed"
+msgstr "Sincronização de dados necessária"
+
+msgid ""
+"Your data is not updated. To ensure accurate results, please synchronize your "
+"AI web search data."
+msgstr ""
+"Seus dados não estão atualizados. Para garantir resultados precisos, "
+"sincronize seus dados de pesquisa na web com IA."
+
+msgid "Enable AI web Search"
+msgstr "Ativar pesquisa na Web com IA"
+
+msgid ""
+"Enable this feature to provide users with direct AI web search results in the "
+"chat, offering them a broader context for their queries."
+msgstr ""
+"Habilite esse recurso para fornecer aos usuários resultados diretos de "
+"pesquisa na web com IA no chat, oferecendo-lhes um contexto mais amplo para "
+"suas consultas."
+
+msgid "Enable New Post Type Search"
+msgstr "Habilitar pesquisa de novo tipo de postagem"
+
+msgid "Lable"
+msgstr "Etiqueta"
+
+msgid "Post lable"
+msgstr "Etiqueta de postagem"
+
+msgid "WooCommerce is currently inactive."
+msgstr "WooCommerce está atualmente inativo."
+
+msgid "No product was found."
+msgstr "Nenhum produto foi encontrado."
+
+msgid "Please enter a valid product or category name."
+msgstr "Insira um nome de produto ou categoria válido."
+
+msgid "Please enter a valid price."
+msgstr "Insira um preço válido."
+
+msgid "Please enter a valid price range."
+msgstr "Insira uma faixa de preço válida."
+
+msgid "Your cart is currently empty."
+msgstr "Seu carrinho está vazio no momento."
+
+msgid "Cart Details"
+msgstr "Detalhes do carrinho"
+
+msgid "Price"
+msgstr "Preço"
+
+msgid "Change"
+msgstr "Mudar"
+
+msgid "Total Price"
+msgstr "Preço total"
+
+msgid "Remove Item"
+msgstr "Remover item"
+
+msgid "Subtotal"
+msgstr "Subtotal"
+
+msgid "Total"
+msgstr "Total"
+
+msgid "Proceed to Checkout"
+msgstr "Fazer o check-out"
+
+msgid "is out of stock."
+msgstr "está esgotado."
+
+msgid "You cannot add another “"
+msgstr "Você não pode adicionar outro “"
+
+msgid "” to your cart."
+msgstr "”Para o seu carrinho."
+
+msgid "You cannot add more than"
+msgstr "Você não pode adicionar mais do que"
+
+msgid "of this product to your cart."
+msgstr "deste produto para o seu carrinho."
+
+msgid "has been added to your cart."
+msgstr "foi adicionado ao seu carrinho."
+
+msgid "has not been added to your cart. Please try again."
+msgstr "não foi adicionado ao seu carrinho. Por favor, tente novamente."
+
+msgid "View Cart"
+msgstr "Ver carrinho"
+
+msgid "Please select a product!"
+msgstr "Selecione um produto!"
+
+msgid "There are no variations available."
+msgstr "Não há variações disponíveis."
+
+msgid "Product not found or not a variable product."
+msgstr "Produto não encontrado ou não é um produto variável."
+
+msgid "You can't add another “"
+msgstr "Você não pode adicionar outro “"
+
+msgid "There was an error while adding the product to the cart."
+msgstr "Ocorreu um erro ao adicionar o produto ao carrinho."
+
+msgid ""
+"The requested variation with the specified attributes could not be found."
+msgstr ""
+"A variação solicitada com os atributos especificados não foi encontrada."
+
+msgid "Change Quantity"
+msgstr "Alterar quantidade"
+
+msgid "Update"
+msgstr "Atualizar"
+
+msgid "The cart is empty."
+msgstr "O carrinho está vazio."
+
+msgid "Cart item is not found."
+msgstr "O item do carrinho não foi encontrado."
+
+msgid "The item was not found in the cart."
+msgstr "O item não foi encontrado no carrinho."
+
+msgid "Quantity updated successfully!"
+msgstr "Quantidade atualizada com sucesso!"
+
+msgid "Change quantity"
+msgstr "Alterar quantidade"
+
+msgid "Edit Post Type"
+msgstr "Editar tipo de postagem"
+
+msgid "Parameter"
+msgstr "Parâmetro"
+
+msgid "delete"
+msgstr "excluir"
+
+msgid "add intent"
+msgstr "adicionar intenção"
+
+msgid "plus icon"
+msgstr "mais ícone"
+
+msgid "Add Intents"
+msgstr "Adicionar intenções"
+
+msgid ""
+"On the responses listing page, all the responses are listed here; you can "
+"check them out."
+msgstr ""
+"Na página de listagem de respostas, todas as respostas estão listadas aqui; "
+"você pode verificá-los."
+
+msgid "Add Intent"
+msgstr "Adicionar intenção"
+
+msgid ""
+"On the form listing page, all the forms are listed here; you can check them "
+"out."
+msgstr ""
+"Na página de listagem de formulários, todos os formulários estão listados "
+"aqui; você pode verificá-los."
+
+msgid "Add Forms"
+msgstr "Adicionar formulários"
+
+msgid "On the add form page, you can add a new form."
+msgstr "Na página adicionar formulário, você pode adicionar um novo formulário."
+
+msgid "Responses"
+msgstr "Respostas"
+
+msgid "Add Response"
+msgstr "Adicionar resposta"
+
+msgid "On the add Response page, you can add a new Response."
+msgstr "Na página adicionar resposta, você pode adicionar uma nova resposta."
+
+msgid ""
+"On the actions listing page, all the actions are listed here; you can check "
+"them out."
+msgstr ""
+"Na página de listagem de ações, todas as ações estão listadas aqui; você pode "
+"verificá-los."
+
+msgid "Add  Action"
+msgstr "Adicionar ação"
+
+msgid "On the add action page, you can add a new action."
+msgstr "Na página adicionar ação, você pode adicionar uma nova ação."
+
+msgid "Add Intent Group"
+msgstr "Adicionar grupo de intenções"
+
+msgid "Import"
+msgstr "Importar"
+
+msgid "Menu"
+msgstr "Menu"
+
+msgid "End Chat"
+msgstr "Encerrar bate-papo"
+
+msgid "Restart Chat"
+msgstr "Reiniciar bate-papo"
+
+msgid "Image"
+msgstr "Imagem"
+
+msgid "Send Icon"
+msgstr "Enviar ícone"
+
+msgid "Welcome to GeekyBot! Let me know how I can assist you today."
+msgstr "Bem-vindo ao GeekyBot! Deixe-me saber como posso ajudá-lo hoje."
+
+msgid "admin."
+msgstr "administrador."
+
+msgid "Account Assistance"
+msgstr "Assistência à conta"
+
+msgid "Diet Plan Assistant"
+msgstr "Assistente de plano de dieta"
+
+msgid "Job Application"
+msgstr "Formulário de emprego"
+
+msgid "Offline Form"
+msgstr "Formulário off-line"
+
+msgid "Real Estate"
+msgstr "Imobiliária"
+
+msgid "Sales Support"
+msgstr "Suporte de vendas"
+
+msgid "University"
+msgstr "Universidade"
+
+msgid "Vacation Planner"
+msgstr "Planejador de férias"

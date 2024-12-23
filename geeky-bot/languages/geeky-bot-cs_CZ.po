@@ -1,0 +1,2662 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"POT-Creation-Date: \n"
+"PO-Revision-Date: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: cs_CZ\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 3.5\n"
+
+msgid "Logo"
+msgstr "Logo"
+
+msgid "Template Field 1"
+msgstr "Pole šablony 1"
+
+msgid "Title"
+msgstr "Titul"
+
+msgid "Template Field 2"
+msgstr "Pole šablony 2"
+
+msgid "Template Field 3"
+msgstr "Pole šablony 3"
+
+msgid "Template Field 4"
+msgstr "Pole šablony 4"
+
+msgid "Template Field 10"
+msgstr "Pole šablony 10"
+
+msgid "Simple Link here"
+msgstr "Jednoduchý odkaz zde"
+
+msgid "Button"
+msgstr "Tlačítko"
+
+msgid "Selected"
+msgstr "Vybraný"
+
+msgid "Template Content"
+msgstr "Obsah šablony"
+
+msgid "Template Field"
+msgstr "Pole šablony"
+
+msgid "Show On Listing"
+msgstr "Zobrazit na výpisu"
+
+msgid "Select Field"
+msgstr "Vyberte Pole"
+
+msgid "Label"
+msgstr "Označení"
+
+msgid "Select Type"
+msgstr "Vyberte Typ"
+
+msgid "Set Value"
+msgstr "Nastavit hodnotu"
+
+msgid "No template fields are available!"
+msgstr "Nejsou k dispozici žádná pole šablony!"
+
+msgid "Set Values"
+msgstr "Nastavit hodnoty"
+
+msgid "Field Name :"
+msgstr "Název pole:"
+
+msgid "Save"
+msgstr "Uložit"
+
+msgid "Something went wrong try again later!"
+msgstr "Něco se pokazilo, zkuste to znovu později!"
+
+msgid "Info"
+msgstr "Info"
+
+msgid "An empty expected value or display value field."
+msgstr "Prázdné pole očekávané hodnoty nebo zobrazené hodnoty."
+
+msgid "Values set successfully."
+msgstr "Hodnoty byly úspěšně nastaveny."
+
+msgid "Expected Value"
+msgstr "Očekávaná hodnota"
+
+msgid "Display Value"
+msgstr "Zobrazená hodnota"
+
+msgid "Delete"
+msgstr "Vymazat"
+
+msgid "Add Value"
+msgstr "Přidat hodnotu"
+
+msgid "Edit"
+msgstr "Upravit"
+
+msgid "Text Field"
+msgstr "Textové pole"
+
+msgid "Checkbox"
+msgstr "Zaškrtávací políčko"
+
+msgid "Radio Button"
+msgstr "Přepínač"
+
+msgid "Dropdown"
+msgstr "Rozbalovací nabídka"
+
+msgid "Link"
+msgstr "Odkaz"
+
+msgid ""
+"It is a long established fact that a reader will be distracted by the "
+"readable content of a page when looking at its layout Content here, content "
+"here..."
+msgstr ""
+"Je již dávno potvrzeným faktem, že čtenář bude při pohledu na její "
+"uspořádání rozptylován čitelným obsahem stránky Obsah zde, obsah zde..."
+
+msgid "Description"
+msgstr "Popis"
+
+msgid "Content Description"
+msgstr "Popis obsahu"
+
+msgid "Max Number Of Sentance"
+msgstr "Maximální počet vět"
+
+msgid "1"
+msgstr "1"
+
+msgid "2"
+msgstr "2"
+
+msgid "3"
+msgstr "3"
+
+msgid "4"
+msgstr "4"
+
+msgid "5"
+msgstr "5"
+
+msgid "6"
+msgstr "6"
+
+msgid "Please wait a moment; this may take some time."
+msgstr "Počkejte prosím chvíli; to může chvíli trvat."
+
+msgid "Synchronize"
+msgstr "Synchronizovat"
+
+msgid "Data Synchronization Uncomplete"
+msgstr "Synchronizace dat není dokončena"
+
+msgid ""
+"Your GeekyBot data is not updated. To ensure accurate results, please "
+"synchronize your AI web search data."
+msgstr ""
+"Vaše data GeekyBota nejsou aktualizována. Chcete-li zajistit přesné "
+"výsledky, synchronizujte data vyhledávání AI na webu."
+
+msgid "Synchronize Data"
+msgstr "Synchronizovat data"
+
+msgid "user"
+msgstr "uživatel"
+
+msgid "Dashboard"
+msgstr "Dashboard"
+
+msgid "key check"
+msgstr "kontrola klíče"
+
+msgid "keys"
+msgstr "klíče"
+
+msgid "Stories"
+msgstr "Příběhy"
+
+msgid "AI Web Search"
+msgstr "AI vyhledávání na webu"
+
+msgid "Settings"
+msgstr "Nastavení"
+
+msgid "Chatbot"
+msgstr "Chatbot"
+
+msgid "Install Add-ons"
+msgstr "Nainstalujte doplňky"
+
+msgid "export"
+msgstr "vývozní"
+
+msgid "import"
+msgstr "importovat"
+
+msgid "Chat History"
+msgstr "Historie chatu"
+
+msgid "build"
+msgstr "vytvořit"
+
+msgid "Build"
+msgstr "Vytvořit"
+
+msgid "Variables"
+msgstr "Proměnné"
+
+msgid "forms"
+msgstr "formuláře"
+
+msgid "Forms"
+msgstr "Formuláře"
+
+msgid "actions"
+msgstr "akce"
+
+msgid "Actions"
+msgstr "Akce"
+
+msgid "File ext. is mismatched"
+msgstr "Soubor ext. se neshoduje"
+
+msgid "File size is greater then allowed file size"
+msgstr "Velikost souboru je větší než povolená velikost souboru"
+
+msgid "Total Stats"
+msgstr "Celkové statistiky"
+
+msgid "Intents"
+msgstr "Záměry"
+
+msgid "No record found"
+msgstr "Nebyl nalezen žádný záznam"
+
+msgid "Control Panel"
+msgstr "Ovládací panel"
+
+msgid "GeekyBot"
+msgstr "GeekyBot"
+
+msgid "Keys"
+msgstr "Klíče"
+
+msgid "Post Installation"
+msgstr "Po instalaci"
+
+msgid "Premium Addon"
+msgstr "Prémiový doplněk"
+
+msgid "Could not find any matching results"
+msgstr "Nebyly nalezeny žádné odpovídající výsledky"
+
+msgid "no record"
+msgstr "žádný záznam"
+
+msgid "No record found !..."
+msgstr "Nebyl nalezen žádný záznam!..."
+
+msgid "system offline"
+msgstr "systém offline"
+
+msgid ""
+"Unfortunately sytem is offline for a bit of maintenance right now. But soon "
+"we will be up."
+msgstr "Bohužel systém je nyní offline kvůli údržbě. Ale brzy vstaneme."
+
+msgid "user ban"
+msgstr "zákaz uživatele"
+
+msgid "Your account is disabled, please contact system administrator !..."
+msgstr "Váš účet je deaktivován, kontaktujte prosím správce systému!..."
+
+msgid "login"
+msgstr "přihlášení"
+
+msgid "To Access This Page Please Login !..."
+msgstr "Pro přístup na tuto stránku se prosím přihlaste!..."
+
+msgid "Back to control panel"
+msgstr "Zpět na ovládací panel"
+
+msgid "You are not logged in"
+msgstr "Nejste přihlášeni"
+
+msgid "User Is Disabled By Admin"
+msgstr "Uživatel je zakázán administrátorem"
+
+msgid "The page you are looking for no longer exists"
+msgstr "Stránka, kterou hledáte, již neexistuje"
+
+msgid "You are already logged in"
+msgstr "Již jste přihlášeni"
+
+msgid "Please select your role"
+msgstr "Vyberte svou roli"
+
+msgid "You are not allowed"
+msgstr "Nemáte povoleno"
+
+msgid "You are Not Allowed To add More than One"
+msgstr "Nemáte povoleno přidat více než jeden"
+
+msgid "Contact Adminstrator"
+msgstr "Kontaktujte správce"
+
+msgid "not allowed"
+msgstr "není dovoleno"
+
+msgid "You are already logged in !..."
+msgstr "Již jste přihlášeni!..."
+
+msgid "Logout"
+msgstr "Odhlášení"
+
+msgid "Please first make a selection from the list"
+msgstr "Nejprve prosím vyberte ze seznamu"
+
+msgid "Unknown"
+msgstr "Neznámý"
+
+msgid "Invalid request"
+msgstr "Neplatný požadavek"
+
+msgid "has been successfully applied."
+msgstr "byla úspěšně aplikována."
+
+msgid "Error applying the new theme."
+msgstr "Při použití nového motivu došlo k chybě."
+
+msgid "has been successfully saved."
+msgstr "byl úspěšně uložen."
+
+msgid "has not been saved."
+msgstr "nebyla uložena."
+
+msgid "has been successfully reset."
+msgstr "byl úspěšně resetován."
+
+msgid "Every Story must have a name."
+msgstr "Každý příběh musí mít jméno."
+
+msgid "Every Story must have at least 1 intent."
+msgstr "Každý příběh musí mít alespoň 1 záměr."
+
+msgid "has been successfully deleted."
+msgstr "byl úspěšně smazán."
+
+msgid "has been successfully exported."
+msgstr "byl úspěšně exportován."
+
+msgid "Data has not been exported."
+msgstr "Data nebyla exportována."
+
+msgid "Record not exist."
+msgstr "Záznam neexistuje."
+
+msgid "has not been deleted."
+msgstr "nebyl smazán."
+
+msgid "Please insert key."
+msgstr "Vložte klíč."
+
+msgid "key is not Valid."
+msgstr "klíč není platný."
+
+msgid "transaction has been successfully verified."
+msgstr "transakce byla úspěšně ověřena."
+
+msgid "transaction has been successfully un-verified."
+msgstr "transakce byla úspěšně zrušena."
+
+msgid "transaction has not been successfully verified."
+msgstr "transakce nebyla úspěšně ověřena."
+
+msgid "transaction has not been successfully un-verified."
+msgstr "transakce nebyla úspěšně zrušena."
+
+msgid "Fields has been successfully required."
+msgstr "Pole byla úspěšně vyžadována."
+
+msgid "Field has not been required."
+msgstr "Pole nebylo povinné."
+
+msgid "Fields has not been required."
+msgstr "Pole nejsou povinná."
+
+msgid "Fields has been successfully not required."
+msgstr "Pole nebyla úspěšně vyžadována."
+
+msgid "Field has not been not required."
+msgstr "Pole není povinné."
+
+msgid "Fields has not been not required."
+msgstr "Pole nejsou povinná."
+
+msgid "status has been updated."
+msgstr "stav byl aktualizován."
+
+msgid "status has not been updated."
+msgstr "stav nebyl aktualizován."
+
+msgid "data has been synchronized."
+msgstr "data byla synchronizována."
+
+msgid "data has not been synchronized."
+msgstr "data nebyla synchronizována."
+
+msgid "in use cannot deleted."
+msgstr "v provozu nelze smazat."
+
+msgid "already exist."
+msgstr "již existují."
+
+msgid "File type error."
+msgstr "Chyba typu souboru."
+
+msgid "File size error."
+msgstr "Chyba velikosti souboru."
+
+msgid "Intent"
+msgstr "Úmysl"
+
+msgid "Response"
+msgstr "Odpověď"
+
+msgid "Intent Group"
+msgstr "Záměrná skupina"
+
+msgid "Variable"
+msgstr "Variabilní"
+
+msgid "Story"
+msgstr "Příběh"
+
+msgid "Post type"
+msgstr "Typ příspěvku"
+
+msgid "AI web search"
+msgstr "AI vyhledávání na webu"
+
+msgid "Action"
+msgstr "Akce"
+
+msgid "Changes"
+msgstr "Změny"
+
+msgid "Data"
+msgstr "Data"
+
+msgid "Message"
+msgstr "Zpráva"
+
+msgid "Configuration"
+msgstr "Konfigurace"
+
+msgid "Previous"
+msgstr "Předchozí"
+
+msgid "Next"
+msgstr "Další"
+
+msgid "Guest"
+msgstr "Host"
+
+msgid "User ID"
+msgstr "ID uživatele"
+
+msgid "Add to Story"
+msgstr "Přidat do příběhu"
+
+msgid "Add to story"
+msgstr "Přidat do příběhu"
+
+msgid "Search"
+msgstr "Vyhledávání"
+
+msgid "Search with user name"
+msgstr "Hledejte pomocí uživatelského jména"
+
+msgid "reset"
+msgstr "resetovat"
+
+msgid "Select Chat"
+msgstr "Vyberte Chat"
+
+msgid "Sender"
+msgstr "Odesílatel"
+
+msgid "select chat"
+msgstr "vyberte chat"
+
+msgid "Chat history is not selected."
+msgstr "Historie chatu není vybrána."
+
+msgid "Please select a conversation to view the user's chat history."
+msgstr "Chcete-li zobrazit historii chatu uživatele, vyberte konverzaci."
+
+msgid "Add User Input To Story"
+msgstr "Přidat uživatelský vstup do příběhu"
+
+msgid "Select"
+msgstr "Vybrat"
+
+msgid "Add User Input"
+msgstr "Přidat uživatelský vstup"
+
+msgid "You must choose a story; it cannot be empty."
+msgstr "Musíte si vybrat příběh; nemůže být prázdný."
+
+msgid "Security verification Failed, Please restart you chat to continue."
+msgstr ""
+"Ověření zabezpečení se nezdařilo. Chcete-li pokračovat, restartujte chat."
+
+msgid "Your session has expired; please restart your chat."
+msgstr "Vaše relace vypršela; restartujte prosím svůj chat."
+
+msgid "Hi, I am Chatbot. I do not have specific knowledge."
+msgstr "Ahoj, já jsem Chatbot. Nemám konkrétní znalosti."
+
+msgid "Your message is too long. Please enter only a username or email."
+msgstr ""
+"Vaše zpráva je příliš dlouhá. Zadejte prosím pouze uživatelské jméno nebo e-"
+"mail."
+
+msgid "Invalid username or email. Try again with the correct one."
+msgstr "Neplatné uživatelské jméno nebo e-mail. Zkuste to znovu se správným."
+
+msgid "Show More"
+msgstr "Zobrazit více"
+
+msgid "Show Articles"
+msgstr "Zobrazit články"
+
+msgid "session time out"
+msgstr "časový limit relace"
+
+msgid "Data directory can not empty."
+msgstr "Datový adresář nelze vyprázdnit."
+
+msgid "Data directory is not proper."
+msgstr "Datový adresář není správný."
+
+msgid "Data directory is not writable."
+msgstr "Do datového adresáře nelze zapisovat."
+
+msgid "Default fallback message can not be empty."
+msgstr "Výchozí záložní zpráva nemůže být prázdná."
+
+msgid "Admin pagination not saved."
+msgstr "Stránkování správce nebylo uloženo."
+
+msgid "User pagination not saved."
+msgstr "Stránkování uživatele nebylo uloženo."
+
+msgid ""
+"The title of your chatbot or the primary title displayed on your chat "
+"interface."
+msgstr "Název vašeho chatbota nebo primární titul zobrazený v rozhraní chatu."
+
+msgid "Default Fallback Message"
+msgstr "Výchozí záložní zpráva"
+
+msgid "The message displayed when the chatbot cannot understand."
+msgstr "Zpráva se zobrazí, když chatbot nerozumí."
+
+msgid "Offline"
+msgstr "Offline"
+
+msgid "Online"
+msgstr "Online"
+
+msgid "Set your plugin offline for front end."
+msgstr "Nastavte plugin offline pro frontend."
+
+msgid "Data Directory"
+msgstr "Datový adresář"
+
+msgid "The directory where all chatbot data files are stored."
+msgstr "Adresář, kde jsou uloženy všechny datové soubory chatbota."
+
+msgid "Admin Pagination"
+msgstr "Stránkování správce"
+
+msgid "The number of items displayed in a paginated list in the admin panel."
+msgstr "Počet položek zobrazených v stránkovaném seznamu na panelu správce."
+
+msgid "User Pagination"
+msgstr "Stránkování uživatele"
+
+msgid "The number of items displayed in a paginated list on the user side."
+msgstr "Počet položek zobrazených v stránkovaném seznamu na straně uživatele."
+
+msgid "Save Settings"
+msgstr "Uložit nastavení"
+
+msgid "Add Icon"
+msgstr "Přidat ikonu"
+
+msgid "years"
+msgstr "let"
+
+msgid "year"
+msgstr "rok"
+
+msgid "ago"
+msgstr "před"
+
+msgid "months"
+msgstr "měsíce"
+
+msgid "month"
+msgstr "měsíc"
+
+msgid "days"
+msgstr "dní"
+
+msgid "day"
+msgstr "den"
+
+msgid "hours"
+msgstr "hodin"
+
+msgid "hour"
+msgstr "hodina"
+
+msgid "minutes"
+msgstr "zápis"
+
+msgid "minute"
+msgstr "minuta"
+
+msgid "Just now"
+msgstr "Právě teď"
+
+msgid "AI ChatBot is disabled."
+msgstr "AI ChatBot je zakázán."
+
+msgid "Active Now"
+msgstr "Aktivní nyní"
+
+msgid "AI ChatBot story not built."
+msgstr "Příběh AI ChatBot není vytvořen."
+
+msgid "Built Now"
+msgstr "Postaveno nyní"
+
+msgid "WooCommerce plugin is not installed."
+msgstr "Plugin WooCommerce není nainstalován."
+
+msgid "Install Now"
+msgstr "Instalovat nyní"
+
+msgid "WooCommerce plugin is not activated."
+msgstr "Plugin WooCommerce není aktivován."
+
+msgid "WooCommerce Bot is disabled."
+msgstr "Bot WooCommerce je zakázán."
+
+msgid "WooCommerce story not built."
+msgstr "Příběh WooCommerce není vytvořen."
+
+msgid "Post Type not found."
+msgstr "Typ příspěvku nenalezen."
+
+msgid "AI Web Search is disabled!"
+msgstr "AI Web Search je zakázáno!"
+
+msgid "AI ChatBot Sessions"
+msgstr "AI ChatBot Sessions"
+
+msgid "Session Card"
+msgstr "Karta relace"
+
+msgid "Graph"
+msgstr "Graf"
+
+msgid "Card"
+msgstr "Karta"
+
+msgid "WooCommerce Sessions"
+msgstr "WooCommerce Sessions"
+
+msgid "AI Web Search Sessions"
+msgstr "Relace AI vyhledávání na webu"
+
+msgid "Icon"
+msgstr "Ikona"
+
+msgid "GeekyBot Setup and Usage Guides"
+msgstr "Průvodce nastavením a používáním GeekyBot"
+
+msgid "Explore installation, training, and effective usage guides."
+msgstr "Prozkoumejte průvodce instalací, školení a efektivní použití."
+
+msgid "Play"
+msgstr "Hrát"
+
+msgid "Youtube Icon"
+msgstr "Ikona YouTube"
+
+msgid "How to add Story"
+msgstr "Jak přidat příběh"
+
+msgid "How to add Variable"
+msgstr "Jak přidat proměnnou"
+
+msgid "Change Settings"
+msgstr "Změnit nastavení"
+
+msgid "Change Color"
+msgstr "Změnit barvu"
+
+msgid "Remove"
+msgstr "Odstranit"
+
+msgid "Cross Icon"
+msgstr "Ikona kříže"
+
+msgid "Stories Date"
+msgstr "Datum příběhů"
+
+msgid "View Stories"
+msgstr "Zobrazit příběhy"
+
+msgid "AI Chatbot"
+msgstr "AI Chatbot"
+
+msgid "WooCommerce"
+msgstr "WooCommerce"
+
+msgid "Bot Icon"
+msgstr "Ikona robota"
+
+msgid "AI ChatBot"
+msgstr "AI ChatBot"
+
+msgid "Last Month Stats"
+msgstr "Statistiky za minulý měsíc"
+
+msgid "Woo Icon"
+msgstr "Ikona Woo"
+
+msgid "AI Web Search "
+msgstr "AI vyhledávání na webu"
+
+msgid "Manage Post Types"
+msgstr "Správa typů příspěvků"
+
+msgid "Enable AI Web Search"
+msgstr "Povolit AI Web Search"
+
+msgid "Search Icon"
+msgstr "Ikona vyhledávání"
+
+msgid "History"
+msgstr "Dějiny"
+
+msgid "WooCommerce Bot"
+msgstr "Bot WooCommerce"
+
+msgid "logo"
+msgstr "logo"
+
+msgid "No of Conversation"
+msgstr "Číslo konverzace"
+
+msgid "View History"
+msgstr "Zobrazit historii"
+
+msgid "No data"
+msgstr "Žádná data"
+
+msgid "No Data"
+msgstr "Žádná data"
+
+msgid "Addons"
+msgstr "Addons"
+
+msgid "addon"
+msgstr "addon"
+
+msgid "Custom Listing Style"
+msgstr "Vlastní styl výpisu"
+
+msgid "Custom Listing Text"
+msgstr "Vlastní text výpisu"
+
+msgid "WooCommerce Features"
+msgstr "Funkce WooCommerce"
+
+msgid "Addon List"
+msgstr "Seznam doplňků"
+
+msgid "WooCommerce "
+msgstr "WooCommerce"
+
+msgid "Lead Generation"
+msgstr "Generování olova"
+
+msgid ""
+"GeekyBot simplifies the WooCommerce experience with intelligent product "
+"discovery and purchasing. It seamlessly integrates with WooCommerce for "
+"efficient product searches, detailed listings, and a smooth shopping "
+"experience."
+msgstr ""
+"GeekyBot zjednodušuje zážitek z WooCommerce pomocí inteligentního objevování "
+"a nákupu produktů. Bezproblémově se integruje s WooCommerce pro efektivní "
+"vyhledávání produktů, podrobné seznamy a bezproblémové nakupování."
+
+msgid "Find Product"
+msgstr "Najít produkt"
+
+msgid "Find Products"
+msgstr "Najít produkty"
+
+msgid "Find products by name, category, or price range via chat."
+msgstr ""
+"Najděte produkty podle názvu, kategorie nebo cenového rozpětí "
+"prostřednictvím chatu."
+
+msgid "List Product"
+msgstr "Seznam produktů"
+
+msgid "List Products"
+msgstr "Seznam produktů"
+
+msgid "Show relevant products with details and prices based on preferences."
+msgstr ""
+"Zobrazte relevantní produkty s podrobnostmi a cenami na základě preferencí."
+
+msgid "Add To Cart Product"
+msgstr "Přidat do košíku Produkt"
+
+msgid "Add to Cart"
+msgstr "Přidat do košíku"
+
+msgid "Easily add products to the cart list directly through chat."
+msgstr ""
+"Jednoduše přidejte produkty do seznamu košíku přímo prostřednictvím chatu."
+
+msgid "Watch Video"
+msgstr "Podívejte se na video"
+
+msgid "AI Chat"
+msgstr "AI chat"
+
+msgid "Custom"
+msgstr "Zvyk"
+
+msgid " AI Chat Bot "
+msgstr "AI chatovací robot"
+
+msgid "Conversation Handling"
+msgstr "Zpracování konverzace"
+
+msgid ""
+"AI Chat Conversation provides intelligent and context-aware interactions to "
+"enhance user engagement. Define key conversation elements to capture "
+"specific user inputs dynamically and adapt responses based on the context."
+msgstr ""
+"AI Chat Conversation poskytuje inteligentní a kontextové interakce pro "
+"zvýšení zapojení uživatelů. Definujte klíčové prvky konverzace pro dynamické "
+"zachycení konkrétních uživatelských vstupů a přizpůsobení odpovědí na "
+"základě kontextu."
+
+msgid "Capture and process inputs dynamically for personalized responses."
+msgstr "Zachyťte a zpracujte vstupy dynamicky pro personalizované odpovědi."
+
+msgid "Adjust interactions based on the ongoing conversation for relevance."
+msgstr ""
+"Upravte interakce na základě probíhající konverzace, aby byly relevantní."
+
+msgid "Use collected data to tailor responses and improve satisfaction."
+msgstr ""
+"Použijte shromážděná data k přizpůsobení odpovědí a zvýšení spokojenosti."
+
+msgid "Discover Our "
+msgstr "Objevte naše"
+
+msgid " AI Web Search"
+msgstr "AI vyhledávání na webu"
+
+msgid "Bot"
+msgstr "Bot"
+
+msgid ""
+"AI Web Search improves user experience by delivering advanced, intuitive "
+"content discovery on your WordPress site. With powerful searches, users can "
+"quickly find relevant information, enhancing overall interest and "
+"accessibility."
+msgstr ""
+"AI Web Search zlepšuje uživatelskou zkušenost tím, že poskytuje pokročilé a "
+"intuitivní zjišťování obsahu na vašem webu WordPress. Pomocí výkonného "
+"vyhledávání mohou uživatelé rychle najít relevantní informace, což zvyšuje "
+"celkový zájem a dostupnost."
+
+msgid "GeekyBot swiftly retrieves posts and pages based on user queries."
+msgstr ""
+"GeekyBot rychle načítá příspěvky a stránky na základě uživatelských dotazů."
+
+msgid "Displays full content or excerpts that match search terms."
+msgstr "Zobrazuje celý obsah nebo úryvky, které odpovídají hledaným výrazům."
+
+msgid "Activate GeekyBot’s search for an AI web search with one click."
+msgstr ""
+"Aktivujte vyhledávání GeekyBot pro vyhledávání AI na webu jedním kliknutím."
+
+msgid "Web Search"
+msgstr "Vyhledávání na webu"
+
+msgid "GeekyBot Supported Plugins"
+msgstr "Pluginy podporované GeekyBotem"
+
+msgid "Plugin"
+msgstr "Plugin"
+
+msgid "WP Job Manager"
+msgstr "WP Job Manager"
+
+msgid "Tutor LMS"
+msgstr "Tutor LMS"
+
+msgid "bbPress"
+msgstr "bbPress"
+
+msgid "LearnPress"
+msgstr "LearnPress"
+
+msgid "Knowledge Base"
+msgstr "Znalostní báze"
+
+msgid "BetterDocs"
+msgstr "BetterDocs"
+
+msgid "Motors"
+msgstr "Motory"
+
+msgid "Estatik Real Estate"
+msgstr "Estatik Real Estate"
+
+msgid "Auto Listings"
+msgstr "Automatické výpisy"
+
+msgid "Welcome to GeekyBot Features"
+msgstr "Vítejte ve funkcích GeekyBot"
+
+msgid "GeekyBot Features"
+msgstr "Funkce GeekyBot"
+
+msgid "WooCommerce Integration"
+msgstr "Integrace WooCommerce"
+
+msgid "Quick Installation"
+msgstr "Rychlá instalace"
+
+msgid "Version: 1.0.0"
+msgstr "Verze: 1.0.0"
+
+msgid "AI Chat Bot"
+msgstr "AI chatovací robot"
+
+msgid "Enable/Disable"
+msgstr "Povolit/Zakázat"
+
+msgid "Enable/Disable Bot"
+msgstr "Povolit/zakázat robota"
+
+msgid "Select Template"
+msgstr "Vyberte položku Šablona"
+
+msgid ""
+"AI Chat in GeekyBot provides instant, personalized responses to user "
+"queries, ensuring seamless support around the clock. With its ability to "
+"engage users at any time, GeekyBot enhances the reliability of your service, "
+"making sure that your customers' needs are always met."
+msgstr ""
+"AI Chat v GeekyBot poskytuje okamžité, personalizované odpovědi na "
+"uživatelské dotazy a zajišťuje bezproblémovou podporu po celý den. Díky své "
+"schopnosti kdykoli zapojit uživatele zvyšuje GeekyBot spolehlivost vaší "
+"služby a zajišťuje, že potřeby vašich zákazníků jsou vždy splněny."
+
+msgid ""
+"By training GeekyBot with your specific data, you can create dynamic, "
+"tailored interactions that reflect your business's unique voice and "
+"services. This customization allows for more relevant, effective "
+"conversations that build stronger connections with your users."
+msgstr ""
+"Školením GeekyBota s vašimi konkrétními daty můžete vytvářet dynamické, "
+"přizpůsobené interakce, které odrážejí jedinečný hlas a služby vaší firmy. "
+"Toto přizpůsobení umožňuje relevantnější a efektivnější konverzace, které "
+"vytvářejí silnější spojení s vašimi uživateli."
+
+msgid "Bot Image"
+msgstr "Obrázek robota"
+
+msgid "image"
+msgstr "obraz"
+
+msgid "Watch AI ChatBot Video"
+msgstr "Podívejte se na video AI ChatBot"
+
+msgid "AI Web Search Bot"
+msgstr "AI Web Search Bot"
+
+msgid ""
+"Effortlessly search for specific posts and content across your entire site "
+"using our powerful AI web search tool. GeekyBot goes beyond standard "
+"searches, delivering results from all types of data on your site. Whether "
+"you're looking for posts, pages, custom post types, or other information, "
+"GeekyBot ensures you find what you need quickly and efficiently by "
+"displaying relevant articles, posts, and more in a single, streamlined "
+"search experience."
+msgstr ""
+"Pomocí našeho výkonného webového vyhledávacího nástroje AI můžete bez námahy "
+"vyhledat konkrétní příspěvky a obsah na celém svém webu. GeekyBot jde nad "
+"rámec standardního vyhledávání a poskytuje výsledky ze všech typů dat na "
+"vašem webu. Ať už hledáte příspěvky, stránky, vlastní typy příspěvků nebo "
+"jiné informace, GeekyBot zajistí, že najdete to, co potřebujete, rychle a "
+"efektivně tím, že zobrazí relevantní články, příspěvky a další v jediném, "
+"zjednodušeném vyhledávání."
+
+msgid "New Post Type Search"
+msgstr "Nové vyhledávání typu příspěvku"
+
+msgid ""
+"Enable this option to directly include new post types in search results, "
+"enhancing user access to all content."
+msgstr ""
+"Povolením této možnosti můžete přímo zahrnout nové typy příspěvků do "
+"výsledků vyhledávání a zlepšit tak přístup uživatelů k veškerému obsahu."
+
+msgid "Watch AI Web Search Video"
+msgstr "Podívejte se na video o vyhledávání AI na webu"
+
+msgid "Back"
+msgstr "Zadní"
+
+msgid "Finish"
+msgstr "Dokončit"
+
+msgid "WooCommerce is not installed"
+msgstr "WooCommerce není nainstalován"
+
+msgid ""
+"WooCommerce plugin is not installed on your site, you won't be able to "
+"integrate GeekyBot with WooCommerce."
+msgstr ""
+"Plugin WooCommerce není nainstalován na vašem webu, nebudete moci integrovat "
+"GeekyBot s WooCommerce."
+
+msgid ""
+"Easily integrate AI with WooCommerce to enhance your online store’s "
+"performance. GeekyBot boosts lead generation and customer interactions, "
+"automating key processes for a more effective and engaging shopping "
+"experience."
+msgstr ""
+"Snadno integrujte AI s WooCommerce, abyste zvýšili výkon svého internetového "
+"obchodu. GeekyBot zvyšuje generování potenciálních zákazníků a interakce se "
+"zákazníky, automatizuje klíčové procesy pro efektivnější a poutavější "
+"zážitek z nakupování."
+
+msgid ""
+"GeekyBot also streamlines customer inquiries and provides real-time, "
+"intelligent responses. By improving retention and customer satisfaction, it "
+"ensures your store delivers an exceptional experience that keeps shoppers "
+"coming back."
+msgstr ""
+"GeekyBot také zefektivňuje dotazy zákazníků a poskytuje inteligentní "
+"odpovědi v reálném čase. Zlepšením udržení a spokojenosti zákazníků "
+"zajišťuje, že váš obchod poskytuje výjimečný zážitek, díky kterému se "
+"zákazníci vracejí."
+
+msgid "Watch WooCommerce Video"
+msgstr "Podívejte se na video WooCommerce"
+
+msgid "Welcome to GeekyBot !..."
+msgstr "Vítejte v GeekyBotu!..."
+
+msgid ""
+"The ultimate AI chatbot for WooCommerce lead generation, intelligent content "
+"search, and interactive customer engagement on your WordPress website."
+msgstr ""
+"Nejlepší chatbot s umělou inteligencí pro generování potenciálních zákazníků "
+"WooCommerce, inteligentní vyhledávání obsahu a interaktivní zapojení "
+"zákazníků na vašem webu WordPress."
+
+msgid ""
+"Personalize interactions by dynamically processing user inputs using slots "
+"and variables."
+msgstr ""
+"Přizpůsobte si interakce dynamickým zpracováním uživatelských vstupů pomocí "
+"slotů a proměnných."
+
+msgid ""
+"Enhance shopping by enabling users to find products and add them to their "
+"cart seamlessly."
+msgstr ""
+"Vylepšete nakupování tím, že uživatelům umožníte najít produkty a bez "
+"problémů je přidat do košíku."
+
+msgid "Website Search"
+msgstr "Vyhledávání webových stránek"
+
+msgid ""
+"Streamline discovery by helping users find relevant information on your "
+"WordPress site."
+msgstr ""
+"Zjednodušte zjišťování tím, že uživatelům pomůžete najít relevantní "
+"informace na vašem webu WordPress."
+
+msgid "Please insert activation key to proceed"
+msgstr "Pokračujte vložením aktivačního klíče"
+
+msgid "Addon Installation Failed"
+msgstr "Instalace doplňku se nezdařila"
+
+msgid "Addon installation failed"
+msgstr "Instalace doplňku se nezdařila"
+
+msgid "Addon Installation Failed, File download error"
+msgstr "Instalace doplňku se nezdařila, chyba stahování souboru"
+
+msgid "Activated"
+msgstr "Aktivováno"
+
+msgid "Deactivate"
+msgstr "Deaktivovat"
+
+msgid "Deactivated"
+msgstr "Deaktivováno"
+
+msgid "Activate"
+msgstr "Aktivovat"
+
+msgid "Not Installed"
+msgstr "Není nainstalováno"
+
+msgid "Addon Installed Successfully"
+msgstr "Addon byl úspěšně nainstalován"
+
+msgid "Ticket Actions"
+msgstr "Akce vstupenek"
+
+msgid "Agents"
+msgstr "Agenti"
+
+msgid "Ticket Auto Close"
+msgstr "Automatické uzavření vstupenek"
+
+msgid "left image"
+msgstr "levý obrázek"
+
+msgid "right image"
+msgstr "pravý obrázek"
+
+msgid "Add-ons For Majestic Support"
+msgstr "Doplňky pro majestátní podporu"
+
+msgid ""
+"Get trusted WordPress add-ons. Guaranteed to work fast, safe to use, "
+"beautifully coded, packed with features, and are easy to use."
+msgstr ""
+"Získejte důvěryhodné doplňky WordPress. Zaručená rychlá práce, bezpečné "
+"použití, krásně kódované, nabité funkcemi a snadné použití."
+
+msgid "Save big today with an exclusive membership plan!"
+msgstr "Ušetřete ještě dnes díky exkluzivnímu členskému plánu!"
+
+msgid "Show"
+msgstr "Show"
+
+msgid "show bundle pack"
+msgstr "zobrazit balíček balíčku"
+
+msgid "Agent"
+msgstr "Činidlo"
+
+msgid ""
+"Add agents and assign roles and permissions to provide assistance and "
+"support for customer support tickets."
+msgstr ""
+"Přidejte agenty a přiřaďte role a oprávnění k poskytování pomoci a podpory "
+"pro lístky na zákaznickou podporu."
+
+msgid "buy now"
+msgstr "koupit hned"
+
+msgid "Installed"
+msgstr "Instalováno"
+
+msgid "multiform"
+msgstr "mnohotvarý"
+
+msgid "Multi Forms"
+msgstr "Více formulářů"
+
+msgid ""
+"Create multiple custom ticket forms with different custom fields for each "
+"request type that you support."
+msgstr ""
+"Vytvořte více vlastních formulářů lístků s různými vlastními poli pro každý "
+"typ požadavku, který podporujete."
+
+msgid "Email Piping"
+msgstr "E-mailové potrubí"
+
+msgid ""
+"Email piping is the process of automatically turning incoming emails into "
+"support tickets without manual data entry."
+msgstr ""
+"E-mailové potrubí je proces automatického převádění příchozích e-mailů na "
+"lístky podpory bez ručního zadávání dat."
+
+msgid "agent auto assign"
+msgstr "automatické přiřazení agenta"
+
+msgid "Agent Auto Assign"
+msgstr "Automatické přiřazení agenta"
+
+msgid ""
+"Make the ticket assignment process automatic and assign the most qualified "
+"agent to your tickets with conditions."
+msgstr ""
+"Udělejte proces přidělování tiketů automatický a přiřaďte svým tiketům "
+"nejkvalifikovanějšího agenta s podmínkami."
+
+msgid "private note"
+msgstr "soukromá poznámka"
+
+msgid "Private Note"
+msgstr "Soukromá poznámka"
+
+msgid ""
+"Add private notes to a ticket and share crucial information internally with "
+"your agents, this private note is not visible to the customer."
+msgstr ""
+"Přidejte soukromé poznámky k tiketu a sdílejte důležité informace interně se "
+"svými agenty, tato soukromá poznámka není viditelná pro zákazníka."
+
+msgid "merge tickets"
+msgstr "sloučit vstupenky"
+
+msgid "Merge Tickets"
+msgstr "Sloučit vstupenky"
+
+msgid ""
+"Merge one or more tickets into another if you receive two support requests "
+"from the same end user about the same issue."
+msgstr ""
+"Pokud od stejného koncového uživatele obdržíte dvě žádosti o podporu "
+"týkající se stejného problému, slučte jeden nebo více lístků do jiného."
+
+msgid "helptopic"
+msgstr "helptopic"
+
+msgid "Help Topics"
+msgstr "Témata nápovědy"
+
+msgid ""
+"The user can search for and choose the topic for which they need help using "
+"help topics"
+msgstr ""
+"Uživatel může pomocí témat nápovědy vyhledat a vybrat téma, ke kterému "
+"potřebuje pomoc"
+
+msgid "Auto Close Ticket"
+msgstr "Vstupenka s automatickým uzavřením"
+
+msgid ""
+"Manage abandoned tickets, and set rules for tickets over time, and those "
+"tickets will be closed automatically after a certain period."
+msgstr ""
+"Spravujte opuštěné vstupenky a nastavte pravidla pro vstupenky v průběhu "
+"času a tyto vstupenky se po určité době automaticky uzavřou."
+
+msgid "Knowledgebase"
+msgstr "Znalostní báze"
+
+msgid ""
+"Stop wasting time on repetitive inquiries, build your knowledge base, and "
+"organize your solutions into categories for users."
+msgstr ""
+"Přestaňte ztrácet čas opakovanými dotazy, vytvořte si znalostní základnu a "
+"uspořádejte svá řešení do kategorií pro uživatele."
+
+msgid "Ticket Overdue"
+msgstr "Vstupenka po splatnosti"
+
+msgid ""
+"Define rules or set a specific time interval for making tickets "
+"automatically overdue."
+msgstr ""
+"Definujte pravidla nebo nastavte konkrétní časový interval pro automatické "
+"promlčení tiketů."
+
+msgid "time tracking"
+msgstr "sledování času"
+
+msgid "Time Tracking"
+msgstr "Sledování času"
+
+msgid ""
+"Track the amount of time spent on each customer support ticket without "
+"losing focus and enhance team productivity."
+msgstr ""
+"Sledujte množství času stráveného na každém lístku zákaznické podpory, aniž "
+"byste ztratili pozornost, a zvyšte produktivitu týmu."
+
+msgid "Ticket History"
+msgstr "Historie vstupenek"
+
+msgid ""
+"Show the whole history of the ticket, including its status and any action "
+"taken in response to it."
+msgstr ""
+"Zobrazit celou historii tiketu, včetně jeho stavu a veškerých akcí "
+"provedených v reakci na něj."
+
+msgid "Paid Support"
+msgstr "Placená podpora"
+
+msgid ""
+"The simplest approach to effectively manage payments for premium help is "
+"through paid support."
+msgstr ""
+"Nejjednodušší přístup k efektivní správě plateb za prémiovou pomoc je "
+"prostřednictvím placené podpory."
+
+msgid "Private Credentials"
+msgstr "Soukromé přihlašovací údaje"
+
+msgid ""
+"Customers will enter sensitive information on tickets, and this add-on is "
+"designed to help you keep that information secure."
+msgstr ""
+"Zákazníci budou na vstupenky zadávat citlivé informace a tento doplněk je "
+"navržen tak, aby vám pomohl tyto informace zabezpečit."
+
+msgid "Ticket close reason"
+msgstr "Důvod uzavření lístku"
+
+msgid "Ticket Closed Reason"
+msgstr "Důvod uzavření vstupenek"
+
+msgid ""
+"Empowers users to provide clear and concise explanations for why customer "
+"service tickets are being closed."
+msgstr ""
+"Umožňuje uživatelům poskytovat jasná a stručná vysvětlení, proč jsou "
+"vstupenky na zákaznický servis uzavřeny."
+
+msgid "Premade Responses"
+msgstr "Předem připravené odpovědi"
+
+msgid ""
+"Make ready-made responses to the most common questions in the tickets to "
+"swiftly address client issues."
+msgstr ""
+"Připravte si odpovědi na nejčastější otázky v tiketech, abyste mohli rychle "
+"řešit problémy klientů."
+
+msgid "max ticket"
+msgstr "max lístek"
+
+msgid "Max Tickets"
+msgstr "Maximální počet vstupenek"
+
+msgid ""
+"Admins can limit the number of tickets that users can create as well as the "
+"number of tickets that agents can open individually."
+msgstr ""
+"Správci mohou omezit počet tiketů, které mohou uživatelé vytvořit, a také "
+"počet tiketů, které mohou agenti otevřít jednotlivě."
+
+msgid "Feedback"
+msgstr "Zpětná vazba"
+
+msgid ""
+"To enhance the quality of your services, ask your customers to complete a "
+"survey when a ticket is closed."
+msgstr ""
+"Chcete-li zvýšit kvalitu svých služeb, požádejte své zákazníky, aby po "
+"uzavření vstupenky vyplnili průzkum."
+
+msgid "ticket actions"
+msgstr "akce lístků"
+
+msgid ""
+"Ticket action options allow you to execute additional actions on tickets."
+msgstr "Možnosti akce tiketu umožňují provádět další akce s tikety."
+
+msgid "Export"
+msgstr "Vývozní"
+
+msgid ""
+"Easily export ticket data and performance report data from your majestic "
+"support to an Excel spreadsheet with our efficient and user-friendly "
+"solution."
+msgstr ""
+"Pomocí našeho efektivního a uživatelsky přívětivého řešení můžete snadno "
+"exportovat data tiketů a data zpráv o výkonu z vaší majestátní podpory do "
+"tabulky Excel."
+
+msgid "email cc"
+msgstr "email cc"
+
+msgid "Email CC"
+msgstr "E-mail CC"
+
+msgid ""
+"Send the exact copy of the email to the provided email address with Email CC "
+"or BCC."
+msgstr ""
+"Pošlete přesnou kopii e-mailu na zadanou e-mailovou adresu s e-mailem CC "
+"nebo BCC."
+
+msgid "user options"
+msgstr "uživatelské možnosti"
+
+msgid "User Options"
+msgstr "Možnosti uživatele"
+
+msgid ""
+"User options enable you to define roles for new users when they are "
+"registered."
+msgstr ""
+"Možnosti uživatele vám umožňují definovat role pro nové uživatele, když jsou "
+"zaregistrováni."
+
+msgid "SMTP"
+msgstr "SMTP"
+
+msgid ""
+"SMTP enables you to add  custom mail protocols to send and receive emails "
+"with the support ticket system."
+msgstr ""
+"SMTP vám umožňuje přidat vlastní poštovní protokoly pro odesílání a "
+"přijímání e-mailů pomocí systému lístků podpory."
+
+msgid "Multi Language Email Templates"
+msgstr "Vícejazyčné e-mailové šablony"
+
+msgid ""
+"Create multi-language email templates for all default email templates to "
+"send customers emails in the language that they prefer."
+msgstr ""
+"Vytvořte vícejazyčné e-mailové šablony pro všechny výchozí e-mailové šablony "
+"a posílejte zákazníkům e-maily v jazyce, který preferují."
+
+msgid "Downloads"
+msgstr "Stahování"
+
+msgid ""
+"Downloads can be very helpful for users who are looking to obtain the "
+"necessary information to resolve issues."
+msgstr ""
+"Stahování může být velmi užitečné pro uživatele, kteří chtějí získat "
+"potřebné informace k vyřešení problémů."
+
+msgid "Announcements"
+msgstr "Oznámení"
+
+msgid ""
+"Make an unlimited number of announcements related to the support system to "
+"encourage customer interaction."
+msgstr ""
+"Provádějte neomezený počet oznámení souvisejících se systémem podpory, "
+"abyste podpořili interakci se zákazníky."
+
+msgid "Ban Email"
+msgstr "Zákaz e-mailu"
+
+msgid ""
+"With Ban Email, you can limit a users ability to create new tickets by "
+"blocking their email address."
+msgstr ""
+"Pomocí funkce Ban Email můžete omezit možnost uživatelů vytvářet nové "
+"vstupenky zablokováním jejich e-mailové adresy."
+
+msgid "FAQ"
+msgstr "FAQ"
+
+msgid ""
+"Provide answers to common user questions with the FAQ extension before they "
+"become tickets."
+msgstr ""
+"Poskytněte odpovědi na běžné dotazy uživatelů pomocí rozšíření FAQ, než se "
+"stanou vstupenkami."
+
+msgid "admin widgets"
+msgstr "administrátorské widgety"
+
+msgid "Admin Widgets"
+msgstr "Admin Widgety"
+
+msgid ""
+"Get immediate data on your support operations as soon as you log into your "
+"WordPress administration area."
+msgstr ""
+"Získejte okamžitá data o svých operacích podpory, jakmile se přihlásíte do "
+"své administrační oblasti WordPress."
+
+msgid "desktop notifications"
+msgstr "upozornění na ploše"
+
+msgid "Desktop Notifications"
+msgstr "Oznámení na ploše"
+
+msgid ""
+"You will be informed of anything that occurs on your support system by the "
+"desktop notifications."
+msgstr ""
+"O všem, co se ve vašem systému podpory vyskytne, budete informováni "
+"prostřednictvím oznámení na ploše."
+
+msgid "woocommerce"
+msgstr "woocommerce"
+
+msgid ""
+"The integration of the support ticket system for WooCommerce with your e-"
+"shop makes your support better and more professional."
+msgstr ""
+"Díky integraci systému lístků podpory pro WooCommerce s vaším e-shopem bude "
+"vaše podpora lepší a profesionálnější."
+
+msgid "mail chimp"
+msgstr "mailchimp"
+
+msgid "Mail Chimp"
+msgstr "Mailchimp"
+
+msgid ""
+"Manage your email marketing campaigns directly from your majestic support by "
+"adding new user accounts to your Mailchimp email list."
+msgstr ""
+"Spravujte své e-mailové marketingové kampaně přímo ze své majestátní podpory "
+"přidáním nových uživatelských účtů do seznamu e-mailů Mailchimp."
+
+msgid "internal mail"
+msgstr "vnitřní pošta"
+
+msgid "Internal Mail"
+msgstr "Interní pošta"
+
+msgid ""
+"Send messages internally about support tickets and other issues between "
+"agents with internal mail."
+msgstr ""
+"Interně posílejte zprávy o lístcích podpory a dalších problémech mezi agenty "
+"pomocí interní pošty."
+
+msgid "frontend widget"
+msgstr "frontendový widget"
+
+msgid "Front-End Widgets"
+msgstr "Přední widgety"
+
+msgid ""
+"Frontend Widgets include several widgets that can be used to enhance the "
+"plugin's functionality in various areas of the website."
+msgstr ""
+"Frontend Widgety obsahují několik widgetů, které lze použít k vylepšení "
+"funkčnosti pluginu v různých oblastech webu."
+
+msgid "envato"
+msgstr "envato"
+
+msgid "Envato"
+msgstr "Envato"
+
+msgid ""
+"Clients won't be able to open a new ticket using the Envato Validation "
+"plugin if they don't have a valid Envato license."
+msgstr ""
+"Klienti nebudou moci otevřít nový tiket pomocí pluginu Envato Validation, "
+"pokud nemají platnou licenci Envato."
+
+msgid "easy digital download"
+msgstr "snadné digitální stahování"
+
+msgid "Easy Digital Download"
+msgstr "Snadné digitální stahování"
+
+msgid ""
+"Learn about a customer's purchase directly from the support dashboard by "
+"integrating Majestic Support with your EDD store."
+msgstr ""
+"Získejte informace o nákupu zákazníka přímo z řídicího panelu podpory "
+"integrací Majestic Support s vaším obchodem EDD."
+
+msgid "Majestic Support Add-ons Bundle Pack"
+msgstr "Balíček doplňků Majestic Support Add-ons"
+
+msgid "Basic"
+msgstr "Základní"
+
+msgid "Unlimited Agents"
+msgstr "Neomezený počet agentů"
+
+msgid "Helptopic"
+msgstr "Téma nápovědy"
+
+msgid "Show all"
+msgstr "Zobrazit vše"
+
+msgid "Standard"
+msgstr "Norma"
+
+msgid "Everything in basic included and "
+msgstr "Vše v základní ceně a"
+
+msgid "Premade Response"
+msgstr "Předem připravená odpověď"
+
+msgid "Professional"
+msgstr "Profesionální"
+
+msgid "Everything in standard included and"
+msgstr "Vše ve standardu v ceně a"
+
+msgid "All Future Addons"
+msgstr "Všechny budoucí doplňky"
+
+msgid "spinning wheel"
+msgstr "kolovrat"
+
+msgid "New Update Version"
+msgstr "Nová verze aktualizace"
+
+msgid "is Available"
+msgstr "je k dispozici"
+
+msgid "Status: "
+msgstr "Postavení:"
+
+msgid "Version"
+msgstr "Verze"
+
+msgid "addon in no longer active"
+msgstr "addon již není aktivní"
+
+msgid "Please Insert Your Activation Key"
+msgstr "Vložte prosím svůj aktivační klíč"
+
+msgid "XXXX-XXXX-XXXXX-XXXXX"
+msgstr "XXXX-XXXX-XXXXX-XXXXX"
+
+msgid "Proceed"
+msgstr "Pokračovat"
+
+msgid "GeekyBot Addon Installer"
+msgstr "Instalační program doplňku GeekyBot"
+
+msgid "Select All Addons"
+msgstr "Vyberte Všechny doplňky"
+
+msgid "All allowed add ons are already installed"
+msgstr "Všechny povolené doplňky jsou již nainstalovány"
+
+msgid "You are not allowed to install any add on"
+msgstr "Nemáte povoleno instalovat žádný doplněk"
+
+msgid "Something went wrong"
+msgstr "Něco se pokazilo"
+
+msgid "Addons Installed Successfully"
+msgstr "Doplňky byly úspěšně nainstalovány"
+
+msgid "Open Dashboard"
+msgstr "Otevřete řídicí panel"
+
+msgid "Open Plugins Page"
+msgstr "Otevřete stránku pluginů"
+
+msgid "PersonName"
+msgstr "Jméno osoby"
+
+msgid "Facility"
+msgstr "Zařízení"
+
+msgid "Organization"
+msgstr "Organizace"
+
+msgid "Location"
+msgstr "Umístění"
+
+msgid "Location_NON_GPE"
+msgstr "Location_NON_GPE"
+
+msgid "Product"
+msgstr "Produkt"
+
+msgid "Event"
+msgstr "Událost"
+
+msgid "ArtWork"
+msgstr "Umělecké dílo"
+
+msgid "LawDocument"
+msgstr "LawDocument"
+
+msgid "Language"
+msgstr "Jazyk"
+
+msgid "Date"
+msgstr "Datum"
+
+msgid "Time"
+msgstr "Čas"
+
+msgid "Percentage"
+msgstr "Procento"
+
+msgid "Money"
+msgstr "Peníze"
+
+msgid "Quantity"
+msgstr "Množství"
+
+msgid "Ordinal"
+msgstr "řadový"
+
+msgid "Cardinal"
+msgstr "Kardinál"
+
+msgid "Select Variable For"
+msgstr "Vyberte Proměnnou pro"
+
+msgid "Attribute"
+msgstr "Atribut"
+
+msgid "Name"
+msgstr "Jméno"
+
+msgid "Varibale Name"
+msgstr "Název proměnné"
+
+msgid "Type"
+msgstr "Typ"
+
+msgid "Possible Field Values"
+msgstr "Možné hodnoty polí"
+
+msgid "Add Comma Seprated Values"
+msgstr "Přidejte hodnoty oddělené čárkami"
+
+msgid "Variable For"
+msgstr "Proměnná pro"
+
+msgid "Select Variable For in case of Woocommerce Variable"
+msgstr "V případě Woocommerce Variable vyberte Variable For"
+
+msgid "cancel"
+msgstr "zrušit"
+
+msgid "Cancel"
+msgstr "Zrušit"
+
+msgid "Save Changes"
+msgstr "Uložit změny"
+
+msgid "Save Variable"
+msgstr "Uložit proměnnou"
+
+msgid "Reset"
+msgstr "Resetovat"
+
+msgid "Are you sure to delete it?"
+msgstr "Opravdu to chcete smazat?"
+
+msgid "Delete Variable"
+msgstr "Smazat proměnnou"
+
+msgid "Add Variable"
+msgstr "Přidat proměnnou"
+
+msgid "name"
+msgstr "jméno"
+
+msgid "type"
+msgstr "typ"
+
+msgid "Possible Values Here"
+msgstr "Možné hodnoty zde"
+
+msgid "Edit Variable"
+msgstr "Upravit proměnnou"
+
+msgid "Are you sure to delete it"
+msgstr "Jste si jisti, že to smažete?"
+
+msgid "Add New"
+msgstr "Přidat nový"
+
+msgid "User Input"
+msgstr "Uživatelský vstup"
+
+msgid "Close"
+msgstr "Blízko"
+
+msgid "Add"
+msgstr "Přidat"
+
+msgid "Add More"
+msgstr "Přidat další"
+
+msgid "Available Variables"
+msgstr "Dostupné proměnné"
+
+msgid "Enter bot response here..."
+msgstr "Sem zadejte odpověď robota..."
+
+msgid "Button text here"
+msgstr "Text tlačítka zde"
+
+msgid "URL"
+msgstr "URL"
+
+msgid "Button value here"
+msgstr "Hodnota tlačítka zde"
+
+msgid "Enter URL here"
+msgstr "Zde zadejte URL"
+
+msgid "Add New Button"
+msgstr "Přidat nové tlačítko"
+
+msgid "Select Predefined Function"
+msgstr "Vyberte Předdefinovaná funkce"
+
+msgid "Select Action"
+msgstr "Vyberte možnost Akce"
+
+msgid "Add New Action"
+msgstr "Přidat novou akci"
+
+msgid "Add New Form"
+msgstr "Přidat nový formulář"
+
+msgid "Enter default fallback here..."
+msgstr "Zde zadejte výchozí záložní..."
+
+msgid "Enter default fallback for intent here..."
+msgstr "Zde zadejte výchozí záložní pro záměr..."
+
+msgid "Start Point"
+msgstr "Výchozí bod"
+
+msgid "Error: The template file does not exist."
+msgstr "Chyba: Soubor šablony neexistuje."
+
+msgid "Text"
+msgstr "Text"
+
+msgid "Function"
+msgstr "Funkce"
+
+msgid "Error: The"
+msgstr "Chyba: The"
+
+msgid "tag in"
+msgstr "označit"
+
+msgid "at position"
+msgstr "na pozici"
+
+msgid "is missing."
+msgstr "chybí."
+
+msgid "is empty."
+msgstr "je prázdný."
+
+msgid "tag associated with the user input"
+msgstr "tag spojený s uživatelským vstupem"
+
+msgid "in"
+msgstr "v"
+
+msgid "tag of the"
+msgstr "značka z"
+
+msgid "block associated with the user input"
+msgstr "blok spojený s uživatelským vstupem"
+
+msgid "or"
+msgstr "nebo"
+
+msgid "Error: The function name"
+msgstr "Chyba: Název funkce"
+
+msgid "in the"
+msgstr "v"
+
+msgid "is invalid."
+msgstr "je neplatné."
+
+msgid "Error: The type name"
+msgstr "Chyba: Název typu"
+
+msgid "is invalid. This should be"
+msgstr "je neplatné. Tohle by mělo být"
+
+msgid "You might like these products."
+msgstr "Tyto produkty by se vám mohly líbit."
+
+msgid "No exact match was found. Explore these similar products."
+msgstr "Nebyla nalezena přesná shoda. Prozkoumejte tyto podobné produkty."
+
+msgid "Here are some suggestions."
+msgstr "Zde je několik návrhů."
+
+msgid "Showing"
+msgstr "Zobrazení"
+
+msgid "of"
+msgstr "z"
+
+msgid "Add to cart"
+msgstr "Přidat do košíku"
+
+msgid "Empty Story"
+msgstr "Prázdný příběh"
+
+msgid "Show All Products"
+msgstr "Zobrazit všechny produkty"
+
+msgid "Search Product"
+msgstr "Vyhledat produkt"
+
+msgid "Get Products Under Price"
+msgstr "Získejte produkty pod cenou"
+
+msgid "Get Products Above Price"
+msgstr "Získejte produkty nad cenou"
+
+msgid "View Cart/Remove Items"
+msgstr "Zobrazit košík / Odebrat položky"
+
+msgid "Checkout"
+msgstr "Pokladna"
+
+msgid "Reset Password"
+msgstr "Obnovit heslo"
+
+msgid "Send Chat To Admin"
+msgstr "Odeslat chat správci"
+
+msgid "Integer"
+msgstr "Celé číslo"
+
+msgid "Float"
+msgstr "Plovák"
+
+msgid "Boolean"
+msgstr "Boolean"
+
+msgid "String"
+msgstr "Řetězec"
+
+msgid "Default Fallback"
+msgstr "Výchozí záložní"
+
+msgid "Are you sure to reset it?"
+msgstr "Opravdu ho resetujete?"
+
+msgid "Parameter Name *"
+msgstr "Název parametru *"
+
+msgid "Varibale Name *"
+msgstr "Název proměnné *"
+
+msgid "User input has been successfully saved."
+msgstr "Vstup uživatele byl úspěšně uložen."
+
+msgid "An empty user input field."
+msgstr "Prázdné pole pro zadání uživatele."
+
+msgid "An empty bot response."
+msgstr "Prázdná odpověď robota."
+
+msgid "Response Successfully Saved!"
+msgstr "Odpověď byla úspěšně uložena!"
+
+msgid "Action Successfully Saved!"
+msgstr "Akce byla úspěšně uložena!"
+
+msgid "Form Successfully Saved!"
+msgstr "Formulář byl úspěšně uložen!"
+
+msgid "Default Fallback Successfully Saved!"
+msgstr "Výchozí záložní verze byla úspěšně uložena!"
+
+msgid "Store relevant user input first, then fallback."
+msgstr "Nejprve uložte relevantní uživatelský vstup a poté záložní."
+
+msgid "An empty default fallback."
+msgstr "Prázdná výchozí záložní reklama."
+
+msgid "Default Intent Fallback Successfully Saved!"
+msgstr "Výchozí záloha záměru byla úspěšně uložena!"
+
+msgid "Discard"
+msgstr "Vyřadit"
+
+msgid "Temporary discard"
+msgstr "Dočasné vyřazení"
+
+msgid "Automate"
+msgstr "Automatizovat"
+
+msgid "User input"
+msgstr "Uživatelský vstup"
+
+msgid "Form"
+msgstr "Formulář"
+
+msgid "Fallback"
+msgstr "Záložní"
+
+msgid "Chat "
+msgstr "Povídání"
+
+msgid "Available Variable"
+msgstr "Dostupné Proměnné"
+
+msgid "Product Name"
+msgstr "Název produktu"
+
+msgid "Minimum Price"
+msgstr "Minimální cena"
+
+msgid "Maximum Price"
+msgstr "Maximální cena"
+
+msgid "User Login"
+msgstr "Přihlášení uživatele"
+
+msgid "Action Icon"
+msgstr "Ikona akce"
+
+msgid "User Icon"
+msgstr "Ikona uživatele"
+
+msgid "User"
+msgstr "Uživatel"
+
+msgid "Bot Response"
+msgstr "Odpověď robota"
+
+msgid "User Text Icon"
+msgstr "Ikona uživatelského textu"
+
+msgid "Bot Function Icon"
+msgstr "Ikona funkce bota"
+
+msgid "Bot Function"
+msgstr "Funkce bot"
+
+msgid "Predefined Function"
+msgstr "Předdefinovaná funkce"
+
+msgid "Bot Action Icon"
+msgstr "Ikona akce bota"
+
+msgid "Bot Action"
+msgstr "Bot Action"
+
+msgid "Bot Form Icon"
+msgstr "Bot Ikona formuláře"
+
+msgid "Bot Form"
+msgstr "Bot Form"
+
+msgid "Fallback Icon"
+msgstr "Záložní ikona"
+
+msgid "Fallback Massege"
+msgstr "Záložní zpráva"
+
+msgid "Save & Close"
+msgstr "Uložit a zavřít"
+
+msgid "Info Icon"
+msgstr "Informační ikona"
+
+msgid "How to add parameters"
+msgstr "Jak přidat parametry"
+
+msgid "User form Icon"
+msgstr "Ikona uživatelského formuláře"
+
+msgid "Form Name *"
+msgstr "Název formuláře *"
+
+msgid "Add New Variable"
+msgstr "Přidat novou proměnnou"
+
+msgid "Function Form"
+msgstr "Funkční formulář"
+
+msgid "Action Form"
+msgstr "Akční formulář"
+
+msgid "Custom Action"
+msgstr "Vlastní akce"
+
+msgid "Add New Custom Action"
+msgstr "Přidat novou vlastní akci"
+
+msgid "Add New Parameter"
+msgstr "Přidat nový parametr"
+
+msgid "Intent Fallback"
+msgstr "Záloha záměru"
+
+msgid "Save Story"
+msgstr "Uložit příběh"
+
+msgid "Reset Story"
+msgstr "Obnovit příběh"
+
+msgid "Story has been successfully saved."
+msgstr "Příběh byl úspěšně uložen."
+
+msgid "WooCommerce is not active!"
+msgstr "WooCommerce není aktivní!"
+
+msgid "Error encountered in template."
+msgstr "V šabloně došlo k chybě."
+
+msgid "An empty story name."
+msgstr "Prázdný název příběhu."
+
+msgid "An empty story template."
+msgstr "Prázdná šablona příběhu."
+
+msgid "title"
+msgstr "titul"
+
+msgid "Active"
+msgstr "Aktivní"
+
+msgid "Disable"
+msgstr "Zakázat"
+
+msgid "Edit Story"
+msgstr "Upravit příběh"
+
+msgid "Are you sure to delete"
+msgstr "Jste si jisti, že chcete smazat?"
+
+msgid "Delete Story"
+msgstr "Smazat příběh"
+
+msgid "Built Story"
+msgstr "Postavený příběh"
+
+msgid "Built"
+msgstr "Postavený"
+
+msgid "WooCommerce Story"
+msgstr "Příběh WooCommerce"
+
+msgid "Story Name *"
+msgstr "Název příběhu *"
+
+msgid "Edit Story Name"
+msgstr "Upravit název příběhu"
+
+msgid "Invalid username or email."
+msgstr "Neplatné uživatelské jméno nebo e-mail."
+
+msgid "Looks like there was a problem resetting your password:"
+msgstr "Zdá se, že při resetování hesla došlo k problému:"
+
+msgid "User not found!"
+msgstr "Uživatel nenalezen!"
+
+msgid "Okay, I have sent the recovery email. Thank you for your patience."
+msgstr "Dobře, odeslal jsem obnovovací e-mail. Děkujeme za trpělivost."
+
+msgid "Your query is sent to the admin."
+msgstr "Váš dotaz je odeslán adminovi."
+
+msgid "Enable"
+msgstr "Umožnit"
+
+msgid "Smart Popup"
+msgstr "Inteligentní vyskakovací okno"
+
+msgid "Standard Popup"
+msgstr "Standardní vyskakovací okno"
+
+msgid "Appearance"
+msgstr "Vzhled"
+
+msgid "Choose File"
+msgstr "Vyberte Soubor"
+
+msgid "User Default Image"
+msgstr "Výchozí obrázek uživatele"
+
+msgid "Primary Color"
+msgstr "Základní barva"
+
+msgid "Choose Color"
+msgstr "Vyberte Barva"
+
+msgid "User Text Background"
+msgstr "Uživatelské pozadí textu"
+
+msgid "User Text Color"
+msgstr "Barva uživatelského textu"
+
+msgid "Bot Link Color"
+msgstr "Bot Link Color"
+
+msgid "Presets"
+msgstr "Předvolby"
+
+msgid "Preset"
+msgstr "Přednastaveno"
+
+msgid "online"
+msgstr "online"
+
+msgid "User Image"
+msgstr "Obrázek uživatele"
+
+msgid "Hi I am John"
+msgstr "Ahoj, já jsem John"
+
+msgid "Hi John! How can I help you?"
+msgstr "Ahoj Johne! Jak vám mohu pomoci?"
+
+msgid "Can you help me find a new backpack?"
+msgstr "Můžete mi pomoci najít nový batoh?"
+
+msgid "Product Icon"
+msgstr "Ikona produktu"
+
+msgid "Fusion Backpack"
+msgstr "Fusion batoh"
+
+msgid "$"
+msgstr "$"
+
+msgid "59"
+msgstr "59"
+
+msgid "Send message"
+msgstr "Odeslat zprávu"
+
+msgid "Welcome Message"
+msgstr "Uvítací zpráva"
+
+msgid "Welcome Image"
+msgstr "Uvítací obrázek"
+
+msgid "Chat Auto-Popup"
+msgstr "Automatické vyskakovací okno chatu"
+
+msgid "Controls whether the chat popup appears automatically on your site."
+msgstr "Řídí, zda se na vašem webu automaticky zobrazí vyskakovací okno chatu."
+
+msgid "Chat Pop-up Style"
+msgstr "Styl vyskakovacího okna chatu"
+
+msgid "Choose how the chat will appear: Smart or Standard pop-up."
+msgstr ""
+"Vyberte, jak bude chat vypadat: Inteligentní nebo Standardní vyskakovací "
+"okno."
+
+msgid "Chat Auto-Popup Timing"
+msgstr "Časování automatického vyskakovacího okna chatu"
+
+msgid ""
+"Define the delay time in seconds for the chatbot to auto-appear on the site."
+msgstr ""
+"Definujte dobu zpoždění v sekundách, po kterou se chatbot automaticky objeví "
+"na webu."
+
+msgid "Note"
+msgstr "Poznámka"
+
+msgid ""
+"If the colors have been saved but the user-side colors are still the same, "
+"it is advised to clear the cache."
+msgstr ""
+"Pokud byly barvy uloženy, ale barvy na straně uživatele jsou stále stejné, "
+"doporučuje se vymazat mezipaměť."
+
+msgid "Also"
+msgstr "Také"
+
+msgid "Found"
+msgstr "Nalezeno"
+
+msgid "Here are some"
+msgstr "Zde jsou některé"
+
+msgid "Help"
+msgstr "Pomoc"
+
+msgid "Have any problem?"
+msgstr "Máte nějaký problém?"
+
+msgid ""
+"If you experience any difficulties, we're here to help! Simply click the"
+msgstr ""
+"Pokud narazíte na nějaké potíže, jsme tu, abychom vám pomohli! Jednoduše "
+"klikněte na"
+
+msgid "Create A Ticket"
+msgstr "Vytvořte lístek"
+
+msgid ""
+"button to report your issue, and our dedicated support team will assist you "
+"promptly."
+msgstr ""
+"nahlaste svůj problém a náš specializovaný tým podpory vám okamžitě pomůže."
+
+msgid "Create Ticket"
+msgstr "Vytvořit lístek"
+
+msgid "Post Type"
+msgstr "Typ příspěvku"
+
+msgid "post type"
+msgstr "typ příspěvku"
+
+msgid "Post Label"
+msgstr "Štítek příspěvku"
+
+msgid "Associated Plugin"
+msgstr "Přidružený plugin"
+
+msgid "Add associated plugin's name"
+msgstr "Přidejte název souvisejícího pluginu"
+
+msgid "For better data consistency, please provide a associated plugin's name."
+msgstr "Pro lepší konzistenci dat uveďte název příslušného pluginu."
+
+msgid "Status"
+msgstr "Postavení"
+
+msgid "For status changes, please use the options available in the listing."
+msgstr "Pro změny stavu použijte možnosti dostupné v seznamu."
+
+msgid "Template Section"
+msgstr "Sekce šablon"
+
+msgid ""
+"Fields are currently auto-filled for preview purposes only. Please save your "
+"changes to apply them."
+msgstr ""
+"Pole se aktuálně automaticky vyplňují pouze pro účely náhledu. Chcete-li "
+"změny použít, uložte je."
+
+msgid "Choose one template style from the given below"
+msgstr "Vyberte jeden styl šablony z níže uvedeného"
+
+msgid "Add Button /Link"
+msgstr "Přidat tlačítko/odkaz"
+
+msgid "Add New Button /Link"
+msgstr "Přidat nové tlačítko/odkaz"
+
+msgid "Show on Listing"
+msgstr "Zobrazit na výpisu"
+
+msgid "View Details"
+msgstr "Zobrazit podrobnosti"
+
+msgid "detail page link"
+msgstr "odkaz na stránku s podrobnostmi"
+
+msgid "Save Template"
+msgstr "Uložit šablonu"
+
+msgid "Create a Post"
+msgstr "Vytvořit příspěvek"
+
+msgid "Please first create a sample post to use template section."
+msgstr "Nejprve prosím vytvořte ukázkový příspěvek pro použití sekce šablony."
+
+msgid "AI web search enabled successfully."
+msgstr "Vyhledávání AI na webu bylo úspěšně povoleno."
+
+msgid "AI web search already enabled."
+msgstr "AI vyhledávání na webu již povoleno."
+
+msgid "Something went wrong."
+msgstr "Něco se pokazilo."
+
+msgid "AI web search disabled successfully."
+msgstr "Vyhledávání AI na webu bylo úspěšně zakázáno."
+
+msgid "New post type search enabled successfully."
+msgstr "Hledání nového typu příspěvku bylo úspěšně povoleno."
+
+msgid "New post type search disabled successfully."
+msgstr "Hledání nového typu příspěvku bylo úspěšně zakázáno."
+
+msgid "Data Synchronization Needed"
+msgstr "Je nutná synchronizace dat"
+
+msgid ""
+"Your data is not updated. To ensure accurate results, please synchronize "
+"your AI web search data."
+msgstr ""
+"Vaše data nejsou aktualizována. Chcete-li zajistit přesné výsledky, "
+"synchronizujte data vyhledávání AI na webu."
+
+msgid "Enable AI web Search"
+msgstr "Povolit vyhledávání na webu AI"
+
+msgid ""
+"Enable this feature to provide users with direct AI web search results in "
+"the chat, offering them a broader context for their queries."
+msgstr ""
+"Povolením této funkce poskytnete uživatelům přímé výsledky vyhledávání AI na "
+"webu v chatu a nabídnete jim širší kontext pro jejich dotazy."
+
+msgid "Enable New Post Type Search"
+msgstr "Povolit hledání nového typu příspěvku"
+
+msgid "Lable"
+msgstr "Lable"
+
+msgid "Post lable"
+msgstr "Štítek příspěvku"
+
+msgid "WooCommerce is currently inactive."
+msgstr "WooCommerce je momentálně neaktivní."
+
+msgid "No product was found."
+msgstr "Nebyl nalezen žádný produkt."
+
+msgid "Please enter a valid product or category name."
+msgstr "Zadejte prosím platný název produktu nebo kategorie."
+
+msgid "Please enter a valid price."
+msgstr "Zadejte prosím platnou cenu."
+
+msgid "Please enter a valid price range."
+msgstr "Zadejte prosím platný cenový rozsah."
+
+msgid "Your cart is currently empty."
+msgstr "Váš košík je momentálně prázdný."
+
+msgid "Cart Details"
+msgstr "Podrobnosti košíku"
+
+msgid "Price"
+msgstr "Cena"
+
+msgid "Change"
+msgstr "Přeměna"
+
+msgid "Total Price"
+msgstr "Celková cena"
+
+msgid "Remove Item"
+msgstr "Odebrat položku"
+
+msgid "Subtotal"
+msgstr "Mezisoučet"
+
+msgid "Total"
+msgstr "Celkový"
+
+msgid "Proceed to Checkout"
+msgstr "Pokračujte k pokladně"
+
+msgid "is out of stock."
+msgstr "není skladem."
+
+msgid "You cannot add another “"
+msgstr "Nemůžete přidat další “"
+
+msgid "” to your cart."
+msgstr "“ do košíku."
+
+msgid "You cannot add more than"
+msgstr "Nemůžete přidat více než"
+
+msgid "of this product to your cart."
+msgstr "tohoto produktu do košíku."
+
+msgid "has been added to your cart."
+msgstr "byl přidán do vašeho košíku."
+
+msgid "has not been added to your cart. Please try again."
+msgstr "nebyl přidán do vašeho košíku. Zkuste to prosím znovu."
+
+msgid "View Cart"
+msgstr "Zobrazit košík"
+
+msgid "Please select a product!"
+msgstr "Vyberte prosím produkt!"
+
+msgid "There are no variations available."
+msgstr "Nejsou k dispozici žádné varianty."
+
+msgid "Product not found or not a variable product."
+msgstr "Produkt nebyl nalezen nebo se nejedná o variabilní produkt."
+
+msgid "You can't add another “"
+msgstr "Nemůžete přidat další “"
+
+msgid "There was an error while adding the product to the cart."
+msgstr "Při přidávání produktu do košíku došlo k chybě."
+
+msgid ""
+"The requested variation with the specified attributes could not be found."
+msgstr "Požadovaná varianta se zadanými atributy nebyla nalezena."
+
+msgid "Change Quantity"
+msgstr "Změnit množství"
+
+msgid "Update"
+msgstr "Aktualizovat"
+
+msgid "The cart is empty."
+msgstr "Košík je prázdný."
+
+msgid "Cart item is not found."
+msgstr "Položka košíku nebyla nalezena."
+
+msgid "The item was not found in the cart."
+msgstr "Zboží nebylo v košíku nalezeno."
+
+msgid "Quantity updated successfully!"
+msgstr "Množství bylo úspěšně aktualizováno!"
+
+msgid "Change quantity"
+msgstr "Změňte množství"
+
+msgid "Edit Post Type"
+msgstr "Upravit typ příspěvku"
+
+msgid "Parameter"
+msgstr "Parametr"
+
+msgid "delete"
+msgstr "vymazat"
+
+msgid "add intent"
+msgstr "přidat záměr"
+
+msgid "plus icon"
+msgstr "ikona plus"
+
+msgid "Add Intents"
+msgstr "Přidat záměry"
+
+msgid ""
+"On the responses listing page, all the responses are listed here; you can "
+"check them out."
+msgstr ""
+"Na stránce se seznamem odpovědí jsou zde uvedeny všechny odpovědi; můžete je "
+"zkontrolovat."
+
+msgid "Add Intent"
+msgstr "Přidat záměr"
+
+msgid ""
+"On the form listing page, all the forms are listed here; you can check them "
+"out."
+msgstr ""
+"Na stránce s výpisem formulářů jsou zde uvedeny všechny formuláře; můžete je "
+"zkontrolovat."
+
+msgid "Add Forms"
+msgstr "Přidat formuláře"
+
+msgid "On the add form page, you can add a new form."
+msgstr "Na stránce přidání formuláře můžete přidat nový formulář."
+
+msgid "Responses"
+msgstr "Odezvy"
+
+msgid "Add Response"
+msgstr "Přidat odpověď"
+
+msgid "On the add Response page, you can add a new Response."
+msgstr "Na stránce Přidat odpověď můžete přidat novou odpověď."
+
+msgid ""
+"On the actions listing page, all the actions are listed here; you can check "
+"them out."
+msgstr ""
+"Na stránce se seznamem akcí jsou zde uvedeny všechny akce; můžete je "
+"zkontrolovat."
+
+msgid "Add  Action"
+msgstr "Přidat akci"
+
+msgid "On the add action page, you can add a new action."
+msgstr "Na stránce přidání akce můžete přidat novou akci."
+
+msgid "Add Intent Group"
+msgstr "Přidat skupinu záměrů"
+
+msgid "Import"
+msgstr "Importovat"
+
+msgid "Menu"
+msgstr "Menu"
+
+msgid "End Chat"
+msgstr "Ukončit chat"
+
+msgid "Restart Chat"
+msgstr "Restartujte chat"
+
+msgid "Image"
+msgstr "Obraz"
+
+msgid "Send Icon"
+msgstr "Odeslat ikonu"
+
+msgid "Welcome to GeekyBot! Let me know how I can assist you today."
+msgstr "Vítejte v GeekyBotu! Dejte mi vědět, jak vám dnes mohu pomoci."
+
+msgid "admin."
+msgstr "admin."
+
+msgid "Account Assistance"
+msgstr "Pomoc s účtem"
+
+msgid "Diet Plan Assistant"
+msgstr "Asistent dietního plánu"
+
+msgid "Job Application"
+msgstr "Žádost o zaměstnání"
+
+msgid "Offline Form"
+msgstr "Offline formulář"
+
+msgid "Real Estate"
+msgstr "Nemovitost"
+
+msgid "Sales Support"
+msgstr "Podpora prodeje"
+
+msgid "University"
+msgstr "Univerzita"
+
+msgid "Vacation Planner"
+msgstr "Plánovač dovolené"

@@ -1,0 +1,222 @@
+<?xml version="1.0"?>
+<story>
+    <slots>
+        <slot>
+            <name>geekybot_user_name</name>
+            <type>PersonName</type>
+            <possible_values>john</possible_values>
+        </slot>
+    </slots>
+    <intents>
+        <intent_group>
+            <intent>
+                <user_inputs>
+                    <user_input>Hi, I need help with your website.</user_input>
+                </user_inputs>
+            </intent>
+            <responses>
+                <response>
+                    <text>Hi there! Sure, I can help. May I know your [name](geekybot_user_name), please?</text>
+                </response>
+            </responses>
+        </intent_group>
+        <intent_group>
+            <intent>
+                <user_inputs>
+                    <user_input>It's [John](geekybot_user_name).</user_input>
+                </user_inputs>
+            </intent>
+            <responses>
+                <response>
+                    <text>Nice to meet you, [John](geekybot_user_name). How can I assist you today?</text>
+                </response>
+            </responses>
+        </intent_group>
+        <intent_group>
+            <intent>
+                <user_inputs>
+                    <user_input>I am having trouble accessing my account</user_input>
+                </user_inputs>
+            </intent>
+            <responses>
+                <response>
+                    <text>Hi, [John](geekybot_user_name)! Sorry to hear that. Have you tried refreshing the page?</text>
+                </response>
+            </responses>
+        </intent_group>
+        <intent_group>
+            <intent>
+                <user_inputs>
+                    <user_input>Yes, but it's still not working.</user_input>
+                </user_inputs>
+            </intent>
+            <responses>
+                <response>
+                    <text>Which browser are you using, [John](geekybot_user_name)?</text>
+                    <buttons>
+                        <button>
+                            <text>Google Chrome</text>
+                            <type>intent</type>
+                            <value>I am using Google Chrome</value>
+                        </button>
+                        <button>
+                            <text>Firefox</text>
+                            <type>intent</type>
+                            <value>I am using Firefox</value>
+                        </button>
+                        <button>
+                            <text>Other</text>
+                            <type>intent</type>
+                            <value>I am using another browser</value>
+                        </button>
+                    </buttons>
+                </response>
+            </responses>
+        </intent_group>
+        <intent_group>
+            <intent>
+                <user_inputs>
+                    <user_input>I am using Google Chrome</user_input>
+                </user_inputs>
+            </intent>
+            <responses>
+                <response>
+                    <text>Google Chrome is usually quite reliable, but sometimes cached data can cause issues. Have you tried clearing your browser cache?</text>
+                    <buttons>
+                        <button>
+                            <text>Yes</text>
+                            <type>intent</type>
+                            <value>I have cleared cache</value>
+                        </button>
+                        <button>
+                            <text>No</text>
+                            <type>intent</type>
+                            <value>I have not cleared cache</value>
+                        </button>
+                    </buttons>
+                </response>
+            </responses>
+        </intent_group>
+        <intent_group>
+            <intent>
+                <user_inputs>
+                    <user_input>I am using Firefox</user_input>
+                </user_inputs>
+            </intent>
+            <responses>
+                <response>
+                    <text>Firefox is known for its security, but sometimes old cache files can interfere. Have you tried clearing your browser cache?</text>
+                    <buttons>
+                        <button>
+                            <text>Yes</text>
+                            <type>intent</type>
+                            <value>I have cleared cache</value>
+                        </button>
+                        <button>
+                            <text>No</text>
+                            <type>intent</type>
+                            <value>I have not cleared cache</value>
+                        </button>
+                    </buttons>
+                </response>
+            </responses>
+        </intent_group>
+        <intent_group>
+            <intent>
+                <user_inputs>
+                    <user_input>I am using another browser</user_input>
+                </user_inputs>
+            </intent>
+            <responses>
+                <response>
+                    <text>It seems like you're using a different browser. Sometimes, clearing the cache helps resolve such issues. Have you tried doing that?</text>
+                    <buttons>
+                        <button>
+                            <text>Yes</text>
+                            <type>intent</type>
+                            <value>I have cleared cache</value>
+                        </button>
+                        <button>
+                            <text>No</text>
+                            <type>intent</type>
+                            <value>I have not cleared cache</value>
+                        </button>
+                    </buttons>
+                </response>
+            </responses>
+        </intent_group>
+        <intent_group>
+            <intent>
+                <user_inputs>
+                    <user_input>I have cleared cache</user_input>
+                </user_inputs>
+            </intent>
+            <responses>
+                <response>
+                    <text>Thanks for confirming. Since the issue persists, let's make sure your browser is up-to-date. An outdated version might cause this problem, so please check for updates and try logging in again.</text>
+                </response>
+            </responses>
+        </intent_group>
+        <intent_group>
+            <intent>
+                <user_inputs>
+                    <user_input>I have not cleared cache</user_input>
+                </user_inputs>
+            </intent>
+            <responses>
+                <response>
+                    <text>No problem! Here's how you can clear your browser cache. Go to settings > Privacy and security > Clear browsing data > Cached images and files > Clear data. After that, give the login another try.</text>
+                </response>
+            </responses>
+        </intent_group>
+        <intent_group>
+            <intent>
+                <user_inputs>
+                    <user_input>Okay, one second.</user_input>
+                </user_inputs>
+            </intent>
+            <responses>
+                <response>
+                    <text>Sure, take your time.</text>
+                </response>
+            </responses>
+        </intent_group>
+        <intent_group>
+            <intent>
+                <user_inputs>
+                    <user_input>Done. Let me try now.</user_input>
+                </user_inputs>
+            </intent>
+            <responses>
+                <response>
+                    <text>Great, let me know if it works.</text>
+                </response>
+            </responses>
+        </intent_group>
+        <intent_group>
+            <intent>
+                <user_inputs>
+                    <user_input>Yes, it works now. Thanks!</user_input>
+                </user_inputs>
+            </intent>
+            <responses>
+                <response>
+                    <text>You're welcome, [John](geekybot_user_name)! Is there anything else you need help with?</text>
+                </response>
+            </responses>
+        </intent_group>
+        <intent_group>
+            <intent>
+                <user_inputs>
+                    <user_input>Got it. Thanks again!</user_input>
+                </user_inputs>
+            </intent>
+            <responses>
+                <response>
+                    <text>Anytime! Have a great day, [John](geekybot_user_name)!</text>
+                </response>
+            </responses>
+        </intent_group>
+    </intents>
+    <fallback></fallback>
+</story>

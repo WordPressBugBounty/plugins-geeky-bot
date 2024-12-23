@@ -1,0 +1,2704 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"POT-Creation-Date: \n"
+"PO-Revision-Date: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: ru_RU\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 3.5\n"
+
+msgid "Logo"
+msgstr "Логотип"
+
+msgid "Template Field 1"
+msgstr "Поле шаблона 1"
+
+msgid "Title"
+msgstr "Заголовок"
+
+msgid "Template Field 2"
+msgstr "Поле шаблона 2"
+
+msgid "Template Field 3"
+msgstr "Поле шаблона 3"
+
+msgid "Template Field 4"
+msgstr "Поле шаблона 4"
+
+msgid "Template Field 10"
+msgstr "Поле шаблона 10"
+
+msgid "Simple Link here"
+msgstr "Простая ссылка здесь"
+
+msgid "Button"
+msgstr "Кнопка"
+
+msgid "Selected"
+msgstr "Выбрано"
+
+msgid "Template Content"
+msgstr "Содержимое шаблона"
+
+msgid "Template Field"
+msgstr "Поле шаблона"
+
+msgid "Show On Listing"
+msgstr "Показать в объявлении"
+
+msgid "Select Field"
+msgstr "Выберите поле"
+
+msgid "Label"
+msgstr "Этикетка"
+
+msgid "Select Type"
+msgstr "Выберите тип"
+
+msgid "Set Value"
+msgstr "Установить значение"
+
+msgid "No template fields are available!"
+msgstr "Поля шаблона недоступны!"
+
+msgid "Set Values"
+msgstr "Установить значения"
+
+msgid "Field Name :"
+msgstr "Имя поля:"
+
+msgid "Save"
+msgstr "Сохранять"
+
+msgid "Something went wrong try again later!"
+msgstr "Что-то пошло не так, попробуйте позже!"
+
+msgid "Info"
+msgstr "Информация"
+
+msgid "An empty expected value or display value field."
+msgstr "Пустое поле ожидаемого значения или отображаемого значения."
+
+msgid "Values set successfully."
+msgstr "Значения установлены успешно."
+
+msgid "Expected Value"
+msgstr "Ожидаемая стоимость"
+
+msgid "Display Value"
+msgstr "Отображаемое значение"
+
+msgid "Delete"
+msgstr "Удалить"
+
+msgid "Add Value"
+msgstr "Добавить ценность"
+
+msgid "Edit"
+msgstr "Редактировать"
+
+msgid "Text Field"
+msgstr "Текстовое поле"
+
+msgid "Checkbox"
+msgstr "Флажок"
+
+msgid "Radio Button"
+msgstr "Радиокнопка"
+
+msgid "Dropdown"
+msgstr "Падать"
+
+msgid "Link"
+msgstr "Связь"
+
+msgid ""
+"It is a long established fact that a reader will be distracted by the "
+"readable content of a page when looking at its layout Content here, content "
+"here..."
+msgstr ""
+"Давно установленный факт, что читатель будет отвлекаться на читаемое "
+"содержимое страницы, когда смотрит на ее макет. Контент здесь, контент "
+"здесь..."
+
+msgid "Description"
+msgstr "Описание"
+
+msgid "Content Description"
+msgstr "Описание содержимого"
+
+msgid "Max Number Of Sentance"
+msgstr "Максимальное количество предложений"
+
+msgid "1"
+msgstr "1"
+
+msgid "2"
+msgstr "2"
+
+msgid "3"
+msgstr "3"
+
+msgid "4"
+msgstr "4"
+
+msgid "5"
+msgstr "5"
+
+msgid "6"
+msgstr "6"
+
+msgid "Please wait a moment; this may take some time."
+msgstr "Пожалуйста, подождите немного; это может занять некоторое время."
+
+msgid "Synchronize"
+msgstr "Синхронизировать"
+
+msgid "Data Synchronization Uncomplete"
+msgstr "Синхронизация данных не завершена"
+
+msgid ""
+"Your GeekyBot data is not updated. To ensure accurate results, please "
+"synchronize your AI web search data."
+msgstr ""
+"Ваши данные GeekyBot не обновляются. Чтобы обеспечить точные результаты, "
+"синхронизируйте данные веб-поиска AI."
+
+msgid "Synchronize Data"
+msgstr "Синхронизировать данные"
+
+msgid "user"
+msgstr "пользователь"
+
+msgid "Dashboard"
+msgstr "Панель управления"
+
+msgid "key check"
+msgstr "проверка ключей"
+
+msgid "keys"
+msgstr "ключи"
+
+msgid "Stories"
+msgstr "Истории"
+
+msgid "AI Web Search"
+msgstr "Веб-поиск с искусственным интеллектом"
+
+msgid "Settings"
+msgstr "Настройки"
+
+msgid "Chatbot"
+msgstr "Чат-бот"
+
+msgid "Install Add-ons"
+msgstr "Установить дополнения"
+
+msgid "export"
+msgstr "экспорт"
+
+msgid "import"
+msgstr "импортировать"
+
+msgid "Chat History"
+msgstr "История чата"
+
+msgid "build"
+msgstr "строить"
+
+msgid "Build"
+msgstr "Строить"
+
+msgid "Variables"
+msgstr "Переменные"
+
+msgid "forms"
+msgstr "формы"
+
+msgid "Forms"
+msgstr "Формы"
+
+msgid "actions"
+msgstr "действия"
+
+msgid "Actions"
+msgstr "Действия"
+
+msgid "File ext. is mismatched"
+msgstr "Файл доб. не соответствует"
+
+msgid "File size is greater then allowed file size"
+msgstr "Размер файла больше допустимого размера файла"
+
+msgid "Total Stats"
+msgstr "Общая статистика"
+
+msgid "Intents"
+msgstr "Намерения"
+
+msgid "No record found"
+msgstr "Запись не найдена"
+
+msgid "Control Panel"
+msgstr "Панель управления"
+
+msgid "GeekyBot"
+msgstr "GeekyBot"
+
+msgid "Keys"
+msgstr "Ключи"
+
+msgid "Post Installation"
+msgstr "После установки"
+
+msgid "Premium Addon"
+msgstr "Премиум аддон"
+
+msgid "Could not find any matching results"
+msgstr "Не удалось найти соответствующие результаты"
+
+msgid "no record"
+msgstr "нет записи"
+
+msgid "No record found !..."
+msgstr "Запись не найдена!..."
+
+msgid "system offline"
+msgstr "система оффлайн"
+
+msgid ""
+"Unfortunately sytem is offline for a bit of maintenance right now. But soon "
+"we will be up."
+msgstr ""
+"К сожалению, система сейчас отключена от сети и проходит небольшое "
+"техническое обслуживание. Но скоро мы встанем."
+
+msgid "user ban"
+msgstr "бан пользователя"
+
+msgid "Your account is disabled, please contact system administrator !..."
+msgstr ""
+"Ваша учетная запись отключена, обратитесь к системному администратору!..."
+
+msgid "login"
+msgstr "авторизоваться"
+
+msgid "To Access This Page Please Login !..."
+msgstr "Для доступа к этой странице, пожалуйста, войдите!..."
+
+msgid "Back to control panel"
+msgstr "Вернуться к панели управления"
+
+msgid "You are not logged in"
+msgstr "Вы не вошли в систему"
+
+msgid "User Is Disabled By Admin"
+msgstr "Пользователь отключен администратором"
+
+msgid "The page you are looking for no longer exists"
+msgstr "Страница, которую вы ищете, больше не существует"
+
+msgid "You are already logged in"
+msgstr "Вы уже вошли в систему"
+
+msgid "Please select your role"
+msgstr "Пожалуйста, выберите свою роль"
+
+msgid "You are not allowed"
+msgstr "Вам не разрешено"
+
+msgid "You are Not Allowed To add More than One"
+msgstr "Вам не разрешено добавлять более одного"
+
+msgid "Contact Adminstrator"
+msgstr "Связаться с администратором"
+
+msgid "not allowed"
+msgstr "не разрешено"
+
+msgid "You are already logged in !..."
+msgstr "Вы уже вошли в систему!..."
+
+msgid "Logout"
+msgstr "Выход из системы"
+
+msgid "Please first make a selection from the list"
+msgstr "Пожалуйста, сначала сделайте выбор из списка"
+
+msgid "Unknown"
+msgstr "Неизвестный"
+
+msgid "Invalid request"
+msgstr "Неверный запрос"
+
+msgid "has been successfully applied."
+msgstr "было успешно применено."
+
+msgid "Error applying the new theme."
+msgstr "Ошибка применения новой темы."
+
+msgid "has been successfully saved."
+msgstr "был успешно сохранен."
+
+msgid "has not been saved."
+msgstr "не был сохранен."
+
+msgid "has been successfully reset."
+msgstr "был успешно сброшен."
+
+msgid "Every Story must have a name."
+msgstr "У каждой истории должно быть название."
+
+msgid "Every Story must have at least 1 intent."
+msgstr "Каждая история должна иметь хотя бы одно намерение."
+
+msgid "has been successfully deleted."
+msgstr "было успешно удалено."
+
+msgid "has been successfully exported."
+msgstr "был успешно экспортирован."
+
+msgid "Data has not been exported."
+msgstr "Данные не были экспортированы."
+
+msgid "Record not exist."
+msgstr "Запись не существует."
+
+msgid "has not been deleted."
+msgstr "не был удален."
+
+msgid "Please insert key."
+msgstr "Пожалуйста, вставьте ключ."
+
+msgid "key is not Valid."
+msgstr "ключ недействителен."
+
+msgid "transaction has been successfully verified."
+msgstr "транзакция успешно подтверждена."
+
+msgid "transaction has been successfully un-verified."
+msgstr "транзакция была успешно отменена."
+
+msgid "transaction has not been successfully verified."
+msgstr "транзакция не была успешно подтверждена."
+
+msgid "transaction has not been successfully un-verified."
+msgstr "транзакция не была успешно отменена."
+
+msgid "Fields has been successfully required."
+msgstr "Поля успешно обязательны."
+
+msgid "Field has not been required."
+msgstr "Поле не было обязательным."
+
+msgid "Fields has not been required."
+msgstr "Поля не обязательны."
+
+msgid "Fields has been successfully not required."
+msgstr "Поля успешно не обязательны."
+
+msgid "Field has not been not required."
+msgstr "Поле не было не обязательно."
+
+msgid "Fields has not been not required."
+msgstr "Поля не было не требуется."
+
+msgid "status has been updated."
+msgstr "статус обновлен."
+
+msgid "status has not been updated."
+msgstr "статус не обновился."
+
+msgid "data has been synchronized."
+msgstr "данные синхронизировались."
+
+msgid "data has not been synchronized."
+msgstr "данные не синхронизировались."
+
+msgid "in use cannot deleted."
+msgstr "используется, не может быть удален."
+
+msgid "already exist."
+msgstr "уже существуют."
+
+msgid "File type error."
+msgstr "Ошибка типа файла."
+
+msgid "File size error."
+msgstr "Ошибка размера файла."
+
+msgid "Intent"
+msgstr "Намерение"
+
+msgid "Response"
+msgstr "Ответ"
+
+msgid "Intent Group"
+msgstr "Группа намерений"
+
+msgid "Variable"
+msgstr "Переменная"
+
+msgid "Story"
+msgstr "История"
+
+msgid "Post type"
+msgstr "Тип сообщения"
+
+msgid "AI web search"
+msgstr "Веб-поиск с искусственным интеллектом"
+
+msgid "Action"
+msgstr "Действие"
+
+msgid "Changes"
+msgstr "Изменения"
+
+msgid "Data"
+msgstr "Данные"
+
+msgid "Message"
+msgstr "Сообщение"
+
+msgid "Configuration"
+msgstr "Конфигурация"
+
+msgid "Previous"
+msgstr "Предыдущий"
+
+msgid "Next"
+msgstr "Следующий"
+
+msgid "Guest"
+msgstr "Гость"
+
+msgid "User ID"
+msgstr "ID пользователя"
+
+msgid "Add to Story"
+msgstr "Добавить в историю"
+
+msgid "Add to story"
+msgstr "Добавить в историю"
+
+msgid "Search"
+msgstr "Поиск"
+
+msgid "Search with user name"
+msgstr "Поиск по имени пользователя"
+
+msgid "reset"
+msgstr "перезагрузить"
+
+msgid "Select Chat"
+msgstr "Выберите Чат"
+
+msgid "Sender"
+msgstr "Отправитель"
+
+msgid "select chat"
+msgstr "выберите чат"
+
+msgid "Chat history is not selected."
+msgstr "История чата не выбрана."
+
+msgid "Please select a conversation to view the user's chat history."
+msgstr ""
+"Пожалуйста, выберите разговор, чтобы просмотреть историю чата пользователя."
+
+msgid "Add User Input To Story"
+msgstr "Добавить пользовательский ввод в историю"
+
+msgid "Select"
+msgstr "Выбирать"
+
+msgid "Add User Input"
+msgstr "Добавить пользовательский ввод"
+
+msgid "You must choose a story; it cannot be empty."
+msgstr "Вы должны выбрать историю; оно не может быть пустым."
+
+msgid "Security verification Failed, Please restart you chat to continue."
+msgstr "Проверка безопасности не удалась. Перезапустите чат, чтобы продолжить."
+
+msgid "Your session has expired; please restart your chat."
+msgstr "Срок вашей сессии истек; пожалуйста, перезапустите чат."
+
+msgid "Hi, I am Chatbot. I do not have specific knowledge."
+msgstr "Привет, я чат-бот. У меня нет конкретных знаний."
+
+msgid "Your message is too long. Please enter only a username or email."
+msgstr ""
+"Ваше сообщение слишком длинное. Пожалуйста, введите только имя пользователя "
+"или адрес электронной почты."
+
+msgid "Invalid username or email. Try again with the correct one."
+msgstr ""
+"Неверное имя пользователя или адрес электронной почты. Попробуйте еще раз с "
+"правильным."
+
+msgid "Show More"
+msgstr "Показать больше"
+
+msgid "Show Articles"
+msgstr "Показать статьи"
+
+msgid "session time out"
+msgstr "тайм-аут сеанса"
+
+msgid "Data directory can not empty."
+msgstr "Каталог данных не может быть пустым."
+
+msgid "Data directory is not proper."
+msgstr "Каталог данных неправильный."
+
+msgid "Data directory is not writable."
+msgstr "Каталог данных недоступен для записи."
+
+msgid "Default fallback message can not be empty."
+msgstr "Резервное сообщение по умолчанию не может быть пустым."
+
+msgid "Admin pagination not saved."
+msgstr "Пагинация администратора не сохранена."
+
+msgid "User pagination not saved."
+msgstr "Пользовательская нумерация страниц не сохранена."
+
+msgid ""
+"The title of your chatbot or the primary title displayed on your chat "
+"interface."
+msgstr ""
+"Название вашего чат-бота или основной заголовок, отображаемый в интерфейсе "
+"чата."
+
+msgid "Default Fallback Message"
+msgstr "Резервное сообщение по умолчанию"
+
+msgid "The message displayed when the chatbot cannot understand."
+msgstr "Сообщение, отображаемое, когда чат-бот не может понять."
+
+msgid "Offline"
+msgstr "Оффлайн"
+
+msgid "Online"
+msgstr "Онлайн"
+
+msgid "Set your plugin offline for front end."
+msgstr "Установите плагин в автономном режиме для внешнего интерфейса."
+
+msgid "Data Directory"
+msgstr "Каталог данных"
+
+msgid "The directory where all chatbot data files are stored."
+msgstr "Каталог, в котором хранятся все файлы данных чат-бота."
+
+msgid "Admin Pagination"
+msgstr "Администраторская нумерация страниц"
+
+msgid "The number of items displayed in a paginated list in the admin panel."
+msgstr ""
+"Количество элементов, отображаемых в постраничном списке в панели "
+"администратора."
+
+msgid "User Pagination"
+msgstr "Пользовательская пагинация"
+
+msgid "The number of items displayed in a paginated list on the user side."
+msgstr ""
+"Количество элементов, отображаемых в постраничном списке на стороне "
+"пользователя."
+
+msgid "Save Settings"
+msgstr "Сохранить настройки"
+
+msgid "Add Icon"
+msgstr "Добавить значок"
+
+msgid "years"
+msgstr "годы"
+
+msgid "year"
+msgstr "год"
+
+msgid "ago"
+msgstr "назад"
+
+msgid "months"
+msgstr "месяцы"
+
+msgid "month"
+msgstr "месяц"
+
+msgid "days"
+msgstr "дни"
+
+msgid "day"
+msgstr "день"
+
+msgid "hours"
+msgstr "часы"
+
+msgid "hour"
+msgstr "час"
+
+msgid "minutes"
+msgstr "минуты"
+
+msgid "minute"
+msgstr "минута"
+
+msgid "Just now"
+msgstr "Прямо сейчас"
+
+msgid "AI ChatBot is disabled."
+msgstr "AI ChatBot отключен."
+
+msgid "Active Now"
+msgstr "Активен сейчас"
+
+msgid "AI ChatBot story not built."
+msgstr "История AI ChatBot не построена."
+
+msgid "Built Now"
+msgstr "Построен сейчас"
+
+msgid "WooCommerce plugin is not installed."
+msgstr "Плагин WooCommerce не установлен."
+
+msgid "Install Now"
+msgstr "Установить сейчас"
+
+msgid "WooCommerce plugin is not activated."
+msgstr "Плагин WooCommerce не активирован."
+
+msgid "WooCommerce Bot is disabled."
+msgstr "Бот WooCommerce отключен."
+
+msgid "WooCommerce story not built."
+msgstr "История WooCommerce не построена."
+
+msgid "Post Type not found."
+msgstr "Тип сообщения не найден."
+
+msgid "AI Web Search is disabled!"
+msgstr "Веб-поиск AI отключен!"
+
+msgid "AI ChatBot Sessions"
+msgstr "Сессии чат-бота с искусственным интеллектом"
+
+msgid "Session Card"
+msgstr "Сессионная карта"
+
+msgid "Graph"
+msgstr "График"
+
+msgid "Card"
+msgstr "Карта"
+
+msgid "WooCommerce Sessions"
+msgstr "Сеансы WooCommerce"
+
+msgid "AI Web Search Sessions"
+msgstr "Сеансы веб-поиска с использованием искусственного интеллекта"
+
+msgid "Icon"
+msgstr "Икона"
+
+msgid "GeekyBot Setup and Usage Guides"
+msgstr "Руководства по настройке и использованию GeekyBot"
+
+msgid "Explore installation, training, and effective usage guides."
+msgstr ""
+"Ознакомьтесь с руководствами по установке, обучению и эффективному "
+"использованию."
+
+msgid "Play"
+msgstr "Играть"
+
+msgid "Youtube Icon"
+msgstr "Иконка YouTube"
+
+msgid "How to add Story"
+msgstr "Как добавить историю"
+
+msgid "How to add Variable"
+msgstr "Как добавить переменную"
+
+msgid "Change Settings"
+msgstr "Изменить настройки"
+
+msgid "Change Color"
+msgstr "Изменить цвет"
+
+msgid "Remove"
+msgstr "Удалять"
+
+msgid "Cross Icon"
+msgstr "Крест Иконка"
+
+msgid "Stories Date"
+msgstr "Дата истории"
+
+msgid "View Stories"
+msgstr "Посмотреть истории"
+
+msgid "AI Chatbot"
+msgstr "ИИ-чат-бот"
+
+msgid "WooCommerce"
+msgstr "WooCommerce"
+
+msgid "Bot Icon"
+msgstr "Иконка бота"
+
+msgid "AI ChatBot"
+msgstr "Чат-бот с искусственным интеллектом"
+
+msgid "Last Month Stats"
+msgstr "Статистика за последний месяц"
+
+msgid "Woo Icon"
+msgstr "Иконка Ву"
+
+msgid "AI Web Search "
+msgstr "Веб-поиск с искусственным интеллектом"
+
+msgid "Manage Post Types"
+msgstr "Управление типами сообщений"
+
+msgid "Enable AI Web Search"
+msgstr "Включить веб-поиск с использованием искусственного интеллекта"
+
+msgid "Search Icon"
+msgstr "Иконка Поиск"
+
+msgid "History"
+msgstr "История"
+
+msgid "WooCommerce Bot"
+msgstr "WooCommerce Бот"
+
+msgid "logo"
+msgstr "логотип"
+
+msgid "No of Conversation"
+msgstr "Номер разговора"
+
+msgid "View History"
+msgstr "Просмотреть историю"
+
+msgid "No data"
+msgstr "Нет данных"
+
+msgid "No Data"
+msgstr "Нет данных"
+
+msgid "Addons"
+msgstr "Аддоны"
+
+msgid "addon"
+msgstr "добавить"
+
+msgid "Custom Listing Style"
+msgstr "Пользовательский стиль листинга"
+
+msgid "Custom Listing Text"
+msgstr "Пользовательский текст объявления"
+
+msgid "WooCommerce Features"
+msgstr "Возможности WooCommerce"
+
+msgid "Addon List"
+msgstr "Список дополнений"
+
+msgid "WooCommerce "
+msgstr "WooCommerce"
+
+msgid "Lead Generation"
+msgstr "Генерация лидов"
+
+msgid ""
+"GeekyBot simplifies the WooCommerce experience with intelligent product "
+"discovery and purchasing. It seamlessly integrates with WooCommerce for "
+"efficient product searches, detailed listings, and a smooth shopping "
+"experience."
+msgstr ""
+"GeekyBot упрощает работу с WooCommerce благодаря интеллектуальному "
+"обнаружению и покупке продуктов. Он легко интегрируется с WooCommerce для "
+"эффективного поиска товаров, получения подробных списков и удобства покупок."
+
+msgid "Find Product"
+msgstr "Найти продукт"
+
+msgid "Find Products"
+msgstr "Найти продукты"
+
+msgid "Find products by name, category, or price range via chat."
+msgstr ""
+"Найдите товары по названию, категории или ценовому диапазону через чат."
+
+msgid "List Product"
+msgstr "Список продуктов"
+
+msgid "List Products"
+msgstr "Список продуктов"
+
+msgid "Show relevant products with details and prices based on preferences."
+msgstr ""
+"Покажите соответствующие продукты с подробной информацией и ценами на основе "
+"предпочтений."
+
+msgid "Add To Cart Product"
+msgstr "Добавить в корзину товар"
+
+msgid "Add to Cart"
+msgstr "добавить в корзину"
+
+msgid "Easily add products to the cart list directly through chat."
+msgstr "Легко добавляйте товары в корзину прямо через чат."
+
+msgid "Watch Video"
+msgstr "Посмотреть видео"
+
+msgid "AI Chat"
+msgstr "AI-чат"
+
+msgid "Custom"
+msgstr "Обычай"
+
+msgid " AI Chat Bot "
+msgstr "Чат-бот с искусственным интеллектом"
+
+msgid "Conversation Handling"
+msgstr "Обработка разговора"
+
+msgid ""
+"AI Chat Conversation provides intelligent and context-aware interactions to "
+"enhance user engagement. Define key conversation elements to capture "
+"specific user inputs dynamically and adapt responses based on the context."
+msgstr ""
+"AI Chat Conversation обеспечивает интеллектуальное и контекстно-зависимое "
+"взаимодействие для повышения вовлеченности пользователей. Определите "
+"ключевые элементы разговора, чтобы динамически фиксировать конкретные "
+"действия пользователя и адаптировать ответы в зависимости от контекста."
+
+msgid "Capture and process inputs dynamically for personalized responses."
+msgstr ""
+"Динамически собирайте и обрабатывайте входные данные для персонализированных "
+"ответов."
+
+msgid "Adjust interactions based on the ongoing conversation for relevance."
+msgstr ""
+"Корректируйте взаимодействие на основе текущего разговора, чтобы оно было "
+"релевантным."
+
+msgid "Use collected data to tailor responses and improve satisfaction."
+msgstr ""
+"Используйте собранные данные, чтобы адаптировать ответы и повысить "
+"удовлетворенность."
+
+msgid "Discover Our "
+msgstr "Откройте для себя наш"
+
+msgid " AI Web Search"
+msgstr "Веб-поиск с искусственным интеллектом"
+
+msgid "Bot"
+msgstr "Бот"
+
+msgid ""
+"AI Web Search improves user experience by delivering advanced, intuitive "
+"content discovery on your WordPress site. With powerful searches, users can "
+"quickly find relevant information, enhancing overall interest and "
+"accessibility."
+msgstr ""
+"AI Web Search улучшает взаимодействие с пользователем, предоставляя "
+"расширенный, интуитивно понятный поиск контента на вашем сайте WordPress. "
+"Благодаря мощным функциям поиска пользователи могут быстро находить нужную "
+"информацию, повышая общий интерес и доступность."
+
+msgid "GeekyBot swiftly retrieves posts and pages based on user queries."
+msgstr ""
+"GeekyBot быстро находит сообщения и страницы на основе запросов "
+"пользователей."
+
+msgid "Displays full content or excerpts that match search terms."
+msgstr ""
+"Отображает полный контент или отрывки, соответствующие условиям поиска."
+
+msgid "Activate GeekyBot’s search for an AI web search with one click."
+msgstr "Активируйте поиск GeekyBot для веб-поиска AI одним щелчком мыши."
+
+msgid "Web Search"
+msgstr "Веб-поиск"
+
+msgid "GeekyBot Supported Plugins"
+msgstr "Плагины, поддерживаемые GeekyBot"
+
+msgid "Plugin"
+msgstr "Плагин"
+
+msgid "WP Job Manager"
+msgstr "Менеджер заданий WP"
+
+msgid "Tutor LMS"
+msgstr "Репетитор СДО"
+
+msgid "bbPress"
+msgstr "bbPress"
+
+msgid "LearnPress"
+msgstr "УзнайтеПресса"
+
+msgid "Knowledge Base"
+msgstr "База знаний"
+
+msgid "BetterDocs"
+msgstr "BetterDocs"
+
+msgid "Motors"
+msgstr "Моторы"
+
+msgid "Estatik Real Estate"
+msgstr "Эстатик Недвижимость"
+
+msgid "Auto Listings"
+msgstr "Авто объявления"
+
+msgid "Welcome to GeekyBot Features"
+msgstr "Добро пожаловать в возможности GeekyBot"
+
+msgid "GeekyBot Features"
+msgstr "Возможности GeekyBot"
+
+msgid "WooCommerce Integration"
+msgstr "Интеграция WooCommerce"
+
+msgid "Quick Installation"
+msgstr "Быстрая установка"
+
+msgid "Version: 1.0.0"
+msgstr "Версия: 1.0.0"
+
+msgid "AI Chat Bot"
+msgstr "Чат-бот с искусственным интеллектом"
+
+msgid "Enable/Disable"
+msgstr "Включить/отключить"
+
+msgid "Enable/Disable Bot"
+msgstr "Включить/отключить бота"
+
+msgid "Select Template"
+msgstr "Выберите шаблон"
+
+msgid ""
+"AI Chat in GeekyBot provides instant, personalized responses to user "
+"queries, ensuring seamless support around the clock. With its ability to "
+"engage users at any time, GeekyBot enhances the reliability of your service, "
+"making sure that your customers' needs are always met."
+msgstr ""
+"AI-чат в GeekyBot обеспечивает мгновенные персонализированные ответы на "
+"запросы пользователей, обеспечивая бесперебойную круглосуточную поддержку. "
+"Благодаря своей способности привлекать пользователей в любое время GeekyBot "
+"повышает надежность вашего сервиса, гарантируя, что потребности ваших "
+"клиентов всегда будут удовлетворены."
+
+msgid ""
+"By training GeekyBot with your specific data, you can create dynamic, "
+"tailored interactions that reflect your business's unique voice and "
+"services. This customization allows for more relevant, effective "
+"conversations that build stronger connections with your users."
+msgstr ""
+"Обучая GeekyBot вашими конкретными данными, вы можете создавать динамичные, "
+"адаптированные взаимодействия, которые отражают уникальный голос и услуги "
+"вашего бизнеса. Эта настройка позволяет вести более актуальные и эффективные "
+"разговоры, которые укрепляют связи с вашими пользователями."
+
+msgid "Bot Image"
+msgstr "Изображение бота"
+
+msgid "image"
+msgstr "изображение"
+
+msgid "Watch AI ChatBot Video"
+msgstr "Посмотреть видео об искусственном интеллекте чат-бота"
+
+msgid "AI Web Search Bot"
+msgstr "Бот веб-поиска с искусственным интеллектом"
+
+msgid ""
+"Effortlessly search for specific posts and content across your entire site "
+"using our powerful AI web search tool. GeekyBot goes beyond standard "
+"searches, delivering results from all types of data on your site. Whether "
+"you're looking for posts, pages, custom post types, or other information, "
+"GeekyBot ensures you find what you need quickly and efficiently by "
+"displaying relevant articles, posts, and more in a single, streamlined "
+"search experience."
+msgstr ""
+"С легкостью ищите конкретные сообщения и контент по всему сайту, используя "
+"наш мощный инструмент веб-поиска с искусственным интеллектом. GeekyBot "
+"выходит за рамки стандартного поиска, предоставляя результаты на основе всех "
+"типов данных на вашем сайте. Ищете ли вы сообщения, страницы, "
+"пользовательские типы сообщений или другую информацию, GeekyBot гарантирует, "
+"что вы быстро и эффективно найдете то, что вам нужно, отображая "
+"соответствующие статьи, сообщения и многое другое в едином оптимизированном "
+"поиске."
+
+msgid "New Post Type Search"
+msgstr "Поиск нового типа сообщения"
+
+msgid ""
+"Enable this option to directly include new post types in search results, "
+"enhancing user access to all content."
+msgstr ""
+"Включите эту опцию, чтобы напрямую включать новые типы сообщений в "
+"результаты поиска, расширяя доступ пользователей ко всему контенту."
+
+msgid "Watch AI Web Search Video"
+msgstr "Посмотрите видео с искусственным интеллектом в веб-поиске"
+
+msgid "Back"
+msgstr "Назад"
+
+msgid "Finish"
+msgstr "Заканчивать"
+
+msgid "WooCommerce is not installed"
+msgstr "WooCommerce не установлен"
+
+msgid ""
+"WooCommerce plugin is not installed on your site, you won't be able to "
+"integrate GeekyBot with WooCommerce."
+msgstr ""
+"Плагин WooCommerce не установлен на вашем сайте, вы не сможете интегрировать "
+"GeekyBot с WooCommerce."
+
+msgid ""
+"Easily integrate AI with WooCommerce to enhance your online store’s "
+"performance. GeekyBot boosts lead generation and customer interactions, "
+"automating key processes for a more effective and engaging shopping "
+"experience."
+msgstr ""
+"Легко интегрируйте искусственный интеллект с WooCommerce, чтобы повысить "
+"производительность вашего интернет-магазина. GeekyBot ускоряет привлечение "
+"потенциальных клиентов и взаимодействие с клиентами, автоматизируя ключевые "
+"процессы для более эффективного и привлекательного опыта покупок."
+
+msgid ""
+"GeekyBot also streamlines customer inquiries and provides real-time, "
+"intelligent responses. By improving retention and customer satisfaction, it "
+"ensures your store delivers an exceptional experience that keeps shoppers "
+"coming back."
+msgstr ""
+"GeekyBot также оптимизирует запросы клиентов и предоставляет "
+"интеллектуальные ответы в режиме реального времени. Повышая удержание и "
+"удовлетворенность клиентов, это гарантирует, что ваш магазин предоставит "
+"исключительный опыт, который заставит покупателей возвращаться."
+
+msgid "Watch WooCommerce Video"
+msgstr "Посмотрите видео о WooCommerce"
+
+msgid "Welcome to GeekyBot !..."
+msgstr "Добро пожаловать в GeekyBot!..."
+
+msgid ""
+"The ultimate AI chatbot for WooCommerce lead generation, intelligent content "
+"search, and interactive customer engagement on your WordPress website."
+msgstr ""
+"Лучший чат-бот с искусственным интеллектом для привлечения потенциальных "
+"клиентов WooCommerce, интеллектуального поиска контента и интерактивного "
+"взаимодействия с клиентами на вашем веб-сайте WordPress."
+
+msgid ""
+"Personalize interactions by dynamically processing user inputs using slots "
+"and variables."
+msgstr ""
+"Персонализируйте взаимодействие, динамически обрабатывая вводимые "
+"пользователем данные с помощью слотов и переменных."
+
+msgid ""
+"Enhance shopping by enabling users to find products and add them to their "
+"cart seamlessly."
+msgstr ""
+"Улучшите качество покупок, предоставив пользователям возможность находить "
+"товары и легко добавлять их в корзину."
+
+msgid "Website Search"
+msgstr "Поиск по сайту"
+
+msgid ""
+"Streamline discovery by helping users find relevant information on your "
+"WordPress site."
+msgstr ""
+"Упростите поиск, помогая пользователям находить нужную информацию на вашем "
+"сайте WordPress."
+
+msgid "Please insert activation key to proceed"
+msgstr "Пожалуйста, вставьте ключ активации, чтобы продолжить"
+
+msgid "Addon Installation Failed"
+msgstr "Установка аддона не удалась"
+
+msgid "Addon installation failed"
+msgstr "Установка аддона не удалась"
+
+msgid "Addon Installation Failed, File download error"
+msgstr "Не удалось установить дополнение, ошибка загрузки файла"
+
+msgid "Activated"
+msgstr "Активировано"
+
+msgid "Deactivate"
+msgstr "Деактивировать"
+
+msgid "Deactivated"
+msgstr "Деактивирован"
+
+msgid "Activate"
+msgstr "Активировать"
+
+msgid "Not Installed"
+msgstr "Не установлено"
+
+msgid "Addon Installed Successfully"
+msgstr "Аддон успешно установлен"
+
+msgid "Ticket Actions"
+msgstr "Действия с билетами"
+
+msgid "Agents"
+msgstr "Агенты"
+
+msgid "Ticket Auto Close"
+msgstr "Автоматическое закрытие билета"
+
+msgid "left image"
+msgstr "левое изображение"
+
+msgid "right image"
+msgstr "правильное изображение"
+
+msgid "Add-ons For Majestic Support"
+msgstr "Дополнения для поддержки Majestic"
+
+msgid ""
+"Get trusted WordPress add-ons. Guaranteed to work fast, safe to use, "
+"beautifully coded, packed with features, and are easy to use."
+msgstr ""
+"Получите надежные дополнения WordPress. Гарантированная быстрая работа, "
+"безопасность в использовании, красивый код, множество функций и простота в "
+"использовании."
+
+msgid "Save big today with an exclusive membership plan!"
+msgstr "Сэкономьте сегодня с эксклюзивным планом членства!"
+
+msgid "Show"
+msgstr "Показывать"
+
+msgid "show bundle pack"
+msgstr "показать пакетный пакет"
+
+msgid "Agent"
+msgstr "Агент"
+
+msgid ""
+"Add agents and assign roles and permissions to provide assistance and "
+"support for customer support tickets."
+msgstr ""
+"Добавляйте агентов и назначайте роли и разрешения для предоставления помощи "
+"и поддержки по заявкам в службу поддержки клиентов."
+
+msgid "buy now"
+msgstr "купить сейчас"
+
+msgid "Installed"
+msgstr "Установлено"
+
+msgid "multiform"
+msgstr "многообразный"
+
+msgid "Multi Forms"
+msgstr "Мульти Формы"
+
+msgid ""
+"Create multiple custom ticket forms with different custom fields for each "
+"request type that you support."
+msgstr ""
+"Создайте несколько настраиваемых форм заявок с разными настраиваемыми полями "
+"для каждого типа запроса, который вы поддерживаете."
+
+msgid "Email Piping"
+msgstr "Электронная почта"
+
+msgid ""
+"Email piping is the process of automatically turning incoming emails into "
+"support tickets without manual data entry."
+msgstr ""
+"Передача электронной почты — это процесс автоматического преобразования "
+"входящих электронных писем в заявки в службу поддержки без ручного ввода "
+"данных."
+
+msgid "agent auto assign"
+msgstr "автоматическое назначение агента"
+
+msgid "Agent Auto Assign"
+msgstr "Автоматическое назначение агента"
+
+msgid ""
+"Make the ticket assignment process automatic and assign the most qualified "
+"agent to your tickets with conditions."
+msgstr ""
+"Сделайте процесс назначения билетов автоматическим и назначьте для ваших "
+"билетов наиболее квалифицированного агента с условиями."
+
+msgid "private note"
+msgstr "личное сообщение"
+
+msgid "Private Note"
+msgstr "Частная заметка"
+
+msgid ""
+"Add private notes to a ticket and share crucial information internally with "
+"your agents, this private note is not visible to the customer."
+msgstr ""
+"Добавляйте личные примечания к заявке и делитесь важной информацией со "
+"своими агентами внутри компании. Эта личная заметка не видна клиенту."
+
+msgid "merge tickets"
+msgstr "объединить заявки"
+
+msgid "Merge Tickets"
+msgstr "Объединить заявки"
+
+msgid ""
+"Merge one or more tickets into another if you receive two support requests "
+"from the same end user about the same issue."
+msgstr ""
+"Объедините одну или несколько заявок в другую, если вы получили два запроса "
+"на поддержку от одного и того же конечного пользователя по одной и той же "
+"проблеме."
+
+msgid "helptopic"
+msgstr "справочная тема"
+
+msgid "Help Topics"
+msgstr "Темы помощи"
+
+msgid ""
+"The user can search for and choose the topic for which they need help using "
+"help topics"
+msgstr ""
+"Пользователь может искать и выбирать тему, по которой ему нужна помощь, "
+"используя разделы справки."
+
+msgid "Auto Close Ticket"
+msgstr "Автоматическое закрытие заявки"
+
+msgid ""
+"Manage abandoned tickets, and set rules for tickets over time, and those "
+"tickets will be closed automatically after a certain period."
+msgstr ""
+"Управляйте оставленными заявками и устанавливайте правила для заявок с "
+"течением времени, и эти заявки будут автоматически закрываться через "
+"определенный период."
+
+msgid "Knowledgebase"
+msgstr "База знаний"
+
+msgid ""
+"Stop wasting time on repetitive inquiries, build your knowledge base, and "
+"organize your solutions into categories for users."
+msgstr ""
+"Перестаньте тратить время на повторяющиеся запросы, создайте свою базу "
+"знаний и организуйте свои решения по категориям для пользователей."
+
+msgid "Ticket Overdue"
+msgstr "Билет просрочен"
+
+msgid ""
+"Define rules or set a specific time interval for making tickets "
+"automatically overdue."
+msgstr ""
+"Определите правила или установите определенный интервал времени для "
+"автоматической просрочки билетов."
+
+msgid "time tracking"
+msgstr "отслеживание времени"
+
+msgid "Time Tracking"
+msgstr "Учет времени"
+
+msgid ""
+"Track the amount of time spent on each customer support ticket without "
+"losing focus and enhance team productivity."
+msgstr ""
+"Отслеживайте количество времени, затраченное на обработку каждого обращения "
+"в службу поддержки, не теряя при этом концентрации, и повышайте "
+"продуктивность команды."
+
+msgid "Ticket History"
+msgstr "История билетов"
+
+msgid ""
+"Show the whole history of the ticket, including its status and any action "
+"taken in response to it."
+msgstr ""
+"Показать всю историю заявки, включая ее статус и любые действия, "
+"предпринятые в ответ на него."
+
+msgid "Paid Support"
+msgstr "Платная поддержка"
+
+msgid ""
+"The simplest approach to effectively manage payments for premium help is "
+"through paid support."
+msgstr ""
+"Самый простой способ эффективного управления платежами за премиальную помощь "
+"— это платная поддержка."
+
+msgid "Private Credentials"
+msgstr "Частные учетные данные"
+
+msgid ""
+"Customers will enter sensitive information on tickets, and this add-on is "
+"designed to help you keep that information secure."
+msgstr ""
+"Клиенты будут вводить конфиденциальную информацию в билеты, и это дополнение "
+"призвано помочь вам обеспечить безопасность этой информации."
+
+msgid "Ticket close reason"
+msgstr "Причина закрытия заявки"
+
+msgid "Ticket Closed Reason"
+msgstr "Причина закрытия заявки"
+
+msgid ""
+"Empowers users to provide clear and concise explanations for why customer "
+"service tickets are being closed."
+msgstr ""
+"Позволяет пользователям предоставлять четкие и краткие объяснения того, "
+"почему заявки на обслуживание клиентов закрываются."
+
+msgid "Premade Responses"
+msgstr "Готовые ответы"
+
+msgid ""
+"Make ready-made responses to the most common questions in the tickets to "
+"swiftly address client issues."
+msgstr ""
+"Делайте в тикетах готовые ответы на самые распространенные вопросы, чтобы "
+"оперативно решать вопросы клиентов."
+
+msgid "max ticket"
+msgstr "максимальный билет"
+
+msgid "Max Tickets"
+msgstr "Макс. билеты"
+
+msgid ""
+"Admins can limit the number of tickets that users can create as well as the "
+"number of tickets that agents can open individually."
+msgstr ""
+"Администраторы могут ограничить количество заявок, которые могут создавать "
+"пользователи, а также количество заявок, которые агенты могут открывать "
+"индивидуально."
+
+msgid "Feedback"
+msgstr "Обратная связь"
+
+msgid ""
+"To enhance the quality of your services, ask your customers to complete a "
+"survey when a ticket is closed."
+msgstr ""
+"Чтобы повысить качество ваших услуг, попросите своих клиентов пройти опрос "
+"после закрытия заявки."
+
+msgid "ticket actions"
+msgstr "действия с билетами"
+
+msgid ""
+"Ticket action options allow you to execute additional actions on tickets."
+msgstr ""
+"Параметры действий с заявками позволяют выполнять дополнительные действия с "
+"заявками."
+
+msgid "Export"
+msgstr "Экспорт"
+
+msgid ""
+"Easily export ticket data and performance report data from your majestic "
+"support to an Excel spreadsheet with our efficient and user-friendly "
+"solution."
+msgstr ""
+"С помощью нашего эффективного и удобного решения вы можете легко "
+"экспортировать данные о билетах и ​​отчеты о производительности из вашей "
+"величественной службы поддержки в электронную таблицу Excel."
+
+msgid "email cc"
+msgstr "электронная копия"
+
+msgid "Email CC"
+msgstr "Электронная почта CC"
+
+msgid ""
+"Send the exact copy of the email to the provided email address with Email CC "
+"or BCC."
+msgstr ""
+"Отправьте точную копию электронного письма на указанный адрес электронной "
+"почты с указанием электронной почты CC или BCC."
+
+msgid "user options"
+msgstr "параметры пользователя"
+
+msgid "User Options"
+msgstr "Параметры пользователя"
+
+msgid ""
+"User options enable you to define roles for new users when they are "
+"registered."
+msgstr ""
+"Параметры пользователя позволяют определять роли для новых пользователей при "
+"их регистрации."
+
+msgid "SMTP"
+msgstr "SMTP"
+
+msgid ""
+"SMTP enables you to add  custom mail protocols to send and receive emails "
+"with the support ticket system."
+msgstr ""
+"SMTP позволяет вам добавлять собственные почтовые протоколы для отправки и "
+"получения электронных писем с помощью системы заявок в службу поддержки."
+
+msgid "Multi Language Email Templates"
+msgstr "Многоязычные шаблоны электронной почты"
+
+msgid ""
+"Create multi-language email templates for all default email templates to "
+"send customers emails in the language that they prefer."
+msgstr ""
+"Создавайте многоязычные шаблоны электронной почты для всех шаблонов "
+"электронной почты по умолчанию, чтобы отправлять электронные письма клиентам "
+"на том языке, который они предпочитают."
+
+msgid "Downloads"
+msgstr "Загрузки"
+
+msgid ""
+"Downloads can be very helpful for users who are looking to obtain the "
+"necessary information to resolve issues."
+msgstr ""
+"Загрузки могут быть очень полезны для пользователей, которые хотят получить "
+"необходимую информацию для решения проблем."
+
+msgid "Announcements"
+msgstr "Объявления"
+
+msgid ""
+"Make an unlimited number of announcements related to the support system to "
+"encourage customer interaction."
+msgstr ""
+"Делайте неограниченное количество объявлений, связанных с системой "
+"поддержки, чтобы стимулировать взаимодействие с клиентами."
+
+msgid "Ban Email"
+msgstr "Запретить электронную почту"
+
+msgid ""
+"With Ban Email, you can limit a users ability to create new tickets by "
+"blocking their email address."
+msgstr ""
+"С помощью Ban Email вы можете ограничить возможность пользователей создавать "
+"новые заявки, заблокировав их адрес электронной почты."
+
+msgid "FAQ"
+msgstr "Часто задаваемые вопросы"
+
+msgid ""
+"Provide answers to common user questions with the FAQ extension before they "
+"become tickets."
+msgstr ""
+"Предоставляйте ответы на распространенные вопросы пользователей с помощью "
+"расширения FAQ, прежде чем они станут билетами."
+
+msgid "admin widgets"
+msgstr "виджеты администратора"
+
+msgid "Admin Widgets"
+msgstr "Виджеты администратора"
+
+msgid ""
+"Get immediate data on your support operations as soon as you log into your "
+"WordPress administration area."
+msgstr ""
+"Получите немедленные данные о ваших операциях поддержки, как только вы "
+"войдете в свою область администрирования WordPress."
+
+msgid "desktop notifications"
+msgstr "уведомления на рабочем столе"
+
+msgid "Desktop Notifications"
+msgstr "Уведомления на рабочем столе"
+
+msgid ""
+"You will be informed of anything that occurs on your support system by the "
+"desktop notifications."
+msgstr ""
+"Вы будете проинформированы обо всем, что происходит в вашей системе "
+"поддержки, с помощью уведомлений на рабочем столе."
+
+msgid "woocommerce"
+msgstr "woocommerce"
+
+msgid ""
+"The integration of the support ticket system for WooCommerce with your e-"
+"shop makes your support better and more professional."
+msgstr ""
+"Интеграция системы заявок поддержки WooCommerce с вашим интернет-магазином "
+"сделает вашу поддержку более качественной и профессиональной."
+
+msgid "mail chimp"
+msgstr "почтовый шимпанзе"
+
+msgid "Mail Chimp"
+msgstr "Mailchimp"
+
+msgid ""
+"Manage your email marketing campaigns directly from your majestic support by "
+"adding new user accounts to your Mailchimp email list."
+msgstr ""
+"Управляйте своими маркетинговыми кампаниями по электронной почте "
+"непосредственно из вашей величественной службы поддержки, добавляя новые "
+"учетные записи пользователей в свой список адресов электронной почты "
+"Mailchimp."
+
+msgid "internal mail"
+msgstr "внутренняя почта"
+
+msgid "Internal Mail"
+msgstr "Внутренняя почта"
+
+msgid ""
+"Send messages internally about support tickets and other issues between "
+"agents with internal mail."
+msgstr ""
+"Отправляйте внутренние сообщения о заявках в службу поддержки и других "
+"проблемах между агентами по внутренней почте."
+
+msgid "frontend widget"
+msgstr "виджет интерфейса"
+
+msgid "Front-End Widgets"
+msgstr "Интерфейсные виджеты"
+
+msgid ""
+"Frontend Widgets include several widgets that can be used to enhance the "
+"plugin's functionality in various areas of the website."
+msgstr ""
+"Виджеты внешнего интерфейса включают в себя несколько виджетов, которые "
+"можно использовать для улучшения функциональности плагина в различных "
+"областях веб-сайта."
+
+msgid "envato"
+msgstr "энвато"
+
+msgid "Envato"
+msgstr "Энвато"
+
+msgid ""
+"Clients won't be able to open a new ticket using the Envato Validation "
+"plugin if they don't have a valid Envato license."
+msgstr ""
+"Клиенты не смогут открыть новый билет с помощью плагина Envato Validation, "
+"если у них нет действующей лицензии Envato."
+
+msgid "easy digital download"
+msgstr "простая цифровая загрузка"
+
+msgid "Easy Digital Download"
+msgstr "Простая цифровая загрузка"
+
+msgid ""
+"Learn about a customer's purchase directly from the support dashboard by "
+"integrating Majestic Support with your EDD store."
+msgstr ""
+"Узнайте о покупке клиента непосредственно с панели поддержки, интегрировав "
+"Majestic Support с вашим магазином EDD."
+
+msgid "Majestic Support Add-ons Bundle Pack"
+msgstr "Пакет дополнений Majestic Support"
+
+msgid "Basic"
+msgstr "Базовый"
+
+msgid "Unlimited Agents"
+msgstr "Неограниченное количество агентов"
+
+msgid "Helptopic"
+msgstr "Справочная тема"
+
+msgid "Show all"
+msgstr "Показать все"
+
+msgid "Standard"
+msgstr "Стандартный"
+
+msgid "Everything in basic included and "
+msgstr "Все базовое включено и"
+
+msgid "Premade Response"
+msgstr "Готовый ответ"
+
+msgid "Professional"
+msgstr "Профессиональный"
+
+msgid "Everything in standard included and"
+msgstr "Все стандартное включено и"
+
+msgid "All Future Addons"
+msgstr "Все будущие дополнения"
+
+msgid "spinning wheel"
+msgstr "прялка"
+
+msgid "New Update Version"
+msgstr "Новая версия обновления"
+
+msgid "is Available"
+msgstr "доступен"
+
+msgid "Status: "
+msgstr "Статус:"
+
+msgid "Version"
+msgstr "Версия"
+
+msgid "addon in no longer active"
+msgstr "аддон больше не активен"
+
+msgid "Please Insert Your Activation Key"
+msgstr "Пожалуйста, вставьте свой ключ активации"
+
+msgid "XXXX-XXXX-XXXXX-XXXXX"
+msgstr "ХХХХ-ХХХХ-ХХХХХ-ХХХХХ"
+
+msgid "Proceed"
+msgstr "Продолжить"
+
+msgid "GeekyBot Addon Installer"
+msgstr "Установщик дополнений GeekyBot"
+
+msgid "Select All Addons"
+msgstr "Выбрать все дополнения"
+
+msgid "All allowed add ons are already installed"
+msgstr "Все разрешенные дополнения уже установлены."
+
+msgid "You are not allowed to install any add on"
+msgstr "Вам не разрешено устанавливать какие-либо дополнения"
+
+msgid "Something went wrong"
+msgstr "Что-то пошло не так"
+
+msgid "Addons Installed Successfully"
+msgstr "Аддоны успешно установлены"
+
+msgid "Open Dashboard"
+msgstr "Открыть панель управления"
+
+msgid "Open Plugins Page"
+msgstr "Открыть страницу плагинов"
+
+msgid "PersonName"
+msgstr "Имя человека"
+
+msgid "Facility"
+msgstr "Средство"
+
+msgid "Organization"
+msgstr "Организация"
+
+msgid "Location"
+msgstr "Расположение"
+
+msgid "Location_NON_GPE"
+msgstr "Location_NON_GPE"
+
+msgid "Product"
+msgstr "Продукт"
+
+msgid "Event"
+msgstr "Событие"
+
+msgid "ArtWork"
+msgstr "Артворк"
+
+msgid "LawDocument"
+msgstr "ЗаконДокумент"
+
+msgid "Language"
+msgstr "Язык"
+
+msgid "Date"
+msgstr "Дата"
+
+msgid "Time"
+msgstr "Время"
+
+msgid "Percentage"
+msgstr "Процент"
+
+msgid "Money"
+msgstr "Деньги"
+
+msgid "Quantity"
+msgstr "Количество"
+
+msgid "Ordinal"
+msgstr "Порядковый номер"
+
+msgid "Cardinal"
+msgstr "Кардинал"
+
+msgid "Select Variable For"
+msgstr "Выберите переменную для"
+
+msgid "Attribute"
+msgstr "Атрибут"
+
+msgid "Name"
+msgstr "Имя"
+
+msgid "Varibale Name"
+msgstr "Имя переменной"
+
+msgid "Type"
+msgstr "Тип"
+
+msgid "Possible Field Values"
+msgstr "Возможные значения полей"
+
+msgid "Add Comma Seprated Values"
+msgstr "Добавить значения, разделенные запятыми"
+
+msgid "Variable For"
+msgstr "Переменная для"
+
+msgid "Select Variable For in case of Woocommerce Variable"
+msgstr "Выберите переменную для в случае переменной Woocommerce."
+
+msgid "cancel"
+msgstr "отмена"
+
+msgid "Cancel"
+msgstr "Отмена"
+
+msgid "Save Changes"
+msgstr "Сохранить изменения"
+
+msgid "Save Variable"
+msgstr "Сохранить переменную"
+
+msgid "Reset"
+msgstr "Перезагрузить"
+
+msgid "Are you sure to delete it?"
+msgstr "Вы уверены, что удалите его?"
+
+msgid "Delete Variable"
+msgstr "Удалить переменную"
+
+msgid "Add Variable"
+msgstr "Добавить переменную"
+
+msgid "name"
+msgstr "имя"
+
+msgid "type"
+msgstr "тип"
+
+msgid "Possible Values Here"
+msgstr "Возможные значения здесь"
+
+msgid "Edit Variable"
+msgstr "Редактировать переменную"
+
+msgid "Are you sure to delete it"
+msgstr "Вы уверены, что удалите его?"
+
+msgid "Add New"
+msgstr "Добавить новый"
+
+msgid "User Input"
+msgstr "Пользовательский ввод"
+
+msgid "Close"
+msgstr "Закрывать"
+
+msgid "Add"
+msgstr "Добавлять"
+
+msgid "Add More"
+msgstr "Добавить больше"
+
+msgid "Available Variables"
+msgstr "Доступные переменные"
+
+msgid "Enter bot response here..."
+msgstr "Введите сюда ответ бота..."
+
+msgid "Button text here"
+msgstr "Текст кнопки здесь"
+
+msgid "URL"
+msgstr "URL-адрес"
+
+msgid "Button value here"
+msgstr "Значение кнопки здесь"
+
+msgid "Enter URL here"
+msgstr "Введите URL здесь"
+
+msgid "Add New Button"
+msgstr "Добавить новую кнопку"
+
+msgid "Select Predefined Function"
+msgstr "Выберите предопределенную функцию"
+
+msgid "Select Action"
+msgstr "Выберите действие"
+
+msgid "Add New Action"
+msgstr "Добавить новое действие"
+
+msgid "Add New Form"
+msgstr "Добавить новую форму"
+
+msgid "Enter default fallback here..."
+msgstr "Введите здесь резервный вариант по умолчанию..."
+
+msgid "Enter default fallback for intent here..."
+msgstr "Введите здесь резервный вариант по умолчанию для намерения..."
+
+msgid "Start Point"
+msgstr "Начальная точка"
+
+msgid "Error: The template file does not exist."
+msgstr "Ошибка: файл шаблона не существует."
+
+msgid "Text"
+msgstr "Текст"
+
+msgid "Function"
+msgstr "Функция"
+
+msgid "Error: The"
+msgstr "Ошибка:"
+
+msgid "tag in"
+msgstr "отмечать в"
+
+msgid "at position"
+msgstr "на позиции"
+
+msgid "is missing."
+msgstr "отсутствует."
+
+msgid "is empty."
+msgstr "пусто."
+
+msgid "tag associated with the user input"
+msgstr "тег, связанный с пользовательским вводом"
+
+msgid "in"
+msgstr "в"
+
+msgid "tag of the"
+msgstr "тег"
+
+msgid "block associated with the user input"
+msgstr "блок, связанный с пользовательским вводом"
+
+msgid "or"
+msgstr "или"
+
+msgid "Error: The function name"
+msgstr "Ошибка: имя функции"
+
+msgid "in the"
+msgstr "в"
+
+msgid "is invalid."
+msgstr "является недействительным."
+
+msgid "Error: The type name"
+msgstr "Ошибка: имя типа"
+
+msgid "is invalid. This should be"
+msgstr "является недействительным. Это должно быть"
+
+msgid "You might like these products."
+msgstr "Возможно, вам понравятся эти продукты."
+
+msgid "No exact match was found. Explore these similar products."
+msgstr "Точного совпадения не обнаружено. Изучите эти похожие продукты."
+
+msgid "Here are some suggestions."
+msgstr "Вот несколько предложений."
+
+msgid "Showing"
+msgstr "Показаны"
+
+msgid "of"
+msgstr "из"
+
+msgid "Add to cart"
+msgstr "Добавить в корзину"
+
+msgid "Empty Story"
+msgstr "Пустая история"
+
+msgid "Show All Products"
+msgstr "Показать все продукты"
+
+msgid "Search Product"
+msgstr "Поиск продукта"
+
+msgid "Get Products Under Price"
+msgstr "Получите товары по цене ниже"
+
+msgid "Get Products Above Price"
+msgstr "Получите продукты выше цены"
+
+msgid "View Cart/Remove Items"
+msgstr "Посмотреть корзину/Удалить товары"
+
+msgid "Checkout"
+msgstr "Проверить"
+
+msgid "Reset Password"
+msgstr "Сбросить пароль"
+
+msgid "Send Chat To Admin"
+msgstr "Отправить чат администратору"
+
+msgid "Integer"
+msgstr "Целое число"
+
+msgid "Float"
+msgstr "Плавать"
+
+msgid "Boolean"
+msgstr "логическое значение"
+
+msgid "String"
+msgstr "Нить"
+
+msgid "Default Fallback"
+msgstr "Резервный вариант по умолчанию"
+
+msgid "Are you sure to reset it?"
+msgstr "Вы уверены, чтобы сбросить его?"
+
+msgid "Parameter Name *"
+msgstr "Имя параметра *"
+
+msgid "Varibale Name *"
+msgstr "Имя переменной *"
+
+msgid "User input has been successfully saved."
+msgstr "Пользовательский ввод успешно сохранен."
+
+msgid "An empty user input field."
+msgstr "Пустое поле пользовательского ввода."
+
+msgid "An empty bot response."
+msgstr "Пустой ответ бота."
+
+msgid "Response Successfully Saved!"
+msgstr "Ответ успешно сохранен!"
+
+msgid "Action Successfully Saved!"
+msgstr "Действие успешно сохранено!"
+
+msgid "Form Successfully Saved!"
+msgstr "Форма успешно сохранена!"
+
+msgid "Default Fallback Successfully Saved!"
+msgstr "Резервный вариант по умолчанию успешно сохранен!"
+
+msgid "Store relevant user input first, then fallback."
+msgstr ""
+"Сначала сохраните соответствующий пользовательский ввод, а затем откат."
+
+msgid "An empty default fallback."
+msgstr "Пустой резервный вариант по умолчанию."
+
+msgid "Default Intent Fallback Successfully Saved!"
+msgstr "Резервное намерение по умолчанию успешно сохранено!"
+
+msgid "Discard"
+msgstr "Отказаться"
+
+msgid "Temporary discard"
+msgstr "Временный сброс"
+
+msgid "Automate"
+msgstr "Автоматизировать"
+
+msgid "User input"
+msgstr "Пользовательский ввод"
+
+msgid "Form"
+msgstr "Форма"
+
+msgid "Fallback"
+msgstr "Отступать"
+
+msgid "Chat "
+msgstr "Чат"
+
+msgid "Available Variable"
+msgstr "Доступная переменная"
+
+msgid "Product Name"
+msgstr "Название продукта"
+
+msgid "Minimum Price"
+msgstr "Минимальная цена"
+
+msgid "Maximum Price"
+msgstr "Максимальная цена"
+
+msgid "User Login"
+msgstr "Вход пользователя"
+
+msgid "Action Icon"
+msgstr "Значок действия"
+
+msgid "User Icon"
+msgstr "Значок пользователя"
+
+msgid "User"
+msgstr "Пользователь"
+
+msgid "Bot Response"
+msgstr "Ответ бота"
+
+msgid "User Text Icon"
+msgstr "Текстовый значок пользователя"
+
+msgid "Bot Function Icon"
+msgstr "Значок функции бота"
+
+msgid "Bot Function"
+msgstr "Функция бота"
+
+msgid "Predefined Function"
+msgstr "Предопределенная функция"
+
+msgid "Bot Action Icon"
+msgstr "Значок действия бота"
+
+msgid "Bot Action"
+msgstr "Действие бота"
+
+msgid "Bot Form Icon"
+msgstr "Значок формы бота"
+
+msgid "Bot Form"
+msgstr "Форма бота"
+
+msgid "Fallback Icon"
+msgstr "Резервный значок"
+
+msgid "Fallback Massege"
+msgstr "Резервное сообщение"
+
+msgid "Save & Close"
+msgstr "Сохранить и закрыть"
+
+msgid "Info Icon"
+msgstr "Значок информации"
+
+msgid "How to add parameters"
+msgstr "Как добавить параметры"
+
+msgid "User form Icon"
+msgstr "Иконка формы пользователя"
+
+msgid "Form Name *"
+msgstr "Имя формы *"
+
+msgid "Add New Variable"
+msgstr "Добавить новую переменную"
+
+msgid "Function Form"
+msgstr "Форма функции"
+
+msgid "Action Form"
+msgstr "Форма действия"
+
+msgid "Custom Action"
+msgstr "Пользовательское действие"
+
+msgid "Add New Custom Action"
+msgstr "Добавить новое пользовательское действие"
+
+msgid "Add New Parameter"
+msgstr "Добавить новый параметр"
+
+msgid "Intent Fallback"
+msgstr "Намерение резервного копирования"
+
+msgid "Save Story"
+msgstr "Сохранить историю"
+
+msgid "Reset Story"
+msgstr "Сбросить историю"
+
+msgid "Story has been successfully saved."
+msgstr "История успешно сохранена."
+
+msgid "WooCommerce is not active!"
+msgstr "WooCommerce не активен!"
+
+msgid "Error encountered in template."
+msgstr "В шаблоне обнаружена ошибка."
+
+msgid "An empty story name."
+msgstr "Пустое название истории."
+
+msgid "An empty story template."
+msgstr "Пустой шаблон истории."
+
+msgid "title"
+msgstr "заголовок"
+
+msgid "Active"
+msgstr "Активный"
+
+msgid "Disable"
+msgstr "Запрещать"
+
+msgid "Edit Story"
+msgstr "Редактировать историю"
+
+msgid "Are you sure to delete"
+msgstr "Вы уверены, что удалите"
+
+msgid "Delete Story"
+msgstr "Удалить историю"
+
+msgid "Built Story"
+msgstr "Построенная история"
+
+msgid "Built"
+msgstr "Построен"
+
+msgid "WooCommerce Story"
+msgstr "История WooCommerce"
+
+msgid "Story Name *"
+msgstr "Название истории *"
+
+msgid "Edit Story Name"
+msgstr "Изменить название истории"
+
+msgid "Invalid username or email."
+msgstr "Неверное имя пользователя или адрес электронной почты."
+
+msgid "Looks like there was a problem resetting your password:"
+msgstr "Похоже, возникла проблема со сбросом пароля:"
+
+msgid "User not found!"
+msgstr "Пользователь не найден!"
+
+msgid "Okay, I have sent the recovery email. Thank you for your patience."
+msgstr ""
+"Хорошо, я отправил письмо для восстановления. Спасибо за ваше терпение."
+
+msgid "Your query is sent to the admin."
+msgstr "Ваш запрос отправлен администратору."
+
+msgid "Enable"
+msgstr "Давать возможность"
+
+msgid "Smart Popup"
+msgstr "Умное всплывающее окно"
+
+msgid "Standard Popup"
+msgstr "Стандартное всплывающее окно"
+
+msgid "Appearance"
+msgstr "Появление"
+
+msgid "Choose File"
+msgstr "Выберите файл"
+
+msgid "User Default Image"
+msgstr "Изображение пользователя по умолчанию"
+
+msgid "Primary Color"
+msgstr "Основной цвет"
+
+msgid "Choose Color"
+msgstr "Выберите цвет"
+
+msgid "User Text Background"
+msgstr "Фон пользовательского текста"
+
+msgid "User Text Color"
+msgstr "Цвет пользовательского текста"
+
+msgid "Bot Link Color"
+msgstr "Цвет ссылки бота"
+
+msgid "Presets"
+msgstr "Пресеты"
+
+msgid "Preset"
+msgstr "Предустановка"
+
+msgid "online"
+msgstr "онлайн"
+
+msgid "User Image"
+msgstr "Изображение пользователя"
+
+msgid "Hi I am John"
+msgstr "Привет, я Джон"
+
+msgid "Hi John! How can I help you?"
+msgstr "Привет, Джон! Могу я чем-нибудь помочь?"
+
+msgid "Can you help me find a new backpack?"
+msgstr "Можете ли вы помочь мне найти новый рюкзак?"
+
+msgid "Product Icon"
+msgstr "Значок продукта"
+
+msgid "Fusion Backpack"
+msgstr "Рюкзак «Фьюжн»"
+
+msgid "$"
+msgstr "$"
+
+msgid "59"
+msgstr "59"
+
+msgid "Send message"
+msgstr "Отправить сообщение"
+
+msgid "Welcome Message"
+msgstr "Приветственное сообщение"
+
+msgid "Welcome Image"
+msgstr "Приветственное изображение"
+
+msgid "Chat Auto-Popup"
+msgstr "Автоматическое всплывающее окно чата"
+
+msgid "Controls whether the chat popup appears automatically on your site."
+msgstr ""
+"Определяет, будет ли всплывающее окно чата автоматически появляться на вашем "
+"сайте."
+
+msgid "Chat Pop-up Style"
+msgstr "Стиль всплывающего окна чата"
+
+msgid "Choose how the chat will appear: Smart or Standard pop-up."
+msgstr ""
+"Выберите, как будет выглядеть чат: «Умное» или «Стандартное всплывающее "
+"окно»."
+
+msgid "Chat Auto-Popup Timing"
+msgstr "Время автоматического всплывающего окна чата"
+
+msgid ""
+"Define the delay time in seconds for the chatbot to auto-appear on the site."
+msgstr ""
+"Определите время задержки в секундах для автоматического появления чат-бота "
+"на сайте."
+
+msgid "Note"
+msgstr "Примечание"
+
+msgid ""
+"If the colors have been saved but the user-side colors are still the same, "
+"it is advised to clear the cache."
+msgstr ""
+"Если цвета были сохранены, но цвета на стороне пользователя остались "
+"прежними, рекомендуется очистить кеш."
+
+msgid "Also"
+msgstr "Также"
+
+msgid "Found"
+msgstr "Найденный"
+
+msgid "Here are some"
+msgstr "Вот некоторые"
+
+msgid "Help"
+msgstr "Помощь"
+
+msgid "Have any problem?"
+msgstr "Есть проблемы?"
+
+msgid ""
+"If you experience any difficulties, we're here to help! Simply click the"
+msgstr ""
+"Если у вас возникнут трудности, мы всегда готовы помочь! Просто нажмите "
+"кнопку"
+
+msgid "Create A Ticket"
+msgstr "Создать билет"
+
+msgid ""
+"button to report your issue, and our dedicated support team will assist you "
+"promptly."
+msgstr ""
+"Нажмите кнопку, чтобы сообщить о проблеме, и наша специальная служба "
+"поддержки оперативно вам поможет."
+
+msgid "Create Ticket"
+msgstr "Создать билет"
+
+msgid "Post Type"
+msgstr "Тип сообщения"
+
+msgid "post type"
+msgstr "тип сообщения"
+
+msgid "Post Label"
+msgstr "Почтовая этикетка"
+
+msgid "Associated Plugin"
+msgstr "Связанный плагин"
+
+msgid "Add associated plugin's name"
+msgstr "Добавьте имя связанного плагина"
+
+msgid "For better data consistency, please provide a associated plugin's name."
+msgstr ""
+"Для большей согласованности данных укажите название соответствующего плагина."
+
+msgid "Status"
+msgstr "Статус"
+
+msgid "For status changes, please use the options available in the listing."
+msgstr "Для изменения статуса используйте параметры, доступные в объявлении."
+
+msgid "Template Section"
+msgstr "Раздел шаблонов"
+
+msgid ""
+"Fields are currently auto-filled for preview purposes only. Please save your "
+"changes to apply them."
+msgstr ""
+"В настоящее время поля заполняются автоматически только для предварительного "
+"просмотра. Пожалуйста, сохраните изменения, чтобы применить их."
+
+msgid "Choose one template style from the given below"
+msgstr "Выберите один стиль шаблона из приведенных ниже."
+
+msgid "Add Button /Link"
+msgstr "Добавить кнопку/ссылку"
+
+msgid "Add New Button /Link"
+msgstr "Добавить новую кнопку/ссылку"
+
+msgid "Show on Listing"
+msgstr "Показать в объявлении"
+
+msgid "View Details"
+msgstr "Посмотреть детали"
+
+msgid "detail page link"
+msgstr "ссылка на страницу подробностей"
+
+msgid "Save Template"
+msgstr "Сохранить шаблон"
+
+msgid "Create a Post"
+msgstr "Создать сообщение"
+
+msgid "Please first create a sample post to use template section."
+msgstr ""
+"Пожалуйста, сначала создайте образец сообщения, чтобы использовать раздел "
+"шаблонов."
+
+msgid "AI web search enabled successfully."
+msgstr "Веб-поиск AI успешно включен."
+
+msgid "AI web search already enabled."
+msgstr "Веб-поиск с использованием искусственного интеллекта уже включен."
+
+msgid "Something went wrong."
+msgstr "Что-то пошло не так."
+
+msgid "AI web search disabled successfully."
+msgstr "Веб-поиск AI успешно отключен."
+
+msgid "New post type search enabled successfully."
+msgstr "Поиск нового типа сообщений успешно включен."
+
+msgid "New post type search disabled successfully."
+msgstr "Поиск нового типа сообщений успешно отключен."
+
+msgid "Data Synchronization Needed"
+msgstr "Требуется синхронизация данных"
+
+msgid ""
+"Your data is not updated. To ensure accurate results, please synchronize "
+"your AI web search data."
+msgstr ""
+"Ваши данные не обновляются. Чтобы обеспечить точные результаты, "
+"синхронизируйте данные веб-поиска AI."
+
+msgid "Enable AI web Search"
+msgstr "Включить веб-поиск с использованием искусственного интеллекта"
+
+msgid ""
+"Enable this feature to provide users with direct AI web search results in "
+"the chat, offering them a broader context for their queries."
+msgstr ""
+"Включите эту функцию, чтобы предоставлять пользователям прямые результаты "
+"веб-поиска с помощью искусственного интеллекта в чате, предлагая им более "
+"широкий контекст для их запросов."
+
+msgid "Enable New Post Type Search"
+msgstr "Включить поиск по новому типу сообщений"
+
+msgid "Lable"
+msgstr "Этикетка"
+
+msgid "Post lable"
+msgstr "Метка публикации"
+
+msgid "WooCommerce is currently inactive."
+msgstr "WooCommerce в настоящее время неактивен."
+
+msgid "No product was found."
+msgstr "Товар не найден."
+
+msgid "Please enter a valid product or category name."
+msgstr "Пожалуйста, введите действительное название продукта или категории."
+
+msgid "Please enter a valid price."
+msgstr "Пожалуйста, введите действительную цену."
+
+msgid "Please enter a valid price range."
+msgstr "Пожалуйста, введите действительный диапазон цен."
+
+msgid "Your cart is currently empty."
+msgstr "Ваша корзина в настоящее время пуста."
+
+msgid "Cart Details"
+msgstr "Детали корзины"
+
+msgid "Price"
+msgstr "Цена"
+
+msgid "Change"
+msgstr "Изменять"
+
+msgid "Total Price"
+msgstr "Общая стоимость"
+
+msgid "Remove Item"
+msgstr "Удалить элемент"
+
+msgid "Subtotal"
+msgstr "Итого"
+
+msgid "Total"
+msgstr "Общий"
+
+msgid "Proceed to Checkout"
+msgstr "Перейти к оформлению заказа"
+
+msgid "is out of stock."
+msgstr "нет в наличии."
+
+msgid "You cannot add another “"
+msgstr "Вы не можете добавить еще один “"
+
+msgid "” to your cart."
+msgstr "» в корзину."
+
+msgid "You cannot add more than"
+msgstr "Вы не можете добавить более"
+
+msgid "of this product to your cart."
+msgstr "этого товара в корзину."
+
+msgid "has been added to your cart."
+msgstr "был добавлен в вашу корзину."
+
+msgid "has not been added to your cart. Please try again."
+msgstr "не был добавлен в вашу корзину. Пожалуйста, попробуйте еще раз."
+
+msgid "View Cart"
+msgstr "Посмотреть корзину"
+
+msgid "Please select a product!"
+msgstr "Пожалуйста, выберите товар!"
+
+msgid "There are no variations available."
+msgstr "Доступных вариаций нет."
+
+msgid "Product not found or not a variable product."
+msgstr "Продукт не найден или не является переменным продуктом."
+
+msgid "You can't add another “"
+msgstr "Вы не можете добавить еще один “"
+
+msgid "There was an error while adding the product to the cart."
+msgstr "При добавлении товара в корзину произошла ошибка."
+
+msgid ""
+"The requested variation with the specified attributes could not be found."
+msgstr "Запрошенный вариант с указанными атрибутами не найден."
+
+msgid "Change Quantity"
+msgstr "Изменить количество"
+
+msgid "Update"
+msgstr "Обновлять"
+
+msgid "The cart is empty."
+msgstr "Корзина пуста."
+
+msgid "Cart item is not found."
+msgstr "Товар в корзине не найден."
+
+msgid "The item was not found in the cart."
+msgstr "Товар не найден в корзине."
+
+msgid "Quantity updated successfully!"
+msgstr "Количество успешно обновлено!"
+
+msgid "Change quantity"
+msgstr "Изменить количество"
+
+msgid "Edit Post Type"
+msgstr "Изменить тип сообщения"
+
+msgid "Parameter"
+msgstr "Параметр"
+
+msgid "delete"
+msgstr "удалить"
+
+msgid "add intent"
+msgstr "добавить намерение"
+
+msgid "plus icon"
+msgstr "значок плюса"
+
+msgid "Add Intents"
+msgstr "Добавить намерения"
+
+msgid ""
+"On the responses listing page, all the responses are listed here; you can "
+"check them out."
+msgstr ""
+"На странице со списком ответов здесь перечислены все ответы; вы можете "
+"проверить их."
+
+msgid "Add Intent"
+msgstr "Добавить намерение"
+
+msgid ""
+"On the form listing page, all the forms are listed here; you can check them "
+"out."
+msgstr ""
+"На странице со списком форм здесь перечислены все формы; вы можете проверить "
+"их."
+
+msgid "Add Forms"
+msgstr "Добавить формы"
+
+msgid "On the add form page, you can add a new form."
+msgstr "На странице добавления формы вы можете добавить новую форму."
+
+msgid "Responses"
+msgstr "Ответы"
+
+msgid "Add Response"
+msgstr "Добавить ответ"
+
+msgid "On the add Response page, you can add a new Response."
+msgstr "На странице добавления ответа вы можете добавить новый ответ."
+
+msgid ""
+"On the actions listing page, all the actions are listed here; you can check "
+"them out."
+msgstr ""
+"На странице списка действий здесь перечислены все действия; вы можете "
+"проверить их."
+
+msgid "Add  Action"
+msgstr "Добавить действие"
+
+msgid "On the add action page, you can add a new action."
+msgstr "На странице добавления действия вы можете добавить новое действие."
+
+msgid "Add Intent Group"
+msgstr "Добавить группу намерений"
+
+msgid "Import"
+msgstr "Импорт"
+
+msgid "Menu"
+msgstr "Меню"
+
+msgid "End Chat"
+msgstr "Завершить чат"
+
+msgid "Restart Chat"
+msgstr "Перезапустить чат"
+
+msgid "Image"
+msgstr "Изображение"
+
+msgid "Send Icon"
+msgstr "Иконка Отправить"
+
+msgid "Welcome to GeekyBot! Let me know how I can assist you today."
+msgstr ""
+"Добро пожаловать в GeekyBot! Дайте мне знать, как я могу помочь вам сегодня."
+
+msgid "admin."
+msgstr "админ."
+
+msgid "Account Assistance"
+msgstr "Помощь по счету"
+
+msgid "Diet Plan Assistant"
+msgstr "Помощник по планированию диеты"
+
+msgid "Job Application"
+msgstr "Заявление о приеме на работу"
+
+msgid "Offline Form"
+msgstr "Оффлайн-форма"
+
+msgid "Real Estate"
+msgstr "Недвижимость"
+
+msgid "Sales Support"
+msgstr "Поддержка продаж"
+
+msgid "University"
+msgstr "Университет"
+
+msgid "Vacation Planner"
+msgstr "Планировщик отпуска"

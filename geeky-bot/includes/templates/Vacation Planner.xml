@@ -1,0 +1,161 @@
+<?xml version="1.0"?>
+<story>
+    <intents>
+        <intent_group>
+            <intent>
+                <user_inputs>
+                    <user_input>Hi</user_input>
+                    <user_input>Hi there</user_input>
+                    <user_input>Hello</user_input>
+                    <user_input>Greeting</user_input>
+                    <user_input>Greetings</user_input>
+                    <user_input>Hey</user_input>
+                    <user_input>What's up</user_input>
+                    <user_input>Good morning</user_input>
+                    <user_input>Good afternoon</user_input>
+                    <user_input>Good evening</user_input>
+                </user_inputs>
+            </intent>
+            <responses>
+                <response>
+                    <text>Hello! Ready to plan your next vacation? I'm here to help you find the perfect getaway! How can I assist you today?</text>
+                    <buttons>
+                        <button>
+                            <text>Find Vacation Destinations</text>
+                            <type>intent</type>
+                            <value>Find Vacation Destinations</value>
+                        </button>
+                        <button>
+                            <text>Explore Travel Packages</text>
+                            <type>intent</type>
+                            <value>Explore Travel Packages</value>
+                        </button>
+                        <button>
+                            <text>Get Travel Tips and Advice</text>
+                            <type>intent</type>
+                            <value>Get Travel Tips and Advice</value>
+                        </button>
+                    </buttons>
+                </response>
+            </responses>
+        </intent_group>
+        <intent_group>
+            <intent>
+                <user_inputs>
+                    <user_input>Find Vacation Destinations</user_input>
+                </user_inputs>
+            </intent>
+            <responses>
+                <response>
+                    <text>I can help you find the perfect vacation spot! What type of destination are you interested in?</text>
+                </response>
+            </responses>
+        </intent_group>
+        <intent_group>
+            <intent>
+                <user_inputs>
+                    <user_input>Beach</user_input>
+                    <user_input>Mountain</user_input>
+                    <user_input>City</user_input>
+                    <user_input>Adventure</user_input>
+                    <user_input>Cultural Experience</user_input>
+                </user_inputs>
+            </intent>
+            <responses>
+                <response>
+                    <text>Great choice! Here are some [selected type] destinations you might love:</text>
+                </response>
+                <response>
+                    <text>[List of destinations based on the selected type]</text>
+                </response>
+                <response>
+                    <text>Would you like more information on any of these destinations?</text>
+                </response>
+            </responses>
+        </intent_group>
+        <intent_group>
+            <intent>
+                <user_inputs>
+                    <user_input>Explore Travel Packages</user_input>
+                </user_inputs>
+            </intent>
+            <responses>
+                <response>
+                    <text>We have some exciting travel packages available! What kind of package are you interested in</text>
+                </response>
+            </responses>
+        </intent_group>
+        <intent_group>
+            <intent>
+                <user_inputs>
+                    <user_input>All-Inclusive Resorts</user_input>
+                    <user_input>Family-Friendly Trips</user_input>
+                    <user_input>Romantic Getaways</user_input>
+                    <user_input>Adventure Tours</user_input>
+                    <user_input>Cruises</user_input>
+                </user_inputs>
+            </intent>
+            <responses>
+                <response>
+                    <text>Here are some fantastic [selected package type] packages</text>
+                </response>
+                <response>
+                    <text>[List of packages with details]</text>
+                </response>
+                <response>
+                    <text>Would you like to book one or get more details?</text>
+                </response>
+            </responses>
+        </intent_group>
+        <intent_group>
+            <intent>
+                <user_inputs>
+                    <user_input>Get Travel Tips and Advice</user_input>
+                </user_inputs>
+            </intent>
+            <responses>
+                <response>
+                    <text>Traveling can be a breeze with the right tips! What kind of advice are you looking for?</text>
+                </response>
+            </responses>
+        </intent_group>
+        <intent_group>
+            <intent>
+                <user_inputs>
+                    <user_input>Packing Tips</user_input>
+                    <user_input>Travel Safety</user_input>
+                    <user_input>Best Times to Travel</user_input>
+                    <user_input>Traveling with Kids</user_input>
+                    <user_input>Others</user_input>
+                </user_inputs>
+            </intent>
+            <responses>
+                <response>
+                    <text>[Provide relevant tips or advice based on the selected option]. Do you have more questions, or would you like to explore another topic?</text>
+                </response>
+            </responses>
+        </intent_group>
+        <intent_group>
+            <intent>
+                <user_inputs>
+                    <user_input>Bye</user_input>
+                    <user_input>Goodbye</user_input>
+                    <user_input>See you</user_input>
+                    <user_input>Bye for now</user_input>
+                    <user_input>Talk to you later</user_input>
+                    <user_input>Catch you later</user_input>
+                    <user_input>Thanks, I'm done</user_input>
+                    <user_input>That's all</user_input>
+                    <user_input>I'm all set</user_input>
+                    <user_input>No more questions</user_input>
+                    <user_input>Exit</user_input>
+                </user_inputs>
+            </intent>
+            <responses>
+                <response>
+                    <text>Thank you for chatting with us! If you need any more assistance, feel free to reach out. Have a great day!</text>
+                </response>
+            </responses>
+        </intent_group>
+    </intents>
+</story>

@@ -1,0 +1,170 @@
+<?xml version="1.0"?>
+<story>
+    <intents>
+        <intent_group>
+            <intent>
+                <user_inputs>
+                    <user_input>Hi</user_input>
+                    <user_input>Hi there</user_input>
+                    <user_input>Hello</user_input>
+                    <user_input>Greeting</user_input>
+                    <user_input>Greetings</user_input>
+                    <user_input>Hey</user_input>
+                    <user_input>What's up</user_input>
+                    <user_input>Good morning</user_input>
+                    <user_input>Good afternoon</user_input>
+                    <user_input>Good evening</user_input>
+                </user_inputs>
+            </intent>
+            <responses>
+                <response>
+                    <text>Hi! Looking to improve your diet or find the perfect meal plan? I’m here to help! How can I assist you today?</text>
+                    <buttons>
+                        <button>
+                            <text>Find a Diet Plan</text>
+                            <type>intent</type>
+                            <value>Find a Diet Plan</value>
+                        </button>
+                        <button>
+                            <text>Learn About Nutrition</text>
+                            <type>intent</type>
+                            <value>Learn About Nutrition</value>
+                        </button>
+                        <button>
+                            <text>Get Healthy Recipes</text>
+                            <type>intent</type>
+                            <value>Get Healthy Recipes</value>
+                        </button>
+                    </buttons>
+                </response>
+            </responses>
+        </intent_group>
+        <intent_group>
+            <intent>
+                <user_inputs>
+                    <user_input>Find a Diet Plan</user_input>
+                </user_inputs>
+            </intent>
+            <responses>
+                <response>
+                    <text>Great! Let's tailor a diet plan to fit your needs. What is your primary goal?</text>
+                </response>
+            </responses>
+        </intent_group>
+        <intent_group>
+            <intent>
+                <user_inputs>
+                    <user_input>I want to loss weight</user_input>
+                    <user_input>I want to gain muscle</user_input>
+                    <user_input>I want to improve my overall health</user_input>
+                </user_inputs>
+            </intent>
+            <responses>
+                <response>
+                    <text>this is a popular choice! To personalize your plan further, could you tell me your preferred meal frequency (e.g., 3 meals a day, 5 smaller meals, etc.) and any food allergies or restrictions?</text>
+                </response>
+            </responses>
+        </intent_group>
+        <intent_group>
+            <intent>
+                <user_inputs>
+                    <user_input>Learn About Nutrition</user_input>
+                </user_inputs>
+            </intent>
+            <responses>
+                <response>
+                    <text>Nutrition is key to a healthy lifestyle! What would you like to learn about?</text>
+                </response>
+            </responses>
+        </intent_group>
+        <intent_group>
+            <intent>
+                <user_inputs>
+                    <user_input>Macronutrients (proteins, carbs, fats)</user_input>
+                    <user_input>Vitamins and Minerals</user_input>
+                    <user_input>Reading Nutrition Labels</user_input>
+                    <user_input>Healthy Eating Habits</user_input>
+                </user_inputs>
+            </intent>
+            <responses>
+                <response>
+                    <text>[Provide detailed information based on the selected option]. Would you like to know more or explore another topic?</text>
+                </response>
+            </responses>
+        </intent_group>
+        <intent_group>
+            <intent>
+                <user_inputs>
+                    <user_input>Get Healthy Recipes</user_input>
+                </user_inputs>
+            </intent>
+            <responses>
+                <response>
+                    <text>I have a variety of delicious and healthy recipes for you! What type of recipe are you looking for?</text>
+                    <buttons>
+                    <button>
+                        <text>Breakfast</text>
+                        <type>intent</type>
+                        <value>Breakfast</value>
+                    </button>
+                    <button>
+                        <text>Lunch</text>
+                        <type>intent</type>
+                        <value>Lunch</value>
+                    </button>
+                    <button>
+                        <text>Dinner</text>
+                        <type>intent</type>
+                        <value>Dinner</value>
+                    </button>
+                </buttons>
+                </response>
+            </responses>
+        </intent_group>
+        <intent_group>
+            <intent>
+                <user_inputs>
+                    <user_input>Breakfast</user_input>
+                    <user_input>Lunch</user_input>
+                    <user_input>Dinner</user_input>
+                    <user_input>Snacks</user_input>
+                    <user_input>Smoothies and Drinks</user_input>
+                </user_inputs>
+            </intent>
+            <responses>
+                <response>
+                    <text>Here are some great recipes</text>
+                </response>
+                <response>
+                    <text>[List of recipes with brief descriptions]</text>
+                </response>
+                <response>
+                    <text>Would you like to see more recipes or get the full details for any of these?</text>
+                </response>
+            </responses>
+        </intent_group>
+        <intent_group>
+            <intent>
+                <user_inputs>
+                    <user_input>Bye</user_input>
+                    <user_input>Goodbye</user_input>
+                    <user_input>See you</user_input>
+                    <user_input>Bye for now</user_input>
+                    <user_input>Talk to you later</user_input>
+                    <user_input>Catch you later</user_input>
+                    <user_input>Thanks, I'm done</user_input>
+                    <user_input>That's all</user_input>
+                    <user_input>I'm all set</user_input>
+                    <user_input>No more questions</user_input>
+                    <user_input>Exit</user_input>
+                </user_inputs>
+            </intent>
+            <responses>
+                <response>
+                    <text>Thank you for chatting with us! If you need any more assistance, feel free to reach out. Have a great day!</text>
+                </response>
+            </responses>
+        </intent_group>
+
+    </intents>
+</story>

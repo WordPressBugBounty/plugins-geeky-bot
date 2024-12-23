@@ -1,0 +1,2555 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"POT-Creation-Date: \n"
+"PO-Revision-Date: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: zh_CN\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 3.5\n"
+
+msgid "Logo"
+msgstr "标识"
+
+msgid "Template Field 1"
+msgstr "模板字段 1"
+
+msgid "Title"
+msgstr "标题"
+
+msgid "Template Field 2"
+msgstr "模板字段 2"
+
+msgid "Template Field 3"
+msgstr "模板字段 3"
+
+msgid "Template Field 4"
+msgstr "模板字段 4"
+
+msgid "Template Field 10"
+msgstr "模板字段 10"
+
+msgid "Simple Link here"
+msgstr "简单链接在这里"
+
+msgid "Button"
+msgstr "按钮"
+
+msgid "Selected"
+msgstr "已选择"
+
+msgid "Template Content"
+msgstr "模板内容"
+
+msgid "Template Field"
+msgstr "模板字段"
+
+msgid "Show On Listing"
+msgstr "在列表中显示"
+
+msgid "Select Field"
+msgstr "选择字段"
+
+msgid "Label"
+msgstr "标签"
+
+msgid "Select Type"
+msgstr "选择类型"
+
+msgid "Set Value"
+msgstr "设定值"
+
+msgid "No template fields are available!"
+msgstr "没有可用的模板字段！"
+
+msgid "Set Values"
+msgstr "设定值"
+
+msgid "Field Name :"
+msgstr "字段名称："
+
+msgid "Save"
+msgstr "节省"
+
+msgid "Something went wrong try again later!"
+msgstr "出了点问题，稍后再试！"
+
+msgid "Info"
+msgstr "信息"
+
+msgid "An empty expected value or display value field."
+msgstr "空的预期值或显示值字段。"
+
+msgid "Values set successfully."
+msgstr "值设置成功。"
+
+msgid "Expected Value"
+msgstr "期望值"
+
+msgid "Display Value"
+msgstr "显示值"
+
+msgid "Delete"
+msgstr "删除"
+
+msgid "Add Value"
+msgstr "增值"
+
+msgid "Edit"
+msgstr "编辑"
+
+msgid "Text Field"
+msgstr "文本字段"
+
+msgid "Checkbox"
+msgstr "复选框"
+
+msgid "Radio Button"
+msgstr "单选按钮"
+
+msgid "Dropdown"
+msgstr "下拉菜单"
+
+msgid "Link"
+msgstr "关联"
+
+msgid ""
+"It is a long established fact that a reader will be distracted by the "
+"readable content of a page when looking at its layout Content here, content "
+"here..."
+msgstr ""
+"长期以来的事实是，读者在查看页面布局时会被页面的可读内容分散注意力。这里的内"
+"容，这里的内容......"
+
+msgid "Description"
+msgstr "描述"
+
+msgid "Content Description"
+msgstr "内容说明"
+
+msgid "Max Number Of Sentance"
+msgstr "最大句子数"
+
+msgid "1"
+msgstr "1"
+
+msgid "2"
+msgstr "2"
+
+msgid "3"
+msgstr "3"
+
+msgid "4"
+msgstr "4"
+
+msgid "5"
+msgstr "5"
+
+msgid "6"
+msgstr "6"
+
+msgid "Please wait a moment; this may take some time."
+msgstr "请稍等；这可能需要一些时间。"
+
+msgid "Synchronize"
+msgstr "同步"
+
+msgid "Data Synchronization Uncomplete"
+msgstr "数据同步不完整"
+
+msgid ""
+"Your GeekyBot data is not updated. To ensure accurate results, please "
+"synchronize your AI web search data."
+msgstr "您的 GeekyBot 数据未更新。为确保结果准确，请同步您的AI网页搜索数据。"
+
+msgid "Synchronize Data"
+msgstr "同步数据"
+
+msgid "user"
+msgstr "用户"
+
+msgid "Dashboard"
+msgstr "仪表板"
+
+msgid "key check"
+msgstr "钥匙检查"
+
+msgid "keys"
+msgstr "键"
+
+msgid "Stories"
+msgstr "故事"
+
+msgid "AI Web Search"
+msgstr "人工智能网页搜索"
+
+msgid "Settings"
+msgstr "设置"
+
+msgid "Chatbot"
+msgstr "聊天机器人"
+
+msgid "Install Add-ons"
+msgstr "安装附加组件"
+
+msgid "export"
+msgstr "出口"
+
+msgid "import"
+msgstr "进口"
+
+msgid "Chat History"
+msgstr "聊天记录"
+
+msgid "build"
+msgstr "建造"
+
+msgid "Build"
+msgstr "建造"
+
+msgid "Variables"
+msgstr "变量"
+
+msgid "forms"
+msgstr "形式"
+
+msgid "Forms"
+msgstr "表格"
+
+msgid "actions"
+msgstr "行动"
+
+msgid "Actions"
+msgstr "行动"
+
+msgid "File ext. is mismatched"
+msgstr "文件扩展名不匹配"
+
+msgid "File size is greater then allowed file size"
+msgstr "文件大小大于允许的文件大小"
+
+msgid "Total Stats"
+msgstr "总统计数据"
+
+msgid "Intents"
+msgstr "意图"
+
+msgid "No record found"
+msgstr "没有找到记录"
+
+msgid "Control Panel"
+msgstr "控制面板"
+
+msgid "GeekyBot"
+msgstr "极客机器人"
+
+msgid "Keys"
+msgstr "按键"
+
+msgid "Post Installation"
+msgstr "安装后"
+
+msgid "Premium Addon"
+msgstr "高级插件"
+
+msgid "Could not find any matching results"
+msgstr "找不到任何匹配结果"
+
+msgid "no record"
+msgstr "没有记录"
+
+msgid "No record found !..."
+msgstr "没有找到记录！..."
+
+msgid "system offline"
+msgstr "系统离线"
+
+msgid ""
+"Unfortunately sytem is offline for a bit of maintenance right now. But soon "
+"we will be up."
+msgstr "不幸的是，系统现在处于离线状态以进行一些维护。但很快我们就会起来。"
+
+msgid "user ban"
+msgstr "用户禁令"
+
+msgid "Your account is disabled, please contact system administrator !..."
+msgstr "您的帐号已被禁用，请联系系统管理员！..."
+
+msgid "login"
+msgstr "登录"
+
+msgid "To Access This Page Please Login !..."
+msgstr "要访问此页面，请登录！..."
+
+msgid "Back to control panel"
+msgstr "返回控制面板"
+
+msgid "You are not logged in"
+msgstr "您还没有登录"
+
+msgid "User Is Disabled By Admin"
+msgstr "用户被管理员禁用"
+
+msgid "The page you are looking for no longer exists"
+msgstr "您要查找的页面已不存在"
+
+msgid "You are already logged in"
+msgstr "您已经登录"
+
+msgid "Please select your role"
+msgstr "请选择您的角色"
+
+msgid "You are not allowed"
+msgstr "你不被允许"
+
+msgid "You are Not Allowed To add More than One"
+msgstr "不允许您添加多个"
+
+msgid "Contact Adminstrator"
+msgstr "联系管理员"
+
+msgid "not allowed"
+msgstr "不允许"
+
+msgid "You are already logged in !..."
+msgstr "您已经登录！..."
+
+msgid "Logout"
+msgstr "退出"
+
+msgid "Please first make a selection from the list"
+msgstr "请先从列表中进行选择"
+
+msgid "Unknown"
+msgstr "未知"
+
+msgid "Invalid request"
+msgstr "无效请求"
+
+msgid "has been successfully applied."
+msgstr "已成功申请。"
+
+msgid "Error applying the new theme."
+msgstr "应用新主题时出错。"
+
+msgid "has been successfully saved."
+msgstr "已成功保存。"
+
+msgid "has not been saved."
+msgstr "尚未保存。"
+
+msgid "has been successfully reset."
+msgstr "已成功重置。"
+
+msgid "Every Story must have a name."
+msgstr "每个故事都必须有一个名字。"
+
+msgid "Every Story must have at least 1 intent."
+msgstr "每个故事必须至少有 1 个意图。"
+
+msgid "has been successfully deleted."
+msgstr "已成功删除。"
+
+msgid "has been successfully exported."
+msgstr "已成功导出。"
+
+msgid "Data has not been exported."
+msgstr "数据尚未导出。"
+
+msgid "Record not exist."
+msgstr "记录不存在。"
+
+msgid "has not been deleted."
+msgstr "没有被删除。"
+
+msgid "Please insert key."
+msgstr "请插入钥匙。"
+
+msgid "key is not Valid."
+msgstr "密钥无效。"
+
+msgid "transaction has been successfully verified."
+msgstr "交易已成功验证。"
+
+msgid "transaction has been successfully un-verified."
+msgstr "交易已成功取消验证。"
+
+msgid "transaction has not been successfully verified."
+msgstr "交易尚未成功验证。"
+
+msgid "transaction has not been successfully un-verified."
+msgstr "交易尚未成功验证。"
+
+msgid "Fields has been successfully required."
+msgstr "已成功要求字段。"
+
+msgid "Field has not been required."
+msgstr "字段不需要。"
+
+msgid "Fields has not been required."
+msgstr "字段不是必需的。"
+
+msgid "Fields has been successfully not required."
+msgstr "已成功不需要字段。"
+
+msgid "Field has not been not required."
+msgstr "字段不是不需要的。"
+
+msgid "Fields has not been not required."
+msgstr "字段不是不需要的。"
+
+msgid "status has been updated."
+msgstr "状态已更新。"
+
+msgid "status has not been updated."
+msgstr "状态尚未更新。"
+
+msgid "data has been synchronized."
+msgstr "数据已同步。"
+
+msgid "data has not been synchronized."
+msgstr "数据尚未同步。"
+
+msgid "in use cannot deleted."
+msgstr "使用中无法删除。"
+
+msgid "already exist."
+msgstr "已经存在。"
+
+msgid "File type error."
+msgstr "文件类型错误。"
+
+msgid "File size error."
+msgstr "文件大小错误。"
+
+msgid "Intent"
+msgstr "意图"
+
+msgid "Response"
+msgstr "回复"
+
+msgid "Intent Group"
+msgstr "意向集团"
+
+msgid "Variable"
+msgstr "多变的"
+
+msgid "Story"
+msgstr "故事"
+
+msgid "Post type"
+msgstr "岗位类型"
+
+msgid "AI web search"
+msgstr "人工智能网络搜索"
+
+msgid "Action"
+msgstr "行动"
+
+msgid "Changes"
+msgstr "变化"
+
+msgid "Data"
+msgstr "数据"
+
+msgid "Message"
+msgstr "信息"
+
+msgid "Configuration"
+msgstr "配置"
+
+msgid "Previous"
+msgstr "以前的"
+
+msgid "Next"
+msgstr "下一个"
+
+msgid "Guest"
+msgstr "客人"
+
+msgid "User ID"
+msgstr "用户身份"
+
+msgid "Add to Story"
+msgstr "添加到故事"
+
+msgid "Add to story"
+msgstr "添加到故事"
+
+msgid "Search"
+msgstr "搜索"
+
+msgid "Search with user name"
+msgstr "使用用户名搜索"
+
+msgid "reset"
+msgstr "重置"
+
+msgid "Select Chat"
+msgstr "选择聊天"
+
+msgid "Sender"
+msgstr "发件人"
+
+msgid "select chat"
+msgstr "选择聊天"
+
+msgid "Chat history is not selected."
+msgstr "未选择聊天记录。"
+
+msgid "Please select a conversation to view the user's chat history."
+msgstr "请选择一个对话以查看该用户的聊天记录。"
+
+msgid "Add User Input To Story"
+msgstr "将用户输入添加到故事中"
+
+msgid "Select"
+msgstr "选择"
+
+msgid "Add User Input"
+msgstr "添加用户输入"
+
+msgid "You must choose a story; it cannot be empty."
+msgstr "你必须选择一个故事；它不能为空。"
+
+msgid "Security verification Failed, Please restart you chat to continue."
+msgstr "安全验证失败，请重新启动聊天才能继续。"
+
+msgid "Your session has expired; please restart your chat."
+msgstr "您的会话已过期；请重新开始聊天。"
+
+msgid "Hi, I am Chatbot. I do not have specific knowledge."
+msgstr "大家好，我是聊天机器人。我没有具体的知识。"
+
+msgid "Your message is too long. Please enter only a username or email."
+msgstr "您的留言太长了。请仅输入用户名或电子邮件。"
+
+msgid "Invalid username or email. Try again with the correct one."
+msgstr "用户名或电子邮件无效。用正确的那个再试一次。"
+
+msgid "Show More"
+msgstr "显示更多"
+
+msgid "Show Articles"
+msgstr "显示文章"
+
+msgid "session time out"
+msgstr "会话超时"
+
+msgid "Data directory can not empty."
+msgstr "数据目录不能为空。"
+
+msgid "Data directory is not proper."
+msgstr "数据目录不正确。"
+
+msgid "Data directory is not writable."
+msgstr "数据目录不可写。"
+
+msgid "Default fallback message can not be empty."
+msgstr "默认后备消息不能为空。"
+
+msgid "Admin pagination not saved."
+msgstr "管理分页未保存。"
+
+msgid "User pagination not saved."
+msgstr "用户分页未保存。"
+
+msgid ""
+"The title of your chatbot or the primary title displayed on your chat "
+"interface."
+msgstr "您的聊天机器人的标题或聊天界面上显示的主标题。"
+
+msgid "Default Fallback Message"
+msgstr "默认后备消息"
+
+msgid "The message displayed when the chatbot cannot understand."
+msgstr "当聊天机器人无法理解时显示的消息。"
+
+msgid "Offline"
+msgstr "离线"
+
+msgid "Online"
+msgstr "在线的"
+
+msgid "Set your plugin offline for front end."
+msgstr "将前端插件设置为离线。"
+
+msgid "Data Directory"
+msgstr "数据目录"
+
+msgid "The directory where all chatbot data files are stored."
+msgstr "存储所有聊天机器人数据文件的目录。"
+
+msgid "Admin Pagination"
+msgstr "管理分页"
+
+msgid "The number of items displayed in a paginated list in the admin panel."
+msgstr "管理面板分页列表中显示的项目数。"
+
+msgid "User Pagination"
+msgstr "用户分页"
+
+msgid "The number of items displayed in a paginated list on the user side."
+msgstr "用户端分页列表中显示的项目数。"
+
+msgid "Save Settings"
+msgstr "保存设置"
+
+msgid "Add Icon"
+msgstr "添加图标"
+
+msgid "years"
+msgstr "年"
+
+msgid "year"
+msgstr "年"
+
+msgid "ago"
+msgstr "前"
+
+msgid "months"
+msgstr "月"
+
+msgid "month"
+msgstr "月"
+
+msgid "days"
+msgstr "天"
+
+msgid "day"
+msgstr "天"
+
+msgid "hours"
+msgstr "小时"
+
+msgid "hour"
+msgstr "小时"
+
+msgid "minutes"
+msgstr "分钟"
+
+msgid "minute"
+msgstr "分钟"
+
+msgid "Just now"
+msgstr "现在"
+
+msgid "AI ChatBot is disabled."
+msgstr "AI 聊天机器人已禁用。"
+
+msgid "Active Now"
+msgstr "现在活跃"
+
+msgid "AI ChatBot story not built."
+msgstr "AI ChatBot 故事尚未构建。"
+
+msgid "Built Now"
+msgstr "现已建成"
+
+msgid "WooCommerce plugin is not installed."
+msgstr "未安装 WooCommerce 插件。"
+
+msgid "Install Now"
+msgstr "立即安装"
+
+msgid "WooCommerce plugin is not activated."
+msgstr "WooCommerce 插件未激活。"
+
+msgid "WooCommerce Bot is disabled."
+msgstr "WooCommerce 机器人已禁用。"
+
+msgid "WooCommerce story not built."
+msgstr "WooCommerce 故事未构建。"
+
+msgid "Post Type not found."
+msgstr "未找到帖子类型。"
+
+msgid "AI Web Search is disabled!"
+msgstr "AI 网页搜索已禁用！"
+
+msgid "AI ChatBot Sessions"
+msgstr "AI 聊天机器人会话"
+
+msgid "Session Card"
+msgstr "会议卡"
+
+msgid "Graph"
+msgstr "图形"
+
+msgid "Card"
+msgstr "卡片"
+
+msgid "WooCommerce Sessions"
+msgstr "WooCommerce 会议"
+
+msgid "AI Web Search Sessions"
+msgstr "人工智能网络搜索会议"
+
+msgid "Icon"
+msgstr "图标"
+
+msgid "GeekyBot Setup and Usage Guides"
+msgstr "GeekyBot 设置和使用指南"
+
+msgid "Explore installation, training, and effective usage guides."
+msgstr "探索安装、培训和有效的使用指南。"
+
+msgid "Play"
+msgstr "玩"
+
+msgid "Youtube Icon"
+msgstr "Youtube 图标"
+
+msgid "How to add Story"
+msgstr "如何添加故事"
+
+msgid "How to add Variable"
+msgstr "如何添加变量"
+
+msgid "Change Settings"
+msgstr "更改设置"
+
+msgid "Change Color"
+msgstr "改变颜色"
+
+msgid "Remove"
+msgstr "消除"
+
+msgid "Cross Icon"
+msgstr "十字图标"
+
+msgid "Stories Date"
+msgstr "故事日期"
+
+msgid "View Stories"
+msgstr "查看故事"
+
+msgid "AI Chatbot"
+msgstr "人工智能聊天机器人"
+
+msgid "WooCommerce"
+msgstr "WooCommerce"
+
+msgid "Bot Icon"
+msgstr "机器人图标"
+
+msgid "AI ChatBot"
+msgstr "人工智能聊天机器人"
+
+msgid "Last Month Stats"
+msgstr "上个月统计数据"
+
+msgid "Woo Icon"
+msgstr "宇图标"
+
+msgid "AI Web Search "
+msgstr "人工智能网页搜索"
+
+msgid "Manage Post Types"
+msgstr "管理帖子类型"
+
+msgid "Enable AI Web Search"
+msgstr "启用人工智能网页搜索"
+
+msgid "Search Icon"
+msgstr "搜索图标"
+
+msgid "History"
+msgstr "历史"
+
+msgid "WooCommerce Bot"
+msgstr "WooCommerce 机器人"
+
+msgid "logo"
+msgstr "标识"
+
+msgid "No of Conversation"
+msgstr "对话次数"
+
+msgid "View History"
+msgstr "查看历史记录"
+
+msgid "No data"
+msgstr "无数据"
+
+msgid "No Data"
+msgstr "无数据"
+
+msgid "Addons"
+msgstr "插件"
+
+msgid "addon"
+msgstr "添加在"
+
+msgid "Custom Listing Style"
+msgstr "自定义列表样式"
+
+msgid "Custom Listing Text"
+msgstr "自定义列表文本"
+
+msgid "WooCommerce Features"
+msgstr "WooCommerce 功能"
+
+msgid "Addon List"
+msgstr "插件列表"
+
+msgid "WooCommerce "
+msgstr "WooCommerce"
+
+msgid "Lead Generation"
+msgstr "潜在客户开发"
+
+msgid ""
+"GeekyBot simplifies the WooCommerce experience with intelligent product "
+"discovery and purchasing. It seamlessly integrates with WooCommerce for "
+"efficient product searches, detailed listings, and a smooth shopping "
+"experience."
+msgstr ""
+"GeekyBot 通过智能产品发现和购买简化了 WooCommerce 体验。它与 WooCommerce 无缝"
+"集成，可实现高效的产品搜索、详细的列表和流畅的购物体验。"
+
+msgid "Find Product"
+msgstr "查找产品"
+
+msgid "Find Products"
+msgstr "查找产品"
+
+msgid "Find products by name, category, or price range via chat."
+msgstr "通过聊天按名称、类别或价格范围查找产品。"
+
+msgid "List Product"
+msgstr "列出产品"
+
+msgid "List Products"
+msgstr "列出产品"
+
+msgid "Show relevant products with details and prices based on preferences."
+msgstr "根据喜好显示相关产品的详细信息和价格。"
+
+msgid "Add To Cart Product"
+msgstr "添加到购物车产品"
+
+msgid "Add to Cart"
+msgstr "添加到购物车"
+
+msgid "Easily add products to the cart list directly through chat."
+msgstr "通过聊天直接轻松地将产品添加到购物车列表。"
+
+msgid "Watch Video"
+msgstr "观看视频"
+
+msgid "AI Chat"
+msgstr "人工智能聊天"
+
+msgid "Custom"
+msgstr "风俗"
+
+msgid " AI Chat Bot "
+msgstr "人工智能聊天机器人"
+
+msgid "Conversation Handling"
+msgstr "会话处理"
+
+msgid ""
+"AI Chat Conversation provides intelligent and context-aware interactions to "
+"enhance user engagement. Define key conversation elements to capture "
+"specific user inputs dynamically and adapt responses based on the context."
+msgstr ""
+"AI 聊天对话提供智能和上下文感知交互，以增强用户参与度。定义关键对话元素以动态"
+"捕获特定的用户输入并根据上下文调整响应。"
+
+msgid "Capture and process inputs dynamically for personalized responses."
+msgstr "动态捕获和处理输入以获得个性化响应。"
+
+msgid "Adjust interactions based on the ongoing conversation for relevance."
+msgstr "根据正在进行的对话调整交互的相关性。"
+
+msgid "Use collected data to tailor responses and improve satisfaction."
+msgstr "使用收集的数据来定制响应并提高满意度。"
+
+msgid "Discover Our "
+msgstr "发现我们的"
+
+msgid " AI Web Search"
+msgstr "人工智能网页搜索"
+
+msgid "Bot"
+msgstr "机器人"
+
+msgid ""
+"AI Web Search improves user experience by delivering advanced, intuitive "
+"content discovery on your WordPress site. With powerful searches, users can "
+"quickly find relevant information, enhancing overall interest and "
+"accessibility."
+msgstr ""
+"AI Web 搜索通过在 WordPress 网站上提供先进、直观的内容发现来改善用户体验。通"
+"过强大的搜索，用户可以快速找到相关信息，从而提高整体兴趣和可访问性。"
+
+msgid "GeekyBot swiftly retrieves posts and pages based on user queries."
+msgstr "GeekyBot 根据用户查询快速检索帖子和页面。"
+
+msgid "Displays full content or excerpts that match search terms."
+msgstr "显示与搜索词匹配的完整内容或摘录。"
+
+msgid "Activate GeekyBot’s search for an AI web search with one click."
+msgstr "一键激活 GeekyBot 的 AI 网络搜索搜索。"
+
+msgid "Web Search"
+msgstr "网页搜索"
+
+msgid "GeekyBot Supported Plugins"
+msgstr "GeekyBot 支持的插件"
+
+msgid "Plugin"
+msgstr "插件"
+
+msgid "WP Job Manager"
+msgstr "WP 工作经理"
+
+msgid "Tutor LMS"
+msgstr "导师学习管理系统"
+
+msgid "bbPress"
+msgstr "bb出版社"
+
+msgid "LearnPress"
+msgstr "学习出版社"
+
+msgid "Knowledge Base"
+msgstr "知识库"
+
+msgid "BetterDocs"
+msgstr "更好的文档"
+
+msgid "Motors"
+msgstr "电机"
+
+msgid "Estatik Real Estate"
+msgstr "埃斯塔蒂克房地产"
+
+msgid "Auto Listings"
+msgstr "汽车列表"
+
+msgid "Welcome to GeekyBot Features"
+msgstr "欢迎使用 GeekyBot 功能"
+
+msgid "GeekyBot Features"
+msgstr "GeekyBot特点"
+
+msgid "WooCommerce Integration"
+msgstr "WooCommerce 集成"
+
+msgid "Quick Installation"
+msgstr "快速安装"
+
+msgid "Version: 1.0.0"
+msgstr "版本：1.0.0"
+
+msgid "AI Chat Bot"
+msgstr "人工智能聊天机器人"
+
+msgid "Enable/Disable"
+msgstr "启用/禁用"
+
+msgid "Enable/Disable Bot"
+msgstr "启用/禁用机器人"
+
+msgid "Select Template"
+msgstr "选择模板"
+
+msgid ""
+"AI Chat in GeekyBot provides instant, personalized responses to user "
+"queries, ensuring seamless support around the clock. With its ability to "
+"engage users at any time, GeekyBot enhances the reliability of your service, "
+"making sure that your customers' needs are always met."
+msgstr ""
+"GeekyBot 中的 AI 聊天可为用户查询提供即时、个性化的响应，确保全天候无缝支"
+"持。 GeekyBot 能够随时吸引用户，从而增强了服务的可靠性，确保始终满足客户的需"
+"求。"
+
+msgid ""
+"By training GeekyBot with your specific data, you can create dynamic, "
+"tailored interactions that reflect your business's unique voice and "
+"services. This customization allows for more relevant, effective "
+"conversations that build stronger connections with your users."
+msgstr ""
+"通过使用您的特定数据训练 GeekyBot，您可以创建动态、定制的交互，以反映您企业独"
+"特的声音和服务。这种定制可以实现更相关、更有效的对话，从而与用户建立更牢固的"
+"联系。"
+
+msgid "Bot Image"
+msgstr "机器人图像"
+
+msgid "image"
+msgstr "图像"
+
+msgid "Watch AI ChatBot Video"
+msgstr "观看 AI ChatBot 视频"
+
+msgid "AI Web Search Bot"
+msgstr "人工智能网络搜索机器人"
+
+msgid ""
+"Effortlessly search for specific posts and content across your entire site "
+"using our powerful AI web search tool. GeekyBot goes beyond standard "
+"searches, delivering results from all types of data on your site. Whether "
+"you're looking for posts, pages, custom post types, or other information, "
+"GeekyBot ensures you find what you need quickly and efficiently by "
+"displaying relevant articles, posts, and more in a single, streamlined "
+"search experience."
+msgstr ""
+"使用我们强大的人工智能网络搜索工具，轻松搜索整个网站上的特定帖子和内容。 "
+"GeekyBot 超越了标准搜索，可提供网站上所有类型数据的结果。无论您是在寻找帖子、"
+"页面、自定义帖子类型还是其他信息，GeekyBot 通过在单一、简化的搜索体验中显示相"
+"关文章、帖子等内容，确保您快速高效地找到所需内容。"
+
+msgid "New Post Type Search"
+msgstr "新帖子类型搜索"
+
+msgid ""
+"Enable this option to directly include new post types in search results, "
+"enhancing user access to all content."
+msgstr ""
+"启用此选项可直接在搜索结果中包含新的帖子类型，从而增强用户对所有内容的访问。"
+
+msgid "Watch AI Web Search Video"
+msgstr "观看 AI 网络搜索视频"
+
+msgid "Back"
+msgstr "后退"
+
+msgid "Finish"
+msgstr "结束"
+
+msgid "WooCommerce is not installed"
+msgstr "未安装 WooCommerce"
+
+msgid ""
+"WooCommerce plugin is not installed on your site, you won't be able to "
+"integrate GeekyBot with WooCommerce."
+msgstr ""
+"您的网站上未安装 WooCommerce 插件，您将无法将 GeekyBot 与 WooCommerce 集成。"
+
+msgid ""
+"Easily integrate AI with WooCommerce to enhance your online store’s "
+"performance. GeekyBot boosts lead generation and customer interactions, "
+"automating key processes for a more effective and engaging shopping "
+"experience."
+msgstr ""
+"轻松将 AI 与 WooCommerce 集成，以提高在线商店的绩效。 GeekyBot 可促进潜在客户"
+"开发和客户互动，实现关键流程自动化，从而提供更有效、更有吸引力的购物体验。"
+
+msgid ""
+"GeekyBot also streamlines customer inquiries and provides real-time, "
+"intelligent responses. By improving retention and customer satisfaction, it "
+"ensures your store delivers an exceptional experience that keeps shoppers "
+"coming back."
+msgstr ""
+"GeekyBot 还简化了客户询问并提供实时、智能的响应。通过提高保留率和客户满意度，"
+"它可以确保您的商店提供卓越的体验，让购物者成为回头客。"
+
+msgid "Watch WooCommerce Video"
+msgstr "观看 WooCommerce 视频"
+
+msgid "Welcome to GeekyBot !..."
+msgstr "欢迎来到 GeekyBot！..."
+
+msgid ""
+"The ultimate AI chatbot for WooCommerce lead generation, intelligent content "
+"search, and interactive customer engagement on your WordPress website."
+msgstr ""
+"终极 AI 聊天机器人，用于 WooCommerce 潜在客户开发、智能内容搜索和 WordPress "
+"网站上的交互式客户参与。"
+
+msgid ""
+"Personalize interactions by dynamically processing user inputs using slots "
+"and variables."
+msgstr "通过使用槽和变量动态处理用户输入来个性化交互。"
+
+msgid ""
+"Enhance shopping by enabling users to find products and add them to their "
+"cart seamlessly."
+msgstr "让用户能够找到产品并将其无缝添加到购物车，从而增强购物体验。"
+
+msgid "Website Search"
+msgstr "网站搜索"
+
+msgid ""
+"Streamline discovery by helping users find relevant information on your "
+"WordPress site."
+msgstr "通过帮助用户在您的 WordPress 网站上查找相关信息来简化发现过程。"
+
+msgid "Please insert activation key to proceed"
+msgstr "请插入激活密钥以继续"
+
+msgid "Addon Installation Failed"
+msgstr "插件安装失败"
+
+msgid "Addon installation failed"
+msgstr "插件安装失败"
+
+msgid "Addon Installation Failed, File download error"
+msgstr "插件安装失败，文件下载错误"
+
+msgid "Activated"
+msgstr "活性"
+
+msgid "Deactivate"
+msgstr "停用"
+
+msgid "Deactivated"
+msgstr "已停用"
+
+msgid "Activate"
+msgstr "激活"
+
+msgid "Not Installed"
+msgstr "未安装"
+
+msgid "Addon Installed Successfully"
+msgstr "插件安装成功"
+
+msgid "Ticket Actions"
+msgstr "票务操作"
+
+msgid "Agents"
+msgstr "代理商"
+
+msgid "Ticket Auto Close"
+msgstr "票证自动关闭"
+
+msgid "left image"
+msgstr "左图"
+
+msgid "right image"
+msgstr "右图"
+
+msgid "Add-ons For Majestic Support"
+msgstr "Majestic 支持的附加组件"
+
+msgid ""
+"Get trusted WordPress add-ons. Guaranteed to work fast, safe to use, "
+"beautifully coded, packed with features, and are easy to use."
+msgstr ""
+"获取值得信赖的 WordPress 插件。保证快速工作、使用安全、编码精美、功能丰富且易"
+"于使用。"
+
+msgid "Save big today with an exclusive membership plan!"
+msgstr "今天就通过独家会员计划节省大笔钱！"
+
+msgid "Show"
+msgstr "展示"
+
+msgid "show bundle pack"
+msgstr "显示捆绑包"
+
+msgid "Agent"
+msgstr "代理人"
+
+msgid ""
+"Add agents and assign roles and permissions to provide assistance and "
+"support for customer support tickets."
+msgstr "添加代理并分配角色和权限，以便为客户支持票证提供帮助和支持。"
+
+msgid "buy now"
+msgstr "立即购买"
+
+msgid "Installed"
+msgstr "已安装"
+
+msgid "multiform"
+msgstr "多种形式"
+
+msgid "Multi Forms"
+msgstr "多种形式"
+
+msgid ""
+"Create multiple custom ticket forms with different custom fields for each "
+"request type that you support."
+msgstr "为您支持的每种请求类型创建具有不同自定义字段的多个自定义票证表单。"
+
+msgid "Email Piping"
+msgstr "电子邮件管道"
+
+msgid ""
+"Email piping is the process of automatically turning incoming emails into "
+"support tickets without manual data entry."
+msgstr ""
+"电子邮件管道是自动将传入电子邮件转换为支持票证的过程，无需手动输入数据。"
+
+msgid "agent auto assign"
+msgstr "代理自动分配"
+
+msgid "Agent Auto Assign"
+msgstr "代理自动分配"
+
+msgid ""
+"Make the ticket assignment process automatic and assign the most qualified "
+"agent to your tickets with conditions."
+msgstr "使票证分配过程自动化，并有条件地为您的票证分配最合格的代理。"
+
+msgid "private note"
+msgstr "私人笔记"
+
+msgid "Private Note"
+msgstr "私人笔记"
+
+msgid ""
+"Add private notes to a ticket and share crucial information internally with "
+"your agents, this private note is not visible to the customer."
+msgstr ""
+"将私人注释添加到工单并与您的代理在内部共享重要信息，此私人注释对客户不可见。"
+
+msgid "merge tickets"
+msgstr "合并票证"
+
+msgid "Merge Tickets"
+msgstr "合并门票"
+
+msgid ""
+"Merge one or more tickets into another if you receive two support requests "
+"from the same end user about the same issue."
+msgstr ""
+"如果您收到来自同一最终用户的关于同一问题的两个支持请求，请将一张或多张票证合"
+"并到另一张票证中。"
+
+msgid "helptopic"
+msgstr "帮助主题"
+
+msgid "Help Topics"
+msgstr "帮助主题"
+
+msgid ""
+"The user can search for and choose the topic for which they need help using "
+"help topics"
+msgstr "用户可以使用帮助主题搜索并选择需要帮助的主题"
+
+msgid "Auto Close Ticket"
+msgstr "自动关闭票证"
+
+msgid ""
+"Manage abandoned tickets, and set rules for tickets over time, and those "
+"tickets will be closed automatically after a certain period."
+msgstr ""
+"管理废弃的工单，并设置工单随时间变化的规则，这些工单将在一定时间后自动关闭。"
+
+msgid "Knowledgebase"
+msgstr "知识库"
+
+msgid ""
+"Stop wasting time on repetitive inquiries, build your knowledge base, and "
+"organize your solutions into categories for users."
+msgstr ""
+"停止在重复查询上浪费时间，建立您的知识库，并将您的解决方案组织为用户的类别。"
+
+msgid "Ticket Overdue"
+msgstr "机票逾期"
+
+msgid ""
+"Define rules or set a specific time interval for making tickets "
+"automatically overdue."
+msgstr "定义规则或设置特定的时间间隔，使工单自动过期。"
+
+msgid "time tracking"
+msgstr "时间追踪"
+
+msgid "Time Tracking"
+msgstr "时间追踪"
+
+msgid ""
+"Track the amount of time spent on each customer support ticket without "
+"losing focus and enhance team productivity."
+msgstr "跟踪花在每张客户支持票上的时间，而不会失去焦点并提高团队生产力。"
+
+msgid "Ticket History"
+msgstr "门票历史记录"
+
+msgid ""
+"Show the whole history of the ticket, including its status and any action "
+"taken in response to it."
+msgstr "显示故障单的完整历史记录，包括其状态以及针对该故障采取的任何操作。"
+
+msgid "Paid Support"
+msgstr "付费支持"
+
+msgid ""
+"The simplest approach to effectively manage payments for premium help is "
+"through paid support."
+msgstr "有效管理高级帮助付款的最简单方法是通过付费支持。"
+
+msgid "Private Credentials"
+msgstr "私人凭证"
+
+msgid ""
+"Customers will enter sensitive information on tickets, and this add-on is "
+"designed to help you keep that information secure."
+msgstr "客户将在门票上输入敏感信息，此附加组件旨在帮助您确保该信息的安全。"
+
+msgid "Ticket close reason"
+msgstr "票务关闭原因"
+
+msgid "Ticket Closed Reason"
+msgstr "票证关闭原因"
+
+msgid ""
+"Empowers users to provide clear and concise explanations for why customer "
+"service tickets are being closed."
+msgstr "使用户能够清晰、简洁地解释客户服务票证被关闭的原因。"
+
+msgid "Premade Responses"
+msgstr "预制响应"
+
+msgid ""
+"Make ready-made responses to the most common questions in the tickets to "
+"swiftly address client issues."
+msgstr "对工单中最常见的问题做出现成的答复，以快速解决客户问题。"
+
+msgid "max ticket"
+msgstr "最高票数"
+
+msgid "Max Tickets"
+msgstr "最大门票数"
+
+msgid ""
+"Admins can limit the number of tickets that users can create as well as the "
+"number of tickets that agents can open individually."
+msgstr "管理员可以限制用户可以创建的票证数量以及代理可以单独打开的票证数量。"
+
+msgid "Feedback"
+msgstr "反馈"
+
+msgid ""
+"To enhance the quality of your services, ask your customers to complete a "
+"survey when a ticket is closed."
+msgstr "为了提高服务质量，请要求客户在票证关闭时完成调查。"
+
+msgid "ticket actions"
+msgstr "票务行动"
+
+msgid ""
+"Ticket action options allow you to execute additional actions on tickets."
+msgstr "工单操作选项允许您对工单执行其他操作。"
+
+msgid "Export"
+msgstr "出口"
+
+msgid ""
+"Easily export ticket data and performance report data from your majestic "
+"support to an Excel spreadsheet with our efficient and user-friendly "
+"solution."
+msgstr ""
+"借助我们高效且用户友好的解决方案，可以轻松地将工单数据和绩效报告数据从您的强"
+"大支持导出到 Excel 电子表格。"
+
+msgid "email cc"
+msgstr "电子邮件抄送"
+
+msgid "Email CC"
+msgstr "电子邮件抄送"
+
+msgid ""
+"Send the exact copy of the email to the provided email address with Email CC "
+"or BCC."
+msgstr ""
+"使用电子邮件抄送或密件抄送将电子邮件的准确副本发送到提供的电子邮件地址。"
+
+msgid "user options"
+msgstr "用户选项"
+
+msgid "User Options"
+msgstr "用户选项"
+
+msgid ""
+"User options enable you to define roles for new users when they are "
+"registered."
+msgstr "用户选项使您能够在新用户注册时为其定义角色。"
+
+msgid "SMTP"
+msgstr "邮件传输协议"
+
+msgid ""
+"SMTP enables you to add  custom mail protocols to send and receive emails "
+"with the support ticket system."
+msgstr ""
+"SMTP 使您能够添加自定义邮件协议，以便通过支持票证系统发送和接收电子邮件。"
+
+msgid "Multi Language Email Templates"
+msgstr "多语言电子邮件模板"
+
+msgid ""
+"Create multi-language email templates for all default email templates to "
+"send customers emails in the language that they prefer."
+msgstr ""
+"为所有默认电子邮件模板创建多语言电子邮件模板，以客户喜欢的语言向他们发送电子"
+"邮件。"
+
+msgid "Downloads"
+msgstr "下载"
+
+msgid ""
+"Downloads can be very helpful for users who are looking to obtain the "
+"necessary information to resolve issues."
+msgstr "对于希望获取必要信息来解决问题的用户来说，下载非常有帮助。"
+
+msgid "Announcements"
+msgstr "公告"
+
+msgid ""
+"Make an unlimited number of announcements related to the support system to "
+"encourage customer interaction."
+msgstr "发布无限数量的与支持系统相关的公告，以鼓励客户互动。"
+
+msgid "Ban Email"
+msgstr "禁止电子邮件"
+
+msgid ""
+"With Ban Email, you can limit a users ability to create new tickets by "
+"blocking their email address."
+msgstr ""
+"通过禁止电子邮件，您可以通过阻止用户的电子邮件地址来限制用户创建新票证的能"
+"力。"
+
+msgid "FAQ"
+msgstr "常问问题"
+
+msgid ""
+"Provide answers to common user questions with the FAQ extension before they "
+"become tickets."
+msgstr "在常见用户问题成为票证之前，通过常见问题解答扩展提供答案。"
+
+msgid "admin widgets"
+msgstr "管理小部件"
+
+msgid "Admin Widgets"
+msgstr "管理小工具"
+
+msgid ""
+"Get immediate data on your support operations as soon as you log into your "
+"WordPress administration area."
+msgstr "登录 WordPress 管理区域后，即可立即获取有关支持操作的数据。"
+
+msgid "desktop notifications"
+msgstr "桌面通知"
+
+msgid "Desktop Notifications"
+msgstr "桌面通知"
+
+msgid ""
+"You will be informed of anything that occurs on your support system by the "
+"desktop notifications."
+msgstr "您将通过桌面通知得知支持系统上发生的任何情况。"
+
+msgid "woocommerce"
+msgstr "吴商务"
+
+msgid ""
+"The integration of the support ticket system for WooCommerce with your e-"
+"shop makes your support better and more professional."
+msgstr "WooCommerce 支持票证系统与您的电子商店的集成使您的支持更好、更专业。"
+
+msgid "mail chimp"
+msgstr "邮件黑猩猩"
+
+msgid "Mail Chimp"
+msgstr "邮件黑猩猩"
+
+msgid ""
+"Manage your email marketing campaigns directly from your majestic support by "
+"adding new user accounts to your Mailchimp email list."
+msgstr ""
+"通过将新用户帐户添加到您的 Mailchimp 电子邮件列表，直接在您的大力支持下管理您"
+"的电子邮件营销活动。"
+
+msgid "internal mail"
+msgstr "内部邮件"
+
+msgid "Internal Mail"
+msgstr "内部邮件"
+
+msgid ""
+"Send messages internally about support tickets and other issues between "
+"agents with internal mail."
+msgstr "通过内部邮件在代理之间发送有关支持票证和其他问题的内部消息。"
+
+msgid "frontend widget"
+msgstr "前端小部件"
+
+msgid "Front-End Widgets"
+msgstr "前端小部件"
+
+msgid ""
+"Frontend Widgets include several widgets that can be used to enhance the "
+"plugin's functionality in various areas of the website."
+msgstr "前端小部件包括多个小部件，可用于增强插件在网站各个区域的功能。"
+
+msgid "envato"
+msgstr "恩瓦托"
+
+msgid "Envato"
+msgstr "恩瓦托"
+
+msgid ""
+"Clients won't be able to open a new ticket using the Envato Validation "
+"plugin if they don't have a valid Envato license."
+msgstr ""
+"如果客户没有有效的 Envato 许可证，他们将无法使用 Envato 验证插件开立新票证。"
+
+msgid "easy digital download"
+msgstr "轻松数字下载"
+
+msgid "Easy Digital Download"
+msgstr "轻松数字下载"
+
+msgid ""
+"Learn about a customer's purchase directly from the support dashboard by "
+"integrating Majestic Support with your EDD store."
+msgstr ""
+"通过将 Majestic Support 与您的 EDD 商店集成，直接从支持仪表板了解客户的购买情"
+"况。"
+
+msgid "Majestic Support Add-ons Bundle Pack"
+msgstr "Majestic 支持附加捆绑包"
+
+msgid "Basic"
+msgstr "基本的"
+
+msgid "Unlimited Agents"
+msgstr "无限代理"
+
+msgid "Helptopic"
+msgstr "帮助主题"
+
+msgid "Show all"
+msgstr "显示全部"
+
+msgid "Standard"
+msgstr "标准"
+
+msgid "Everything in basic included and "
+msgstr "基本的一切都包括在内"
+
+msgid "Premade Response"
+msgstr "预制响应"
+
+msgid "Professional"
+msgstr "专业的"
+
+msgid "Everything in standard included and"
+msgstr "标准中的一切都包括在内"
+
+msgid "All Future Addons"
+msgstr "所有未来的插件"
+
+msgid "spinning wheel"
+msgstr "纺车"
+
+msgid "New Update Version"
+msgstr "新更新版本"
+
+msgid "is Available"
+msgstr "可用"
+
+msgid "Status: "
+msgstr "地位："
+
+msgid "Version"
+msgstr "版本"
+
+msgid "addon in no longer active"
+msgstr "插件不再活跃"
+
+msgid "Please Insert Your Activation Key"
+msgstr "请插入您的激活密钥"
+
+msgid "XXXX-XXXX-XXXXX-XXXXX"
+msgstr "XXXX-XXXX-XXXXX-XXXXX"
+
+msgid "Proceed"
+msgstr "继续"
+
+msgid "GeekyBot Addon Installer"
+msgstr "GeekyBot 插件安装程序"
+
+msgid "Select All Addons"
+msgstr "选择所有插件"
+
+msgid "All allowed add ons are already installed"
+msgstr "所有允许的附加组件均已安装"
+
+msgid "You are not allowed to install any add on"
+msgstr "不允许您安装任何附加组件"
+
+msgid "Something went wrong"
+msgstr "出了点问题"
+
+msgid "Addons Installed Successfully"
+msgstr "插件安装成功"
+
+msgid "Open Dashboard"
+msgstr "打开仪表板"
+
+msgid "Open Plugins Page"
+msgstr "打开插件页面"
+
+msgid "PersonName"
+msgstr "人名"
+
+msgid "Facility"
+msgstr "设施"
+
+msgid "Organization"
+msgstr "组织"
+
+msgid "Location"
+msgstr "地点"
+
+msgid "Location_NON_GPE"
+msgstr "位置_NON_GPE"
+
+msgid "Product"
+msgstr "产品"
+
+msgid "Event"
+msgstr "事件"
+
+msgid "ArtWork"
+msgstr "艺术品"
+
+msgid "LawDocument"
+msgstr "法律文件"
+
+msgid "Language"
+msgstr "语言"
+
+msgid "Date"
+msgstr "日期"
+
+msgid "Time"
+msgstr "时间"
+
+msgid "Percentage"
+msgstr "百分比"
+
+msgid "Money"
+msgstr "钱"
+
+msgid "Quantity"
+msgstr "数量"
+
+msgid "Ordinal"
+msgstr "序数"
+
+msgid "Cardinal"
+msgstr "红衣主教"
+
+msgid "Select Variable For"
+msgstr "选择变量用于"
+
+msgid "Attribute"
+msgstr "属性"
+
+msgid "Name"
+msgstr "姓名"
+
+msgid "Varibale Name"
+msgstr "变量名"
+
+msgid "Type"
+msgstr "类型"
+
+msgid "Possible Field Values"
+msgstr "可能的字段值"
+
+msgid "Add Comma Seprated Values"
+msgstr "添加逗号分隔值"
+
+msgid "Variable For"
+msgstr "变量为"
+
+msgid "Select Variable For in case of Woocommerce Variable"
+msgstr "如果是 Woocommerce 变量，请选择变量"
+
+msgid "cancel"
+msgstr "取消"
+
+msgid "Cancel"
+msgstr "取消"
+
+msgid "Save Changes"
+msgstr "保存更改"
+
+msgid "Save Variable"
+msgstr "保存变量"
+
+msgid "Reset"
+msgstr "重置"
+
+msgid "Are you sure to delete it?"
+msgstr "您确定要删除吗？"
+
+msgid "Delete Variable"
+msgstr "删除变量"
+
+msgid "Add Variable"
+msgstr "添加变量"
+
+msgid "name"
+msgstr "姓名"
+
+msgid "type"
+msgstr "类型"
+
+msgid "Possible Values Here"
+msgstr "此处可能的值"
+
+msgid "Edit Variable"
+msgstr "编辑变量"
+
+msgid "Are you sure to delete it"
+msgstr "您确定要删除吗"
+
+msgid "Add New"
+msgstr "添加新内容"
+
+msgid "User Input"
+msgstr "用户输入"
+
+msgid "Close"
+msgstr "关闭"
+
+msgid "Add"
+msgstr "添加"
+
+msgid "Add More"
+msgstr "添加更多"
+
+msgid "Available Variables"
+msgstr "可用变量"
+
+msgid "Enter bot response here..."
+msgstr "在此输入机器人响应..."
+
+msgid "Button text here"
+msgstr "此处按钮文本"
+
+msgid "URL"
+msgstr "网址"
+
+msgid "Button value here"
+msgstr "此处的按钮值"
+
+msgid "Enter URL here"
+msgstr "在此输入网址"
+
+msgid "Add New Button"
+msgstr "添加新按钮"
+
+msgid "Select Predefined Function"
+msgstr "选择预定义功能"
+
+msgid "Select Action"
+msgstr "选择操作"
+
+msgid "Add New Action"
+msgstr "添加新动作"
+
+msgid "Add New Form"
+msgstr "添加新表格"
+
+msgid "Enter default fallback here..."
+msgstr "在此输入默认后备..."
+
+msgid "Enter default fallback for intent here..."
+msgstr "在此处输入意图的默认后备..."
+
+msgid "Start Point"
+msgstr "起点"
+
+msgid "Error: The template file does not exist."
+msgstr "错误：模板文件不存在。"
+
+msgid "Text"
+msgstr "文本"
+
+msgid "Function"
+msgstr "功能"
+
+msgid "Error: The"
+msgstr "错误："
+
+msgid "tag in"
+msgstr "标记在"
+
+msgid "at position"
+msgstr "在位置"
+
+msgid "is missing."
+msgstr "失踪了。"
+
+msgid "is empty."
+msgstr "是空的。"
+
+msgid "tag associated with the user input"
+msgstr "与用户输入关联的标签"
+
+msgid "in"
+msgstr "在"
+
+msgid "tag of the"
+msgstr "的标签"
+
+msgid "block associated with the user input"
+msgstr "与用户输入关联的块"
+
+msgid "or"
+msgstr "或者"
+
+msgid "Error: The function name"
+msgstr "错误：函数名"
+
+msgid "in the"
+msgstr "在"
+
+msgid "is invalid."
+msgstr "无效。"
+
+msgid "Error: The type name"
+msgstr "错误：类型名称"
+
+msgid "is invalid. This should be"
+msgstr "无效。这应该是"
+
+msgid "You might like these products."
+msgstr "您可能会喜欢这些产品。"
+
+msgid "No exact match was found. Explore these similar products."
+msgstr "未找到精确匹配。探索这些类似的产品。"
+
+msgid "Here are some suggestions."
+msgstr "以下是一些建议。"
+
+msgid "Showing"
+msgstr "显示中"
+
+msgid "of"
+msgstr "的"
+
+msgid "Add to cart"
+msgstr "添加到购物车"
+
+msgid "Empty Story"
+msgstr "空洞的故事"
+
+msgid "Show All Products"
+msgstr "显示所有产品"
+
+msgid "Search Product"
+msgstr "搜索产品"
+
+msgid "Get Products Under Price"
+msgstr "以优惠价格购买产品"
+
+msgid "Get Products Above Price"
+msgstr "获得高于价格的产品"
+
+msgid "View Cart/Remove Items"
+msgstr "查看购物车/删除商品"
+
+msgid "Checkout"
+msgstr "查看"
+
+msgid "Reset Password"
+msgstr "重置密码"
+
+msgid "Send Chat To Admin"
+msgstr "将聊天发送给管理员"
+
+msgid "Integer"
+msgstr "整数"
+
+msgid "Float"
+msgstr "漂浮"
+
+msgid "Boolean"
+msgstr "布尔值"
+
+msgid "String"
+msgstr "细绳"
+
+msgid "Default Fallback"
+msgstr "默认回退"
+
+msgid "Are you sure to reset it?"
+msgstr "您确定要重置吗？"
+
+msgid "Parameter Name *"
+msgstr "参数名称 *"
+
+msgid "Varibale Name *"
+msgstr "变量名称 *"
+
+msgid "User input has been successfully saved."
+msgstr "用户输入已成功保存。"
+
+msgid "An empty user input field."
+msgstr "空的用户输入字段。"
+
+msgid "An empty bot response."
+msgstr "空的机器人响应。"
+
+msgid "Response Successfully Saved!"
+msgstr "回复已成功保存！"
+
+msgid "Action Successfully Saved!"
+msgstr "操作已成功保存！"
+
+msgid "Form Successfully Saved!"
+msgstr "表格已成功保存！"
+
+msgid "Default Fallback Successfully Saved!"
+msgstr "默认回退已成功保存！"
+
+msgid "Store relevant user input first, then fallback."
+msgstr "首先存储相关的用户输入，然后回退。"
+
+msgid "An empty default fallback."
+msgstr "空的默认后备。"
+
+msgid "Default Intent Fallback Successfully Saved!"
+msgstr "默认意图回退已成功保存！"
+
+msgid "Discard"
+msgstr "丢弃"
+
+msgid "Temporary discard"
+msgstr "暂时丢弃"
+
+msgid "Automate"
+msgstr "自动化"
+
+msgid "User input"
+msgstr "用户输入"
+
+msgid "Form"
+msgstr "形式"
+
+msgid "Fallback"
+msgstr "倒退"
+
+msgid "Chat "
+msgstr "聊天"
+
+msgid "Available Variable"
+msgstr "可用变量"
+
+msgid "Product Name"
+msgstr "产品名称"
+
+msgid "Minimum Price"
+msgstr "最低价格"
+
+msgid "Maximum Price"
+msgstr "最高价格"
+
+msgid "User Login"
+msgstr "用户登录"
+
+msgid "Action Icon"
+msgstr "动作图标"
+
+msgid "User Icon"
+msgstr "用户图标"
+
+msgid "User"
+msgstr "用户"
+
+msgid "Bot Response"
+msgstr "机器人响应"
+
+msgid "User Text Icon"
+msgstr "用户文本图标"
+
+msgid "Bot Function Icon"
+msgstr "机器人功能图标"
+
+msgid "Bot Function"
+msgstr "机器人功能"
+
+msgid "Predefined Function"
+msgstr "预定义功能"
+
+msgid "Bot Action Icon"
+msgstr "机器人操作图标"
+
+msgid "Bot Action"
+msgstr "机器人动作"
+
+msgid "Bot Form Icon"
+msgstr "机器人表单图标"
+
+msgid "Bot Form"
+msgstr "机器人形态"
+
+msgid "Fallback Icon"
+msgstr "后备图标"
+
+msgid "Fallback Massege"
+msgstr "回退消息"
+
+msgid "Save & Close"
+msgstr "保存并关闭"
+
+msgid "Info Icon"
+msgstr "信息图标"
+
+msgid "How to add parameters"
+msgstr "如何添加参数"
+
+msgid "User form Icon"
+msgstr "用户表单图标"
+
+msgid "Form Name *"
+msgstr "表格名称 *"
+
+msgid "Add New Variable"
+msgstr "添加新变量"
+
+msgid "Function Form"
+msgstr "函数形式"
+
+msgid "Action Form"
+msgstr "行动形式"
+
+msgid "Custom Action"
+msgstr "自定义操作"
+
+msgid "Add New Custom Action"
+msgstr "添加新的自定义操作"
+
+msgid "Add New Parameter"
+msgstr "添加新参数"
+
+msgid "Intent Fallback"
+msgstr "意图回退"
+
+msgid "Save Story"
+msgstr "保存故事"
+
+msgid "Reset Story"
+msgstr "重置故事"
+
+msgid "Story has been successfully saved."
+msgstr "故事已成功保存。"
+
+msgid "WooCommerce is not active!"
+msgstr "WooCommerce 未激活！"
+
+msgid "Error encountered in template."
+msgstr "模板中遇到错误。"
+
+msgid "An empty story name."
+msgstr "一个空的故事名称。"
+
+msgid "An empty story template."
+msgstr "一个空的故事模板。"
+
+msgid "title"
+msgstr "标题"
+
+msgid "Active"
+msgstr "积极的"
+
+msgid "Disable"
+msgstr "禁用"
+
+msgid "Edit Story"
+msgstr "编辑故事"
+
+msgid "Are you sure to delete"
+msgstr "您确定要删除吗"
+
+msgid "Delete Story"
+msgstr "删除故事"
+
+msgid "Built Story"
+msgstr "构建故事"
+
+msgid "Built"
+msgstr "建成"
+
+msgid "WooCommerce Story"
+msgstr "WooCommerce 故事"
+
+msgid "Story Name *"
+msgstr "故事名称 *"
+
+msgid "Edit Story Name"
+msgstr "编辑故事名称"
+
+msgid "Invalid username or email."
+msgstr "用户名或电子邮件无效。"
+
+msgid "Looks like there was a problem resetting your password:"
+msgstr "重置密码时似乎出现问题："
+
+msgid "User not found!"
+msgstr "未找到用户！"
+
+msgid "Okay, I have sent the recovery email. Thank you for your patience."
+msgstr "好的，我已经发送了恢复电子邮件。感谢您的耐心等待。"
+
+msgid "Your query is sent to the admin."
+msgstr "您的查询已发送至管理员。"
+
+msgid "Enable"
+msgstr "使能够"
+
+msgid "Smart Popup"
+msgstr "智能弹出窗口"
+
+msgid "Standard Popup"
+msgstr "标准弹出窗口"
+
+msgid "Appearance"
+msgstr "外貌"
+
+msgid "Choose File"
+msgstr "选择文件"
+
+msgid "User Default Image"
+msgstr "用户默认图像"
+
+msgid "Primary Color"
+msgstr "原色"
+
+msgid "Choose Color"
+msgstr "选择颜色"
+
+msgid "User Text Background"
+msgstr "用户文本背景"
+
+msgid "User Text Color"
+msgstr "用户文本颜色"
+
+msgid "Bot Link Color"
+msgstr "机器人链接颜色"
+
+msgid "Presets"
+msgstr "预设"
+
+msgid "Preset"
+msgstr "预设"
+
+msgid "online"
+msgstr "在线的"
+
+msgid "User Image"
+msgstr "用户形象"
+
+msgid "Hi I am John"
+msgstr "嗨，我是约翰"
+
+msgid "Hi John! How can I help you?"
+msgstr "嗨约翰！我怎么帮你？"
+
+msgid "Can you help me find a new backpack?"
+msgstr "你能帮我找一个新背包吗？"
+
+msgid "Product Icon"
+msgstr "产品图标"
+
+msgid "Fusion Backpack"
+msgstr "融合背包"
+
+msgid "$"
+msgstr "$"
+
+msgid "59"
+msgstr "59"
+
+msgid "Send message"
+msgstr "发送消息"
+
+msgid "Welcome Message"
+msgstr "欢迎辞"
+
+msgid "Welcome Image"
+msgstr "欢迎图片"
+
+msgid "Chat Auto-Popup"
+msgstr "聊天自动弹出"
+
+msgid "Controls whether the chat popup appears automatically on your site."
+msgstr "控制聊天弹出窗口是否自动显示在您的网站上。"
+
+msgid "Chat Pop-up Style"
+msgstr "聊天弹出样式"
+
+msgid "Choose how the chat will appear: Smart or Standard pop-up."
+msgstr "选择聊天的显示方式：智能或标准弹出窗口。"
+
+msgid "Chat Auto-Popup Timing"
+msgstr "聊天自动弹出时间"
+
+msgid ""
+"Define the delay time in seconds for the chatbot to auto-appear on the site."
+msgstr "定义聊天机器人自动出现在网站上的延迟时间（以秒为单位）。"
+
+msgid "Note"
+msgstr "笔记"
+
+msgid ""
+"If the colors have been saved but the user-side colors are still the same, "
+"it is advised to clear the cache."
+msgstr "如果颜色已保存，但用户端颜色仍相同，建议清除缓存。"
+
+msgid "Also"
+msgstr "还"
+
+msgid "Found"
+msgstr "成立"
+
+msgid "Here are some"
+msgstr "这里有一些"
+
+msgid "Help"
+msgstr "帮助"
+
+msgid "Have any problem?"
+msgstr "有什么问题吗？"
+
+msgid ""
+"If you experience any difficulties, we're here to help! Simply click the"
+msgstr "如果您遇到任何困难，我们随时为您提供帮助！只需单击"
+
+msgid "Create A Ticket"
+msgstr "创建票证"
+
+msgid ""
+"button to report your issue, and our dedicated support team will assist you "
+"promptly."
+msgstr "按钮报告您的问题，我们的专业支持团队将立即为您提供帮助。"
+
+msgid "Create Ticket"
+msgstr "创建票证"
+
+msgid "Post Type"
+msgstr "帖子类型"
+
+msgid "post type"
+msgstr "帖子类型"
+
+msgid "Post Label"
+msgstr "邮政标签"
+
+msgid "Associated Plugin"
+msgstr "相关插件"
+
+msgid "Add associated plugin's name"
+msgstr "添加关联插件的名称"
+
+msgid "For better data consistency, please provide a associated plugin's name."
+msgstr "为了更好的数据一致性，请提供关联的插件名称。"
+
+msgid "Status"
+msgstr "地位"
+
+msgid "For status changes, please use the options available in the listing."
+msgstr "对于状态更改，请使用列表中的可用选项。"
+
+msgid "Template Section"
+msgstr "模板部分"
+
+msgid ""
+"Fields are currently auto-filled for preview purposes only. Please save your "
+"changes to apply them."
+msgstr "当前自动填充字段仅用于预览目的。请保存您的更改以应用它们。"
+
+msgid "Choose one template style from the given below"
+msgstr "从下面给出的模板样式中选择一种"
+
+msgid "Add Button /Link"
+msgstr "添加按钮/链接"
+
+msgid "Add New Button /Link"
+msgstr "添加新按钮/链接"
+
+msgid "Show on Listing"
+msgstr "在列表中显示"
+
+msgid "View Details"
+msgstr "查看详情"
+
+msgid "detail page link"
+msgstr "详情页链接"
+
+msgid "Save Template"
+msgstr "保存模板"
+
+msgid "Create a Post"
+msgstr "创建帖子"
+
+msgid "Please first create a sample post to use template section."
+msgstr "请首先创建一个示例帖子以使用模板部分。"
+
+msgid "AI web search enabled successfully."
+msgstr "AI网页搜索成功启用。"
+
+msgid "AI web search already enabled."
+msgstr "AI网络搜索已启用。"
+
+msgid "Something went wrong."
+msgstr "出了点问题。"
+
+msgid "AI web search disabled successfully."
+msgstr "AI 网页搜索已成功禁用。"
+
+msgid "New post type search enabled successfully."
+msgstr "新帖子类型搜索已成功启用。"
+
+msgid "New post type search disabled successfully."
+msgstr "新帖子类型搜索已成功禁用。"
+
+msgid "Data Synchronization Needed"
+msgstr "需要数据同步"
+
+msgid ""
+"Your data is not updated. To ensure accurate results, please synchronize "
+"your AI web search data."
+msgstr "您的数据未更新。为确保结果准确，请同步您的AI网页搜索数据。"
+
+msgid "Enable AI web Search"
+msgstr "启用人工智能网络搜索"
+
+msgid ""
+"Enable this feature to provide users with direct AI web search results in "
+"the chat, offering them a broader context for their queries."
+msgstr ""
+"启用此功能可以在聊天中为用户提供直接的 AI 网络搜索结果，为他们的查询提供更广"
+"泛的上下文。"
+
+msgid "Enable New Post Type Search"
+msgstr "启用新帖子类型搜索"
+
+msgid "Lable"
+msgstr "标签"
+
+msgid "Post lable"
+msgstr "邮政标签"
+
+msgid "WooCommerce is currently inactive."
+msgstr "WooCommerce 目前处于非活动状态。"
+
+msgid "No product was found."
+msgstr "没有找到产品。"
+
+msgid "Please enter a valid product or category name."
+msgstr "请输入有效的产品或类别名称。"
+
+msgid "Please enter a valid price."
+msgstr "请输入有效的价格。"
+
+msgid "Please enter a valid price range."
+msgstr "请输入有效的价格范围。"
+
+msgid "Your cart is currently empty."
+msgstr "您的购物车目前是空的。"
+
+msgid "Cart Details"
+msgstr "购物车详情"
+
+msgid "Price"
+msgstr "价格"
+
+msgid "Change"
+msgstr "改变"
+
+msgid "Total Price"
+msgstr "总价"
+
+msgid "Remove Item"
+msgstr "删除项目"
+
+msgid "Subtotal"
+msgstr "小计"
+
+msgid "Total"
+msgstr "全部的"
+
+msgid "Proceed to Checkout"
+msgstr "进行结算"
+
+msgid "is out of stock."
+msgstr "缺货了。"
+
+msgid "You cannot add another “"
+msgstr "您不能添加另一个“"
+
+msgid "” to your cart."
+msgstr "”到您的购物车。"
+
+msgid "You cannot add more than"
+msgstr "您添加的数量不能超过"
+
+msgid "of this product to your cart."
+msgstr "将此产品添加到您的购物车。"
+
+msgid "has been added to your cart."
+msgstr "已添加到您的购物车。"
+
+msgid "has not been added to your cart. Please try again."
+msgstr "尚未添加到您的购物车。请再试一次。"
+
+msgid "View Cart"
+msgstr "查看购物车"
+
+msgid "Please select a product!"
+msgstr "请选择产品！"
+
+msgid "There are no variations available."
+msgstr "没有可用的变体。"
+
+msgid "Product not found or not a variable product."
+msgstr "未找到产品或不是可变产品。"
+
+msgid "You can't add another “"
+msgstr "您无法添加另一个“"
+
+msgid "There was an error while adding the product to the cart."
+msgstr "将产品添加到购物车时出错。"
+
+msgid ""
+"The requested variation with the specified attributes could not be found."
+msgstr "找不到具有指定属性的请求变体。"
+
+msgid "Change Quantity"
+msgstr "变更数量"
+
+msgid "Update"
+msgstr "更新"
+
+msgid "The cart is empty."
+msgstr "购物车是空的。"
+
+msgid "Cart item is not found."
+msgstr "未找到购物车商品。"
+
+msgid "The item was not found in the cart."
+msgstr "购物车中未找到该商品。"
+
+msgid "Quantity updated successfully!"
+msgstr "数量更新成功！"
+
+msgid "Change quantity"
+msgstr "更改数量"
+
+msgid "Edit Post Type"
+msgstr "编辑帖子类型"
+
+msgid "Parameter"
+msgstr "范围"
+
+msgid "delete"
+msgstr "删除"
+
+msgid "add intent"
+msgstr "添加意图"
+
+msgid "plus icon"
+msgstr "加号图标"
+
+msgid "Add Intents"
+msgstr "添加意图"
+
+msgid ""
+"On the responses listing page, all the responses are listed here; you can "
+"check them out."
+msgstr "在回复列表页面，这里列出了所有的回复；你可以检查一下。"
+
+msgid "Add Intent"
+msgstr "添加意图"
+
+msgid ""
+"On the form listing page, all the forms are listed here; you can check them "
+"out."
+msgstr "在表单列表页面，这里列出了所有的表单；你可以检查一下。"
+
+msgid "Add Forms"
+msgstr "添加表格"
+
+msgid "On the add form page, you can add a new form."
+msgstr "在添加表单页面，您可以添加新表单。"
+
+msgid "Responses"
+msgstr "回应"
+
+msgid "Add Response"
+msgstr "添加回复"
+
+msgid "On the add Response page, you can add a new Response."
+msgstr "在添加响应页面上，您可以添加新的响应。"
+
+msgid ""
+"On the actions listing page, all the actions are listed here; you can check "
+"them out."
+msgstr "在动作列表页面，这里列出了所有的动作；你可以检查一下。"
+
+msgid "Add  Action"
+msgstr "添加动作"
+
+msgid "On the add action page, you can add a new action."
+msgstr "在添加操作页面上，您可以添加新的操作。"
+
+msgid "Add Intent Group"
+msgstr "添加意图组"
+
+msgid "Import"
+msgstr "进口"
+
+msgid "Menu"
+msgstr "菜单"
+
+msgid "End Chat"
+msgstr "结束聊天"
+
+msgid "Restart Chat"
+msgstr "重新开始聊天"
+
+msgid "Image"
+msgstr "图像"
+
+msgid "Send Icon"
+msgstr "发送图标"
+
+msgid "Welcome to GeekyBot! Let me know how I can assist you today."
+msgstr "欢迎来到 GeekyBot！今天请告诉我如何为您提供帮助。"
+
+msgid "admin."
+msgstr "行政。"
+
+msgid "Account Assistance"
+msgstr "账户协助"
+
+msgid "Diet Plan Assistant"
+msgstr "饮食计划助理"
+
+msgid "Job Application"
+msgstr "职位申请"
+
+msgid "Offline Form"
+msgstr "离线表格"
+
+msgid "Real Estate"
+msgstr "房地产"
+
+msgid "Sales Support"
+msgstr "销售支持"
+
+msgid "University"
+msgstr "大学"
+
+msgid "Vacation Planner"
+msgstr "假期规划师"

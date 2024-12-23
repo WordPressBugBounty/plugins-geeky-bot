@@ -1,0 +1,2640 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"POT-Creation-Date: \n"
+"PO-Revision-Date: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: ko_KR\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 3.5\n"
+
+msgid "Logo"
+msgstr "심벌 마크"
+
+msgid "Template Field 1"
+msgstr "템플릿 필드 1"
+
+msgid "Title"
+msgstr "제목"
+
+msgid "Template Field 2"
+msgstr "템플릿 필드 2"
+
+msgid "Template Field 3"
+msgstr "템플릿 필드 3"
+
+msgid "Template Field 4"
+msgstr "템플릿 필드 4"
+
+msgid "Template Field 10"
+msgstr "템플릿 필드 10"
+
+msgid "Simple Link here"
+msgstr "여기에 간단한 링크"
+
+msgid "Button"
+msgstr "단추"
+
+msgid "Selected"
+msgstr "선택된"
+
+msgid "Template Content"
+msgstr "템플릿 콘텐츠"
+
+msgid "Template Field"
+msgstr "템플릿 필드"
+
+msgid "Show On Listing"
+msgstr "목록에 표시"
+
+msgid "Select Field"
+msgstr "필드 선택"
+
+msgid "Label"
+msgstr "상표"
+
+msgid "Select Type"
+msgstr "유형 선택"
+
+msgid "Set Value"
+msgstr "값 설정"
+
+msgid "No template fields are available!"
+msgstr "사용할 수 있는 템플릿 필드가 없습니다."
+
+msgid "Set Values"
+msgstr "값 설정"
+
+msgid "Field Name :"
+msgstr "필드 이름:"
+
+msgid "Save"
+msgstr "구하다"
+
+msgid "Something went wrong try again later!"
+msgstr "문제가 발생했습니다. 나중에 다시 시도해 주세요."
+
+msgid "Info"
+msgstr "정보"
+
+msgid "An empty expected value or display value field."
+msgstr "비어 있는 예상 값 또는 표시 값 필드입니다."
+
+msgid "Values set successfully."
+msgstr "값이 성공적으로 설정되었습니다."
+
+msgid "Expected Value"
+msgstr "기대값"
+
+msgid "Display Value"
+msgstr "표시값"
+
+msgid "Delete"
+msgstr "삭제"
+
+msgid "Add Value"
+msgstr "가치를 더하다"
+
+msgid "Edit"
+msgstr "편집하다"
+
+msgid "Text Field"
+msgstr "텍스트 필드"
+
+msgid "Checkbox"
+msgstr "체크박스"
+
+msgid "Radio Button"
+msgstr "라디오 버튼"
+
+msgid "Dropdown"
+msgstr "드롭다운"
+
+msgid "Link"
+msgstr "링크"
+
+msgid ""
+"It is a long established fact that a reader will be distracted by the "
+"readable content of a page when looking at its layout Content here, content "
+"here..."
+msgstr ""
+"독자가 레이아웃을 볼 때 페이지의 읽을 수 있는 내용 때문에 주의가 산만해진다"
+"는 것은 오랫동안 확립된 사실입니다. 여기 콘텐츠, 여기 콘텐츠..."
+
+msgid "Description"
+msgstr "설명"
+
+msgid "Content Description"
+msgstr "콘텐츠 설명"
+
+msgid "Max Number Of Sentance"
+msgstr "최대 문장 수"
+
+msgid "1"
+msgstr "1"
+
+msgid "2"
+msgstr "2"
+
+msgid "3"
+msgstr "3"
+
+msgid "4"
+msgstr "4"
+
+msgid "5"
+msgstr "5"
+
+msgid "6"
+msgstr "6"
+
+msgid "Please wait a moment; this may take some time."
+msgstr "잠시만 기다려 주십시오. 시간이 좀 걸릴 수 있습니다."
+
+msgid "Synchronize"
+msgstr "동기화"
+
+msgid "Data Synchronization Uncomplete"
+msgstr "데이터 동기화가 완료되지 않았습니다."
+
+msgid ""
+"Your GeekyBot data is not updated. To ensure accurate results, please "
+"synchronize your AI web search data."
+msgstr ""
+"귀하의 GeekyBot 데이터는 업데이트되지 않습니다. 정확한 결과를 얻으려면 AI 웹 "
+"검색 데이터를 동기화해 주세요."
+
+msgid "Synchronize Data"
+msgstr "데이터 동기화"
+
+msgid "user"
+msgstr "사용자"
+
+msgid "Dashboard"
+msgstr "계기반"
+
+msgid "key check"
+msgstr "키 체크"
+
+msgid "keys"
+msgstr "열쇠"
+
+msgid "Stories"
+msgstr "스토리"
+
+msgid "AI Web Search"
+msgstr "AI 웹 검색"
+
+msgid "Settings"
+msgstr "설정"
+
+msgid "Chatbot"
+msgstr "챗봇"
+
+msgid "Install Add-ons"
+msgstr "애드온 설치"
+
+msgid "export"
+msgstr "내보내다"
+
+msgid "import"
+msgstr "수입"
+
+msgid "Chat History"
+msgstr "채팅 기록"
+
+msgid "build"
+msgstr "짓다"
+
+msgid "Build"
+msgstr "짓다"
+
+msgid "Variables"
+msgstr "변수"
+
+msgid "forms"
+msgstr "양식"
+
+msgid "Forms"
+msgstr "양식"
+
+msgid "actions"
+msgstr "행위"
+
+msgid "Actions"
+msgstr "행위"
+
+msgid "File ext. is mismatched"
+msgstr "파일 확장자 일치하지 않습니다"
+
+msgid "File size is greater then allowed file size"
+msgstr "파일 크기가 허용된 파일 크기보다 큽니다."
+
+msgid "Total Stats"
+msgstr "총 통계"
+
+msgid "Intents"
+msgstr "인텐트"
+
+msgid "No record found"
+msgstr "기록을 찾을 수 없습니다"
+
+msgid "Control Panel"
+msgstr "제어판"
+
+msgid "GeekyBot"
+msgstr "괴짜봇"
+
+msgid "Keys"
+msgstr "열쇠"
+
+msgid "Post Installation"
+msgstr "설치 후"
+
+msgid "Premium Addon"
+msgstr "프리미엄 애드온"
+
+msgid "Could not find any matching results"
+msgstr "일치하는 결과를 찾을 수 없습니다"
+
+msgid "no record"
+msgstr "기록 없음"
+
+msgid "No record found !..."
+msgstr "기록을 찾을 수 없습니다!..."
+
+msgid "system offline"
+msgstr "시스템 오프라인"
+
+msgid ""
+"Unfortunately sytem is offline for a bit of maintenance right now. But soon "
+"we will be up."
+msgstr ""
+"안타깝게도 현재 약간의 유지 관리를 위해 시스템이 오프라인 상태입니다. 하지만 "
+"곧 우리는 일어날 것입니다."
+
+msgid "user ban"
+msgstr "사용자 금지"
+
+msgid "Your account is disabled, please contact system administrator !..."
+msgstr "귀하의 계정이 비활성화되었습니다. 시스템 관리자에게 문의하세요!..."
+
+msgid "login"
+msgstr "로그인"
+
+msgid "To Access This Page Please Login !..."
+msgstr "이 페이지에 액세스하려면 로그인하세요!..."
+
+msgid "Back to control panel"
+msgstr "제어판으로 돌아가기"
+
+msgid "You are not logged in"
+msgstr "로그인되어 있지 않습니다."
+
+msgid "User Is Disabled By Admin"
+msgstr "관리자가 사용자를 비활성화했습니다."
+
+msgid "The page you are looking for no longer exists"
+msgstr "찾고 있는 페이지가 더 이상 존재하지 않습니다."
+
+msgid "You are already logged in"
+msgstr "이미 로그인되어 있습니다."
+
+msgid "Please select your role"
+msgstr "당신의 역할을 선택해주세요"
+
+msgid "You are not allowed"
+msgstr "당신은 허용되지 않습니다"
+
+msgid "You are Not Allowed To add More than One"
+msgstr "둘 이상을 추가하는 것은 허용되지 않습니다"
+
+msgid "Contact Adminstrator"
+msgstr "관리자에게 문의"
+
+msgid "not allowed"
+msgstr "허용되지 않음"
+
+msgid "You are already logged in !..."
+msgstr "이미 로그인되어 있습니다!..."
+
+msgid "Logout"
+msgstr "로그아웃"
+
+msgid "Please first make a selection from the list"
+msgstr "먼저 목록에서 항목을 선택하세요."
+
+msgid "Unknown"
+msgstr "알려지지 않은"
+
+msgid "Invalid request"
+msgstr "잘못된 요청"
+
+msgid "has been successfully applied."
+msgstr "성공적으로 적용되었습니다."
+
+msgid "Error applying the new theme."
+msgstr "새 테마를 적용하는 중에 오류가 발생했습니다."
+
+msgid "has been successfully saved."
+msgstr "성공적으로 저장되었습니다."
+
+msgid "has not been saved."
+msgstr "저장되지 않았습니다."
+
+msgid "has been successfully reset."
+msgstr "성공적으로 재설정되었습니다."
+
+msgid "Every Story must have a name."
+msgstr "모든 스토리에는 이름이 있어야 합니다."
+
+msgid "Every Story must have at least 1 intent."
+msgstr "모든 스토리에는 최소한 1개의 인텐트가 있어야 합니다."
+
+msgid "has been successfully deleted."
+msgstr "성공적으로 삭제되었습니다."
+
+msgid "has been successfully exported."
+msgstr "성공적으로 내보냈습니다."
+
+msgid "Data has not been exported."
+msgstr "데이터가 내보내지지 않았습니다."
+
+msgid "Record not exist."
+msgstr "기록이 존재하지 않습니다."
+
+msgid "has not been deleted."
+msgstr "삭제되지 않았습니다."
+
+msgid "Please insert key."
+msgstr "키를 삽입해 주세요."
+
+msgid "key is not Valid."
+msgstr "키가 유효하지 않습니다."
+
+msgid "transaction has been successfully verified."
+msgstr "거래가 성공적으로 확인되었습니다."
+
+msgid "transaction has been successfully un-verified."
+msgstr "거래가 성공적으로 확인 취소되었습니다."
+
+msgid "transaction has not been successfully verified."
+msgstr "거래가 성공적으로 확인되지 않았습니다."
+
+msgid "transaction has not been successfully un-verified."
+msgstr "거래가 성공적으로 확인 취소되지 않았습니다."
+
+msgid "Fields has been successfully required."
+msgstr "필드가 성공적으로 요구되었습니다."
+
+msgid "Field has not been required."
+msgstr "필드가 필요하지 않습니다."
+
+msgid "Fields has not been required."
+msgstr "필드가 필요하지 않습니다."
+
+msgid "Fields has been successfully not required."
+msgstr "필드가 필요하지 않게 되었습니다."
+
+msgid "Field has not been not required."
+msgstr "필드가 필요하지 않습니다."
+
+msgid "Fields has not been not required."
+msgstr "필드가 필요하지 않았습니다."
+
+msgid "status has been updated."
+msgstr "상태가 업데이트되었습니다."
+
+msgid "status has not been updated."
+msgstr "상태가 업데이트되지 않았습니다."
+
+msgid "data has been synchronized."
+msgstr "데이터가 동기화되었습니다."
+
+msgid "data has not been synchronized."
+msgstr "데이터가 동기화되지 않았습니다."
+
+msgid "in use cannot deleted."
+msgstr "사용중은 삭제할 수 없습니다."
+
+msgid "already exist."
+msgstr "이미 존재합니다."
+
+msgid "File type error."
+msgstr "파일 형식 오류입니다."
+
+msgid "File size error."
+msgstr "파일 크기 오류입니다."
+
+msgid "Intent"
+msgstr "의지"
+
+msgid "Response"
+msgstr "응답"
+
+msgid "Intent Group"
+msgstr "의도 그룹"
+
+msgid "Variable"
+msgstr "변하기 쉬운"
+
+msgid "Story"
+msgstr "이야기"
+
+msgid "Post type"
+msgstr "포스트 유형"
+
+msgid "AI web search"
+msgstr "AI 웹 검색"
+
+msgid "Action"
+msgstr "행동"
+
+msgid "Changes"
+msgstr "변경 사항"
+
+msgid "Data"
+msgstr "데이터"
+
+msgid "Message"
+msgstr "메시지"
+
+msgid "Configuration"
+msgstr "구성"
+
+msgid "Previous"
+msgstr "이전의"
+
+msgid "Next"
+msgstr "다음"
+
+msgid "Guest"
+msgstr "손님"
+
+msgid "User ID"
+msgstr "사용자 ID"
+
+msgid "Add to Story"
+msgstr "스토리에 추가"
+
+msgid "Add to story"
+msgstr "스토리에 추가"
+
+msgid "Search"
+msgstr "찾다"
+
+msgid "Search with user name"
+msgstr "사용자 이름으로 검색"
+
+msgid "reset"
+msgstr "다시 놓기"
+
+msgid "Select Chat"
+msgstr "채팅 선택"
+
+msgid "Sender"
+msgstr "보내는 사람"
+
+msgid "select chat"
+msgstr "채팅 선택"
+
+msgid "Chat history is not selected."
+msgstr "채팅 기록이 선택되지 않았습니다."
+
+msgid "Please select a conversation to view the user's chat history."
+msgstr "사용자의 채팅 기록을 보려면 대화를 선택하세요."
+
+msgid "Add User Input To Story"
+msgstr "스토리에 사용자 입력 추가"
+
+msgid "Select"
+msgstr "선택하다"
+
+msgid "Add User Input"
+msgstr "사용자 입력 추가"
+
+msgid "You must choose a story; it cannot be empty."
+msgstr "스토리를 선택해야 합니다. 비워 둘 수 없습니다."
+
+msgid "Security verification Failed, Please restart you chat to continue."
+msgstr "보안 확인에 실패했습니다. 계속하려면 채팅을 다시 시작하세요."
+
+msgid "Your session has expired; please restart your chat."
+msgstr "귀하의 세션이 만료되었습니다. 채팅을 다시 시작해 주세요."
+
+msgid "Hi, I am Chatbot. I do not have specific knowledge."
+msgstr "안녕하세요 챗봇입니다. 제가 구체적인 지식은 없습니다."
+
+msgid "Your message is too long. Please enter only a username or email."
+msgstr "메시지가 너무 깁니다. 사용자 이름이나 이메일만 입력하세요."
+
+msgid "Invalid username or email. Try again with the correct one."
+msgstr ""
+"사용자 이름이나 이메일이 잘못되었습니다. 올바른 것으로 다시 시도하세요."
+
+msgid "Show More"
+msgstr "더보기"
+
+msgid "Show Articles"
+msgstr "기사 표시"
+
+msgid "session time out"
+msgstr "세션 시간 초과"
+
+msgid "Data directory can not empty."
+msgstr "데이터 디렉터리는 비워둘 수 없습니다."
+
+msgid "Data directory is not proper."
+msgstr "데이터 디렉토리가 올바르지 않습니다."
+
+msgid "Data directory is not writable."
+msgstr "데이터 디렉터리에 쓸 수 없습니다."
+
+msgid "Default fallback message can not be empty."
+msgstr "기본 대체 메시지는 비워둘 수 없습니다."
+
+msgid "Admin pagination not saved."
+msgstr "관리 페이지 매김이 저장되지 않았습니다."
+
+msgid "User pagination not saved."
+msgstr "사용자 페이지 매김이 저장되지 않았습니다."
+
+msgid ""
+"The title of your chatbot or the primary title displayed on your chat "
+"interface."
+msgstr "챗봇의 제목 또는 채팅 인터페이스에 표시되는 기본 제목입니다."
+
+msgid "Default Fallback Message"
+msgstr "기본 대체 메시지"
+
+msgid "The message displayed when the chatbot cannot understand."
+msgstr "챗봇이 이해하지 못할 때 표시되는 메시지입니다."
+
+msgid "Offline"
+msgstr "오프라인"
+
+msgid "Online"
+msgstr "온라인"
+
+msgid "Set your plugin offline for front end."
+msgstr "프런트 엔드에 대해 플러그인을 오프라인으로 설정하세요."
+
+msgid "Data Directory"
+msgstr "데이터 디렉토리"
+
+msgid "The directory where all chatbot data files are stored."
+msgstr "모든 챗봇 데이터 파일이 저장되는 디렉터리입니다."
+
+msgid "Admin Pagination"
+msgstr "관리자 페이지 매김"
+
+msgid "The number of items displayed in a paginated list in the admin panel."
+msgstr "관리자 패널의 페이지가 매겨진 목록에 표시되는 항목 수입니다."
+
+msgid "User Pagination"
+msgstr "사용자 페이지 매김"
+
+msgid "The number of items displayed in a paginated list on the user side."
+msgstr "사용자 측에서 페이지가 매겨진 목록에 표시되는 항목 수입니다."
+
+msgid "Save Settings"
+msgstr "설정 저장"
+
+msgid "Add Icon"
+msgstr "아이콘 추가"
+
+msgid "years"
+msgstr "연령"
+
+msgid "year"
+msgstr "년도"
+
+msgid "ago"
+msgstr "~ 전에"
+
+msgid "months"
+msgstr "개월"
+
+msgid "month"
+msgstr "월"
+
+msgid "days"
+msgstr "날"
+
+msgid "day"
+msgstr "낮"
+
+msgid "hours"
+msgstr "시간"
+
+msgid "hour"
+msgstr "시간"
+
+msgid "minutes"
+msgstr "분"
+
+msgid "minute"
+msgstr "분"
+
+msgid "Just now"
+msgstr "방금"
+
+msgid "AI ChatBot is disabled."
+msgstr "AI ChatBot이 비활성화되었습니다."
+
+msgid "Active Now"
+msgstr "현재 활동 중"
+
+msgid "AI ChatBot story not built."
+msgstr "AI ChatBot 스토리가 구축되지 않았습니다."
+
+msgid "Built Now"
+msgstr "지금 건설됨"
+
+msgid "WooCommerce plugin is not installed."
+msgstr "WooCommerce 플러그인이 설치되지 않았습니다."
+
+msgid "Install Now"
+msgstr "지금 설치"
+
+msgid "WooCommerce plugin is not activated."
+msgstr "WooCommerce 플러그인이 활성화되지 않았습니다."
+
+msgid "WooCommerce Bot is disabled."
+msgstr "WooCommerce 봇이 비활성화되었습니다."
+
+msgid "WooCommerce story not built."
+msgstr "WooCommerce 스토리가 구축되지 않았습니다."
+
+msgid "Post Type not found."
+msgstr "게시물 유형을 찾을 수 없습니다."
+
+msgid "AI Web Search is disabled!"
+msgstr "AI 웹 검색이 비활성화되었습니다!"
+
+msgid "AI ChatBot Sessions"
+msgstr "AI ChatBot 세션"
+
+msgid "Session Card"
+msgstr "세션 카드"
+
+msgid "Graph"
+msgstr "그래프"
+
+msgid "Card"
+msgstr "카드"
+
+msgid "WooCommerce Sessions"
+msgstr "WooCommerce 세션"
+
+msgid "AI Web Search Sessions"
+msgstr "AI 웹 검색 세션"
+
+msgid "Icon"
+msgstr "상"
+
+msgid "GeekyBot Setup and Usage Guides"
+msgstr "GeekyBot 설정 및 사용 가이드"
+
+msgid "Explore installation, training, and effective usage guides."
+msgstr "설치, 교육 및 효과적인 사용 가이드를 살펴보세요."
+
+msgid "Play"
+msgstr "놀다"
+
+msgid "Youtube Icon"
+msgstr "유튜브 아이콘"
+
+msgid "How to add Story"
+msgstr "스토리 추가 방법"
+
+msgid "How to add Variable"
+msgstr "변수를 추가하는 방법"
+
+msgid "Change Settings"
+msgstr "설정 변경"
+
+msgid "Change Color"
+msgstr "색상 변경"
+
+msgid "Remove"
+msgstr "제거하다"
+
+msgid "Cross Icon"
+msgstr "크로스 아이콘"
+
+msgid "Stories Date"
+msgstr "이야기 날짜"
+
+msgid "View Stories"
+msgstr "스토리 보기"
+
+msgid "AI Chatbot"
+msgstr "AI 챗봇"
+
+msgid "WooCommerce"
+msgstr "우커머스"
+
+msgid "Bot Icon"
+msgstr "봇 아이콘"
+
+msgid "AI ChatBot"
+msgstr "AI 챗봇"
+
+msgid "Last Month Stats"
+msgstr "지난달 통계"
+
+msgid "Woo Icon"
+msgstr "우 아이콘"
+
+msgid "AI Web Search "
+msgstr "AI 웹 검색"
+
+msgid "Manage Post Types"
+msgstr "게시물 유형 관리"
+
+msgid "Enable AI Web Search"
+msgstr "AI 웹 검색 활성화"
+
+msgid "Search Icon"
+msgstr "검색 아이콘"
+
+msgid "History"
+msgstr "역사"
+
+msgid "WooCommerce Bot"
+msgstr "WooCommerce 봇"
+
+msgid "logo"
+msgstr "심벌 마크"
+
+msgid "No of Conversation"
+msgstr "대화 횟수"
+
+msgid "View History"
+msgstr "기록 보기"
+
+msgid "No data"
+msgstr "데이터 없음"
+
+msgid "No Data"
+msgstr "데이터 없음"
+
+msgid "Addons"
+msgstr "애드온"
+
+msgid "addon"
+msgstr "애드온"
+
+msgid "Custom Listing Style"
+msgstr "맞춤 목록 스타일"
+
+msgid "Custom Listing Text"
+msgstr "사용자 정의 목록 텍스트"
+
+msgid "WooCommerce Features"
+msgstr "WooCommerce 기능"
+
+msgid "Addon List"
+msgstr "애드온 목록"
+
+msgid "WooCommerce "
+msgstr "우커머스"
+
+msgid "Lead Generation"
+msgstr "리드 생성"
+
+msgid ""
+"GeekyBot simplifies the WooCommerce experience with intelligent product "
+"discovery and purchasing. It seamlessly integrates with WooCommerce for "
+"efficient product searches, detailed listings, and a smooth shopping "
+"experience."
+msgstr ""
+"GeekyBot은 지능적인 제품 검색 및 구매를 통해 WooCommerce 경험을 단순화합니"
+"다. 효율적인 제품 검색, 세부 목록 및 원활한 쇼핑 경험을 위해 WooCommerce와 완"
+"벽하게 통합됩니다."
+
+msgid "Find Product"
+msgstr "제품 찾기"
+
+msgid "Find Products"
+msgstr "제품 찾기"
+
+msgid "Find products by name, category, or price range via chat."
+msgstr "채팅을 통해 이름, 카테고리, 가격대별로 제품을 찾아보세요."
+
+msgid "List Product"
+msgstr "제품 나열"
+
+msgid "List Products"
+msgstr "제품 나열"
+
+msgid "Show relevant products with details and prices based on preferences."
+msgstr "선호도에 따른 세부정보 및 가격과 함께 관련 제품을 표시합니다."
+
+msgid "Add To Cart Product"
+msgstr "장바구니에 추가"
+
+msgid "Add to Cart"
+msgstr "장바구니에 추가"
+
+msgid "Easily add products to the cart list directly through chat."
+msgstr "채팅을 통해 직접 장바구니 목록에 제품을 쉽게 추가하세요."
+
+msgid "Watch Video"
+msgstr "비디오 보기"
+
+msgid "AI Chat"
+msgstr "AI채팅"
+
+msgid "Custom"
+msgstr "관습"
+
+msgid " AI Chat Bot "
+msgstr "AI 챗봇"
+
+msgid "Conversation Handling"
+msgstr "대화 처리"
+
+msgid ""
+"AI Chat Conversation provides intelligent and context-aware interactions to "
+"enhance user engagement. Define key conversation elements to capture "
+"specific user inputs dynamically and adapt responses based on the context."
+msgstr ""
+"AI Chat Conversation은 지능적이고 상황을 인식하는 상호 작용을 제공하여 사용"
+"자 참여를 향상합니다. 특정 사용자 입력을 동적으로 캡처하고 상황에 따라 응답"
+"을 조정하는 주요 대화 요소를 정의합니다."
+
+msgid "Capture and process inputs dynamically for personalized responses."
+msgstr "개인화된 응답을 위해 동적으로 입력을 캡처하고 처리합니다."
+
+msgid "Adjust interactions based on the ongoing conversation for relevance."
+msgstr "관련성을 위해 진행 중인 대화를 기반으로 상호 작용을 조정합니다."
+
+msgid "Use collected data to tailor responses and improve satisfaction."
+msgstr "수집된 데이터를 사용하여 응답을 맞춤화하고 만족도를 높입니다."
+
+msgid "Discover Our "
+msgstr "우리의 발견"
+
+msgid " AI Web Search"
+msgstr "AI 웹 검색"
+
+msgid "Bot"
+msgstr "봇"
+
+msgid ""
+"AI Web Search improves user experience by delivering advanced, intuitive "
+"content discovery on your WordPress site. With powerful searches, users can "
+"quickly find relevant information, enhancing overall interest and "
+"accessibility."
+msgstr ""
+"AI 웹 검색은 WordPress 사이트에서 직관적인 고급 콘텐츠 검색을 제공하여 사용"
+"자 경험을 향상시킵니다. 강력한 검색 기능을 통해 사용자는 관련 정보를 빠르게 "
+"찾을 수 있어 전반적인 관심도와 접근성이 향상됩니다."
+
+msgid "GeekyBot swiftly retrieves posts and pages based on user queries."
+msgstr ""
+"GeekyBot은 사용자 쿼리를 기반으로 게시물과 페이지를 신속하게 검색합니다."
+
+msgid "Displays full content or excerpts that match search terms."
+msgstr "검색어와 일치하는 전체 콘텐츠 또는 발췌문을 표시합니다."
+
+msgid "Activate GeekyBot’s search for an AI web search with one click."
+msgstr "한 번의 클릭으로 GeekyBot의 AI 웹 검색을 활성화하세요."
+
+msgid "Web Search"
+msgstr "웹 검색"
+
+msgid "GeekyBot Supported Plugins"
+msgstr "GeekyBot 지원 플러그인"
+
+msgid "Plugin"
+msgstr "플러그인"
+
+msgid "WP Job Manager"
+msgstr "WP 작업 관리자"
+
+msgid "Tutor LMS"
+msgstr "교사 LMS"
+
+msgid "bbPress"
+msgstr "bbPress"
+
+msgid "LearnPress"
+msgstr "알아보기프레스"
+
+msgid "Knowledge Base"
+msgstr "기술 자료"
+
+msgid "BetterDocs"
+msgstr "BetterDocs"
+
+msgid "Motors"
+msgstr "모터"
+
+msgid "Estatik Real Estate"
+msgstr "Estatik 부동산"
+
+msgid "Auto Listings"
+msgstr "자동 목록"
+
+msgid "Welcome to GeekyBot Features"
+msgstr "GeekyBot 기능에 오신 것을 환영합니다."
+
+msgid "GeekyBot Features"
+msgstr "GeekyBot 기능"
+
+msgid "WooCommerce Integration"
+msgstr "WooCommerce 통합"
+
+msgid "Quick Installation"
+msgstr "빠른 설치"
+
+msgid "Version: 1.0.0"
+msgstr "버전: 1.0.0"
+
+msgid "AI Chat Bot"
+msgstr "AI 챗봇"
+
+msgid "Enable/Disable"
+msgstr "활성화/비활성화"
+
+msgid "Enable/Disable Bot"
+msgstr "봇 활성화/비활성화"
+
+msgid "Select Template"
+msgstr "템플릿 선택"
+
+msgid ""
+"AI Chat in GeekyBot provides instant, personalized responses to user "
+"queries, ensuring seamless support around the clock. With its ability to "
+"engage users at any time, GeekyBot enhances the reliability of your service, "
+"making sure that your customers' needs are always met."
+msgstr ""
+"GeekyBot의 AI Chat은 사용자 쿼리에 즉각적이고 개인화된 응답을 제공하여 24시"
+"간 내내 원활한 지원을 보장합니다. 언제든지 사용자의 참여를 유도할 수 있는 기"
+"능을 통해 GeekyBot은 서비스의 신뢰성을 향상시켜 고객의 요구 사항이 항상 충족"
+"되도록 합니다."
+
+msgid ""
+"By training GeekyBot with your specific data, you can create dynamic, "
+"tailored interactions that reflect your business's unique voice and "
+"services. This customization allows for more relevant, effective "
+"conversations that build stronger connections with your users."
+msgstr ""
+"특정 데이터로 GeekyBot을 교육하면 비즈니스의 고유한 의견과 서비스를 반영하는 "
+"역동적이고 맞춤화된 상호 작용을 만들 수 있습니다. 이러한 사용자 정의를 통해 "
+"사용자와의 더욱 강력한 관계를 구축하는 보다 관련성이 높고 효과적인 대화가 가"
+"능해졌습니다."
+
+msgid "Bot Image"
+msgstr "봇 이미지"
+
+msgid "image"
+msgstr "영상"
+
+msgid "Watch AI ChatBot Video"
+msgstr "AI ChatBot 동영상 보기"
+
+msgid "AI Web Search Bot"
+msgstr "AI 웹 검색봇"
+
+msgid ""
+"Effortlessly search for specific posts and content across your entire site "
+"using our powerful AI web search tool. GeekyBot goes beyond standard "
+"searches, delivering results from all types of data on your site. Whether "
+"you're looking for posts, pages, custom post types, or other information, "
+"GeekyBot ensures you find what you need quickly and efficiently by "
+"displaying relevant articles, posts, and more in a single, streamlined "
+"search experience."
+msgstr ""
+"강력한 AI 웹 검색 도구를 사용하여 전체 사이트에서 특정 게시물과 콘텐츠를 쉽"
+"게 검색하세요. GeekyBot은 표준 검색을 뛰어넘어 사이트의 모든 유형의 데이터에"
+"서 결과를 제공합니다. 게시물, 페이지, 사용자 정의 게시물 유형 또는 기타 정보"
+"를 찾고 있든 GeekyBot은 간소화된 단일 검색 환경에서 관련 기사, 게시물 등을 표"
+"시하여 필요한 것을 빠르고 효율적으로 찾을 수 있도록 보장합니다."
+
+msgid "New Post Type Search"
+msgstr "새 게시물 유형 검색"
+
+msgid ""
+"Enable this option to directly include new post types in search results, "
+"enhancing user access to all content."
+msgstr ""
+"검색 결과에 새 게시물 유형을 직접 포함하여 모든 콘텐츠에 대한 사용자 액세스"
+"를 향상시키려면 이 옵션을 활성화하세요."
+
+msgid "Watch AI Web Search Video"
+msgstr "AI 웹 검색 동영상 보기"
+
+msgid "Back"
+msgstr "뒤쪽에"
+
+msgid "Finish"
+msgstr "마치다"
+
+msgid "WooCommerce is not installed"
+msgstr "WooCommerce가 설치되지 않았습니다"
+
+msgid ""
+"WooCommerce plugin is not installed on your site, you won't be able to "
+"integrate GeekyBot with WooCommerce."
+msgstr ""
+"WooCommerce 플러그인이 사이트에 설치되어 있지 않으면 GeekyBot을 WooCommerce"
+"와 통합할 수 없습니다."
+
+msgid ""
+"Easily integrate AI with WooCommerce to enhance your online store’s "
+"performance. GeekyBot boosts lead generation and customer interactions, "
+"automating key processes for a more effective and engaging shopping "
+"experience."
+msgstr ""
+"AI를 WooCommerce와 쉽게 통합하여 온라인 상점의 성능을 향상하세요. GeekyBot은 "
+"리드 생성 및 고객 상호 작용을 촉진하여 보다 효과적이고 매력적인 쇼핑 경험을 "
+"위해 주요 프로세스를 자동화합니다."
+
+msgid ""
+"GeekyBot also streamlines customer inquiries and provides real-time, "
+"intelligent responses. By improving retention and customer satisfaction, it "
+"ensures your store delivers an exceptional experience that keeps shoppers "
+"coming back."
+msgstr ""
+"GeekyBot은 또한 고객 문의를 간소화하고 실시간 지능적인 응답을 제공합니다. 유"
+"지율과 고객 만족도를 향상함으로써 매장은 쇼핑객이 계속해서 돌아오게 만드는 탁"
+"월한 경험을 제공할 수 있습니다."
+
+msgid "Watch WooCommerce Video"
+msgstr "WooCommerce 비디오 보기"
+
+msgid "Welcome to GeekyBot !..."
+msgstr "GeekyBot에 오신 것을 환영합니다!..."
+
+msgid ""
+"The ultimate AI chatbot for WooCommerce lead generation, intelligent content "
+"search, and interactive customer engagement on your WordPress website."
+msgstr ""
+"WordPress 웹사이트에서 WooCommerce 리드 생성, 지능형 콘텐츠 검색 및 대화형 고"
+"객 참여를 위한 최고의 AI 챗봇입니다."
+
+msgid ""
+"Personalize interactions by dynamically processing user inputs using slots "
+"and variables."
+msgstr ""
+"슬롯과 변수를 사용하여 사용자 입력을 동적으로 처리하여 상호 작용을 개인화합니"
+"다."
+
+msgid ""
+"Enhance shopping by enabling users to find products and add them to their "
+"cart seamlessly."
+msgstr ""
+"사용자가 제품을 찾고 장바구니에 원활하게 추가할 수 있도록 하여 쇼핑을 향상시"
+"킵니다."
+
+msgid "Website Search"
+msgstr "웹사이트 검색"
+
+msgid ""
+"Streamline discovery by helping users find relevant information on your "
+"WordPress site."
+msgstr ""
+"사용자가 WordPress 사이트에서 관련 정보를 찾을 수 있도록 지원하여 검색을 간소"
+"화하세요."
+
+msgid "Please insert activation key to proceed"
+msgstr "계속하려면 활성화 키를 삽입하세요."
+
+msgid "Addon Installation Failed"
+msgstr "애드온 설치 실패"
+
+msgid "Addon installation failed"
+msgstr "애드온 설치 실패"
+
+msgid "Addon Installation Failed, File download error"
+msgstr "애드온 설치 실패, 파일 다운로드 오류"
+
+msgid "Activated"
+msgstr "활성화됨"
+
+msgid "Deactivate"
+msgstr "비활성화"
+
+msgid "Deactivated"
+msgstr "비활성화됨"
+
+msgid "Activate"
+msgstr "활성화"
+
+msgid "Not Installed"
+msgstr "설치되지 않음"
+
+msgid "Addon Installed Successfully"
+msgstr "애드온이 성공적으로 설치되었습니다"
+
+msgid "Ticket Actions"
+msgstr "티켓 작업"
+
+msgid "Agents"
+msgstr "자치령 대표"
+
+msgid "Ticket Auto Close"
+msgstr "티켓 자동 종료"
+
+msgid "left image"
+msgstr "왼쪽 이미지"
+
+msgid "right image"
+msgstr "오른쪽 이미지"
+
+msgid "Add-ons For Majestic Support"
+msgstr "Majestic 지원을 위한 추가 기능"
+
+msgid ""
+"Get trusted WordPress add-ons. Guaranteed to work fast, safe to use, "
+"beautifully coded, packed with features, and are easy to use."
+msgstr ""
+"신뢰할 수 있는 WordPress 추가 기능을 받으세요. 빠른 작업, 안전한 사용, 아름다"
+"운 코딩, 다양한 기능, 사용하기 쉬운 작업이 보장됩니다."
+
+msgid "Save big today with an exclusive membership plan!"
+msgstr "오늘 독점 멤버십 플랜으로 큰 금액을 절약하세요!"
+
+msgid "Show"
+msgstr "보여주다"
+
+msgid "show bundle pack"
+msgstr "번들 팩 표시"
+
+msgid "Agent"
+msgstr "대리인"
+
+msgid ""
+"Add agents and assign roles and permissions to provide assistance and "
+"support for customer support tickets."
+msgstr ""
+"상담원을 추가하고 역할과 권한을 할당하여 고객 지원 티켓에 대한 지원을 제공하"
+"세요."
+
+msgid "buy now"
+msgstr "지금 구매"
+
+msgid "Installed"
+msgstr "설치됨"
+
+msgid "multiform"
+msgstr "여러 가지 형태의"
+
+msgid "Multi Forms"
+msgstr "다중 양식"
+
+msgid ""
+"Create multiple custom ticket forms with different custom fields for each "
+"request type that you support."
+msgstr ""
+"지원하는 각 요청 유형에 대해 서로 다른 사용자 정의 필드를 사용하여 여러 사용"
+"자 정의 티켓 양식을 만드세요."
+
+msgid "Email Piping"
+msgstr "이메일 파이핑"
+
+msgid ""
+"Email piping is the process of automatically turning incoming emails into "
+"support tickets without manual data entry."
+msgstr ""
+"이메일 파이핑은 수동으로 데이터를 입력하지 않고도 수신 이메일을 자동으로 지"
+"원 티켓으로 전환하는 프로세스입니다."
+
+msgid "agent auto assign"
+msgstr "상담원 자동 할당"
+
+msgid "Agent Auto Assign"
+msgstr "상담원 자동 할당"
+
+msgid ""
+"Make the ticket assignment process automatic and assign the most qualified "
+"agent to your tickets with conditions."
+msgstr ""
+"티켓 할당 프로세스를 자동으로 만들고 조건에 따라 티켓에 가장 자격을 갖춘 상담"
+"원을 할당하세요."
+
+msgid "private note"
+msgstr "비공개 메모"
+
+msgid "Private Note"
+msgstr "비공개 메모"
+
+msgid ""
+"Add private notes to a ticket and share crucial information internally with "
+"your agents, this private note is not visible to the customer."
+msgstr ""
+"티켓에 비공개 메모를 추가하고 중요한 정보를 상담원과 내부적으로 공유하세요. "
+"이 비공개 메모는 고객에게 표시되지 않습니다."
+
+msgid "merge tickets"
+msgstr "티켓 병합"
+
+msgid "Merge Tickets"
+msgstr "티켓 병합"
+
+msgid ""
+"Merge one or more tickets into another if you receive two support requests "
+"from the same end user about the same issue."
+msgstr ""
+"동일한 문제에 대해 동일한 최종 사용자로부터 두 건의 지원 요청을 받은 경우 하"
+"나 이상의 티켓을 다른 티켓으로 병합하세요."
+
+msgid "helptopic"
+msgstr "도움말 항목"
+
+msgid "Help Topics"
+msgstr "도움말 항목"
+
+msgid ""
+"The user can search for and choose the topic for which they need help using "
+"help topics"
+msgstr ""
+"사용자는 도움말 항목을 사용하여 도움이 필요한 항목을 검색하고 선택할 수 있습"
+"니다."
+
+msgid "Auto Close Ticket"
+msgstr "자동 종료 티켓"
+
+msgid ""
+"Manage abandoned tickets, and set rules for tickets over time, and those "
+"tickets will be closed automatically after a certain period."
+msgstr ""
+"버려진 티켓을 관리하고, 시간 경과에 따른 티켓 규칙을 설정하면 해당 티켓은 일"
+"정 기간이 지나면 자동으로 종료됩니다."
+
+msgid "Knowledgebase"
+msgstr "지식 베이스"
+
+msgid ""
+"Stop wasting time on repetitive inquiries, build your knowledge base, and "
+"organize your solutions into categories for users."
+msgstr ""
+"반복적인 문의로 시간을 낭비하지 말고, 지식 기반을 구축하고, 사용자를 위한 카"
+"테고리로 솔루션을 정리하세요."
+
+msgid "Ticket Overdue"
+msgstr "티켓 연체"
+
+msgid ""
+"Define rules or set a specific time interval for making tickets "
+"automatically overdue."
+msgstr ""
+"티켓이 자동으로 기한을 초과하도록 규칙을 정의하거나 특정 시간 간격을 설정하세"
+"요."
+
+msgid "time tracking"
+msgstr "시간 추적"
+
+msgid "Time Tracking"
+msgstr "시간 추적"
+
+msgid ""
+"Track the amount of time spent on each customer support ticket without "
+"losing focus and enhance team productivity."
+msgstr ""
+"집중력을 잃지 않으면서 각 고객 지원 티켓에 소요된 시간을 추적하고 팀 생산성"
+"을 향상시키세요."
+
+msgid "Ticket History"
+msgstr "티켓 내역"
+
+msgid ""
+"Show the whole history of the ticket, including its status and any action "
+"taken in response to it."
+msgstr ""
+"상태와 이에 대응하여 취한 조치를 포함하여 티켓의 전체 기록을 표시합니다."
+
+msgid "Paid Support"
+msgstr "유료 지원"
+
+msgid ""
+"The simplest approach to effectively manage payments for premium help is "
+"through paid support."
+msgstr ""
+"프리미엄 지원에 대한 지불을 효과적으로 관리하는 가장 간단한 접근 방식은 유료 "
+"지원을 이용하는 것입니다."
+
+msgid "Private Credentials"
+msgstr "개인 자격 증명"
+
+msgid ""
+"Customers will enter sensitive information on tickets, and this add-on is "
+"designed to help you keep that information secure."
+msgstr ""
+"고객은 티켓에 민감한 정보를 입력하게 되며, 이 추가 기능은 해당 정보를 안전하"
+"게 유지하는 데 도움이 되도록 설계되었습니다."
+
+msgid "Ticket close reason"
+msgstr "티켓 종료 이유"
+
+msgid "Ticket Closed Reason"
+msgstr "티켓 종료 이유"
+
+msgid ""
+"Empowers users to provide clear and concise explanations for why customer "
+"service tickets are being closed."
+msgstr ""
+"사용자가 고객 서비스 티켓이 종료되는 이유에 대해 명확하고 간결한 설명을 제공"
+"할 수 있습니다."
+
+msgid "Premade Responses"
+msgstr "미리 만들어진 응답"
+
+msgid ""
+"Make ready-made responses to the most common questions in the tickets to "
+"swiftly address client issues."
+msgstr ""
+"고객 문제를 신속하게 해결하기 위해 티켓의 가장 일반적인 질문에 미리 답변해 보"
+"세요."
+
+msgid "max ticket"
+msgstr "최대 티켓"
+
+msgid "Max Tickets"
+msgstr "최대 티켓"
+
+msgid ""
+"Admins can limit the number of tickets that users can create as well as the "
+"number of tickets that agents can open individually."
+msgstr ""
+"관리자는 사용자가 만들 수 있는 티켓 수와 상담원이 개별적으로 열 수 있는 티켓 "
+"수를 제한할 수 있습니다."
+
+msgid "Feedback"
+msgstr "피드백"
+
+msgid ""
+"To enhance the quality of your services, ask your customers to complete a "
+"survey when a ticket is closed."
+msgstr ""
+"서비스 품질을 향상시키려면 티켓이 마감되었을 때 고객에게 설문조사를 완료하도"
+"록 요청하세요."
+
+msgid "ticket actions"
+msgstr "티켓 작업"
+
+msgid ""
+"Ticket action options allow you to execute additional actions on tickets."
+msgstr "티켓 작업 옵션을 사용하면 티켓에 대한 추가 작업을 실행할 수 있습니다."
+
+msgid "Export"
+msgstr "내보내다"
+
+msgid ""
+"Easily export ticket data and performance report data from your majestic "
+"support to an Excel spreadsheet with our efficient and user-friendly "
+"solution."
+msgstr ""
+"효율적이고 사용자 친화적인 솔루션을 사용하여 탁월한 지원의 티켓 데이터와 성"
+"과 보고서 데이터를 Excel 스프레드시트로 쉽게 내보낼 수 있습니다."
+
+msgid "email cc"
+msgstr "이메일 참조"
+
+msgid "Email CC"
+msgstr "이메일 참조"
+
+msgid ""
+"Send the exact copy of the email to the provided email address with Email CC "
+"or BCC."
+msgstr ""
+"이메일 CC 또는 BCC를 사용하여 이메일의 정확한 사본을 제공된 이메일 주소로 보"
+"내십시오."
+
+msgid "user options"
+msgstr "사용자 옵션"
+
+msgid "User Options"
+msgstr "사용자 옵션"
+
+msgid ""
+"User options enable you to define roles for new users when they are "
+"registered."
+msgstr ""
+"사용자 옵션을 사용하면 새 사용자가 등록될 때 역할을 정의할 수 있습니다."
+
+msgid "SMTP"
+msgstr "SMTP"
+
+msgid ""
+"SMTP enables you to add  custom mail protocols to send and receive emails "
+"with the support ticket system."
+msgstr ""
+"SMTP를 사용하면 사용자 정의 메일 프로토콜을 추가하여 지원 티켓 시스템으로 이"
+"메일을 보내고 받을 수 있습니다."
+
+msgid "Multi Language Email Templates"
+msgstr "다중 언어 이메일 템플릿"
+
+msgid ""
+"Create multi-language email templates for all default email templates to "
+"send customers emails in the language that they prefer."
+msgstr ""
+"모든 기본 이메일 템플릿에 대한 다국어 이메일 템플릿을 생성하여 고객이 선호하"
+"는 언어로 이메일을 보낼 수 있습니다."
+
+msgid "Downloads"
+msgstr "다운로드"
+
+msgid ""
+"Downloads can be very helpful for users who are looking to obtain the "
+"necessary information to resolve issues."
+msgstr ""
+"다운로드는 문제 해결에 필요한 정보를 얻으려는 사용자에게 매우 유용할 수 있습"
+"니다."
+
+msgid "Announcements"
+msgstr "공지사항"
+
+msgid ""
+"Make an unlimited number of announcements related to the support system to "
+"encourage customer interaction."
+msgstr ""
+"고객 상호작용을 장려하기 위해 지원 시스템과 관련된 발표를 무제한으로 진행합니"
+"다."
+
+msgid "Ban Email"
+msgstr "이메일 금지"
+
+msgid ""
+"With Ban Email, you can limit a users ability to create new tickets by "
+"blocking their email address."
+msgstr ""
+"금지 이메일을 사용하면 이메일 주소를 차단하여 사용자가 새 티켓을 생성하는 기"
+"능을 제한할 수 있습니다."
+
+msgid "FAQ"
+msgstr "FAQ"
+
+msgid ""
+"Provide answers to common user questions with the FAQ extension before they "
+"become tickets."
+msgstr ""
+"티켓이 되기 전에 FAQ 확장을 통해 일반적인 사용자 질문에 대한 답변을 제공하세"
+"요."
+
+msgid "admin widgets"
+msgstr "관리자 위젯"
+
+msgid "Admin Widgets"
+msgstr "관리자 위젯"
+
+msgid ""
+"Get immediate data on your support operations as soon as you log into your "
+"WordPress administration area."
+msgstr ""
+"WordPress 관리 영역에 로그인하자마자 지원 작업에 대한 즉각적인 데이터를 얻으"
+"세요."
+
+msgid "desktop notifications"
+msgstr "데스크톱 알림"
+
+msgid "Desktop Notifications"
+msgstr "데스크톱 알림"
+
+msgid ""
+"You will be informed of anything that occurs on your support system by the "
+"desktop notifications."
+msgstr ""
+"지원 시스템에서 발생하는 모든 사항은 데스크탑 알림을 통해 알려드립니다."
+
+msgid "woocommerce"
+msgstr "우커머스"
+
+msgid ""
+"The integration of the support ticket system for WooCommerce with your e-"
+"shop makes your support better and more professional."
+msgstr ""
+"WooCommerce에 대한 지원 티켓 시스템을 전자 상점과 통합하면 지원이 더욱 향상되"
+"고 전문화됩니다."
+
+msgid "mail chimp"
+msgstr "메일침프"
+
+msgid "Mail Chimp"
+msgstr "메일침프"
+
+msgid ""
+"Manage your email marketing campaigns directly from your majestic support by "
+"adding new user accounts to your Mailchimp email list."
+msgstr ""
+"Mailchimp 이메일 목록에 새로운 사용자 계정을 추가하여 훌륭한 지원을 통해 이메"
+"일 마케팅 캠페인을 직접 관리하세요."
+
+msgid "internal mail"
+msgstr "내부 메일"
+
+msgid "Internal Mail"
+msgstr "내부 메일"
+
+msgid ""
+"Send messages internally about support tickets and other issues between "
+"agents with internal mail."
+msgstr ""
+"내부 메일을 통해 상담원 간 지원 티켓 및 기타 문제에 대한 메시지를 내부적으로 "
+"보냅니다."
+
+msgid "frontend widget"
+msgstr "프런트엔드 위젯"
+
+msgid "Front-End Widgets"
+msgstr "프런트엔드 위젯"
+
+msgid ""
+"Frontend Widgets include several widgets that can be used to enhance the "
+"plugin's functionality in various areas of the website."
+msgstr ""
+"프런트엔드 위젯에는 웹사이트의 다양한 영역에서 플러그인 기능을 향상시키는 데 "
+"사용할 수 있는 여러 위젯이 포함되어 있습니다."
+
+msgid "envato"
+msgstr "엔바토"
+
+msgid "Envato"
+msgstr "엔바토"
+
+msgid ""
+"Clients won't be able to open a new ticket using the Envato Validation "
+"plugin if they don't have a valid Envato license."
+msgstr ""
+"클라이언트는 유효한 Envato 라이센스가 없으면 Envato 유효성 검사 플러그인을 사"
+"용하여 새 티켓을 열 수 없습니다."
+
+msgid "easy digital download"
+msgstr "쉬운 디지털 다운로드"
+
+msgid "Easy Digital Download"
+msgstr "간편한 디지털 다운로드"
+
+msgid ""
+"Learn about a customer's purchase directly from the support dashboard by "
+"integrating Majestic Support with your EDD store."
+msgstr ""
+"Majestic Support를 EDD 스토어와 통합하여 지원 대시보드에서 직접 고객의 구매"
+"에 대해 알아보세요."
+
+msgid "Majestic Support Add-ons Bundle Pack"
+msgstr "Majestic 지원 추가 기능 번들 팩"
+
+msgid "Basic"
+msgstr "기초적인"
+
+msgid "Unlimited Agents"
+msgstr "무제한 에이전트"
+
+msgid "Helptopic"
+msgstr "도움말 항목"
+
+msgid "Show all"
+msgstr "모두 표시"
+
+msgid "Standard"
+msgstr "기준"
+
+msgid "Everything in basic included and "
+msgstr "기본적으로 모든 것이 포함되어 있으며"
+
+msgid "Premade Response"
+msgstr "미리 만들어진 응답"
+
+msgid "Professional"
+msgstr "전문적인"
+
+msgid "Everything in standard included and"
+msgstr "표준의 모든 것이 포함되어 있습니다."
+
+msgid "All Future Addons"
+msgstr "모든 향후 애드온"
+
+msgid "spinning wheel"
+msgstr "물레"
+
+msgid "New Update Version"
+msgstr "새로운 업데이트 버전"
+
+msgid "is Available"
+msgstr "사용 가능"
+
+msgid "Status: "
+msgstr "상태:"
+
+msgid "Version"
+msgstr "버전"
+
+msgid "addon in no longer active"
+msgstr "더 이상 활성화되지 않은 애드온"
+
+msgid "Please Insert Your Activation Key"
+msgstr "활성화 키를 삽입하세요"
+
+msgid "XXXX-XXXX-XXXXX-XXXXX"
+msgstr "XXXX-XXXX-XXXXX-XXXXX"
+
+msgid "Proceed"
+msgstr "진행하다"
+
+msgid "GeekyBot Addon Installer"
+msgstr "GeekyBot 애드온 설치 프로그램"
+
+msgid "Select All Addons"
+msgstr "모든 애드온 선택"
+
+msgid "All allowed add ons are already installed"
+msgstr "허용된 모든 추가 기능이 이미 설치되어 있습니다."
+
+msgid "You are not allowed to install any add on"
+msgstr "추가 기능을 설치할 수 없습니다"
+
+msgid "Something went wrong"
+msgstr "문제가 발생했습니다."
+
+msgid "Addons Installed Successfully"
+msgstr "애드온이 성공적으로 설치되었습니다"
+
+msgid "Open Dashboard"
+msgstr "대시보드 열기"
+
+msgid "Open Plugins Page"
+msgstr "플러그인 페이지 열기"
+
+msgid "PersonName"
+msgstr "사람이름"
+
+msgid "Facility"
+msgstr "시설"
+
+msgid "Organization"
+msgstr "조직"
+
+msgid "Location"
+msgstr "위치"
+
+msgid "Location_NON_GPE"
+msgstr "위치_NON_GPE"
+
+msgid "Product"
+msgstr "제품"
+
+msgid "Event"
+msgstr "이벤트"
+
+msgid "ArtWork"
+msgstr "예술 작품"
+
+msgid "LawDocument"
+msgstr "법률문서"
+
+msgid "Language"
+msgstr "언어"
+
+msgid "Date"
+msgstr "날짜"
+
+msgid "Time"
+msgstr "시간"
+
+msgid "Percentage"
+msgstr "백분율"
+
+msgid "Money"
+msgstr "돈"
+
+msgid "Quantity"
+msgstr "수량"
+
+msgid "Ordinal"
+msgstr "서수"
+
+msgid "Cardinal"
+msgstr "추기경"
+
+msgid "Select Variable For"
+msgstr "변수 선택"
+
+msgid "Attribute"
+msgstr "기인하다"
+
+msgid "Name"
+msgstr "이름"
+
+msgid "Varibale Name"
+msgstr "변수 이름"
+
+msgid "Type"
+msgstr "유형"
+
+msgid "Possible Field Values"
+msgstr "가능한 필드 값"
+
+msgid "Add Comma Seprated Values"
+msgstr "쉼표로 구분된 값 추가"
+
+msgid "Variable For"
+msgstr "변수"
+
+msgid "Select Variable For in case of Woocommerce Variable"
+msgstr "WooCommerce 변수의 경우 변수를 선택하세요."
+
+msgid "cancel"
+msgstr "취소"
+
+msgid "Cancel"
+msgstr "취소"
+
+msgid "Save Changes"
+msgstr "변경 사항 저장"
+
+msgid "Save Variable"
+msgstr "변수 저장"
+
+msgid "Reset"
+msgstr "다시 놓기"
+
+msgid "Are you sure to delete it?"
+msgstr "삭제하시겠습니까?"
+
+msgid "Delete Variable"
+msgstr "변수 삭제"
+
+msgid "Add Variable"
+msgstr "변수 추가"
+
+msgid "name"
+msgstr "이름"
+
+msgid "type"
+msgstr "유형"
+
+msgid "Possible Values Here"
+msgstr "여기에 가능한 값"
+
+msgid "Edit Variable"
+msgstr "변수 편집"
+
+msgid "Are you sure to delete it"
+msgstr "삭제하시겠습니까?"
+
+msgid "Add New"
+msgstr "새로 추가"
+
+msgid "User Input"
+msgstr "사용자 입력"
+
+msgid "Close"
+msgstr "닫다"
+
+msgid "Add"
+msgstr "추가하다"
+
+msgid "Add More"
+msgstr "더 추가"
+
+msgid "Available Variables"
+msgstr "사용 가능한 변수"
+
+msgid "Enter bot response here..."
+msgstr "여기에 봇 응답을 입력하세요..."
+
+msgid "Button text here"
+msgstr "버튼 텍스트는 여기에 있습니다."
+
+msgid "URL"
+msgstr "URL"
+
+msgid "Button value here"
+msgstr "여기의 버튼 값"
+
+msgid "Enter URL here"
+msgstr "여기에 URL을 입력하세요"
+
+msgid "Add New Button"
+msgstr "새 버튼 추가"
+
+msgid "Select Predefined Function"
+msgstr "사전 정의된 기능 선택"
+
+msgid "Select Action"
+msgstr "작업 선택"
+
+msgid "Add New Action"
+msgstr "새 작업 추가"
+
+msgid "Add New Form"
+msgstr "새 양식 추가"
+
+msgid "Enter default fallback here..."
+msgstr "여기에 기본 대체를 입력하세요..."
+
+msgid "Enter default fallback for intent here..."
+msgstr "여기에 인텐트에 대한 기본 대체를 입력하세요..."
+
+msgid "Start Point"
+msgstr "시작점"
+
+msgid "Error: The template file does not exist."
+msgstr "오류: 템플릿 파일이 존재하지 않습니다."
+
+msgid "Text"
+msgstr "텍스트"
+
+msgid "Function"
+msgstr "기능"
+
+msgid "Error: The"
+msgstr "오류:"
+
+msgid "tag in"
+msgstr "태그 인"
+
+msgid "at position"
+msgstr "위치에"
+
+msgid "is missing."
+msgstr "누락되었습니다."
+
+msgid "is empty."
+msgstr "비어 있습니다."
+
+msgid "tag associated with the user input"
+msgstr "사용자 입력과 관련된 태그"
+
+msgid "in"
+msgstr "~에"
+
+msgid "tag of the"
+msgstr "태그"
+
+msgid "block associated with the user input"
+msgstr "사용자 입력과 관련된 블록"
+
+msgid "or"
+msgstr "또는"
+
+msgid "Error: The function name"
+msgstr "오류: 함수 이름"
+
+msgid "in the"
+msgstr "에서"
+
+msgid "is invalid."
+msgstr "유효하지 않습니다."
+
+msgid "Error: The type name"
+msgstr "오류: 유형 이름"
+
+msgid "is invalid. This should be"
+msgstr "유효하지 않습니다. 이것은"
+
+msgid "You might like these products."
+msgstr "당신은 이 제품을 좋아할 것입니다."
+
+msgid "No exact match was found. Explore these similar products."
+msgstr "정확히 일치하는 항목을 찾을 수 없습니다. 유사한 제품을 살펴보세요."
+
+msgid "Here are some suggestions."
+msgstr "다음은 몇 가지 제안 사항입니다."
+
+msgid "Showing"
+msgstr "전시"
+
+msgid "of"
+msgstr "~의"
+
+msgid "Add to cart"
+msgstr "장바구니에 추가"
+
+msgid "Empty Story"
+msgstr "빈 이야기"
+
+msgid "Show All Products"
+msgstr "모든 제품 표시"
+
+msgid "Search Product"
+msgstr "제품 검색"
+
+msgid "Get Products Under Price"
+msgstr "가격에 맞춰 제품을 구매하세요"
+
+msgid "Get Products Above Price"
+msgstr "가격 이상의 제품을 얻으세요"
+
+msgid "View Cart/Remove Items"
+msgstr "장바구니 보기/항목 제거"
+
+msgid "Checkout"
+msgstr "점검"
+
+msgid "Reset Password"
+msgstr "비밀번호 재설정"
+
+msgid "Send Chat To Admin"
+msgstr "관리자에게 채팅 보내기"
+
+msgid "Integer"
+msgstr "정수"
+
+msgid "Float"
+msgstr "뜨다"
+
+msgid "Boolean"
+msgstr "부울"
+
+msgid "String"
+msgstr "끈"
+
+msgid "Default Fallback"
+msgstr "기본 대체"
+
+msgid "Are you sure to reset it?"
+msgstr "재설정하시겠습니까?"
+
+msgid "Parameter Name *"
+msgstr "매개변수 이름 *"
+
+msgid "Varibale Name *"
+msgstr "변수 이름 *"
+
+msgid "User input has been successfully saved."
+msgstr "사용자 입력이 성공적으로 저장되었습니다."
+
+msgid "An empty user input field."
+msgstr "빈 사용자 입력 필드입니다."
+
+msgid "An empty bot response."
+msgstr "빈 봇 응답."
+
+msgid "Response Successfully Saved!"
+msgstr "응답이 성공적으로 저장되었습니다!"
+
+msgid "Action Successfully Saved!"
+msgstr "작업이 성공적으로 저장되었습니다!"
+
+msgid "Form Successfully Saved!"
+msgstr "양식이 저장되었습니다!"
+
+msgid "Default Fallback Successfully Saved!"
+msgstr "기본 대체가 성공적으로 저장되었습니다!"
+
+msgid "Store relevant user input first, then fallback."
+msgstr "관련 사용자 입력을 먼저 저장한 다음 대체합니다."
+
+msgid "An empty default fallback."
+msgstr "빈 기본 대체입니다."
+
+msgid "Default Intent Fallback Successfully Saved!"
+msgstr "기본 의도 대체가 성공적으로 저장되었습니다!"
+
+msgid "Discard"
+msgstr "버리다"
+
+msgid "Temporary discard"
+msgstr "임시 폐기"
+
+msgid "Automate"
+msgstr "자동화"
+
+msgid "User input"
+msgstr "사용자 입력"
+
+msgid "Form"
+msgstr "형태"
+
+msgid "Fallback"
+msgstr "대체"
+
+msgid "Chat "
+msgstr "채팅"
+
+msgid "Available Variable"
+msgstr "사용 가능한 변수"
+
+msgid "Product Name"
+msgstr "제품명"
+
+msgid "Minimum Price"
+msgstr "최소 가격"
+
+msgid "Maximum Price"
+msgstr "최대 가격"
+
+msgid "User Login"
+msgstr "사용자 로그인"
+
+msgid "Action Icon"
+msgstr "액션 아이콘"
+
+msgid "User Icon"
+msgstr "사용자 아이콘"
+
+msgid "User"
+msgstr "사용자"
+
+msgid "Bot Response"
+msgstr "봇 응답"
+
+msgid "User Text Icon"
+msgstr "사용자 텍스트 아이콘"
+
+msgid "Bot Function Icon"
+msgstr "봇 기능 아이콘"
+
+msgid "Bot Function"
+msgstr "봇 기능"
+
+msgid "Predefined Function"
+msgstr "사전 정의된 기능"
+
+msgid "Bot Action Icon"
+msgstr "봇 작업 아이콘"
+
+msgid "Bot Action"
+msgstr "봇 액션"
+
+msgid "Bot Form Icon"
+msgstr "봇 양식 아이콘"
+
+msgid "Bot Form"
+msgstr "봇 양식"
+
+msgid "Fallback Icon"
+msgstr "대체 아이콘"
+
+msgid "Fallback Massege"
+msgstr "대체 메시지"
+
+msgid "Save & Close"
+msgstr "저장 후 닫기"
+
+msgid "Info Icon"
+msgstr "정보 아이콘"
+
+msgid "How to add parameters"
+msgstr "매개변수를 추가하는 방법"
+
+msgid "User form Icon"
+msgstr "사용자 양식 아이콘"
+
+msgid "Form Name *"
+msgstr "양식 이름 *"
+
+msgid "Add New Variable"
+msgstr "새 변수 추가"
+
+msgid "Function Form"
+msgstr "기능 형태"
+
+msgid "Action Form"
+msgstr "행동 양식"
+
+msgid "Custom Action"
+msgstr "맞춤 작업"
+
+msgid "Add New Custom Action"
+msgstr "새로운 사용자 정의 작업 추가"
+
+msgid "Add New Parameter"
+msgstr "새 매개변수 추가"
+
+msgid "Intent Fallback"
+msgstr "인텐트 폴백"
+
+msgid "Save Story"
+msgstr "스토리 저장"
+
+msgid "Reset Story"
+msgstr "스토리 재설정"
+
+msgid "Story has been successfully saved."
+msgstr "스토리가 성공적으로 저장되었습니다."
+
+msgid "WooCommerce is not active!"
+msgstr "WooCommerce가 활성화되어 있지 않습니다!"
+
+msgid "Error encountered in template."
+msgstr "템플릿에서 오류가 발생했습니다."
+
+msgid "An empty story name."
+msgstr "빈 스토리 이름입니다."
+
+msgid "An empty story template."
+msgstr "빈 스토리 템플릿입니다."
+
+msgid "title"
+msgstr "제목"
+
+msgid "Active"
+msgstr "활동적인"
+
+msgid "Disable"
+msgstr "장애를 입히다"
+
+msgid "Edit Story"
+msgstr "스토리 편집"
+
+msgid "Are you sure to delete"
+msgstr "삭제하시겠습니까?"
+
+msgid "Delete Story"
+msgstr "스토리 삭제"
+
+msgid "Built Story"
+msgstr "구축된 스토리"
+
+msgid "Built"
+msgstr "세워짐"
+
+msgid "WooCommerce Story"
+msgstr "우커머스 스토리"
+
+msgid "Story Name *"
+msgstr "스토리 이름 *"
+
+msgid "Edit Story Name"
+msgstr "스토리 이름 편집"
+
+msgid "Invalid username or email."
+msgstr "사용자 이름이나 이메일이 잘못되었습니다."
+
+msgid "Looks like there was a problem resetting your password:"
+msgstr "비밀번호를 재설정하는 중에 문제가 발생한 것 같습니다."
+
+msgid "User not found!"
+msgstr "사용자를 찾을 수 없습니다!"
+
+msgid "Okay, I have sent the recovery email. Thank you for your patience."
+msgstr "네, 복구 이메일을 보냈습니다. 양해해 주셔서 감사합니다."
+
+msgid "Your query is sent to the admin."
+msgstr "귀하의 쿼리가 관리자에게 전송되었습니다."
+
+msgid "Enable"
+msgstr "할 수 있게 하다"
+
+msgid "Smart Popup"
+msgstr "스마트 팝업"
+
+msgid "Standard Popup"
+msgstr "표준 팝업"
+
+msgid "Appearance"
+msgstr "모습"
+
+msgid "Choose File"
+msgstr "파일 선택"
+
+msgid "User Default Image"
+msgstr "사용자 기본 이미지"
+
+msgid "Primary Color"
+msgstr "원색"
+
+msgid "Choose Color"
+msgstr "색상 선택"
+
+msgid "User Text Background"
+msgstr "사용자 텍스트 배경"
+
+msgid "User Text Color"
+msgstr "사용자 텍스트 색상"
+
+msgid "Bot Link Color"
+msgstr "봇 링크 색상"
+
+msgid "Presets"
+msgstr "사전 설정"
+
+msgid "Preset"
+msgstr "프리셋"
+
+msgid "online"
+msgstr "온라인"
+
+msgid "User Image"
+msgstr "사용자 이미지"
+
+msgid "Hi I am John"
+msgstr "안녕하세요 저는 존이에요"
+
+msgid "Hi John! How can I help you?"
+msgstr "안녕 존! 어떻게 도와드릴까요?"
+
+msgid "Can you help me find a new backpack?"
+msgstr "새 배낭 찾는 것을 도와주실 수 있나요?"
+
+msgid "Product Icon"
+msgstr "제품 아이콘"
+
+msgid "Fusion Backpack"
+msgstr "퓨전 백팩"
+
+msgid "$"
+msgstr "$"
+
+msgid "59"
+msgstr "59"
+
+msgid "Send message"
+msgstr "메시지 보내기"
+
+msgid "Welcome Message"
+msgstr "환영 메시지"
+
+msgid "Welcome Image"
+msgstr "환영 이미지"
+
+msgid "Chat Auto-Popup"
+msgstr "채팅 자동 팝업"
+
+msgid "Controls whether the chat popup appears automatically on your site."
+msgstr "사이트에 채팅 팝업이 자동으로 표시되는지 여부를 제어합니다."
+
+msgid "Chat Pop-up Style"
+msgstr "채팅 팝업 스타일"
+
+msgid "Choose how the chat will appear: Smart or Standard pop-up."
+msgstr "채팅이 표시되는 방식을 선택하십시오: 스마트 또는 표준 팝업."
+
+msgid "Chat Auto-Popup Timing"
+msgstr "채팅 자동 팝업 타이밍"
+
+msgid ""
+"Define the delay time in seconds for the chatbot to auto-appear on the site."
+msgstr "챗봇이 사이트에 자동으로 나타나는 지연 시간을 초 단위로 정의합니다."
+
+msgid "Note"
+msgstr "메모"
+
+msgid ""
+"If the colors have been saved but the user-side colors are still the same, "
+"it is advised to clear the cache."
+msgstr ""
+"색상을 저장했지만 사용자 측 색상이 여전히 동일하다면 캐시를 삭제하는 것이 좋"
+"습니다."
+
+msgid "Also"
+msgstr "또한"
+
+msgid "Found"
+msgstr "설립하다"
+
+msgid "Here are some"
+msgstr "다음은 일부입니다"
+
+msgid "Help"
+msgstr "돕다"
+
+msgid "Have any problem?"
+msgstr "문제가 있나요?"
+
+msgid ""
+"If you experience any difficulties, we're here to help! Simply click the"
+msgstr "어려움을 겪는다면, 저희가 도와드리겠습니다! 간단히"
+
+msgid "Create A Ticket"
+msgstr "티켓 만들기"
+
+msgid ""
+"button to report your issue, and our dedicated support team will assist you "
+"promptly."
+msgstr ""
+"버튼을 눌러 문제를 신고하시면 당사의 전담 지원팀이 즉시 도움을 드릴 것입니다."
+
+msgid "Create Ticket"
+msgstr "티켓 만들기"
+
+msgid "Post Type"
+msgstr "포스트 유형"
+
+msgid "post type"
+msgstr "포스트 유형"
+
+msgid "Post Label"
+msgstr "포스트 라벨"
+
+msgid "Associated Plugin"
+msgstr "관련 플러그인"
+
+msgid "Add associated plugin's name"
+msgstr "관련 플러그인 이름 추가"
+
+msgid "For better data consistency, please provide a associated plugin's name."
+msgstr "더 나은 데이터 일관성을 위해 관련 플러그인 이름을 제공하십시오."
+
+msgid "Status"
+msgstr "상태"
+
+msgid "For status changes, please use the options available in the listing."
+msgstr "상태를 변경하려면 목록에 있는 옵션을 사용하세요."
+
+msgid "Template Section"
+msgstr "템플릿 섹션"
+
+msgid ""
+"Fields are currently auto-filled for preview purposes only. Please save your "
+"changes to apply them."
+msgstr ""
+"필드는 현재 미리보기 목적으로만 자동으로 채워집니다. 적용하려면 변경사항을 저"
+"장하세요."
+
+msgid "Choose one template style from the given below"
+msgstr "아래에서 템플릿 스타일 하나를 선택하세요."
+
+msgid "Add Button /Link"
+msgstr "추가 버튼/링크"
+
+msgid "Add New Button /Link"
+msgstr "새 버튼/링크 추가"
+
+msgid "Show on Listing"
+msgstr "목록에 표시"
+
+msgid "View Details"
+msgstr "세부정보 보기"
+
+msgid "detail page link"
+msgstr "상세페이지 링크"
+
+msgid "Save Template"
+msgstr "템플릿 저장"
+
+msgid "Create a Post"
+msgstr "게시물 작성"
+
+msgid "Please first create a sample post to use template section."
+msgstr "템플릿 섹션을 사용하려면 먼저 샘플 게시물을 작성하세요."
+
+msgid "AI web search enabled successfully."
+msgstr "AI 웹 검색이 활성화되었습니다."
+
+msgid "AI web search already enabled."
+msgstr "AI 웹 검색이 이미 활성화되었습니다."
+
+msgid "Something went wrong."
+msgstr "문제가 발생했습니다."
+
+msgid "AI web search disabled successfully."
+msgstr "AI 웹 검색이 성공적으로 비활성화되었습니다."
+
+msgid "New post type search enabled successfully."
+msgstr "새 게시물 유형 검색이 활성화되었습니다."
+
+msgid "New post type search disabled successfully."
+msgstr "새 게시물 유형 검색이 비활성화되었습니다."
+
+msgid "Data Synchronization Needed"
+msgstr "데이터 동기화가 필요함"
+
+msgid ""
+"Your data is not updated. To ensure accurate results, please synchronize "
+"your AI web search data."
+msgstr ""
+"귀하의 데이터는 업데이트되지 않습니다. 정확한 결과를 얻으려면 AI 웹 검색 데이"
+"터를 동기화해 주세요."
+
+msgid "Enable AI web Search"
+msgstr "AI 웹 검색 활성화"
+
+msgid ""
+"Enable this feature to provide users with direct AI web search results in "
+"the chat, offering them a broader context for their queries."
+msgstr ""
+"이 기능을 활성화하면 사용자에게 채팅에서 직접 AI 웹 검색 결과를 제공하여 쿼리"
+"에 대한 더 광범위한 컨텍스트를 제공할 수 있습니다."
+
+msgid "Enable New Post Type Search"
+msgstr "새 게시물 유형 검색 활성화"
+
+msgid "Lable"
+msgstr "라벨"
+
+msgid "Post lable"
+msgstr "포스트 라벨"
+
+msgid "WooCommerce is currently inactive."
+msgstr "WooCommerce는 현재 비활성화되어 있습니다."
+
+msgid "No product was found."
+msgstr "검색된 상품이 없습니다."
+
+msgid "Please enter a valid product or category name."
+msgstr "올바른 제품 또는 카테고리 이름을 입력하세요."
+
+msgid "Please enter a valid price."
+msgstr "올바른 가격을 입력하세요."
+
+msgid "Please enter a valid price range."
+msgstr "유효한 가격대를 입력하세요."
+
+msgid "Your cart is currently empty."
+msgstr "장바구니가 현재 비어 있습니다."
+
+msgid "Cart Details"
+msgstr "장바구니 세부정보"
+
+msgid "Price"
+msgstr "가격"
+
+msgid "Change"
+msgstr "변화"
+
+msgid "Total Price"
+msgstr "총 가격"
+
+msgid "Remove Item"
+msgstr "항목 제거"
+
+msgid "Subtotal"
+msgstr "소계"
+
+msgid "Total"
+msgstr "총"
+
+msgid "Proceed to Checkout"
+msgstr "결제로 진행"
+
+msgid "is out of stock."
+msgstr "품절입니다."
+
+msgid "You cannot add another “"
+msgstr "다른 '를 추가할 수 없습니다."
+
+msgid "” to your cart."
+msgstr "\"를 장바구니에 담으세요."
+
+msgid "You cannot add more than"
+msgstr "이상을 추가할 수 없습니다."
+
+msgid "of this product to your cart."
+msgstr "이 제품을 장바구니에 담으세요."
+
+msgid "has been added to your cart."
+msgstr "장바구니에 추가되었습니다."
+
+msgid "has not been added to your cart. Please try again."
+msgstr "장바구니에 추가되지 않았습니다. 다시 시도해 주세요."
+
+msgid "View Cart"
+msgstr "장바구니 보기"
+
+msgid "Please select a product!"
+msgstr "제품을 선택해주세요!"
+
+msgid "There are no variations available."
+msgstr "사용 가능한 변형이 없습니다."
+
+msgid "Product not found or not a variable product."
+msgstr "제품을 찾을 수 없거나 가변 제품이 아닙니다."
+
+msgid "You can't add another “"
+msgstr "다른 '를 추가할 수 없습니다."
+
+msgid "There was an error while adding the product to the cart."
+msgstr "장바구니에 제품을 추가하는 동안 오류가 발생했습니다."
+
+msgid ""
+"The requested variation with the specified attributes could not be found."
+msgstr "지정된 속성을 가진 요청된 변형을 찾을 수 없습니다."
+
+msgid "Change Quantity"
+msgstr "수량 변경"
+
+msgid "Update"
+msgstr "업데이트"
+
+msgid "The cart is empty."
+msgstr "카트가 비어 있습니다."
+
+msgid "Cart item is not found."
+msgstr "장바구니 항목을 찾을 수 없습니다."
+
+msgid "The item was not found in the cart."
+msgstr "장바구니에 상품이 없습니다."
+
+msgid "Quantity updated successfully!"
+msgstr "수량 업데이트가 완료되었습니다!"
+
+msgid "Change quantity"
+msgstr "수량 변경"
+
+msgid "Edit Post Type"
+msgstr "게시물 유형 편집"
+
+msgid "Parameter"
+msgstr "매개변수"
+
+msgid "delete"
+msgstr "삭제"
+
+msgid "add intent"
+msgstr "의도 추가"
+
+msgid "plus icon"
+msgstr "플러스 아이콘"
+
+msgid "Add Intents"
+msgstr "의도 추가"
+
+msgid ""
+"On the responses listing page, all the responses are listed here; you can "
+"check them out."
+msgstr ""
+"응답 목록 페이지에는 모든 응답이 여기에 나열됩니다. 당신은 그들을 확인할 수 "
+"있습니다."
+
+msgid "Add Intent"
+msgstr "의도 추가"
+
+msgid ""
+"On the form listing page, all the forms are listed here; you can check them "
+"out."
+msgstr ""
+"양식 목록 페이지에는 모든 양식이 여기에 나열되어 있습니다. 당신은 그들을 확인"
+"할 수 있습니다."
+
+msgid "Add Forms"
+msgstr "양식 추가"
+
+msgid "On the add form page, you can add a new form."
+msgstr "양식 추가 페이지에서 새 양식을 추가할 수 있습니다."
+
+msgid "Responses"
+msgstr "응답"
+
+msgid "Add Response"
+msgstr "응답 추가"
+
+msgid "On the add Response page, you can add a new Response."
+msgstr "응답 추가 페이지에서 새 응답을 추가할 수 있습니다."
+
+msgid ""
+"On the actions listing page, all the actions are listed here; you can check "
+"them out."
+msgstr ""
+"작업 목록 페이지에는 모든 작업이 여기에 나열됩니다. 당신은 그들을 확인할 수 "
+"있습니다."
+
+msgid "Add  Action"
+msgstr "액션 추가"
+
+msgid "On the add action page, you can add a new action."
+msgstr "작업 추가 페이지에서 새 작업을 추가할 수 있습니다."
+
+msgid "Add Intent Group"
+msgstr "의도 그룹 추가"
+
+msgid "Import"
+msgstr "수입"
+
+msgid "Menu"
+msgstr "메뉴"
+
+msgid "End Chat"
+msgstr "채팅 종료"
+
+msgid "Restart Chat"
+msgstr "채팅 다시 시작"
+
+msgid "Image"
+msgstr "영상"
+
+msgid "Send Icon"
+msgstr "보내기 아이콘"
+
+msgid "Welcome to GeekyBot! Let me know how I can assist you today."
+msgstr ""
+"GeekyBot에 오신 것을 환영합니다! 오늘 제가 어떻게 도와드릴 수 있는지 알려주세"
+"요."
+
+msgid "admin."
+msgstr "관리자."
+
+msgid "Account Assistance"
+msgstr "계정 지원"
+
+msgid "Diet Plan Assistant"
+msgstr "다이어트 계획 도우미"
+
+msgid "Job Application"
+msgstr "입사 지원"
+
+msgid "Offline Form"
+msgstr "오프라인 양식"
+
+msgid "Real Estate"
+msgstr "부동산"
+
+msgid "Sales Support"
+msgstr "영업지원"
+
+msgid "University"
+msgstr "대학교"
+
+msgid "Vacation Planner"
+msgstr "휴가 플래너"
