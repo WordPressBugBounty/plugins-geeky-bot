@@ -70,6 +70,24 @@ class GEEKYBOTconfigurationModel {
                     continue;
                 }
             }
+            if ($key == 'default_message') {
+                if ($value == '') {
+                    GEEKYBOTMessages::GEEKYBOT_setLayoutMessage(esc_html(__('Default fallback message can not be empty.', 'geeky-bot')), 'error',$this->getMessagekey());
+                    continue;
+                }
+            }
+            if ($key == 'pagination_default_page_size') {
+                if ($value < 3) {
+                    GEEKYBOTMessages::GEEKYBOT_setLayoutMessage(esc_html(__('Admin pagination not saved.', 'geeky-bot')), 'error',$this->getMessagekey());
+                    continue;
+                }
+            }
+            if ($key == 'pagination_product_page_size') {
+                if ($value < 2) {
+                    GEEKYBOTMessages::GEEKYBOT_setLayoutMessage(esc_html(__('User pagination not saved.', 'geeky-bot')), 'error',$this->getMessagekey());
+                    continue;
+                }
+            }
             $query = 'UPDATE `' . geekybot::$_db->prefix . 'geekybot_config` SET `configvalue` = "'.esc_sql($value).'" WHERE `configname`= "' . esc_sql($key) . '"';
             if (false === geekybotdb::query($query)) {
                 $error = true;

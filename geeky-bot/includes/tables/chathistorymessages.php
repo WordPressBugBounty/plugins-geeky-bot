@@ -13,6 +13,7 @@ class GEEKYBOTChathistorymessagesTable extends GEEKYBOTtable {
     public $sender = '';
     public $confidence = '';
     public $type = '';
+    public $post_type = '';
     public $buttons = '';
     public $created = '';
     public $session_id = '';

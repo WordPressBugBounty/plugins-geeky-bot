@@ -1,0 +1,2726 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"POT-Creation-Date: \n"
+"PO-Revision-Date: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: tl_PH\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 3.5\n"
+
+msgid "Logo"
+msgstr "Logo"
+
+msgid "Template Field 1"
+msgstr "Field ng Template 1"
+
+msgid "Title"
+msgstr "Pamagat"
+
+msgid "Template Field 2"
+msgstr "Field ng Template 2"
+
+msgid "Template Field 3"
+msgstr "Field ng Template 3"
+
+msgid "Template Field 4"
+msgstr "Field ng Template 4"
+
+msgid "Template Field 10"
+msgstr "Field ng Template 10"
+
+msgid "Simple Link here"
+msgstr "Simpleng Link dito"
+
+msgid "Button"
+msgstr "Pindutan"
+
+msgid "Selected"
+msgstr "Napili"
+
+msgid "Template Content"
+msgstr "Nilalaman ng Template"
+
+msgid "Template Field"
+msgstr "Patlang ng Template"
+
+msgid "Show On Listing"
+msgstr "Ipakita Sa Listahan"
+
+msgid "Select Field"
+msgstr "Piliin ang Field"
+
+msgid "Label"
+msgstr "Label"
+
+msgid "Select Type"
+msgstr "Piliin ang Uri"
+
+msgid "Set Value"
+msgstr "Itakda ang Halaga"
+
+msgid "No template fields are available!"
+msgstr "Walang magagamit na mga field ng template!"
+
+msgid "Set Values"
+msgstr "Itakda ang mga Halaga"
+
+msgid "Field Name :"
+msgstr "Pangalan ng Field :"
+
+msgid "Save"
+msgstr "I-save"
+
+msgid "Something went wrong try again later!"
+msgstr "Nagkaproblema subukan ulit mamaya!"
+
+msgid "Info"
+msgstr "Impormasyon"
+
+msgid "An empty expected value or display value field."
+msgstr "Isang walang laman na inaasahang value o field ng display value."
+
+msgid "Values set successfully."
+msgstr "Matagumpay na naitakda ang mga halaga."
+
+msgid "Expected Value"
+msgstr "Inaasahang Halaga"
+
+msgid "Display Value"
+msgstr "Display Value"
+
+msgid "Delete"
+msgstr "Tanggalin"
+
+msgid "Add Value"
+msgstr "Magdagdag ng Halaga"
+
+msgid "Edit"
+msgstr "I-edit"
+
+msgid "Text Field"
+msgstr "Patlang ng Teksto"
+
+msgid "Checkbox"
+msgstr "Checkbox"
+
+msgid "Radio Button"
+msgstr "Pindutan ng Radyo"
+
+msgid "Dropdown"
+msgstr "Dropdown"
+
+msgid "Link"
+msgstr "Link"
+
+msgid ""
+"It is a long established fact that a reader will be distracted by the "
+"readable content of a page when looking at its layout Content here, content "
+"here..."
+msgstr ""
+"Ito ay isang matagal nang itinatag na katotohanan na ang isang mambabasa ay "
+"maabala sa nababasang nilalaman ng isang pahina kapag tinitingnan ang layout "
+"nito Nilalaman dito, nilalaman dito..."
+
+msgid "Description"
+msgstr "Paglalarawan"
+
+msgid "Content Description"
+msgstr "Paglalarawan ng Nilalaman"
+
+msgid "Max Number Of Sentance"
+msgstr "Max Bilang ng Pangungusap"
+
+msgid "1"
+msgstr "1"
+
+msgid "2"
+msgstr "2"
+
+msgid "3"
+msgstr "3"
+
+msgid "4"
+msgstr "4"
+
+msgid "5"
+msgstr "5"
+
+msgid "6"
+msgstr "6"
+
+msgid "Please wait a moment; this may take some time."
+msgstr ""
+"Mangyaring maghintay ng ilang sandali; maaaring tumagal ito ng ilang oras."
+
+msgid "Synchronize"
+msgstr "I-synchronize"
+
+msgid "Data Synchronization Uncomplete"
+msgstr "Hindi Kumpleto ang Pag-synchronize ng Data"
+
+msgid ""
+"Your GeekyBot data is not updated. To ensure accurate results, please "
+"synchronize your AI web search data."
+msgstr ""
+"Ang iyong GeekyBot data ay hindi na-update. Upang matiyak ang mga tumpak na "
+"resulta, mangyaring i-synchronize ang iyong data sa paghahanap sa web ng AI."
+
+msgid "Synchronize Data"
+msgstr "I-synchronize ang Data"
+
+msgid "user"
+msgstr "gumagamit"
+
+msgid "Dashboard"
+msgstr "Dashboard"
+
+msgid "key check"
+msgstr "susi check"
+
+msgid "keys"
+msgstr "mga susi"
+
+msgid "Stories"
+msgstr "Mga kwento"
+
+msgid "AI Web Search"
+msgstr "AI Web Search"
+
+msgid "Settings"
+msgstr "Mga setting"
+
+msgid "Chatbot"
+msgstr "Chatbot"
+
+msgid "Install Add-ons"
+msgstr "Mag-install ng mga Add-on"
+
+msgid "export"
+msgstr "i-export"
+
+msgid "import"
+msgstr "import"
+
+msgid "Chat History"
+msgstr "Kasaysayan ng Chat"
+
+msgid "build"
+msgstr "magtayo"
+
+msgid "Build"
+msgstr "Bumuo"
+
+msgid "Variables"
+msgstr "Mga variable"
+
+msgid "forms"
+msgstr "mga form"
+
+msgid "Forms"
+msgstr "Mga porma"
+
+msgid "actions"
+msgstr "mga aksyon"
+
+msgid "Actions"
+msgstr "Mga aksyon"
+
+msgid "File ext. is mismatched"
+msgstr "file ext. ay hindi tugma"
+
+msgid "File size is greater then allowed file size"
+msgstr "Ang laki ng file ay mas malaki kaysa sa pinapayagang laki ng file"
+
+msgid "Total Stats"
+msgstr "Kabuuang Stats"
+
+msgid "Intents"
+msgstr "Mga layunin"
+
+msgid "No record found"
+msgstr "Walang nakitang record"
+
+msgid "Control Panel"
+msgstr "Control Panel"
+
+msgid "GeekyBot"
+msgstr "GeekyBot"
+
+msgid "Keys"
+msgstr "Mga susi"
+
+msgid "Post Installation"
+msgstr "Pagkatapos ng Pag-install"
+
+msgid "Premium Addon"
+msgstr "Premium Addon"
+
+msgid "Could not find any matching results"
+msgstr "Hindi makahanap ng anumang katugmang resulta"
+
+msgid "no record"
+msgstr "walang record"
+
+msgid "No record found !..."
+msgstr "Walang nakitang record!..."
+
+msgid "system offline"
+msgstr "offline na system"
+
+msgid ""
+"Unfortunately sytem is offline for a bit of maintenance right now. But soon "
+"we will be up."
+msgstr ""
+"Sa kasamaang palad, offline ang system para sa kaunting maintenance ngayon. "
+"Pero maya-maya lang ay tatayo na kami."
+
+msgid "user ban"
+msgstr "pagbabawal ng gumagamit"
+
+msgid "Your account is disabled, please contact system administrator !..."
+msgstr ""
+"Ang iyong account ay hindi pinagana, mangyaring makipag-ugnayan sa "
+"administrator ng system!..."
+
+msgid "login"
+msgstr "login"
+
+msgid "To Access This Page Please Login !..."
+msgstr "Upang Ma-access ang Pahinang Ito Mangyaring Mag-login!..."
+
+msgid "Back to control panel"
+msgstr "Bumalik sa control panel"
+
+msgid "You are not logged in"
+msgstr "Hindi ka naka-log in"
+
+msgid "User Is Disabled By Admin"
+msgstr "Ang User ay Hindi Pinagana ng Admin"
+
+msgid "The page you are looking for no longer exists"
+msgstr "Ang pahinang iyong hinahanap ay wala na"
+
+msgid "You are already logged in"
+msgstr "Naka-log in ka na"
+
+msgid "Please select your role"
+msgstr "Mangyaring piliin ang iyong tungkulin"
+
+msgid "You are not allowed"
+msgstr "Hindi ka pinapayagan"
+
+msgid "You are Not Allowed To add More than One"
+msgstr "Hindi ka pinapayagang magdagdag ng higit sa isa"
+
+msgid "Contact Adminstrator"
+msgstr "Makipag-ugnayan sa Administrator"
+
+msgid "not allowed"
+msgstr "hindi pinapayagan"
+
+msgid "You are already logged in !..."
+msgstr "Naka-log in ka na!..."
+
+msgid "Logout"
+msgstr "Mag-logout"
+
+msgid "Please first make a selection from the list"
+msgstr "Mangyaring pumili muna mula sa listahan"
+
+msgid "Unknown"
+msgstr "Hindi kilala"
+
+msgid "Invalid request"
+msgstr "Di-wastong kahilingan"
+
+msgid "has been successfully applied."
+msgstr "ay matagumpay na nailapat."
+
+msgid "Error applying the new theme."
+msgstr "Error sa paglalapat ng bagong tema."
+
+msgid "has been successfully saved."
+msgstr "ay matagumpay na nai-save."
+
+msgid "has not been saved."
+msgstr "ay hindi nailigtas."
+
+msgid "has been successfully reset."
+msgstr "ay matagumpay na na-reset."
+
+msgid "Every Story must have a name."
+msgstr "Bawat Story ay dapat may pangalan."
+
+msgid "Every Story must have at least 1 intent."
+msgstr "Ang bawat Kuwento ay dapat may kahit 1 layunin."
+
+msgid "has been successfully deleted."
+msgstr "ay matagumpay na natanggal."
+
+msgid "has been successfully exported."
+msgstr "ay matagumpay na na-export."
+
+msgid "Data has not been exported."
+msgstr "Hindi na-export ang data."
+
+msgid "Record not exist."
+msgstr "Walang record."
+
+msgid "has not been deleted."
+msgstr "ay hindi natanggal."
+
+msgid "Please insert key."
+msgstr "Pakipasok ang susi."
+
+msgid "key is not Valid."
+msgstr "hindi Wasto ang susi."
+
+msgid "transaction has been successfully verified."
+msgstr "matagumpay na na-verify ang transaksyon."
+
+msgid "transaction has been successfully un-verified."
+msgstr "matagumpay na hindi na-verify ang transaksyon."
+
+msgid "transaction has not been successfully verified."
+msgstr "hindi matagumpay na na-verify ang transaksyon."
+
+msgid "transaction has not been successfully un-verified."
+msgstr "hindi matagumpay na na-unverify ang transaksyon."
+
+msgid "Fields has been successfully required."
+msgstr "Matagumpay na kailangan ang mga field."
+
+msgid "Field has not been required."
+msgstr "Hindi kailangan ang field."
+
+msgid "Fields has not been required."
+msgstr "Ang mga patlang ay hindi kinakailangan."
+
+msgid "Fields has been successfully not required."
+msgstr "Matagumpay na hindi kinakailangan ang mga field."
+
+msgid "Field has not been not required."
+msgstr "Ang field ay hindi kinakailangan."
+
+msgid "Fields has not been not required."
+msgstr "Ang mga patlang ay hindi kinakailangan."
+
+msgid "status has been updated."
+msgstr "na-update ang status."
+
+msgid "status has not been updated."
+msgstr "hindi na-update ang status."
+
+msgid "data has been synchronized."
+msgstr "ang data ay na-synchronize."
+
+msgid "data has not been synchronized."
+msgstr "hindi na-synchronize ang data."
+
+msgid "in use cannot deleted."
+msgstr "hindi matatanggal ang ginagamit."
+
+msgid "already exist."
+msgstr "mayroon na."
+
+msgid "File type error."
+msgstr "Error sa uri ng file."
+
+msgid "File size error."
+msgstr "Error sa laki ng file."
+
+msgid "Intent"
+msgstr "Layunin"
+
+msgid "Response"
+msgstr "Tugon"
+
+msgid "Intent Group"
+msgstr "Pangkat ng Layunin"
+
+msgid "Variable"
+msgstr "Variable"
+
+msgid "Story"
+msgstr "Kwento"
+
+msgid "Post type"
+msgstr "Uri ng post"
+
+msgid "AI web search"
+msgstr "AI sa paghahanap sa web"
+
+msgid "Action"
+msgstr "Aksyon"
+
+msgid "Changes"
+msgstr "Mga pagbabago"
+
+msgid "Data"
+msgstr "Data"
+
+msgid "Message"
+msgstr "Mensahe"
+
+msgid "Configuration"
+msgstr "Configuration"
+
+msgid "Previous"
+msgstr "Nakaraang"
+
+msgid "Next"
+msgstr "Susunod"
+
+msgid "Guest"
+msgstr "panauhin"
+
+msgid "User ID"
+msgstr "User ID"
+
+msgid "Add to Story"
+msgstr "Idagdag sa Kwento"
+
+msgid "Add to story"
+msgstr "Idagdag sa kwento"
+
+msgid "Search"
+msgstr "Maghanap"
+
+msgid "Search with user name"
+msgstr "Maghanap gamit ang user name"
+
+msgid "reset"
+msgstr "i-reset"
+
+msgid "Select Chat"
+msgstr "Piliin ang Chat"
+
+msgid "Sender"
+msgstr "Nagpadala"
+
+msgid "select chat"
+msgstr "piliin ang chat"
+
+msgid "Chat history is not selected."
+msgstr "Hindi napili ang history ng chat."
+
+msgid "Please select a conversation to view the user's chat history."
+msgstr ""
+"Mangyaring pumili ng isang pag-uusap upang tingnan ang kasaysayan ng chat ng "
+"user."
+
+msgid "Add User Input To Story"
+msgstr "Magdagdag ng User Input Sa Kwento"
+
+msgid "Select"
+msgstr "Pumili"
+
+msgid "Add User Input"
+msgstr "Magdagdag ng User Input"
+
+msgid "You must choose a story; it cannot be empty."
+msgstr "Dapat kang pumili ng isang kuwento; hindi ito maaaring walang laman."
+
+msgid "Security verification Failed, Please restart you chat to continue."
+msgstr ""
+"Nabigo ang pag-verify sa seguridad, Paki-restart ang iyong chat upang "
+"magpatuloy."
+
+msgid "Your session has expired; please restart your chat."
+msgstr "Nag-expire na ang iyong session; mangyaring i-restart ang iyong chat."
+
+msgid "Hi, I am Chatbot. I do not have specific knowledge."
+msgstr "Hi, ako si Chatbot. Wala akong tiyak na kaalaman."
+
+msgid "Your message is too long. Please enter only a username or email."
+msgstr ""
+"Masyadong mahaba ang iyong mensahe. Mangyaring magpasok lamang ng isang "
+"username o email."
+
+msgid "Invalid username or email. Try again with the correct one."
+msgstr "Di-wastong username o email. Subukang muli gamit ang tama."
+
+msgid "Show More"
+msgstr "Ipakita ang Higit Pa"
+
+msgid "Show Articles"
+msgstr "Ipakita ang mga Artikulo"
+
+msgid "session time out"
+msgstr "oras ng session"
+
+msgid "Data directory can not empty."
+msgstr "Hindi maaaring walang laman ang direktoryo ng data."
+
+msgid "Data directory is not proper."
+msgstr "Hindi wasto ang direktoryo ng data."
+
+msgid "Data directory is not writable."
+msgstr "Hindi maisusulat ang direktoryo ng data."
+
+msgid "Default fallback message can not be empty."
+msgstr "Ang default na fallback na mensahe ay hindi maaaring walang laman."
+
+msgid "Admin pagination not saved."
+msgstr "Hindi na-save ang pagination ng admin."
+
+msgid "User pagination not saved."
+msgstr "Hindi na-save ang pagination ng user."
+
+msgid ""
+"The title of your chatbot or the primary title displayed on your chat "
+"interface."
+msgstr ""
+"Ang pamagat ng iyong chatbot o ang pangunahing pamagat na ipinapakita sa "
+"iyong interface ng chat."
+
+msgid "Default Fallback Message"
+msgstr "Default na Fallback na Mensahe"
+
+msgid "The message displayed when the chatbot cannot understand."
+msgstr "Ang mensaheng ipinapakita kapag hindi maintindihan ng chatbot."
+
+msgid "Offline"
+msgstr "Offline"
+
+msgid "Online"
+msgstr "Online"
+
+msgid "Set your plugin offline for front end."
+msgstr "Itakda ang iyong plugin offline para sa front end."
+
+msgid "Data Directory"
+msgstr "Direktoryo ng Data"
+
+msgid "The directory where all chatbot data files are stored."
+msgstr ""
+"Ang direktoryo kung saan nakaimbak ang lahat ng mga file ng data ng chatbot."
+
+msgid "Admin Pagination"
+msgstr "Pagbilang ng pahina ng Admin"
+
+msgid "The number of items displayed in a paginated list in the admin panel."
+msgstr ""
+"Ang bilang ng mga item na ipinapakita sa isang listahan ng pahina sa admin "
+"panel."
+
+msgid "User Pagination"
+msgstr "Pagbilang ng pahina ng Gumagamit"
+
+msgid "The number of items displayed in a paginated list on the user side."
+msgstr ""
+"Ang bilang ng mga item na ipinapakita sa isang listahan ng pahina sa gilid "
+"ng user."
+
+msgid "Save Settings"
+msgstr "I-save ang Mga Setting"
+
+msgid "Add Icon"
+msgstr "Magdagdag ng Icon"
+
+msgid "years"
+msgstr "taon"
+
+msgid "year"
+msgstr "taon"
+
+msgid "ago"
+msgstr "kanina"
+
+msgid "months"
+msgstr "buwan"
+
+msgid "month"
+msgstr "buwan"
+
+msgid "days"
+msgstr "araw"
+
+msgid "day"
+msgstr "araw"
+
+msgid "hours"
+msgstr "oras"
+
+msgid "hour"
+msgstr "oras"
+
+msgid "minutes"
+msgstr "minuto"
+
+msgid "minute"
+msgstr "minuto"
+
+msgid "Just now"
+msgstr "Ngayon lang"
+
+msgid "AI ChatBot is disabled."
+msgstr "Ang AI ChatBot ay hindi pinagana."
+
+msgid "Active Now"
+msgstr "Aktibo Ngayon"
+
+msgid "AI ChatBot story not built."
+msgstr "Ang kuwento ng AI ChatBot ay hindi binuo."
+
+msgid "Built Now"
+msgstr "Itinayo Ngayon"
+
+msgid "WooCommerce plugin is not installed."
+msgstr "Hindi naka-install ang WooCommerce plugin."
+
+msgid "Install Now"
+msgstr "I-install Ngayon"
+
+msgid "WooCommerce plugin is not activated."
+msgstr "Hindi naka-activate ang WooCommerce plugin."
+
+msgid "WooCommerce Bot is disabled."
+msgstr "Ang WooCommerce Bot ay hindi pinagana."
+
+msgid "WooCommerce story not built."
+msgstr "Hindi binuo ang kwento ng WooCommerce."
+
+msgid "Post Type not found."
+msgstr "Hindi nakita ang Uri ng Post."
+
+msgid "AI Web Search is disabled!"
+msgstr "Ang AI Web Search ay hindi pinagana!"
+
+msgid "AI ChatBot Sessions"
+msgstr "AI ChatBot Session"
+
+msgid "Session Card"
+msgstr "Session Card"
+
+msgid "Graph"
+msgstr "Graph"
+
+msgid "Card"
+msgstr "Card"
+
+msgid "WooCommerce Sessions"
+msgstr "Mga Sesyon ng WooCommerce"
+
+msgid "AI Web Search Sessions"
+msgstr "AI Web Search Session"
+
+msgid "Icon"
+msgstr "Icon"
+
+msgid "GeekyBot Setup and Usage Guides"
+msgstr "Mga Gabay sa Pag-setup at Paggamit ng GeekyBot"
+
+msgid "Explore installation, training, and effective usage guides."
+msgstr ""
+"Galugarin ang pag-install, pagsasanay, at epektibong mga gabay sa paggamit."
+
+msgid "Play"
+msgstr "Maglaro"
+
+msgid "Youtube Icon"
+msgstr "Icon ng Youtube"
+
+msgid "How to add Story"
+msgstr "Paano magdagdag ng Story"
+
+msgid "How to add Variable"
+msgstr "Paano magdagdag ng Variable"
+
+msgid "Change Settings"
+msgstr "Baguhin ang Mga Setting"
+
+msgid "Change Color"
+msgstr "Baguhin ang Kulay"
+
+msgid "Remove"
+msgstr "Alisin"
+
+msgid "Cross Icon"
+msgstr "Cross Icon"
+
+msgid "Stories Date"
+msgstr "Mga Kuwento Petsa"
+
+msgid "View Stories"
+msgstr "Tingnan ang Mga Kuwento"
+
+msgid "AI Chatbot"
+msgstr "AI Chatbot"
+
+msgid "WooCommerce"
+msgstr "WooCommerce"
+
+msgid "Bot Icon"
+msgstr "Icon ng Bot"
+
+msgid "AI ChatBot"
+msgstr "AI ChatBot"
+
+msgid "Last Month Stats"
+msgstr "Nakaraang Buwan Stats"
+
+msgid "Woo Icon"
+msgstr "Icon ng Woo"
+
+msgid "AI Web Search "
+msgstr "AI Web Search"
+
+msgid "Manage Post Types"
+msgstr "Pamahalaan ang Mga Uri ng Post"
+
+msgid "Enable AI Web Search"
+msgstr "Paganahin ang AI Web Search"
+
+msgid "Search Icon"
+msgstr "Icon ng Paghahanap"
+
+msgid "History"
+msgstr "Kasaysayan"
+
+msgid "WooCommerce Bot"
+msgstr "Bot ng WooCommerce"
+
+msgid "logo"
+msgstr "logo"
+
+msgid "No of Conversation"
+msgstr "Hindi ng Pag-uusap"
+
+msgid "View History"
+msgstr "Tingnan ang Kasaysayan"
+
+msgid "No data"
+msgstr "Walang data"
+
+msgid "No Data"
+msgstr "Walang Data"
+
+msgid "Addons"
+msgstr "Mga addon"
+
+msgid "addon"
+msgstr "addon"
+
+msgid "Custom Listing Style"
+msgstr "Custom na Estilo ng Listahan"
+
+msgid "Custom Listing Text"
+msgstr "Custom na Listahan ng Teksto"
+
+msgid "WooCommerce Features"
+msgstr "Mga Tampok ng WooCommerce"
+
+msgid "Addon List"
+msgstr "Listahan ng Addon"
+
+msgid "WooCommerce "
+msgstr "WooCommerce"
+
+msgid "Lead Generation"
+msgstr "Lead Generation"
+
+msgid ""
+"GeekyBot simplifies the WooCommerce experience with intelligent product "
+"discovery and purchasing. It seamlessly integrates with WooCommerce for "
+"efficient product searches, detailed listings, and a smooth shopping "
+"experience."
+msgstr ""
+"Pinapasimple ng GeekyBot ang karanasan sa WooCommerce gamit ang matalinong "
+"pagtuklas ng produkto at pagbili. Walang putol itong isinasama sa "
+"WooCommerce para sa mahusay na paghahanap ng produkto, mga detalyadong "
+"listahan, at isang maayos na karanasan sa pamimili."
+
+msgid "Find Product"
+msgstr "Maghanap ng Produkto"
+
+msgid "Find Products"
+msgstr "Maghanap ng mga Produkto"
+
+msgid "Find products by name, category, or price range via chat."
+msgstr ""
+"Maghanap ng mga produkto ayon sa pangalan, kategorya, o hanay ng presyo sa "
+"pamamagitan ng chat."
+
+msgid "List Product"
+msgstr "Listahan ng Produkto"
+
+msgid "List Products"
+msgstr "Listahan ng mga Produkto"
+
+msgid "Show relevant products with details and prices based on preferences."
+msgstr ""
+"Ipakita ang mga nauugnay na produkto na may mga detalye at presyo batay sa "
+"mga kagustuhan."
+
+msgid "Add To Cart Product"
+msgstr "Idagdag sa Cart Produkto"
+
+msgid "Add to Cart"
+msgstr "Idagdag sa Cart"
+
+msgid "Easily add products to the cart list directly through chat."
+msgstr ""
+"Madaling magdagdag ng mga produkto sa listahan ng cart nang direkta sa "
+"pamamagitan ng chat."
+
+msgid "Watch Video"
+msgstr "Manood ng Video"
+
+msgid "AI Chat"
+msgstr "AI Chat"
+
+msgid "Custom"
+msgstr "Custom"
+
+msgid " AI Chat Bot "
+msgstr "AI Chat Bot"
+
+msgid "Conversation Handling"
+msgstr "Paghawak ng Pag-uusap"
+
+msgid ""
+"AI Chat Conversation provides intelligent and context-aware interactions to "
+"enhance user engagement. Define key conversation elements to capture "
+"specific user inputs dynamically and adapt responses based on the context."
+msgstr ""
+"Ang AI Chat Conversation ay nagbibigay ng matalino at konteksto na pakikipag-"
+"ugnayan upang mapahusay ang pakikipag-ugnayan ng user. Tukuyin ang mga "
+"pangunahing elemento ng pag-uusap upang dynamic na makuha ang mga partikular "
+"na input ng user at iakma ang mga tugon batay sa konteksto."
+
+msgid "Capture and process inputs dynamically for personalized responses."
+msgstr ""
+"Kunin at iproseso ang mga input nang pabago-bago para sa mga personalized na "
+"tugon."
+
+msgid "Adjust interactions based on the ongoing conversation for relevance."
+msgstr ""
+"Ayusin ang mga pakikipag-ugnayan batay sa patuloy na pag-uusap para sa "
+"kaugnayan."
+
+msgid "Use collected data to tailor responses and improve satisfaction."
+msgstr ""
+"Gumamit ng nakolektang data upang maiangkop ang mga tugon at mapabuti ang "
+"kasiyahan."
+
+msgid "Discover Our "
+msgstr "Tuklasin ang Ating"
+
+msgid " AI Web Search"
+msgstr "AI Web Search"
+
+msgid "Bot"
+msgstr "Bot"
+
+msgid ""
+"AI Web Search improves user experience by delivering advanced, intuitive "
+"content discovery on your WordPress site. With powerful searches, users can "
+"quickly find relevant information, enhancing overall interest and "
+"accessibility."
+msgstr ""
+"Pinapabuti ng AI Web Search ang karanasan ng user sa pamamagitan ng "
+"paghahatid ng advanced, intuitive na pagtuklas ng content sa iyong WordPress "
+"site. Sa makapangyarihang mga paghahanap, mabilis na makakahanap ang mga "
+"user ng may-katuturang impormasyon, na nagpapahusay sa pangkalahatang "
+"interes at accessibility."
+
+msgid "GeekyBot swiftly retrieves posts and pages based on user queries."
+msgstr ""
+"Mabilis na kinukuha ng GeekyBot ang mga post at page batay sa mga query ng "
+"user."
+
+msgid "Displays full content or excerpts that match search terms."
+msgstr ""
+"Nagpapakita ng buong nilalaman o mga sipi na tumutugma sa mga termino para "
+"sa paghahanap."
+
+msgid "Activate GeekyBot’s search for an AI web search with one click."
+msgstr ""
+"I-activate ang paghahanap ng GeekyBot para sa isang paghahanap sa web ng AI "
+"sa isang click."
+
+msgid "Web Search"
+msgstr "Paghahanap sa Web"
+
+msgid "GeekyBot Supported Plugins"
+msgstr "Mga Suportadong Plugin ng GeekyBot"
+
+msgid "Plugin"
+msgstr "Plugin"
+
+msgid "WP Job Manager"
+msgstr "WP Job Manager"
+
+msgid "Tutor LMS"
+msgstr "Tutor LMS"
+
+msgid "bbPress"
+msgstr "bbPress"
+
+msgid "LearnPress"
+msgstr "LearnPress"
+
+msgid "Knowledge Base"
+msgstr "Base ng Kaalaman"
+
+msgid "BetterDocs"
+msgstr "BetterDocs"
+
+msgid "Motors"
+msgstr "Mga motor"
+
+msgid "Estatik Real Estate"
+msgstr "Estatik Real Estate"
+
+msgid "Auto Listings"
+msgstr "Mga Listahan ng Auto"
+
+msgid "Welcome to GeekyBot Features"
+msgstr "Maligayang pagdating sa GeekyBot Features"
+
+msgid "GeekyBot Features"
+msgstr "Mga Tampok ng GeekyBot"
+
+msgid "WooCommerce Integration"
+msgstr "Pagsasama ng WooCommerce"
+
+msgid "Quick Installation"
+msgstr "Mabilis na Pag-install"
+
+msgid "Version: 1.0.0"
+msgstr "Bersyon: 1.0.0"
+
+msgid "AI Chat Bot"
+msgstr "AI Chat Bot"
+
+msgid "Enable/Disable"
+msgstr "Paganahin/Huwag paganahin"
+
+msgid "Enable/Disable Bot"
+msgstr "Paganahin/Huwag Paganahin ang Bot"
+
+msgid "Select Template"
+msgstr "Piliin ang Template"
+
+msgid ""
+"AI Chat in GeekyBot provides instant, personalized responses to user "
+"queries, ensuring seamless support around the clock. With its ability to "
+"engage users at any time, GeekyBot enhances the reliability of your service, "
+"making sure that your customers' needs are always met."
+msgstr ""
+"Ang AI Chat sa GeekyBot ay nagbibigay ng instant at personalized na mga "
+"tugon sa mga query ng user, na tinitiyak ang tuluy-tuloy na suporta sa lahat "
+"ng oras. Sa kakayahan nitong makipag-ugnayan sa mga user anumang oras, "
+"pinapahusay ng GeekyBot ang pagiging maaasahan ng iyong serbisyo, na "
+"tinitiyak na palaging natutugunan ang mga pangangailangan ng iyong mga "
+"customer."
+
+msgid ""
+"By training GeekyBot with your specific data, you can create dynamic, "
+"tailored interactions that reflect your business's unique voice and "
+"services. This customization allows for more relevant, effective "
+"conversations that build stronger connections with your users."
+msgstr ""
+"Sa pamamagitan ng pagsasanay sa GeekyBot gamit ang iyong partikular na data, "
+"maaari kang lumikha ng mga dynamic at iniangkop na pakikipag-ugnayan na "
+"nagpapakita ng natatanging boses at mga serbisyo ng iyong negosyo. "
+"Nagbibigay-daan ang pagpapasadyang ito para sa mas may-katuturan, epektibong "
+"mga pag-uusap na bumubuo ng mas malakas na koneksyon sa iyong mga user."
+
+msgid "Bot Image"
+msgstr "Larawan ng Bot"
+
+msgid "image"
+msgstr "larawan"
+
+msgid "Watch AI ChatBot Video"
+msgstr "Panoorin ang AI ChatBot Video"
+
+msgid "AI Web Search Bot"
+msgstr "AI Web Search Bot"
+
+msgid ""
+"Effortlessly search for specific posts and content across your entire site "
+"using our powerful AI web search tool. GeekyBot goes beyond standard "
+"searches, delivering results from all types of data on your site. Whether "
+"you're looking for posts, pages, custom post types, or other information, "
+"GeekyBot ensures you find what you need quickly and efficiently by "
+"displaying relevant articles, posts, and more in a single, streamlined "
+"search experience."
+msgstr ""
+"Walang kahirap-hirap na maghanap ng mga partikular na post at nilalaman sa "
+"iyong buong site gamit ang aming mahusay na tool sa paghahanap sa web ng AI. "
+"Ang GeekyBot ay higit pa sa mga karaniwang paghahanap, na naghahatid ng mga "
+"resulta mula sa lahat ng uri ng data sa iyong site. Naghahanap ka man ng mga "
+"post, page, custom na uri ng post, o iba pang impormasyon, tinitiyak ng "
+"GeekyBot na mahahanap mo ang kailangan mo nang mabilis at mahusay sa "
+"pamamagitan ng pagpapakita ng mga nauugnay na artikulo, post, at higit pa sa "
+"isang solong, streamline na karanasan sa paghahanap."
+
+msgid "New Post Type Search"
+msgstr "Paghahanap ng Bagong Uri ng Post"
+
+msgid ""
+"Enable this option to directly include new post types in search results, "
+"enhancing user access to all content."
+msgstr ""
+"Paganahin ang opsyong ito upang direktang isama ang mga bagong uri ng post "
+"sa mga resulta ng paghahanap, na nagpapahusay ng access ng user sa lahat ng "
+"nilalaman."
+
+msgid "Watch AI Web Search Video"
+msgstr "Manood ng AI Web Search Video"
+
+msgid "Back"
+msgstr "Bumalik"
+
+msgid "Finish"
+msgstr "Tapusin"
+
+msgid "WooCommerce is not installed"
+msgstr "Hindi naka-install ang WooCommerce"
+
+msgid ""
+"WooCommerce plugin is not installed on your site, you won't be able to "
+"integrate GeekyBot with WooCommerce."
+msgstr ""
+"Hindi naka-install ang WooCommerce plugin sa iyong site, hindi mo magagawang "
+"isama ang GeekyBot sa WooCommerce."
+
+msgid ""
+"Easily integrate AI with WooCommerce to enhance your online store’s "
+"performance. GeekyBot boosts lead generation and customer interactions, "
+"automating key processes for a more effective and engaging shopping "
+"experience."
+msgstr ""
+"Madaling isama ang AI sa WooCommerce para mapahusay ang performance ng iyong "
+"online na tindahan. Pinapalakas ng GeekyBot ang pagbuo ng lead at mga "
+"pakikipag-ugnayan ng customer, na nag-automate ng mga pangunahing proseso "
+"para sa isang mas epektibo at nakakaengganyong karanasan sa pamimili."
+
+msgid ""
+"GeekyBot also streamlines customer inquiries and provides real-time, "
+"intelligent responses. By improving retention and customer satisfaction, it "
+"ensures your store delivers an exceptional experience that keeps shoppers "
+"coming back."
+msgstr ""
+"Pina-streamline din ng GeekyBot ang mga tanong ng customer at nagbibigay ng "
+"real-time, matalinong mga tugon. Sa pamamagitan ng pagpapabuti ng "
+"pagpapanatili at kasiyahan ng customer, tinitiyak nitong naghahatid ang "
+"iyong tindahan ng pambihirang karanasan na nagpapanatili sa mga mamimili na "
+"bumalik."
+
+msgid "Watch WooCommerce Video"
+msgstr "Manood ng WooCommerce Video"
+
+msgid "Welcome to GeekyBot !..."
+msgstr "Maligayang pagdating sa GeekyBot!..."
+
+msgid ""
+"The ultimate AI chatbot for WooCommerce lead generation, intelligent content "
+"search, and interactive customer engagement on your WordPress website."
+msgstr ""
+"Ang pinakahuling AI chatbot para sa WooCommerce lead generation, matalinong "
+"paghahanap ng content, at interactive na pakikipag-ugnayan ng customer sa "
+"iyong WordPress website."
+
+msgid ""
+"Personalize interactions by dynamically processing user inputs using slots "
+"and variables."
+msgstr ""
+"I-personalize ang mga pakikipag-ugnayan sa pamamagitan ng dynamic na "
+"pagproseso ng mga input ng user gamit ang mga slot at variable."
+
+msgid ""
+"Enhance shopping by enabling users to find products and add them to their "
+"cart seamlessly."
+msgstr ""
+"Pahusayin ang pamimili sa pamamagitan ng pagbibigay-daan sa mga user na "
+"makahanap ng mga produkto at idagdag ang mga ito sa kanilang cart nang "
+"walang putol."
+
+msgid "Website Search"
+msgstr "Paghahanap sa Website"
+
+msgid ""
+"Streamline discovery by helping users find relevant information on your "
+"WordPress site."
+msgstr ""
+"I-streamline ang pagtuklas sa pamamagitan ng pagtulong sa mga user na "
+"makahanap ng may-katuturang impormasyon sa iyong WordPress site."
+
+msgid "Please insert activation key to proceed"
+msgstr "Mangyaring ipasok ang activation key upang magpatuloy"
+
+msgid "Addon Installation Failed"
+msgstr "Nabigo ang Pag-install ng Addon"
+
+msgid "Addon installation failed"
+msgstr "Nabigo ang pag-install ng addon"
+
+msgid "Addon Installation Failed, File download error"
+msgstr "Nabigo ang Pag-install ng Addon, Error sa pag-download ng file"
+
+msgid "Activated"
+msgstr "Na-activate"
+
+msgid "Deactivate"
+msgstr "I-deactivate"
+
+msgid "Deactivated"
+msgstr "Na-deactivate"
+
+msgid "Activate"
+msgstr "I-activate"
+
+msgid "Not Installed"
+msgstr "Hindi Naka-install"
+
+msgid "Addon Installed Successfully"
+msgstr "Matagumpay na Na-install ang Addon"
+
+msgid "Ticket Actions"
+msgstr "Mga Pagkilos sa Ticket"
+
+msgid "Agents"
+msgstr "Mga ahente"
+
+msgid "Ticket Auto Close"
+msgstr "Auto Close ng Ticket"
+
+msgid "left image"
+msgstr "kaliwang larawan"
+
+msgid "right image"
+msgstr "tamang imahe"
+
+msgid "Add-ons For Majestic Support"
+msgstr "Mga Add-on Para sa Majestic Support"
+
+msgid ""
+"Get trusted WordPress add-ons. Guaranteed to work fast, safe to use, "
+"beautifully coded, packed with features, and are easy to use."
+msgstr ""
+"Kumuha ng mga pinagkakatiwalaang WordPress add-on. Garantisadong gumagana "
+"nang mabilis, ligtas na gamitin, maganda ang pagkaka-code, puno ng mga "
+"feature, at madaling gamitin."
+
+msgid "Save big today with an exclusive membership plan!"
+msgstr ""
+"Makatipid ng malaki ngayon gamit ang isang eksklusibong plano ng membership!"
+
+msgid "Show"
+msgstr "Ipakita"
+
+msgid "show bundle pack"
+msgstr "ipakita ang bundle pack"
+
+msgid "Agent"
+msgstr "Ahente"
+
+msgid ""
+"Add agents and assign roles and permissions to provide assistance and "
+"support for customer support tickets."
+msgstr ""
+"Magdagdag ng mga ahente at magtalaga ng mga tungkulin at pahintulot upang "
+"magbigay ng tulong at suporta para sa mga tiket sa suporta sa customer."
+
+msgid "buy now"
+msgstr "bumili ngayon"
+
+msgid "Installed"
+msgstr "Naka-install"
+
+msgid "multiform"
+msgstr "maraming anyo"
+
+msgid "Multi Forms"
+msgstr "Maraming Form"
+
+msgid ""
+"Create multiple custom ticket forms with different custom fields for each "
+"request type that you support."
+msgstr ""
+"Gumawa ng maraming custom na form ng ticket na may iba't ibang custom na "
+"field para sa bawat uri ng kahilingan na sinusuportahan mo."
+
+msgid "Email Piping"
+msgstr "Email Piping"
+
+msgid ""
+"Email piping is the process of automatically turning incoming emails into "
+"support tickets without manual data entry."
+msgstr ""
+"Ang email piping ay ang proseso ng awtomatikong paggawa ng mga papasok na "
+"email sa mga support ticket nang walang manu-manong pagpasok ng data."
+
+msgid "agent auto assign"
+msgstr "awtomatikong italaga ng ahente"
+
+msgid "Agent Auto Assign"
+msgstr "Auto Assign ng Ahente"
+
+msgid ""
+"Make the ticket assignment process automatic and assign the most qualified "
+"agent to your tickets with conditions."
+msgstr ""
+"Gawing awtomatiko ang proseso ng pagtatalaga ng tiket at italaga ang pinaka-"
+"kwalipikadong ahente sa iyong mga tiket na may mga kundisyon."
+
+msgid "private note"
+msgstr "pribadong tala"
+
+msgid "Private Note"
+msgstr "Pribadong Tala"
+
+msgid ""
+"Add private notes to a ticket and share crucial information internally with "
+"your agents, this private note is not visible to the customer."
+msgstr ""
+"Magdagdag ng mga pribadong tala sa isang tiket at magbahagi ng mahalagang "
+"impormasyon sa loob ng iyong mga ahente, ang pribadong tala na ito ay hindi "
+"nakikita ng customer."
+
+msgid "merge tickets"
+msgstr "pagsamahin ang mga tiket"
+
+msgid "Merge Tickets"
+msgstr "Pagsamahin ang mga Ticket"
+
+msgid ""
+"Merge one or more tickets into another if you receive two support requests "
+"from the same end user about the same issue."
+msgstr ""
+"Pagsamahin ang isa o higit pang mga tiket sa isa pa kung nakatanggap ka ng "
+"dalawang kahilingan sa suporta mula sa parehong end user tungkol sa parehong "
+"isyu."
+
+msgid "helptopic"
+msgstr "helptopic"
+
+msgid "Help Topics"
+msgstr "Mga Paksa ng Tulong"
+
+msgid ""
+"The user can search for and choose the topic for which they need help using "
+"help topics"
+msgstr ""
+"Maaaring maghanap at pumili ang user ng paksa kung saan kailangan nila ng "
+"tulong gamit ang mga paksa ng tulong"
+
+msgid "Auto Close Ticket"
+msgstr "Auto Close Ticket"
+
+msgid ""
+"Manage abandoned tickets, and set rules for tickets over time, and those "
+"tickets will be closed automatically after a certain period."
+msgstr ""
+"Pamahalaan ang mga inabandunang tiket, at magtakda ng mga panuntunan para sa "
+"mga tiket sa paglipas ng panahon, at awtomatikong isasara ang mga tiket na "
+"iyon pagkatapos ng isang partikular na panahon."
+
+msgid "Knowledgebase"
+msgstr "Knowledgebase"
+
+msgid ""
+"Stop wasting time on repetitive inquiries, build your knowledge base, and "
+"organize your solutions into categories for users."
+msgstr ""
+"Itigil ang pag-aaksaya ng oras sa mga paulit-ulit na pagtatanong, buuin ang "
+"iyong base ng kaalaman, at ayusin ang iyong mga solusyon sa mga kategorya "
+"para sa mga user."
+
+msgid "Ticket Overdue"
+msgstr "Overdue na ang Ticket"
+
+msgid ""
+"Define rules or set a specific time interval for making tickets "
+"automatically overdue."
+msgstr ""
+"Tukuyin ang mga panuntunan o magtakda ng isang partikular na agwat ng oras "
+"para awtomatikong ma-overdue ang mga tiket."
+
+msgid "time tracking"
+msgstr "pagsubaybay sa oras"
+
+msgid "Time Tracking"
+msgstr "Pagsubaybay sa Oras"
+
+msgid ""
+"Track the amount of time spent on each customer support ticket without "
+"losing focus and enhance team productivity."
+msgstr ""
+"Subaybayan ang dami ng oras na ginugol sa bawat tiket ng suporta sa customer "
+"nang hindi nawawala ang focus at pahusayin ang pagiging produktibo ng "
+"koponan."
+
+msgid "Ticket History"
+msgstr "Kasaysayan ng Tiket"
+
+msgid ""
+"Show the whole history of the ticket, including its status and any action "
+"taken in response to it."
+msgstr ""
+"Ipakita ang buong kasaysayan ng tiket, kasama ang katayuan nito at anumang "
+"aksyong ginawa bilang tugon dito."
+
+msgid "Paid Support"
+msgstr "Bayad na Suporta"
+
+msgid ""
+"The simplest approach to effectively manage payments for premium help is "
+"through paid support."
+msgstr ""
+"Ang pinakasimpleng diskarte upang epektibong pamahalaan ang mga pagbabayad "
+"para sa premium na tulong ay sa pamamagitan ng bayad na suporta."
+
+msgid "Private Credentials"
+msgstr "Mga Pribadong Kredensyal"
+
+msgid ""
+"Customers will enter sensitive information on tickets, and this add-on is "
+"designed to help you keep that information secure."
+msgstr ""
+"Ang mga customer ay maglalagay ng sensitibong impormasyon sa mga tiket, at "
+"ang add-on na ito ay idinisenyo upang tulungan kang panatilihing secure ang "
+"impormasyong iyon."
+
+msgid "Ticket close reason"
+msgstr "Dahilan ng pagsasara ng ticket"
+
+msgid "Ticket Closed Reason"
+msgstr "Dahilan sa Pagsara ng Tiket"
+
+msgid ""
+"Empowers users to provide clear and concise explanations for why customer "
+"service tickets are being closed."
+msgstr ""
+"Nagbibigay ng kapangyarihan sa mga user na magbigay ng malinaw at maigsi na "
+"mga paliwanag kung bakit isinasara ang mga customer service ticket."
+
+msgid "Premade Responses"
+msgstr "Mga Premade na Tugon"
+
+msgid ""
+"Make ready-made responses to the most common questions in the tickets to "
+"swiftly address client issues."
+msgstr ""
+"Gumawa ng mga handa na sagot sa mga pinakakaraniwang tanong sa mga tiket "
+"upang mabilis na matugunan ang mga isyu ng kliyente."
+
+msgid "max ticket"
+msgstr "max ticket"
+
+msgid "Max Tickets"
+msgstr "Mga Max na Ticket"
+
+msgid ""
+"Admins can limit the number of tickets that users can create as well as the "
+"number of tickets that agents can open individually."
+msgstr ""
+"Maaaring limitahan ng mga admin ang bilang ng mga tiket na maaaring gawin ng "
+"mga user pati na rin ang bilang ng mga tiket na maaaring buksan ng mga "
+"ahente nang paisa-isa."
+
+msgid "Feedback"
+msgstr "Feedback"
+
+msgid ""
+"To enhance the quality of your services, ask your customers to complete a "
+"survey when a ticket is closed."
+msgstr ""
+"Upang mapahusay ang kalidad ng iyong mga serbisyo, hilingin sa iyong mga "
+"customer na kumpletuhin ang isang survey kapag ang isang tiket ay sarado."
+
+msgid "ticket actions"
+msgstr "mga aksyon sa tiket"
+
+msgid ""
+"Ticket action options allow you to execute additional actions on tickets."
+msgstr ""
+"Binibigyang-daan ka ng mga opsyon sa pagkilos ng tiket na magsagawa ng mga "
+"karagdagang pagkilos sa mga tiket."
+
+msgid "Export"
+msgstr "I-export"
+
+msgid ""
+"Easily export ticket data and performance report data from your majestic "
+"support to an Excel spreadsheet with our efficient and user-friendly "
+"solution."
+msgstr ""
+"Madaling i-export ang data ng ticket at data ng ulat ng pagganap mula sa "
+"iyong maringal na suporta sa isang Excel spreadsheet gamit ang aming mahusay "
+"at madaling gamitin na solusyon."
+
+msgid "email cc"
+msgstr "email cc"
+
+msgid "Email CC"
+msgstr "Email CC"
+
+msgid ""
+"Send the exact copy of the email to the provided email address with Email CC "
+"or BCC."
+msgstr ""
+"Ipadala ang eksaktong kopya ng email sa ibinigay na email address na may "
+"Email CC o BCC."
+
+msgid "user options"
+msgstr "mga pagpipilian ng gumagamit"
+
+msgid "User Options"
+msgstr "Mga Pagpipilian sa Gumagamit"
+
+msgid ""
+"User options enable you to define roles for new users when they are "
+"registered."
+msgstr ""
+"Nagbibigay-daan sa iyo ang mga opsyon ng user na tukuyin ang mga tungkulin "
+"para sa mga bagong user kapag nakarehistro na sila."
+
+msgid "SMTP"
+msgstr "SMTP"
+
+msgid ""
+"SMTP enables you to add  custom mail protocols to send and receive emails "
+"with the support ticket system."
+msgstr ""
+"Binibigyang-daan ka ng SMTP na magdagdag ng mga custom na mail protocol "
+"upang magpadala at tumanggap ng mga email gamit ang support ticket system."
+
+msgid "Multi Language Email Templates"
+msgstr "Multi Language Email Templates"
+
+msgid ""
+"Create multi-language email templates for all default email templates to "
+"send customers emails in the language that they prefer."
+msgstr ""
+"Gumawa ng mga template ng email na maraming wika para sa lahat ng default na "
+"template ng email upang magpadala ng mga email sa mga customer sa wikang "
+"gusto nila."
+
+msgid "Downloads"
+msgstr "Mga download"
+
+msgid ""
+"Downloads can be very helpful for users who are looking to obtain the "
+"necessary information to resolve issues."
+msgstr ""
+"Ang mga pag-download ay maaaring maging lubhang kapaki-pakinabang para sa "
+"mga user na naghahanap upang makuha ang kinakailangang impormasyon upang "
+"malutas ang mga isyu."
+
+msgid "Announcements"
+msgstr "Mga anunsyo"
+
+msgid ""
+"Make an unlimited number of announcements related to the support system to "
+"encourage customer interaction."
+msgstr ""
+"Gumawa ng walang limitasyong bilang ng mga anunsyo na nauugnay sa support "
+"system para hikayatin ang pakikipag-ugnayan ng customer."
+
+msgid "Ban Email"
+msgstr "I-ban ang Email"
+
+msgid ""
+"With Ban Email, you can limit a users ability to create new tickets by "
+"blocking their email address."
+msgstr ""
+"Sa Ban Email, maaari mong limitahan ang kakayahan ng isang user na lumikha "
+"ng mga bagong tiket sa pamamagitan ng pagharang sa kanilang email address."
+
+msgid "FAQ"
+msgstr "FAQ"
+
+msgid ""
+"Provide answers to common user questions with the FAQ extension before they "
+"become tickets."
+msgstr ""
+"Magbigay ng mga sagot sa mga karaniwang tanong ng user gamit ang FAQ "
+"extension bago sila maging mga ticket."
+
+msgid "admin widgets"
+msgstr "mga widget ng admin"
+
+msgid "Admin Widgets"
+msgstr "Mga Widget ng Admin"
+
+msgid ""
+"Get immediate data on your support operations as soon as you log into your "
+"WordPress administration area."
+msgstr ""
+"Kumuha ng agarang data sa iyong mga operasyon sa suporta sa sandaling mag-"
+"log in ka sa iyong WordPress administration area."
+
+msgid "desktop notifications"
+msgstr "mga notification sa desktop"
+
+msgid "Desktop Notifications"
+msgstr "Mga Notification sa Desktop"
+
+msgid ""
+"You will be informed of anything that occurs on your support system by the "
+"desktop notifications."
+msgstr ""
+"Ipapaalam sa iyo ang anumang nangyayari sa iyong support system sa "
+"pamamagitan ng mga notification sa desktop."
+
+msgid "woocommerce"
+msgstr "woocommerce"
+
+msgid ""
+"The integration of the support ticket system for WooCommerce with your e-"
+"shop makes your support better and more professional."
+msgstr ""
+"Ang pagsasama ng support ticket system para sa WooCommerce sa iyong e-shop "
+"ay ginagawang mas mahusay at mas propesyonal ang iyong suporta."
+
+msgid "mail chimp"
+msgstr "mailchimp"
+
+msgid "Mail Chimp"
+msgstr "Mailchimp"
+
+msgid ""
+"Manage your email marketing campaigns directly from your majestic support by "
+"adding new user accounts to your Mailchimp email list."
+msgstr ""
+"Pamahalaan ang iyong mga email marketing campaign nang direkta mula sa iyong "
+"maringal na suporta sa pamamagitan ng pagdaragdag ng mga bagong user account "
+"sa iyong Mailchimp email list."
+
+msgid "internal mail"
+msgstr "panloob na mail"
+
+msgid "Internal Mail"
+msgstr "Panloob na Mail"
+
+msgid ""
+"Send messages internally about support tickets and other issues between "
+"agents with internal mail."
+msgstr ""
+"Magpadala ng mga mensahe nang panloob tungkol sa mga tiket ng suporta at iba "
+"pang mga isyu sa pagitan ng mga ahente na may panloob na mail."
+
+msgid "frontend widget"
+msgstr "frontend na widget"
+
+msgid "Front-End Widgets"
+msgstr "Mga Widget sa Front-End"
+
+msgid ""
+"Frontend Widgets include several widgets that can be used to enhance the "
+"plugin's functionality in various areas of the website."
+msgstr ""
+"Kasama sa mga Frontend Widget ang ilang mga widget na maaaring magamit upang "
+"mapahusay ang paggana ng plugin sa iba't ibang bahagi ng website."
+
+msgid "envato"
+msgstr "envato"
+
+msgid "Envato"
+msgstr "Envato"
+
+msgid ""
+"Clients won't be able to open a new ticket using the Envato Validation "
+"plugin if they don't have a valid Envato license."
+msgstr ""
+"Hindi makakapagbukas ng bagong ticket ang mga kliyente gamit ang Envato "
+"Validation plugin kung wala silang valid Envato license."
+
+msgid "easy digital download"
+msgstr "madaling digital download"
+
+msgid "Easy Digital Download"
+msgstr "Madaling Pag-download ng Digital"
+
+msgid ""
+"Learn about a customer's purchase directly from the support dashboard by "
+"integrating Majestic Support with your EDD store."
+msgstr ""
+"Matuto tungkol sa pagbili ng isang customer nang direkta mula sa dashboard "
+"ng suporta sa pamamagitan ng pagsasama ng Majestic Support sa iyong EDD "
+"store."
+
+msgid "Majestic Support Add-ons Bundle Pack"
+msgstr "Majestic Support Add-on Bundle Pack"
+
+msgid "Basic"
+msgstr "Basic"
+
+msgid "Unlimited Agents"
+msgstr "Walang limitasyong Ahente"
+
+msgid "Helptopic"
+msgstr "Helptopic"
+
+msgid "Show all"
+msgstr "Ipakita ang lahat"
+
+msgid "Standard"
+msgstr "Pamantayan"
+
+msgid "Everything in basic included and "
+msgstr "Lahat ng nasa basic kasama at"
+
+msgid "Premade Response"
+msgstr "Premade na Tugon"
+
+msgid "Professional"
+msgstr "Propesyonal"
+
+msgid "Everything in standard included and"
+msgstr "Lahat ng nasa pamantayan ay kasama at"
+
+msgid "All Future Addons"
+msgstr "Lahat ng Mga Addon sa Hinaharap"
+
+msgid "spinning wheel"
+msgstr "umiikot na gulong"
+
+msgid "New Update Version"
+msgstr "Bagong Bersyon ng Update"
+
+msgid "is Available"
+msgstr "ay Magagamit"
+
+msgid "Status: "
+msgstr "Katayuan:"
+
+msgid "Version"
+msgstr "Bersyon"
+
+msgid "addon in no longer active"
+msgstr "addon sa hindi na aktibo"
+
+msgid "Please Insert Your Activation Key"
+msgstr "Mangyaring Ipasok ang Iyong Activation Key"
+
+msgid "XXXX-XXXX-XXXXX-XXXXX"
+msgstr "XXXX-XXXX-XXXX-XXXX"
+
+msgid "Proceed"
+msgstr "Magpatuloy"
+
+msgid "GeekyBot Addon Installer"
+msgstr "GeekyBot Addon Installer"
+
+msgid "Select All Addons"
+msgstr "Piliin ang Lahat ng Addon"
+
+msgid "All allowed add ons are already installed"
+msgstr "Naka-install na ang lahat ng pinapayagang add on"
+
+msgid "You are not allowed to install any add on"
+msgstr "Hindi ka pinapayagang mag-install ng anumang add on"
+
+msgid "Something went wrong"
+msgstr "Nagkaproblema"
+
+msgid "Addons Installed Successfully"
+msgstr "Matagumpay na Na-install ang Mga Addon"
+
+msgid "Open Dashboard"
+msgstr "Buksan ang Dashboard"
+
+msgid "Open Plugins Page"
+msgstr "Buksan ang Pahina ng Mga Plugin"
+
+msgid "PersonName"
+msgstr "Pangalan ng Tao"
+
+msgid "Facility"
+msgstr "Pasilidad"
+
+msgid "Organization"
+msgstr "Organisasyon"
+
+msgid "Location"
+msgstr "Lokasyon"
+
+msgid "Location_NON_GPE"
+msgstr "Location_NON_GPE"
+
+msgid "Product"
+msgstr "produkto"
+
+msgid "Event"
+msgstr "Kaganapan"
+
+msgid "ArtWork"
+msgstr "Artwork"
+
+msgid "LawDocument"
+msgstr "BatasDocument"
+
+msgid "Language"
+msgstr "Wika"
+
+msgid "Date"
+msgstr "Petsa"
+
+msgid "Time"
+msgstr "Oras"
+
+msgid "Percentage"
+msgstr "Porsiyento"
+
+msgid "Money"
+msgstr "Pera"
+
+msgid "Quantity"
+msgstr "Dami"
+
+msgid "Ordinal"
+msgstr "Ordinal"
+
+msgid "Cardinal"
+msgstr "Cardinal"
+
+msgid "Select Variable For"
+msgstr "Piliin ang Variable Para sa"
+
+msgid "Attribute"
+msgstr "Katangian"
+
+msgid "Name"
+msgstr "Pangalan"
+
+msgid "Varibale Name"
+msgstr "Pangalan ng Variable"
+
+msgid "Type"
+msgstr "Uri"
+
+msgid "Possible Field Values"
+msgstr "Mga Posibleng Field Value"
+
+msgid "Add Comma Seprated Values"
+msgstr "Magdagdag ng Comma Separated Values"
+
+msgid "Variable For"
+msgstr "Variable Para sa"
+
+msgid "Select Variable For in case of Woocommerce Variable"
+msgstr "Piliin ang Variable Para sa kaso ng Woocommerce Variable"
+
+msgid "cancel"
+msgstr "kanselahin"
+
+msgid "Cancel"
+msgstr "Kanselahin"
+
+msgid "Save Changes"
+msgstr "I-save ang Mga Pagbabago"
+
+msgid "Save Variable"
+msgstr "I-save ang Variable"
+
+msgid "Reset"
+msgstr "I-reset"
+
+msgid "Are you sure to delete it?"
+msgstr "Sigurado ka bang tatanggalin ito?"
+
+msgid "Delete Variable"
+msgstr "Tanggalin ang Variable"
+
+msgid "Add Variable"
+msgstr "Magdagdag ng Variable"
+
+msgid "name"
+msgstr "pangalan"
+
+msgid "type"
+msgstr "uri"
+
+msgid "Possible Values Here"
+msgstr "Mga Posibleng Halaga Dito"
+
+msgid "Edit Variable"
+msgstr "I-edit ang Variable"
+
+msgid "Are you sure to delete it"
+msgstr "Sigurado ka bang tatanggalin mo ito"
+
+msgid "Add New"
+msgstr "Magdagdag ng Bago"
+
+msgid "User Input"
+msgstr "Input ng User"
+
+msgid "Close"
+msgstr "Isara"
+
+msgid "Add"
+msgstr "Idagdag"
+
+msgid "Add More"
+msgstr "Magdagdag pa"
+
+msgid "Available Variables"
+msgstr "Mga Magagamit na Variable"
+
+msgid "Enter bot response here..."
+msgstr "Ilagay ang tugon ng bot dito..."
+
+msgid "Button text here"
+msgstr "Button text dito"
+
+msgid "URL"
+msgstr "URL"
+
+msgid "Button value here"
+msgstr "Ang halaga ng pindutan dito"
+
+msgid "Enter URL here"
+msgstr "Ilagay ang URL dito"
+
+msgid "Add New Button"
+msgstr "Magdagdag ng Bagong Button"
+
+msgid "Select Predefined Function"
+msgstr "Piliin ang Predefined Function"
+
+msgid "Select Action"
+msgstr "Piliin ang Aksyon"
+
+msgid "Add New Action"
+msgstr "Magdagdag ng Bagong Aksyon"
+
+msgid "Add New Form"
+msgstr "Magdagdag ng Bagong Form"
+
+msgid "Enter default fallback here..."
+msgstr "Ilagay ang default na fallback dito..."
+
+msgid "Enter default fallback for intent here..."
+msgstr "Ilagay ang default na fallback para sa layunin dito..."
+
+msgid "Start Point"
+msgstr "Start Point"
+
+msgid "Error: The template file does not exist."
+msgstr "Error: Ang template file ay wala."
+
+msgid "Text"
+msgstr "Text"
+
+msgid "Function"
+msgstr "Function"
+
+msgid "Error: The"
+msgstr "Error: Ang"
+
+msgid "tag in"
+msgstr "tag in"
+
+msgid "at position"
+msgstr "sa posisyon"
+
+msgid "is missing."
+msgstr "ay nawawala."
+
+msgid "is empty."
+msgstr "ay walang laman."
+
+msgid "tag associated with the user input"
+msgstr "tag na nauugnay sa input ng user"
+
+msgid "in"
+msgstr "sa"
+
+msgid "tag of the"
+msgstr "tag ng"
+
+msgid "block associated with the user input"
+msgstr "block na nauugnay sa input ng user"
+
+msgid "or"
+msgstr "o"
+
+msgid "Error: The function name"
+msgstr "Error: Ang pangalan ng function"
+
+msgid "in the"
+msgstr "sa"
+
+msgid "is invalid."
+msgstr "ay hindi wasto."
+
+msgid "Error: The type name"
+msgstr "Error: Ang pangalan ng uri"
+
+msgid "is invalid. This should be"
+msgstr "ay hindi wasto. Ito dapat"
+
+msgid "You might like these products."
+msgstr "Maaaring gusto mo ang mga produktong ito."
+
+msgid "No exact match was found. Explore these similar products."
+msgstr ""
+"Walang nakitang eksaktong tugma. Galugarin ang mga katulad na produkto."
+
+msgid "Here are some suggestions."
+msgstr "Narito ang ilang mungkahi."
+
+msgid "Showing"
+msgstr "Nagpapakita"
+
+msgid "of"
+msgstr "ng"
+
+msgid "Add to cart"
+msgstr "Idagdag sa cart"
+
+msgid "Empty Story"
+msgstr "Walang laman na Kwento"
+
+msgid "Show All Products"
+msgstr "Ipakita ang Lahat ng Produkto"
+
+msgid "Search Product"
+msgstr "Maghanap ng Produkto"
+
+msgid "Get Products Under Price"
+msgstr "Kunin ang Mga Produkto sa Mababang Presyo"
+
+msgid "Get Products Above Price"
+msgstr "Kumuha ng Mga Produktong Higit sa Presyo"
+
+msgid "View Cart/Remove Items"
+msgstr "Tingnan ang Cart/Alisin ang Mga Item"
+
+msgid "Checkout"
+msgstr "Checkout"
+
+msgid "Reset Password"
+msgstr "I-reset ang Password"
+
+msgid "Send Chat To Admin"
+msgstr "Magpadala ng Chat Sa Admin"
+
+msgid "Integer"
+msgstr "Integer"
+
+msgid "Float"
+msgstr "Lutang"
+
+msgid "Boolean"
+msgstr "Boolean"
+
+msgid "String"
+msgstr "String"
+
+msgid "Default Fallback"
+msgstr "Default na Fallback"
+
+msgid "Are you sure to reset it?"
+msgstr "Sigurado ka bang i-reset ito?"
+
+msgid "Parameter Name *"
+msgstr "Pangalan ng Parameter *"
+
+msgid "Varibale Name *"
+msgstr "Pangalan ng Variable *"
+
+msgid "User input has been successfully saved."
+msgstr "Matagumpay na nai-save ang input ng user."
+
+msgid "An empty user input field."
+msgstr "Isang walang laman na field ng input ng user."
+
+msgid "An empty bot response."
+msgstr "Isang walang laman na tugon ng bot."
+
+msgid "Response Successfully Saved!"
+msgstr "Matagumpay na Na-save ang Tugon!"
+
+msgid "Action Successfully Saved!"
+msgstr "Matagumpay na Na-save ang Aksyon!"
+
+msgid "Form Successfully Saved!"
+msgstr "Matagumpay na Na-save ang Form!"
+
+msgid "Default Fallback Successfully Saved!"
+msgstr "Ang Default na Fallback ay Matagumpay na Na-save!"
+
+msgid "Store relevant user input first, then fallback."
+msgstr "I-store muna ang may-katuturang input ng user, pagkatapos ay fallback."
+
+msgid "An empty default fallback."
+msgstr "Isang walang laman na default na fallback."
+
+msgid "Default Intent Fallback Successfully Saved!"
+msgstr "Matagumpay na Na-save ang Default Intent Fallback!"
+
+msgid "Discard"
+msgstr "Itapon"
+
+msgid "Temporary discard"
+msgstr "Pansamantalang pagtatapon"
+
+msgid "Automate"
+msgstr "I-automate"
+
+msgid "User input"
+msgstr "input ng user"
+
+msgid "Form"
+msgstr "Form"
+
+msgid "Fallback"
+msgstr "Fallback"
+
+msgid "Chat "
+msgstr "Chat"
+
+msgid "Available Variable"
+msgstr "Available na Variable"
+
+msgid "Product Name"
+msgstr "Pangalan ng Produkto"
+
+msgid "Minimum Price"
+msgstr "Pinakamababang Presyo"
+
+msgid "Maximum Price"
+msgstr "Pinakamataas na Presyo"
+
+msgid "User Login"
+msgstr "Login ng User"
+
+msgid "Action Icon"
+msgstr "Icon ng Pagkilos"
+
+msgid "User Icon"
+msgstr "Icon ng User"
+
+msgid "User"
+msgstr "Gumagamit"
+
+msgid "Bot Response"
+msgstr "Tugon ng Bot"
+
+msgid "User Text Icon"
+msgstr "Icon ng Teksto ng Gumagamit"
+
+msgid "Bot Function Icon"
+msgstr "Icon ng Bot Function"
+
+msgid "Bot Function"
+msgstr "Function ng Bot"
+
+msgid "Predefined Function"
+msgstr "Paunang-natukoy na Function"
+
+msgid "Bot Action Icon"
+msgstr "Icon ng Bot Action"
+
+msgid "Bot Action"
+msgstr "Aksyon ng Bot"
+
+msgid "Bot Form Icon"
+msgstr "Icon ng Bot Form"
+
+msgid "Bot Form"
+msgstr "Form ng Bot"
+
+msgid "Fallback Icon"
+msgstr "Icon ng Fallback"
+
+msgid "Fallback Massege"
+msgstr "Fallback na Mensahe"
+
+msgid "Save & Close"
+msgstr "I-save at Isara"
+
+msgid "Info Icon"
+msgstr "Icon ng Impormasyon"
+
+msgid "How to add parameters"
+msgstr "Paano magdagdag ng mga parameter"
+
+msgid "User form Icon"
+msgstr "Icon ng form ng user"
+
+msgid "Form Name *"
+msgstr "Pangalan ng Form *"
+
+msgid "Add New Variable"
+msgstr "Magdagdag ng Bagong Variable"
+
+msgid "Function Form"
+msgstr "Function Form"
+
+msgid "Action Form"
+msgstr "Form ng Aksyon"
+
+msgid "Custom Action"
+msgstr "Custom na Pagkilos"
+
+msgid "Add New Custom Action"
+msgstr "Magdagdag ng Bagong Custom na Aksyon"
+
+msgid "Add New Parameter"
+msgstr "Magdagdag ng Bagong Parameter"
+
+msgid "Intent Fallback"
+msgstr "Intent Fallback"
+
+msgid "Save Story"
+msgstr "I-save ang Kwento"
+
+msgid "Reset Story"
+msgstr "I-reset ang Kwento"
+
+msgid "Story has been successfully saved."
+msgstr "Ang kwento ay matagumpay na nai-save."
+
+msgid "WooCommerce is not active!"
+msgstr "Hindi aktibo ang WooCommerce!"
+
+msgid "Error encountered in template."
+msgstr "Nagkaroon ng error sa template."
+
+msgid "An empty story name."
+msgstr "Isang walang laman na pangalan ng kwento."
+
+msgid "An empty story template."
+msgstr "Isang walang laman na template ng kwento."
+
+msgid "title"
+msgstr "pamagat"
+
+msgid "Active"
+msgstr "Aktibo"
+
+msgid "Disable"
+msgstr "Huwag paganahin"
+
+msgid "Edit Story"
+msgstr "I-edit ang Kwento"
+
+msgid "Are you sure to delete"
+msgstr "Sigurado ka bang tatanggalin"
+
+msgid "Delete Story"
+msgstr "Tanggalin ang Kwento"
+
+msgid "Built Story"
+msgstr "Buong Kwento"
+
+msgid "Built"
+msgstr "Itinayo"
+
+msgid "WooCommerce Story"
+msgstr "Kwento ng WooCommerce"
+
+msgid "Story Name *"
+msgstr "Pangalan ng Kwento *"
+
+msgid "Edit Story Name"
+msgstr "I-edit ang Pangalan ng Kuwento"
+
+msgid "Invalid username or email."
+msgstr "Di-wastong username o email."
+
+msgid "Looks like there was a problem resetting your password:"
+msgstr "Mukhang nagkaroon ng problema sa pag-reset ng iyong password:"
+
+msgid "User not found!"
+msgstr "Hindi nahanap ang user!"
+
+msgid "Okay, I have sent the recovery email. Thank you for your patience."
+msgstr "Okay, naipadala ko na ang email sa pagbawi. Salamat sa iyong pasensya."
+
+msgid "Your query is sent to the admin."
+msgstr "Ang iyong query ay ipinadala sa admin."
+
+msgid "Enable"
+msgstr "Paganahin"
+
+msgid "Smart Popup"
+msgstr "Smart Popup"
+
+msgid "Standard Popup"
+msgstr "Karaniwang Popup"
+
+msgid "Appearance"
+msgstr "Hitsura"
+
+msgid "Choose File"
+msgstr "Piliin ang File"
+
+msgid "User Default Image"
+msgstr "User Default na Larawan"
+
+msgid "Primary Color"
+msgstr "Pangunahing Kulay"
+
+msgid "Choose Color"
+msgstr "Pumili ng Kulay"
+
+msgid "User Text Background"
+msgstr "Background ng Teksto ng Gumagamit"
+
+msgid "User Text Color"
+msgstr "Kulay ng Teksto ng Gumagamit"
+
+msgid "Bot Link Color"
+msgstr "Kulay ng Bot Link"
+
+msgid "Presets"
+msgstr "Preset"
+
+msgid "Preset"
+msgstr "Preset"
+
+msgid "online"
+msgstr "online"
+
+msgid "User Image"
+msgstr "Larawan ng Gumagamit"
+
+msgid "Hi I am John"
+msgstr "Hi ako si John"
+
+msgid "Hi John! How can I help you?"
+msgstr "Hi John! Paano kita matutulungan?"
+
+msgid "Can you help me find a new backpack?"
+msgstr "Matutulungan mo ba akong maghanap ng bagong backpack?"
+
+msgid "Product Icon"
+msgstr "Icon ng Produkto"
+
+msgid "Fusion Backpack"
+msgstr "Fusion Backpack"
+
+msgid "$"
+msgstr "$"
+
+msgid "59"
+msgstr "59"
+
+msgid "Send message"
+msgstr "Magpadala ng mensahe"
+
+msgid "Welcome Message"
+msgstr "Welcome Message"
+
+msgid "Welcome Image"
+msgstr "Welcome Image"
+
+msgid "Chat Auto-Popup"
+msgstr "Makipag-chat Auto-Popup"
+
+msgid "Controls whether the chat popup appears automatically on your site."
+msgstr "Kinokontrol kung awtomatikong lilitaw ang chat popup sa iyong site."
+
+msgid "Chat Pop-up Style"
+msgstr "Chat Pop-up Style"
+
+msgid "Choose how the chat will appear: Smart or Standard pop-up."
+msgstr "Piliin kung paano lalabas ang chat: Smart o Standard na pop-up."
+
+msgid "Chat Auto-Popup Timing"
+msgstr "Chat Auto-Popup Timing"
+
+msgid ""
+"Define the delay time in seconds for the chatbot to auto-appear on the site."
+msgstr ""
+"Tukuyin ang oras ng pagkaantala sa mga segundo para awtomatikong lumitaw ang "
+"chatbot sa site."
+
+msgid "Note"
+msgstr "Tandaan"
+
+msgid ""
+"If the colors have been saved but the user-side colors are still the same, "
+"it is advised to clear the cache."
+msgstr ""
+"Kung na-save na ang mga kulay ngunit pareho pa rin ang mga kulay sa gilid ng "
+"gumagamit, ipinapayo na i-clear ang cache."
+
+msgid "Also"
+msgstr "Gayundin"
+
+msgid "Found"
+msgstr "Natagpuan"
+
+msgid "Here are some"
+msgstr "Narito ang ilan"
+
+msgid "Help"
+msgstr "Tulong"
+
+msgid "Have any problem?"
+msgstr "May problema ba?"
+
+msgid ""
+"If you experience any difficulties, we're here to help! Simply click the"
+msgstr ""
+"Kung nakakaranas ka ng anumang mga paghihirap, narito kami upang tumulong! I-"
+"click lamang ang"
+
+msgid "Create A Ticket"
+msgstr "Gumawa ng Ticket"
+
+msgid ""
+"button to report your issue, and our dedicated support team will assist you "
+"promptly."
+msgstr ""
+"button upang iulat ang iyong isyu, at ang aming nakatuong koponan ng suporta "
+"ay tutulungan ka kaagad."
+
+msgid "Create Ticket"
+msgstr "Lumikha ng Ticket"
+
+msgid "Post Type"
+msgstr "Uri ng Post"
+
+msgid "post type"
+msgstr "uri ng post"
+
+msgid "Post Label"
+msgstr "Label ng Post"
+
+msgid "Associated Plugin"
+msgstr "Kaugnay na Plugin"
+
+msgid "Add associated plugin's name"
+msgstr "Magdagdag ng nauugnay na pangalan ng plugin"
+
+msgid "For better data consistency, please provide a associated plugin's name."
+msgstr ""
+"Para sa mas mahusay na pagkakapare-pareho ng data, mangyaring magbigay ng "
+"nauugnay na pangalan ng plugin."
+
+msgid "Status"
+msgstr "Katayuan"
+
+msgid "For status changes, please use the options available in the listing."
+msgstr ""
+"Para sa mga pagbabago sa katayuan, mangyaring gamitin ang mga opsyon na "
+"available sa listahan."
+
+msgid "Template Section"
+msgstr "Seksyon ng Template"
+
+msgid ""
+"Fields are currently auto-filled for preview purposes only. Please save your "
+"changes to apply them."
+msgstr ""
+"Kasalukuyang awtomatikong pinupuno ang mga field para sa mga layunin ng "
+"preview lamang. Paki-save ang iyong mga pagbabago upang mailapat ang mga ito."
+
+msgid "Choose one template style from the given below"
+msgstr "Pumili ng isang istilo ng template mula sa ibinigay sa ibaba"
+
+msgid "Add Button /Link"
+msgstr "Magdagdag ng Pindutan /Link"
+
+msgid "Add New Button /Link"
+msgstr "Magdagdag ng Bagong Pindutan /Link"
+
+msgid "Show on Listing"
+msgstr "Ipakita sa Listahan"
+
+msgid "View Details"
+msgstr "Tingnan ang mga Detalye"
+
+msgid "detail page link"
+msgstr "link ng pahina ng detalye"
+
+msgid "Save Template"
+msgstr "I-save ang Template"
+
+msgid "Create a Post"
+msgstr "Gumawa ng Post"
+
+msgid "Please first create a sample post to use template section."
+msgstr ""
+"Mangyaring lumikha muna ng sample na post upang magamit ang seksyon ng "
+"template."
+
+msgid "AI web search enabled successfully."
+msgstr "Matagumpay na pinagana ang paghahanap sa web ng AI."
+
+msgid "AI web search already enabled."
+msgstr "Pinagana na ang paghahanap sa web ng AI."
+
+msgid "Something went wrong."
+msgstr "Nagkaproblema."
+
+msgid "AI web search disabled successfully."
+msgstr "Matagumpay na na-disable ang paghahanap sa web ng AI."
+
+msgid "New post type search enabled successfully."
+msgstr "Matagumpay na pinagana ang paghahanap ng bagong uri ng post."
+
+msgid "New post type search disabled successfully."
+msgstr "Matagumpay na na-disable ang paghahanap ng bagong uri ng post."
+
+msgid "Data Synchronization Needed"
+msgstr "Kinakailangan ang Pag-synchronize ng Data"
+
+msgid ""
+"Your data is not updated. To ensure accurate results, please synchronize "
+"your AI web search data."
+msgstr ""
+"Hindi na-update ang iyong data. Upang matiyak ang mga tumpak na resulta, "
+"mangyaring i-synchronize ang iyong data sa paghahanap sa web ng AI."
+
+msgid "Enable AI web Search"
+msgstr "Paganahin ang AI web Search"
+
+msgid ""
+"Enable this feature to provide users with direct AI web search results in "
+"the chat, offering them a broader context for their queries."
+msgstr ""
+"Paganahin ang feature na ito na magbigay sa mga user ng direktang resulta ng "
+"paghahanap sa web ng AI sa chat, na nag-aalok sa kanila ng mas malawak na "
+"konteksto para sa kanilang mga query."
+
+msgid "Enable New Post Type Search"
+msgstr "Paganahin ang Paghahanap ng Bagong Uri ng Post"
+
+msgid "Lable"
+msgstr "Label"
+
+msgid "Post lable"
+msgstr "Mag-post ng label"
+
+msgid "WooCommerce is currently inactive."
+msgstr "Kasalukuyang hindi aktibo ang WooCommerce."
+
+msgid "No product was found."
+msgstr "Walang nakitang produkto."
+
+msgid "Please enter a valid product or category name."
+msgstr "Mangyaring magpasok ng wastong pangalan ng produkto o kategorya."
+
+msgid "Please enter a valid price."
+msgstr "Mangyaring magpasok ng wastong presyo."
+
+msgid "Please enter a valid price range."
+msgstr "Mangyaring magpasok ng wastong hanay ng presyo."
+
+msgid "Your cart is currently empty."
+msgstr "Kasalukuyang walang laman ang iyong cart."
+
+msgid "Cart Details"
+msgstr "Mga Detalye ng Cart"
+
+msgid "Price"
+msgstr "Presyo"
+
+msgid "Change"
+msgstr "Baguhin"
+
+msgid "Total Price"
+msgstr "Kabuuang Presyo"
+
+msgid "Remove Item"
+msgstr "Alisin ang Item"
+
+msgid "Subtotal"
+msgstr "Subtotal"
+
+msgid "Total"
+msgstr "Kabuuan"
+
+msgid "Proceed to Checkout"
+msgstr "Magpatuloy sa Checkout"
+
+msgid "is out of stock."
+msgstr "ay out of stock."
+
+msgid "You cannot add another “"
+msgstr "Hindi ka maaaring magdagdag ng isa pa\""
+
+msgid "” to your cart."
+msgstr "” sa cart mo."
+
+msgid "You cannot add more than"
+msgstr "Hindi ka maaaring magdagdag ng higit sa"
+
+msgid "of this product to your cart."
+msgstr "ng produktong ito sa iyong cart."
+
+msgid "has been added to your cart."
+msgstr "naidagdag na sa iyong cart."
+
+msgid "has not been added to your cart. Please try again."
+msgstr "ay hindi naidagdag sa iyong cart. Pakisubukang muli."
+
+msgid "View Cart"
+msgstr "Tingnan ang Cart"
+
+msgid "Please select a product!"
+msgstr "Mangyaring pumili ng isang produkto!"
+
+msgid "There are no variations available."
+msgstr "Walang available na mga variation."
+
+msgid "Product not found or not a variable product."
+msgstr "Ang produkto ay hindi nahanap o hindi isang variable na produkto."
+
+msgid "You can't add another “"
+msgstr "Hindi ka maaaring magdagdag ng isa pa"
+
+msgid "There was an error while adding the product to the cart."
+msgstr "Nagkaroon ng error habang idinaragdag ang produkto sa cart."
+
+msgid ""
+"The requested variation with the specified attributes could not be found."
+msgstr ""
+"Ang hiniling na pagkakaiba-iba na may mga tinukoy na katangian ay hindi "
+"mahanap."
+
+msgid "Change Quantity"
+msgstr "Baguhin ang Dami"
+
+msgid "Update"
+msgstr "Update"
+
+msgid "The cart is empty."
+msgstr "Walang laman ang cart."
+
+msgid "Cart item is not found."
+msgstr "Hindi nakita ang item sa cart."
+
+msgid "The item was not found in the cart."
+msgstr "Hindi nakita ang item sa cart."
+
+msgid "Quantity updated successfully!"
+msgstr "Ang dami ay matagumpay na na-update!"
+
+msgid "Change quantity"
+msgstr "Baguhin ang dami"
+
+msgid "Edit Post Type"
+msgstr "I-edit ang Uri ng Post"
+
+msgid "Parameter"
+msgstr "Parameter"
+
+msgid "delete"
+msgstr "tanggalin"
+
+msgid "add intent"
+msgstr "magdagdag ng layunin"
+
+msgid "plus icon"
+msgstr "icon ng plus"
+
+msgid "Add Intents"
+msgstr "Magdagdag ng Mga Layunin"
+
+msgid ""
+"On the responses listing page, all the responses are listed here; you can "
+"check them out."
+msgstr ""
+"Sa pahina ng listahan ng mga tugon, lahat ng mga tugon ay nakalista dito; "
+"maaari mong suriin ang mga ito."
+
+msgid "Add Intent"
+msgstr "Magdagdag ng Layunin"
+
+msgid ""
+"On the form listing page, all the forms are listed here; you can check them "
+"out."
+msgstr ""
+"Sa pahina ng listahan ng form, ang lahat ng mga form ay nakalista dito; "
+"maaari mong suriin ang mga ito."
+
+msgid "Add Forms"
+msgstr "Magdagdag ng mga Form"
+
+msgid "On the add form page, you can add a new form."
+msgstr "Sa pahina ng magdagdag ng form, maaari kang magdagdag ng bagong form."
+
+msgid "Responses"
+msgstr "Mga tugon"
+
+msgid "Add Response"
+msgstr "Magdagdag ng Tugon"
+
+msgid "On the add Response page, you can add a new Response."
+msgstr ""
+"Sa pahina ng magdagdag ng Tugon, maaari kang magdagdag ng bagong Tugon."
+
+msgid ""
+"On the actions listing page, all the actions are listed here; you can check "
+"them out."
+msgstr ""
+"Sa page ng listahan ng mga aksyon, nakalista dito ang lahat ng aksyon; "
+"maaari mong suriin ang mga ito."
+
+msgid "Add  Action"
+msgstr "Magdagdag ng Aksyon"
+
+msgid "On the add action page, you can add a new action."
+msgstr ""
+"Sa pahina ng magdagdag ng pagkilos, maaari kang magdagdag ng bagong pagkilos."
+
+msgid "Add Intent Group"
+msgstr "Magdagdag ng Intent Group"
+
+msgid "Import"
+msgstr "Mag-import"
+
+msgid "Menu"
+msgstr "Menu"
+
+msgid "End Chat"
+msgstr "Tapusin ang Chat"
+
+msgid "Restart Chat"
+msgstr "I-restart ang Chat"
+
+msgid "Image"
+msgstr "Imahe"
+
+msgid "Send Icon"
+msgstr "Icon ng Ipadala"
+
+msgid "Welcome to GeekyBot! Let me know how I can assist you today."
+msgstr ""
+"Maligayang pagdating sa GeekyBot! Ipaalam sa akin kung paano kita "
+"matutulungan ngayon."
+
+msgid "admin."
+msgstr "admin."
+
+msgid "Account Assistance"
+msgstr "Tulong sa Account"
+
+msgid "Diet Plan Assistant"
+msgstr "Assistant sa Diet Plan"
+
+msgid "Job Application"
+msgstr "Aplikasyon sa Trabaho"
+
+msgid "Offline Form"
+msgstr "Offline na Form"
+
+msgid "Real Estate"
+msgstr "Real Estate"
+
+msgid "Sales Support"
+msgstr "Suporta sa Pagbebenta"
+
+msgid "University"
+msgstr "Unibersidad"
+
+msgid "Vacation Planner"
+msgstr "Tagaplano ng Bakasyon"

@@ -59,6 +59,20 @@ class GEEKYBOTwebsearchController {
         die();
     }
 
+    function savecustomlisting() {
+        $nonce = GEEKYBOTrequest::GEEKYBOT_getVar('_wpnonce');
+        if (! wp_verify_nonce( $nonce, 'save-custom-listing') ) {
+            die( 'Security check Failed' );
+        }
+        $data = GEEKYBOTrequest::GEEKYBOT_get('post');
+        $result = GEEKYBOTincluder::GEEKYBOT_getModel('websearch')->storeCustomListing($data);
+        $url = wp_nonce_url(admin_url("admin.php?page=geekybot_websearch&geekybotlt=websearch"),'websearch');
+        $msg = GEEKYBOTMessages::GEEKYBOT_getMessage($result, 'posttype');
+        GEEKYBOTMessages::GEEKYBOT_setLayoutMessage($msg['message'], $msg['status'],$this->_msgkey);
+        wp_redirect($url);
+        die();
+    }
+
     function changeStatus() {
         $nonce = GEEKYBOTrequest::GEEKYBOT_getVar('_wpnonce');
         if (! wp_verify_nonce( $nonce, 'change-status') ) {

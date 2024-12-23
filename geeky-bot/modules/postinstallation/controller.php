@@ -16,6 +16,10 @@ class GEEKYBOTpostinstallationController {
         $layout = GEEKYBOTrequest::GEEKYBOT_getLayout('geekybotlt', 'stepone', null);
         if($this->canaddfile()){
             switch ($layout) {
+                case 'admin_welcomescreen':
+                    GEEKYBOTincluder::GEEKYBOT_getModel('postinstallation')->updateInstallationStatusConfiguration();
+                    $geekybot_callfrom = GEEKYBOTrequest::GEEKYBOT_getVar('geekybot_callfrom');
+                    break;  
                 case 'admin_stepone':
                     GEEKYBOTincluder::GEEKYBOT_getModel('postinstallation')->updateInstallationStatusConfiguration();
                     $geekybot_callfrom = GEEKYBOTrequest::GEEKYBOT_getVar('geekybot_callfrom');
@@ -45,9 +49,9 @@ class GEEKYBOTpostinstallationController {
     function canaddfile() {
         $nonce_value = GEEKYBOTrequest::GEEKYBOT_getVar('geekybot_nonce');
         if ( wp_verify_nonce( $nonce_value, 'geekybot_nonce') ) {
-            if (isset($_POST['form_request']) && $_POST['form_request'] == 'majesticsupport')
+            if (isset($_POST['form_request']) && $_POST['form_request'] == 'geekybot')
                 return false;
-            elseif (isset($_GET['action']) && $_GET['action'] == 'mstask')
+            elseif (isset($_GET['action']) && $_GET['action'] == 'geekybottask')
                 return false;
             else
                 return true;

@@ -178,11 +178,11 @@ class GEEKYBOTwoocommerceModel {
                         } else {
                             $articleType = 2;
                         }
-                        $articleButtonHtml = GEEKYBOTincluder::GEEKYBOT_getModel('websearch')->getArticlesButton($msg, $articleType);
+                        $articleButton = GEEKYBOTincluder::GEEKYBOT_getModel('websearch')->getArticlesButton($msg, $articleType);
                         // check if some related posts found
-                        if (isset($articleButtonHtml) && $articleButtonHtml != '') {
+                        if (isset($articleButton['html']) && $articleButton['html'] != '') {
                             // Modified bot response if it exists
-                            $html .= $articleButtonHtml;
+                            $html .= $articleButton['html'];
                         }
                     }
                 }
@@ -193,25 +193,28 @@ class GEEKYBOTwoocommerceModel {
     }
 
     function geekybot_getProductsUnderPrice($msg, $data, $currentPage = 1) {
-        // check if woocommerce is not active
+        // Check if WooCommerce is active
         if (!class_exists('WooCommerce')) {
             return $return['text'] = __("WooCommerce is currently inactive.", "geeky-bot");
         }
         // get the variable for product name from the given list of variable in the parameter
-        $search_key = 'woo_product_price';
+        $search_key = 'woo_product_max_price';
         if (isset($data[$search_key])) {
             $max_price = $data[$search_key];
-            $max_price = geekybot_normalize_price_with_wc($max_price);
+            $max_price = $this->geekybot_normalize_price_with_wc($max_price);
         } else {
             return __("Please enter a valid price.", "geeky-bot");
         }
+
         // Set the number of products to display per page
         $productsPerPage = geekybot::$_configuration['pagination_product_page_size'];
         // Calculate the offset based on the current page and products per page
         $offset = ($currentPage - 1) * $productsPerPage;
+
+        // Query all products (simple and variable) with price less than or equal to the maximum price
         $args = array(
             'post_type' => array('product', 'product_variation'), // Include both products and variations
-            'orderby'  => 'ID',
+            'orderby' => 'ID',
             'order' => 'ASC',
             'post_status' => 'publish', // Only return published products
             'numberposts' => -1, // Retrieve all matching products
@@ -224,59 +227,77 @@ class GEEKYBOTwoocommerceModel {
                 ),
             ),
         );
+
         $allProducts = wc_get_products($args);
         $filteredProducts = array();
 
         foreach ($allProducts as $product) {
-            // Get all variations for this variable product
-            $variations = $product->get_available_variations();
-            $all_variations_below_price = true;
-            foreach ($variations as $variation) {
-                $variation_obj = new WC_Product_Variation($variation['variation_id']);
-                $variation_price = $variation_obj->get_price();
+            if ($product->is_type('variable')) {
+                // Get all variations for this variable product
+                $variations = $product->get_available_variations();
+                $all_variations_below_price = true;
 
-                // If any variation has a price greater than the max price, skip this product
-                if ($variation_price > $max_price) {
-                    $all_variations_below_price = false;
-                    break;
+                foreach ($variations as $variation) {
+                    $variation_obj = new WC_Product_Variation($variation['variation_id']);
+                    $variation_price = $variation_obj->get_price();
+
+                    // If any variation has a price greater than the max price, exclude the parent product
+                    if ($variation_price > $max_price) {
+                        $all_variations_below_price = false;
+                        break;
+                    }
+                }
+
+                // Include the parent product if all variations are below or equal to the max price
+                if ($all_variations_below_price) {
+                    $filteredProducts[] = $product;
+                }
+            } elseif ($product->is_type('simple')) {
+                // Filter simple products by price
+                $product_price = $product->get_price();
+                if ($product_price <= $max_price) {
+                    $filteredProducts[] = $product;
                 }
             }
-            // If all variations have prices below or equal to max_price, include the parent product
-            if ($all_variations_below_price) {
-                $filteredProducts[] = $product;
-            }
         }
-        $allProducts = count($filteredProducts);
+
+        $totalProducts = count($filteredProducts);
         // Slice the products array to get the products for the current page
         $products = array_slice($filteredProducts, $offset, $productsPerPage);
+
         $html = '';
-        if($products){
-            $html = GEEKYBOTincluder::GEEKYBOT_getModel('stories')->getWcProductListingHtml($msg, $products, 'story', $allProducts, $currentPage, 'woocommerce', 'geekybot_getProductsUnderPrice', $data);
+        if ($products) {
+            $html = GEEKYBOTincluder::GEEKYBOT_getModel('stories')->getWcProductListingHtml($msg, $products, 'story', $totalProducts, $currentPage, 'woocommerce', 'geekybot_getProductsUnderPrice', $data);
         }
-        return $html; 
+
+        return $html;
         wp_die();
     }
 
     function geekybot_getProductsAbovePrice($msg, $data, $currentPage = 1) {
-        // check if woocommerce is not active
+        // Check if WooCommerce is active
         if (!class_exists('WooCommerce')) {
             return $return['text'] = __("WooCommerce is currently inactive.", "geeky-bot");
         }
-        // get the variable for product name from the given list of variable in the parameter
-        $search_key = 'woo_product_price';
+
+        // Get the variable for product name from the given list of variables in the parameter
+        $search_key = 'woo_product_min_price';
         if (isset($data[$search_key])) {
             $min_price = $data[$search_key];
-            $min_price = geekybot_normalize_price_with_wc($min_price);
+            $min_price = $this->geekybot_normalize_price_with_wc($min_price);
         } else {
             return __("Please enter a valid price.", "geeky-bot");
         }
+
         // Set the number of products to display per page
         $productsPerPage = geekybot::$_configuration['pagination_product_page_size'];
         // Calculate the offset based on the current page and products per page
         $offset = ($currentPage - 1) * $productsPerPage;
+
+        // Query all products (simple and variable) with price greater than or equal to the minimum price
         $args = array(
             'post_type' => array('product', 'product_variation'), // Include both products and variations
-            'orderby'  => 'ID',
+            'orderby' => 'ID',
             'order' => 'ASC',
             'post_status' => 'publish', // Only return published products
             'numberposts' => -1, // Retrieve all matching products
@@ -289,36 +310,50 @@ class GEEKYBOTwoocommerceModel {
                 ),
             ),
         );
+
         $allProducts = wc_get_products($args);
         $filteredProducts = array();
 
         foreach ($allProducts as $product) {
-            // Get all variations for this variable product
-            $variations = $product->get_available_variations();
-            $all_variations_above_price = true;
-            foreach ($variations as $variation) {
-                $variation_obj = new WC_Product_Variation($variation['variation_id']);
-                $variation_price = $variation_obj->get_price();
+            if ($product->is_type('variable')) {
+                // Get all variations for this variable product
+                $variations = $product->get_available_variations();
+                $all_variations_above_price = true;
 
-                // If any variation has a price greater than the max price, skip this product
-                if ($variation_price < $min_price) {
-                    $all_variations_above_price = false;
-                    break;
+                foreach ($variations as $variation) {
+                    $variation_obj = new WC_Product_Variation($variation['variation_id']);
+                    $variation_price = $variation_obj->get_price();
+
+                    // If any variation has a price less than the min price, exclude this product
+                    if ($variation_price < $min_price) {
+                        $all_variations_above_price = false;
+                        break;
+                    }
+                }
+
+                // Include the parent product if all variations are above the min price
+                if ($all_variations_above_price) {
+                    $filteredProducts[] = $product;
+                }
+            } elseif ($product->is_type('simple')) {
+                // Filter simple products by price
+                $product_price = $product->get_price();
+                if ($product_price >= $min_price) {
+                    $filteredProducts[] = $product;
                 }
             }
-            // If all variations have prices below or equal to min_price, include the parent product
-            if ($all_variations_above_price) {
-                $filteredProducts[] = $product;
-            }
         }
-        $allProducts = count($filteredProducts);
+
+        $totalProducts = count($filteredProducts);
         // Slice the products array to get the products for the current page
         $products = array_slice($filteredProducts, $offset, $productsPerPage);
+
         $html = '';
-        if($products){
-            $html = GEEKYBOTincluder::GEEKYBOT_getModel('stories')->getWcProductListingHtml($msg, $products, 'story', $allProducts, $currentPage, 'woocommerce', 'geekybot_getProductsAbovePrice', $data);
+        if ($products) {
+            $html = GEEKYBOTincluder::GEEKYBOT_getModel('stories')->getWcProductListingHtml($msg, $products, 'story', $totalProducts, $currentPage, 'woocommerce', 'geekybot_getProductsAbovePrice', $data);
         }
-        return $html; 
+
+        return $html;
         wp_die();
     }
 
@@ -331,8 +366,8 @@ class GEEKYBOTwoocommerceModel {
         if (isset($data['woo_product_price_from']) && isset($data['woo_product_price_to'])) {
             $min_price = $data['woo_product_price_from'];
             $max_price = $data['woo_product_price_to'];
-            $min_price = geekybot_normalize_price_with_wc($min_price);
-            $max_price = geekybot_normalize_price_with_wc($max_price);
+            $min_price = $this->geekybot_normalize_price_with_wc($min_price);
+            $max_price = $this->geekybot_normalize_price_with_wc($max_price);
         } else {
             return __("Please enter a valid price range.", "geeky-bot");
         }

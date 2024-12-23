@@ -55,6 +55,15 @@ class GEEKYBOTactivation {
             $query = "ALTER TABLE `" . geekybot::$_db->prefix . "geekybot_intents` ADD FULLtext(user_messages_text)";
             geekybot::$_db->query($query);
 
+            $query = "CREATE TABLE IF NOT EXISTS `" . geekybot::$_db->prefix . "geekybot_intents_fallback` (
+            `id` int(11) NOT NULL AUTO_INCREMENT,
+            `group_id` int(11) NOT NULL,
+            `story_id` int(11) NOT NULL,
+            `default_fallback` text NOT NULL,
+            PRIMARY KEY (`id`)
+            ) ENGINE=InnoDB DEFAULT CHARSET=utf8;";
+            geekybot::$_db->query($query);
+
             $query = "CREATE TABLE IF NOT EXISTS `" . geekybot::$_db->prefix . "geekybot_slots` (
               `id` int(11) NOT NULL AUTO_INCREMENT,
               `name` varchar(100) NOT NULL,
@@ -91,6 +100,7 @@ class GEEKYBOTactivation {
                 `sender` varchar(50) NOT NULL,
                 `confidence` float NOT NULL,
                 `type` varchar(100) NOT NULL,
+                `post_type` varchar(255) NULL,
                 `buttons` varchar(1000) NULL,
                 `created` datetime NOT NULL,
                 `session_id` int(11) NOT NULL,
@@ -132,7 +142,7 @@ class GEEKYBOTactivation {
             ('title',   'GeekyBot',   'default',  NULL),
             ('pagination_default_page_size',    '10',   'default',  NULL),
             ('pagination_product_page_size',    '3',   'default',  NULL),
-            ('versioncode', '1.0.4',    'default',  NULL),
+            ('versioncode', '1.0.5',    'default',  NULL),
             ('last_version',    '101',  'default',  NULL),
             ('image_file_type', 'png,jpeg,gif,jpg', 'default', NULL),
             ('bot_custom_img',  '0',    'default',  NULL),
@@ -140,7 +150,7 @@ class GEEKYBOTactivation {
             ('welcome_message_img', '0',    'default',  NULL),
             ('ai_search_type',  '1',    'default',  NULL),
             ('ai_search',   '0',    'default',  NULL),
-            ('default_message', 'Hi, I am Chatbot. I do not have specific knowledge',    'default',  NULL),
+            ('default_message', 'Hi, I am Chatbot. I do not have specific knowledge.',    'default',  NULL),
             ('customer_token',  '', 'default',  NULL),
             ('bot_name',    '', 'default',  NULL),
             ('server_ip',   '', 'default',  NULL),
@@ -224,8 +234,8 @@ class GEEKYBOTactivation {
             $query = "CREATE TABLE IF NOT EXISTS `" . geekybot::$_db->prefix . "geekybot_posts` (
                       `id` int(11) NOT NULL PRIMARY KEY AUTO_INCREMENT,
                       `title` text DEFAULT NULL,
-                      `content` text DEFAULT NULL,
-                      `post_text` text DEFAULT NULL,
+                      `content` LONGTEXT DEFAULT NULL,
+                      `post_text` LONGTEXT DEFAULT NULL,
                       `post_id` int(11) NOT NULL,
                       `post_type` varchar(20) DEFAULT NULL,
                       `status` varchar(20) NOT NULL

@@ -10,7 +10,7 @@ class GEEKYBOTformfield {
 
     static function GEEKYBOT_text($name, $value, $extraattr = array()) {
         $textfield = '<input type="text" name="' . esc_attr($name) . '" id="' . esc_attr($name) . '"
-        value="' . $value . '" ';
+        value="' . geekybotphplib::GEEKYBOT_htmlspecialchars($value) . '" ';
         if (!empty($extraattr))
             foreach ($extraattr AS $key => $val)
                 $textfield .= ' ' . $key . '="' . $val . '"';
@@ -23,7 +23,7 @@ class GEEKYBOTformfield {
      */
 
     static function GEEKYBOT_password($name, $value, $extraattr = array()) {
-        $textfield = '<input type="password" name="' . esc_attr($name) . '" id="' . esc_attr($name) . '" value="' . $value . '" ';
+        $textfield = '<input type="password" name="' . esc_attr($name) . '" id="' . esc_attr($name) . '" value="' . geekybotphplib::GEEKYBOT_htmlspecialchars($value) . '" ';
         if (!empty($extraattr))
             foreach ($extraattr AS $key => $val)
                 $textfield .= ' ' . $key . '="' . $val . '"';
@@ -56,12 +56,12 @@ class GEEKYBOTformfield {
         if(is_array($value)){
             if(geekybotphplib::GEEKYBOT_strstr($name, '[]')){
                 for ($i=0; $i < count($value) ; $i++) {
-                    $textfield .= '<input type="hidden" name="' . $name . '" id="' . $id . '" value="' . $value[$i] . '" /> ';
+                    $textfield .= '<input type="hidden" name="' . $name . '" id="' . $id . '" value="' . geekybotphplib::GEEKYBOT_htmlspecialchars($value[$i]) . '" /> ';
                 }
                 return $textfield;
             }
         }
-        $textfield = '<input type="hidden" name="' . $name . '" id="' . $id . '" value="' . sanitize_text_field($value) . '" ';
+        $textfield = '<input type="hidden" name="' . $name . '" id="' . $id . '" value=\'' . sanitize_text_field(geekybotphplib::GEEKYBOT_htmlspecialchars($value)) . '\' ';
 
         if (!empty($extraattr))
             foreach ($extraattr AS $key => $val)
@@ -75,7 +75,7 @@ class GEEKYBOTformfield {
      */
 
     static function GEEKYBOT_submitbutton($name, $value, $extraattr = array()) {
-        $textfield = '<input type="submit" name="' . $name . '" id="' . $name . '" value="' . $value . '" ';
+        $textfield = '<input type="submit" name="' . $name . '" id="' . $name . '" value="' . geekybotphplib::GEEKYBOT_htmlspecialchars($value) . '" ';
         if (!empty($extraattr))
             foreach ($extraattr AS $key => $val)
                 $textfield .= ' ' . $key . '="' . $val . '"';
@@ -88,7 +88,7 @@ class GEEKYBOTformfield {
      */
 
     static function GEEKYBOT_button($name, $value, $extraattr = array()) {
-        $textfield = '<input type="button" name="' . $name . '" id="' . $name . '" value="' . $value . '" ';
+        $textfield = '<input type="button" name="' . $name . '" id="' . $name . '" value="' . geekybotphplib::GEEKYBOT_htmlspecialchars($value) . '" ';
         if (!empty($extraattr))
             foreach ($extraattr AS $key => $val)
                 $textfield .= ' ' . $key . '="' . $val . '"';
@@ -97,7 +97,7 @@ class GEEKYBOTformfield {
     }
 
     static function GEEKYBOT_searchbutton($name, $value, $extraattr = array()) {
-        $textfield = '<button type="submit" name="' . $name . '" id="' . $name . '" value="' . $value . '" ';
+        $textfield = '<button type="submit" name="' . $name . '" id="' . $name . '" value="' . geekybotphplib::GEEKYBOT_htmlspecialchars($value) . '" ';
         if (!empty($extraattr))
             foreach ($extraattr AS $key => $val)
                 $textfield .= ' ' . $key . '="' . $val . '"';
@@ -115,7 +115,7 @@ class GEEKYBOTformfield {
         $selectfield = '<select name="' . $name . '" id="' . $name . '" ';
         if (!empty($extraattr))
             foreach ($extraattr AS $key => $val) {
-                $selectfield .= ' ' . $key . '="' . $val . '"';
+                $selectfield .= ' ' . $key . '="' . geekybotphplib::GEEKYBOT_htmlspecialchars($val) . '"';
             }
         $selectfield .= ' >';
         if ($title != '') {
@@ -147,7 +147,7 @@ class GEEKYBOTformfield {
         foreach ($list AS $value => $label) {
             //for admin forms added field wrapper
             $radiobutton .= '<span class="geekybot-form-radio-field" >';
-            $radiobutton .= '<input type="radio" name="' . $name . '" id="' . $name . $count . '" value="' . $value . '"';
+            $radiobutton .= '<input type="radio" name="' . $name . '" id="' . $name . $count . '" value="' . geekybotphplib::GEEKYBOT_htmlspecialchars($value) . '"';
             if ($defaultvalue == $value)
                 $radiobutton .= ' checked="checked"';
 
@@ -172,7 +172,7 @@ class GEEKYBOTformfield {
         foreach ($list AS $value => $label) {
             //for admin forms added field wrapper
             $checkbox .= '<span class="geekybot-form-chkbox-field" >';
-            $checkbox .= '<input type="checkbox" name="' . $name . '" id="' . $name . $count . '" value="' . $value . '"';
+            $checkbox .= '<input type="checkbox" name="' . $name . '" id="' . $name . $count . '" value="' . geekybotphplib::GEEKYBOT_htmlspecialchars($value) . '"';
             if ($defaultvalue == $value)
                 $checkbox .= ' checked="checked"';
             if (!empty($extraattr))

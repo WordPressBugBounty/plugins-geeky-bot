@@ -21,6 +21,7 @@ class GEEKYBOTdeactivation {
             $wpdb->prefix."geekybot_config",
             $wpdb->prefix."geekybot_intents",
             $wpdb->prefix."geekybot_intents_ranking",
+            $wpdb->prefix."geekybot_intents_fallback",
             $wpdb->prefix."geekybot_slots",
             $wpdb->prefix."geekybot_actions",
             $wpdb->prefix."geekybot_chat_history_sessions",

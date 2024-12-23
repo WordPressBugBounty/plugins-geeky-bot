@@ -68,7 +68,7 @@ class GEEKYBOTchatserverModel {
             // 1-> Text
             // 2-> Custom Action
             // 3-> Form
-            // 4-> Predrfine Function
+            // 4-> Predefine Function
             if($data->response_type == '1'){
                 $data->story_type = 1;
                 $str = $data->bot_response;
@@ -101,6 +101,14 @@ class GEEKYBOTchatserverModel {
             // indent fallback on the base of last story
             $isIndentFound = false;
             $isIndentFallback = false;
+
+            // intent base fallback
+            $intentBaseFallback = GEEKYBOTincluder::GEEKYBOT_getModel('stack')->getFallbackFromLastActiveIntent();
+            if (!empty($intentBaseFallback)) {
+                $fallbackData = new stdClass();
+                $fallbackData->bot_response = $intentBaseFallback;
+                $retVal[] = array("recipient_id"=>$chat_id, "text"=>$fallbackData);
+            }
             $stackStory = GEEKYBOTincluder::GEEKYBOT_getModel('stack')->getLastActiveStoryFromStack();
             if(isset($stackStory)) {
                 $session_type = $stackStory->story_type;
@@ -171,7 +179,8 @@ class GEEKYBOTchatserverModel {
                     $articleType = 2;
                     $session_type = '';
                 }
-                $articleButtonHtml = GEEKYBOTincluder::GEEKYBOT_getModel('websearch')->getArticlesButton($message, $articleType);
+                $articleButton = GEEKYBOTincluder::GEEKYBOT_getModel('websearch')->getArticlesButton($message, $articleType);
+                $articleButtonHtml = $articleButton['html'];
                 // check if some related posts found
                 if (isset($articleButtonHtml) && $articleButtonHtml != '') {
                     // Modified bot response if it exists
@@ -189,16 +198,25 @@ class GEEKYBOTchatserverModel {
         }
         // save bot response to the session and chat history
         if (isset($retVal[0]['text']->bot_response)) {
-            $botResponse = $retVal[0]['text']->bot_response;
-            if (isset($retVal[0]['text']->bot_articles)) {
-                $botResponse .= $retVal[0]['text']->bot_articles;
+            foreach ($retVal as $retKey => $retValue) {
+                $botResponse = $retValue['text']->bot_response;
+                if (isset($retValue['text']->bot_articles)) {
+                    $botResponse .= $retValue['text']->bot_articles;
+                }
+                $botButtons = '';
+                if (isset($retValue['buttons'])) {
+                    // Convert each sub-array to an object
+                    $botButtons = array_map(function($item) {
+                        return (object) $item;
+                    }, $retValue['buttons']);
+                }
+                // Check if 'save_history' is not set or is set to 1
+                if (!isset($articleButton['save_history']) || $articleButton['save_history'] == 1) {
+                    // Save chat history to session and server
+                    geekybot::$_geekybotsessiondata->geekybot_addChatHistoryToSession($botResponse, 'bot', $botButtons);
+                    GEEKYBOTincluder::GEEKYBOT_getModel('chathistory')->SaveChathistoryFromchatServer($botResponse, 'bot', $session_type, $botButtons);
+                }
             }
-            $botButtons = '';
-            if (isset($retVal2)) {
-                $botButtons = $responseButtons;
-            }
-            geekybot::$_geekybotsessiondata->geekybot_addChatHistoryToSession($botResponse, 'bot', $botButtons);
-            GEEKYBOTincluder::GEEKYBOT_getModel('chathistory')->SaveChathistoryFromchatServer($botResponse, 'bot', $session_type, $botButtons);
         }
         $logdata .= "\n ------------------ \n ";
         GEEKYBOTincluder::GEEKYBOT_getObjectClass('logging')->GEEKYBOTlwrite($logdata);

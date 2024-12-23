@@ -309,6 +309,18 @@ class GEEKYBOTstoriesModel {
         return 1;
     }
 
+    function deleteDefaultFallback(){
+        $nonce = GEEKYBOTrequest::GEEKYBOT_getVar('_wpnonce');
+        if (! wp_verify_nonce( $nonce, 'delete-default-fallback') ) {
+            die( 'Security check Failed' ); 
+        }
+        $story_id = GEEKYBOTrequest::GEEKYBOT_getVar('story_id');
+        // delete the default fallback
+        $query = "UPDATE `" . geekybot::$_db->prefix . "geekybot_stories` SET `default_fallback` = '' WHERE `id`= " . esc_sql($story_id);
+        geekybotdb::query($query);
+        return;
+    }
+
     function saveStoryAjax(){
         $nonce = GEEKYBOTrequest::GEEKYBOT_getVar('_wpnonce');
         if (! wp_verify_nonce( $nonce, 'save-story') ) {
@@ -387,7 +399,7 @@ class GEEKYBOTstoriesModel {
             }
             // $cols['story_mode'] = $story['story_mode'];
             $cols['story_mode'] = 1;
-            $cols['positions_array'] = wp_json_encode($story['positionsarray']);
+            $cols['positions_array'] = (GEEKYBOTincluder::GEEKYBOT_getModel('websearch')->stripslashesFull($story['positionsarray']));
             // $cols['positions_array'] = $story['positionsarray'];
 
             if (!$row->bind($cols)) {
@@ -458,6 +470,9 @@ class GEEKYBOTstoriesModel {
                     // add story id in the new added intents
                     $query = "UPDATE `" . geekybot::$_db->prefix . "geekybot_intents` SET `story_id` = ".esc_sql($storyid)."  WHERE `group_id`= " . esc_sql($intentid);
                     geekybotdb::query($query);
+                    // add story id in the newly added fallback
+                    $query = "UPDATE `" . geekybot::$_db->prefix . "geekybot_intents_fallback` SET `story_id` = ".esc_sql($storyid)."  WHERE `group_id`= " . esc_sql($intentid);
+                    geekybotdb::query($query);
                 }
             } else if (strpos($value, 'responseid_') !== false) {
                 $filteredValue =  explode('_', $value);
@@ -474,6 +489,9 @@ class GEEKYBOTstoriesModel {
             // delete the intents that are now removed from the stroy
             $commaSeparatedIntentIds = implode("','", $intentsArray);
             $query = "DELETE FROM `".geekybot::$_db->prefix . "geekybot_intents` WHERE story_id = ".esc_sql($storyid)." AND group_id  NOT IN ('".$commaSeparatedIntentIds."')";
+            geekybotdb::query($query);
+            // delete the intents fallback that are now removed from the stroy
+            $query = "DELETE FROM `".geekybot::$_db->prefix . "geekybot_intents_fallback` WHERE story_id = ".esc_sql($storyid)." AND group_id  NOT IN ('".$commaSeparatedIntentIds."')";
             geekybotdb::query($query);
         }
         if (!empty($responsesArray)) {
@@ -540,7 +558,7 @@ class GEEKYBOTstoriesModel {
                         <div class="geeky-popup-dynamic-field" id="div_'.$userInputDivId.'">
                             <input name = "user_messages[]" type="text" value = "'.$user_message.'" data-id="'.$user_message_id.'" class="inputbox geeky-popup-dynamic-field-input" autocomplete="off" placeholder="'. esc_attr(__('User Input','geeky-bot')).'" />';
                             if ($userInputDivId > 1) {
-                                $html .= '<span class="geeky-popup-dynamic-remov-image remove-btn" onClick="deleteUserInputText(div_'.$userInputDivId.')">
+                                $html .= '<span class="geeky-popup-dynamic-remov-image remove-btn" title="'. esc_attr(__('Delete','geeky-bot')) .'" onClick="deleteUserInputText(div_'.$userInputDivId.')">
                                     <img title="'. esc_html(__('Delete','geeky-bot')).'" alt="'. esc_html(__('Close','geeky-bot')) .'" class="userpopup-close" src="'. esc_url(GEEKYBOT_PLUGIN_URL) .'includes/images/close.png" />
                                 </span>';
                             }
@@ -553,12 +571,12 @@ class GEEKYBOTstoriesModel {
             </div>
             <div id="create-user-input">
                 <span class="geekybot-frm-add-field-button" onclick="addUserInputText('.$userInputDivId.');">
-                    <span class="geekybot-frm-add-field-add-iconbtn-wrp">
+                    <span class="geekybot-frm-add-field-add-iconbtn-wrp" title="'. esc_html(__('Add','geeky-bot')) .'">
                         <img alt="'. esc_html(__('Add Icon','geeky-bot')) .'" title="'. esc_html(__('Add','geeky-bot')) .'" class="userpopup-plus-icon" src="'. esc_url(GEEKYBOT_PLUGIN_URL).'includes/images/add-icon.png" />
                     </span>
                     '. esc_attr(__('Add More','geeky-bot')) .'
                 </span>
-                <a id="geekybot-avlble-varbtn" href="#" class="geekybot-availble-variablebtn" title="'. esc_attr(__('available variables','geeky-bot')) .'">
+                <a id="geekybot-avlble-varbtn" href="#" class="geekybot-availble-variablebtn" title="'. esc_attr(__('Available Variables','geeky-bot')) .'">
                     '. esc_attr(__('Available Variables','geeky-bot')) .'
                 </a>
             </div>
@@ -616,7 +634,7 @@ class GEEKYBOTstoriesModel {
                         </select>
                         <input name = "response_btn_value[]" type="text" value = "'.$response_button->value.'" class="response-btn-value inputbox geeky-popup-dynamic-field-input" autocomplete="off" placeholder="'. esc_attr(__('Button value here','geeky-bot')).'" '.$optionOneStyle.' />
                         <input name = "response_btn_url[]" type="text" value = "'.$response_button->value.'" class="response-btn-url inputbox geeky-popup-dynamic-field-input" autocomplete="off" placeholder="'. esc_attr(__('Enter URL here','geeky-bot')).'" '.$optionTwoStyle.' />
-                        <span class="geeky-popup-dynamic-remov-image remove-btn" onClick="deleteResponseTextBotton(div_'.$responseButtonDivId.')">
+                        <span class="geeky-popup-dynamic-remov-image remove-btn" title="'. esc_attr(__('Delete','geeky-bot')) .'" onClick="deleteResponseTextBotton(div_'.$responseButtonDivId.')">
                             '. esc_html(__('Delete','geeky-bot')) .'
                         </span>
                     </div>';
@@ -625,7 +643,7 @@ class GEEKYBOTstoriesModel {
                 $html .= '
             </div>
             <div id="create-textarea-input">
-                <span class="geekybot-frm-add-field-button" onclick="addResponseButton();">
+                <span class="geekybot-frm-add-field-button" title="'. esc_attr(__('Add New Button','geeky-bot')) .'" onclick="addResponseButton('.$responseButtonDivId.');">
                     <span class="geekybot-frm-add-field-add-iconbtn-wrp"><img alt="'. esc_html(__('Add Icon','geeky-bot')) .'"title="'. esc_html(__('Add','geeky-bot')) .'" class="userpopup-plus-icon" src="'. esc_url(GEEKYBOT_PLUGIN_URL) .'includes/images/add-icon.png" /></span>
                     '. esc_attr(__('Add New Button','geeky-bot')) .'
                 </span>
@@ -679,7 +697,7 @@ class GEEKYBOTstoriesModel {
                 <div id="create-new-form">
                     <span id="create-form" class="geekybot-frm-add-field-button" onclick="addCustomeActions();">
                         <span class="geekybot-frm-add-field-add-iconbtn-wrp"><img alt="'. esc_html(__('Add Icon','geeky-bot')) .'" class="userpopup-plus-icon" title="'. esc_html(__('Add','geeky-bot')) .'" src="'. esc_url(GEEKYBOT_PLUGIN_URL) .'includes/images/add-icon.png" /></span>
-                        '. esc_attr(__('Add New w Action','geeky-bot')) .'
+                        '. esc_attr(__('Add New Action','geeky-bot')) .'
                     </span>
                 </div>
             </div>';
@@ -737,6 +755,29 @@ class GEEKYBOTstoriesModel {
         return geekybotphplib::GEEKYBOT_htmlentities($html);
     }
 
+    function getDefaultIntentFallbackFormBodyHTMLAjax(){
+        $nonce = GEEKYBOTrequest::GEEKYBOT_getVar('_wpnonce');
+        if (! wp_verify_nonce( $nonce, 'get-form-html') ) {
+            die( 'Security check Failed' ); 
+        }
+        $groupId = GEEKYBOTrequest::GEEKYBOT_getVar('groupId');
+        $html = '';
+        if (!empty($groupId) && is_numeric($groupId)) {
+            $query = "SELECT id, default_fallback FROM `" . geekybot::$_db->prefix . "geekybot_intents_fallback` where group_id = ".esc_sql($groupId);
+            $fallback = geekybotdb::GEEKYBOT_get_row($query);
+        }
+        $default_fallback = isset($fallback->default_fallback) ? $fallback->default_fallback : "";
+        $html .= '
+            <div class="geekybot-form-wrapper">
+                <div class="geekybot-popup-textarea-text">
+                    <textarea name="default_intent_fallback_text" class="text-area-popuptxt" id="default_intent_fallback_text" placeholder="'. esc_html(__('Enter default fallback for intent here...','geeky-bot')) .'">'. $default_fallback .'</textarea>
+                </div>
+            </div>';
+        $html .= wp_kses(GEEKYBOTformfield::GEEKYBOT_hidden('id', isset($fallback->id) ? $fallback->id : ''), GEEKYBOT_ALLOWED_TAGS);
+        $html .= wp_kses(GEEKYBOTformfield::GEEKYBOT_hidden('group_id', $groupId), GEEKYBOT_ALLOWED_TAGS);
+        return geekybotphplib::GEEKYBOT_htmlentities($html);
+    }
+
     function resetStory() {
         $nonce = GEEKYBOTrequest::GEEKYBOT_getVar('_wpnonce');
         if (! wp_verify_nonce( $nonce, 'reset-story') ) {
@@ -753,6 +794,9 @@ class GEEKYBOTstoriesModel {
         geekybotdb::query($query);
         // delete ranking data
         $query = "DELETE FROM `".geekybot::$_db->prefix . "geekybot_intents_ranking` WHERE story_id = ".esc_sql($storyid);
+        geekybot::$_db->query($query);
+        // delete intent base fallback data
+        $query = "DELETE FROM `".geekybot::$_db->prefix . "geekybot_intents_fallback` WHERE story_id = ".esc_sql($storyid);
         geekybot::$_db->query($query);
         $result = GEEKYBOT_RESET;
         $_msgkey = $this->getMessagekey();
@@ -1065,11 +1109,8 @@ class GEEKYBOTstoriesModel {
         $intents_ordering = [];
         // add the start point and fallback node
         $startPointMsg = __('Start Point', 'geeky-bot');
-        $fallbackMsg = __('Default Fallback', 'geeky-bot');
         // draw start point
         $positionsarray = '{"id":"node1","top":"500","left":"0","parentId":"","type":"start_point","text":"'.$startPointMsg.'","image":"home","class":"node_start_point","category":"start"}';
-        // draw fallback
-        $positionsarray .= ',{"id":"fallback_node1","top":"640","left":"265","parentId":"node1","type":"fallback","text":"'.$fallbackMsg.'","image":"fallback","class":"node_action_fallback","category":"fallback"}';
 
         if ($template != 'geekybot_empty') {
             // Load the XML file
@@ -1131,11 +1172,8 @@ class GEEKYBOTstoriesModel {
         $intents_ordering = [];
         // add the start point and fallback node
         $startPointMsg = __('Start Point', 'geeky-bot');
-        $fallbackMsg = __('Default Fallback', 'geeky-bot');
         // draw start point
         $positionsarray = '{"id":"node1","top":"500","left":"0","parentId":"","type":"start_point","text":"'.$startPointMsg.'","image":"home","class":"node_start_point","category":"start"}';
-        // draw fallback
-        $positionsarray .= ',{"id":"fallback_node1","top":"640","left":"265","parentId":"node1","type":"fallback","text":"'.$fallbackMsg.'","image":"fallback","class":"node_action_fallback","category":"fallback"}';
 
         // Define the XML structure as a string
         $xmlString = "<?xml version='1.0'?>
@@ -1349,29 +1387,29 @@ class GEEKYBOTstoriesModel {
             foreach ($xml->slots->slot as $slot) {
                 // Validate the presence 'name' tags
                 if (!isset($slot->name)) {
-                    $data['error'] = __("Error: The 'name' tag in 'slot' at position", 'geeky-bot')." ".$slot_no." ".__("is missing.", 'geeky-bot');
+                    $data['error'] = __("Error: The", "geeky-bot")." <span class='geekybot_read_template_error'>name</span> ".__("tag in", "geeky-bot") . "<span class='geekybot_read_template_error'>slot</span>" . __("at position", 'geeky-bot')." ".$slot_no." ".__("is missing.", 'geeky-bot');
                     return $data;
                 }
                 // Validate that 'name' is not empty
                 if (empty((string)$slot->name)) {
-                    $data['error'] = __("Error: The 'name' tag in 'slot' at position", 'geeky-bot')." ".$slot_no." ".__("is empty.", 'geeky-bot');
+                    $data['error'] = __("Error: The", "geeky-bot") . "<span class='geekybot_read_template_error'>name</span>" . __("tag in", "geeky-bot") . "<span class='geekybot_read_template_error'>slot</span>" . __("at position", 'geeky-bot')." ".$slot_no." ".__("is empty.", 'geeky-bot');
                     return $data;
                 }
                 // Validate the presence 'type' tags
                 if (!isset($slot->type)) {
-                    $data['error'] = __("Error: The 'type' tag in 'slot' at position", 'geeky-bot')." ".$slot_no." ".__("is missing.", 'geeky-bot');
+                    $data['error'] = __("Error: The", "geeky-bot") . "<span class='geekybot_read_template_error'>type</span>" . __("tag in", "geeky-bot") . "<span class='geekybot_read_template_error'>slot</span>" . __("at position", 'geeky-bot')." ".$slot_no." ".__("is missing.", 'geeky-bot');
                     return $data;
                 }
                 // Validate that 'type' is not empty
                 if (empty((string)$slot->type)) {
-                    $data['error'] = __("Error: The 'type' tag in 'slot' at position", 'geeky-bot')." ".$slot_no." ".__("is empty.", 'geeky-bot');
+                    $data['error'] = __("Error: The", "geeky-bot") . "<span class='geekybot_read_template_error'>type</span>" . __("tag in", "geeky-bot") . "<span class='geekybot_read_template_error'>slot</span>" . __("at position", 'geeky-bot')." ".$slot_no." ".__("is empty.", 'geeky-bot');
                     return $data;
                 }
                 // Validate 'possible_values' tags if present
                 if (isset($slot->possible_values)) {
                     // Validate that 'possible_values' is not empty
                     if (empty((string)$slot->possible_values)) {
-                        $data['error'] = __("Error: The 'possible_values' tag in 'slot' at position", 'geeky-bot')." ".$slot_no." ".__("is empty.", 'geeky-bot');
+                        $data['error'] = __("Error: The", "geeky-bot") . "<span class='geekybot_read_template_error'>possible_values</span>" . __("tag in", "geeky-bot") . "<span class='geekybot_read_template_error'>slot</span>" . __("at position", 'geeky-bot')." ".$slot_no." ".__("is empty.", 'geeky-bot');
                         return $data;
                     }
                 }
@@ -1382,60 +1420,60 @@ class GEEKYBOTstoriesModel {
         foreach ($xml->intents->intent_group as $intent_group) {
             // Validate the presence of 'intent' tags
             if (!isset($intent_group->intent)) {
-                $data['error'] = __("Error: The 'intent' tag in 'intent_group' at position", 'geeky-bot')." ".$intent_group_no." ".__("is missing.", 'geeky-bot');
+                $data['error'] = __("Error: The", "geeky-bot") . "<span class='geekybot_read_template_error'>intent</span>" . __("tag in", "geeky-bot") . "<span class='geekybot_read_template_error'>intent_group</span>" . __("at position", 'geeky-bot')." ".$intent_group_no." ".__("is missing.", 'geeky-bot');
                 return $data;
             }
             // Validate the presence 'user_inputs' tags
             if (!isset($intent_group->intent->user_inputs)) {
-                $data['error'] =  __("Error: The 'user_inputs' tag in 'intent_group' at position", 'geeky-bot')." ".$intent_group_no." ".__("is missing.", 'geeky-bot');
+                $data['error'] =  __("Error: The", "geeky-bot") . "<span class='geekybot_read_template_error'>user_inputs</span>" . __("tag in", "geeky-bot") . "<span class='geekybot_read_template_error'>intent_group</span>" . __("at position", 'geeky-bot')." ".$intent_group_no." ".__("is missing.", 'geeky-bot');
                 return $data;
             }
             // Validate that 'user_inputs' is not empty
             if (empty((string)$intent_group->intent->user_inputs)) {
-                $data['error'] = __("Error: The 'user_inputs' tag in 'intent_group' at position", 'geeky-bot')." ".$intent_group_no." ".__("is empty.", 'geeky-bot');
+                $data['error'] = __("Error: The", "geeky-bot") . "<span class='geekybot_read_template_error'>user_inputs</span>" . __("tag in", "geeky-bot") . "<span class='geekybot_read_template_error'>intent_group</span>" . __("at position", 'geeky-bot')." ".$intent_group_no." ".__("is empty.", 'geeky-bot');
                 return $data;
             }
             // Validate the presence 'user_input' tags
             if (!isset($intent_group->intent->user_inputs->user_input)) {
-                $data['error'] = __("Error: The 'user_input' tag in 'intent_group' at position", 'geeky-bot')." ".$intent_group_no." ".__("is missing.", 'geeky-bot');
+                $data['error'] = __("Error: The", "geeky-bot") . "<span class='geekybot_read_template_error'>user_input</span>" . __("tag in", "geeky-bot") . "<span class='geekybot_read_template_error'>intent_group</span>" . __("at position", 'geeky-bot')." ".$intent_group_no." ".__("is missing.", 'geeky-bot');
                 return $data;
             }
             // Validate that 'user_input' is not empty
             if (empty((string)$intent_group->intent->user_inputs->user_input)) {
-                $data['error'] = __("Error: The 'user_input' tag in 'intent_group' at position", 'geeky-bot')." ".$intent_group_no." ".__("is empty.", 'geeky-bot');
+                $data['error'] = __("Error: The", "geeky-bot") . "<span class='geekybot_read_template_error'>user_input</span>" . __("tag in", "geeky-bot") . "<span class='geekybot_read_template_error'>intent_group</span>" . __("at position", 'geeky-bot')." ".$intent_group_no." ".__("is empty.", 'geeky-bot');
                 return $data;
             }
             // Validate the presence of and 'responses' tags
             if (!isset($intent_group->responses)) {
-                $data['error'] = __("Error: The 'responses' tag associated with the user input '", 'geeky-bot').(string)$intent_group->intent->user_inputs->user_input.__("' in 'intent_group' at position", 'geeky-bot')." ".$intent_group_no." ".__("is missing.", 'geeky-bot');
+                $data['error'] = __("Error: The", "geeky-bot") . "<span class='geekybot_read_template_error'>response</span>" . __("tag associated with the user input", 'geeky-bot') . "<span class='geekybot_read_template_error'>" . (string)$intent_group->intent->user_inputs->user_input. "</span>" .__("in", "geeky-bot") . "<span class='geekybot_read_template_error'>intent_group</span>" . __("at position", 'geeky-bot')." ".$intent_group_no." ".__("is missing.", 'geeky-bot');
                 return $data;
             }
             // Validate the presence of and 'response' tags
             if (!isset($intent_group->responses->response)) {
-                $data['error'] = __("Error: The 'response' tag of the 'responses' block associated with the user input '", 'geeky-bot').(string)$intent_group->intent->user_inputs->user_input.__("' in 'intent_group' at position", 'geeky-bot')." ".$intent_group_no." ".__("is missing.", 'geeky-bot');
+                $data['error'] = __("Error: The", "geeky-bot") . "<span class='geekybot_read_template_error'>response</span>" . __("tag of the", "geeky-bot") . "<span class='geekybot_read_template_error'>responses</span>" . __("block associated with the user input", 'geeky-bot') . "<span class='geekybot_read_template_error'>" . (string)$intent_group->intent->user_inputs->user_input. "</span>" .__("in", "geeky-bot") . "<span class='geekybot_read_template_error'>intent_group</span>" . __("at position", 'geeky-bot')." ".$intent_group_no." ".__("is missing.", 'geeky-bot');
                 return $data;
             }
             foreach ($intent_group->responses->response as $response) {
-                // Validate that 'response' is not empty
-                // Validate that 'type' in 'response' is either "text" or "function"
+                // Validate that <response> is not empty
+                // Validate that <type> in <response> is either "text" or "function"
                 if (!isset($response->text) && !isset($response->function)) {
-                    $data['error'] = __("Error: The 'text' or 'function' tag of the 'response' block associated with the user input '", 'geeky-bot').(string)$intent_group->intent->user_inputs->user_input.__("' in 'intent_group' at position", 'geeky-bot')." ".$intent_group_no." ".__("is missing.", 'geeky-bot');
+                    $data['error'] = __("Error: The", "geeky-bot") . "<span class='geekybot_read_template_error'>text</span>" . __("or", "geeky-bot") . "<span class='geekybot_read_template_error'>function</span>" . __("tag of the", "geeky-bot") . "<span class='geekybot_read_template_error'>response</span>" . __("block associated with the user input", 'geeky-bot') . "<span class='geekybot_read_template_error'>" . (string)$intent_group->intent->user_inputs->user_input. "</span>" .__("in", "geeky-bot") . "<span class='geekybot_read_template_error'>intent_group</span>" . __("at position", 'geeky-bot')." ".$intent_group_no." ".__("is missing.", 'geeky-bot');
                     return $data;
                 }
                 if (isset($response->text)) {
                     if (empty((string)$response->text)) {
-                        $data['error'] = __("Error: The 'text' tag of the 'response' block associated with the user input '", 'geeky-bot').(string)$intent_group->intent->user_inputs->user_input .__("' in 'intent_group' at position", 'geeky-bot')." ".$intent_group_no." ".__("is empty.", 'geeky-bot');
+                        $data['error'] = __("Error: The", "geeky-bot") . "<span class='geekybot_read_template_error'>text</span>" . __("tag of the", "geeky-bot") . "<span class='geekybot_read_template_error'>response</span>" . __("block associated with the user input", 'geeky-bot'). "<span class='geekybot_read_template_error'>" . (string)$intent_group->intent->user_inputs->user_input. "</span>" .__("in", "geeky-bot") . "<span class='geekybot_read_template_error'>intent_group</span>" . __("at position", 'geeky-bot')." ".$intent_group_no." ".__("is empty.", 'geeky-bot');
                         return $data;
                     }
                 }
                 if (isset($response->function)) {
                     if (empty((string)$response->function)) {
-                        $data['error'] = __("Error: The 'function' tag of the 'response' block associated with the user input '", 'geeky-bot').(string)$intent_group->intent->user_inputs->user_input.__("' in 'intent_group' at position", 'geeky-bot')." ".$intent_group_no." ".__("is empty.", 'geeky-bot');
+                        $data['error'] = __("Error: The", "geeky-bot") . "<span class='geekybot_read_template_error'>function</span>" . __("tag of the", "geeky-bot") . "<span class='geekybot_read_template_error'>response</span>" . __("block associated with the user input", 'geeky-bot') . "<span class='geekybot_read_template_error'>" . (string)$intent_group->intent->user_inputs->user_input. "</span>" .__("in", "geeky-bot") . "<span class='geekybot_read_template_error'>intent_group</span>" . __("at position", 'geeky-bot')." ".$intent_group_no." ".__("is empty.", 'geeky-bot');
                         return $data;
                     }
                     $predefinedFunctions = $this->getPredefinedFunctionsName();
                     if ( !in_array($response->function, $predefinedFunctions)) {
-                        $data['error'] = __("Error: The function name '", 'geeky-bot').(string)$response->function.__("' in the 'function' tag of the 'response' block associated with the user input '", 'geeky-bot').(string)$intent_group->intent->user_inputs->user_input.__("' in 'intent_group' at position", 'geeky-bot')." ".$intent_group_no." ".__("is invalid.", 'geeky-bot');
+                        $data['error'] = __("Error: The function name", 'geeky-bot'). "<span class='geekybot_read_template_error'>".(string)$response->function. "</span>" .__("in the", "geeky-bot") . "<span class='geekybot_read_template_error'>function</span>" . __("tag of the", "geeky-bot") . "<span class='geekybot_read_template_error'>response</span>" . __("block associated with the user input", 'geeky-bot') . "<span class='geekybot_read_template_error'>" . (string)$intent_group->intent->user_inputs->user_input. "</span>" .__("in", "geeky-bot") . "<span class='geekybot_read_template_error'>intent_group</span>" . __("at position", 'geeky-bot')." ".$intent_group_no." ".__("is invalid.", 'geeky-bot');
                         return $data;
                     }
                 }
@@ -1443,32 +1481,32 @@ class GEEKYBOTstoriesModel {
                 if (isset($response->buttons->button)) {
                     foreach ($response->buttons->button as $button) {
                         if (!isset($button->text)) {
-                            $data['error'] = __("Error: The 'text' tag of the 'button' block associated with the user input '", 'geeky-bot').(string)$intent_group->intent->user_inputs->user_input.__("' in 'intent_group' at position", 'geeky-bot')." ".$intent_group_no." ".__("is missing.", 'geeky-bot');
+                            $data['error'] = __("Error: The", "geeky-bot") . "<span class='geekybot_read_template_error'>text</span>" . __("tag of the", "geeky-bot") . "<span class='geekybot_read_template_error'>button</span>" . __("block associated with the user input", 'geeky-bot') . "<span class='geekybot_read_template_error'>" . (string)$intent_group->intent->user_inputs->user_input. "</span>" .__("in", "geeky-bot") . "<span class='geekybot_read_template_error'>intent_group</span>" . __("at position", 'geeky-bot')." ".$intent_group_no." ".__("is missing.", 'geeky-bot');
                             return $data;
                         }
                         if (empty((string)$button->text)) {
-                            $data['error'] = __("Error: The 'text' tag of the 'button' block associated with the user input '", 'geeky-bot').(string)$intent_group->intent->user_inputs->user_input.__("' in 'intent_group' at position", 'geeky-bot')." ".$intent_group_no." ".__("is empty.", 'geeky-bot');
+                            $data['error'] = __("Error: The", "geeky-bot") . "<span class='geekybot_read_template_error'>text</span>" . __("tag of the", "geeky-bot") . "<span class='geekybot_read_template_error'>button</span>" . __("block associated with the user input", 'geeky-bot') . "<span class='geekybot_read_template_error'>" . (string)$intent_group->intent->user_inputs->user_input. "</span>" .__("in", "geeky-bot") . "<span class='geekybot_read_template_error'>intent_group</span>" . __("at position", 'geeky-bot')." ".$intent_group_no." ".__("is empty.", 'geeky-bot');
                             return $data;
                         }
                         if (!isset($button->type)) {
-                            $data['error'] = __("Error: The 'type' tag of the 'button' block associated with the user input '", 'geeky-bot').(string)$intent_group->intent->user_inputs->user_input.__("' in 'intent_group' at position", 'geeky-bot')." ".$intent_group_no." ".__("is missing.", 'geeky-bot');
+                            $data['error'] = __("Error: The", "geeky-bot") . "<span class='geekybot_read_template_error'>type</span>" . __("tag of the", "geeky-bot") . "<span class='geekybot_read_template_error'>button</span>" . __("block associated with the user input", 'geeky-bot') . "<span class='geekybot_read_template_error'>" . (string)$intent_group->intent->user_inputs->user_input. "</span>" .__("in", "geeky-bot") . "<span class='geekybot_read_template_error'>intent_group</span>" . __("at position", 'geeky-bot')." ".$intent_group_no." ".__("is missing.", 'geeky-bot');
                             return $data;
                         }
                         if (empty((string)$button->type)) {
-                            $data['error'] = __("Error: The 'type' tag of the 'button' block associated with the user input '", 'geeky-bot').(string)$intent_group->intent->user_inputs->user_input.__("' in 'intent_group' at position", 'geeky-bot')." ".$intent_group_no." ".__("is empty.", 'geeky-bot');
+                            $data['error'] = __("Error: The", "geeky-bot") . "<span class='geekybot_read_template_error'>type</span>" . __("tag of the", "geeky-bot") . "<span class='geekybot_read_template_error'>button</span>" . __("block associated with the user input", 'geeky-bot') . "<span class='geekybot_read_template_error'>" . (string)$intent_group->intent->user_inputs->user_input. "</span>" .__("in", "geeky-bot") . "<span class='geekybot_read_template_error'>intent_group</span>" . __("at position", 'geeky-bot')." ".$intent_group_no." ".__("is empty.", 'geeky-bot');
                             return $data;
                         }
                         $buttonType = (string)$button->type;
                         if (!in_array($button->type, ['intent', 'url'])) {
-                            $data['error'] = __("Error: The type name '", 'geeky-bot').$buttonType.__("' in the 'type' tag of the 'button' block associated with the user input '", 'geeky-bot').(string)$intent_group->intent->user_inputs->user_input.__("' in 'intent_group' at position", 'geeky-bot')." ".$intent_group_no." ".__("is invalid. This should be 'intent' or 'url'.", 'geeky-bot');
+                            $data['error'] = __("Error: The type name", 'geeky-bot') .  "<span class='geekybot_read_template_error'>" . $buttonType. "</span>" .__("in the", "geeky-bot") . "<span class='geekybot_read_template_error'>type</span>" . __("tag of the", "geeky-bot") . "<span class='geekybot_read_template_error'>button</span>" . __("block associated with the user input", 'geeky-bot'). "<span class='geekybot_read_template_error'>" . (string)$intent_group->intent->user_inputs->user_input. "</span>" . __("in", "geeky-bot") . "<span class='geekybot_read_template_error'>intent_group</span>" . __("at position", 'geeky-bot')." ".$intent_group_no." ".__("is invalid. This should be", "geeky-bot") . "<span class='geekybot_read_template_error'>intent</span>" . __("or", "geeky-bot") . "<span class='geekybot_read_template_error'>url</span>" . __(".", 'geeky-bot');
                             return $data;
                         }
                         if (!isset($button->value)) {
-                            $data['error'] = __("Error: The 'value' tag of the 'button' block associated with the user input '", 'geeky-bot').(string)$intent_group->intent->user_inputs->user_input.__("' in 'intent_group' at position", 'geeky-bot')." ".$intent_group_no." ".__("is missing.", 'geeky-bot');
+                            $data['error'] = __("Error: The", "geeky-bot") . "<span class='geekybot_read_template_error'>value</span>" . __("tag of the", "geeky-bot") . "<span class='geekybot_read_template_error'>button</span>" . __("block associated with the user input", 'geeky-bot') . "<span class='geekybot_read_template_error'>" . (string)$intent_group->intent->user_inputs->user_input. "</span>" . __("in", "geeky-bot") . "<span class='geekybot_read_template_error'>intent_group</span>" . __("at position", 'geeky-bot')." ".$intent_group_no." ".__("is missing.", 'geeky-bot');
                             return $data;
                         }
                         if (empty((string)$button->value)) {
-                            $data['error'] = __("Error: The 'value' tag of the 'button' block associated with the user input '", 'geeky-bot').(string)$intent_group->intent->user_inputs->user_input.__("' in 'intent_group' at position", 'geeky-bot')." ".$intent_group_no." ".__("is empty.", 'geeky-bot');
+                            $data['error'] = __("Error: The", "geeky-bot") . "<span class='geekybot_read_template_error'>value</span>" . __("tag of the", "geeky-bot") . "<span class='geekybot_read_template_error'>button</span>" . __("block associated with the user input", 'geeky-bot') . "<span class='geekybot_read_template_error'>" . (string)$intent_group->intent->user_inputs->user_input. "</span>" . __("in", "geeky-bot") . "<span class='geekybot_read_template_error'>intent_group</span>" . __("at position", 'geeky-bot')." ".$intent_group_no." ".__("is empty.", 'geeky-bot');
                             return $data;
                         }
                     }
@@ -1485,6 +1523,17 @@ class GEEKYBOTstoriesModel {
         $direction = 'up';
         $top_position = 500;
         $left_position = 0;
+        $default_fallback = '';
+        // get the fallback
+        if (isset($xml->fallback)) {    
+            // Validate that 'fallback' is not empty
+            if (!empty((string)$xml->fallback)) {
+                $default_fallback = (string)$xml->fallback;
+            }
+        }
+        // draw default fallback
+        $node_id += 2;
+        $positionsarray .= ',{"id":"node'.$node_id.'","top":"658","left":"220","parentId":"node1","parentType" : "start_point","type":"fallback","text":"Default Fallback","image":"fallback","class":"node_action_fallback","category":"fallback","value":"'.$default_fallback.'"}';
         // save the slots
         if (isset($xml->slots->slot)) {
             foreach ($xml->slots->slot as $slot) {
@@ -1578,13 +1627,6 @@ class GEEKYBOTstoriesModel {
                 // save story
                 $intents_ordering_index++;
                 $intents_ordering_index_value ++;
-            }
-        }
-        // get the fallback
-        if (isset($xml->fallback)) {    
-            // Validate that 'fallback' is not empty
-            if (!empty((string)$xml->fallback)) {
-                $default_fallback = (string)$xml->fallback;
             }
         }
         $data['intent_ids'] = $intent_ids;
@@ -1872,7 +1914,10 @@ class GEEKYBOTstoriesModel {
             $filteredValue =  explode('_', $value);
             $id =  end($filteredValue);
             if (isset($id) && is_numeric($id) ) {
-                if (strpos($value, 'intentid_') !== false) {
+                if (strpos($value, 'fallback_') !== false) {
+                    $query = "SELECT default_fallback FROM `" . geekybot::$_db->prefix . "geekybot_intents_fallback` where group_id = ".esc_sql($id)." ORDER BY id ASC ";
+                    $text = geekybotdb::GEEKYBOT_get_var($query);
+                } else if (strpos($value, 'intentid_') !== false) {
                     $query = "SELECT user_messages_text FROM `" . geekybot::$_db->prefix . "geekybot_intents` where group_id = ".esc_sql($id)." ORDER BY id ASC ";
                     $text = geekybotdb::GEEKYBOT_get_var($query);
                 } else if (strpos($value, 'responseid_') !== false) {
@@ -1988,7 +2033,7 @@ class GEEKYBOTstoriesModel {
         foreach ($xmlFiles as $xmlFile) {
             $filename = pathinfo($xmlFile, PATHINFO_FILENAME); // This will return only the filename without the extension
             $templatesList[] = 
-                (object) array('id' => $filename, 'text' => $filename);
+                (object) array('id' => $filename, 'text' => geekybot::GEEKYBOT_getVarValue($filename));
         }
         return $templatesList;
     }

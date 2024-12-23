@@ -1,0 +1,2694 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"POT-Creation-Date: \n"
+"PO-Revision-Date: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: ro_RO\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 3.5\n"
+
+msgid "Logo"
+msgstr "Logo"
+
+msgid "Template Field 1"
+msgstr "Câmpul șablon 1"
+
+msgid "Title"
+msgstr "Titlu"
+
+msgid "Template Field 2"
+msgstr "Câmpul șablon 2"
+
+msgid "Template Field 3"
+msgstr "Câmpul șablon 3"
+
+msgid "Template Field 4"
+msgstr "Câmpul șablon 4"
+
+msgid "Template Field 10"
+msgstr "Câmpul șablon 10"
+
+msgid "Simple Link here"
+msgstr "Link simplu aici"
+
+msgid "Button"
+msgstr "Buton"
+
+msgid "Selected"
+msgstr "Selectat"
+
+msgid "Template Content"
+msgstr "Conținutul șablonului"
+
+msgid "Template Field"
+msgstr "Câmp șablon"
+
+msgid "Show On Listing"
+msgstr "Afișează pe listă"
+
+msgid "Select Field"
+msgstr "Selectați Câmp"
+
+msgid "Label"
+msgstr "Eticheta"
+
+msgid "Select Type"
+msgstr "Selectați Tip"
+
+msgid "Set Value"
+msgstr "Valoarea setată"
+
+msgid "No template fields are available!"
+msgstr "Nu sunt disponibile câmpuri șablon!"
+
+msgid "Set Values"
+msgstr "Setați valori"
+
+msgid "Field Name :"
+msgstr "Nume câmp:"
+
+msgid "Save"
+msgstr "Salva"
+
+msgid "Something went wrong try again later!"
+msgstr "Ceva a mers prost, încercați din nou mai târziu!"
+
+msgid "Info"
+msgstr "Info"
+
+msgid "An empty expected value or display value field."
+msgstr "O valoare așteptată sau un câmp de valoare de afișare gol."
+
+msgid "Values set successfully."
+msgstr "Valorile setate cu succes."
+
+msgid "Expected Value"
+msgstr "Valoarea așteptată"
+
+msgid "Display Value"
+msgstr "Valoarea afișată"
+
+msgid "Delete"
+msgstr "Şterge"
+
+msgid "Add Value"
+msgstr "Adăugați valoare"
+
+msgid "Edit"
+msgstr "Edita"
+
+msgid "Text Field"
+msgstr "Câmp text"
+
+msgid "Checkbox"
+msgstr "Caseta de selectare"
+
+msgid "Radio Button"
+msgstr "Buton radio"
+
+msgid "Dropdown"
+msgstr "Scapă jos"
+
+msgid "Link"
+msgstr "Legătură"
+
+msgid ""
+"It is a long established fact that a reader will be distracted by the "
+"readable content of a page when looking at its layout Content here, content "
+"here..."
+msgstr ""
+"Este un fapt stabilit de mult că un cititor va fi distras de conținutul care "
+"poate fi citit al unei pagini atunci când se uită la aspectul acesteia "
+"Conținut aici, conținut aici..."
+
+msgid "Description"
+msgstr "Descriere"
+
+msgid "Content Description"
+msgstr "Descrierea conținutului"
+
+msgid "Max Number Of Sentance"
+msgstr "Numărul maxim de propoziții"
+
+msgid "1"
+msgstr "1"
+
+msgid "2"
+msgstr "2"
+
+msgid "3"
+msgstr "3"
+
+msgid "4"
+msgstr "4"
+
+msgid "5"
+msgstr "5"
+
+msgid "6"
+msgstr "6"
+
+msgid "Please wait a moment; this may take some time."
+msgstr "Vă rugăm să așteptați un moment; acest lucru poate dura ceva timp."
+
+msgid "Synchronize"
+msgstr "Sincroniza"
+
+msgid "Data Synchronization Uncomplete"
+msgstr "Sincronizarea datelor nefinalizată"
+
+msgid ""
+"Your GeekyBot data is not updated. To ensure accurate results, please "
+"synchronize your AI web search data."
+msgstr ""
+"Datele dvs. GeekyBot nu sunt actualizate. Pentru a asigura rezultate exacte, "
+"vă rugăm să sincronizați datele dvs. de căutare web AI."
+
+msgid "Synchronize Data"
+msgstr "Sincronizați datele"
+
+msgid "user"
+msgstr "utilizator"
+
+msgid "Dashboard"
+msgstr "Bord"
+
+msgid "key check"
+msgstr "verificarea cheii"
+
+msgid "keys"
+msgstr "chei"
+
+msgid "Stories"
+msgstr "Povești"
+
+msgid "AI Web Search"
+msgstr "Căutare web AI"
+
+msgid "Settings"
+msgstr "Setări"
+
+msgid "Chatbot"
+msgstr "Chatbot"
+
+msgid "Install Add-ons"
+msgstr "Instalați suplimente"
+
+msgid "export"
+msgstr "export"
+
+msgid "import"
+msgstr "import"
+
+msgid "Chat History"
+msgstr "Istoricul chatului"
+
+msgid "build"
+msgstr "construi"
+
+msgid "Build"
+msgstr "Construi"
+
+msgid "Variables"
+msgstr "Variabile"
+
+msgid "forms"
+msgstr "forme"
+
+msgid "Forms"
+msgstr "Forme"
+
+msgid "actions"
+msgstr "actiuni"
+
+msgid "Actions"
+msgstr "Acțiuni"
+
+msgid "File ext. is mismatched"
+msgstr "Fișier ext. este nepotrivită"
+
+msgid "File size is greater then allowed file size"
+msgstr ""
+"Dimensiunea fișierului este mai mare decât dimensiunea permisă a fișierului"
+
+msgid "Total Stats"
+msgstr "Statistici totale"
+
+msgid "Intents"
+msgstr "Intenții"
+
+msgid "No record found"
+msgstr "Nu a fost găsită nicio înregistrare"
+
+msgid "Control Panel"
+msgstr "Panoul de control"
+
+msgid "GeekyBot"
+msgstr "GeekyBot"
+
+msgid "Keys"
+msgstr "Chei"
+
+msgid "Post Installation"
+msgstr "Post instalare"
+
+msgid "Premium Addon"
+msgstr "Supliment Premium"
+
+msgid "Could not find any matching results"
+msgstr "Nu s-au putut găsi rezultate potrivite"
+
+msgid "no record"
+msgstr "nicio înregistrare"
+
+msgid "No record found !..."
+msgstr "Nu s-a găsit nicio înregistrare!..."
+
+msgid "system offline"
+msgstr "sistem offline"
+
+msgid ""
+"Unfortunately sytem is offline for a bit of maintenance right now. But soon "
+"we will be up."
+msgstr ""
+"Din păcate, sistemul este offline pentru un pic de întreținere în acest "
+"moment. Dar în curând ne vom trezi."
+
+msgid "user ban"
+msgstr "interzicerea utilizatorului"
+
+msgid "Your account is disabled, please contact system administrator !..."
+msgstr ""
+"Contul dvs. este dezactivat, vă rugăm să contactați administratorul de "
+"sistem!..."
+
+msgid "login"
+msgstr "log in"
+
+msgid "To Access This Page Please Login !..."
+msgstr "Pentru a accesa această pagină, vă rugăm să vă autentificați!..."
+
+msgid "Back to control panel"
+msgstr "Înapoi la panoul de control"
+
+msgid "You are not logged in"
+msgstr "Nu sunteți autentificat"
+
+msgid "User Is Disabled By Admin"
+msgstr "Utilizatorul este dezactivat de administrator"
+
+msgid "The page you are looking for no longer exists"
+msgstr "Pagina pe care o cauți nu mai există"
+
+msgid "You are already logged in"
+msgstr "Sunteți deja autentificat"
+
+msgid "Please select your role"
+msgstr "Vă rugăm să vă selectați rolul"
+
+msgid "You are not allowed"
+msgstr "Nu ai voie"
+
+msgid "You are Not Allowed To add More than One"
+msgstr "Nu aveți voie să adăugați mai mult de unul"
+
+msgid "Contact Adminstrator"
+msgstr "Contactați administratorul"
+
+msgid "not allowed"
+msgstr "nu este permis"
+
+msgid "You are already logged in !..."
+msgstr "Ești deja autentificat!..."
+
+msgid "Logout"
+msgstr "Deconectare"
+
+msgid "Please first make a selection from the list"
+msgstr "Vă rugăm mai întâi să faceți o selecție din listă"
+
+msgid "Unknown"
+msgstr "Necunoscut"
+
+msgid "Invalid request"
+msgstr "Solicitare nevalidă"
+
+msgid "has been successfully applied."
+msgstr "a fost aplicat cu succes."
+
+msgid "Error applying the new theme."
+msgstr "Eroare la aplicarea noii teme."
+
+msgid "has been successfully saved."
+msgstr "a fost salvat cu succes."
+
+msgid "has not been saved."
+msgstr "nu a fost salvat."
+
+msgid "has been successfully reset."
+msgstr "a fost resetat cu succes."
+
+msgid "Every Story must have a name."
+msgstr "Fiecare poveste trebuie să aibă un nume."
+
+msgid "Every Story must have at least 1 intent."
+msgstr "Fiecare poveste trebuie să aibă cel puțin o intenție."
+
+msgid "has been successfully deleted."
+msgstr "a fost șters cu succes."
+
+msgid "has been successfully exported."
+msgstr "a fost exportat cu succes."
+
+msgid "Data has not been exported."
+msgstr "Datele nu au fost exportate."
+
+msgid "Record not exist."
+msgstr "Înregistrarea nu există."
+
+msgid "has not been deleted."
+msgstr "nu a fost șters."
+
+msgid "Please insert key."
+msgstr "Vă rugăm să introduceți cheia."
+
+msgid "key is not Valid."
+msgstr "cheia nu este validă."
+
+msgid "transaction has been successfully verified."
+msgstr "tranzacția a fost verificată cu succes."
+
+msgid "transaction has been successfully un-verified."
+msgstr "tranzacția a fost anulată cu succes."
+
+msgid "transaction has not been successfully verified."
+msgstr "tranzacția nu a fost verificată cu succes."
+
+msgid "transaction has not been successfully un-verified."
+msgstr "tranzacția nu a fost anulată cu succes."
+
+msgid "Fields has been successfully required."
+msgstr "Câmpurile au fost solicitate cu succes."
+
+msgid "Field has not been required."
+msgstr "Câmpul nu a fost obligatoriu."
+
+msgid "Fields has not been required."
+msgstr "Câmpurile nu au fost obligatorii."
+
+msgid "Fields has been successfully not required."
+msgstr "Câmpurile nu au fost obligatorii."
+
+msgid "Field has not been not required."
+msgstr "Câmpul nu a fost obligatoriu."
+
+msgid "Fields has not been not required."
+msgstr "Câmpurile nu au fost obligatorii."
+
+msgid "status has been updated."
+msgstr "starea a fost actualizată."
+
+msgid "status has not been updated."
+msgstr "starea nu a fost actualizată."
+
+msgid "data has been synchronized."
+msgstr "datele au fost sincronizate."
+
+msgid "data has not been synchronized."
+msgstr "datele nu au fost sincronizate."
+
+msgid "in use cannot deleted."
+msgstr "în uz nu poate fi ștearsă."
+
+msgid "already exist."
+msgstr "există deja."
+
+msgid "File type error."
+msgstr "Eroare tip fișier."
+
+msgid "File size error."
+msgstr "Eroare de dimensiunea fișierului."
+
+msgid "Intent"
+msgstr "Intenție"
+
+msgid "Response"
+msgstr "Răspuns"
+
+msgid "Intent Group"
+msgstr "Grupul de intenții"
+
+msgid "Variable"
+msgstr "Variabilă"
+
+msgid "Story"
+msgstr "Poveste"
+
+msgid "Post type"
+msgstr "Tipul postării"
+
+msgid "AI web search"
+msgstr "Căutare web AI"
+
+msgid "Action"
+msgstr "Acţiune"
+
+msgid "Changes"
+msgstr "Schimbări"
+
+msgid "Data"
+msgstr "Date"
+
+msgid "Message"
+msgstr "Mesaj"
+
+msgid "Configuration"
+msgstr "Configurare"
+
+msgid "Previous"
+msgstr "Anterior"
+
+msgid "Next"
+msgstr "Următorul"
+
+msgid "Guest"
+msgstr "Oaspete"
+
+msgid "User ID"
+msgstr "ID-ul de utilizator"
+
+msgid "Add to Story"
+msgstr "Adaugă la poveste"
+
+msgid "Add to story"
+msgstr "Adaugă la poveste"
+
+msgid "Search"
+msgstr "Căutare"
+
+msgid "Search with user name"
+msgstr "Căutați cu numele de utilizator"
+
+msgid "reset"
+msgstr "resetare"
+
+msgid "Select Chat"
+msgstr "Selectați Chat"
+
+msgid "Sender"
+msgstr "Expeditor"
+
+msgid "select chat"
+msgstr "selectați chat"
+
+msgid "Chat history is not selected."
+msgstr "Istoricul chat-urilor nu este selectat."
+
+msgid "Please select a conversation to view the user's chat history."
+msgstr ""
+"Vă rugăm să selectați o conversație pentru a vedea istoricul chat-ului "
+"utilizatorului."
+
+msgid "Add User Input To Story"
+msgstr "Adăugați intrarea utilizatorului în poveste"
+
+msgid "Select"
+msgstr "Selecta"
+
+msgid "Add User Input"
+msgstr "Adăugați intrarea utilizatorului"
+
+msgid "You must choose a story; it cannot be empty."
+msgstr "Trebuie să alegi o poveste; nu poate fi gol."
+
+msgid "Security verification Failed, Please restart you chat to continue."
+msgstr ""
+"Verificarea de securitate a eșuat. Vă rugăm să reporniți conversația pentru "
+"a continua."
+
+msgid "Your session has expired; please restart your chat."
+msgstr "Sesiunea dvs. a expirat; vă rugăm să reporniți chatul."
+
+msgid "Hi, I am Chatbot. I do not have specific knowledge."
+msgstr "Bună, sunt Chatbot. Nu am cunoștințe specifice."
+
+msgid "Your message is too long. Please enter only a username or email."
+msgstr ""
+"Mesajul tău este prea lung. Vă rugăm să introduceți doar un nume de "
+"utilizator sau un e-mail."
+
+msgid "Invalid username or email. Try again with the correct one."
+msgstr ""
+"Nume de utilizator sau e-mail nevalid. Încercați din nou cu cel corect."
+
+msgid "Show More"
+msgstr "Arată mai mult"
+
+msgid "Show Articles"
+msgstr "Afișați articole"
+
+msgid "session time out"
+msgstr "expirarea sesiunii"
+
+msgid "Data directory can not empty."
+msgstr "Directorul de date nu se poate goli."
+
+msgid "Data directory is not proper."
+msgstr "Directorul de date nu este corect."
+
+msgid "Data directory is not writable."
+msgstr "Directorul de date nu poate fi scris."
+
+msgid "Default fallback message can not be empty."
+msgstr "Mesajul de rezervă implicit nu poate fi gol."
+
+msgid "Admin pagination not saved."
+msgstr "Paginarea administratorului nu a fost salvată."
+
+msgid "User pagination not saved."
+msgstr "Paginarea utilizatorului nu a fost salvată."
+
+msgid ""
+"The title of your chatbot or the primary title displayed on your chat "
+"interface."
+msgstr ""
+"Titlul chatbot-ului dvs. sau titlul principal afișat pe interfața dvs. de "
+"chat."
+
+msgid "Default Fallback Message"
+msgstr "Mesaj de rezervă implicit"
+
+msgid "The message displayed when the chatbot cannot understand."
+msgstr "Mesajul este afișat când chatbot-ul nu poate înțelege."
+
+msgid "Offline"
+msgstr "Offline"
+
+msgid "Online"
+msgstr "Online"
+
+msgid "Set your plugin offline for front end."
+msgstr "Setați pluginul offline pentru front-end."
+
+msgid "Data Directory"
+msgstr "Director de date"
+
+msgid "The directory where all chatbot data files are stored."
+msgstr "Directorul în care sunt stocate toate fișierele de date chatbot."
+
+msgid "Admin Pagination"
+msgstr "Paginare admin"
+
+msgid "The number of items displayed in a paginated list in the admin panel."
+msgstr ""
+"Numărul de articole afișate într-o listă paginată în panoul de administrare."
+
+msgid "User Pagination"
+msgstr "Paginare utilizator"
+
+msgid "The number of items displayed in a paginated list on the user side."
+msgstr ""
+"Numărul de articole afișate într-o listă paginată pe partea utilizatorului."
+
+msgid "Save Settings"
+msgstr "Salvați setările"
+
+msgid "Add Icon"
+msgstr "Adăugați pictogramă"
+
+msgid "years"
+msgstr "ani"
+
+msgid "year"
+msgstr "an"
+
+msgid "ago"
+msgstr "în urmă"
+
+msgid "months"
+msgstr "luni"
+
+msgid "month"
+msgstr "lună"
+
+msgid "days"
+msgstr "zile"
+
+msgid "day"
+msgstr "zi"
+
+msgid "hours"
+msgstr "ore"
+
+msgid "hour"
+msgstr "oră"
+
+msgid "minutes"
+msgstr "minute"
+
+msgid "minute"
+msgstr "minut"
+
+msgid "Just now"
+msgstr "Chiar acum"
+
+msgid "AI ChatBot is disabled."
+msgstr "AI ChatBot este dezactivat."
+
+msgid "Active Now"
+msgstr "Activ acum"
+
+msgid "AI ChatBot story not built."
+msgstr "Povestea AI ChatBot nu a fost construită."
+
+msgid "Built Now"
+msgstr "Construit acum"
+
+msgid "WooCommerce plugin is not installed."
+msgstr "Pluginul WooCommerce nu este instalat."
+
+msgid "Install Now"
+msgstr "Instalați acum"
+
+msgid "WooCommerce plugin is not activated."
+msgstr "Pluginul WooCommerce nu este activat."
+
+msgid "WooCommerce Bot is disabled."
+msgstr "WooCommerce Bot este dezactivat."
+
+msgid "WooCommerce story not built."
+msgstr "Povestea WooCommerce nu a fost construită."
+
+msgid "Post Type not found."
+msgstr "Tipul de postare nu a fost găsit."
+
+msgid "AI Web Search is disabled!"
+msgstr "Căutarea web AI este dezactivată!"
+
+msgid "AI ChatBot Sessions"
+msgstr "Sesiuni AI ChatBot"
+
+msgid "Session Card"
+msgstr "Card de sesiune"
+
+msgid "Graph"
+msgstr "Grafic"
+
+msgid "Card"
+msgstr "Card"
+
+msgid "WooCommerce Sessions"
+msgstr "Sesiuni WooCommerce"
+
+msgid "AI Web Search Sessions"
+msgstr "Sesiuni de căutare web AI"
+
+msgid "Icon"
+msgstr "Pictogramă"
+
+msgid "GeekyBot Setup and Usage Guides"
+msgstr "Ghiduri de instalare și utilizare GeekyBot"
+
+msgid "Explore installation, training, and effective usage guides."
+msgstr "Explorați ghiduri de instalare, instruire și utilizare eficientă."
+
+msgid "Play"
+msgstr "Juca"
+
+msgid "Youtube Icon"
+msgstr "Pictogramă Youtube"
+
+msgid "How to add Story"
+msgstr "Cum se adaugă Story"
+
+msgid "How to add Variable"
+msgstr "Cum se adaugă o variabilă"
+
+msgid "Change Settings"
+msgstr "Schimbați setările"
+
+msgid "Change Color"
+msgstr "Schimbați culoarea"
+
+msgid "Remove"
+msgstr "Elimina"
+
+msgid "Cross Icon"
+msgstr "Pictograma Cruce"
+
+msgid "Stories Date"
+msgstr "Povești Data"
+
+msgid "View Stories"
+msgstr "Vezi povești"
+
+msgid "AI Chatbot"
+msgstr "AI Chatbot"
+
+msgid "WooCommerce"
+msgstr "WooCommerce"
+
+msgid "Bot Icon"
+msgstr "Pictograma Bot"
+
+msgid "AI ChatBot"
+msgstr "AI ChatBot"
+
+msgid "Last Month Stats"
+msgstr "Statisticile lunii trecute"
+
+msgid "Woo Icon"
+msgstr "Pictograma Woo"
+
+msgid "AI Web Search "
+msgstr "Căutare web AI"
+
+msgid "Manage Post Types"
+msgstr "Gestionați tipurile de postări"
+
+msgid "Enable AI Web Search"
+msgstr "Activați AI Web Search"
+
+msgid "Search Icon"
+msgstr "Pictograma Căutare"
+
+msgid "History"
+msgstr "Istorie"
+
+msgid "WooCommerce Bot"
+msgstr "WooCommerce Bot"
+
+msgid "logo"
+msgstr "logo"
+
+msgid "No of Conversation"
+msgstr "Numărul de conversație"
+
+msgid "View History"
+msgstr "Vedeți istoricul"
+
+msgid "No data"
+msgstr "Fără date"
+
+msgid "No Data"
+msgstr "Fără date"
+
+msgid "Addons"
+msgstr "Suplimente"
+
+msgid "addon"
+msgstr "add-on"
+
+msgid "Custom Listing Style"
+msgstr "Stil personalizat de înregistrare"
+
+msgid "Custom Listing Text"
+msgstr "Text personalizat pentru listare"
+
+msgid "WooCommerce Features"
+msgstr "Caracteristici WooCommerce"
+
+msgid "Addon List"
+msgstr "Lista de suplimente"
+
+msgid "WooCommerce "
+msgstr "WooCommerce"
+
+msgid "Lead Generation"
+msgstr "Generarea de leaduri"
+
+msgid ""
+"GeekyBot simplifies the WooCommerce experience with intelligent product "
+"discovery and purchasing. It seamlessly integrates with WooCommerce for "
+"efficient product searches, detailed listings, and a smooth shopping "
+"experience."
+msgstr ""
+"GeekyBot simplifică experiența WooCommerce prin descoperirea și cumpărarea "
+"inteligente a produselor. Se integrează perfect cu WooCommerce pentru "
+"căutări eficiente de produse, listări detaliate și o experiență de "
+"cumpărături fluidă."
+
+msgid "Find Product"
+msgstr "Găsiți Produs"
+
+msgid "Find Products"
+msgstr "Găsiți produse"
+
+msgid "Find products by name, category, or price range via chat."
+msgstr "Găsiți produse după nume, categorie sau interval de preț prin chat."
+
+msgid "List Product"
+msgstr "Lista de produse"
+
+msgid "List Products"
+msgstr "Lista de produse"
+
+msgid "Show relevant products with details and prices based on preferences."
+msgstr ""
+"Afișați produse relevante cu detalii și prețuri în funcție de preferințe."
+
+msgid "Add To Cart Product"
+msgstr "Adăugați în coș produs"
+
+msgid "Add to Cart"
+msgstr "Adaugă in coş"
+
+msgid "Easily add products to the cart list directly through chat."
+msgstr "Adăugați cu ușurință produse în lista de coș direct prin chat."
+
+msgid "Watch Video"
+msgstr "Urmăriți videoclipul"
+
+msgid "AI Chat"
+msgstr "AI Chat"
+
+msgid "Custom"
+msgstr "Personalizat"
+
+msgid " AI Chat Bot "
+msgstr "AI Chat Bot"
+
+msgid "Conversation Handling"
+msgstr "Gestionarea conversației"
+
+msgid ""
+"AI Chat Conversation provides intelligent and context-aware interactions to "
+"enhance user engagement. Define key conversation elements to capture "
+"specific user inputs dynamically and adapt responses based on the context."
+msgstr ""
+"AI Chat Conversation oferă interacțiuni inteligente și conștiente de context "
+"pentru a spori implicarea utilizatorilor. Definiți elementele cheie de "
+"conversație pentru a captura dinamic intrările specifice ale utilizatorilor "
+"și adaptați răspunsurile în funcție de context."
+
+msgid "Capture and process inputs dynamically for personalized responses."
+msgstr ""
+"Capturați și procesați intrările în mod dinamic pentru răspunsuri "
+"personalizate."
+
+msgid "Adjust interactions based on the ongoing conversation for relevance."
+msgstr "Ajustați interacțiunile pe baza conversației în curs pentru relevanță."
+
+msgid "Use collected data to tailor responses and improve satisfaction."
+msgstr ""
+"Utilizați datele colectate pentru a adapta răspunsurile și pentru a "
+"îmbunătăți satisfacția."
+
+msgid "Discover Our "
+msgstr "Descoperă-le noastre"
+
+msgid " AI Web Search"
+msgstr "Căutare web AI"
+
+msgid "Bot"
+msgstr "Bot"
+
+msgid ""
+"AI Web Search improves user experience by delivering advanced, intuitive "
+"content discovery on your WordPress site. With powerful searches, users can "
+"quickly find relevant information, enhancing overall interest and "
+"accessibility."
+msgstr ""
+"AI Web Search îmbunătățește experiența utilizatorului, oferind descoperire "
+"avansată și intuitivă de conținut pe site-ul dvs. WordPress. Cu căutări "
+"puternice, utilizatorii pot găsi rapid informații relevante, sporind "
+"interesul general și accesibilitatea."
+
+msgid "GeekyBot swiftly retrieves posts and pages based on user queries."
+msgstr ""
+"GeekyBot preia rapid postările și paginile pe baza interogărilor "
+"utilizatorilor."
+
+msgid "Displays full content or excerpts that match search terms."
+msgstr ""
+"Afișează conținutul complet sau extrase care corespund termenilor de căutare."
+
+msgid "Activate GeekyBot’s search for an AI web search with one click."
+msgstr "Activați căutarea GeekyBot pentru o căutare web AI cu un singur clic."
+
+msgid "Web Search"
+msgstr "Căutare pe Web"
+
+msgid "GeekyBot Supported Plugins"
+msgstr "Pluginuri acceptate de GeekyBot"
+
+msgid "Plugin"
+msgstr "Plugin"
+
+msgid "WP Job Manager"
+msgstr "WP Job Manager"
+
+msgid "Tutor LMS"
+msgstr "Tutor LMS"
+
+msgid "bbPress"
+msgstr "bbApăsați"
+
+msgid "LearnPress"
+msgstr "LearnPress"
+
+msgid "Knowledge Base"
+msgstr "Baza de cunoștințe"
+
+msgid "BetterDocs"
+msgstr "BetterDocs"
+
+msgid "Motors"
+msgstr "Motoare"
+
+msgid "Estatik Real Estate"
+msgstr "Estatik Real Estate"
+
+msgid "Auto Listings"
+msgstr "Listări auto"
+
+msgid "Welcome to GeekyBot Features"
+msgstr "Bun venit la Funcțiile GeekyBot"
+
+msgid "GeekyBot Features"
+msgstr "Caracteristici GeekyBot"
+
+msgid "WooCommerce Integration"
+msgstr "Integrare WooCommerce"
+
+msgid "Quick Installation"
+msgstr "Instalare rapidă"
+
+msgid "Version: 1.0.0"
+msgstr "Versiune: 1.0.0"
+
+msgid "AI Chat Bot"
+msgstr "AI Chat Bot"
+
+msgid "Enable/Disable"
+msgstr "Activați/Dezactivați"
+
+msgid "Enable/Disable Bot"
+msgstr "Activați/dezactivați botul"
+
+msgid "Select Template"
+msgstr "Selectați șablon"
+
+msgid ""
+"AI Chat in GeekyBot provides instant, personalized responses to user "
+"queries, ensuring seamless support around the clock. With its ability to "
+"engage users at any time, GeekyBot enhances the reliability of your service, "
+"making sure that your customers' needs are always met."
+msgstr ""
+"AI Chat în GeekyBot oferă răspunsuri instantanee, personalizate la "
+"întrebările utilizatorilor, asigurând suport fără probleme non-stop. Cu "
+"capacitatea sa de a implica utilizatorii în orice moment, GeekyBot "
+"îmbunătățește fiabilitatea serviciului dvs., asigurându-vă că nevoile "
+"clienților dvs. sunt întotdeauna satisfăcute."
+
+msgid ""
+"By training GeekyBot with your specific data, you can create dynamic, "
+"tailored interactions that reflect your business's unique voice and "
+"services. This customization allows for more relevant, effective "
+"conversations that build stronger connections with your users."
+msgstr ""
+"Antrenând GeekyBot cu datele dvs. specifice, puteți crea interacțiuni "
+"dinamice, personalizate, care reflectă vocea și serviciile unice ale "
+"companiei dvs. Această personalizare permite conversații mai relevante și "
+"eficiente, care construiesc conexiuni mai puternice cu utilizatorii dvs."
+
+msgid "Bot Image"
+msgstr "Imagine Bot"
+
+msgid "image"
+msgstr "imagine"
+
+msgid "Watch AI ChatBot Video"
+msgstr "Urmărește videoclipul AI ChatBot"
+
+msgid "AI Web Search Bot"
+msgstr "AI Web Search Bot"
+
+msgid ""
+"Effortlessly search for specific posts and content across your entire site "
+"using our powerful AI web search tool. GeekyBot goes beyond standard "
+"searches, delivering results from all types of data on your site. Whether "
+"you're looking for posts, pages, custom post types, or other information, "
+"GeekyBot ensures you find what you need quickly and efficiently by "
+"displaying relevant articles, posts, and more in a single, streamlined "
+"search experience."
+msgstr ""
+"Căutați fără efort anumite postări și conținut pe întregul dvs. site "
+"folosind instrumentul nostru puternic de căutare web AI. GeekyBot depășește "
+"căutările standard, oferind rezultate din toate tipurile de date de pe site-"
+"ul dvs. Indiferent dacă căutați postări, pagini, tipuri de postări "
+"personalizate sau alte informații, GeekyBot vă asigură că găsiți ceea ce "
+"aveți nevoie rapid și eficient, afișând articole relevante, postări și multe "
+"altele într-o singură experiență de căutare simplificată."
+
+msgid "New Post Type Search"
+msgstr "Căutare tip nou de postare"
+
+msgid ""
+"Enable this option to directly include new post types in search results, "
+"enhancing user access to all content."
+msgstr ""
+"Activați această opțiune pentru a include direct noi tipuri de postări în "
+"rezultatele căutării, îmbunătățind accesul utilizatorilor la tot conținutul."
+
+msgid "Watch AI Web Search Video"
+msgstr "Urmăriți videoclipul AI Web Search"
+
+msgid "Back"
+msgstr "Spate"
+
+msgid "Finish"
+msgstr "Termina"
+
+msgid "WooCommerce is not installed"
+msgstr "WooCommerce nu este instalat"
+
+msgid ""
+"WooCommerce plugin is not installed on your site, you won't be able to "
+"integrate GeekyBot with WooCommerce."
+msgstr ""
+"Pluginul WooCommerce nu este instalat pe site-ul dvs., nu veți putea integra "
+"GeekyBot cu WooCommerce."
+
+msgid ""
+"Easily integrate AI with WooCommerce to enhance your online store’s "
+"performance. GeekyBot boosts lead generation and customer interactions, "
+"automating key processes for a more effective and engaging shopping "
+"experience."
+msgstr ""
+"Integrați cu ușurință AI cu WooCommerce pentru a îmbunătăți performanța "
+"magazinului dvs. online. GeekyBot stimulează generarea de clienți potențiali "
+"și interacțiunile cu clienții, automatizează procesele cheie pentru o "
+"experiență de cumpărături mai eficientă și mai captivantă."
+
+msgid ""
+"GeekyBot also streamlines customer inquiries and provides real-time, "
+"intelligent responses. By improving retention and customer satisfaction, it "
+"ensures your store delivers an exceptional experience that keeps shoppers "
+"coming back."
+msgstr ""
+"GeekyBot simplifică, de asemenea, întrebările clienților și oferă răspunsuri "
+"inteligente în timp real. Îmbunătățind reținerea și satisfacția clienților, "
+"se asigură că magazinul dvs. oferă o experiență excepțională, care îi face "
+"pe cumpărători să revină."
+
+msgid "Watch WooCommerce Video"
+msgstr "Urmăriți videoclipul WooCommerce"
+
+msgid "Welcome to GeekyBot !..."
+msgstr "Bun venit la GeekyBot!..."
+
+msgid ""
+"The ultimate AI chatbot for WooCommerce lead generation, intelligent content "
+"search, and interactive customer engagement on your WordPress website."
+msgstr ""
+"Cel mai bun chatbot AI pentru generarea de clienți potențiali WooCommerce, "
+"căutarea inteligentă de conținut și implicarea interactivă a clienților pe "
+"site-ul dvs. WordPress."
+
+msgid ""
+"Personalize interactions by dynamically processing user inputs using slots "
+"and variables."
+msgstr ""
+"Personalizați interacțiunile prin procesarea dinamică a intrărilor "
+"utilizatorului folosind sloturi și variabile."
+
+msgid ""
+"Enhance shopping by enabling users to find products and add them to their "
+"cart seamlessly."
+msgstr ""
+"Îmbunătățiți cumpărăturile, permițând utilizatorilor să găsească produse și "
+"să le adauge în coș fără probleme."
+
+msgid "Website Search"
+msgstr "Căutare pe site"
+
+msgid ""
+"Streamline discovery by helping users find relevant information on your "
+"WordPress site."
+msgstr ""
+"Simplificați descoperirea, ajutând utilizatorii să găsească informații "
+"relevante pe site-ul dvs. WordPress."
+
+msgid "Please insert activation key to proceed"
+msgstr "Vă rugăm să introduceți cheia de activare pentru a continua"
+
+msgid "Addon Installation Failed"
+msgstr "Instalarea suplimentului a eșuat"
+
+msgid "Addon installation failed"
+msgstr "Instalarea suplimentului a eșuat"
+
+msgid "Addon Installation Failed, File download error"
+msgstr "Instalarea suplimentului a eșuat, eroare de descărcare a fișierului"
+
+msgid "Activated"
+msgstr "Activat"
+
+msgid "Deactivate"
+msgstr "Dezactivați"
+
+msgid "Deactivated"
+msgstr "Dezactivat"
+
+msgid "Activate"
+msgstr "Activa"
+
+msgid "Not Installed"
+msgstr "Neinstalat"
+
+msgid "Addon Installed Successfully"
+msgstr "Addon instalat cu succes"
+
+msgid "Ticket Actions"
+msgstr "Acțiuni cu bilete"
+
+msgid "Agents"
+msgstr "Agenți"
+
+msgid "Ticket Auto Close"
+msgstr "Închidere automată a biletului"
+
+msgid "left image"
+msgstr "imaginea din stânga"
+
+msgid "right image"
+msgstr "imaginea dreapta"
+
+msgid "Add-ons For Majestic Support"
+msgstr "Suplimente pentru asistență Majestic"
+
+msgid ""
+"Get trusted WordPress add-ons. Guaranteed to work fast, safe to use, "
+"beautifully coded, packed with features, and are easy to use."
+msgstr ""
+"Obțineți suplimente WordPress de încredere. Garantat pentru a funcționa "
+"rapid, sigur de utilizat, frumos codificat, plin de funcții și ușor de "
+"utilizat."
+
+msgid "Save big today with an exclusive membership plan!"
+msgstr "Economisiți mult astăzi cu un plan de membru exclusiv!"
+
+msgid "Show"
+msgstr "Spectacol"
+
+msgid "show bundle pack"
+msgstr "arată pachetul de pachete"
+
+msgid "Agent"
+msgstr "Agent"
+
+msgid ""
+"Add agents and assign roles and permissions to provide assistance and "
+"support for customer support tickets."
+msgstr ""
+"Adăugați agenți și atribuiți roluri și permisiuni pentru a oferi asistență "
+"și suport pentru biletele de asistență pentru clienți."
+
+msgid "buy now"
+msgstr "cumpara acum"
+
+msgid "Installed"
+msgstr "Instalat"
+
+msgid "multiform"
+msgstr "multiform"
+
+msgid "Multi Forms"
+msgstr "Forme multiple"
+
+msgid ""
+"Create multiple custom ticket forms with different custom fields for each "
+"request type that you support."
+msgstr ""
+"Creați mai multe formulare personalizate de bilete cu câmpuri personalizate "
+"diferite pentru fiecare tip de solicitare pe care îl acceptați."
+
+msgid "Email Piping"
+msgstr "Conducte de e-mail"
+
+msgid ""
+"Email piping is the process of automatically turning incoming emails into "
+"support tickets without manual data entry."
+msgstr ""
+"Tubularea e-mailului este procesul de transformare automată a e-mailurilor "
+"primite în bilete de asistență fără introducerea manuală a datelor."
+
+msgid "agent auto assign"
+msgstr "atribuire automată a agentului"
+
+msgid "Agent Auto Assign"
+msgstr "Atribuire automată a agentului"
+
+msgid ""
+"Make the ticket assignment process automatic and assign the most qualified "
+"agent to your tickets with conditions."
+msgstr ""
+"Automatizați procesul de atribuire a biletelor și atribuiți biletelor "
+"dumneavoastră cel mai calificat agent cu condiții."
+
+msgid "private note"
+msgstr "nota privată"
+
+msgid "Private Note"
+msgstr "Notă privată"
+
+msgid ""
+"Add private notes to a ticket and share crucial information internally with "
+"your agents, this private note is not visible to the customer."
+msgstr ""
+"Adăugați note private la un bilet și partajați informații cruciale în "
+"interior cu agenții dvs., această notă privată nu este vizibilă pentru "
+"client."
+
+msgid "merge tickets"
+msgstr "îmbinare bilete"
+
+msgid "Merge Tickets"
+msgstr "Merge Biletele"
+
+msgid ""
+"Merge one or more tickets into another if you receive two support requests "
+"from the same end user about the same issue."
+msgstr ""
+"Îmbinați unul sau mai multe bilete în altul dacă primiți două solicitări de "
+"asistență de la același utilizator final cu privire la aceeași problemă."
+
+msgid "helptopic"
+msgstr "subiect de ajutor"
+
+msgid "Help Topics"
+msgstr "Subiecte de ajutor"
+
+msgid ""
+"The user can search for and choose the topic for which they need help using "
+"help topics"
+msgstr ""
+"Utilizatorul poate căuta și alege subiectul pentru care are nevoie de ajutor "
+"folosind subiecte de ajutor"
+
+msgid "Auto Close Ticket"
+msgstr "Biletul de închidere automată"
+
+msgid ""
+"Manage abandoned tickets, and set rules for tickets over time, and those "
+"tickets will be closed automatically after a certain period."
+msgstr ""
+"Gestionați biletele abandonate și stabiliți reguli pentru bilete în timp, "
+"iar acele bilete vor fi închise automat după o anumită perioadă."
+
+msgid "Knowledgebase"
+msgstr "Baza de cunoștințe"
+
+msgid ""
+"Stop wasting time on repetitive inquiries, build your knowledge base, and "
+"organize your solutions into categories for users."
+msgstr ""
+"Nu mai pierdeți timpul cu întrebări repetitive, construiți-vă baza de "
+"cunoștințe și organizați-vă soluțiile în categorii pentru utilizatori."
+
+msgid "Ticket Overdue"
+msgstr "Biletul întârziat"
+
+msgid ""
+"Define rules or set a specific time interval for making tickets "
+"automatically overdue."
+msgstr ""
+"Definiți regulile sau setați un interval de timp specific pentru ca biletele "
+"să fie întârziate automat."
+
+msgid "time tracking"
+msgstr "urmărirea timpului"
+
+msgid "Time Tracking"
+msgstr "Urmărirea timpului"
+
+msgid ""
+"Track the amount of time spent on each customer support ticket without "
+"losing focus and enhance team productivity."
+msgstr ""
+"Urmăriți timpul petrecut pentru fiecare bilet de asistență pentru clienți "
+"fără a vă pierde concentrarea și îmbunătățiți productivitatea echipei."
+
+msgid "Ticket History"
+msgstr "Istoricul biletelor"
+
+msgid ""
+"Show the whole history of the ticket, including its status and any action "
+"taken in response to it."
+msgstr ""
+"Afișați întregul istoric al biletului, inclusiv starea acestuia și orice "
+"acțiune întreprinsă ca răspuns la acesta."
+
+msgid "Paid Support"
+msgstr "Suport plătit"
+
+msgid ""
+"The simplest approach to effectively manage payments for premium help is "
+"through paid support."
+msgstr ""
+"Cea mai simplă abordare pentru a gestiona eficient plățile pentru ajutor "
+"premium este asistența plătită."
+
+msgid "Private Credentials"
+msgstr "Acreditări private"
+
+msgid ""
+"Customers will enter sensitive information on tickets, and this add-on is "
+"designed to help you keep that information secure."
+msgstr ""
+"Clienții vor introduce informații sensibile pe bilete, iar acest supliment "
+"este conceput pentru a vă ajuta să păstrați informațiile în siguranță."
+
+msgid "Ticket close reason"
+msgstr "Motivul apropiat al biletului"
+
+msgid "Ticket Closed Reason"
+msgstr "Motiv pentru bilet închis"
+
+msgid ""
+"Empowers users to provide clear and concise explanations for why customer "
+"service tickets are being closed."
+msgstr ""
+"Permite utilizatorilor să ofere explicații clare și concise pentru motivul "
+"pentru care biletele de serviciu pentru clienți sunt închise."
+
+msgid "Premade Responses"
+msgstr "Răspunsuri prefabricate"
+
+msgid ""
+"Make ready-made responses to the most common questions in the tickets to "
+"swiftly address client issues."
+msgstr ""
+"Faceți răspunsuri gata făcute la cele mai frecvente întrebări din bilete "
+"pentru a rezolva rapid problemele clienților."
+
+msgid "max ticket"
+msgstr "bilet maxim"
+
+msgid "Max Tickets"
+msgstr "Max Bilete"
+
+msgid ""
+"Admins can limit the number of tickets that users can create as well as the "
+"number of tickets that agents can open individually."
+msgstr ""
+"Administratorii pot limita numărul de bilete pe care utilizatorii le pot "
+"crea, precum și numărul de bilete pe care agenții le pot deschide individual."
+
+msgid "Feedback"
+msgstr "Feedback"
+
+msgid ""
+"To enhance the quality of your services, ask your customers to complete a "
+"survey when a ticket is closed."
+msgstr ""
+"Pentru a îmbunătăți calitatea serviciilor dvs., cereți clienților să "
+"completeze un sondaj atunci când un bilet este închis."
+
+msgid "ticket actions"
+msgstr "actiuni de bilete"
+
+msgid ""
+"Ticket action options allow you to execute additional actions on tickets."
+msgstr ""
+"Opțiunile de acțiune pentru bilete vă permit să executați acțiuni "
+"suplimentare asupra biletelor."
+
+msgid "Export"
+msgstr "Export"
+
+msgid ""
+"Easily export ticket data and performance report data from your majestic "
+"support to an Excel spreadsheet with our efficient and user-friendly "
+"solution."
+msgstr ""
+"Exportați cu ușurință datele despre bilete și datele rapoartelor de "
+"performanță din suportul dvs. majestuos într-o foaie de calcul Excel cu "
+"soluția noastră eficientă și ușor de utilizat."
+
+msgid "email cc"
+msgstr "email cc"
+
+msgid "Email CC"
+msgstr "E-mail CC"
+
+msgid ""
+"Send the exact copy of the email to the provided email address with Email CC "
+"or BCC."
+msgstr ""
+"Trimiteți copia exactă a e-mailului la adresa de e-mail furnizată cu Email "
+"CC sau BCC."
+
+msgid "user options"
+msgstr "opțiunile utilizatorului"
+
+msgid "User Options"
+msgstr "Opțiuni utilizator"
+
+msgid ""
+"User options enable you to define roles for new users when they are "
+"registered."
+msgstr ""
+"Opțiunile pentru utilizator vă permit să definiți roluri pentru noii "
+"utilizatori atunci când aceștia sunt înregistrați."
+
+msgid "SMTP"
+msgstr "SMTP"
+
+msgid ""
+"SMTP enables you to add  custom mail protocols to send and receive emails "
+"with the support ticket system."
+msgstr ""
+"SMTP vă permite să adăugați protocoale de e-mail personalizate pentru a "
+"trimite și primi e-mailuri cu sistemul de bilete de asistență."
+
+msgid "Multi Language Email Templates"
+msgstr "Șabloane de e-mail în mai multe limbi"
+
+msgid ""
+"Create multi-language email templates for all default email templates to "
+"send customers emails in the language that they prefer."
+msgstr ""
+"Creați șabloane de e-mail în mai multe limbi pentru toate șabloanele "
+"implicite de e-mail pentru a trimite clienților e-mailuri în limba pe care o "
+"preferă."
+
+msgid "Downloads"
+msgstr "Descărcări"
+
+msgid ""
+"Downloads can be very helpful for users who are looking to obtain the "
+"necessary information to resolve issues."
+msgstr ""
+"Descărcările pot fi foarte utile pentru utilizatorii care doresc să obțină "
+"informațiile necesare pentru a rezolva problemele."
+
+msgid "Announcements"
+msgstr "Anunturi"
+
+msgid ""
+"Make an unlimited number of announcements related to the support system to "
+"encourage customer interaction."
+msgstr ""
+"Faceți un număr nelimitat de anunțuri legate de sistemul de asistență pentru "
+"a încuraja interacțiunea cu clienții."
+
+msgid "Ban Email"
+msgstr "Ban e-mail"
+
+msgid ""
+"With Ban Email, you can limit a users ability to create new tickets by "
+"blocking their email address."
+msgstr ""
+"Cu Ban Email, puteți limita capacitatea utilizatorilor de a crea bilete noi "
+"blocând adresa lor de e-mail."
+
+msgid "FAQ"
+msgstr "FAQ"
+
+msgid ""
+"Provide answers to common user questions with the FAQ extension before they "
+"become tickets."
+msgstr ""
+"Oferiți răspunsuri la întrebările frecvente ale utilizatorilor cu extensia "
+"Întrebări frecvente înainte ca acestea să devină bilete."
+
+msgid "admin widgets"
+msgstr "widget-uri de administrare"
+
+msgid "Admin Widgets"
+msgstr "Widgeturi de administrare"
+
+msgid ""
+"Get immediate data on your support operations as soon as you log into your "
+"WordPress administration area."
+msgstr ""
+"Obțineți date imediate despre operațiunile dvs. de asistență imediat ce vă "
+"conectați în zona dvs. de administrare WordPress."
+
+msgid "desktop notifications"
+msgstr "notificări de pe desktop"
+
+msgid "Desktop Notifications"
+msgstr "Notificări desktop"
+
+msgid ""
+"You will be informed of anything that occurs on your support system by the "
+"desktop notifications."
+msgstr ""
+"Veți fi informat despre orice se întâmplă în sistemul dvs. de asistență prin "
+"notificările de pe desktop."
+
+msgid "woocommerce"
+msgstr "woocommerce"
+
+msgid ""
+"The integration of the support ticket system for WooCommerce with your e-"
+"shop makes your support better and more professional."
+msgstr ""
+"Integrarea sistemului de bilete de asistență pentru WooCommerce cu magazinul "
+"dvs. electronic face ca suportul dvs. să fie mai bun și mai profesionist."
+
+msgid "mail chimp"
+msgstr "mailchimp"
+
+msgid "Mail Chimp"
+msgstr "Mailchimp"
+
+msgid ""
+"Manage your email marketing campaigns directly from your majestic support by "
+"adding new user accounts to your Mailchimp email list."
+msgstr ""
+"Gestionați-vă campaniile de marketing prin e-mail direct din suportul dvs. "
+"maiestuos, adăugând noi conturi de utilizator la lista de e-mailuri "
+"Mailchimp."
+
+msgid "internal mail"
+msgstr "poștă internă"
+
+msgid "Internal Mail"
+msgstr "Poștă internă"
+
+msgid ""
+"Send messages internally about support tickets and other issues between "
+"agents with internal mail."
+msgstr ""
+"Trimiteți mesaje intern despre biletele de asistență și alte probleme între "
+"agenți cu e-mail intern."
+
+msgid "frontend widget"
+msgstr "widget-ul frontend"
+
+msgid "Front-End Widgets"
+msgstr "Widgeturi front-end"
+
+msgid ""
+"Frontend Widgets include several widgets that can be used to enhance the "
+"plugin's functionality in various areas of the website."
+msgstr ""
+"Widgeturile de front-end includ mai multe widget-uri care pot fi utilizate "
+"pentru a îmbunătăți funcționalitatea pluginului în diferite zone ale site-"
+"ului web."
+
+msgid "envato"
+msgstr "envato"
+
+msgid "Envato"
+msgstr "Envato"
+
+msgid ""
+"Clients won't be able to open a new ticket using the Envato Validation "
+"plugin if they don't have a valid Envato license."
+msgstr ""
+"Clienții nu vor putea deschide un nou bilet folosind pluginul de validare "
+"Envato dacă nu au o licență Envato validă."
+
+msgid "easy digital download"
+msgstr "descărcare digitală ușoară"
+
+msgid "Easy Digital Download"
+msgstr "Descărcare digitală ușoară"
+
+msgid ""
+"Learn about a customer's purchase directly from the support dashboard by "
+"integrating Majestic Support with your EDD store."
+msgstr ""
+"Aflați despre achiziția unui client direct din tabloul de bord de asistență "
+"integrând Majestic Support cu magazinul dvs. EDD."
+
+msgid "Majestic Support Add-ons Bundle Pack"
+msgstr "Pachet de suplimente de asistență Majestic"
+
+msgid "Basic"
+msgstr "De bază"
+
+msgid "Unlimited Agents"
+msgstr "Agenți nelimitați"
+
+msgid "Helptopic"
+msgstr "Subiect de ajutor"
+
+msgid "Show all"
+msgstr "Arată tot"
+
+msgid "Standard"
+msgstr "Standard"
+
+msgid "Everything in basic included and "
+msgstr "Totul în bază inclus și"
+
+msgid "Premade Response"
+msgstr "Răspuns prefabricat"
+
+msgid "Professional"
+msgstr "Profesional"
+
+msgid "Everything in standard included and"
+msgstr "Totul in standard inclus si"
+
+msgid "All Future Addons"
+msgstr "Toate suplimentele viitoare"
+
+msgid "spinning wheel"
+msgstr "roată care se învârte"
+
+msgid "New Update Version"
+msgstr "Noua versiune de actualizare"
+
+msgid "is Available"
+msgstr "este disponibil"
+
+msgid "Status: "
+msgstr "Stare:"
+
+msgid "Version"
+msgstr "Versiune"
+
+msgid "addon in no longer active"
+msgstr "suplimentul nu mai este activ"
+
+msgid "Please Insert Your Activation Key"
+msgstr "Vă rugăm să introduceți cheia de activare"
+
+msgid "XXXX-XXXX-XXXXX-XXXXX"
+msgstr "XXXX-XXXX-XXXX-XXXX"
+
+msgid "Proceed"
+msgstr "Continuă"
+
+msgid "GeekyBot Addon Installer"
+msgstr "Instalator de suplimente GeekyBot"
+
+msgid "Select All Addons"
+msgstr "Selectați Toate suplimentele"
+
+msgid "All allowed add ons are already installed"
+msgstr "Toate suplimentele permise sunt deja instalate"
+
+msgid "You are not allowed to install any add on"
+msgstr "Nu aveți voie să instalați niciun supliment"
+
+msgid "Something went wrong"
+msgstr "Ceva a mers prost"
+
+msgid "Addons Installed Successfully"
+msgstr "Suplimente instalate cu succes"
+
+msgid "Open Dashboard"
+msgstr "Deschideți tabloul de bord"
+
+msgid "Open Plugins Page"
+msgstr "Deschideți pagina de pluginuri"
+
+msgid "PersonName"
+msgstr "PersonName"
+
+msgid "Facility"
+msgstr "Facilitate"
+
+msgid "Organization"
+msgstr "Organizare"
+
+msgid "Location"
+msgstr "Locaţie"
+
+msgid "Location_NON_GPE"
+msgstr "Locație_NON_GPE"
+
+msgid "Product"
+msgstr "Produs"
+
+msgid "Event"
+msgstr "Eveniment"
+
+msgid "ArtWork"
+msgstr "Opere de artă"
+
+msgid "LawDocument"
+msgstr "DreptDocument"
+
+msgid "Language"
+msgstr "Limbă"
+
+msgid "Date"
+msgstr "Data"
+
+msgid "Time"
+msgstr "Timp"
+
+msgid "Percentage"
+msgstr "Procent"
+
+msgid "Money"
+msgstr "Bani"
+
+msgid "Quantity"
+msgstr "Cantitate"
+
+msgid "Ordinal"
+msgstr "Ordinal"
+
+msgid "Cardinal"
+msgstr "Cardinal"
+
+msgid "Select Variable For"
+msgstr "Selectați variabila pentru"
+
+msgid "Attribute"
+msgstr "Atribut"
+
+msgid "Name"
+msgstr "Nume"
+
+msgid "Varibale Name"
+msgstr "Nume variabilă"
+
+msgid "Type"
+msgstr "Tip"
+
+msgid "Possible Field Values"
+msgstr "Valori posibile de câmp"
+
+msgid "Add Comma Seprated Values"
+msgstr "Adăugați valori separate prin virgulă"
+
+msgid "Variable For"
+msgstr "Variabila Pentru"
+
+msgid "Select Variable For in case of Woocommerce Variable"
+msgstr "Selectați variabila pentru în cazul variabilei Woocommerce"
+
+msgid "cancel"
+msgstr "anula"
+
+msgid "Cancel"
+msgstr "Anula"
+
+msgid "Save Changes"
+msgstr "Salvați modificările"
+
+msgid "Save Variable"
+msgstr "Salvare variabilă"
+
+msgid "Reset"
+msgstr "Resetați"
+
+msgid "Are you sure to delete it?"
+msgstr "Ești sigur că îl ștergi?"
+
+msgid "Delete Variable"
+msgstr "Ștergeți variabila"
+
+msgid "Add Variable"
+msgstr "Adăugați o variabilă"
+
+msgid "name"
+msgstr "nume"
+
+msgid "type"
+msgstr "tip"
+
+msgid "Possible Values Here"
+msgstr "Valori posibile aici"
+
+msgid "Edit Variable"
+msgstr "Editați variabila"
+
+msgid "Are you sure to delete it"
+msgstr "Ești sigur că îl ștergi"
+
+msgid "Add New"
+msgstr "Adăugați nou"
+
+msgid "User Input"
+msgstr "Intrarea utilizatorului"
+
+msgid "Close"
+msgstr "Aproape"
+
+msgid "Add"
+msgstr "Adăuga"
+
+msgid "Add More"
+msgstr "Adăugați mai multe"
+
+msgid "Available Variables"
+msgstr "Variabile disponibile"
+
+msgid "Enter bot response here..."
+msgstr "Introduceți răspunsul botului aici..."
+
+msgid "Button text here"
+msgstr "Textul butonului aici"
+
+msgid "URL"
+msgstr "URL"
+
+msgid "Button value here"
+msgstr "Valoarea butonului aici"
+
+msgid "Enter URL here"
+msgstr "Introdu adresa URL aici"
+
+msgid "Add New Button"
+msgstr "Adăugați un buton nou"
+
+msgid "Select Predefined Function"
+msgstr "Selectați Funcție predefinită"
+
+msgid "Select Action"
+msgstr "Selectați Acțiune"
+
+msgid "Add New Action"
+msgstr "Adăugați o acțiune nouă"
+
+msgid "Add New Form"
+msgstr "Adăugați un formular nou"
+
+msgid "Enter default fallback here..."
+msgstr "Introduceți aici alternativă implicită..."
+
+msgid "Enter default fallback for intent here..."
+msgstr "Introduceți aici alternativă implicită pentru intenție..."
+
+msgid "Start Point"
+msgstr "Punctul de pornire"
+
+msgid "Error: The template file does not exist."
+msgstr "Eroare: fișierul șablon nu există."
+
+msgid "Text"
+msgstr "Text"
+
+msgid "Function"
+msgstr "Funcţie"
+
+msgid "Error: The"
+msgstr "Eroare: The"
+
+msgid "tag in"
+msgstr "etichetați"
+
+msgid "at position"
+msgstr "la pozitie"
+
+msgid "is missing."
+msgstr "lipsește."
+
+msgid "is empty."
+msgstr "este gol."
+
+msgid "tag associated with the user input"
+msgstr "eticheta asociată cu intrarea utilizatorului"
+
+msgid "in"
+msgstr "în"
+
+msgid "tag of the"
+msgstr "eticheta lui"
+
+msgid "block associated with the user input"
+msgstr "bloc asociat cu intrarea utilizatorului"
+
+msgid "or"
+msgstr "sau"
+
+msgid "Error: The function name"
+msgstr "Eroare: numele funcției"
+
+msgid "in the"
+msgstr "în"
+
+msgid "is invalid."
+msgstr "este invalid."
+
+msgid "Error: The type name"
+msgstr "Eroare: numele tipului"
+
+msgid "is invalid. This should be"
+msgstr "este invalid. Asta ar trebui să fie"
+
+msgid "You might like these products."
+msgstr "S-ar putea să vă placă aceste produse."
+
+msgid "No exact match was found. Explore these similar products."
+msgstr ""
+"Nu s-a găsit nicio potrivire exactă. Explorați aceste produse similare."
+
+msgid "Here are some suggestions."
+msgstr "Iată câteva sugestii."
+
+msgid "Showing"
+msgstr "Se arată"
+
+msgid "of"
+msgstr "de"
+
+msgid "Add to cart"
+msgstr "Adaugă in coş"
+
+msgid "Empty Story"
+msgstr "Povestea goală"
+
+msgid "Show All Products"
+msgstr "Afișați toate produsele"
+
+msgid "Search Product"
+msgstr "Caută produs"
+
+msgid "Get Products Under Price"
+msgstr "Obțineți produse sub preț"
+
+msgid "Get Products Above Price"
+msgstr "Obțineți produse peste preț"
+
+msgid "View Cart/Remove Items"
+msgstr "Vezi coș/Elimină articole"
+
+msgid "Checkout"
+msgstr "Verifică"
+
+msgid "Reset Password"
+msgstr "Resetează parola"
+
+msgid "Send Chat To Admin"
+msgstr "Trimite chat la administrator"
+
+msgid "Integer"
+msgstr "Întreg"
+
+msgid "Float"
+msgstr "Plutește"
+
+msgid "Boolean"
+msgstr "boolean"
+
+msgid "String"
+msgstr "Şir"
+
+msgid "Default Fallback"
+msgstr "Fallback implicit"
+
+msgid "Are you sure to reset it?"
+msgstr "Ești sigur că îl resetați?"
+
+msgid "Parameter Name *"
+msgstr "Nume parametru *"
+
+msgid "Varibale Name *"
+msgstr "Numele variabilei *"
+
+msgid "User input has been successfully saved."
+msgstr "Intrarea utilizatorului a fost salvată cu succes."
+
+msgid "An empty user input field."
+msgstr "Un câmp de introducere de utilizator gol."
+
+msgid "An empty bot response."
+msgstr "Un răspuns robot gol."
+
+msgid "Response Successfully Saved!"
+msgstr "Răspunsul a fost salvat cu succes!"
+
+msgid "Action Successfully Saved!"
+msgstr "Acțiunea salvată cu succes!"
+
+msgid "Form Successfully Saved!"
+msgstr "Formularul a fost salvat cu succes!"
+
+msgid "Default Fallback Successfully Saved!"
+msgstr "Backup implicit salvat cu succes!"
+
+msgid "Store relevant user input first, then fallback."
+msgstr ""
+"Stocați mai întâi informațiile relevante ale utilizatorului, apoi de rezervă."
+
+msgid "An empty default fallback."
+msgstr "O rezervă implicită goală."
+
+msgid "Default Intent Fallback Successfully Saved!"
+msgstr "Intenția implicită de rezervă a fost salvată cu succes!"
+
+msgid "Discard"
+msgstr "Aruncă"
+
+msgid "Temporary discard"
+msgstr "Aruncare temporară"
+
+msgid "Automate"
+msgstr "Automatizați"
+
+msgid "User input"
+msgstr "Intrarea utilizatorului"
+
+msgid "Form"
+msgstr "Formă"
+
+msgid "Fallback"
+msgstr "Da înapoi"
+
+msgid "Chat "
+msgstr "Chat"
+
+msgid "Available Variable"
+msgstr "Variabilă disponibilă"
+
+msgid "Product Name"
+msgstr "Numele produsului"
+
+msgid "Minimum Price"
+msgstr "Pret Minim"
+
+msgid "Maximum Price"
+msgstr "Preț maxim"
+
+msgid "User Login"
+msgstr "Autentificare utilizator"
+
+msgid "Action Icon"
+msgstr "Pictogramă de acțiune"
+
+msgid "User Icon"
+msgstr "Pictogramă utilizator"
+
+msgid "User"
+msgstr "Utilizator"
+
+msgid "Bot Response"
+msgstr "Răspuns Bot"
+
+msgid "User Text Icon"
+msgstr "Pictograma text utilizator"
+
+msgid "Bot Function Icon"
+msgstr "Pictograma funcției bot"
+
+msgid "Bot Function"
+msgstr "Funcția bot"
+
+msgid "Predefined Function"
+msgstr "Funcție predefinită"
+
+msgid "Bot Action Icon"
+msgstr "Pictograma Bot Action"
+
+msgid "Bot Action"
+msgstr "Acțiunea botului"
+
+msgid "Bot Form Icon"
+msgstr "Pictogramă formular bot"
+
+msgid "Bot Form"
+msgstr "Forma bot"
+
+msgid "Fallback Icon"
+msgstr "Pictogramă de rezervă"
+
+msgid "Fallback Massege"
+msgstr "Mesaj de rezervă"
+
+msgid "Save & Close"
+msgstr "Salvați și închideți"
+
+msgid "Info Icon"
+msgstr "Pictograma Info"
+
+msgid "How to add parameters"
+msgstr "Cum se adaugă parametri"
+
+msgid "User form Icon"
+msgstr "Pictograma formular de utilizator"
+
+msgid "Form Name *"
+msgstr "Nume formular *"
+
+msgid "Add New Variable"
+msgstr "Adăugați o variabilă nouă"
+
+msgid "Function Form"
+msgstr "Forma funcției"
+
+msgid "Action Form"
+msgstr "Formular de acțiune"
+
+msgid "Custom Action"
+msgstr "Acțiune personalizată"
+
+msgid "Add New Custom Action"
+msgstr "Adăugați o nouă acțiune personalizată"
+
+msgid "Add New Parameter"
+msgstr "Adăugați un nou parametru"
+
+msgid "Intent Fallback"
+msgstr "Intenția de rezervă"
+
+msgid "Save Story"
+msgstr "Salvați povestea"
+
+msgid "Reset Story"
+msgstr "Resetează povestea"
+
+msgid "Story has been successfully saved."
+msgstr "Povestea a fost salvată cu succes."
+
+msgid "WooCommerce is not active!"
+msgstr "WooCommerce nu este activ!"
+
+msgid "Error encountered in template."
+msgstr "Eroare întâlnită în șablon."
+
+msgid "An empty story name."
+msgstr "Un nume de poveste gol."
+
+msgid "An empty story template."
+msgstr "Un șablon de poveste gol."
+
+msgid "title"
+msgstr "titlu"
+
+msgid "Active"
+msgstr "Activ"
+
+msgid "Disable"
+msgstr "Dezactivați"
+
+msgid "Edit Story"
+msgstr "Editează povestea"
+
+msgid "Are you sure to delete"
+msgstr "Sunteți sigur că veți șterge"
+
+msgid "Delete Story"
+msgstr "Șterge povestea"
+
+msgid "Built Story"
+msgstr "Povestea construită"
+
+msgid "Built"
+msgstr "Construit"
+
+msgid "WooCommerce Story"
+msgstr "Povestea WooCommerce"
+
+msgid "Story Name *"
+msgstr "Nume poveste *"
+
+msgid "Edit Story Name"
+msgstr "Editați numele poveștii"
+
+msgid "Invalid username or email."
+msgstr "Nume de utilizator sau e-mail nevalid."
+
+msgid "Looks like there was a problem resetting your password:"
+msgstr "Se pare că a apărut o problemă la resetarea parolei:"
+
+msgid "User not found!"
+msgstr "Utilizatorul nu a fost găsit!"
+
+msgid "Okay, I have sent the recovery email. Thank you for your patience."
+msgstr "Bine, am trimis e-mailul de recuperare. Vă mulțumim pentru răbdare."
+
+msgid "Your query is sent to the admin."
+msgstr "Interogarea ta este trimisă administratorului."
+
+msgid "Enable"
+msgstr "Permite"
+
+msgid "Smart Popup"
+msgstr "Popup inteligent"
+
+msgid "Standard Popup"
+msgstr "Popup standard"
+
+msgid "Appearance"
+msgstr "Aspect"
+
+msgid "Choose File"
+msgstr "Alegeți Fișier"
+
+msgid "User Default Image"
+msgstr "Imagine implicită de utilizator"
+
+msgid "Primary Color"
+msgstr "Culoare primară"
+
+msgid "Choose Color"
+msgstr "Alegeți Culoare"
+
+msgid "User Text Background"
+msgstr "Fundal text utilizator"
+
+msgid "User Text Color"
+msgstr "Culoarea textului utilizatorului"
+
+msgid "Bot Link Color"
+msgstr "Culoare Bot Link"
+
+msgid "Presets"
+msgstr "Presetări"
+
+msgid "Preset"
+msgstr "Presetat"
+
+msgid "online"
+msgstr "online"
+
+msgid "User Image"
+msgstr "Imaginea utilizatorului"
+
+msgid "Hi I am John"
+msgstr "Buna sunt John"
+
+msgid "Hi John! How can I help you?"
+msgstr "Salut John! Cu ce ​​​​vă pot ajuta?"
+
+msgid "Can you help me find a new backpack?"
+msgstr "Mă poți ajuta să găsesc un rucsac nou?"
+
+msgid "Product Icon"
+msgstr "Pictograma produsului"
+
+msgid "Fusion Backpack"
+msgstr "Rucsac Fusion"
+
+msgid "$"
+msgstr "$"
+
+msgid "59"
+msgstr "59"
+
+msgid "Send message"
+msgstr "Trimite mesaj"
+
+msgid "Welcome Message"
+msgstr "Mesaj de bun venit"
+
+msgid "Welcome Image"
+msgstr "Imagine de bun venit"
+
+msgid "Chat Auto-Popup"
+msgstr "Popup automat prin chat"
+
+msgid "Controls whether the chat popup appears automatically on your site."
+msgstr ""
+"Controlează dacă fereastra pop-up de chat apare automat pe site-ul dvs."
+
+msgid "Chat Pop-up Style"
+msgstr "Stilul pop-up de chat"
+
+msgid "Choose how the chat will appear: Smart or Standard pop-up."
+msgstr "Alegeți cum va apărea chatul: pop-up inteligent sau standard."
+
+msgid "Chat Auto-Popup Timing"
+msgstr "Timpul de afișare automată a conversației"
+
+msgid ""
+"Define the delay time in seconds for the chatbot to auto-appear on the site."
+msgstr ""
+"Definiți timpul de întârziere în secunde pentru ca chatbot-ul să apară "
+"automat pe site."
+
+msgid "Note"
+msgstr "Nota"
+
+msgid ""
+"If the colors have been saved but the user-side colors are still the same, "
+"it is advised to clear the cache."
+msgstr ""
+"Dacă culorile au fost salvate, dar culorile utilizatorului sunt în "
+"continuare aceleași, se recomandă să ștergeți memoria cache."
+
+msgid "Also"
+msgstr "Asemenea"
+
+msgid "Found"
+msgstr "Găsit"
+
+msgid "Here are some"
+msgstr "Iată câteva"
+
+msgid "Help"
+msgstr "Ajutor"
+
+msgid "Have any problem?"
+msgstr "Ai vreo problemă?"
+
+msgid ""
+"If you experience any difficulties, we're here to help! Simply click the"
+msgstr ""
+"Dacă întâmpinați dificultăți, suntem aici pentru a vă ajuta! Pur și simplu "
+"faceți clic pe"
+
+msgid "Create A Ticket"
+msgstr "Creați un bilet"
+
+msgid ""
+"button to report your issue, and our dedicated support team will assist you "
+"promptly."
+msgstr ""
+"butonul pentru a vă raporta problema, iar echipa noastră de asistență "
+"dedicată vă va ajuta cu promptitudine."
+
+msgid "Create Ticket"
+msgstr "Creați bilet"
+
+msgid "Post Type"
+msgstr "Tip post"
+
+msgid "post type"
+msgstr "tipul postului"
+
+msgid "Post Label"
+msgstr "Postează eticheta"
+
+msgid "Associated Plugin"
+msgstr "Plugin asociat"
+
+msgid "Add associated plugin's name"
+msgstr "Adăugați numele pluginului asociat"
+
+msgid "For better data consistency, please provide a associated plugin's name."
+msgstr ""
+"Pentru o mai bună coerență a datelor, vă rugăm să furnizați numele unui "
+"plugin asociat."
+
+msgid "Status"
+msgstr "Stare"
+
+msgid "For status changes, please use the options available in the listing."
+msgstr ""
+"Pentru modificări de stare, vă rugăm să utilizați opțiunile disponibile în "
+"listă."
+
+msgid "Template Section"
+msgstr "Secțiunea șabloane"
+
+msgid ""
+"Fields are currently auto-filled for preview purposes only. Please save your "
+"changes to apply them."
+msgstr ""
+"Câmpurile sunt în prezent completate automat numai în scopuri de "
+"previzualizare. Salvați modificările pentru a le aplica."
+
+msgid "Choose one template style from the given below"
+msgstr "Alegeți un stil de șablon din cele de mai jos"
+
+msgid "Add Button /Link"
+msgstr "Adăugați Buton/Link"
+
+msgid "Add New Button /Link"
+msgstr "Adăugați un buton/un link nou"
+
+msgid "Show on Listing"
+msgstr "Afișați pe listare"
+
+msgid "View Details"
+msgstr "Vezi detalii"
+
+msgid "detail page link"
+msgstr "link pentru pagina de detalii"
+
+msgid "Save Template"
+msgstr "Salvați șablonul"
+
+msgid "Create a Post"
+msgstr "Creați o postare"
+
+msgid "Please first create a sample post to use template section."
+msgstr ""
+"Creați mai întâi un exemplu de postare pentru a utiliza secțiunea șablon."
+
+msgid "AI web search enabled successfully."
+msgstr "Căutarea web AI a fost activată cu succes."
+
+msgid "AI web search already enabled."
+msgstr "Căutarea web AI este deja activată."
+
+msgid "Something went wrong."
+msgstr "Ceva a mers prost."
+
+msgid "AI web search disabled successfully."
+msgstr "Căutarea pe web AI a fost dezactivată cu succes."
+
+msgid "New post type search enabled successfully."
+msgstr "Căutarea unui nou tip de postare a fost activată cu succes."
+
+msgid "New post type search disabled successfully."
+msgstr "Căutarea tipului de postare nou a fost dezactivată cu succes."
+
+msgid "Data Synchronization Needed"
+msgstr "Sincronizarea datelor este necesară"
+
+msgid ""
+"Your data is not updated. To ensure accurate results, please synchronize "
+"your AI web search data."
+msgstr ""
+"Datele dvs. nu sunt actualizate. Pentru a asigura rezultate exacte, vă rugăm "
+"să sincronizați datele dvs. de căutare web AI."
+
+msgid "Enable AI web Search"
+msgstr "Activați căutarea web AI"
+
+msgid ""
+"Enable this feature to provide users with direct AI web search results in "
+"the chat, offering them a broader context for their queries."
+msgstr ""
+"Activați această funcție pentru a oferi utilizatorilor rezultate directe ale "
+"căutării web AI în chat, oferindu-le un context mai larg pentru interogările "
+"lor."
+
+msgid "Enable New Post Type Search"
+msgstr "Activați căutarea tipului de postare nou"
+
+msgid "Lable"
+msgstr "Etichetă"
+
+msgid "Post lable"
+msgstr "Postează eticheta"
+
+msgid "WooCommerce is currently inactive."
+msgstr "WooCommerce este momentan inactiv."
+
+msgid "No product was found."
+msgstr "Nu a fost găsit niciun produs."
+
+msgid "Please enter a valid product or category name."
+msgstr "Vă rugăm să introduceți un nume valid de produs sau categorie."
+
+msgid "Please enter a valid price."
+msgstr "Vă rugăm să introduceți un preț valid."
+
+msgid "Please enter a valid price range."
+msgstr "Vă rugăm să introduceți un interval de preț valid."
+
+msgid "Your cart is currently empty."
+msgstr "Coșul tău este momentan gol."
+
+msgid "Cart Details"
+msgstr "Detalii coș"
+
+msgid "Price"
+msgstr "Preţ"
+
+msgid "Change"
+msgstr "Schimba"
+
+msgid "Total Price"
+msgstr "Preț total"
+
+msgid "Remove Item"
+msgstr "Eliminați elementul"
+
+msgid "Subtotal"
+msgstr "Subtotal"
+
+msgid "Total"
+msgstr "Total"
+
+msgid "Proceed to Checkout"
+msgstr "Finalizează cumpărăturile"
+
+msgid "is out of stock."
+msgstr "este epuizat."
+
+msgid "You cannot add another “"
+msgstr "Nu puteți adăuga un alt „"
+
+msgid "” to your cart."
+msgstr "” la căruciorul tău."
+
+msgid "You cannot add more than"
+msgstr "Nu puteți adăuga mai mult de"
+
+msgid "of this product to your cart."
+msgstr "a acestui produs în coșul dumneavoastră."
+
+msgid "has been added to your cart."
+msgstr "a fost adăugat în coșul dumneavoastră."
+
+msgid "has not been added to your cart. Please try again."
+msgstr ""
+"nu a fost adăugat în coșul dumneavoastră. Vă rugăm să încercați din nou."
+
+msgid "View Cart"
+msgstr "Vezi coșul de cumpărături"
+
+msgid "Please select a product!"
+msgstr "Vă rugăm să selectați un produs!"
+
+msgid "There are no variations available."
+msgstr "Nu există variante disponibile."
+
+msgid "Product not found or not a variable product."
+msgstr "Produsul nu a fost găsit sau nu este un produs variabil."
+
+msgid "You can't add another “"
+msgstr "Nu poți adăuga un alt „"
+
+msgid "There was an error while adding the product to the cart."
+msgstr "A apărut o eroare la adăugarea produsului în coș."
+
+msgid ""
+"The requested variation with the specified attributes could not be found."
+msgstr "Varianta solicitată cu atributele specificate nu a putut fi găsită."
+
+msgid "Change Quantity"
+msgstr "Modificați cantitatea"
+
+msgid "Update"
+msgstr "Actualizare"
+
+msgid "The cart is empty."
+msgstr "Căruciorul este gol."
+
+msgid "Cart item is not found."
+msgstr "Articolul din coș nu a fost găsit."
+
+msgid "The item was not found in the cart."
+msgstr "Articolul nu a fost găsit în coș."
+
+msgid "Quantity updated successfully!"
+msgstr "Cantitatea a fost actualizată cu succes!"
+
+msgid "Change quantity"
+msgstr "Schimbați cantitatea"
+
+msgid "Edit Post Type"
+msgstr "Editați tipul postării"
+
+msgid "Parameter"
+msgstr "Parametru"
+
+msgid "delete"
+msgstr "şterge"
+
+msgid "add intent"
+msgstr "adauga intentie"
+
+msgid "plus icon"
+msgstr "pictograma plus"
+
+msgid "Add Intents"
+msgstr "Adăugați intenții"
+
+msgid ""
+"On the responses listing page, all the responses are listed here; you can "
+"check them out."
+msgstr ""
+"Pe pagina de listare a răspunsurilor, toate răspunsurile sunt listate aici; "
+"le poți verifica."
+
+msgid "Add Intent"
+msgstr "Adăugați intenție"
+
+msgid ""
+"On the form listing page, all the forms are listed here; you can check them "
+"out."
+msgstr ""
+"Pe pagina de listare a formularelor, toate formularele sunt listate aici; le "
+"poți verifica."
+
+msgid "Add Forms"
+msgstr "Adăugați formulare"
+
+msgid "On the add form page, you can add a new form."
+msgstr "Pe pagina de adăugare a formularului, puteți adăuga un formular nou."
+
+msgid "Responses"
+msgstr "Răspunsuri"
+
+msgid "Add Response"
+msgstr "Adăugați răspuns"
+
+msgid "On the add Response page, you can add a new Response."
+msgstr "Pe pagina de adăugare a răspunsului, puteți adăuga un răspuns nou."
+
+msgid ""
+"On the actions listing page, all the actions are listed here; you can check "
+"them out."
+msgstr ""
+"Pe pagina de listare a acțiunilor, toate acțiunile sunt listate aici; le "
+"poți verifica."
+
+msgid "Add  Action"
+msgstr "Adăugați o acțiune"
+
+msgid "On the add action page, you can add a new action."
+msgstr "Pe pagina de adăugare a acțiunii, puteți adăuga o acțiune nouă."
+
+msgid "Add Intent Group"
+msgstr "Adăugați grup de intenții"
+
+msgid "Import"
+msgstr "Import"
+
+msgid "Menu"
+msgstr "Meniu"
+
+msgid "End Chat"
+msgstr "Încheiați chatul"
+
+msgid "Restart Chat"
+msgstr "Reporniți chatul"
+
+msgid "Image"
+msgstr "Imagine"
+
+msgid "Send Icon"
+msgstr "Trimite pictograma"
+
+msgid "Welcome to GeekyBot! Let me know how I can assist you today."
+msgstr "Bun venit la GeekyBot! Spune-mi cum te pot ajuta astăzi."
+
+msgid "admin."
+msgstr "admin."
+
+msgid "Account Assistance"
+msgstr "Asistență pentru cont"
+
+msgid "Diet Plan Assistant"
+msgstr "Asistent plan de dieta"
+
+msgid "Job Application"
+msgstr "Cerere de angajare"
+
+msgid "Offline Form"
+msgstr "Formular offline"
+
+msgid "Real Estate"
+msgstr "Imobiliare"
+
+msgid "Sales Support"
+msgstr "Suport de vânzări"
+
+msgid "University"
+msgstr "Universitate"
+
+msgid "Vacation Planner"
+msgstr "Planificator de vacanță"

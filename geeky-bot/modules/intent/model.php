@@ -43,6 +43,35 @@ class GEEKYBOTintentModel {
         return $data['group_id'];
     }
 
+    function savedefaultIntentFallbackFormAjax(){
+        $nonce = GEEKYBOTrequest::GEEKYBOT_getVar('_wpnonce');
+        if (! wp_verify_nonce( $nonce, 'save-default-intent-fallback') ) {
+            die( 'Security check Failed' ); 
+        }
+        $id = GEEKYBOTrequest::GEEKYBOT_getVar('id');
+        $group_id = GEEKYBOTrequest::GEEKYBOT_getVar('group_id');
+        $default_intent_fallback = GEEKYBOTrequest::GEEKYBOT_getVar('default_intent_fallback');
+        if (empty($group_id) || !is_numeric($group_id)){
+            return -1;
+        }
+        if (empty($default_intent_fallback)){
+            return -2;
+        }
+
+        $data = [
+            'id' => $id,
+            'group_id' => $group_id,
+            'default_fallback' => $default_intent_fallback,
+        ];
+        $row = GEEKYBOTincluder::GEEKYBOT_getTable('intents_fallback');
+        $data = geekybot::GEEKYBOT_sanitizeData($data);// GEEKYBOT_sanitizeData() function uses wordpress santize functions
+        $data = $this->stripslashesFull($data);// remove slashes with quotes.
+        if ($row->bind($data) && $row->store()) {
+            return $row->id;
+        }
+        return;
+    }
+
     function saveAutoBuildUserInput($data){
         $nonce = $data['_wpnonce'];
         if (! wp_verify_nonce( $nonce, 'save-intent') ) {
@@ -60,7 +89,7 @@ class GEEKYBOTintentModel {
 
         $row = GEEKYBOTincluder::GEEKYBOT_getTable('intent');
         $cols = array();
-        $data = GEEKYBOTincluder::GEEKYBOT_getModel('intent')->stripslashesFull($data);// remove slashes with quotes
+        $data = $this->stripslashesFull($data);// remove slashes with quotes
         $intentIds = [];
         foreach ($data['user_messages'] as $messages) {
             $usermessages = '';
@@ -101,6 +130,19 @@ class GEEKYBOTintentModel {
             }
         }
         return $intentIds;
+    }
+
+    function deleteIntentFallback(){
+        $nonce = GEEKYBOTrequest::GEEKYBOT_getVar('_wpnonce');
+        if (! wp_verify_nonce( $nonce, 'delete-intent-fallback') ) {
+            die( 'Security check Failed' ); 
+        }
+        $group_id = GEEKYBOTrequest::GEEKYBOT_getVar('group_id');
+        $story_id = GEEKYBOTrequest::GEEKYBOT_getVar('story_id');
+        // delete the intents fallback
+        $query = "DELETE FROM `".geekybot::$_db->prefix . "geekybot_intents_fallback` WHERE story_id = ".esc_sql($story_id)." AND group_id = ".esc_sql($group_id);
+        geekybotdb::query($query);
+        return;
     }
 
     function generateNewGroupId(){

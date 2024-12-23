@@ -10,9 +10,9 @@ $layout = GEEKYBOTrequest::GEEKYBOT_getVar('geekybotlt');
 </div>
 <ul class="geekybotadmin-sidebar-menu tree" data-widget="tree" role="tablist">
     <li class="treeview <?php if( ($c == 'geekybot' && $layout != 'themes' ) ) echo esc_attr('active'); ?>">
-        <a href="<?php echo esc_url(wp_nonce_url('admin.php?page=geekybot','geeky-bot'))?>" title="<?php echo esc_attr(__('dashboard' , 'geeky-bot')); ?>">
-            <img class="geekybotadmin-menu-icon" alt="<?php echo esc_attr(__('dashboard' , 'geeky-bot')); ?>" src="<?php echo esc_url(GEEKYBOT_PLUGIN_URL).'includes/images/control_panel/admin-left-menu/dashboard.png'; ?>" />
-            <img class="geekybotadmin-menu-icon geekybotadmin-menu-icon-active" alt="<?php echo esc_attr(__('dashboard' , 'geeky-bot')); ?>" src="<?php echo esc_url(GEEKYBOT_PLUGIN_URL).'includes/images/control_panel/admin-left-menu/dashboard-colored.png'; ?>" />
+        <a href="<?php echo esc_url(wp_nonce_url('admin.php?page=geekybot','geeky-bot'))?>" title="<?php echo esc_attr(__('Dashboard' , 'geeky-bot')); ?>">
+            <img class="geekybotadmin-menu-icon" alt="<?php echo esc_attr(__('Dashboard' , 'geeky-bot')); ?>" src="<?php echo esc_url(GEEKYBOT_PLUGIN_URL).'includes/images/control_panel/admin-left-menu/dashboard.png'; ?>" />
+            <img class="geekybotadmin-menu-icon geekybotadmin-menu-icon-active" alt="<?php echo esc_attr(__('Dashboard' , 'geeky-bot')); ?>" src="<?php echo esc_url(GEEKYBOT_PLUGIN_URL).'includes/images/control_panel/admin-left-menu/dashboard-colored.png'; ?>" />
         </a>
     </li>
     <li class="geeky_hide treeview <?php if($layout == 'step1' ) echo esc_attr('active'); ?>">
@@ -23,27 +23,33 @@ $layout = GEEKYBOTrequest::GEEKYBOT_getVar('geekybotlt');
     </li>
     <!-- stories -->
     <li class="treeview <?php if(($c == 'geekybot_stories') ) echo esc_attr('active'); ?>">
-        <a href="<?php echo esc_url(wp_nonce_url('admin.php?page=geekybot_stories&geekybotlt=stories','stories'))?>" title="<?php echo esc_attr(__('stories' , 'geeky-bot')); ?>">
+        <a href="<?php echo esc_url(wp_nonce_url('admin.php?page=geekybot_stories&geekybotlt=stories','Stories'))?>" title="<?php echo esc_attr(__('Stories' , 'geeky-bot')); ?>">
             <img class="geekybotadmin-menu-icon" alt="<?php echo esc_attr(__('Stories' , 'geeky-bot')); ?>" src="<?php echo esc_url(GEEKYBOT_PLUGIN_URL).'includes/images/control_panel/admin-left-menu/story.png'; ?>" />
             <img class="geekybotadmin-menu-icon geekybotadmin-menu-icon-active" alt="<?php echo esc_attr(__('Stories' , 'geeky-bot')); ?>" src="<?php echo esc_url(GEEKYBOT_PLUGIN_URL).'includes/images/control_panel/admin-left-menu/story-colored.png'; ?>" />
         </a>
     </li>
     <li class="treeview <?php if(($c == 'geekybot_websearch') ) echo esc_attr('active'); ?>">
-        <a href="<?php echo esc_url(wp_nonce_url('admin.php?page=geekybot_websearch','websearch'))?>" title="<?php echo esc_attr(__('AI web search' , 'geeky-bot')); ?>">
+        <a href="<?php echo esc_url(wp_nonce_url('admin.php?page=geekybot_websearch','websearch'))?>" title="<?php echo esc_attr(__('AI Web Search' , 'geeky-bot')); ?>">
             <img class="geekybotadmin-menu-icon" alt="<?php echo esc_attr(__('AI Web Search' , 'geeky-bot')); ?>" src="<?php echo esc_url(GEEKYBOT_PLUGIN_URL).'includes/images/control_panel/admin-left-menu/search.png'; ?>" />
-            <img class="geekybotadmin-menu-icon geekybotadmin-menu-icon-active" alt="<?php echo esc_attr(__('websearch' , 'geeky-bot')); ?>" src="<?php echo esc_url(GEEKYBOT_PLUGIN_URL).'includes/images/control_panel/admin-left-menu/search-colored.png'; ?>" />
+            <img class="geekybotadmin-menu-icon geekybotadmin-menu-icon-active" alt="<?php echo esc_attr(__('AI Web Search' , 'geeky-bot')); ?>" src="<?php echo esc_url(GEEKYBOT_PLUGIN_URL).'includes/images/control_panel/admin-left-menu/search-colored.png'; ?>" />
         </a>
     </li>
     <li class="treeview <?php if($c == 'geekybot_configuration') echo esc_attr('active'); ?>">
-        <a href="<?php echo esc_url(wp_nonce_url('admin.php?page=geekybot_configuration','configuration'))?>" title="<?php echo esc_attr(__('settings' , 'geeky-bot')); ?>">
-            <img class="geekybotadmin-menu-icon" alt="<?php echo esc_attr(__('settings' , 'geeky-bot')); ?>" src="<?php echo esc_url(GEEKYBOT_PLUGIN_URL).'includes/images/control_panel/admin-left-menu/setting.png'; ?>" />
-            <img class="geekybotadmin-menu-icon geekybotadmin-menu-icon-active" alt="<?php echo esc_attr(__('settings' , 'geeky-bot')); ?>" src="<?php echo esc_url(GEEKYBOT_PLUGIN_URL).'includes/images/control_panel/admin-left-menu/setting-colored.png'; ?>" />
+        <a href="<?php echo esc_url(wp_nonce_url('admin.php?page=geekybot_configuration','configuration'))?>" title="<?php echo esc_attr(__('Settings' , 'geeky-bot')); ?>">
+            <img class="geekybotadmin-menu-icon" alt="<?php echo esc_attr(__('Settings' , 'geeky-bot')); ?>" src="<?php echo esc_url(GEEKYBOT_PLUGIN_URL).'includes/images/control_panel/admin-left-menu/setting.png'; ?>" />
+            <img class="geekybotadmin-menu-icon geekybotadmin-menu-icon-active" alt="<?php echo esc_attr(__('Settings' , 'geeky-bot')); ?>" src="<?php echo esc_url(GEEKYBOT_PLUGIN_URL).'includes/images/control_panel/admin-left-menu/setting-colored.png'; ?>" />
         </a>
     </li>
     <li class="treeview <?php if($c == 'geekybot_themes' || ($c == 'geekybot' && $layout == 'themes') ) echo esc_attr('active'); ?>">
-        <a href="<?php echo esc_url(wp_nonce_url('admin.php?page=geekybot_themes','Chatbot'))?>" title="<?php echo esc_attr(__('chatbot' , 'geeky-bot')); ?>">
+        <a href="<?php echo esc_url(wp_nonce_url('admin.php?page=geekybot_themes','Chatbot'))?>" title="<?php echo esc_attr(__('Chatbot' , 'geeky-bot')); ?>">
             <img class="geekybotadmin-menu-icon" alt="<?php echo esc_attr(__('Chatbot' , 'geeky-bot')); ?>" src="<?php echo esc_url(GEEKYBOT_PLUGIN_URL).'includes/images/control_panel/admin-left-menu/chatbot-white.png'; ?>" />
             <img class="geekybotadmin-menu-icon geekybotadmin-menu-icon-active" alt="<?php echo esc_attr(__('Chatbot' , 'geeky-bot')); ?>" src="<?php echo esc_url(GEEKYBOT_PLUGIN_URL).'includes/images/control_panel/admin-left-menu/chatbot-blue.png'; ?>" />
+        </a>
+    </li>
+    <li style="display: none;" class="treeview <?php if($c == 'geekybot_premiumplugin') echo esc_attr('active'); ?>">
+        <a href="<?php echo esc_url(wp_nonce_url('admin.php?page=geekybot_premiumplugin&geekybotlt=step1','PremiumAddons'))?>" title="<?php echo esc_attr(__('Install Add-ons' , 'geeky-bot')); ?>">
+            <img class="geekybotadmin-menu-icon" alt="<?php echo esc_attr(__('Install Add-ons' , 'geeky-bot')); ?>" src="<?php echo esc_url(GEEKYBOT_PLUGIN_URL).'includes/images/control_panel/admin-left-menu/adon-white.png'; ?>" />
+            <img class="geekybotadmin-menu-icon geekybotadmin-menu-icon-active" alt="<?php echo esc_attr(__('Install Add-ons' , 'geeky-bot')); ?>" src="<?php echo esc_url(GEEKYBOT_PLUGIN_URL).'includes/images/control_panel/admin-left-menu/adon-color.png'; ?>" />
         </a>
     </li>
     <li class="geeky_hide treeview <?php if($c == 'geekybot_export' || ($c == 'geekybot' && $layout == 'export') ) echo esc_attr('active'); ?>">
@@ -59,7 +65,7 @@ $layout = GEEKYBOTrequest::GEEKYBOT_getVar('geekybotlt');
         </a>
     </li>
     <li class="treeview <?php if(($c == 'geekybot_chathistory') ) echo esc_attr('active'); ?>">
-        <a href="<?php echo esc_url(wp_nonce_url('admin.php?page=geekybot_chathistory','chat-history'))?>" title="<?php echo esc_attr(__('chat history' , 'geeky-bot')); ?>">
+        <a href="<?php echo esc_url(wp_nonce_url('admin.php?page=geekybot_chathistory','chat-history'))?>" title="<?php echo esc_attr(__('Chat History' , 'geeky-bot')); ?>">
             <img class="geekybotadmin-menu-icon" alt="<?php echo esc_attr(__('Chat History' , 'geeky-bot')); ?>" src="<?php echo esc_url(GEEKYBOT_PLUGIN_URL).'includes/images/control_panel/admin-left-menu/history.png'; ?>" />
             <img class="geekybotadmin-menu-icon geekybotadmin-menu-icon-active" alt="<?php echo esc_attr(__('Chat History' , 'geeky-bot')); ?>" src="<?php echo esc_url(GEEKYBOT_PLUGIN_URL).'includes/images/control_panel/admin-left-menu/history-colored.png'; ?>" />
         </a>
@@ -72,7 +78,7 @@ $layout = GEEKYBOTrequest::GEEKYBOT_getVar('geekybotlt');
     </li>
 
     <li class="treeview <?php if(($c == 'geekybot_slots') ) echo esc_attr('active'); ?>">
-        <a href="<?php echo esc_url(wp_nonce_url('admin.php?page=geekybot_slots','slots'))?>" title="<?php echo esc_attr(__('variables' , 'geeky-bot')); ?>">
+        <a href="<?php echo esc_url(wp_nonce_url('admin.php?page=geekybot_slots','slots'))?>" title="<?php echo esc_attr(__('Variables' , 'geeky-bot')); ?>">
             <img class="geekybotadmin-menu-icon" alt="<?php echo esc_attr(__('Variables' , 'geeky-bot')); ?>" src="<?php echo esc_url(GEEKYBOT_PLUGIN_URL).'includes/images/control_panel/admin-left-menu/variable.png'; ?>" />
             <img class="geekybotadmin-menu-icon geekybotadmin-menu-icon-active" alt="<?php echo esc_attr(__('Variables' , 'geeky-bot')); ?>" src="<?php echo esc_url(GEEKYBOT_PLUGIN_URL).'includes/images/control_panel/admin-left-menu/variable-colored.png'; ?>" />
         </a>

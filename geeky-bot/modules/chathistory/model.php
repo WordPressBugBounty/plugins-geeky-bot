@@ -128,6 +128,7 @@ class GEEKYBOTchathistoryModel {
         $str = '';
         $date = '';
         $botsd = 1;
+        $story_count = count(GEEKYBOTincluder::GEEKYBOT_getModel('stories')->getStoriesForCombobox());
         if(!empty($rows)){
             foreach ($rows as $index => $value) {
                 $extraclass = '';
@@ -153,9 +154,11 @@ class GEEKYBOTchathistoryModel {
                     $intent =  $intentlink . $intentid;
 
                     $btn .='<span class="geekybot-history-page-subheading">'. esc_attr(__('Action', 'geeky-bot')).' :</span>';
-                    $btn .= '<a id=\"addToStory\" class=\"geekybot-table-act-btn\" title=\"'. esc_attr(__('add to story', 'geeky-bot')).'\">';
-                    $btn .= esc_attr(__('Add to story', 'geeky-bot'));
-                    $btn .='</a>';
+                    if ($story_count > 0) {
+                        $btn .= '<a id=\"addToStory\" class=\"geekybot-table-act-btn\" title=\"'. esc_attr(__('Add to Story', 'geeky-bot')).'\">';
+                        $btn .= esc_attr(__('Add to story', 'geeky-bot'));
+                        $btn .='</a>';
+                    }
                     $rightusermessage = 'right-user-message';
                     $plain_message = geekybotphplib::GEEKYBOT_wp_strip_all_tags($value->message);
                 }
@@ -235,18 +238,38 @@ class GEEKYBOTchathistoryModel {
                 $page_html = '';
                 $prev = $chatlimit;
                 if($prev > 0){
-                    $page_html .= '<a class="geekybot-jsst_userlink" href="#" onclick="makeMeActive(\''. $username .'\',\''. $userid .'\',\''. $chatHistoryId .'\',\''. $htmlDiv .'\',\''. $datet .'\','.esc_js(($prev - 1)).', 1);"><img class="geeky-pagnumber-previcon" src="' . esc_url(GEEKYBOT_PLUGIN_URL) . 'includes/images/previous.png" title="'.esc_attr(__("Previous", "geeky-bot")).'" alt="'.esc_attr(__("Previous", "geeky-bot")).'" /></a>';
+                    $page_html .= '<a class="geekybot-jsst_userlink" href="#" onclick="makeMeActive('
+                        . '\'' . esc_js(addslashes($username)) . '\','
+                        . '\'' . esc_js(addslashes($userid)) . '\','
+                        . '\'' . esc_js(addslashes($chatHistoryId)) . '\','
+                        . '\'' . esc_js(addslashes($htmlDiv)) . '\','
+                        . '\'' . esc_js(addslashes($datet)) . '\','
+                        . esc_js(($prev - 1)) . ', 1);">'
+                        . '<img class="geeky-pagnumber-previcon" src="' . esc_url(GEEKYBOT_PLUGIN_URL) . 'includes/images/previous.png" '
+                        . 'title="' . esc_attr(__("Previous", "geeky-bot")) . '" '
+                        . 'alt="' . esc_attr(__("Previous", "geeky-bot")) . '" />'
+                        . '</a>';
                 }
                 for($i = 0; $i < $num_of_pages; $i++){
                     if($i == $chatlimit)
                         $page_html .= '<span class="geekybot-jsst_userlink selected" >'.($i + 1).'</span>';
                     else
-                        $page_html .= '<a class="geekybot-jsst_userlink" href="#" onclick="makeMeActive(\''. $username .'\',\''. $userid .'\',\''. $chatHistoryId .'\',\''. $htmlDiv .'\',\''. $datet .'\','.esc_js($i).', 1);">'.esc_js(($i + 1)).'</a>';
+                        $page_html .= '<a class="geekybot-jsst_userlink" href="#" onclick="makeMeActive('. '\'' . esc_js(addslashes($username)) . '\','. '\'' . esc_js(addslashes($userid)) . '\','. '\'' . esc_js(addslashes($chatHistoryId)) . '\','. '\'' . esc_js(addslashes($htmlDiv)) . '\','. '\'' . esc_js(addslashes($datet)) . '\','. esc_js($i) . ', 1);">'. esc_js(($i + 1)) . '</a>';
 
                 }
                 $next = $chatlimit + 1;
                 if($next < $num_of_pages){
-                    $page_html .= '<a class="geekybot-jsst_userlink" href="#" onclick="makeMeActive(\''. $username .'\',\''. $userid .'\',\''. $chatHistoryId .'\',\''. $htmlDiv .'\',\''. $datet .'\','.esc_js($next).', 1);"><img class="geeky-pagnumber-nexticon" src="' . esc_url(GEEKYBOT_PLUGIN_URL) . 'includes/images/next.png" title="'.esc_attr(__("Next", "geeky-bot")).'" alt="'.esc_attr(__("Next", "geeky-bot")).'" /></a>';
+                    $page_html .= '<a class="geekybot-jsst_userlink" href="#" onclick="makeMeActive('
+                    . '\'' . esc_js(addslashes($username)) . '\','
+                    . '\'' . esc_js(addslashes($userid)) . '\','
+                    . '\'' . esc_js(addslashes($chatHistoryId)) . '\','
+                    . '\'' . esc_js(addslashes($htmlDiv)) . '\','
+                    . '\'' . esc_js(addslashes($datet)) . '\','
+                    . esc_js($next) . ', 1);">'
+                    . '<img class="geeky-pagnumber-nexticon" src="' . esc_url(GEEKYBOT_PLUGIN_URL) . 'includes/images/next.png" '
+                    . 'title="' . esc_attr(__("Next", "geeky-bot")) . '" '
+                    . 'alt="' . esc_attr(__("Next", "geeky-bot")) . '" />'
+                    . '</a>';
                 }
                 if($page_html != ''){
                     $str .= '<div class="geekybot-jsst_userpages">'.wp_kses($page_html, GEEKYBOT_ALLOWED_TAGS).'</div>';
@@ -272,9 +295,9 @@ class GEEKYBOTchathistoryModel {
         $this->saveChatHistoryMessage($message, $sender, $session_id);
     }
 
-    function SaveChathistoryFromchatServer($message, $sender, $type = '', $buttons = '') {
+    function SaveChathistoryFromchatServer($message, $sender, $type = '', $buttons = '', $post_type = '') {
         $session_id = $this->saveChatHistorySession();
-        $this->saveChatHistoryMessage($message, $sender, $session_id, $type, $buttons);
+        $this->saveChatHistoryMessage($message, $sender, $session_id, $type, $buttons, $post_type);
     }
 
     function saveChatHistorySession(){
@@ -305,7 +328,7 @@ class GEEKYBOTchathistoryModel {
             return $row->id;
         }
     }
-    function saveChatHistoryMessage($message, $sender, $session_id, $type = '', $buttons = ''){
+    function saveChatHistoryMessage($message, $sender, $session_id, $type = '', $buttons = '', $post_type = ''){
         if ($buttons != '') {
             $buttons = wp_json_encode($buttons);
         }
@@ -316,6 +339,7 @@ class GEEKYBOTchathistoryModel {
         $data['sender'] = $sender;
         $data['confidence'] = '';
         $data['type'] = $type;
+        $data['post_type'] = $post_type;
         $data['buttons'] = $buttons;
         $data['created'] = gmdate("Y-m-d H:i:s");
         $data['session_id'] = $session_id;

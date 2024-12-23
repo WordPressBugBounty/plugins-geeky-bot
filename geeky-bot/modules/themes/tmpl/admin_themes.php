@@ -77,7 +77,7 @@ $popup_type = array(
 );
 ?>
 <!-- main wrapper -->
-<div id="geekybotadmin-wrapper">
+<div id="geekybotadmin-wrapper" class="geekybot-admin-main-wrapper">
     <?php  GEEKYBOTincluder::GEEKYBOT_getTemplate('templates/admin/upper-nav',array('module' => 'themes','layouts' => 'themes'));?>
     <div class="geekybotadmin-body-main">
         <!-- left menu -->
@@ -400,7 +400,7 @@ $popup_type = array(
                                         <?php echo esc_html(__('Welcome Message', 'geeky-bot')); ?>
                                     </div>
                                     <div class="geekybot-chatbot-popup-config-value-text">
-                                        <?php echo wp_kses(GEEKYBOTformfield::GEEKYBOT_textarea('welcome_message', isset(geekybot::$_data[0]['welcome_message']) ? geekybot::$_data[0]['welcome_message'] : '', array('class' => 'inputbox js-textarea', 'data-validation' => 'required')), GEEKYBOT_ALLOWED_TAGS) ?>
+                                        <?php echo wp_kses(GEEKYBOTformfield::GEEKYBOT_textarea('welcome_message', isset(geekybot::$_data[0]['welcome_message']) ? geekybot::GEEKYBOT_getVarValue(geekybot::$_data[0]['welcome_message']) : '', array('class' => 'inputbox js-textarea', 'data-validation' => 'required')), GEEKYBOT_ALLOWED_TAGS) ?>
                                     </div>
                                 </div>
                                 <div class="geekybot-theme-row">
@@ -457,7 +457,7 @@ $popup_type = array(
                                                 <?php
                                             } ?>
                                             <div class="chat-open-outer-popup-dialog-text">
-                                                <p class="chat-open-outer-popup-dialog-btmtext"><?php echo esc_html(geekybot::$_data[0]['welcome_message']); ?></p>
+                                                <p class="chat-open-outer-popup-dialog-btmtext"><?php echo esc_html(geekybot::GEEKYBOT_getVarValue(geekybot::$_data[0]['welcome_message'])); ?></p>
                                             </div>
                                         </div>
                                     </div>

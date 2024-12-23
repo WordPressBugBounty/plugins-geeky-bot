@@ -32,7 +32,7 @@ $geekybot_js ="
     wp_add_inline_script('geekybot-main-js',$geekybot_js);
 ?>
 <!-- main wrapper -->
-<div id="geekybotadmin-wrapper">
+<div id="geekybotadmin-wrapper" class="geekybot-admin-main-wrapper">
     <?php  wp_kses(GEEKYBOTincluder::GEEKYBOT_getTemplate('templates/admin/upper-nav',array('module' => 'slots','layouts' => 'formslots')), GEEKYBOT_ALLOWED_TAGS); ?>
     <div class="geekybotadmin-body-main">
     	<!-- left menu -->
@@ -86,7 +86,10 @@ $geekybot_js ="
                         <a id="form-cancel-button" class="geekybot-form-cancel-btn" href="<?php echo esc_url(wp_nonce_url(admin_url('admin.php?page=geekybot_slots'),'slots')); ?>" title="<?php echo esc_attr(__('cancel', 'geeky-bot')); ?>">
                             <?php echo esc_html(__('Cancel', 'geeky-bot')); ?>
                         </a>
-                        <?php echo wp_kses(GEEKYBOTformfield::GEEKYBOT_submitbutton('save', __('Save','geeky-bot') .' '. esc_html(__('Variable', 'geeky-bot')), array('class' => 'button geekybot-form-save-btn')), GEEKYBOT_ALLOWED_TAGS); ?>
+                        <button title="<?php echo esc_html(__('Save Changes', 'geeky-bot')); ?>" type="submit" class="geekybot-form-savevar-btnwrp">
+                            <img src="<?php echo esc_url(GEEKYBOT_PLUGIN_URL); ?>includes/images/story/save.png" srcset="">
+                            <?php echo  __('Save Variable', 'geeky-bot'); ?>
+                        </button>
                     </div>
                     <?php echo wp_kses(GEEKYBOTformfield::GEEKYBOT_hidden('id', isset(geekybot::$_data[0]->id) ? geekybot::$_data[0]->id : ''), GEEKYBOT_ALLOWED_TAGS); ?>
                     <?php echo wp_kses(GEEKYBOTformfield::GEEKYBOT_hidden('action', 'slots_saveslots'), GEEKYBOT_ALLOWED_TAGS); ?>

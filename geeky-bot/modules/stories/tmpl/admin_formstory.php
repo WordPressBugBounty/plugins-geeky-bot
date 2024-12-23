@@ -1,10 +1,10 @@
 <?php
-    wp_enqueue_script('jquery');
-    // Enqueue jQuery UI
-    wp_enqueue_script('jquery-ui-draggable');
-    if (!isset(geekybot::$_data[0]['story'])) {
-        wp_die('No Story Found!');
-    }
+if (!defined('ABSPATH'))
+    die('Restricted Access');
+wp_enqueue_script('jquery');
+// Enqueue jQuery UI
+wp_enqueue_script('jquery-ui-draggable');
+if (isset(geekybot::$_data[0]['story'])) {
     $story_id = geekybot::$_data[0]['story']->id;
     // $story_id = 60;
     $slotList = "recheck";
@@ -41,7 +41,7 @@
     jQuery(document).ready(function() {
         // reset story
         jQuery(document).on('click', '#Reset-Story', function(event) {
-            var confirmed = confirm('Are you sure to reset it?');
+            var confirmed = confirm(\"".__('Are you sure to reset it?','geeky-bot')."\");
             if (!confirmed) {
                 event.preventDefault(); // Prevent default action if not confirmed
             } else {
@@ -57,8 +57,7 @@
                         idCounter = 2;
                         // start point position
                         positions = [
-                            { id: 'node1', top: 500, left: 0, parentId: null, type: 'start_point', text: '".$startPointMsg."', image: 'home', class: 'node_start_point', category: 'start' },
-                            { id: 'fallback_node1', top: 640, left: 265, parentId: 'node1', type: 'fallback', text: '".$fallbackMsg."',image: 'fallback',class: 'node_action_fallback', category: 'fallback' }
+                            { id: 'node1', top: 500, left: 0, parentId: null, parentType: null, type: 'start_point', text: \"".$startPointMsg."\", image: 'home', class: 'node_start_point', category: 'start' }
                         ];
                         setCanvasWidthHeight();
                         idCounter = idCounter++;
@@ -179,6 +178,33 @@
             }
         });
     }
+    function deleteIntentFallback(group_id){
+        var story_id = ". $story_id .";
+        var ajaxurl = '". esc_url(admin_url("admin-ajax.php")) ."';
+        jQuery.post(ajaxurl, {
+            action: 'geekybot_ajax',
+            geekybotme: 'intent',
+            task: 'deleteIntentFallback',
+            group_id: group_id,
+            story_id: story_id,
+            '_wpnonce':'". esc_attr(wp_create_nonce("delete-intent-fallback")) ."'
+        }, function(data) {
+
+        });
+    }
+    function deleteDefaultFallback(){
+        var story_id = ". $story_id .";
+        var ajaxurl = '". esc_url(admin_url("admin-ajax.php")) ."';
+        jQuery.post(ajaxurl, {
+            action: 'geekybot_ajax',
+            geekybotme: 'stories',
+            task: 'deleteDefaultFallback',
+            story_id: story_id,
+            '_wpnonce':'". esc_attr(wp_create_nonce("delete-default-fallback")) ."'
+        }, function(data) {
+            
+        });
+    }
 
 
     // select and type end
@@ -188,7 +214,7 @@
         if (userInputDivId != param && userInputDivId < param) {
             userInputDivId = param;
         }
-        console.log(userInputDivId);
+        // console.log(userInputDivId);
         var container = jQuery('#user-popup-inputs');
         container.append('<div class=\"geeky-popup-dynamic-field\" id=\"div_'+userInputDivId+'\"><input name = \"user_messages[]\" type=\"text\" value = \"\" class=\"inputbox geeky-popup-dynamic-field-input\" autocomplete=\"off\" placeholder=\"". esc_attr(__('User Input','geeky-bot'))."\" /><span class=\"geeky-popup-dynamic-remov-image remove-btn\" onClick=\"deleteUserInputText(div_'+userInputDivId+')\"><img title=\"". esc_html(__('Delete','geeky-bot'))."\" alt=\"". esc_html(__('Close','geeky-bot'))."\" class=\"userpopup-close\" src=\"". esc_url(GEEKYBOT_PLUGIN_URL) ."includes/images/close.png\" /></span></div>');
         userInputDivId++;
@@ -198,9 +224,13 @@
     }
     // Function to create response buttons
     var responseButtonDivId = 1;
-    function addResponseButton() {
+    function addResponseButton(param) {
+        if (responseButtonDivId != param && responseButtonDivId < param) {
+            responseButtonDivId = param;
+        }
+        // console.log(userInputDivId);
         var container = jQuery('#response-popup-text');
-        container.append('<div class=\"geeky-popup-dynamic-field\" id=\"div_'+responseButtonDivId+'\"><input name = \"response_btn_text[]\" type=\"text\" value = \"\" class=\"inputbox geeky-popup-dynamic-field-input\" autocomplete=\"off\" placeholder=\"". esc_attr(__('Button text here','geeky-bot'))."\" /><select name=\"response_btn_type[]\" id=\"response_btn_type[]\" class=\"response-btn-type inputbox geeky-popup-dynamic-field-input geeky-popup-dynamic-field-select\" data-validation=\"required\"><option value=\"1\">". esc_attr(__('User Input','geeky-bot'))."</option><option value=\"2\">". esc_attr(__('URL','geeky-bot'))."</option></select><input name = \"response_btn_value[]\" type=\"text\" value = \"\" class=\"response-btn-value inputbox geeky-popup-dynamic-field-input\" autocomplete=\"off\" placeholder=\"". esc_attr(__('Button value here','geeky-bot'))."\" /><input name = \"response_btn_url[]\" type=\"text\" value = \"\" class=\"response-btn-url inputbox geeky-popup-dynamic-field-input\" autocomplete=\"off\" placeholder=\"". esc_attr(__('Enter URL here','geeky-bot'))."\" style=\"display: none\"  /><span class=\"geeky-popup-dynamic-remov-image remove-btn\" onClick=\"deleteResponseTextBotton(div_'+responseButtonDivId+')\">". esc_html(__('Delete','geeky-bot')) ."</span></div>');
+        container.append('<div class=\"geeky-popup-dynamic-field\" id=\"div_'+responseButtonDivId+'\"><input name = \"response_btn_text[]\" type=\"text\" value = \"\" class=\"inputbox geeky-popup-dynamic-field-input\" autocomplete=\"off\" placeholder=\"". esc_attr(__('Button text here','geeky-bot'))."\" /><select name=\"response_btn_type[]\" id=\"response_btn_type[]\" class=\"response-btn-type inputbox geeky-popup-dynamic-field-input geeky-popup-dynamic-field-select\" data-validation=\"required\"><option value=\"1\">". esc_attr(__('User Input','geeky-bot'))."</option><option value=\"2\">". esc_attr(__('URL','geeky-bot'))."</option></select><input name = \"response_btn_value[]\" type=\"text\" value = \"\" class=\"response-btn-value inputbox geeky-popup-dynamic-field-input\" autocomplete=\"off\" placeholder=\"". esc_attr(__('Button value here','geeky-bot'))."\" /><input name = \"response_btn_url[]\" type=\"text\" value = \"\" class=\"response-btn-url inputbox geeky-popup-dynamic-field-input\" autocomplete=\"off\" placeholder=\"". esc_attr(__('Enter URL here','geeky-bot'))."\" style=\"display: none\"  /><span class=\"geeky-popup-dynamic-remov-image remove-btn\" title=\"". esc_attr(__('Delete','geeky-bot'))."\" onClick=\"deleteResponseTextBotton(div_'+responseButtonDivId+')\">". esc_html(__('Delete','geeky-bot')) ."</span></div>');
         responseButtonDivId++;
     }
     function deleteResponseTextBotton(responseButtonId){
@@ -277,13 +307,13 @@
                 task: 'updateStoryAjax',
                 ids: ids,
                 storyid: storyid,
-                positionsarray: positions,
+                positionsarray: JSON.stringify(positions), // Explicitly serialize the positions array
                 '_wpnonce':'". esc_attr(wp_create_nonce("save-story")) ."'
             }, function(data) {
                 if (data) {
                     jQuery('#user-input-msg').html('<div class=\"geeky-bot-popop-save-success-msg\"><div class=\"geeky-infoicon-image-text-wraper\"><img alt=\"". esc_html(__('Info','geeky-bot')) ."\" title=\"". esc_html(__('Info','geeky-bot')) ."\" class=\"userpopup-plus-icon\" src=\"". esc_url(GEEKYBOT_PLUGIN_URL)."includes/images/story/info-green.png\" />". esc_attr(__("User input has been successfully saved.", 'geeky-bot'))."</div></div>');
                 } else {
-                    jQuery('#user-input-msg').html('<div class=\"geeky-bot-popop-save-success-msg\"><div class=\"geeky-infoicon-image-text-wraper\"><img alt=\"". esc_html(__('Info','geeky-bot')) ."\" title=\"". esc_html(__('Info','geeky-bot')) ."\" class=\"userpopup-plus-icon\" src=\"". esc_url(GEEKYBOT_PLUGIN_URL) ."includes/images/story/info-green.png\" />". esc_attr(__('Something went wrong try again later!', 'geeky-bot'))."</div></div>');
+                    jQuery('#user-input-msg').html('<div class=\"geeky-bot-popop-save-success-msg geeky-error-msg\"><div class=\"geeky-infoicon-image-text-wraper\"><img alt=\"". esc_html(__('Info','geeky-bot')) ."\" title=\"". esc_html(__('Info','geeky-bot')) ."\" class=\"userpopup-plus-icon\" src=\"". esc_url(GEEKYBOT_PLUGIN_URL) ."includes/images/story/info-red.png\" />". esc_attr(__('Something went wrong try again later!', 'geeky-bot'))."</div></div>');
                 }
             });
             // jQuery('form#stories_form').submit();
@@ -408,7 +438,7 @@
                     storeActiveNodeValue(data);
                     jQuery('#response-function-msg').html('<div class=\"geeky-bot-popop-save-success-msg\"><div class=\"geeky-infoicon-image-text-wraper\"><img alt=\"". esc_html(__('Info','geeky-bot')) ."\" title=\"". esc_html(__('Info','geeky-bot')) ."\" class=\"userpopup-plus-icon\" src=\"". esc_url(GEEKYBOT_PLUGIN_URL) ."includes/images/story/info-green.png\" />". esc_attr(__('Response Successfully Saved!', 'geeky-bot'))."</div></div>');
                 } else {
-                    jQuery('#response-function-msg').html('<div class=\"geeky-bot-popop-save-success-msg\"><div class=\"geeky-infoicon-image-text-wraper\"><img alt=\"". esc_html(__('Info','geeky-bot')) ."\" title=\"". esc_html(__('Info','geeky-bot')) ."\" class=\"userpopup-plus-icon\" src=\"". esc_url(GEEKYBOT_PLUGIN_URL) ."includes/images/story/info-green.png\" />". esc_attr(__('Something went wrong try again later!', 'geeky-bot')) ."</div></div>');
+                    jQuery('#response-function-msg').html('<div class=\"geeky-bot-popop-save-success-msg geeky-error-msg\"><div class=\"geeky-infoicon-image-text-wraper\"><img alt=\"". esc_html(__('Info','geeky-bot')) ."\" title=\"". esc_html(__('Info','geeky-bot')) ."\" class=\"userpopup-plus-icon\" src=\"". esc_url(GEEKYBOT_PLUGIN_URL) ."includes/images/story/info-red.png\" />". esc_attr(__('Something went wrong try again later!', 'geeky-bot')) ."</div></div>');
                 }
                 clearNotifications();
             });
@@ -433,9 +463,9 @@
             }, function(data) {
                 if (data) {
                     storeActiveNodeValue(data);
-                    jQuery('#response-action-msg').html('<div class=\"geeky-bot-popop-save-success-msg\"><div class=\"geeky-infoicon-image-text-wraper\"><img alt=\"". esc_html(__('Info','geeky-bot')) ."\" title=\"". esc_html(__('Info','geeky-bot')) ."\" class=\"userpopup-plus-icon\" src=\"". esc_url(GEEKYBOT_PLUGIN_URL) ."includes/images/story/info-green.png\" />". esc_attr(__('Response Successfully Saved!', 'geeky-bot'))."</div></div>');
+                    jQuery('#response-action-msg').html('<div class=\"geeky-bot-popop-save-success-msg geeky-error-msg\"><div class=\"geeky-infoicon-image-text-wraper\"><img alt=\"". esc_html(__('Info','geeky-bot')) ."\" title=\"". esc_html(__('Info','geeky-bot')) ."\" class=\"userpopup-plus-icon\" src=\"". esc_url(GEEKYBOT_PLUGIN_URL) ."includes/images/story/info-red.png\" />". esc_attr(__('Response Successfully Saved!', 'geeky-bot'))."</div></div>');
                 } else {
-                    jQuery('#response-action-msg').html('<div class=\"geeky-bot-popop-save-success-msg\"><div class=\"geeky-infoicon-image-text-wraper\"><img alt=\"". esc_html(__('Info','geeky-bot')) ."\" title=\"". esc_html(__('Info','geeky-bot')) ."\" class=\"userpopup-plus-icon\" src=\"". esc_url(GEEKYBOT_PLUGIN_URL) ."includes/images/story/info-green.png\" />". esc_attr(__('Something went wrong try again later!', 'geeky-bot')) ."</div></div>');
+                    jQuery('#response-action-msg').html('<div class=\"geeky-bot-popop-save-success-msg geeky-error-msg\"><div class=\"geeky-infoicon-image-text-wraper\"><img alt=\"". esc_html(__('Info','geeky-bot')) ."\" title=\"". esc_html(__('Info','geeky-bot')) ."\" class=\"userpopup-plus-icon\" src=\"". esc_url(GEEKYBOT_PLUGIN_URL) ."includes/images/story/info-red.png\" />". esc_attr(__('Something went wrong try again later!', 'geeky-bot')) ."</div></div>');
                 }
                 clearNotifications();
             });
@@ -469,7 +499,7 @@
                     jQuery('#response-add-action-msg').html('<div class=\"geeky-bot-popop-save-success-msg\"><div class=\"geeky-infoicon-image-text-wraper\"><img alt=\"". esc_html(__('Info','geeky-bot')) ."\" title=\"". esc_html(__('Info','geeky-bot')) ."\" class=\"userpopup-plus-icon\" src=\"". esc_url(GEEKYBOT_PLUGIN_URL) ."includes/images/story/info-green.png\" />". esc_attr(__('Action Successfully Saved!', 'geeky-bot')) ."</div></div>');
                     updateActionValueOnPopup();
                 } else {
-                    jQuery('#response-add-action-msg').html('<div class=\"geeky-bot-popop-save-success-msg\"><div class=\"geeky-infoicon-image-text-wraper\"><img alt=\"".  esc_html(__('Info','geeky-bot')) ."\" title=\"". esc_html(__('Info','geeky-bot')) ."\" class=\"userpopup-plus-icon\" src=\"". esc_url(GEEKYBOT_PLUGIN_URL) ."includes/images/story/info-green.png\" />". esc_attr(__('Something went wrong try again later!', 'geeky-bot')) ."</div></div>');
+                    jQuery('#response-add-action-msg').html('<div class=\"geeky-bot-popop-save-success-msg geeky-error-msg\"><div class=\"geeky-infoicon-image-text-wraper\"><img alt=\"".  esc_html(__('Info','geeky-bot')) ."\" title=\"". esc_html(__('Info','geeky-bot')) ."\" class=\"userpopup-plus-icon\" src=\"". esc_url(GEEKYBOT_PLUGIN_URL) ."includes/images/story/info-red.png\" />". esc_attr(__('Something went wrong try again later!', 'geeky-bot')) ."</div></div>');
                 }
                 clearNotifications();
             });
@@ -495,7 +525,7 @@
                     storeActiveNodeValue(data);
                     jQuery('#response-form-msg').html('<div class=\"geeky-bot-popop-save-success-msg\"><div class=\"geeky-infoicon-image-text-wraper\"><img alt=\"". esc_html(__('Info','geeky-bot')) ."\" title=\"". esc_html(__('Info','geeky-bot')) ."\" class=\"userpopup-plus-icon\" src=\"". esc_url(GEEKYBOT_PLUGIN_URL) ."includes/images/story/info-green.png\" />". esc_attr(__('Form Successfully Saved!', 'geeky-bot')) ."</div></div>');
                 } else {
-                    jQuery('#response-form-msg').html('<div class=\"geeky-bot-popop-save-success-msg\"><div class=\"geeky-infoicon-image-text-wraper\"><img alt=\"".  esc_html(__('Info','geeky-bot')) ."\" title=\"".  esc_html(__('Info','geeky-bot')) ."\" class=\"userpopup-plus-icon\" src=\"". esc_url(GEEKYBOT_PLUGIN_URL) ."includes/images/story/info-green.png\" />". esc_attr(__('Something went wrong try again later!', 'geeky-bot')) ."</div></div>');
+                    jQuery('#response-form-msg').html('<div class=\"geeky-bot-popop-save-success-msg geeky-error-msg\"><div class=\"geeky-infoicon-image-text-wraper\"><img alt=\"".  esc_html(__('Info','geeky-bot')) ."\" title=\"".  esc_html(__('Info','geeky-bot')) ."\" class=\"userpopup-plus-icon\" src=\"". esc_url(GEEKYBOT_PLUGIN_URL) ."includes/images/story/info-red.png\" />". esc_attr(__('Something went wrong try again later!', 'geeky-bot')) ."</div></div>');
                 }
                 clearNotifications();
             });
@@ -540,7 +570,7 @@
                     jQuery('#response-add-form-msg').html('<div class=\"geeky-bot-popop-save-success-msg\"><div class=\"geeky-infoicon-image-text-wraper\"><img alt=\"".  esc_html(__('Info','geeky-bot')) ."\" title=\"". esc_html(__('Info','geeky-bot')) ."\" class=\"userpopup-plus-icon\" src=\"". esc_url(GEEKYBOT_PLUGIN_URL) ."includes/images/story/info-green.png\" />". esc_attr(__('Form Successfully Saved!', 'geeky-bot')) ."</div></div>');
                     updateFormsValue();
                 } else {
-                    jQuery('#response-add-form-msg').html('<div class=\"geeky-bot-popop-save-success-msg\"><div class=\"geeky-infoicon-image-text-wraper\"><img alt=\"".  esc_html(__('Info','geeky-bot')) ."\" title=\"". esc_html(__('Info','geeky-bot')) ."\" class=\"userpopup-plus-icon\" src=\"". esc_url(GEEKYBOT_PLUGIN_URL). "includes/images/story/info-green.png\" />". esc_attr(__('Something went wrong try again later!', 'geeky-bot')) ."</div></div>');
+                    jQuery('#response-add-form-msg').html('<div class=\"geeky-bot-popop-save-success-msg geeky-error-msg\"><div class=\"geeky-infoicon-image-text-wraper\"><img alt=\"".  esc_html(__('Info','geeky-bot')) ."\" title=\"". esc_html(__('Info','geeky-bot')) ."\" class=\"userpopup-plus-icon\" src=\"". esc_url(GEEKYBOT_PLUGIN_URL). "includes/images/story/info-red.png\" />". esc_attr(__('Something went wrong try again later!', 'geeky-bot')) ."</div></div>');
                 }
                 clearNotifications();
             });
@@ -563,7 +593,39 @@
                 if (data == 1) {
                     jQuery('#default-fallback-msg').html('<div class=\"geeky-bot-popop-save-success-msg\"><div class=\"geeky-infoicon-image-text-wraper\"><img alt=\"".  esc_html(__('Info','geeky-bot')) ."\" title=\"". esc_html(__('Info','geeky-bot')) ."\" class=\"userpopup-plus-icon\" src=\"". esc_url(GEEKYBOT_PLUGIN_URL) ."includes/images/story/info-green.png\" />". esc_attr(__('Default Fallback Successfully Saved!', 'geeky-bot')) ."</div></div>');
                 } else {
-                    jQuery('#default-fallback-msg').html('<div class=\"geeky-bot-popop-save-success-msg\"><div class=\"geeky-infoicon-image-text-wraper\"><img alt=\"". esc_html(__('Info','geeky-bot')) ."\" title=\"". esc_html(__('Info','geeky-bot')) ."\" class=\"userpopup-plus-icon\" src=\"". esc_url(GEEKYBOT_PLUGIN_URL) ."includes/images/story/info-green.png\" />". esc_attr(__('Something went wrong try again later!', 'geeky-bot')) ."</div></div>');
+                    jQuery('#default-fallback-msg').html('<div class=\"geeky-bot-popop-save-success-msg geeky-error-msg\"><div class=\"geeky-infoicon-image-text-wraper\"><img alt=\"". esc_html(__('Info','geeky-bot')) ."\" title=\"". esc_html(__('Info','geeky-bot')) ."\" class=\"userpopup-plus-icon\" src=\"". esc_url(GEEKYBOT_PLUGIN_URL) ."includes/images/story/info-red.png\" />". esc_attr(__('Something went wrong try again later!', 'geeky-bot')) ."</div></div>');
+                }
+                clearNotifications();
+            });
+        });
+        // save default intent fallback form
+        jQuery('form#defaultIntentFallbackForm').submit(function (e) {
+            e.preventDefault();
+            var id = jQuery('#id').val();
+            var group_id = jQuery('#group_id').val();
+            var story_id = ". $story_id .";
+            var default_intent_fallback_text = jQuery('textarea#default_intent_fallback_text').val();
+            var ajaxurl =
+                '". esc_url(admin_url("admin-ajax.php")) ."';
+            jQuery.post(ajaxurl, {
+                action: 'geekybot_ajax',
+                geekybotme: 'intent',
+                task: 'savedefaultIntentFallbackFormAjax',
+                id: id,
+                group_id: group_id,
+                story_id: story_id,
+                default_intent_fallback: default_intent_fallback_text,
+                '_wpnonce':'". esc_attr(wp_create_nonce("save-default-intent-fallback")) ."'
+            }, function(data) {
+                if (data == -1) {
+                    jQuery('#default-intent-fallback-msg').html('<div class=\"geeky-bot-popop-save-success-msg geeky-error-msg\"><div class=\"geeky-infoicon-image-text-wraper\"><img alt=\"". esc_html(__('Info','geeky-bot')) ."\" title=\"". esc_html(__('Info','geeky-bot')) ."\" class=\"userpopup-plus-icon\" src=\"". esc_url(GEEKYBOT_PLUGIN_URL) ."includes/images/story/info-red.png\" />". esc_attr(__('Store relevant user input first, then fallback.', 'geeky-bot')) ."</div></div>');
+                } else if (data == -2) {
+                    jQuery('#default-intent-fallback-msg').html('<div class=\"geeky-bot-popop-save-success-msg geeky-error-msg\"><div class=\"geeky-infoicon-image-text-wraper\"><img alt=\"". esc_html(__('Info','geeky-bot')) ."\" title=\"". esc_html(__('Info','geeky-bot')) ."\" class=\"userpopup-plus-icon\" src=\"". esc_url(GEEKYBOT_PLUGIN_URL) ."includes/images/story/info-red.png\" />". esc_attr(__('An empty default fallback.', 'geeky-bot')) ."</div></div>');
+                } else if (data) {
+                    jQuery('form#defaultIntentFallbackForm input#id').val(data);
+                    jQuery('#default-intent-fallback-msg').html('<div class=\"geeky-bot-popop-save-success-msg\"><div class=\"geeky-infoicon-image-text-wraper\"><img alt=\"".  esc_html(__('Info','geeky-bot')) ."\" title=\"". esc_html(__('Info','geeky-bot')) ."\" class=\"userpopup-plus-icon\" src=\"". esc_url(GEEKYBOT_PLUGIN_URL) ."includes/images/story/info-green.png\" />". esc_attr(__('Default Intent Fallback Successfully Saved!', 'geeky-bot')) ."</div></div>');
+                } else {
+                    jQuery('#default-intent-fallback-msg').html('<div class=\"geeky-bot-popop-save-success-msg geeky-error-msg\"><div class=\"geeky-infoicon-image-text-wraper\"><img alt=\"". esc_html(__('Info','geeky-bot')) ."\" title=\"". esc_html(__('Info','geeky-bot')) ."\" class=\"userpopup-plus-icon\" src=\"". esc_url(GEEKYBOT_PLUGIN_URL) ."includes/images/story/info-red.png\" />". esc_attr(__('Something went wrong try again later!', 'geeky-bot')) ."</div></div>');
                 }
                 clearNotifications();
             });
@@ -662,31 +724,32 @@
                                 jQuery('div#response-function-popup').slideUp('slow');
                                 jQuery('div#response-action-popup').slideUp('slow');
                                 jQuery('div#default-fallback-popup').slideUp('slow');
+                                jQuery('div#default-intent-fallback-popup').slideUp('slow');
                                 jQuery('div#response-form-popup').slideUp('slow');
                                 mak_node_active = 1;
                                 node_type = 'user_input';
                             } else if (parentDiv.classList.contains('node_action_text')) {
-                                jQuery('div.geekybot_story_right_popup_inner_wrp,div.geekybot-avlble-varpopup , div#userinput-popup, div#response-function-popup, div#response-action-popup, div#default-fallback-popup, div#response-form-popup').slideUp('slow');
+                                jQuery('div.geekybot_story_right_popup_inner_wrp,div.geekybot-avlble-varpopup , div#userinput-popup, div#response-function-popup, div#response-action-popup, div#default-fallback-popup, div#response-form-popup, div#default-intent-fallback-popup').slideUp('slow');
                                 jQuery('div#response-text-popup').slideDown('slow');
                                 mak_node_active = 1;
                                 node_type = 'response_text';
                             } else if (parentDiv.classList.contains('node_action_function')) {
-                                jQuery('div.geekybot_story_right_popup_inner_wrp,div.geekybot-avlble-varpopup , div#userinput-popup, div#response-text-popup, div#response-action-popup, div#default-fallback-popup, div#response-form-popup').slideUp('slow');
+                                jQuery('div.geekybot_story_right_popup_inner_wrp,div.geekybot-avlble-varpopup , div#userinput-popup, div#response-text-popup, div#response-action-popup, div#default-fallback-popup, div#response-form-popup, div#default-intent-fallback-popup').slideUp('slow');
                                 jQuery('div#response-function-popup').slideDown('slow');
                                 mak_node_active = 1;
                                 node_type = 'response_function';
                             }  else if (parentDiv.classList.contains('node_action_action')) {
-                                jQuery('div.geekybot_story_right_popup_inner_wrp,div.geekybot-avlble-varpopup , div#userinput-popup, div#response-text-popup, div#response-function-popup, div#default-fallback-popup, div#response-form-popup').slideUp('slow');
+                                jQuery('div.geekybot_story_right_popup_inner_wrp,div.geekybot-avlble-varpopup , div#userinput-popup, div#response-text-popup, div#response-function-popup, div#default-fallback-popup, div#response-form-popup, div#default-intent-fallback-popup').slideUp('slow');
                                 jQuery('div#response-action-popup').slideDown('slow');
                                 mak_node_active = 1;
                                 node_type = 'response_action';
                             } else if (parentDiv.classList.contains('node_action_form')) {
-                                jQuery('div.geekybot_story_right_popup_inner_wrp,div.geekybot-avlble-varpopup , div#userinput-popup, div#response-text-popup, div#response-function-popup, div#response-action-popup, div#default-fallback-popup').slideUp('slow');
+                                jQuery('div.geekybot_story_right_popup_inner_wrp,div.geekybot-avlble-varpopup , div#userinput-popup, div#response-text-popup, div#response-function-popup, div#response-action-popup, div#default-fallback-popup, div#default-intent-fallback-popup').slideUp('slow');
                                 jQuery('div#response-form-popup').slideDown('slow');
                                 mak_node_active = 1;
                                 node_type = 'response_form';
                             } else if (parentDiv.classList.contains('node_action_fallback')) {
-                                jQuery('div.geekybot_story_right_popup_inner_wrp,div.geekybot-avlble-varpopup , div#userinput-popup, div#response-text-popup,div#response-function-popup, div#response-action-popup, div#response-form-popup').slideUp('slow');
+                                jQuery('div.geekybot_story_right_popup_inner_wrp,div.geekybot-avlble-varpopup , div#userinput-popup, div#response-text-popup,div#response-function-popup, div#response-action-popup, div#response-form-popup, div#default-intent-fallback-popup').slideUp('slow');
                                 jQuery('div#default-fallback-popup').slideDown('slow');
                                 mak_node_active = 1;
                                 node_type = 'fallback';
@@ -707,6 +770,23 @@
                                         jQuery('div#defaultFallbackFormBody').html('<span class=\"geekybot_error_msg\">". esc_attr(__('Something went wrong try again later!', 'geeky-bot')) ."</span>');
                                     }
                                 });
+                            } else if (parentDiv.classList.contains('node_action_intent_fallback')) {
+                                var groupId = '';
+                                var intentNodeId = parentDiv.id;
+                                var intentNodeParentId = jQuery('#'+intentNodeId+' .box').attr('data-parentid');
+                                if(intentNodeParentId) {
+                                    var intentNodeValue = jQuery('#' + intentNodeParentId + ' .possible_node').val();
+                                    if(intentNodeValue){
+                                        intentNodeValue = intentNodeValue.replace('intentid_', '');
+                                        if(intentNodeValue) {
+                                            groupId = intentNodeValue;
+                                        }
+                                    }
+                                }
+                                jQuery('div.geekybot_story_right_popup_inner_wrp,div.geekybot-avlble-varpopup , div#userinput-popup, div#response-text-popup,div#response-function-popup, div#response-action-popup, div#response-form-popup, div#default-fallback-popup').slideUp('slow');
+                                jQuery('div#default-intent-fallback-popup').slideDown('slow');
+                                mak_node_active = 1;
+                                node_type = 'intent_fallback';
                             }
                             if(mak_node_active == 1) {
                                 // Find the input field within the parentDiv
@@ -798,6 +878,23 @@
                                                     jQuery('div#responseFormFormBody').html(geekybot_DecodeHTML(data));
                                                 } else {
                                                     jQuery('div#responseFormFormBody').html('<span class=\"geekybot_error_msg\">". esc_attr(__('Something went wrong try again later!', 'geeky-bot')) ."</span>');
+                                                }
+                                            });
+                                        } else if (node_type == 'intent_fallback') {
+                                            //
+                                            removeFormHTLM();
+                                            var ajaxurl = '". esc_url(admin_url("admin-ajax.php")) ."';
+                                            jQuery.post(ajaxurl, {
+                                                action: 'geekybot_ajax',
+                                                geekybotme: 'stories',
+                                                task: 'getDefaultIntentFallbackFormBodyHTMLAjax',
+                                                groupId: groupId,
+                                                '_wpnonce':'". esc_attr(wp_create_nonce("get-form-html")) ."'
+                                            }, function(data) {
+                                                if (data) {
+                                                    jQuery('div#defaultIntentFallbackFormBody').html(geekybot_DecodeHTML(data));
+                                                } else {
+                                                    jQuery('div#defaultIntentFallbackFormBody').html('<span class=\"geekybot_error_msg\">". esc_attr(__('Something went wrong try again later!', 'geeky-bot')) ."</span>');
                                                 }
                                             });
                                         }
@@ -958,33 +1055,72 @@
                 var removeNodeId = jQuery(removeParentDiv).find('.possible_node.active_node').attr('data-nodeid');
                 var removeNodeIndex = find_node_index(positions, removeNodeId);
                 if (removeNodeIndex !== -1) {
+                    if (jQuery(this).hasClass('geekybot_node_remove_intent_fb')) {
+                        var fb_parent_id = jQuery('#'+removeNodeId+' .box').attr('data-parentid');
+                        if(fb_parent_id == 'node1') {
+                            deleteDefaultFallback();
+                        } else {
+                            var fb_parent_value = jQuery('#' + fb_parent_id + ' .possible_node').val();
+                            var fb_group_id = '';
+                            if(fb_parent_value){
+                                fb_parent_value = fb_parent_value.replace('intentid_', '');
+                                if(fb_parent_value) {
+                                    fb_group_id = fb_parent_value;
+                                    deleteIntentFallback(fb_group_id);
+                                }
+                            }
+                        }
+                    }
                     // find where parend is current id
-                    var removeNodeIdChild = positions.find(n => n.parentId === removeNodeId);
+                    var removeNodeIdChild = positions.find(n => n.parentId === removeNodeId && n.type != 'fallback');
                     if(removeNodeIdChild) {
                         var removeNodeIdChildID = removeNodeIdChild.id;
                         var removeNodeIdChildIDIndex = find_node_index(positions, removeNodeIdChildID);
                         // change parentId of child node with the parent of the node that is going to be removed
                         positions[removeNodeIdChildIDIndex].parentId = positions[removeNodeIndex].parentId;
                     }
-                    for (var index = positions.length - 1; index >= 0; index--) {
-                        var node = positions[index];
-                        if (index > removeNodeIndex) {
-                            var pindex = index - 1;
-                            if(pindex < positions.length) {
-                                var expectedTop = positions[pindex].top;
-                                var expectedLeft = positions[pindex].left;
-                                positions[index].top = expectedTop;
-                                positions[index].left = expectedLeft;
+                    if (positions[removeNodeIndex].type != 'fallback') {
+                        for (var index = positions.length - 1; index >= 0; index--) {
+                            var node = positions[index];
+                            if (index > removeNodeIndex && positions[index].type != 'fallback') {
+                                var pindex = index - 1;
+                                if (positions[pindex].type == 'fallback') {
+                                    var parentOfFB = positions[pindex].parentId;
+                                    if(parentOfFB){
+                                        var parentOfFBNode = positions.find(n => n.id === parentOfFB);
+                                        if(parentOfFBNode && pindex < positions.length) {
+                                            positions[pindex].left = parentOfFBNode.left + 40;
+                                        }
+                                        console.log('positions[pindex]');
+                                    }
+                                    pindex = index - 2;
+                                }
+                                if(pindex < positions.length) {
+                                    var expectedTop = positions[pindex].top;
+                                    var expectedLeft = positions[pindex].left;
+                                    positions[index].top = expectedTop;
+                                    positions[index].left = expectedLeft;
+                                }
                             }
                         }
                     }
                     positions.splice(removeNodeIndex, 1);
+                    // find fallback and then remove
+                    var fallBackNode = positions.find(n => n.type === 'fallback' && n.parentId === removeNodeId);
+                    if(fallBackNode){
+                        var removeFBNodeIndex = find_node_index(positions, fallBackNode.id);
+                        if (removeFBNodeIndex !== -1) {
+                            positions.splice(removeFBNodeIndex, 1);
+                        }
+                    }
                     // close action popup if open
                     jQuery('div.geekybot_story_right_popup_inner_wrp').slideDown('slow');
                     jQuery('div.geekybot-avlble-varpopup').slideUp('slow');
                     jQuery('div#userinput-popup').slideUp('slow');
                     jQuery('div#response-text-popup').slideUp('slow');
                     jQuery('div#response-function-popup').slideUp('slow');
+                    jQuery('div#default-fallback-popup').slideUp('slow');
+                    jQuery('div#default-intent-fallback-popup').slideUp('slow');
                     // redraw the nodes
                     setCanvasWidthHeight();
                     var newIdCounter = id;
@@ -996,8 +1132,14 @@
         
         // Draw positions
         var filteredpositions = positions.filter(obj => !obj.id.startsWith('fallback_'));
-        filteredpositions.forEach(function(node, index) {
+        if(positions[positions.length - 1].type == 'fallback') {
+            var lastNode = positions.length - 2;
+        } else {
+            var lastNode = positions.length - 1;
+        }
+        positions.forEach(function(node, index) {
             var node_id = node.id;
+            var parent_node_id = node.parentId;
             var story_id = ". $story_id .";
             var nodeText = '<span>'+node.text+'</span>';
             var nodeCategory = node.category;
@@ -1009,23 +1151,42 @@
             if (node.type == 'user_input') {
                 nodeText = '';
             }
-            if (index === filteredpositions.length - 1 && node.type != 'fallback') {
-                jQuery('#geekybot_container').append('<div id=\"' + node_id + '\" style=\"top: '+node.top+'px; left: '+node.left+'px;\" class=\"'+node.class+' node big-box geekybot_custom_tooltip \"><div id=\"end_point\" class=\"box bg-black geekybot_node_body geekybot_story_leftaction_wrp\" data-parentid=\"'+node_id+'\" data-left=\"'+node.left+'\" data-top=\"'+node.top+'\" data-storyid=\"'+story_id+'\"><input class=\"possible_node\" type=\"hidden\" name=\"story[ids][]\" value=\"'+nodeValue+'\" required=\"\" data-category=\"'+nodeCategory+'\" data-nodeid=\"' + node_id + '\"><img src=\"". esc_url(GEEKYBOT_PLUGIN_URL) ."includes/images/story/'+node.image+'.png\">'+nodeText+'<div class=\"drop_zone_grand_paraent_wrp\" ondrop=\"drop(event)\" ondragover=\"allowDrop(event)\"><div class=\"drop_zone_paraent_wrp\"><i class=\"fa fa-plus\"></i></div></div><img class=\"geekybot_node_remove\" title = \"". esc_attr(__('Delete', 'geeky-bot'))."\" src=\"". esc_url(GEEKYBOT_PLUGIN_URL) ."includes/images/story/cross.png\" ><div class=\"active_zone_wrp\"></div><span class=\"geekybot_tooltip_text\"></span></div></div>');
+            if (node.type != 'fallback') {
+                if (index === lastNode && node.type != 'fallback') {
+                    jQuery('#geekybot_container').append('<div id=\"' + node_id + '\" style=\"top: '+node.top+'px; left: '+node.left+'px;\" class=\"'+node.class+' node big-box geekybot_custom_tooltip \"><div id=\"end_point\" class=\"box bg-black geekybot_node_body geekybot_story_leftaction_wrp 01\" data-parentid=\"'+node_id+'\" data-parenttype=\"'+node.type+'\" data-left=\"'+node.left+'\" data-top=\"'+node.top+'\" data-storyid=\"'+story_id+'\"><input class=\"possible_node\" type=\"hidden\" name=\"story[ids][]\" value=\"'+nodeValue+'\" required=\"\" data-category=\"'+nodeCategory+'\" data-nodeid=\"' + node_id + '\"><img src=\"". esc_url(GEEKYBOT_PLUGIN_URL) ."includes/images/story/'+node.image+'.png\">'+nodeText+'<div class=\"drop_zone_grand_paraent_wrp\" ondrop=\"drop(event)\" ondragover=\"allowDrop(event)\"><div class=\"drop_zone_paraent_wrp\"><i class=\"fa fa-plus\"></i></div></div><img class=\"geekybot_node_remove\" title = \"". esc_attr(__('Delete', 'geeky-bot'))."\" src=\"". esc_url(GEEKYBOT_PLUGIN_URL) ."includes/images/story/cross.png\" ><div class=\"active_zone_wrp\"></div><span class=\"geekybot_tooltip_text\"></span></div></div>');
+                } else {
+                    jQuery('#geekybot_container').append('<div id=\"' + node_id + '\" style=\"top: '+node.top+'px; left: '+node.left+'px; \" class=\"'+node.class+' node big-box geekybot_custom_tooltip \"><div class=\"box bg-black geekybot_story_leftaction_wrp 02\" data-parentid=\"'+parent_node_id+'\" data-parenttype=\"'+node.type+'\"><input class=\"possible_node\" type=\"hidden\" name=\"story[ids][]\" value=\"'+nodeValue+'\" required=\"\" data-category=\"'+nodeCategory+'\" data-nodeid=\"' + node_id + '\"><img src=\"". esc_url(GEEKYBOT_PLUGIN_URL) ."includes/images/story/'+node.image+'.png\">'+nodeText+'<img class=\"geekybot_node_remove\" title = \"". esc_attr(__('Delete', 'geeky-bot'))."\" src=\"". esc_url(GEEKYBOT_PLUGIN_URL) ."includes/images/story/cross.png\" ><div class=\"active_zone_wrp\"></div><span class=\"geekybot_tooltip_text\"></span></div></div>');
+                }
             } else {
-                jQuery('#geekybot_container').append('<div id=\"' + node_id + '\" style=\"top: '+node.top+'px; left: '+node.left+'px; \" class=\"'+node.class+' node big-box geekybot_custom_tooltip \"><div class=\"box bg-black geekybot_story_leftaction_wrp\"><input class=\"possible_node\" type=\"hidden\" name=\"story[ids][]\" value=\"'+nodeValue+'\" required=\"\" data-category=\"'+nodeCategory+'\" data-nodeid=\"' + node_id + '\"><img src=\"". esc_url(GEEKYBOT_PLUGIN_URL) ."includes/images/story/'+node.image+'.png\">'+nodeText+'<img class=\"geekybot_node_remove\" title = \"". esc_attr(__('Delete', 'geeky-bot'))."\" src=\"". esc_url(GEEKYBOT_PLUGIN_URL) ."includes/images/story/cross.png\" ><div class=\"active_zone_wrp\"></div><span class=\"geekybot_tooltip_text\"></span></div></div>');
-            }
-            // to auto draw the fallback
-            // if (node.type == 'user_input') {
-            if (filteredpositions.length >= 2) {
-                var fallBackNode = positions.find(n => n.type === 'fallback' && n.parentId === node.id);
-                if (fallBackNode) {
-                    jQuery('#geekybot_container').append('<div id=\"' + fallBackNode.id + '\" style=\"top: '+fallBackNode.top+'px; left: '+fallBackNode.left+'px; \" class=\"'+fallBackNode.class+' node big-box\"><div class=\"box bg-black geekybot_story_leftaction_wrp\"><img src=\"". esc_url(GEEKYBOT_PLUGIN_URL) ."includes/images/story/'+fallBackNode.image+'.png\"><span>'+fallBackNode.text+'</span></div></div>');
+                // to auto draw the fallback
+                // if (node.type == 'user_input') {
+                if (positions.length >= 2) {
+                    var fallBackNode = positions.find(n => n.type === 'fallback' && n.parentId === node.id);
+                    // if (fallBackNode) 
+                    {
+                        var defaultFBClass = '';
+                        if(node.id == 'node1') {
+                            defaultFBClass = 'geekybot_node_remove_default_fb';
+                        }
+                        jQuery('#geekybot_container').append('<div id=\"' + node_id + '\" style=\"top: '+node.top+'px; left: '+node.left+'px; \" class=\"'+node.class+' node big-box geekybot_custom_tooltip\"><div class=\"box bg-black geekybot_story_leftaction_wrp 03 \" data-parentid=\"'+parent_node_id+'\" data-parenttype=\"'+node.type+' \"><input class=\"possible_node\" type=\"hidden\" name=\"\" value=\"'+nodeValue+'\" required=\"\" data-category=\"'+nodeCategory+'\" data-nodeid=\"' + node_id + '\"><img src=\"". esc_url(GEEKYBOT_PLUGIN_URL) ."includes/images/story/'+node.image+'.png\"><span>'+node.text+'</span><img class=\"geekybot_node_remove geekybot_node_remove_intent_fb '+ defaultFBClass +'\" title = \"". esc_attr(__('Delete', 'geeky-bot'))."\" src=\"". esc_url(GEEKYBOT_PLUGIN_URL) ."includes/images/story/cross.png\" ><div class=\"active_zone_wrp\"></div><span class=\"geekybot_tooltip_text\"></span></div></div>');
+                    }
                 }
             }
             // add the new point in the middle of two points
             if (index != 0 && node.type != 'fallback') {
-                var pNode = filteredpositions[index - 1];
-                var specialIndex = index + 1;
+                var pNode = positions[index - 1];
+                if (pNode.type == 'fallback') {
+                    pNode = positions[index - 2];
+                }
+                var additionalIndexes = 1;
+                for (var i = 0; i < index; i++) {
+                    var isfallbackNode = positions.find(n => n.id === 'fallback_node'+i);
+                    if (isfallbackNode) {
+                        additionalIndexes = additionalIndexes + 1;
+                    }
+                }
+                // var specialIndex = index + additionalIndexes;
+                var specialIndex = index;
                 if (pNode.type == 'user_input') {
                     var midNodeTop = pNode.top + 15;
                     var midNodeLeft = pNode.left + 40;
@@ -1041,22 +1202,29 @@
                 }
                 var Top = node.top + 155;
                 var Left = node.left - 200;
+                var fallbackTop = midNodeTop;
+                var fallbackLeft = midNodeLeft;
                 var midnode_id = node_id.replace('node', '');
                 midnode_id = parseInt(midnode_id, 10) - 1;
                 midnode_id = 'node'+midnode_id;
                 // big-box class remove due to bug
-                jQuery('#geekybot_container').append('<div id=\"' + midnode_id + '\" style=\"top: '+midNodeTop+'px; left: '+midNodeLeft+'px;\" class=\"drop-zone midnode node\" id=\"node'+midnode_id+'\"><div class=\"geekey_add_newfield_wrapper box-blue box bg-black geekybot_node_body\" ondrop=\"middrop(event)\" data-parentid=\"'+node.parentId+'\" data-arrIndex=\"'+specialIndex+'\" data-childId=\"'+node_id+'\" data-left=\"'+Left+'\" data-top=\"'+Top+'\" ondragover=\"allowDrop(event)\" data-storyid=\"1\">+<div class=\"drop_zone_grand_paraent_wrp\"><div class=\"drop_zone_paraent_wrp\"><i class=\"fa fa-plus\"></div></div></div></div>');
+                jQuery('#geekybot_container').append('<div id=\"' + midnode_id + '\" style=\"top: '+midNodeTop+'px; left: '+midNodeLeft+'px;\" class=\"drop-zone midnode node\" id=\"node'+midnode_id+'\"><div class=\"geekey_add_newfield_wrapper box-blue box bg-black geekybot_node_body\" ondrop=\"middrop(event)\" data-parentid=\"'+node.parentId+'\" data-parenttype=\"'+pNode.type+'\" data-arrIndex=\"'+specialIndex+'\" data-childId=\"'+node_id+'\" fallback-data-left=\"'+fallbackLeft+'\" fallback-data-top=\"'+fallbackTop+'\" data-left=\"'+Left+'\" data-top=\"'+Top+'\" ondragover=\"allowDrop(event)\" data-storyid=\"1\">+<div class=\"drop_zone_grand_paraent_wrp\"><div class=\"drop_zone_paraent_wrp\"><i class=\"fa fa-plus\"></div></div></div></div>');
             }
         });
         // Draw lines between positions
-        filteredpositions.forEach(function(node, index) {
+        positions.forEach(function(node, index) {
             if (node.parentId) {
-                var parentNode = filteredpositions.find(n => n.id === node.parentId);
+                var parentNode = positions.find(n => n.id === node.parentId);
                 curvedLine(jQuery('#' + parentNode.id)[0], jQuery('#' + node.id)[0], index);
+                var fallBackNode = positions.find(n => n.type === 'fallback' && n.parentId === node.id);
+                if (fallBackNode) {
+                    // curvedLine(jQuery('#' + fallBackNode.parentId)[0], jQuery('#' + fallBackNode.id)[0], index);
+                }
                 // if (node.type == 'user_input') {
                 if (node.id == 'node3') {
                     var fallBackNode = positions.find(n => n.type === 'fallback' && n.parentId === 'node1');
-                    curvedLine(jQuery('#' + fallBackNode.parentId)[0], jQuery('#' + fallBackNode.id)[0], index);
+                    // curvedLine(jQuery('#' + fallBackNode.parentId)[0], jQuery('#' + fallBackNode.id)[0], index);
+                    // recheck this
                 }
             }
         });
@@ -1084,6 +1252,8 @@
         function curvedLine(first_node, second_node, index) {
             var rect1 = first_node.getBoundingClientRect();
             var rect2 = second_node.getBoundingClientRect();
+            var first_node_parent_type = jQuery('#'+first_node.id+' .geekybot_node_body').attr('data-parenttype');
+            var second_node_parent_type = jQuery('#'+first_node.id+' .box').attr('data-parenttype');
             var first_node_data = positions.find(n => n.id === first_node.id);
             var second_node_data = positions.find(n => n.id === second_node.id);
             var x1 = first_node_data.left + rect1.width / 2;
@@ -1173,7 +1343,7 @@
         }
 
         function find_node_index(positions, nodeId) {
-            var nodeMap = 0;
+            var nodeMap = -1;
             positions.forEach(function(node, index) {
                 if (node.id == nodeId) {
                     nodeMap = index;
@@ -1190,89 +1360,33 @@
             jQuery('div#responseFormFormBody').html('');
         }
     }";
-wp_add_inline_script('geekybot-main-js',$geekybot_js);
-if (!defined('ABSPATH'))
-    die('Restricted Access');
-wp_enqueue_script('jquery');
-$story_mode_list = array(
-  (object) array('id' => '1', 'text' => __('Discard', 'geeky-bot')),
-  (object) array('id' => '2', 'text' => __('Temporary discard', 'geeky-bot')),
-  (object) array('id' => '3', 'text' => __('Automate', 'geeky-bot'))
-);
-// if (!isset(geekybot::$_data[0]['missing_intent'])) {
-    $missing_intent = GEEKYBOTrequest::GEEKYBOT_getVar('missing_intent','GET');
-// }
-if(!isset(geekybot::$_data[0]['story']->positions_array) || geekybot::$_data[0]['story']->positions_array == ''){
-    $startPointMsg = __('Start Point', 'geeky-bot');
-    $fallbackMsg = __('Default Fallback', 'geeky-bot');
-    $geekybot_js ="
-    var idCounter = 2;
-    var add_missing_node = 0;
-    // start point's position
-    var positions = [
-        { id: 'node1', top: 500, left: 0, parentId: null, type: 'start_point', text: '".$startPointMsg."', image: 'home', class: 'node_start_point', category: 'start' },
-        { id: 'fallback_node1', top: 640, left: 265, parentId: 'node1', type: 'fallback', text: '".$fallbackMsg."',image: 'fallback',class: 'node_action_fallback', category: 'fallback' }
-    ];";
-    if (isset($missing_intent)) {
-        $geekybot_js .="
-        var missing= '".$missing_intent."'
-        var position = { 
-            id: 'node' + idCounter++, // Generate unique ID
-            top: 352,   // Y coordinate relative to the parent
-            left: 241, // X coordinate relative to the parent
-            parentId: 'node1',
-            type: 'user_input',
-            text: 'User input',
-            image: 'user-icon',
-            class: 'node_action_user_input user_input_from_history',
-            category: 'intent',
-            value: ''
-        };
-        positions.push(position); // Push position into the array
-        add_missing_node = 1;
-        ";
-    }
-    $geekybot_js .="
-    idCounter = idCounter++;
-    console.log(positions);
-    drawNodes(idCounter);
-    ";
-} else {
-    $geekybot_js ="
-        // var idCounter = 2;
-        var idCounter_no = ". geekybot::$_data[0]['story']->number_of_objects.";
-        var idCounter = (idCounter_no * 2) - 2;
-        var positions = ". geekybot::$_data[0]['story']->positions_array.";
-        // Iterate over each object in the array
-        var parentTop = 352;
-        var parentLeft = 241;
-        var parentId = 'node1';
+    wp_add_inline_script('geekybot-main-js',$geekybot_js);
+    $story_mode_list = array(
+      (object) array('id' => '1', 'text' => __('Discard', 'geeky-bot')),
+      (object) array('id' => '2', 'text' => __('Temporary discard', 'geeky-bot')),
+      (object) array('id' => '3', 'text' => __('Automate', 'geeky-bot'))
+    );
+    // if (!isset(geekybot::$_data[0]['missing_intent'])) {
+        $missing_intent = GEEKYBOTrequest::GEEKYBOT_getVar('missing_intent','GET');
+    // }
+    if(!isset(geekybot::$_data[0]['story']->positions_array) || geekybot::$_data[0]['story']->positions_array == ''){
+        $startPointMsg = __('Start Point', 'geeky-bot');
+        $fallbackMsg = __('Default Fallback', 'geeky-bot');
+        $geekybot_js ="
+        var idCounter = 2;
         var add_missing_node = 0;
-        positions.forEach(function(item) {
-            // Convert string values representing numbers into actual numbers
-            parentId = item.id;
-            parentTop = item.top = parseInt(item.top);
-            parentLeft = item.left = parseInt(item.left);
-        });";
+        // start point's position
+        var positions = [
+            { id: 'node1', top: 500, left: 0, parentId: null, parentType: 'start', type: 'start_point', text: \"".$startPointMsg."\", image: 'home', class: 'node_start_point', category: 'start' }
+        ];";
         if (isset($missing_intent)) {
             $geekybot_js .="
             var missing= '".$missing_intent."'
-            // add the node to the array
-            var maxParentTopDistance = 20;
-            expectedParentTop = parseInt(parentTop, 10) - 148;
-            if (expectedParentTop < maxParentTopDistance) {
-                parentTop = parseInt(parentTop, 10) - 6;
-            } else {
-                parentTop = expectedParentTop;
-            }
-            parentLeft = parseInt(parentLeft, 10) + 241;
-            
-            idCounter++;
             var position = { 
-                id: 'node' + idCounter, // Generate unique ID
-                top: parentTop,   // Y coordinate relative to the parent
-                left: parentLeft, // X coordinate relative to the parent
-                parentId: parentId,
+                id: 'node' + idCounter++, // Generate unique ID
+                top: 352,   // Y coordinate relative to the parent
+                left: 241, // X coordinate relative to the parent
+                parentId: 'node1',
                 type: 'user_input',
                 text: 'User input',
                 image: 'user-icon',
@@ -1285,67 +1399,119 @@ if(!isset(geekybot::$_data[0]['story']->positions_array) || geekybot::$_data[0][
             ";
         }
         $geekybot_js .="
-        setCanvasWidthHeight();
         idCounter = idCounter++;
         console.log(positions);
         drawNodes(idCounter);
-        if (canvas.width > 1200) {
-            // Scroll the container to the right to show the new object smoothly
-            var canvasContainer = document.getElementById('canvas_container');
-            canvasContainer.scrollTo({left: canvas.width, behavior: 'smooth'});
-        }
-    ";
-}
-
-$geekybot_js .="
-if(add_missing_node == 1) {
-    // open the popup and bind possible_values
-    jQuery('div.geekybot-avlble-varpopup').slideUp('slow');
-    jQuery('div.geekybot_story_right_popup_inner_wrp').slideUp('slow');
-    jQuery('div#userinput-popup').slideDown('slow');
-    jQuery('div#response-text-popup').slideUp('slow');
-    jQuery('div#response-function-popup').slideUp('slow');
-    jQuery('div#response-action-popup').slideUp('slow');
-    jQuery('div#default-fallback-popup').slideUp('slow');
-    jQuery('div#response-form-popup').slideUp('slow');
-
-    // bind the missing value in the opened popup
-    var inputField = jQuery('.user_input_from_history').find('input[type=\"hidden\"]');
-    // Access and manipulate the input field (if it exists)
-    if (inputField.length > 0) {
-        // Do something with the input field
-        jQuery('input[type=\"hidden\"]').removeClass('active_node');
-        jQuery('div.geekybot_story_leftaction_wrp').removeClass('active_node_parent');
-        inputField.addClass('active_node'); // Example: Set a new value
-        inputField.closest('.geekybot_story_leftaction_wrp').addClass('active_node_parent');
-        // bind data in case of update
-        var input_value = inputField.val();
-        if (input_value !== undefined || input_value !== '') {
-            // get values using ajax
-            var ajaxurl = '". esc_url(admin_url('admin-ajax.php')) ."';
-            jQuery.post(ajaxurl, {
-                action: 'geekybot_ajax',
-                geekybotme: 'stories',
-                task: 'getUserInputFormBodyHTMLAjax',
-                id: '',
-                '_wpnonce':'". esc_attr(wp_create_nonce('get-form-html')) ."'
-            }, function(data) {
-                if (data) {
-                    jQuery('div#userInputFormBody').html(geekybot_DecodeHTML(data));
-                    jQuery(\"input[name='user_messages[]']\").each(function() {
-                        var value = jQuery(this).val(missing);
-                    });
-                }
-            });
-        }
+        ";
     } else {
-        jQuery('input[type=\"hidden\"]').removeClass('active_node');
-        jQuery('div.geekybot_story_leftaction_wrp').removeClass('active_node_parent');
+        $geekybot_js ="
+            // var idCounter = 2;
+            var idCounter_no = ". geekybot::$_data[0]['story']->number_of_objects.";
+            var idCounter = (idCounter_no * 2) - 2;
+            var positions = ". geekybot::$_data[0]['story']->positions_array.";
+            // Iterate over each object in the array
+            var parentTop = 352;
+            var parentLeft = 241;
+            var parentId = 'node1';
+            var add_missing_node = 0;
+            positions.forEach(function(item) {
+                // Convert string values representing numbers into actual numbers
+                parentId = item.id;
+                parentTop = item.top = parseInt(item.top);
+                parentLeft = item.left = parseInt(item.left);
+            });";
+            if (isset($missing_intent)) {
+                $geekybot_js .="
+                var missing= '".$missing_intent."'
+                // add the node to the array
+                var maxParentTopDistance = 20;
+                expectedParentTop = parseInt(parentTop, 10) - 148;
+                if (expectedParentTop < maxParentTopDistance) {
+                    parentTop = parseInt(parentTop, 10) - 6;
+                } else {
+                    parentTop = expectedParentTop;
+                }
+                parentLeft = parseInt(parentLeft, 10) + 241;
+                
+                idCounter++;
+                var position = { 
+                    id: 'node' + idCounter, // Generate unique ID
+                    top: parentTop,   // Y coordinate relative to the parent
+                    left: parentLeft, // X coordinate relative to the parent
+                    parentId: parentId,
+                    type: 'user_input',
+                    text: 'User input',
+                    image: 'user-icon',
+                    class: 'node_action_user_input user_input_from_history',
+                    category: 'intent',
+                    value: ''
+                };
+                positions.push(position); // Push position into the array
+                add_missing_node = 1;
+                ";
+            }
+            $geekybot_js .="
+            setCanvasWidthHeight();
+            idCounter = idCounter++;
+            console.log(positions);
+            drawNodes(idCounter);
+            if (canvas.width > 1200) {
+                // Scroll the container to the right to show the new object smoothly
+                var canvasContainer = document.getElementById('canvas_container');
+                canvasContainer.scrollTo({left: canvas.width, behavior: 'smooth'});
+            }
+        ";
     }
-    var inputField = jQuery('.node_action_user_input').removeClass('.user_input_from_history');
-}
-";
-$geekybot_js .="
+    $geekybot_js .="
+    if(add_missing_node == 1) {
+        // open the popup and bind possible_values
+        jQuery('div.geekybot-avlble-varpopup').slideUp('slow');
+        jQuery('div.geekybot_story_right_popup_inner_wrp').slideUp('slow');
+        jQuery('div#userinput-popup').slideDown('slow');
+        jQuery('div#response-text-popup').slideUp('slow');
+        jQuery('div#response-function-popup').slideUp('slow');
+        jQuery('div#response-action-popup').slideUp('slow');
+        jQuery('div#default-fallback-popup').slideUp('slow');
+        jQuery('div#default-intent-fallback-popup').slideUp('slow');
+        jQuery('div#response-form-popup').slideUp('slow');
+
+        // bind the missing value in the opened popup
+        var inputField = jQuery('.user_input_from_history').find('input[type=\"hidden\"]');
+        // Access and manipulate the input field (if it exists)
+        if (inputField.length > 0) {
+            // Do something with the input field
+            jQuery('input[type=\"hidden\"]').removeClass('active_node');
+            jQuery('div.geekybot_story_leftaction_wrp').removeClass('active_node_parent');
+            inputField.addClass('active_node'); // Example: Set a new value
+            inputField.closest('.geekybot_story_leftaction_wrp').addClass('active_node_parent');
+            // bind data in case of update
+            var input_value = inputField.val();
+            if (input_value !== undefined || input_value !== '') {
+                // get values using ajax
+                var ajaxurl = '". esc_url(admin_url('admin-ajax.php')) ."';
+                jQuery.post(ajaxurl, {
+                    action: 'geekybot_ajax',
+                    geekybotme: 'stories',
+                    task: 'getUserInputFormBodyHTMLAjax',
+                    id: '',
+                    '_wpnonce':'". esc_attr(wp_create_nonce('get-form-html')) ."'
+                }, function(data) {
+                    if (data) {
+                        jQuery('div#userInputFormBody').html(geekybot_DecodeHTML(data));
+                        jQuery(\"input[name='user_messages[]']\").each(function() {
+                            var value = jQuery(this).val(missing);
+                        });
+                    }
+                });
+            }
+        } else {
+            jQuery('input[type=\"hidden\"]').removeClass('active_node');
+            jQuery('div.geekybot_story_leftaction_wrp').removeClass('active_node_parent');
+        }
+        var inputField = jQuery('.node_action_user_input').removeClass('.user_input_from_history');
+    }
+    ";
+    $geekybot_js .="
     var dragid = '';
     var intentCount = 0;
     
@@ -1356,17 +1522,25 @@ $geekybot_js .="
     function drop(event){
         event.preventDefault(); // Prevent default to enable dropping
         if (!dragid || dragid == '') {
-          return
+            return
         }
-        idCounter = idCounter + 1;
         var dropdiv = event.target;
         dropdiv = jQuery(dropdiv);
         if (!dropdiv.hasClass('geekybot_node_body')) {
             dropdiv = dropdiv.closest('.geekybot_node_body');
             // dropdiv = dropdiv.parent();
         }
-        if (dropdiv.hasClass('geekybot_node_body')) {
-          dropdiv = dropdiv;
+        var parentType = dropdiv.attr('data-parenttype');
+        var parentId = dropdiv.attr('data-parentid');
+        if(dragid == 'geekybot_fallback' && (parentType != 'user_input' && parentType != 'start_point')) {
+            jQuery('div.drop_zone_grand_paraent_wrp').removeClass('drop_zone_grand_paraent_visible');
+            return;
+        }
+        // check if the fallback already exist for the this node
+        var isfallBackExist = positions.find(n => n.parentId === parentId && n.type === 'fallback');
+        if(dragid == 'geekybot_fallback' && isfallBackExist) {
+            jQuery('div.drop_zone_grand_paraent_wrp').removeClass('drop_zone_grand_paraent_visible');
+            return;
         }
         storyid = dropdiv.attr('data-storyid');
         // dragid -= 1;
@@ -1384,13 +1558,24 @@ $geekybot_js .="
         // dragid = '';
         var parentId = dropdiv.attr('data-parentid');
         var parentTop = dropdiv.attr('data-top');
-        var fallBackTop = parseInt(parentTop, 10) + 148;
         var parentLeft = dropdiv.attr('data-left');
         // get the dragged item data
-        var [block_type, block_img, block_text, block_class, block_category] = getDraggedItemData(dragid);
+        var [block_type, block_img, block_text, block_class, block_category] = getDraggedItemData(dragid, parentType);
         // check for fallback
         if(dragid == 'geekybot_fallback'){
-            parentTop = parseInt(parentTop, 10) + 148;
+            // to limit the max distance from the top
+            var maxBottomDistance = 760;
+            var next_position = parseInt(parentTop, 10) + 148;
+            if (next_position > maxBottomDistance) {
+                parentTop = parseInt(parentTop, 10) - 148;
+            } else {
+                parentTop = parseInt(parentTop, 10) + 148;
+            }
+            if(positions.length > 1) {
+                parentLeft = parseInt(parentLeft, 10) + 100;
+            } else {
+                parentLeft = parseInt(parentLeft, 10) + 220;
+            }
         } else {
             // to limit the max distance from the top
             var maxParentTopDistance = 20;
@@ -1404,49 +1589,35 @@ $geekybot_js .="
             } else {
                 parentTop = expectedParentTop;
             }
+            parentLeft = parseInt(parentLeft, 10) + 241;
         }
         // get the next unique id
         var maxIdNumber = 0;
         var filtered_positions = positions.filter(obj => !obj.id.startsWith('fallback_'));
-        filtered_positions.forEach(function(node, index) {
+        positions.forEach(function(node, index) {
             var nodeIdNumber = parseInt(node.id.replace('node', ''));
             if (nodeIdNumber > maxIdNumber) {
                 maxIdNumber = nodeIdNumber;
             }
         });
-        parentLeft = parseInt(parentLeft, 10) + 241;
-        if (dragid == 'geekybot_fallback') {
-            var position = {
-                id: 'fallback_' + maxIdNumber++, // Generate unique ID
-                top: fallBackTop,   // Y coordinate relative to the parent
-                left: parentLeft, // X coordinate relative to the parent
-                parentId: parentId,
-                type: 'fallback',
-                text: 'Default Fallback',
-                image: 'fallback',
-                class: block_class,
-                category: block_category,
-                value: ''
-            };
+        if(maxIdNumber == 0) {
+            maxIdNumber = maxIdNumber + 1;
         } else {
-            if(maxIdNumber == 0) {
-                maxIdNumber = maxIdNumber + 1;
-            } else {
-                maxIdNumber = maxIdNumber + 2;
-            }
-            var position = { 
-                id: 'node' + maxIdNumber, // Generate unique ID
-                top: parentTop,   // Y coordinate relative to the parent
-                left: parentLeft, // X coordinate relative to the parent
-                parentId: parentId,
-                type: block_type,
-                text: block_text,
-                image: block_img,
-                class: block_class,
-                category: block_category,
-                value: ''
-            };
+            maxIdNumber = maxIdNumber + 2;
         }
+        var position = {
+            id: 'node' + maxIdNumber, // Generate unique ID
+            top: parentTop,   // Y coordinate relative to the parent
+            left: parentLeft, // X coordinate relative to the parent
+            parentId: parentId,
+            parentType: parentType,
+            type: block_type,
+            text: block_text,
+            image: block_img,
+            class: block_class,
+            category: block_category,
+            value: ''
+        };
         positions.push(position); // Push position into the array
         // set the canvas width and height according to the node size
         setCanvasWidthHeight();
@@ -1464,16 +1635,28 @@ $geekybot_js .="
         if (!dragid || dragid == '') {
             return
         }
-        idCounter = idCounter + 1;
         var dropdiv = event.target;
         dropdiv = jQuery(dropdiv);
         if (!dropdiv.hasClass('geekybot_node_body')) {
             dropdiv = dropdiv.closest('.geekybot_node_body');
-            //  dropdiv = dropdiv.parent();
+            // dropdiv = dropdiv.parent();
+        }
+        var parentType = dropdiv.attr('data-parenttype');
+        var parentId = dropdiv.attr('data-parentid');
+        if(dragid == 'geekybot_fallback' && !isfallBackExist && (parentType != 'user_input' && parentType != 'start_point')) {
+            jQuery('div.drop_zone_grand_paraent_wrp').removeClass('drop_zone_grand_paraent_visible');
+            return;
+        }
+        // check if the fallback already exist for the this node
+        var isfallBackExist = positions.find(n => n.parentId === parentId && n.type === 'fallback');
+        if(dragid == 'geekybot_fallback' && isfallBackExist) {
+            jQuery('div.drop_zone_grand_paraent_wrp').removeClass('drop_zone_grand_paraent_visible');
+            return;
         }
         if (dropdiv.hasClass('geekybot_node_body')) {
           dropdiv = dropdiv;
         }
+        idCounter = idCounter + 1;
         // dragid -= 1;
         var clonedElement = dropdiv.clone(true); // Create a clone (optional)
         var parentElement = dropdiv.parent(); // Get the parent element
@@ -1481,13 +1664,21 @@ $geekybot_js .="
         // dragid = '';
         var newindex = dropdiv.attr('data-arrIndex');
         var childId = dropdiv.attr('data-childId');
-        var parentId = dropdiv.attr('data-parentid');
         var parentTop = dropdiv.attr('data-top');
         var parentLeft = dropdiv.attr('data-left');
+        var fallBackTop = dropdiv.attr('fallback-data-top');
+        var fallBackLeft = dropdiv.attr('fallback-data-left');
         // check for fallback
         if(dragid == 'geekybot_fallback'){
-            parentTop = parseInt(parentTop, 10) + 148;
-            parentLeft = parseInt(parentLeft, 10)+200;
+            // to limit the max distance from the top
+            var maxBottomDistance = 760;
+            var next_position = parseInt(fallBackTop, 10) + 148;
+            if (next_position > maxBottomDistance) {
+                parentTop = parseInt(fallBackTop, 10) - 148;
+            } else {
+                parentTop = parseInt(fallBackTop, 10) + 148;
+            }
+            parentLeft = parseInt(fallBackLeft, 10) + 100;
         } else {
             // to limit the max distance from the top
             var maxParentTopDistance = 20;
@@ -1502,7 +1693,7 @@ $geekybot_js .="
         }
         var maxIdNumber = 0;
         var filtered_positions = positions.filter(obj => !obj.id.startsWith('fallback_'));
-        filtered_positions.forEach(function(node, index) {
+        positions.forEach(function(node, index) {
             var nodeIdNumber = parseInt(node.id.replace('node', ''));
             if (nodeIdNumber > maxIdNumber) {
                 maxIdNumber = nodeIdNumber;
@@ -1511,12 +1702,13 @@ $geekybot_js .="
         maxIdNumber = maxIdNumber + 2;
         var cid = 'node' + maxIdNumber;
         // get the dragged item data
-        var [block_type, block_img, block_text, block_class, block_category] = getDraggedItemData(dragid);
+        var [block_type, block_img, block_text, block_class, block_category] = getDraggedItemData(dragid, parentType);
         var newPosition = { 
             id: 'node' + maxIdNumber, // Generate unique ID
             top: parentTop,   // Y coordinate relative to the parent
             left: parentLeft, // X coordinate relative to the parent
             parentId: parentId,
+            parentType: parentType,
             type: block_type,
             text: block_text,
             image: block_img,
@@ -1525,80 +1717,100 @@ $geekybot_js .="
             value: ''
         };
         // var positions = positions.filter(obj => !obj.id.startsWith('fallback_'));
-        positions.splice(newindex, 0, newPosition);
-        positions.forEach(function(node, index) {
-            if (index > newindex) {
-                // to limit the max distance from the top
-                var maxParentTopDistance = 20;
-                expectedParentTop = positions[index].top - 155;
-                if (expectedParentTop < maxParentTopDistance) {
-                    parentTop = positions[index].top;
-                    parentLeft = positions[index].left + 240;
-                } else {
-                    parentTop = expectedParentTop;
-                    parentLeft = positions[index].left + 200;
+        if(dragid == 'geekybot_fallback'){
+            positions.splice(newindex, 0, newPosition);
+        } else {
+            positions.splice(newindex, 0, newPosition);
+            positions.forEach(function(node, index) {
+                if (index > newindex) {
+                    if(node.type == 'fallback'){
+                        var fbIntentNodeId = node.parentId;
+                        var fallBackParentNode = positions.find(n => n.id === fbIntentNodeId);
+                        // to limit the max distance from the top
+                        parentTop = fallBackParentNode.top + 150;
+                        parentLeft = fallBackParentNode.left + 240;
+                    } else {
+                        // to limit the max distance from the top
+                        var maxParentTopDistance = 20;
+                        expectedParentTop = positions[index].top - 155;
+                        if (expectedParentTop < maxParentTopDistance) {
+                            parentTop = positions[index].top;
+                            parentLeft = positions[index].left + 240;
+                        } else {
+                            parentTop = expectedParentTop;
+                            parentLeft = positions[index].left + 200;
+                        }
+                    }
+                    var node_id = node.id;
+                    positions[index].top = parentTop;
+                    positions[index].left = parentLeft;
                 }
-                var node_id = node.id;
-                positions[index].top = parentTop;
-                positions[index].left = parentLeft;
-            }
-        });
+            });
+        }
         newindex++;
-        positions[newindex].parentId = cid;
+        if(dragid != 'geekybot_fallback'){
+            positions[newindex].parentId = cid;
+        }
         // set the canvas width and height according to the node size
         setCanvasWidthHeight();
         maxIdNumber++;
         drawNodes(maxIdNumber);
     }
 
-    function getDraggedItemData(){
+    function getDraggedItemData(dragid, dropdiv){
         var block_type = 'user_input';
         var block_img = 'user-icon';
-        var block_text = '".__('User input', 'geeky-bot')."';
+        var block_text = \"".__('User input', 'geeky-bot')."\";
         var block_class = 'node_action_user_input';
         var block_category = 'intent';
         if(dragid == 'geekybot_userinput'){
             block_type = 'user_input';
             block_img = 'user-icon';
-            block_text = '".__('User input', 'geeky-bot')."';
+            block_text = \"".__('User input', 'geeky-bot')."\";
             block_class = 'node_action_user_input';
             block_category = 'intent';
         } else if(dragid == 'geekybot_text'){
             block_type = 'response_text';
             block_img = 'bot-text';
-            block_text = '".__('Text', 'geeky-bot')."';
+            block_text = \"".__('Text', 'geeky-bot')."\";
             block_class = 'node_action_text';
             block_category = 'response';
         } else if(dragid == 'geekybot_function'){
             block_type = 'response_function';
             block_img = 'bot-function';
-            block_text = '".__('Function', 'geeky-bot')."';
+            block_text = \"".__('Function', 'geeky-bot')."\";
             block_class = 'node_action_function';
             block_category = 'response';
         } else if(dragid == 'geekybot_action'){
             block_type = 'response_action';
             block_img = 'bot-action';
-            block_text = '".__('Action', 'geeky-bot')."';
+            block_text = \"".__('Action', 'geeky-bot')."\";
             block_class = 'node_action_action';
             block_category = 'response';
         } else if(dragid == 'geekybot_form'){
             block_type = 'response_form';
             block_img = 'bot-form';
-            block_text = '".__('Form', 'geeky-bot')."';
+            block_text = \"".__('Form', 'geeky-bot')."\";
             block_class = 'node_action_form';
             block_category = 'response';
         } else if(dragid == 'geekybot_fallback'){
             block_type = 'fallback';
             block_img = 'fallback';
-            block_text = '".__('Default Fallback', 'geeky-bot')."';
-            block_class = 'node_action_fallback';
+            console.log(dropdiv);
+            if(dropdiv == 'start_point') {
+                block_text = \"".__('Default Fallback', 'geeky-bot')."\";
+                block_class = 'node_action_fallback';
+            } else {
+                block_text = \"".__('Fallback', 'geeky-bot')."\";
+                block_class = 'node_action_intent_fallback';
+            }
             block_category = 'fallback';
         }
         return [block_type, block_img, block_text, block_class, block_category];
     }
 
     function setCanvasWidthHeight(){
-        var filtered_positions = positions.filter(obj => !obj.id.startsWith('fallback_'));
+        var filtered_positions = positions.filter(obj => obj.type != 'fallback');
         if(filtered_positions.length > 4) {
             var multiplier = filtered_positions.length - 4;
             var newWidth = 240;
@@ -1650,103 +1862,106 @@ $geekybot_js .="
             .append('<a>' + txt + '</a>')
             .appendTo(ul);
         };
-    }
-";
-wp_add_inline_script('geekybot-main-js',$geekybot_js);
-$geekybot_js ="
-jQuery(document).ready(function() {
-    // drawNodes();
-});
+    }";
+    wp_add_inline_script('geekybot-main-js',$geekybot_js);
+    $geekybot_js ="
+    jQuery(document).ready(function() {
+        // drawNodes();
+    });
 
-jQuery(document).ready(function (jQuery) {
-    // Increase the shell to make more prominent
-    const draggedElement = jQuery('.drag-item.geekybot_story_right_menu_cnt.geekybot_story_response');
-    // const draggedItem = document.getElementById('draggedItem');
-    const draggableElements = document.querySelectorAll('.geekybot_story_right_menu_cnt');
-    // const draggedItem = jQuery('#ali123')[0];
+    jQuery(document).ready(function (jQuery) {
+        // Increase the shell to make more prominent
+        const draggedElement = jQuery('.drag-item.geekybot_story_right_menu_cnt.geekybot_story_response');
+        // const draggedItem = document.getElementById('draggedItem');
+        const draggableElements = document.querySelectorAll('.geekybot_story_right_menu_cnt');
+        // const draggedItem = jQuery('#ali123')[0];
 
-    draggedElement.on('dragstart', function(event) {
-        const dropTargets = document.querySelectorAll('.bg-black.geekybot_node_body');
-        draggableElements.forEach(draggable => {
-            // draggable.addEventListener('drag', (event) => {
-            document.addEventListener('dragover', function (event) {
-                event.preventDefault();
-                handleProximityZones(this, event, draggable, dropTargets);
+        draggedElement.on('dragstart', function(event) {
+            const dropTargets = document.querySelectorAll('.bg-black.geekybot_node_body');
+            draggableElements.forEach(draggable => {
+                // draggable.addEventListener('drag', (event) => {
+                document.addEventListener('dragover', function (event) {
+                    event.preventDefault();
+                    handleProximityZones(this, event, draggable, dropTargets);
+                });
             });
+
+            function handleProximityZones(target, event, draggedItem, dropTargets) {
+                const proximityThreshold = 150; // Adjust this value as needed
+                // Calculate the center of the dragged item
+                let nearestDropTarget = null;
+                let minDistance = Infinity;
+                const draggedCenterX = event.clientX;
+                const draggedCenterY = event.clientY;
+                dropTargets.forEach(dropTarget => {
+                    // Get the position and size of the drop target
+                    const targetRect = dropTarget.getBoundingClientRect();
+                    // Calculate the center of the drop target
+                    const targetCenterX = targetRect.left + targetRect.width / 2;
+                    const targetCenterY = targetRect.top + targetRect.height / 2;
+                    // Calculate the distance between the centers of the dragged item and the drop target
+                    const distance = Math.sqrt(Math.pow(draggedCenterX - targetCenterX, 2) + Math.pow(draggedCenterY - targetCenterY, 2));
+                    // Check if this drop target is closer than the previous closest one
+                    if (distance < proximityThreshold && distance < minDistance) {
+                      minDistance = distance;
+                      nearestDropTarget = dropTarget;
+                    }
+                });
+                // Apply custom behavior based on proximity
+                dropTargets.forEach(dropTarget => {
+                    if (dropTarget === nearestDropTarget) {
+                        // Increase the shell or perform other actions
+                        dropTarget.style.border = '1px solid green';
+                        // Add a new class to the child of the nearest drop target
+                        const childElement = dropTarget.querySelector('.drop_zone_grand_paraent_wrp');
+                        if (childElement) {
+                            childElement.classList.add('drop_zone_grand_paraent_visible');
+                        }
+                        // jQuery('#end_point').find('.drop_zone_grand_paraent_wrp').addClass('drop_zone_grand_paraent_visible');
+                    } else {
+                        dropTarget.style.border = '1px solid #e6e7e8';
+                        // Reset styles for other drop targets
+                        const childElement = dropTarget.querySelector('.drop_zone_grand_paraent_wrp');
+                        if (childElement) {
+                            childElement.classList.remove('drop_zone_grand_paraent_visible');
+                        }
+                    }
+                });
+            }
+        });
+        // Increase the shell code end here
+        // close popup on click
+        jQuery('img#userinputPopupCloseBtn, img#responseTextPopupCloseBtn, img#responseFormPopupCloseBtn, img#responseFunctionPopupCloseBtn, img#responseActionPopupCloseBtn, img#fallbackPopupCloseBtn, img#intentFallbackPopupCloseBtn, .save-and-close-popup').click(function (e) {
+            jQuery('div.geekybot-avlble-varpopup').slideUp('slow');
+            jQuery('div.geekybot_story_right_popup_inner_wrp').slideDown('slow');
+            jQuery('div#userinput-popup').slideUp('slow');
+            jQuery('div#response-text-popup').slideUp('slow');
+            jQuery('div#response-function-popup').slideUp('slow');
+            jQuery('div#response-action-popup').slideUp('slow');
+            jQuery('div#response-form-popup').slideUp('slow');
+            jQuery('div#default-fallback-popup').slideUp('slow');
+            jQuery('div#default-intent-fallback-popup').slideUp('slow');
+            // remove highlight effects
+            jQuery('div.geekybot_story_leftaction_wrp').removeClass('active_node_parent');
         });
 
-        function handleProximityZones(target, event, draggedItem, dropTargets) {
-            const proximityThreshold = 150; // Adjust this value as needed
-            // Calculate the center of the dragged item
-            let nearestDropTarget = null;
-            let minDistance = Infinity;
-            const draggedCenterX = event.clientX;
-            const draggedCenterY = event.clientY;
-            dropTargets.forEach(dropTarget => {
-                // Get the position and size of the drop target
-                const targetRect = dropTarget.getBoundingClientRect();
-                // Calculate the center of the drop target
-                const targetCenterX = targetRect.left + targetRect.width / 2;
-                const targetCenterY = targetRect.top + targetRect.height / 2;
-                // Calculate the distance between the centers of the dragged item and the drop target
-                const distance = Math.sqrt(Math.pow(draggedCenterX - targetCenterX, 2) + Math.pow(draggedCenterY - targetCenterY, 2));
-                // Check if this drop target is closer than the previous closest one
-                if (distance < proximityThreshold && distance < minDistance) {
-                  minDistance = distance;
-                  nearestDropTarget = dropTarget;
-                }
-            });
-            // Apply custom behavior based on proximity
-            dropTargets.forEach(dropTarget => {
-                if (dropTarget === nearestDropTarget) {
-                    // Increase the shell or perform other actions
-                    dropTarget.style.border = '1px solid green';
-                    // Add a new class to the child of the nearest drop target
-                    const childElement = dropTarget.querySelector('.drop_zone_grand_paraent_wrp');
-                    if (childElement) {
-                        childElement.classList.add('drop_zone_grand_paraent_visible');
-                    }
-                    // jQuery('#end_point').find('.drop_zone_grand_paraent_wrp').addClass('drop_zone_grand_paraent_visible');
-                } else {
-                    dropTarget.style.border = '1px solid #e6e7e8';
-                    // Reset styles for other drop targets
-                    const childElement = dropTarget.querySelector('.drop_zone_grand_paraent_wrp');
-                    if (childElement) {
-                        childElement.classList.remove('drop_zone_grand_paraent_visible');
-                    }
-                }
-            });
-        }
-    });
-    // Increase the shell code end here
-    // close popup on click
-    jQuery('img#userinputPopupCloseBtn, img#responseTextPopupCloseBtn, img#responseFormPopupCloseBtn, img#responseFunctionPopupCloseBtn, img#responseActionPopupCloseBtn, img#fallbackPopupCloseBtn, .save-and-close-popup').click(function (e) {
-        jQuery('div.geekybot-avlble-varpopup').slideUp('slow');
-        jQuery('div.geekybot_story_right_popup_inner_wrp').slideDown('slow');
-        jQuery('div#userinput-popup').slideUp('slow');
-        jQuery('div#response-text-popup').slideUp('slow');
-        jQuery('div#response-function-popup').slideUp('slow');
-        jQuery('div#response-action-popup').slideUp('slow');
-        jQuery('div#response-form-popup').slideUp('slow');
-        jQuery('div#default-fallback-popup').slideUp('slow');
-        // remove highlight effects
-        jQuery('div.geekybot_story_leftaction_wrp').removeClass('active_node_parent');
-    });
-    jQuery('img#responseAddActionPopupCloseBtn').click(function (e) {
-        jQuery('div#response-add-action-popup').slideUp('slow');
-    });
-    jQuery('img#responseAddFormPopupCloseBtn').click(function (e) {
-        jQuery('div#response-add-form-popup').slideUp('slow');
-        jQuery('div.geekybot_story_right_popup_inner_wrp').slideDown('slow');
-    });
-});";
-wp_add_inline_script('geekybot-main-js',$geekybot_js);
+        jQuery('img#responseAddActionPopupCloseBtn').click(function (e) {
+            jQuery('div#response-add-action-popup').slideUp('slow');
+        });
+        
+        jQuery('img#responseAddFormPopupCloseBtn').click(function (e) {
+            jQuery('div#response-add-form-popup').slideUp('slow');
+            jQuery('div.geekybot_story_right_popup_inner_wrp').slideDown('slow');
+        });
+    });";
+    wp_add_inline_script('geekybot-main-js',$geekybot_js);
+}
 if (!GEEKYBOTincluder::GEEKYBOT_getTemplate('templates/admin/header',array('module' => 'stories'))){
   return;
 }
 ?>
 <!-- main wrapper -->
-<div id="geekybotadmin-wrapper">
+<div id="geekybotadmin-wrapper" class="geekybot-admin-main-wrapper">
     <?php GEEKYBOTincluder::GEEKYBOT_getTemplate('templates/admin/upper-nav',array('module' => 'stories','layouts' => 'formstory')); ?>
     <div class="geekybotadmin-body-main geekybotadmin-storypge-bodymain">
         <!-- left menu -->
@@ -1754,6 +1969,11 @@ if (!GEEKYBOTincluder::GEEKYBOT_getTemplate('templates/admin/header',array('modu
             <?php  GEEKYBOTincluder::GEEKYBOT_getTemplate('templates/admin/leftmenue',array('module' => 'stories')); ?>
         </div>
         <div id="geekybotadmin-data" class="geekybotadmin-story-data">
+        <div class="geekybot_story_main_heading">
+            <h1 class="geekybot-head-text">
+                <?php echo isset(geekybot::$_data[0]['story']->name) ? esc_attr(geekybot::$_data[0]['story']->name) : ''; ?>
+            </h1>
+        </div>
           <!-- page content -->
             <div id="geekybot-admin-wrapper" class="p0 bg-n bs-n">
                 <!-- filter form -->
@@ -1763,11 +1983,6 @@ if (!GEEKYBOTincluder::GEEKYBOT_getTemplate('templates/admin/header',array('modu
                     <div class="geekybot_story">
                         <form id="stories_form" class="geekybot-form" method="post" enctype="multipart/form-data" action="<?php echo esc_url(wp_nonce_url(admin_url("admin.php?page=stories&task=savestories"),"save-story")); ?>">
                             <div class="geekybot_story_left story_wrp">
-                                <div class="geekybot_story_main_heading">
-                                    <h1>
-                                        <?php echo esc_attr(geekybot::$_data[0]['story']->name); ?>
-                                    </h1>
-                                </div>
                                 <!-- new code -->
                                 <div class="geekybot_story_form_wrp">
                                     <?php
@@ -1913,13 +2128,13 @@ if (!GEEKYBOTincluder::GEEKYBOT_getTemplate('templates/admin/header',array('modu
                                         <?php echo esc_attr(__('Forms', 'geeky-bot')); ?>
                                       </div>
                                     </div>
-                                    <h5 class="geeky_hide"><?php echo esc_attr(__('Fallback', 'geeky-bot')); ?></h5>
-                                    <div id="draggedItem" class="geeky_hide geekybot_fallback drag-item geekybot_story_right_menu_cnt geekybot_story_response" draggable="true" ondragstart="drag('geekybot_fallback')">
+                                    <h5><?php echo esc_attr(__('Fallback', 'geeky-bot')); ?></h5>
+                                    <div id="draggedItem" class="geekybot_fallback drag-item geekybot_story_right_menu_cnt geekybot_story_response" draggable="true" ondragstart="drag('geekybot_fallback')">
                                         <div class="geekybot_story_right_menu_cnt_img">
                                             <img class="geeky_popup_fallback_icon" src="<?php echo esc_url(GEEKYBOT_PLUGIN_URL); ?>includes/images/story/fallback.png" alt="<?php echo esc_attr(__('Fallback Icon', 'geeky-bot')); ?>"title="<?php echo esc_attr(__('Fallback', 'geeky-bot')); ?>">
                                         </div>
                                         <div class="geekybot_story_right_menu_cnt_title">
-                                            <?php echo esc_attr(__('Fallback Masseges', 'geeky-bot')); ?>
+                                            <?php echo esc_attr(__('Fallback Massege', 'geeky-bot')); ?>
                                         </div>
                                     </div>
                                   </div>
@@ -1942,8 +2157,8 @@ if (!GEEKYBOTincluder::GEEKYBOT_getTemplate('templates/admin/header',array('modu
                                         </div>
                                         <div class="geekybot-form-button">
                                             <?php
-                                            echo wp_kses(GEEKYBOTformfield::GEEKYBOT_submitbutton('save', __('Save','geeky-bot'), array('class' => 'button  geekybot-admin-pop-btn-block')),GEEKYBOT_ALLOWED_TAGS);
-                                            echo wp_kses(GEEKYBOTformfield::GEEKYBOT_submitbutton('save', __('Save & Close','geeky-bot'), array('class' => 'button  geekybot-admin-pop-btn-block save-and-close-popup')),GEEKYBOT_ALLOWED_TAGS);
+                                            echo wp_kses(GEEKYBOTformfield::GEEKYBOT_submitbutton('save', __('Save','geeky-bot'), array('class' => 'button  geekybot-admin-pop-btn-block', 'title' => __('Save', 'geeky-bot'))),GEEKYBOT_ALLOWED_TAGS);
+                                            echo wp_kses(GEEKYBOTformfield::GEEKYBOT_submitbutton('save', __('Save & Close','geeky-bot'), array('class' => 'button  geekybot-admin-pop-btn-block save-and-close-popup', 'title' => __('Save & Close', 'geeky-bot'))),GEEKYBOT_ALLOWED_TAGS);
                                             ?>
                                         </div>
                                         <div id="user-input-msg"></div>
@@ -1974,8 +2189,8 @@ if (!GEEKYBOTincluder::GEEKYBOT_getTemplate('templates/admin/header',array('modu
                                             </div>
                                         </div>
                                         <div class="geekybot-form-button">
-                                            <?php echo wp_kses(GEEKYBOTformfield::GEEKYBOT_submitbutton('save', __('Save','geeky-bot'), array('class' => 'button geekybot-admin-pop-btn-block')), GEEKYBOT_ALLOWED_TAGS);
-                                            echo wp_kses(GEEKYBOTformfield::GEEKYBOT_submitbutton('save', __('Save & Close','geeky-bot'), array('class' => 'button geekybot-admin-pop-btn-block save-and-close-popup')), GEEKYBOT_ALLOWED_TAGS);
+                                            <?php echo wp_kses(GEEKYBOTformfield::GEEKYBOT_submitbutton('save', __('Save','geeky-bot'), array('class' => 'button geekybot-admin-pop-btn-block', 'title' => __('Save', 'geeky-bot'))), GEEKYBOT_ALLOWED_TAGS);
+                                            echo wp_kses(GEEKYBOTformfield::GEEKYBOT_submitbutton('save', __('Save & Close','geeky-bot'), array('class' => 'button geekybot-admin-pop-btn-block save-and-close-popup', 'title' => __('Save & Close', 'geeky-bot'))), GEEKYBOT_ALLOWED_TAGS);
                                             ?>
                                         </div>
                                         <div id="response-text-msg"></div>
@@ -1999,7 +2214,7 @@ if (!GEEKYBOTincluder::GEEKYBOT_getTemplate('templates/admin/header',array('modu
                                             <!-- bind data from afax -->
                                         </div>
                                         <div class="geekybot-form-button">
-                                            <?php echo wp_kses(GEEKYBOTformfield::GEEKYBOT_submitbutton('save', __('Save','geeky-bot') .' '. __('Form', 'geeky-bot'), array('class' => 'button geekybot-admin-pop-btn-block')), GEEKYBOT_ALLOWED_TAGS);
+                                            <?php echo wp_kses(GEEKYBOTformfield::GEEKYBOT_submitbutton('save', __('Save','geeky-bot') .' '. __('Form', 'geeky-bot'), array('class' => 'button geekybot-admin-pop-btn-block', 'title' => __('Save', 'geeky-bot'))), GEEKYBOT_ALLOWED_TAGS);
                                             ?>
                                         </div>
                                         <div id="response-form-msg"></div>
@@ -2035,14 +2250,14 @@ if (!GEEKYBOTincluder::GEEKYBOT_getTemplate('templates/admin/header',array('modu
                                                 <!-- Dynamically created input fields will be appended here -->
                                             </div>
                                             <div id="create-form-input">
-                                                <span class="geekybot-frm-add-field-button" onclick="addFormVariable();">
+                                                <span class="geekybot-frm-add-field-button" title="<?php echo esc_attr(__('Add New Variable','geeky-bot')); ?>" title="<?php echo esc_html(__('Add','geeky-bot')); ?>" onclick="addFormVariable();">
                                                     <span class="geekybot-frm-add-field-add-iconbtn-wrp"><img alt="<?php echo esc_html(__('Add Icon','geeky-bot')); ?>" title="<?php echo esc_html(__('Add','geeky-bot')); ?>" class="userpopup-plus-icon" src="<?php echo esc_url(GEEKYBOT_PLUGIN_URL); ?>includes/images/add-icon.png" /></span>
                                                     <?php echo esc_attr(__('Add New Variable','geeky-bot')); ?>
                                                 </span>
                                             </div>
                                         </div>
                                         <div class="geekybot-form-button">
-                                            <?php echo wp_kses(GEEKYBOTformfield::GEEKYBOT_submitbutton('save', esc_html(__('Save','geeky-bot')) .' '. esc_html(__('Forms', 'geeky-bot')), array('class' => 'button geekybot-admin-pop-btn-block')), GEEKYBOT_ALLOWED_TAGS); ?>
+                                            <?php echo wp_kses(GEEKYBOTformfield::GEEKYBOT_submitbutton('save', esc_html(__('Save','geeky-bot')) .' '. esc_html(__('Forms', 'geeky-bot')), array('class' => 'button geekybot-admin-pop-btn-block','title' => __('Save', 'geeky-bot'))), GEEKYBOT_ALLOWED_TAGS); ?>
                                         </div>
                                         <div id="response-add-form-msg"></div>
                                     </form>
@@ -2064,8 +2279,8 @@ if (!GEEKYBOTincluder::GEEKYBOT_getTemplate('templates/admin/header',array('modu
                                         </div>
                                         <div class="geekybot-form-button">
                                             <?php
-                                            echo wp_kses(GEEKYBOTformfield::GEEKYBOT_submitbutton('save', __('Save','geeky-bot'), array('class' => 'button geekybot-admin-pop-btn-block')), GEEKYBOT_ALLOWED_TAGS);
-                                            echo wp_kses(GEEKYBOTformfield::GEEKYBOT_submitbutton('save', __('Save & Close','geeky-bot'), array('class' => 'button geekybot-admin-pop-btn-block save-and-close-popup')), GEEKYBOT_ALLOWED_TAGS);
+                                            echo wp_kses(GEEKYBOTformfield::GEEKYBOT_submitbutton('save', __('Save','geeky-bot'), array('class' => 'button geekybot-admin-pop-btn-block','title' => __('Save', 'geeky-bot'))), GEEKYBOT_ALLOWED_TAGS);
+                                            echo wp_kses(GEEKYBOTformfield::GEEKYBOT_submitbutton('save', __('Save & Close','geeky-bot'), array('class' => 'button geekybot-admin-pop-btn-block save-and-close-popup','title' => __('Save & Close', 'geeky-bot'))), GEEKYBOT_ALLOWED_TAGS);
                                             ?>
                                         </div>
                                         <div id="response-function-msg"></div>
@@ -2087,7 +2302,7 @@ if (!GEEKYBOTincluder::GEEKYBOT_getTemplate('templates/admin/header',array('modu
                                             <!-- bind data from afax -->
                                         </div>
                                         <div class="geekybot-form-button">
-                                            <?php echo wp_kses(GEEKYBOTformfield::GEEKYBOT_submitbutton('save', __('Save','geeky-bot') .' '. __('Response', 'geeky-bot'), array('class' => 'button geekybot-admin-pop-btn-block')), GEEKYBOT_ALLOWED_TAGS);
+                                            <?php echo wp_kses(GEEKYBOTformfield::GEEKYBOT_submitbutton('save', __('Save','geeky-bot') .' '. __('Response', 'geeky-bot'), array('class' => 'button geekybot-admin-pop-btn-block','title' => __('Save', 'geeky-bot'))), GEEKYBOT_ALLOWED_TAGS);
                                             ?>
                                         </div>
                                         <div id="response-action-msg"></div>
@@ -2121,14 +2336,14 @@ if (!GEEKYBOTincluder::GEEKYBOT_getTemplate('templates/admin/header',array('modu
                                                 <!-- Dynamically created input fields will be appended here -->
                                             </div>
                                             <div id="create-action-input">
-                                                <span class="geekybot-frm-add-field-button" onclick="addActionParameter();">
+                                                <span class="geekybot-frm-add-field-button" title="<?php echo esc_attr(__('Add New Parameter','geeky-bot')); ?>" onclick="addActionParameter();">
                                                     <span class="geekybot-frm-add-field-add-iconbtn-wrp"><img alt="<?php echo esc_html(__('Add Icon','geeky-bot')); ?>" class="userpopup-plus-icon" src="<?php echo esc_url(GEEKYBOT_PLUGIN_URL); ?>includes/images/add-icon.png" /></span>
                                                     <?php echo esc_attr(__('Add New Parameter','geeky-bot')); ?>
                                                 </span>
                                             </div>
                                         </div>
                                         <div class="geekybot-form-button">
-                                            <?php echo wp_kses(GEEKYBOTformfield::GEEKYBOT_submitbutton('save', __('Save','geeky-bot') .' '. __('Action', 'geeky-bot'), array('class' => 'button geekybot-admin-pop-btn-block')), GEEKYBOT_ALLOWED_TAGS); ?>
+                                            <?php echo wp_kses(GEEKYBOTformfield::GEEKYBOT_submitbutton('save', __('Save','geeky-bot') .' '. __('Action', 'geeky-bot'), array('class' => 'button geekybot-admin-pop-btn-block','title' => __('Save', 'geeky-bot'))), GEEKYBOT_ALLOWED_TAGS); ?>
                                         </div>
                                         <div id="response-add-action-msg"></div>
                                     </form>
@@ -2139,7 +2354,7 @@ if (!GEEKYBOTincluder::GEEKYBOT_getTemplate('templates/admin/header',array('modu
                                 <div class="userpopup-top">
                                     <div class="userpopup-heading">
                                         <div class="userpopup-heading-mainwrp"><img class="geeky-popup-heading-lfticon" src="<?php echo esc_url(GEEKYBOT_PLUGIN_URL); ?>includes/images/story/fallback.png" alt="<?php echo esc_attr(__('Fallback Icon', 'geeky-bot')); ?>" title="<?php echo esc_attr(__('Fallback', 'geeky-bot')); ?>"></div>
-                                        <?php echo esc_html(__('Fallback','geeky-bot')); ?>
+                                        <?php echo esc_html(__('Default Fallback','geeky-bot')); ?>
                                     </div>
                                     <img alt="<?php echo esc_html(__('Close','geeky-bot')); ?>" id="fallbackPopupCloseBtn" title="<?php echo esc_attr(__('Close','geeky-bot')); ?>" class="userpopup-close" src="<?php echo esc_url(GEEKYBOT_PLUGIN_URL); ?>includes/images/close.png" />
                                 </div>
@@ -2150,11 +2365,35 @@ if (!GEEKYBOTincluder::GEEKYBOT_getTemplate('templates/admin/header',array('modu
                                         </div>
                                         <div class="geekybot-form-button">
                                             <?php
-                                            echo wp_kses(GEEKYBOTformfield::GEEKYBOT_submitbutton('save', __('Save','geeky-bot'), array('class' => 'button  geekybot-admin-pop-btn-block')),GEEKYBOT_ALLOWED_TAGS);
-                                            echo wp_kses(GEEKYBOTformfield::GEEKYBOT_submitbutton('save', __('Save & Close','geeky-bot'), array('class' => 'button  geekybot-admin-pop-btn-block save-and-close-popup')),GEEKYBOT_ALLOWED_TAGS);
+                                            echo wp_kses(GEEKYBOTformfield::GEEKYBOT_submitbutton('save', __('Save','geeky-bot'), array('class' => 'button  geekybot-admin-pop-btn-block','title' => __('Save', 'geeky-bot'))),GEEKYBOT_ALLOWED_TAGS);
+                                            echo wp_kses(GEEKYBOTformfield::GEEKYBOT_submitbutton('save', __('Save & Close','geeky-bot'), array('class' => 'button  geekybot-admin-pop-btn-block save-and-close-popup','title' => __('Save & Close', 'geeky-bot'))),GEEKYBOT_ALLOWED_TAGS);
                                              ?>
                                         </div>
                                         <div id="default-fallback-msg"></div>
+                                    </form>
+                                </div>
+                            </div>
+                            <!-- Intent Fall Back Popup -->
+                            <div id="default-intent-fallback-popup" class="geekybot-popup-wrapper" style="display: none;">
+                                <div class="userpopup-top">
+                                    <div class="userpopup-heading">
+                                        <div class="userpopup-heading-mainwrp"><img class="geeky-popup-heading-lfticon" src="<?php echo esc_url(GEEKYBOT_PLUGIN_URL); ?>includes/images/story/fallback.png" alt="<?php echo esc_attr(__('Fallback Icon', 'geeky-bot')); ?>" title="<?php echo esc_attr(__('Fallback', 'geeky-bot')); ?>"></div>
+                                        <?php echo esc_html(__('Intent Fallback','geeky-bot')); ?>
+                                    </div>
+                                    <img alt="<?php echo esc_html(__('Close','geeky-bot')); ?>" id="intentFallbackPopupCloseBtn" title="<?php echo esc_attr(__('Close','geeky-bot')); ?>" class="userpopup-close" src="<?php echo esc_url(GEEKYBOT_PLUGIN_URL); ?>includes/images/close.png" />
+                                </div>
+                                <div class="geekybot-admin-popup-cnt">
+                                    <form id="defaultIntentFallbackForm" class="geekybot-popup-form" method="post" action="#">
+                                        <div id="defaultIntentFallbackFormBody">
+                                            <!-- bind data from afax -->
+                                        </div>
+                                        <div class="geekybot-form-button">
+                                            <?php
+                                            echo wp_kses(GEEKYBOTformfield::GEEKYBOT_submitbutton('save', __('Save','geeky-bot'), array('class' => 'button  geekybot-admin-pop-btn-block','title' => __('Save', 'geeky-bot'))),GEEKYBOT_ALLOWED_TAGS);
+                                            echo wp_kses(GEEKYBOTformfield::GEEKYBOT_submitbutton('save', __('Save & Close','geeky-bot'), array('class' => 'button  geekybot-admin-pop-btn-block save-and-close-popup','title' => __('Save & Close', 'geeky-bot'))),GEEKYBOT_ALLOWED_TAGS);
+                                             ?>
+                                        </div>
+                                        <div id="default-intent-fallback-msg"></div>
                                     </form>
                                 </div>
                             </div>
@@ -2162,8 +2401,8 @@ if (!GEEKYBOTincluder::GEEKYBOT_getTemplate('templates/admin/header',array('modu
                         <!-- save and reset buttons -->
                         <div class="geekybot_story_left geekybot-form-button">
                             <div class="geekybot-btm-save-button">
-                                <button type="submit" id="Save-Story" class="button geekybot-form-save-btn" value=""><?php echo esc_attr(__(' Save Story', 'geeky-bot')); ?></button>
-                                <button type="reset" id="Reset-Story" class="button geekybot-form-reset-btn" value=""><?php echo esc_attr(__('Reset Story', 'geeky-bot')); ?></button>
+                                <button type="submit" id="Save-Story" class="button geekybot-form-save-btn" title="<?php echo esc_attr(__('Save Story', 'geeky-bot')); ?>" value=""><?php echo esc_attr(__('Save Story', 'geeky-bot')); ?></button>
+                                <button type="reset" id="Reset-Story" class="button geekybot-form-reset-btn" title="<?php echo esc_attr(__('Reset Story', 'geeky-bot')); ?>" value=""><?php echo esc_attr(__('Reset Story', 'geeky-bot')); ?></button>
                                 <button style="margin-top: 15px;" onclick="addNewForms();" id="create-form" class="geeky_hide button geekybot-form-reset-btn" value=""><?php echo esc_attr(__('Add New Form', 'geeky-bot')); ?></button>
                             </div>
                         </div>

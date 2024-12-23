@@ -27,8 +27,11 @@ class GEEKYBOTwebsearchModel {
     function getWebSearchbyId($id) {
         if (!is_numeric($id))
             return false;
-        $query = "SELECT * FROM `" . geekybot::$_db->prefix . "geekybot_post_types` WHERE id = " . esc_sql($id);
+
+        do_action('geekybot_custom_listing_query');
+        $query = "SELECT post_type.*  ".geekybot::$_addon_query['select']." FROM `" . geekybot::$_db->prefix . "geekybot_post_types` AS post_type ".geekybot::$_addon_query['join']." WHERE post_type.id = " . esc_sql($id);
         geekybot::$_data[0] = geekybotdb::GEEKYBOT_get_row($query);
+        do_action('reset_geekybot_aadon_query');
         return;
     }
 
@@ -95,7 +98,6 @@ class GEEKYBOTwebsearchModel {
         $max_batch_size = 1000; // Maximum number of records to process at once
         $threshold = 10000; // Threshold to determine small vs. large datasets
         $max_batch_size_in_bytes = 5 * 1024 * 1024; // 5 MB per batch
-        $current_batch_size = 0; // Track batch size
         $batch_data = []; // Store data for the current batch
         $offset = 0; // Start from the first batch
         // Get total number of posts for the specified post type
@@ -129,131 +131,15 @@ class GEEKYBOTwebsearchModel {
                 $row_size = strlen($post_text);
 
                 // If adding this row exceeds the batch size, insert current batch
-                if ($current_batch_size + $row_size > $max_batch_size_in_bytes) {
+                if ($row_size > $max_batch_size_in_bytes && !empty($batch_data)) {
                     // Insert the current batch
                     $insert_query = $this->geekybotPostTypeBuildQuery($batch_data);
                     geekybot::$_db->query($insert_query);
                     // Reset for the next batch
                     $batch_data = [];
-                    $current_batch_size = 0;
                 }
-                // ---------------
-                // Get all taxonomies associated with the post
-                $taxonomies = get_object_taxonomies(get_post_type($post->ID));
-                // Loop through each taxonomy to get the terms
-                foreach ($taxonomies as $taxonomy) {
-                    // Get terms for this taxonomy
-                    $terms = get_the_terms($post->ID, $taxonomy);
-                    if ( ! empty($terms) && ! is_wp_error($terms) ) {
-                        foreach ( $terms as $term ) {
-                            $post_text .= $term->name.' ';
-                        }
-                    }
-                }
-                // ---------------
-                $skip_storing_process = 0;
-                $meta_keys = array();
-                if ($post->post_type == 'topic') {
-                    $skip_storing_process = 1;
-                    $bbp_forum_id = get_post_meta($post->ID, '_bbp_forum_id', true);
-                    // check that the topic is assign to a forum
-                    if (is_numeric($bbp_forum_id) && $bbp_forum_id != 0 && $bbp_forum_id != $post->ID) {
-                        // if assign then get the forum data
-                        $query = "SELECT * FROM `" . geekybot::$_db->prefix . "geekybot_posts` WHERE `post_id` = ".esc_sql($bbp_forum_id);
-                        $bbp_forum = geekybotdb::GEEKYBOT_get_row($query);
-                        // if forum data found then update forum
-                        if ( isset($bbp_forum->post_text) && ($bbp_forum->post_type == 'forum') ) {
-                            $p_id = $bbp_forum->id;
-                            $p_title = $bbp_forum->title;
-                            $p_content = $bbp_forum->content;
-                            $p_post_type = $bbp_forum->post_type;
-                            $p_post_id = $bbp_forum->post_id;
-                            $p_status = $bbp_forum->status;
-                            $post_text .= $bbp_forum->post_text.' ';
-
-                            $post_text = geekybot::GEEKYBOT_sanitizeData($post_text);// GEEKYBOT_sanitizeData() function uses wordpress santize functions
-                            $post_text = $this->stripslashesFull($post_text);// remove slashes with quotes.
-                            // Add the current row to the batch
-                            $batch_data[] = '("'.esc_sql($p_id).'","'.esc_sql($p_title).'","'.esc_sql($p_content).'","'.esc_sql($post_text).'","'.esc_sql($p_post_id).'","'.esc_sql($p_post_type).'","'.esc_sql($p_status).'")';
-                        }
-                    }
-                } elseif ($post->post_type == 'forum') {
-                    $logdata = "\n forum";
-
-                    $skip_storing_process = 1;
-                    $p_id = $post->ID;
-                    $p_title = $post->post_title;
-                    $p_content = $post->post_content;
-                    $p_post_type = $post->post_type;
-                    $p_post_id = $post->ID;
-                    $p_status = $post->post_status;
-                    $bbp_forum_id = $post->ID;
-                    $logdata .= "\n post_text: ".$post_text;
-
-                    $store_topic = $this->geekybotCheckTopicStatusForBBpress();
-                    $logdata .= "\n store_topic: ".$store_topic;
-                    if ($store_topic == 1) {
-                        $logdata .= "\n IN ";
-                        // get all the topics related to this forum
-                        $meta_key = '_bbp_forum_id';
-                        $meta_value = $bbp_forum_id;
-                        $args = array(
-                            'post_type'  => 'topic',// Limit to post type 'topic'
-                            'post_status'   => 'publish',// Only fetch published posts
-                            'meta_key'   => $meta_key,
-                            'meta_value' => $meta_value,
-                            'posts_per_page' => -1, // Get all matching posts
-                            'orderby' => 'ID', // Order by ID
-                            'order' => 'ASC', // Order by assending
-                        );
-                        $topics = get_posts($args);
-                        if (!empty($topics)) {
-                            foreach ($topics as $topic) {
-                                $post_text .= $topic->post_title . ' ' .$topic->post_content .' ';
-                            }
-                        }
-                    }
-                    $post_text = geekybot::GEEKYBOT_sanitizeData($post_text);// GEEKYBOT_sanitizeData() function uses wordpress santize functions
-                    $post_text = $this->stripslashesFull($post_text);// remove slashes with quotes.
-                    // Add the current row to the batch
-                    $batch_data[] = '("'.esc_sql($p_id).'","'.esc_sql($p_title).'","'.esc_sql($p_content).'","'.esc_sql($post_text).'","'.esc_sql($p_post_id).'","'.esc_sql($p_post_type).'","'.esc_sql($p_status).'")';
-                } else {
-                    // List of meta keys to exclude
-                    $exclude_meta_keys = array(
-                        '_edit_lock',
-                        '_edit_last',
-                        '_wp_old_slug',
-                        '_thumbnail_id',
-                        '_wp_trash_meta_status',
-                        '_wp_trash_meta_time',
-                        '_pingme',
-                        '_encloseme',
-                        '_wp_attached_file',
-                        '_wp_attachment_metadata',
-                        '_wp_attachment_image_alt',
-                        '_wp_page_template',
-                        '_menu_item',
-                        '_wpb_vc_js_status',
-                        '_elementor_data'
-                    );
-                    $post_meta = get_post_meta($post->ID); // Get all post meta
-                    // Loop through the meta and filter useful data
-                    if (!empty($meta_keys)) {
-                        foreach ($meta_keys as $meta_key => $meta_value) {
-                            // Filter out empty values
-                            if (!empty($meta_value) && !in_array($meta_key, $exclude_meta_keys)) {
-                                $post_text .= $meta_key.' ';
-                                $post_text .= $meta_value[0].' ';
-                            }
-                        }
-                    }
-                }
-                if ($skip_storing_process == 0) {
-                    $post_text = geekybot::GEEKYBOT_sanitizeData($post_text);// GEEKYBOT_sanitizeData() function uses wordpress santize functions
-                    $post_text = $this->stripslashesFull($post_text);// remove slashes with quotes.
-                    // Add the current row to the batch
-                    $batch_data[] = '("'.esc_sql($post->ID).'","'.esc_sql($post->post_title).'","'.esc_sql($post->post_content).'","'.esc_sql($post_text).'","'.esc_sql($post->ID).'","'.esc_sql($post->post_type).'","'.esc_sql($post->post_status).'")';
-                }
+                // Add the current row to the batch
+                $batch_data[] = $post->ID;
             }
             // Insert any remaining data in the last batch
             if (!empty($batch_data)) {
@@ -349,6 +235,10 @@ class GEEKYBOTwebsearchModel {
                 $row = GEEKYBOTincluder::GEEKYBOT_getTable('posttypes');
                 $row->bind($data);
                 $row->store();
+                if(in_array('customlistingstyle', geekybot::$_active_addons)){
+                    // load the default listing style for this post type if available
+                    apply_filters('geekybot_load_custom_listing_style_template', $post_type);
+                }
             }
         }
         $extra_post_types = array_diff_key($stored_post_types_transformed, $current_post_types);
@@ -358,6 +248,14 @@ class GEEKYBOTwebsearchModel {
                 //delete post type
                 $query = "DELETE FROM `".geekybot::$_db->prefix . "geekybot_post_types` WHERE `post_type` = '".$post_type."'";
                 geekybot::$_db->query($query);
+                if(in_array('customlistingstyle', geekybot::$_active_addons)){
+                    // delete post type style
+                    apply_filters('geekybot_delete_custom_listing_style', $post_type);
+                }
+                if(in_array('customlistingtext', geekybot::$_active_addons)){
+                    // delete post type text
+                    apply_filters('geekybot_delete_custom_listing_text', $post_type);
+                }
             }
         }
     }
@@ -377,7 +275,7 @@ class GEEKYBOTwebsearchModel {
         $query = "SELECT `status` FROM `" . geekybot::$_db->prefix . "geekybot_post_types` WHERE `post_type` = '".esc_sql($post_type)."'";
         $status = geekybotdb::GEEKYBOT_get_var($query);
         // If no status found, handle the new post type.
-        if (empty($status)) {
+        if ($status == '') {
             $post_type_object = get_post_type_object($post_type);
             // Ensure the post type is public and queryable before proceeding.
             if ($post_type_object && $post_type_object->public && $post_type_object->publicly_queryable) {
@@ -397,6 +295,10 @@ class GEEKYBOTwebsearchModel {
                 $row = GEEKYBOTincluder::GEEKYBOT_getTable('posttypes');
                 $row->bind($data);
                 $row->store();
+                if(in_array('customlistingstyle', geekybot::$_active_addons)){
+                    // load the default listing style for this post type if available
+                    apply_filters('geekybot_load_custom_listing_style_template', $post_type);
+                }
             }
         }
         return $status;
@@ -405,9 +307,20 @@ class GEEKYBOTwebsearchModel {
     function getArticlesButton($msg, $type) {
         // get ids of all the matching post 
         $logdata = "\n\ngetArticlesButton";
+        $inquery = '';
+        if (class_exists('WooCommerce')) {
+            $wc_search_status = geekybotdb::GEEKYBOT_get_var("SELECT status FROM `" . geekybot::$_db->prefix . "geekybot_post_types` WHERE `post_type` = 'product'");
+            if (!empty($wc_search_status)) {
+                $wc_story_status = geekybotdb::GEEKYBOT_get_var("SELECT status FROM `" . geekybot::$_db->prefix . "geekybot_stories` WHERE `story_type` = 2");
+                if (!empty($wc_story_status)) {
+                    $inquery .= " AND labels.post_type != 'product'";
+                }
+            }
+        }
         $query = 'SELECT DISTINCT posts.id, posts.post_type, labels.post_label, MATCH (posts.post_text) AGAINST ("'.esc_sql($msg).'" IN NATURAL LANGUAGE MODE) AS score FROM `' . geekybot::$_db->prefix . 'geekybot_posts` AS posts
             LEFT JOIN `' . geekybot::$_db->prefix . 'geekybot_post_types` AS labels ON posts.post_type = labels.post_type
             WHERE MATCH (posts.post_text) AGAINST ("'.esc_sql($msg).'" IN NATURAL LANGUAGE MODE) AND posts.status = "publish" AND labels.status = 1';
+        $query .= $inquery;
         $query .= " ORDER BY score DESC ";
         $logdata .="\n".$query;
         $posts = geekybotdb::GEEKYBOT_get_results($query);
@@ -427,45 +340,58 @@ class GEEKYBOTwebsearchModel {
         }
         $titleHtml = '';
         $btnHtml = '';
-        foreach ($post_type_counts as $post_type_count) {
-            if ($post_type_count['count'] > 0) {
-                $titleHtml .= ' '.$post_type_count['count'].' '.$post_type_count['label'].' ';
-                $btnHtml .= "
-                <div class='geekybot_article_bnt_wrp'>
-                    <span onclick=\"showArticlesList('".$msg."','".$post_type_count['type']."','".$highest_score."','".$post_type_count['count']."', 1);\" class='geekybot_article_bnt' class='button'>" . __('Show', 'geeky-bot').' '. $post_type_count['label'] ."</span>
-                </div>";
-            }
-        }
         $html = '';
-        if (!empty($post_type_counts)) {
-            $html = '<div class="geekybot_article_message_wrp">';
-            if ($type == 1) {
-                $html .= __('Also', 'geeky-bot').' ';
+        // Display results directly instead of buttons when data for only a single post type is found.
+        if ((count($post_type_counts) > 1) || (count($post_type_counts) == 1 && $type == 1)) {
+            foreach ($post_type_counts as $post_type_count) {
+                if ($post_type_count['count'] > 0) {
+                    $titleHtml .= ' '.$post_type_count['count'].' '.$post_type_count['label'].' ';
+                    $btnHtml .= "
+                    <div class='geekybot_article_bnt_wrp'>
+                        <span onclick=\"showArticlesList('".$msg."','".$post_type_count['type']."','".$post_type_count['label']."','".$highest_score."','".$post_type_count['count']."', 1);\" class='geekybot_article_bnt' class='button'>" . __('Show', 'geeky-bot').' '. $post_type_count['label'] ."</span>
+                    </div>";
+                }
             }
-            $html .= __('Found', 'geeky-bot');
-            $html .= $titleHtml;
-            $html .= '</div>';
-            $html .= $btnHtml;
+            if (!empty($post_type_counts)) {
+                $html = '<div class="geekybot_article_message_wrp">';
+                if ($type == 1) {
+                    $html .= __('Also', 'geeky-bot').' ';
+                }
+                $html .= __('Found', 'geeky-bot');
+                $html .= $titleHtml;
+                $html .= '</div>';
+                $html .= $btnHtml;
+            }
+            $return['save_history'] = 1;
+        } elseif (count($post_type_counts) == 1) {
+            $post_type_count = reset($post_type_counts);
+            $html = $this->showArticlesList($msg, $post_type_count['type'], $post_type_count['label'], $highest_score, $post_type_count['count'], 1);
+            $html = html_entity_decode($html);
+            $return['save_history'] = 0;
         }
         GEEKYBOTincluder::GEEKYBOT_getObjectClass('logging')->GEEKYBOTlwrite($logdata);
-        return geekybotphplib::GEEKYBOT_htmlentities($html);
+        $return['html'] = geekybotphplib::GEEKYBOT_htmlentities($html);
+        return $return;
     }
 
-    function showArticlesList() {
+    function showArticlesList($msg = '', $type = '', $label = '', $highest_score = '', $total_posts = '', $current_page = '') {
         $logdata = "\n\nshowArticlesList";
-        $nonce = GEEKYBOTrequest::GEEKYBOT_getVar('_wpnonce');
-        if (! wp_verify_nonce( $nonce, 'articles-list') ) {
-            die( 'Security check Failed' ); 
+        if ($type == '') {
+            $nonce = GEEKYBOTrequest::GEEKYBOT_getVar('_wpnonce');
+            if (! wp_verify_nonce( $nonce, 'articles-list') ) {
+                die( 'Security check Failed' ); 
+            }
+            $msg = GEEKYBOTrequest::GEEKYBOT_getVar('msg');
+            $type = GEEKYBOTrequest::GEEKYBOT_getVar('type');
+            $label = GEEKYBOTrequest::GEEKYBOT_getVar('label');
+            $highest_score = GEEKYBOTrequest::GEEKYBOT_getVar('highestScore');
+            $total_posts = GEEKYBOTrequest::GEEKYBOT_getVar('totalPosts');
+            $current_page = GEEKYBOTrequest::GEEKYBOT_getVar('currentPage');
         }
-        $msg = GEEKYBOTrequest::GEEKYBOT_getVar('msg');
-        $type = GEEKYBOTrequest::GEEKYBOT_getVar('type');
-        $highest_score = GEEKYBOTrequest::GEEKYBOT_getVar('highestScore');
-        $total_posts = GEEKYBOTrequest::GEEKYBOT_getVar('totalPosts');
-        $current_page = GEEKYBOTrequest::GEEKYBOT_getVar('currentPage');
         $postsPerPage = geekybot::$_configuration['pagination_product_page_size'];
         $offset = ($current_page - 1) * $postsPerPage;
 
-        $query = 'SELECT `id`,`post_id`,`post_type`,`title`, MATCH (post_text) AGAINST ("'.esc_sql($msg).'" IN NATURAL LANGUAGE MODE) AS score FROM `' . geekybot::$_db->prefix . 'geekybot_posts` WHERE MATCH (post_text) AGAINST ("'.esc_sql($msg).'" IN NATURAL LANGUAGE MODE) AND post_type = "'.$type.'" AND status = "publish"';
+        $query = 'SELECT `id`,`post_id`,`post_type`,`title`,`content`, MATCH (post_text) AGAINST ("'.esc_sql($msg).'" IN NATURAL LANGUAGE MODE) AS score FROM `' . geekybot::$_db->prefix . 'geekybot_posts` WHERE MATCH (post_text) AGAINST ("'.esc_sql($msg).'" IN NATURAL LANGUAGE MODE) AND post_type = "'.$type.'" AND status = "publish"';
         $query .= " ORDER BY score DESC ";
         $query .= " LIMIT $postsPerPage OFFSET $offset";
         // Get paginated posts
@@ -473,36 +399,92 @@ class GEEKYBOTwebsearchModel {
         $posts = $this->applyThresholdOnWebSearch($posts, $highest_score);
         $text = '';
         if($posts){
+            if(in_array('customlistingstyle', geekybot::$_active_addons)){
+                $geekybot_custom_listing = apply_filters('geekybot_custom_listing_style', $type);
+            }
+            if ((empty($geekybot_custom_listing) || !in_array($geekybot_custom_listing->template_id, [1, 2, 3])) && in_array('customlistingtext', geekybot::$_active_addons)) {
+                $geekybot_custom_listing = apply_filters('geekybot_custom_listing_text', $type);
+            }
             $currentPostsCount = count($posts);
             $to_post = $offset + $currentPostsCount;
             $from_post = $offset + 1;
-            $text = "<div class='geekybot_wc_post_heading geekybot_wc_post_title'>".__('Here are some suggestions.', 'geeky-bot')." <span class='geekybot_wc_post_heading_nums'>".__('Showing', 'geeky-bot')." ".$from_post." - ".$to_post." ".__('of', 'geeky-bot')." ".$total_posts."</span></div>";
+            $text = "<div class='geekybot_wc_post_heading geekybot_wc_post_title'>".__('Here are some', 'geeky-bot')." ".$label."."." <span class='geekybot_wc_post_heading_nums'>".__('Showing', 'geeky-bot')." ".$from_post." - ".$to_post." ".__('of', 'geeky-bot')." ".$total_posts."</span></div>";
             foreach ($posts as $post) {
-                $permalink = get_permalink( $post->post_id );
-                $featured_image_url = get_the_post_thumbnail_url( $post->post_id, 'full' );
-                $logdata .= "\nTitle: ".$post->title." score: ".$post->score; 
-                $text .= '
+                $logdata .= "\nTitle: ".$post->title." score: ".$post->score;
+                if (!empty($geekybot_custom_listing->template_id)) {
+                    if (in_array($geekybot_custom_listing->template_id, [1, 2, 3])) {
+                        // Check if template_id is 1, 2, or 3
+                        $text .= apply_filters('geekybot_custom_listing_style_html', $geekybot_custom_listing, $post);
+                    } elseif (in_array($geekybot_custom_listing->template_id, [4, 5, 6])) {
+                        // Check if template_id is 3, 4, 5, or 6
+                        $text .= apply_filters('geekybot_custom_listing_text_html', $geekybot_custom_listing, $post, $msg);
+                    }
+                } elseif(in_array('customlistingstyle', geekybot::$_active_addons) || in_array('customlistingtext', geekybot::$_active_addons)) {
+                    $all_meta_keys = $this->geekybotGetAllMetaKeys($type);
+                    $defaultFieldForLogo = $this->geekybotGetDefaultFieldForLogo($type, $all_meta_keys);
+                    if (!empty($defaultFieldForLogo)) {
+                        $image_url = $this->geekybotGetLogoForListing($post->post_id, $defaultFieldForLogo);
+                    }
+                    $meta_keys_for_listing = $this->geekybotGetMetaKeysForListing($type);
+                    $permalink = get_permalink( $post->post_id );
+                    $text .= '
+                    <div class="geekybot_wc_article_wrp">
+                        <div class="geekybot_wc_article_header geekybot_wc_article_title 01">';
+                            if ( !empty($image_url) ) {
+                            $text .= '<span class="geekybot-websearch-image-wrp"><img src="' . esc_url( $image_url ) . '" alt="' . esc_attr( get_the_title() ) . '"></span>';
+                            }
+                            $text .= '
+                            <a target="_blank" href="' . esc_url( $permalink ) . '">'.$post->title.'</a>';
+                            foreach ($meta_keys_for_listing as $listing_key => $listing_value) {
+                                $meta_val = get_post_meta($post->post_id, $listing_value, true);
+                                if (is_array($meta_val)) {
+                                    $meta_value = implode(', ', $meta_val);
+                                } else {
+                                    $meta_value = $meta_val;
+                                }
+
+                                $text .="
+                                <div class='geekybot-websearch-field-wrp'>
+                                    <span class='geekybot-websearch-field-title'>
+                                        <b>
+                                        ".esc_html(geekybot::GEEKYBOT_getVarValue(ucwords(geekybotphplib::GEEKYBOT_str_replace('_', ' ', $listing_value)))).":
+                                        </b>
+                                    </span>
+                                    <span class='geekybot-websearch-field-value'>
+                                        ". $meta_value ."
+                                    </span>
+                                </div>
+                                ";
+                            }
+                            $text .= '
+                        </div>
+                    </div>';
+                } else {
+                    $permalink = get_permalink( $post->post_id );
+                    $featured_image_url = get_the_post_thumbnail_url( $post->post_id, 'full' );
+                    $text .= '
                     <div class="geekybot_wc_article_wrp">
                         <div class="geekybot_wc_article_header geekybot_wc_article_title">';
                             if ( $featured_image_url ) {
-                            $text .= '<span class="geekybot_wc_article_title-image"><img src="' . esc_url( $featured_image_url ) . '" alt="' . esc_attr( get_the_title() ) . '"></span>';
+                            $text .= '<span class="geekybot-websearch-image-wrp"><img src="' . esc_url( $featured_image_url ) . '" alt="' . esc_attr( get_the_title() ) . '"></span>';
                             }
                             $text .= '
                             <a target="_blank" href="' . esc_url( $permalink ) . '">'.$post->title.'</a>
                         </div>
                     </div>';
+                }
             }
             $text .= "<div class='geekybot_wc_post_load_more_wrp'>";
                 if ($total_posts > ($current_page * $postsPerPage)) {
                     $next_page = $current_page + 1;
-                    $text .= "<span class='geekybot_wc_post_load_more' onclick=\"showArticlesList('".$msg."','".$type."','". $highest_score."','". $total_posts."','". $next_page."');\">".__('Show More', 'geeky-bot')."</span>";
+                    $text .= "<span class='geekybot_wc_post_load_more' onclick=\"showArticlesList('".$msg."','".$type."','".$label."','". $highest_score."','". $total_posts."','". $next_page."');\">".__('Show More', 'geeky-bot')."</span>";
                 }
             $text .= "</div>";
         }
         $text = geekybotphplib::GEEKYBOT_htmlentities($text);
         // save bot response to the session and chat history
         geekybot::$_geekybotsessiondata->geekybot_addChatHistoryToSession($text, 'bot');
-        GEEKYBOTincluder::GEEKYBOT_getModel('chathistory')->SaveChathistoryFromchatServer($text, 'bot', 4);
+        GEEKYBOTincluder::GEEKYBOT_getModel('chathistory')->SaveChathistoryFromchatServer($text, 'bot', 4, '', $type);
         GEEKYBOTincluder::GEEKYBOT_getObjectClass('logging')->GEEKYBOTlwrite($logdata);
         return $text;
         wp_die();
@@ -562,7 +544,6 @@ class GEEKYBOTwebsearchModel {
             $max_batch_size = 1000; // Maximum number of records to process at once
             $threshold = 10000; // Threshold to determine small vs. large datasets
             $max_batch_size_in_bytes = 5 * 1024 * 1024; // 5 MB per batch
-            $current_batch_size = 0; // Track batch size
             $batch_data = []; // Store data for the current batch
             $offset = 0; // Start from the first batch
             // Get total number of posts for the specified post type
@@ -597,104 +578,15 @@ class GEEKYBOTwebsearchModel {
                     $row_size = strlen($post_text);
 
                     // If adding this row exceeds the batch size, insert current batch
-                    if ($current_batch_size + $row_size > $max_batch_size_in_bytes) {
+                    if ($row_size > $max_batch_size_in_bytes && !empty($batch_data)) {
                         // Insert the current batch
                         $insert_query = $this->geekybotPostTypeBuildQuery($batch_data);
                         geekybot::$_db->query($insert_query);
                         // Reset for the next batch
                         $batch_data = [];
-                        $current_batch_size = 0;
                     }
-                    // ---------------
-                    // Get all taxonomies associated with the post
-                    $taxonomies = get_object_taxonomies(get_post_type($post->ID));
-                    // Loop through each taxonomy to get the terms
-                    foreach ($taxonomies as $taxonomy) {
-                        // Get terms for this taxonomy
-                        $terms = get_the_terms($post->ID, $taxonomy);
-                        if ( ! empty($terms) && ! is_wp_error($terms) ) {
-                            foreach ( $terms as $term ) {
-                                $post_text .= $term->name.' ';
-                            }
-                        }
-                    }
-                    // ---------------
-                    $skip_storing_process = 0;
-                    $meta_keys = array();
-                    if ($post->post_type == 'topic') {
-                        $skip_storing_process = 1;
-                    } elseif ($post->post_type == 'forum') {
-                        $skip_storing_process = 1;
-
-                        $p_id = $post->ID;
-                        $p_title = $post->post_title;
-                        $p_content = $post->post_content;
-                        $p_post_type = $post->post_type;
-                        $p_post_id = $post->ID;
-                        $p_status = $post->post_status;
-                        $bbp_forum_id = $post->ID;
-                        $store_topic = $this->geekybotCheckTopicStatusForBBpress();
-                        if ($store_topic == 1) {
-                            // get all the topics related to this forum
-                            $meta_key = '_bbp_forum_id';
-                            $meta_value = $bbp_forum_id;
-                            $args = array(
-                                'post_type'  => 'topic',// Limit to post type 'topic'
-                                'post_status'   => 'publish',// Only fetch published posts
-                                'meta_key'   => $meta_key,
-                                'meta_value' => $meta_value,
-                                'posts_per_page' => -1, // Get all matching posts
-                                'orderby' => 'ID', // Order by ID
-                                'order' => 'ASC', // Order by assending
-                            );
-                            $topics = get_posts($args);
-                            if (!empty($topics)) {
-                                foreach ($topics as $topic) {
-                                    $post_text .= $topic->post_title . ' ' .$topic->post_content .' ';
-                                }
-                            }
-                        }
-                        $post_text = geekybot::GEEKYBOT_sanitizeData($post_text);// GEEKYBOT_sanitizeData() function uses wordpress santize functions
-                        $post_text = $this->stripslashesFull($post_text);// remove slashes with quotes.
-                            // Add the current row to the batch
-                        $batch_data[] = '("'.esc_sql($p_id).'","'.esc_sql($p_title).'","'.esc_sql($p_content).'","'.esc_sql($post_text).'","'.esc_sql($p_post_id).'","'.esc_sql($p_post_type).'","'.esc_sql($p_status).'")';
-                    } else {
-                        // List of meta keys to exclude
-                        $exclude_meta_keys = array(
-                            '_edit_lock',
-                            '_edit_last',
-                            '_wp_old_slug',
-                            '_thumbnail_id',
-                            '_wp_trash_meta_status',
-                            '_wp_trash_meta_time',
-                            '_pingme',
-                            '_encloseme',
-                            '_wp_attached_file',
-                            '_wp_attachment_metadata',
-                            '_wp_attachment_image_alt',
-                            '_wp_page_template',
-                            '_menu_item',
-                            '_wpb_vc_js_status',
-                            '_elementor_data'
-                        );
-                        $post_meta = get_post_meta($post->ID); // Get all post meta
-                        // Loop through the meta and filter useful data
-                        if (!empty($meta_keys)) {
-                            foreach ($meta_keys as $meta_key => $meta_value) {
-                                // Filter out empty values
-                                if (!empty($meta_value) && !in_array($meta_key, $exclude_meta_keys)) {
-                                    $post_text .= $meta_key.' ';
-                                    $post_text .= $meta_value[0].' ';
-                                }
-                            }
-                        }
-                    }
-                    if ($skip_storing_process == 0) {
-                        $post_text = geekybot::GEEKYBOT_sanitizeData($post_text);// GEEKYBOT_sanitizeData() function uses wordpress santize functions
-                        $post_text = $this->stripslashesFull($post_text);// remove slashes with quotes.
-                        // Add the current row to the batch
-                        $batch_data[] = '("'.esc_sql($post->ID).'","'.esc_sql($post->post_title).'","'.esc_sql($post->post_content).'","'.esc_sql($post_text).'","'.esc_sql($post->ID).'","'.esc_sql($post->post_type).'","'.esc_sql($post->post_status).'")';
-                    }
+                    // Add the current row to the batch
+                    $batch_data[] = $post->ID;
                 }
                 // Insert any remaining data in the last batch
                 if (!empty($batch_data)) {
@@ -713,14 +605,76 @@ class GEEKYBOTwebsearchModel {
     }
 
     function geekybotPostTypeBuildQuery($batch_data) {
-        return 'INSERT INTO ' . geekybot::$_db->prefix . 'geekybot_posts (ID, title, content, post_text, post_id, post_type, status) VALUES ' . 
-            implode(', ', $batch_data) . 
-            ' ON DUPLICATE KEY UPDATE 
-                title = VALUES(title), 
-                content = VALUES(content), 
-                post_text = VALUES(post_text), 
-                post_type = VALUES(post_type), 
-                status = VALUES(status);';
+        // Increase GROUP_CONCAT limit
+        $query = "SET SESSION group_concat_max_len = 5000000";
+        geekybot::$_db->query($query);
+        // Increase CONCAT limit
+        $query = "SET GLOBAL max_allowed_packet = 15000000";
+        geekybot::$_db->query($query);
+        // Convert the array into a comma-separated string
+        $post_ids_str = implode(',', array_map('intval', $batch_data));
+
+        $exclude_meta_keys = array(
+            '_edit_lock',
+            '_edit_last',
+            '_wp_old_slug',
+            '_thumbnail_id',
+            '_wp_trash_meta_status',
+            '_wp_trash_meta_time',
+            '_pingme',
+            '_encloseme',
+            '_wp_attached_file',
+            '_wp_attachment_metadata',
+            '_wp_attachment_image_alt',
+            '_wp_page_template',
+            '_menu_item',
+            '_wpb_vc_js_status',
+            '_elementor_data'
+        );
+
+        $exclude_meta_keys_str = "'" . implode("','", $exclude_meta_keys) . "'";
+        return "
+            INSERT INTO " . geekybot::$_db->prefix . "geekybot_posts (ID, title, content, post_text, post_id, post_type, status)
+            SELECT 
+                p.ID, 
+                p.post_title, 
+                p.post_content, 
+                CONCAT(
+                    p.post_title, ' ', 
+                    p.post_content, ' ',
+                    IFNULL(
+                        (SELECT 
+                            GROUP_CONCAT(CONCAT(pm.meta_key, ' ', pm.meta_value) SEPARATOR ' ') 
+                         FROM " . geekybot::$_db->prefix . "postmeta AS pm 
+                         WHERE pm.post_id = p.ID AND pm.meta_key NOT IN ({$exclude_meta_keys_str})), 
+                         ''
+                    ),
+                    ' ',
+                    IFNULL(
+                        (SELECT 
+                            GROUP_CONCAT(t.name SEPARATOR ' ')
+                         FROM " . geekybot::$_db->prefix . "term_relationships AS tr 
+                         INNER JOIN " . geekybot::$_db->prefix . "term_taxonomy AS tt 
+                            ON tr.term_taxonomy_id = tt.term_taxonomy_id
+                         INNER JOIN " . geekybot::$_db->prefix . "terms AS t 
+                            ON tt.term_id = t.term_id
+                         WHERE tr.object_id = p.ID), 
+                         ''
+                    ),
+                    ' '
+                ) AS post_text,
+                p.ID,
+                p.post_type,
+                p.post_status
+            FROM " . geekybot::$_db->prefix . "posts AS p
+            WHERE p.ID IN ({$post_ids_str})
+            ORDER BY p.ID ASC
+            ON DUPLICATE KEY UPDATE 
+                title = VALUES(title),
+                content = VALUES(content),
+                post_text = VALUES(post_text),
+                post_type = VALUES(post_type),
+                status = VALUES(status);";
     }
 
     function geekybotDisableWebSearch($ajaxCall = 1) {
@@ -779,28 +733,203 @@ class GEEKYBOTwebsearchModel {
     function getMessagekey(){
         $key = 'websearch';if(is_admin()){$key = 'admin_'.$key;}return $key;
     }
+    // addon query
 
-    // sub model function
-
-    function geekybotCheckTopicStatusForBBpress(){    
-        $query = "SELECT status FROM `" . geekybot::$_db->prefix . "geekybot_post_types` WHERE `post_type` = 'topic'";
-        $status = geekybotdb::GEEKYBOT_get_var($query);
-
-        if ($status == 1) {
-            // if the post type exists in table and is public
+    function storeCustomListing($data) {
+        if (empty($data))
             return 1;
-        } elseif ($status == 0) {
-            // if the post type exists in table and is not public
-            return 0;
+
+        $message = '';
+        if(in_array('customlistingstyle', geekybot::$_active_addons)){
+            $message = apply_filters('geekybot_store_custom_listing_style', $data);
+        }
+        if(in_array('customlistingtext', geekybot::$_active_addons)){
+            $message = apply_filters('geekybot_store_custom_listing_text', $data);
+        }
+        return $message;
+    }
+
+    function geekybotGetDefaultSelectedTemplate($allFields, $logoField) {
+        if ($allFields == 0) {
+            $index = 6;
+        } elseif(in_array('customlistingstyle', geekybot::$_active_addons) && $logoField == '') {
+            $index = 3;
+        } elseif(!in_array('customlistingstyle', geekybot::$_active_addons) && $logoField != '') {
+            $index = 4;
+        } elseif($logoField == '') {
+            $index = 6;
         } else {
-            // if the post type not exists in table
-            $post_type_object = get_post_type_object('topic');
-            // Check if the post type exists and is public
-            if ($post_type_object && $post_type_object->public) {
-                return 1;  // 'topic' exists and is public
+            $index = 1;
+        }
+        return $index;
+    }
+
+    function geekybotGetLogoForListing($post_id, $meta_key) {
+        $image_url = '';
+        // Get the attachment ID stored in post meta
+        $image_meta = get_post_meta($post_id, $meta_key, true);
+        if (is_numeric($image_meta) && $image_meta > 0) {
+            // Case 1: If the image is stored as a single Attachment ID
+            // Handle single attachment ID case (if the value is not array)
+            $attachment_id = $image_meta;
+            // Check if an attachment ID is found
+            if ($attachment_id) {
+                // Get the URL of the image
+                $image_url = wp_get_attachment_image_url($attachment_id, 'full'); // 'full' is the image size
+            }
+        } elseif (filter_var($image_meta, FILTER_VALIDATE_URL)) {
+            // Case 2: If the image URL is stored directly
+            $image_url = $image_meta;
+        } elseif (is_array($image_meta)) {
+            // Case 3: If the post meta contains an array of Attachment IDs
+            $attachment_id = $image_meta[0]; // get the first index of the array
+            // if the first index of array found
+            if ($attachment_id) {
+                // Get the image URL for this attachment ID
+                $image_url = wp_get_attachment_image_url($attachment_id, 'full');
+            }
+        } elseif (is_array($image_meta) && !empty($image_meta) && filter_var($image_meta[0], FILTER_VALIDATE_URL)) {
+            // Case 4: If the post meta contains an array of Image URLs
+            $attachment_id = $image_meta[0]; // get the first index of the array
+            // if the first index of array found
+            if ($attachment_id) {
+                // Get the image URL for this attachment ID
+                $image_url = $attachment_id;
             }
         }
-        return 0; // 'topic' either doesn't exist or isn't public
+        return $image_url;
+    }
+
+    function geekybotGetDefaultFieldForLogo($post_type, $meta_keys) {
+        // List of common prefixes related to logos
+        $logo_keywords = ['thumbnail', 'logo', 'image', 'header', 'brand', 'custom', 'icon', 'avatar', 'splash', 'cover'];
+
+        // Loop through all meta keys to find a match for the logo
+        foreach ($meta_keys as $key => $value) {
+            // Check if the key contains any of the logo-related keywords
+            foreach ($logo_keywords as $keyword) {
+                if (strpos(strtolower($value->id), $keyword) !== false) {
+                    // Return the first matching meta key
+                    return $value->id;
+                }
+            }
+        }
+        return '';
+    }
+    
+    function geekybotGetMetaKeysForListing($post_type) {
+        // List of meta keys to exclude
+        $exclude_meta_keys = array(
+            '_edit_lock',
+            '_edit_last',
+            '_wp_old_slug',
+            '_thumbnail_id',
+            '_wp_trash_meta_status',
+            '_wp_trash_meta_time',
+            '_pingme',
+            '_encloseme',
+            '_wp_attached_file',
+            '_wp_attachment_metadata',
+            '_wp_attachment_image_alt',
+            '_wp_page_template',
+            '_menu_item',
+            '_wpb_vc_js_status',
+            '_elementor_data'
+        );
+        $all_meta_keys = [];
+        // Fetch all post IDs for the given post type
+        $post_ids = get_posts([
+            'post_type'      => $post_type,
+            'posts_per_page' => 100,  // Limit to 100 posts for performance
+            'fields'         => 'ids',  // Only retrieve post IDs
+        ]);
+
+        if (empty($post_ids)) {
+            return [];  // No posts found, return an empty array
+        }
+
+        // Fetch all meta keys and values for the given post IDs in a single query
+        global $wpdb;
+        $meta_data = $wpdb->get_results($wpdb->prepare(
+            "SELECT DISTINCT meta_key, meta_value FROM $wpdb->postmeta WHERE post_id IN (%s)",
+            implode(',', $post_ids)
+        ));
+        // Initialize an array to store filtered meta keys
+        $all_meta_keys = [];
+
+        foreach ($meta_data as $meta) {
+            // Skip excluded meta keys
+            if (in_array($meta->meta_key, $exclude_meta_keys)) {
+                continue;
+            }
+            // Skip keys with numeric values
+            if (is_numeric($meta->meta_value)) {
+                continue;
+            }
+            // Add to the list of meta keys
+            $all_meta_keys[] = $meta->meta_key;
+        }
+
+        // Loop through post IDs to gather meta keys
+        foreach ($post_ids as $post_id) {
+            $meta_keys = array_keys(get_post_meta($post_id));
+            $clean_meta_keys = array_diff($meta_keys, $exclude_meta_keys);
+            // Merge unique meta keys
+            $all_meta_keys = array_unique(array_merge($all_meta_keys, $clean_meta_keys));
+            // 
+            $taxonomies = get_object_taxonomies(get_post_type($post_id));
+            // Merge unique meta keys
+            $all_meta_keys = array_unique(array_merge($all_meta_keys, $taxonomies));
+        }
+
+        $logo_keywords = ['thumbnail', 'logo', 'image', 'header', 'brand', 'custom', 'icon', 'avatar', 'splash', 'cover'];
+        // Loop through all meta keys to find a match for the logo
+        foreach ($all_meta_keys as $key => $value) {
+            // Check if the key contains any of the logo-related keywords
+            foreach ($logo_keywords as $keyword) {
+                if (strpos(strtolower($value), $keyword) !== false) {
+                    // Return the first matching meta key
+                    unset($all_meta_keys[$key]);
+                }
+            }
+        }
+        // Return the first 3 filtered meta keys
+        return array_slice(array_values($all_meta_keys), 0, 3);
+    }
+
+    function geekybotGetAllMetaKeys($post_type) {
+        $all_meta_keys = [];
+        // Fetch all post IDs for the given post type
+        $post_ids = get_posts([
+            'post_type'      => $post_type,
+            'posts_per_page' => 100,  // Limit to 100 posts for performance
+            'fields'         => 'ids',  // Only retrieve post IDs
+        ]);
+
+        if (empty($post_ids)) {
+            return [];  // No posts found, return an empty array
+        }
+
+        // Loop through post IDs to gather meta keys
+        foreach ($post_ids as $post_id) {
+            $meta_keys = array_keys(get_post_meta($post_id));
+            // Merge unique meta keys
+            $all_meta_keys = array_unique(array_merge($all_meta_keys, $meta_keys));
+            // 
+            $taxonomies = get_object_taxonomies(get_post_type($post_id));
+            // Merge unique meta keys
+            $all_meta_keys = array_unique(array_merge($all_meta_keys, $taxonomies));
+        }
+
+        // Format the meta keys for the combobox
+        $formatted_keys = array_map(function ($key) {
+            return (object) [
+                'id'   => sanitize_text_field($key),
+                'text' => esc_html__($key, 'geeky-bot'),
+            ];
+        }, $all_meta_keys);
+
+        return $formatted_keys;
     }
 }
 

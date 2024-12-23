@@ -6,7 +6,7 @@
     }
 ?>
 <!-- main wrapper -->
-<div id="geekybotadmin-wrapper">
+<div id="geekybotadmin-wrapper" class="geekybot-admin-main-wrapper">
     <?php  GEEKYBOTincluder::GEEKYBOT_getTemplate('templates/admin/upper-nav',array('module' => 'chathistory','layouts' => 'chathistory')); ?>
     <div class="geekybotadmin-body-main">
         <!-- left menu -->
@@ -141,7 +141,7 @@
 <!-- user input popup -->
 <div id="addIntentToStoryblack" style="display:none;"> </div>
 <div id="addIntentToStory" style="display:none">
-    <div class="ms-popup-header">
+    <div class="geekybot-popup-header">
         <div class="popup-header-text">
             <?php echo esc_html(__('Add User Input To Story', 'geeky-bot')); ?>
         </div>
@@ -181,7 +181,7 @@ function getNextChatHistorySessionsHtml(){
 
 $geekybot_js ="
     jQuery(document).ready(function(){
-        jQuery('.chatHistory.leftmenu div:first').addClass('active');
+        // jQuery('.chatHistory.leftmenu div:first').addClass('active'); by hamza ali
     });
     function makeMeActive(userName, userId, chatHistoryId, htmlDiv, datet, pagenum, pagination) {
         if(pagination == 0) {

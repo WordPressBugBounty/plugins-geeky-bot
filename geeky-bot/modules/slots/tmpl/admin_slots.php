@@ -14,7 +14,7 @@
     }
 ?>
 <!-- main wrapper -->
-<div id="geekybotadmin-wrapper">
+<div id="geekybotadmin-wrapper" class="geekybot-admin-main-wrapper">
     <?php  GEEKYBOTincluder::GEEKYBOT_getTemplate('templates/admin/upper-nav',array('module' => 'slots','layouts' => 'slots')); ?>
     <div class="geekybotadmin-body-main">
         <!-- left menu -->

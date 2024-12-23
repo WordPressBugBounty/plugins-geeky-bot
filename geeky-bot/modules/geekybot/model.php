@@ -79,87 +79,225 @@ class GEEKYBOTgeekybotModel {
     }
 
     function getAdminControlPanelData() {
-        // $this->checkLicense();
         $curdate = date_i18n('Y-m-d');
+        $last_month = date_i18n('Y-m-d', geekybotphplib::GEEKYBOT_strtotime("now -1 month"));
         geekybot::$_data['curdate'] = $curdate;
-        // stats
-        $ai_query = "SELECT COUNT(id) FROM `" . geekybot::$_db->prefix . "geekybot_stories` where story_type = 1";
-        $ai_query .= " ORDER BY id ASC ";
-        $ai_count = geekybotdb::GEEKYBOT_get_var($ai_query);
-        // woo story data
-        $woo_query = "SELECT COUNT(id) FROM `" . geekybot::$_db->prefix . "geekybot_stories` where story_type = 2";
-        $woo_query .= " ORDER BY id ASC ";
-        $woo_count = geekybotdb::GEEKYBOT_get_var($woo_query);
-        $inquery =  '';
-        // -----
-        if ($ai_count > 0) {
-            // total AI Chatbot sessions
-            geekybot::$_data['stats'][0]['title'] = __('AI ChatBot Sessions', 'geeky-bot');
-            $query = "SELECT COUNT(DISTINCT session_id) FROM `" . geekybot::$_db->prefix . "geekybot_chat_history_messages` WHERE type = 1";
-            geekybot::$_data['stats'][0]['total'] = geekybot::$_db->get_var($query);
-            // today AI Chatbot sessions
-            $query = "SELECT COUNT(DISTINCT session_id) FROM `" . geekybot::$_db->prefix . "geekybot_chat_history_messages` WHERE DATE(created) = DATE('".esc_sql($curdate)."') AND  type = 1";
-            geekybot::$_data['stats'][0]['today'] = geekybot::$_db->get_var($query);
-            $inquery .=  ' 1 , ';
+
+        // Stats start
+        // -------- AI Chatbot sessions ---------
+        $ai_chatbot_story = geekybotdb::GEEKYBOT_get_var("SELECT status FROM `" . geekybot::$_db->prefix . "geekybot_stories` WHERE `story_type` = 1");
+        geekybot::$_data['ai_chatbot_sessions']['today'] = 0;
+        geekybot::$_data['ai_chatbot_sessions']['last_month'] = 0;
+        
+        if ($ai_chatbot_story == 1) {
+            // Consolidate queries for session counts
+            $queries = [
+                'total' => "SELECT COUNT(DISTINCT session_id) FROM `" . geekybot::$_db->prefix . "geekybot_chat_history_messages` WHERE type = 1",
+                'today' => "SELECT COUNT(DISTINCT session_id) FROM `" . geekybot::$_db->prefix . "geekybot_chat_history_messages` WHERE DATE(created) = DATE('" . esc_sql($curdate) . "') AND type = 1",
+                'last_month' => "SELECT COUNT(DISTINCT session_id) FROM `" . geekybot::$_db->prefix . "geekybot_chat_history_messages` WHERE DATE(created) BETWEEN DATE('" . esc_sql($last_month) . "') AND DATE('" . esc_sql($curdate) . "') AND type = 1"
+            ];
+            
+            foreach ($queries as $key => $query) {
+                geekybot::$_data['ai_chatbot_sessions'][$key] = geekybot::$_db->get_var($query);
+            }
+        } else {
+            if (isset($ai_chatbot_story) && $ai_chatbot_story == 0) {
+                geekybot::$_data['ai_chatbot_sessions']['error_message'] = __('AI ChatBot is disabled.', 'geeky-bot');
+                $text = __('Active Now', 'geeky-bot');
+            } else {
+                geekybot::$_data['ai_chatbot_sessions']['error_message'] = __('AI ChatBot story not built.', 'geeky-bot');
+                $text = __('Built Now', 'geeky-bot');
+            }
+            geekybot::$_data['ai_chatbot_sessions']['error_message_btn'] = "<a href = '" . esc_url(wp_nonce_url('admin.php?page=geekybot_stories&geekybotlt=stories','Stories')) ."'> " . esc_html($text) . "</a>";
         }
-        // -----
-        if ($woo_count > 0) {
-            // total WC Chatbot sessions
-            geekybot::$_data['stats'][1]['title'] = __('WooCommerce Sessions', 'geeky-bot');
-            $query = "SELECT COUNT(DISTINCT session_id) FROM `" . geekybot::$_db->prefix . "geekybot_chat_history_messages` WHERE type = 2";
-            geekybot::$_data['stats'][1]['total'] = geekybot::$_db->get_var($query);
-            // today WC Chatbot sessions
-            $query = "SELECT COUNT(DISTINCT session_id) FROM `" . geekybot::$_db->prefix . "geekybot_chat_history_messages` WHERE DATE(created) = DATE('".esc_sql($curdate)."') AND  type = 2";
-            geekybot::$_data['stats'][1]['today'] = geekybot::$_db->get_var($query);
-            $inquery .=  ' 2 , ';
+
+        // -------- WooCommerce sessions ---------
+        geekybot::$_data['woocommerce_sessions']['today'] = 0;
+        geekybot::$_data['woocommerce_sessions']['last_month'] = 0;
+
+        if ( !file_exists( WP_PLUGIN_DIR . '/woocommerce/woocommerce.php' ) ) {
+            // Check if WooCommerce is installed and not activated
+            geekybot::$_data['woocommerce_sessions']['error_message'] = __('WooCommerce plugin is not installed.', 'geeky-bot');
+            geekybot::$_data['woocommerce_sessions']['error_message_btn'] = "<a href='". esc_url(admin_url( 'plugin-install.php?tab=search&s=woocommerce' )) ."'> ". esc_html(__("Install Now","geeky-bot")) ."</a>";
+        } elseif ( is_plugin_inactive( 'woocommerce/woocommerce.php' ) ) {
+            // WooCommerce is installed but not activated
+            geekybot::$_data['woocommerce_sessions']['error_message'] = __('WooCommerce plugin is not activated.', 'geeky-bot');
+            geekybot::$_data['woocommerce_sessions']['error_message_btn'] = "<a href='". esc_url(admin_url( 'plugins.php?s=woocommerce&plugin_status=all' )) ."''> ". esc_html(__('Active Now','geeky-bot'))."</a>";
+        } else {
+            $wc_story = geekybotdb::GEEKYBOT_get_var("SELECT status FROM `" . geekybot::$_db->prefix . "geekybot_stories` WHERE `story_type` = 2");
+            if ($wc_story == 1) {
+                $queries = [
+                    'total' => "SELECT COUNT(DISTINCT session_id) FROM `" . geekybot::$_db->prefix . "geekybot_chat_history_messages` WHERE type = 2",
+                    'today' => "SELECT COUNT(DISTINCT session_id) FROM `" . geekybot::$_db->prefix . "geekybot_chat_history_messages` WHERE DATE(created) = DATE('" . esc_sql($curdate) . "') AND type = 2",
+                    'last_month' => "SELECT COUNT(DISTINCT session_id) FROM `" . geekybot::$_db->prefix . "geekybot_chat_history_messages` WHERE DATE(created) BETWEEN DATE('" . esc_sql($last_month) . "') AND DATE('" . esc_sql($curdate) . "') AND type = 2"
+                ];
+
+                foreach ($queries as $key => $query) {
+                    geekybot::$_data['woocommerce_sessions'][$key] = geekybot::$_db->get_var($query);
+                }
+            } else {
+                if (isset($wc_story) && $wc_story == 0) {
+                    geekybot::$_data['woocommerce_sessions']['error_message'] = __('WooCommerce Bot is disabled.', 'geeky-bot');
+                    $text = __('Active Now', 'geeky-bot');
+                } else {
+                    geekybot::$_data['woocommerce_sessions']['error_message'] = __('WooCommerce story not built.', 'geeky-bot');
+                    $text = __('Built Now', 'geeky-bot');
+                }
+                geekybot::$_data['woocommerce_sessions']['error_message_btn'] = "<a href = '" . esc_url(wp_nonce_url('admin.php?page=geekybot_stories&geekybotlt=stories','Stories')) ."'> " . esc_html($text) . "</a>";
+            }
         }
-        // -----
-        if(geekybot::$_configuration['is_posts_enable'] == 1) {
-            // total post Chatbot sessions
-            geekybot::$_data['stats'][3]['title'] = __('AI Web Search Sessions', 'geeky-bot');
-            $query = "SELECT COUNT(DISTINCT session_id) FROM `" . geekybot::$_db->prefix . "geekybot_chat_history_messages` WHERE type = 4";
-            geekybot::$_data['stats'][3]['total'] = geekybot::$_db->get_var($query);
-            // today post Chatbot sessions
-            $query = "SELECT COUNT(DISTINCT session_id) FROM `" . geekybot::$_db->prefix . "geekybot_chat_history_messages` WHERE DATE(created) = DATE('".esc_sql($curdate)."') AND  type = 4";
-            geekybot::$_data['stats'][3]['today'] = geekybot::$_db->get_var($query);
-            $inquery .=  ' 4 , ';
+        
+        // -------- AI Web Search sessions ---------
+        if (geekybot::$_configuration['is_posts_enable'] == 1) {
+            $queries = [
+                'total' => "SELECT COUNT(DISTINCT session_id) FROM `" . geekybot::$_db->prefix . "geekybot_chat_history_messages` WHERE type = 4",
+                'today' => "SELECT COUNT(DISTINCT session_id) FROM `" . geekybot::$_db->prefix . "geekybot_chat_history_messages` WHERE DATE(created) = DATE('" . esc_sql($curdate) . "') AND type = 4"
+            ];
+
+            foreach ($queries as $key => $query) {
+                geekybot::$_data['ai_web_search_sessions'][$key] = geekybot::$_db->get_var($query);
+            }
+        } else {
+            geekybot::$_data['ai_web_search_sessions']['total'] = geekybot::$_data['ai_web_search_sessions']['today'] = 0;
         }
-        // total sessions
-        $query = "SELECT type, COUNT(DISTINCT session_id) AS stats FROM `" . geekybot::$_db->prefix . "geekybot_chat_history_messages` WHERE sender = 'bot' ";
-        if ($inquery != '') {
-            $inquery = rtrim($inquery, ' , ');
-            $query .= ' AND type IN ( '.$inquery.' ) ';
+        // stats end
+        // ------- Last Month AI Chatbot sessions ----------
+
+        $query = "SELECT session.created FROM `" . geekybot::$_db->prefix . "geekybot_chat_history_sessions` AS  session
+            LEFT JOIN `" . geekybot::$_db->prefix . "geekybot_chat_history_messages` AS message ON session.id = message.session_id
+            WHERE DATE(session.created) >= DATE('".esc_sql($last_month)."')
+            AND DATE(session.created) <= DATE('".esc_sql($curdate)."')
+            AND message.type = 1
+            GROUP BY session.id";
+        $ai_chatbot_last_month_sessions = geekybot::$_db->get_results($query);
+        
+        $date_ai_chatbot_last_month_session = array();
+        foreach ($ai_chatbot_last_month_sessions AS $ai_chatbot_last_month_session) {
+            if (!isset($date_ai_chatbot_last_month_session[date_i18n('Y-m-d', geekybotphplib::GEEKYBOT_strtotime($ai_chatbot_last_month_session->created))]))
+                $date_ai_chatbot_last_month_session[date_i18n('Y-m-d', geekybotphplib::GEEKYBOT_strtotime($ai_chatbot_last_month_session->created))] = 0;
+            $date_ai_chatbot_last_month_session[date_i18n('Y-m-d', geekybotphplib::GEEKYBOT_strtotime($ai_chatbot_last_month_session->created))] = $date_ai_chatbot_last_month_session[date_i18n('Y-m-d', geekybotphplib::GEEKYBOT_strtotime($ai_chatbot_last_month_session->created))] + 1;
         }
-        $query .= ' GROUP BY type';
-        $totalsessions = geekybot::$_db->get_results($query);
-        $totalsessions_count = 0;
-        foreach ($totalsessions as $value) {
-            $totalsessions_count += $value->stats;
+        geekybot::$_data['last_month_ai_chatbot_story_chart']['start_date'] = $last_month;
+        geekybot::$_data['last_month_ai_chatbot_story_chart']['end_date'] = $curdate;
+        $ai_chatbot_story = 0;
+        $json_array = "";
+        $nextdate = $last_month;
+        do{
+            $year = date_i18n('Y',strtotime($nextdate));
+            $month = date_i18n('m',strtotime($nextdate));
+            $day = date_i18n('d',strtotime($nextdate));
+            $ai_chatbot_story_tmp = isset($date_ai_chatbot_last_month_session[$nextdate]) ? $date_ai_chatbot_last_month_session[$nextdate]  : 0;
+            $json_array .= "[$year, $month, $day, $ai_chatbot_story_tmp],";
+            $ai_chatbot_story += $ai_chatbot_story_tmp;
+            if($nextdate == $curdate){
+                break;
+            }
+            $nextdate = date_i18n('Y-m-d', geekybotphplib::GEEKYBOT_strtotime($nextdate . " +1 days"));
+        } while($nextdate <= $curdate);
+
+        geekybot::$_data['last_month_ai_chatbot_story_chart']['data'] = $json_array;
+
+        // ------- Last Month Woocommerce sessions ----------
+
+        $query = "SELECT session.created FROM `" . geekybot::$_db->prefix . "geekybot_chat_history_sessions` AS  session
+            LEFT JOIN `" . geekybot::$_db->prefix . "geekybot_chat_history_messages` AS message ON session.id = message.session_id
+            WHERE DATE(session.created) >= DATE('".esc_sql($last_month)."')
+            AND DATE(session.created) <= DATE('".esc_sql($curdate)."')
+            AND message.type = 2
+            GROUP BY session.id";
+        $ai_chatbot_last_month_sessions = geekybot::$_db->get_results($query);
+        
+        $date_ai_chatbot_last_month_session = array();
+        foreach ($ai_chatbot_last_month_sessions AS $ai_chatbot_last_month_session) {
+            if (!isset($date_ai_chatbot_last_month_session[date_i18n('Y-m-d', geekybotphplib::GEEKYBOT_strtotime($ai_chatbot_last_month_session->created))]))
+                $date_ai_chatbot_last_month_session[date_i18n('Y-m-d', geekybotphplib::GEEKYBOT_strtotime($ai_chatbot_last_month_session->created))] = 0;
+            $date_ai_chatbot_last_month_session[date_i18n('Y-m-d', geekybotphplib::GEEKYBOT_strtotime($ai_chatbot_last_month_session->created))] = $date_ai_chatbot_last_month_session[date_i18n('Y-m-d', geekybotphplib::GEEKYBOT_strtotime($ai_chatbot_last_month_session->created))] + 1;
         }
-        geekybot::$_data['totalsessions'] = $totalsessions_count;
-        // today sessions
-        $query = "SELECT type, COUNT(DISTINCT session_id) AS stats  FROM `" . geekybot::$_db->prefix . "geekybot_chat_history_messages` WHERE DATE(created) = DATE('".esc_sql($curdate)."') AND sender = 'bot' ";
-        if ($inquery != '') {
-            $inquery = rtrim($inquery, ' , ');
-            $query .= ' AND type IN ( '.$inquery.' ) ';
+        $ai_chatbot_story = 0;
+        $json_array = "";
+        $nextdate = $last_month;
+        do{
+            $year = date_i18n('Y',strtotime($nextdate));
+            $month = date_i18n('m',strtotime($nextdate));
+            $day = date_i18n('d',strtotime($nextdate));
+            $ai_chatbot_story_tmp = isset($date_ai_chatbot_last_month_session[$nextdate]) ? $date_ai_chatbot_last_month_session[$nextdate]  : 0;
+            $json_array .= "[$year, $month, $day, $ai_chatbot_story_tmp],";
+            $ai_chatbot_story += $ai_chatbot_story_tmp;
+            if($nextdate == $curdate){
+                break;
+            }
+            $nextdate = date_i18n('Y-m-d', geekybotphplib::GEEKYBOT_strtotime($nextdate . " +1 days"));
+        } while($nextdate <= $curdate);
+        geekybot::$_data['last_month_woocommerce_story_chart']['data'] = $json_array;
+
+        // -------- Top AI Web Search Post Types ---------
+        if ( geekybot::$_configuration['is_posts_enable'] == 1 ) {
+            $query = "SELECT type.post_type, COALESCE(COUNT(session.id), 0) AS session_count 
+                FROM `" . geekybot::$_db->prefix . "geekybot_post_types` AS  type
+                LEFT JOIN `" . geekybot::$_db->prefix . "geekybot_chat_history_messages` AS message ON type.post_type = message.post_type
+                LEFT JOIN `" . geekybot::$_db->prefix . "geekybot_chat_history_sessions` AS session ON session.id = message.session_id
+                
+                AND DATE(session.created) BETWEEN DATE('" . esc_sql($last_month) . "') AND DATE('" . esc_sql($curdate) . "')
+                AND message.type = 4
+                WHERE type.status = 1
+                GROUP BY type.post_type
+                ORDER BY session_count DESC
+                LIMIT 3";
+            
+            $top_searches = geekybot::$_db->get_results($query);
+            geekybot::$_data['top_ai_web_search'] = $top_searches;
+            // -------- Last Month Post Type Sessions ---------
+            if ($top_searches) {
+                foreach ($top_searches as $index => $web_Search) {
+                    $query = "SELECT created FROM `" . geekybot::$_db->prefix . "geekybot_chat_history_messages` 
+                    WHERE DATE(created) BETWEEN DATE('" . esc_sql($last_month) . "') AND DATE('" . esc_sql($curdate) . "')
+                    AND type = 4
+                    AND post_type = '".esc_sql($web_Search->post_type)."'";
+                    $sessions = geekybot::$_db->get_results($query);
+                    
+                    $date_sessions = [];
+                    foreach ($sessions as $session) {
+                        $date_key = date_i18n('Y-m-d', strtotime($session->created));
+                        $date_sessions[$date_key] = isset($date_sessions[$date_key]) ? $date_sessions[$date_key] + 1 : 1;
+                    }
+                    $ai_chatbot_story = 0;
+                    $json_array = "";
+                    $nextdate = $last_month;
+                    do {
+                        $year = date_i18n('Y',strtotime($nextdate));
+                        $month = date_i18n('m',strtotime($nextdate));
+                        $day = date_i18n('d',strtotime($nextdate));
+                        $ai_chatbot_story_tmp = isset($date_sessions[$nextdate]) ? $date_sessions[$nextdate]  : 0;
+                        $json_array .= "[$year, $month, $day, $ai_chatbot_story_tmp],";
+                        $ai_chatbot_story += $ai_chatbot_story_tmp;
+                        if($nextdate == $curdate){
+                            break;
+                        }
+                        $nextdate = date_i18n('Y-m-d', geekybotphplib::GEEKYBOT_strtotime($nextdate . " +1 days"));
+                    } while ($nextdate <= $curdate);
+
+                    geekybot::$_data['last_month_posttype_story_chart_' . $index] = rtrim($json_array, ',');
+                }
+            }
+            if (!isset(geekybot::$_data['last_month_posttype_story_chart_0'])) {
+                geekybot::$_data['last_month_posttype_story_chart_error_message_0'] = __('Post Type not found.','geeky-bot');
+            }
+            if (!isset(geekybot::$_data['last_month_posttype_story_chart_1'])) {
+                geekybot::$_data['last_month_posttype_story_chart_error_message_1'] = __('Post Type not found.','geeky-bot');
+            }
+            if (!isset(geekybot::$_data['last_month_posttype_story_chart_2'])) {
+                geekybot::$_data['last_month_posttype_story_chart_error_message_2'] = __('Post Type not found.','geeky-bot');
+            }
+        } else {
+            geekybot::$_data['last_month_posttype_story_chart_error_message_0'] = __('AI Web Search is disabled!','geeky-bot');
+            geekybot::$_data['last_month_posttype_story_chart_error_message_1'] = __('AI Web Search is disabled!','geeky-bot');
+            geekybot::$_data['last_month_posttype_story_chart_error_message_2'] = __('AI Web Search is disabled!','geeky-bot');
         }
-        $query .= ' GROUP BY type';
-        $todaysessions = geekybot::$_db->get_results($query);
-        $todaysessions_count = 0;
-        foreach ($todaysessions as $value) {
-            $todaysessions_count += $value->stats;
-        }
-        geekybot::$_data['todaysessions'] = $todaysessions_count;
-        // 
-        $query = "SELECT intents.id,intents.name
-                FROM `" . geekybot::$_db->prefix . "geekybot_intents` AS intents
-                ORDER By intents.created DESC LIMIT 5";
-        $result = geekybot::$_db->get_results($query);
-        geekybot::$_data['newest'] = $result;
+        
         // Chat History
         $query = "SELECT chathistory.* , user.display_name as user_name FROM `" . geekybot::$_db->prefix . "geekybot_chat_history_sessions`  as chathistory
             LEFT JOIN `" . geekybot::$_db->prefix . "users` as user ON chathistory.user_id = user.id";
-        $query.=" ORDER BY id  DESC LIMIT 7";
+        $query.=" ORDER BY id  DESC LIMIT 4";
         $results = geekybot::$_db->get_results($query);
         foreach ($results as $result) {
             // find the count of the conversion
@@ -172,8 +310,8 @@ class GEEKYBOTgeekybotModel {
             $result->created = $this->geekybotTimeAgo($result->created);
         }
         geekybot::$_data['chat_history'] = $results;
-
-        return;
+        // Returning the prepared data
+        return geekybot::$_data;
     }
 
     function checkProductExpiry() {
@@ -323,6 +461,29 @@ class GEEKYBOTgeekybotModel {
             return true;
         }
         return false;
+    }
+
+    function geekybotGetAddonTransationKey($option_name){
+        $query = "SELECT `option_value` FROM " . geekybot::$_db->prefix . "options WHERE option_name = '".esc_sql($option_name)."'";
+        $transactionKey = GEEKYBOTrequest::GEEKYBOT_getVar($query);
+        if($transactionKey == ""){
+            $transactionKey = get_option($option_name);
+        }
+        return $transactionKey;
+    }
+
+    function getSiteUrl(){
+        $site_url = site_url();
+        $site_url = geekybotphplib::GEEKYBOT_str_replace("https://","",$site_url);
+        $site_url = geekybotphplib::GEEKYBOT_str_replace("http://","",$site_url);
+        return $site_url;
+    }
+
+    function getNetworkSiteUrl(){
+        $network_site_url = network_site_url();
+        $network_site_url = geekybotphplib::GEEKYBOT_str_replace("https://","",$network_site_url);
+        $network_site_url = geekybotphplib::GEEKYBOT_str_replace("http://","",$network_site_url);
+        return $network_site_url;
     }
 
     function getMessagekey(){

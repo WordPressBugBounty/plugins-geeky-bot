@@ -80,7 +80,7 @@ jQuery(document).ready(function() {
                 } else if(data != '') {
                     jQuery('#user-input-msg').html('');
                     jQuery('#user-input-msg').append('<div class=\"geeky-bot-popop-save-success-msg geeky-error-msg\"><div class=\"geeky-infoicon-image-text-wraper\"><img alt=\"". esc_html(__('Info','geeky-bot')) ."\" title=\"".  esc_html(__('Info','geeky-bot')) ."\" class=\"userpopup-plus-icon\" src=\"". esc_url(GEEKYBOT_PLUGIN_URL) ."includes/images/story/info-red.png\" />". esc_attr(__('Error encountered in template.', 'geeky-bot')) ."</div></div>');
-                    jQuery('#user-input-msg').append('<div class=\"geeky-bot-popop-save-success-msg geeky-error-msg\"><div class=\"geeky-infoicon-image-text-wraper\"><img alt=\"". esc_html(__('Info','geeky-bot')) ."\" title=\"".  esc_html(__('Info','geeky-bot')) ."\" class=\"userpopup-plus-icon\" src=\"". esc_url(GEEKYBOT_PLUGIN_URL) ."includes/images/story/info-red.png\" />'+data+'</div></div>');
+                    jQuery('#user-input-msg').append('<div class=\"geeky-bot-popop-save-success-msg geeky-error-msg\"><div class=\"geeky-infoicon-image-text-wraper\"><img alt=\"". esc_html(__('Info','geeky-bot')) ."\" title=\"".  esc_html(__('Info','geeky-bot')) ."\" class=\"userpopup-plus-icon\" src=\"". esc_url(GEEKYBOT_PLUGIN_URL) ."includes/images/story/info-red.png\" /><p>'+data+'</p></div></div>');
                 } else {
                     jQuery('#user-input-msg').html('<div class=\"geeky-bot-popop-save-success-msg geeky-error-msg \"><div class=\"geeky-infoicon-image-text-wraper\"><img alt=\"". esc_html(__('Info','geeky-bot')) ."\" title=\"".  esc_html(__('Info','geeky-bot')) ."\" class=\"userpopup-plus-icon\" src=\"". esc_url(GEEKYBOT_PLUGIN_URL) ."includes/images/story/info-red.png\" />". esc_attr(__('Something went wrong try again later!', 'geeky-bot')) ."</div></div>');
                     clearNotifications();
@@ -157,7 +157,7 @@ if (!GEEKYBOTincluder::GEEKYBOT_getTemplate('templates/admin/header',array('modu
 ?>
 <div class="chat-bot-col-xl-8">
 <!-- main wrapper -->
-    <div id="geekybotadmin-wrapper">
+    <div id="geekybotadmin-wrapper" class="geekybot-admin-main-wrapper">
         <?php  GEEKYBOTincluder::GEEKYBOT_getTemplate('templates/admin/upper-nav',array('module' => 'stories','layouts' => 'stories')); ?>
         <div class="geekybotadmin-body-main">
             <!-- left menu -->
@@ -326,7 +326,7 @@ if (!GEEKYBOTincluder::GEEKYBOT_getTemplate('templates/admin/header',array('modu
                                                             <img title="<?php echo esc_html(__('Info', 'geeky-bot')); ?>"alt="<?php echo esc_html(__('Info', 'geeky-bot')); ?>" src="<?php echo esc_url(GEEKYBOT_PLUGIN_URL).'includes/images/postinstallation/info.png';?>" />
                                                         </div>
                                                         <div class="geekybot-installation-inforight-wrp">
-                                                            <p class="geekybot-installation-info-title"><?php echo esc_html(__('WooCommere is not installed', 'geeky-bot')); ?></p>
+                                                            <p class="geekybot-installation-info-title"><?php echo esc_html(__('WooCommerce is not installed', 'geeky-bot')); ?></p>
                                                             <p class="geekybot-installation-info-dis"><?php echo esc_html(__("WooCommerce plugin is not installed on your site, you won't be able to integrate GeekyBot with WooCommerce.", 'geeky-bot')); ?></p>
                                                         </div>
                                                     </div>

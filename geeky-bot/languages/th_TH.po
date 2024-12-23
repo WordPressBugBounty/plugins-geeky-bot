@@ -1,0 +1,2432 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"POT-Creation-Date: \n"
+"PO-Revision-Date: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: th_TH\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 3.5\n"
+
+msgid "Logo"
+msgstr "โลโก้"
+
+msgid "Template Field 1"
+msgstr "ฟิลด์เทมเพลต 1"
+
+msgid "Title"
+msgstr "ชื่อ"
+
+msgid "Template Field 2"
+msgstr "ฟิลด์เทมเพลต 2"
+
+msgid "Template Field 3"
+msgstr "ฟิลด์เทมเพลต 3"
+
+msgid "Template Field 4"
+msgstr "ฟิลด์เทมเพลต 4"
+
+msgid "Template Field 10"
+msgstr "ฟิลด์เทมเพลต 10"
+
+msgid "Simple Link here"
+msgstr "ลิงค์ง่ายๆที่นี่"
+
+msgid "Button"
+msgstr "ปุ่ม"
+
+msgid "Selected"
+msgstr "เลือกแล้ว"
+
+msgid "Template Content"
+msgstr "เนื้อหาเทมเพลต"
+
+msgid "Template Field"
+msgstr "ฟิลด์เทมเพลต"
+
+msgid "Show On Listing"
+msgstr "แสดงในรายการ"
+
+msgid "Select Field"
+msgstr "เลือกฟิลด์"
+
+msgid "Label"
+msgstr "ฉลาก"
+
+msgid "Select Type"
+msgstr "เลือกประเภท"
+
+msgid "Set Value"
+msgstr "ตั้งค่า"
+
+msgid "No template fields are available!"
+msgstr "ไม่มีช่องเทมเพลต!"
+
+msgid "Set Values"
+msgstr "ตั้งค่า"
+
+msgid "Field Name :"
+msgstr "ชื่อฟิลด์ :"
+
+msgid "Save"
+msgstr "บันทึก"
+
+msgid "Something went wrong try again later!"
+msgstr "มีข้อผิดพลาดเกิดขึ้น โปรดลองอีกครั้งในภายหลัง!"
+
+msgid "Info"
+msgstr "ข้อมูล"
+
+msgid "An empty expected value or display value field."
+msgstr "ช่องค่าที่คาดไว้หรือค่าที่แสดงว่างเปล่า"
+
+msgid "Values set successfully."
+msgstr "ตั้งค่าเรียบร้อยแล้ว"
+
+msgid "Expected Value"
+msgstr "มูลค่าที่คาดหวัง"
+
+msgid "Display Value"
+msgstr "ค่าที่แสดง"
+
+msgid "Delete"
+msgstr "ลบ"
+
+msgid "Add Value"
+msgstr "เพิ่มมูลค่า"
+
+msgid "Edit"
+msgstr "แก้ไข"
+
+msgid "Text Field"
+msgstr "ช่องข้อความ"
+
+msgid "Checkbox"
+msgstr "ช่องทำเครื่องหมาย"
+
+msgid "Radio Button"
+msgstr "ปุ่มวิทยุ"
+
+msgid "Dropdown"
+msgstr "ดรอปดาวน์"
+
+msgid "Link"
+msgstr "ลิงค์"
+
+msgid ""
+"It is a long established fact that a reader will be distracted by the readable content of a page when looking at its "
+"layout Content here, content here..."
+msgstr "เป็นข้อเท็จจริงที่มีมายาวนานแล้วว่า ผู้อ่านจะเสียสมาธิกับเนื้อหาที่อ่านได้ของเพจเมื่อดูเลย์เอาต์ของหน้า เนื้อหาที่นี่ เนื้อหาที่นี่..."
+
+msgid "Description"
+msgstr "คำอธิบาย"
+
+msgid "Content Description"
+msgstr "คำอธิบายเนื้อหา"
+
+msgid "Max Number Of Sentance"
+msgstr "จำนวนประโยคสูงสุด"
+
+msgid "1"
+msgstr "1"
+
+msgid "2"
+msgstr "2"
+
+msgid "3"
+msgstr "3"
+
+msgid "4"
+msgstr "4"
+
+msgid "5"
+msgstr "5"
+
+msgid "6"
+msgstr "6"
+
+msgid "Please wait a moment; this may take some time."
+msgstr "กรุณารอสักครู่; อาจใช้เวลาสักครู่"
+
+msgid "Synchronize"
+msgstr "ซิงโครไนซ์"
+
+msgid "Data Synchronization Uncomplete"
+msgstr "การซิงโครไนซ์ข้อมูลไม่สมบูรณ์"
+
+msgid "Your GeekyBot data is not updated. To ensure accurate results, please synchronize your AI web search data."
+msgstr "ข้อมูล GeekyBot ของคุณไม่ได้รับการอัพเดต เพื่อให้แน่ใจว่าผลลัพธ์ถูกต้อง โปรดซิงโครไนซ์ข้อมูลการค้นหาเว็บ AI ของคุณ"
+
+msgid "Synchronize Data"
+msgstr "ซิงโครไนซ์ข้อมูล"
+
+msgid "user"
+msgstr "ผู้ใช้"
+
+msgid "Dashboard"
+msgstr "แดชบอร์ด"
+
+msgid "key check"
+msgstr "ตรวจสอบที่สำคัญ"
+
+msgid "keys"
+msgstr "กุญแจ"
+
+msgid "Stories"
+msgstr "เรื่องราว"
+
+msgid "AI Web Search"
+msgstr "AI ค้นหาเว็บ"
+
+msgid "Settings"
+msgstr "การตั้งค่า"
+
+msgid "Chatbot"
+msgstr "แชทบอท"
+
+msgid "Install Add-ons"
+msgstr "ติดตั้งส่วนเสริม"
+
+msgid "export"
+msgstr "ส่งออก"
+
+msgid "import"
+msgstr "นำเข้า"
+
+msgid "Chat History"
+msgstr "ประวัติการแชท"
+
+msgid "build"
+msgstr "สร้าง"
+
+msgid "Build"
+msgstr "สร้าง"
+
+msgid "Variables"
+msgstr "ตัวแปร"
+
+msgid "forms"
+msgstr "แบบฟอร์ม"
+
+msgid "Forms"
+msgstr "แบบฟอร์ม"
+
+msgid "actions"
+msgstr "การกระทำ"
+
+msgid "Actions"
+msgstr "การดำเนินการ"
+
+msgid "File ext. is mismatched"
+msgstr "ไฟล์ต่อ ไม่ตรงกัน"
+
+msgid "File size is greater then allowed file size"
+msgstr "ขนาดไฟล์ใหญ่กว่าขนาดไฟล์ที่อนุญาต"
+
+msgid "Total Stats"
+msgstr "สถิติทั้งหมด"
+
+msgid "Intents"
+msgstr "เจตนา"
+
+msgid "No record found"
+msgstr "ไม่พบบันทึก"
+
+msgid "Control Panel"
+msgstr "แผงควบคุม"
+
+msgid "GeekyBot"
+msgstr "GeekyBot"
+
+msgid "Keys"
+msgstr "กุญแจ"
+
+msgid "Post Installation"
+msgstr "หลังการติดตั้ง"
+
+msgid "Premium Addon"
+msgstr "ส่วนเสริมระดับพรีเมียม"
+
+msgid "Could not find any matching results"
+msgstr "ไม่พบผลลัพธ์ที่ตรงกัน"
+
+msgid "no record"
+msgstr "ไม่มีบันทึก"
+
+msgid "No record found !..."
+msgstr "ไม่พบบันทึก!..."
+
+msgid "system offline"
+msgstr "ระบบออฟไลน์"
+
+msgid "Unfortunately sytem is offline for a bit of maintenance right now. But soon we will be up."
+msgstr "ขออภัย ขณะนี้ระบบออฟไลน์อยู่เพื่อการบำรุงรักษาเล็กน้อย แต่อีกไม่นานเราจะลุกขึ้นมา"
+
+msgid "user ban"
+msgstr "ห้ามผู้ใช้"
+
+msgid "Your account is disabled, please contact system administrator !..."
+msgstr "บัญชีของคุณถูกปิดใช้งาน โปรดติดต่อผู้ดูแลระบบ !..."
+
+msgid "login"
+msgstr "เข้าสู่ระบบ"
+
+msgid "To Access This Page Please Login !..."
+msgstr "หากต้องการเข้าถึงหน้านี้กรุณาเข้าสู่ระบบ!..."
+
+msgid "Back to control panel"
+msgstr "กลับไปที่แผงควบคุม"
+
+msgid "You are not logged in"
+msgstr "คุณไม่ได้เข้าสู่ระบบ"
+
+msgid "User Is Disabled By Admin"
+msgstr "ผู้ใช้ถูกปิดการใช้งานโดยผู้ดูแลระบบ"
+
+msgid "The page you are looking for no longer exists"
+msgstr "หน้าที่คุณกำลังค้นหาไม่มีอยู่อีกต่อไป"
+
+msgid "You are already logged in"
+msgstr "คุณเข้าสู่ระบบแล้ว"
+
+msgid "Please select your role"
+msgstr "โปรดเลือกบทบาทของคุณ"
+
+msgid "You are not allowed"
+msgstr "คุณไม่ได้รับอนุญาต"
+
+msgid "You are Not Allowed To add More than One"
+msgstr "คุณไม่ได้รับอนุญาตให้เพิ่มมากกว่าหนึ่งรายการ"
+
+msgid "Contact Adminstrator"
+msgstr "ติดต่อผู้ดูแลระบบ"
+
+msgid "not allowed"
+msgstr "ไม่ได้รับอนุญาต"
+
+msgid "You are already logged in !..."
+msgstr "คุณเข้าสู่ระบบแล้ว!..."
+
+msgid "Logout"
+msgstr "ออกจากระบบ"
+
+msgid "Please first make a selection from the list"
+msgstr "โปรดทำการเลือกจากรายการก่อน"
+
+msgid "Unknown"
+msgstr "ไม่ทราบ"
+
+msgid "Invalid request"
+msgstr "คำขอไม่ถูกต้อง"
+
+msgid "has been successfully applied."
+msgstr "ได้ถูกนำไปใช้เรียบร้อยแล้ว"
+
+msgid "Error applying the new theme."
+msgstr "เกิดข้อผิดพลาดในการใช้ธีมใหม่"
+
+msgid "has been successfully saved."
+msgstr "ได้รับการบันทึกเรียบร้อยแล้ว"
+
+msgid "has not been saved."
+msgstr "ยังไม่ได้รับการบันทึก"
+
+msgid "has been successfully reset."
+msgstr "ได้รับการรีเซ็ตสำเร็จแล้ว"
+
+msgid "Every Story must have a name."
+msgstr "ทุกเรื่องต้องมีชื่อ"
+
+msgid "Every Story must have at least 1 intent."
+msgstr "ทุกเรื่องต้องมีอย่างน้อย 1 เจตนา"
+
+msgid "has been successfully deleted."
+msgstr "ถูกลบเรียบร้อยแล้ว"
+
+msgid "has been successfully exported."
+msgstr "ได้ถูกส่งออกเรียบร้อยแล้ว"
+
+msgid "Data has not been exported."
+msgstr "ข้อมูลยังไม่ได้ถูกส่งออก"
+
+msgid "Record not exist."
+msgstr "ไม่มีบันทึกอยู่"
+
+msgid "has not been deleted."
+msgstr "ยังไม่ได้ถูกลบ"
+
+msgid "Please insert key."
+msgstr "กรุณาใส่กุญแจ"
+
+msgid "key is not Valid."
+msgstr "คีย์ไม่ถูกต้อง"
+
+msgid "transaction has been successfully verified."
+msgstr "ธุรกรรมได้รับการตรวจสอบเรียบร้อยแล้ว"
+
+msgid "transaction has been successfully un-verified."
+msgstr "ธุรกรรมถูกยกเลิกการตรวจสอบเรียบร้อยแล้ว"
+
+msgid "transaction has not been successfully verified."
+msgstr "ธุรกรรมยังไม่ได้รับการตรวจสอบสำเร็จ"
+
+msgid "transaction has not been successfully un-verified."
+msgstr "ธุรกรรมยังไม่ได้รับการยืนยันสำเร็จ"
+
+msgid "Fields has been successfully required."
+msgstr "ต้องกรอกฟิลด์เรียบร้อยแล้ว"
+
+msgid "Field has not been required."
+msgstr "ฟิลด์ไม่จำเป็นต้องมี"
+
+msgid "Fields has not been required."
+msgstr "ฟิลด์ไม่จำเป็นต้องมี"
+
+msgid "Fields has been successfully not required."
+msgstr "ไม่จำเป็นต้องกรอกข้อมูลในช่องใดเลย"
+
+msgid "Field has not been not required."
+msgstr "ฟิลด์ไม่จำเป็นต้องมี"
+
+msgid "Fields has not been not required."
+msgstr "ฟิลด์ไม่จำเป็นต้องมี"
+
+msgid "status has been updated."
+msgstr "สถานะได้รับการอัปเดตแล้ว"
+
+msgid "status has not been updated."
+msgstr "สถานะไม่ได้รับการอัพเดต"
+
+msgid "data has been synchronized."
+msgstr "ข้อมูลได้รับการซิงโครไนซ์แล้ว"
+
+msgid "data has not been synchronized."
+msgstr "ข้อมูลไม่ได้รับการซิงโครไนซ์"
+
+msgid "in use cannot deleted."
+msgstr "ใช้งานอยู่ไม่สามารถลบได้"
+
+msgid "already exist."
+msgstr "มีอยู่แล้ว"
+
+msgid "File type error."
+msgstr "ข้อผิดพลาดประเภทไฟล์"
+
+msgid "File size error."
+msgstr "ข้อผิดพลาดขนาดไฟล์"
+
+msgid "Intent"
+msgstr "เจตนา"
+
+msgid "Response"
+msgstr "การตอบสนอง"
+
+msgid "Intent Group"
+msgstr "กลุ่มความตั้งใจ"
+
+msgid "Variable"
+msgstr "ตัวแปร"
+
+msgid "Story"
+msgstr "เรื่องราว"
+
+msgid "Post type"
+msgstr "ประเภทการโพสต์"
+
+msgid "AI web search"
+msgstr "ค้นหาเว็บด้วย AI"
+
+msgid "Action"
+msgstr "การกระทำ"
+
+msgid "Changes"
+msgstr "การเปลี่ยนแปลง"
+
+msgid "Data"
+msgstr "ข้อมูล"
+
+msgid "Message"
+msgstr "ข้อความ"
+
+msgid "Configuration"
+msgstr "การกำหนดค่า"
+
+msgid "Previous"
+msgstr "ก่อนหน้า"
+
+msgid "Next"
+msgstr "ต่อไป"
+
+msgid "Guest"
+msgstr "แขก"
+
+msgid "User ID"
+msgstr "รหัสผู้ใช้"
+
+msgid "Add to Story"
+msgstr "เพิ่มลงในเรื่องราว"
+
+msgid "Add to story"
+msgstr "เพิ่มไปยังเรื่องราว"
+
+msgid "Search"
+msgstr "ค้นหา"
+
+msgid "Search with user name"
+msgstr "ค้นหาด้วยชื่อผู้ใช้"
+
+msgid "reset"
+msgstr "รีเซ็ต"
+
+msgid "Select Chat"
+msgstr "เลือก แชท"
+
+msgid "Sender"
+msgstr "ผู้ส่ง"
+
+msgid "select chat"
+msgstr "เลือกแชท"
+
+msgid "Chat history is not selected."
+msgstr "ไม่ได้เลือกประวัติการแชท"
+
+msgid "Please select a conversation to view the user's chat history."
+msgstr "โปรดเลือกการสนทนาเพื่อดูประวัติการแชทของผู้ใช้"
+
+msgid "Add User Input To Story"
+msgstr "เพิ่มการป้อนข้อมูลของผู้ใช้ในเรื่องราว"
+
+msgid "Select"
+msgstr "เลือก"
+
+msgid "Add User Input"
+msgstr "เพิ่มการป้อนข้อมูลของผู้ใช้"
+
+msgid "You must choose a story; it cannot be empty."
+msgstr "คุณต้องเลือกเรื่องราว ไม่สามารถเว้นว่างได้"
+
+msgid "Security verification Failed, Please restart you chat to continue."
+msgstr "การตรวจสอบความปลอดภัยล้มเหลว โปรดเริ่มต้นการแชทของคุณใหม่เพื่อดำเนินการต่อ"
+
+msgid "Your session has expired; please restart your chat."
+msgstr "เซสชันของคุณหมดอายุแล้ว กรุณารีสตาร์ทการแชทของคุณ"
+
+msgid "Hi, I am Chatbot. I do not have specific knowledge."
+msgstr "สวัสดี ฉันชื่อแชทบอท ฉันไม่มีความรู้เฉพาะด้าน"
+
+msgid "Your message is too long. Please enter only a username or email."
+msgstr "ข้อความของคุณยาวเกินไป กรุณากรอกชื่อผู้ใช้หรืออีเมลเท่านั้น"
+
+msgid "Invalid username or email. Try again with the correct one."
+msgstr "ชื่อผู้ใช้หรืออีเมลไม่ถูกต้อง ลองอีกครั้งด้วยอันที่ถูกต้อง"
+
+msgid "Show More"
+msgstr "แสดงเพิ่มเติม"
+
+msgid "Show Articles"
+msgstr "แสดงบทความ"
+
+msgid "session time out"
+msgstr "หมดเวลาเซสชัน"
+
+msgid "Data directory can not empty."
+msgstr "ไดเร็กทอรีข้อมูลต้องไม่ว่างเปล่า"
+
+msgid "Data directory is not proper."
+msgstr "ไดเร็กทอรีข้อมูลไม่ถูกต้อง"
+
+msgid "Data directory is not writable."
+msgstr "ไดเร็กทอรีข้อมูลไม่สามารถเขียนได้"
+
+msgid "Default fallback message can not be empty."
+msgstr "ต้องระบุข้อความสำรองเริ่มต้น"
+
+msgid "Admin pagination not saved."
+msgstr "ไม่ได้บันทึกการแบ่งหน้าผู้ดูแลระบบ"
+
+msgid "User pagination not saved."
+msgstr "ไม่ได้บันทึกการแบ่งหน้าผู้ใช้"
+
+msgid "The title of your chatbot or the primary title displayed on your chat interface."
+msgstr "ชื่อของแชทบอทของคุณหรือชื่อหลักที่แสดงบนอินเทอร์เฟซการแชทของคุณ"
+
+msgid "Default Fallback Message"
+msgstr "ข้อความทางเลือกเริ่มต้น"
+
+msgid "The message displayed when the chatbot cannot understand."
+msgstr "ข้อความปรากฏขึ้นเมื่อแชทบอทไม่เข้าใจ"
+
+msgid "Offline"
+msgstr "ออฟไลน์"
+
+msgid "Online"
+msgstr "ออนไลน์"
+
+msgid "Set your plugin offline for front end."
+msgstr "ตั้งค่าปลั๊กอินของคุณแบบออฟไลน์สำหรับส่วนหน้า"
+
+msgid "Data Directory"
+msgstr "ไดเร็กทอรีข้อมูล"
+
+msgid "The directory where all chatbot data files are stored."
+msgstr "ไดเร็กทอรีที่เก็บไฟล์ข้อมูลแชทบอททั้งหมด"
+
+msgid "Admin Pagination"
+msgstr "การแบ่งหน้าผู้ดูแลระบบ"
+
+msgid "The number of items displayed in a paginated list in the admin panel."
+msgstr "จำนวนรายการที่แสดงในรายการแบ่งหน้าในแผงผู้ดูแลระบบ"
+
+msgid "User Pagination"
+msgstr "การแบ่งหน้าผู้ใช้"
+
+msgid "The number of items displayed in a paginated list on the user side."
+msgstr "จำนวนรายการที่แสดงในรายการแบ่งหน้าทางฝั่งผู้ใช้"
+
+msgid "Save Settings"
+msgstr "บันทึกการตั้งค่า"
+
+msgid "Add Icon"
+msgstr "เพิ่มไอคอน"
+
+msgid "years"
+msgstr "ปี"
+
+msgid "year"
+msgstr "ปี"
+
+msgid "ago"
+msgstr "ที่ผ่านมา"
+
+msgid "months"
+msgstr "เดือน"
+
+msgid "month"
+msgstr "เดือน"
+
+msgid "days"
+msgstr "วัน"
+
+msgid "day"
+msgstr "วัน"
+
+msgid "hours"
+msgstr "ชั่วโมง"
+
+msgid "hour"
+msgstr "ชั่วโมง"
+
+msgid "minutes"
+msgstr "นาที"
+
+msgid "minute"
+msgstr "นาที"
+
+msgid "Just now"
+msgstr "แค่ตอนนี้"
+
+msgid "AI ChatBot is disabled."
+msgstr "AI ChatBot ถูกปิดใช้งาน"
+
+msgid "Active Now"
+msgstr "ใช้งานอยู่ในขณะนี้"
+
+msgid "AI ChatBot story not built."
+msgstr "ไม่ได้สร้างเรื่องราวของ AI ChatBot"
+
+msgid "Built Now"
+msgstr "สร้างแล้ว"
+
+msgid "WooCommerce plugin is not installed."
+msgstr "ไม่ได้ติดตั้งปลั๊กอิน WooCommerce"
+
+msgid "Install Now"
+msgstr "ติดตั้งทันที"
+
+msgid "WooCommerce plugin is not activated."
+msgstr "ไม่ได้เปิดใช้งานปลั๊กอิน WooCommerce"
+
+msgid "WooCommerce Bot is disabled."
+msgstr "บอท WooCommerce ถูกปิดใช้งาน"
+
+msgid "WooCommerce story not built."
+msgstr "ไม่ได้สร้างเรื่องราวของ WooCommerce"
+
+msgid "Post Type not found."
+msgstr "ไม่พบประเภทการโพสต์"
+
+msgid "AI Web Search is disabled!"
+msgstr "AI Web Search ถูกปิดใช้งาน!"
+
+msgid "AI ChatBot Sessions"
+msgstr "เซสชัน AI ChatBot"
+
+msgid "Session Card"
+msgstr "การ์ดเซสชั่น"
+
+msgid "Graph"
+msgstr "กราฟ"
+
+msgid "Card"
+msgstr "การ์ด"
+
+msgid "WooCommerce Sessions"
+msgstr "เซสชัน WooCommerce"
+
+msgid "AI Web Search Sessions"
+msgstr "เซสชันการค้นหาเว็บด้วย AI"
+
+msgid "Icon"
+msgstr "ไอคอน"
+
+msgid "GeekyBot Setup and Usage Guides"
+msgstr "คู่มือการตั้งค่าและการใช้งาน GeekyBot"
+
+msgid "Explore installation, training, and effective usage guides."
+msgstr "สำรวจการติดตั้ง การฝึกอบรม และคู่มือการใช้งานที่มีประสิทธิภาพ"
+
+msgid "Play"
+msgstr "เล่น"
+
+msgid "Youtube Icon"
+msgstr "ไอคอนยูทูป"
+
+msgid "How to add Story"
+msgstr "วิธีเพิ่มเรื่องราว"
+
+msgid "How to add Variable"
+msgstr "วิธีเพิ่มตัวแปร"
+
+msgid "Change Settings"
+msgstr "เปลี่ยนการตั้งค่า"
+
+msgid "Change Color"
+msgstr "เปลี่ยนสี"
+
+msgid "Remove"
+msgstr "ลบ"
+
+msgid "Cross Icon"
+msgstr "ครอสไอคอน"
+
+msgid "Stories Date"
+msgstr "เรื่องราว วันที่"
+
+msgid "View Stories"
+msgstr "ดูเรื่องราว"
+
+msgid "AI Chatbot"
+msgstr "เอไอ แชทบอท"
+
+msgid "WooCommerce"
+msgstr "WooCommerce"
+
+msgid "Bot Icon"
+msgstr "ไอคอนบอท"
+
+msgid "AI ChatBot"
+msgstr "เอไอ แชทบอท"
+
+msgid "Last Month Stats"
+msgstr "สถิติเดือนที่แล้ว"
+
+msgid "Woo Icon"
+msgstr "วู ไอคอน"
+
+msgid "AI Web Search "
+msgstr "AI ค้นหาเว็บ"
+
+msgid "Manage Post Types"
+msgstr "จัดการประเภทโพสต์"
+
+msgid "Enable AI Web Search"
+msgstr "เปิดใช้งานการค้นหาเว็บ AI"
+
+msgid "Search Icon"
+msgstr "ค้นหาไอคอน"
+
+msgid "History"
+msgstr "ประวัติศาสตร์"
+
+msgid "WooCommerce Bot"
+msgstr "บอท WooCommerce"
+
+msgid "logo"
+msgstr "โลโก้"
+
+msgid "No of Conversation"
+msgstr "ไม่มีการสนทนา"
+
+msgid "View History"
+msgstr "ดูประวัติ"
+
+msgid "No data"
+msgstr "ไม่มีข้อมูล"
+
+msgid "No Data"
+msgstr "ไม่มีข้อมูล"
+
+msgid "Addons"
+msgstr "ส่วนเสริม"
+
+msgid "addon"
+msgstr "ส่วนเสริม"
+
+msgid "Custom Listing Style"
+msgstr "รูปแบบรายการที่กำหนดเอง"
+
+msgid "Custom Listing Text"
+msgstr "ข้อความรายการที่กำหนดเอง"
+
+msgid "WooCommerce Features"
+msgstr "คุณสมบัติ WooCommerce"
+
+msgid "Addon List"
+msgstr "รายการเสริม"
+
+msgid "WooCommerce "
+msgstr "WooCommerce"
+
+msgid "Lead Generation"
+msgstr "การสร้างลูกค้าเป้าหมาย"
+
+msgid ""
+"GeekyBot simplifies the WooCommerce experience with intelligent product discovery and purchasing. It seamlessly integrates "
+"with WooCommerce for efficient product searches, detailed listings, and a smooth shopping experience."
+msgstr ""
+"GeekyBot ลดความซับซ้อนของประสบการณ์ WooCommerce ด้วยการค้นหาและการจัดซื้อผลิตภัณฑ์อัจฉริยะ มันทำงานร่วมกับ WooCommerce "
+"ได้อย่างราบรื่นเพื่อการค้นหาผลิตภัณฑ์ที่มีประสิทธิภาพ รายการโดยละเอียด และประสบการณ์การช็อปปิ้งที่ราบรื่น"
+
+msgid "Find Product"
+msgstr "ค้นหาผลิตภัณฑ์"
+
+msgid "Find Products"
+msgstr "ค้นหาผลิตภัณฑ์"
+
+msgid "Find products by name, category, or price range via chat."
+msgstr "ค้นหาสินค้าตามชื่อ หมวดหมู่ หรือช่วงราคาได้ทางแชท"
+
+msgid "List Product"
+msgstr "รายการสินค้า"
+
+msgid "List Products"
+msgstr "รายการผลิตภัณฑ์"
+
+msgid "Show relevant products with details and prices based on preferences."
+msgstr "แสดงผลิตภัณฑ์ที่เกี่ยวข้องพร้อมรายละเอียดและราคาตามความต้องการ"
+
+msgid "Add To Cart Product"
+msgstr "เพิ่มลงตะกร้า สินค้า"
+
+msgid "Add to Cart"
+msgstr "เพิ่มลงในรถเข็น"
+
+msgid "Easily add products to the cart list directly through chat."
+msgstr "เพิ่มสินค้าลงในรายการรถเข็นได้อย่างง่ายดายผ่านการแชทโดยตรง"
+
+msgid "Watch Video"
+msgstr "ชมวิดีโอ"
+
+msgid "AI Chat"
+msgstr "เอไอ แชท"
+
+msgid "Custom"
+msgstr "กำหนดเอง"
+
+msgid " AI Chat Bot "
+msgstr "AI แชทบอท"
+
+msgid "Conversation Handling"
+msgstr "การจัดการการสนทนา"
+
+msgid ""
+"AI Chat Conversation provides intelligent and context-aware interactions to enhance user engagement. Define key "
+"conversation elements to capture specific user inputs dynamically and adapt responses based on the context."
+msgstr ""
+"AI Chat Conversation ให้การโต้ตอบที่ชาญฉลาดและคำนึงถึงบริบทเพื่อปรับปรุงการมีส่วนร่วมของผู้ใช้ "
+"กำหนดองค์ประกอบการสนทนาที่สำคัญเพื่อบันทึกอินพุตของผู้ใช้ที่เฉพาะเจาะจงแบบไดนามิก และปรับการตอบสนองตามบริบท"
+
+msgid "Capture and process inputs dynamically for personalized responses."
+msgstr "บันทึกและประมวลผลอินพุตแบบไดนามิกเพื่อการตอบสนองส่วนบุคคล"
+
+msgid "Adjust interactions based on the ongoing conversation for relevance."
+msgstr "ปรับการโต้ตอบตามการสนทนาที่กำลังดำเนินอยู่เพื่อความเกี่ยวข้อง"
+
+msgid "Use collected data to tailor responses and improve satisfaction."
+msgstr "ใช้ข้อมูลที่รวบรวมมาเพื่อปรับแต่งการตอบสนองและปรับปรุงความพึงพอใจ"
+
+msgid "Discover Our "
+msgstr "ค้นพบของเรา"
+
+msgid " AI Web Search"
+msgstr "AI ค้นหาเว็บ"
+
+msgid "Bot"
+msgstr "บอท"
+
+msgid ""
+"AI Web Search improves user experience by delivering advanced, intuitive content discovery on your WordPress site. With "
+"powerful searches, users can quickly find relevant information, enhancing overall interest and accessibility."
+msgstr ""
+"AI Web Search ปรับปรุงประสบการณ์ผู้ใช้โดยนำเสนอการค้นพบเนื้อหาขั้นสูงและใช้งานง่ายบนเว็บไซต์ WordPress ของคุณ ด้วยการค้นหาที่มีประสิทธิภาพ "
+"ผู้ใช้สามารถค้นหาข้อมูลที่เกี่ยวข้องได้อย่างรวดเร็ว ช่วยเพิ่มความสนใจและการเข้าถึงโดยรวม"
+
+msgid "GeekyBot swiftly retrieves posts and pages based on user queries."
+msgstr "GeekyBot ดึงข้อมูลโพสต์และเพจอย่างรวดเร็วตามคำค้นหาของผู้ใช้"
+
+msgid "Displays full content or excerpts that match search terms."
+msgstr "แสดงเนื้อหาทั้งหมดหรือข้อความที่ตัดตอนมาตรงกับคำค้นหา"
+
+msgid "Activate GeekyBot’s search for an AI web search with one click."
+msgstr "เปิดใช้งานการค้นหาของ GeekyBot สำหรับการค้นหาเว็บ AI ได้ด้วยคลิกเดียว"
+
+msgid "Web Search"
+msgstr "ค้นหาเว็บ"
+
+msgid "GeekyBot Supported Plugins"
+msgstr "ปลั๊กอินที่รองรับ GeekyBot"
+
+msgid "Plugin"
+msgstr "ปลั๊กอิน"
+
+msgid "WP Job Manager"
+msgstr "ผู้จัดการงาน WP"
+
+msgid "Tutor LMS"
+msgstr "ครูสอนพิเศษ LMS"
+
+msgid "bbPress"
+msgstr "บีบีเพรส"
+
+msgid "LearnPress"
+msgstr "เรียนรู้กด"
+
+msgid "Knowledge Base"
+msgstr "ฐานความรู้"
+
+msgid "BetterDocs"
+msgstr "BetterDocs"
+
+msgid "Motors"
+msgstr "มอเตอร์"
+
+msgid "Estatik Real Estate"
+msgstr "เอสเตติก เรียล เอสเตท"
+
+msgid "Auto Listings"
+msgstr "รายการอัตโนมัติ"
+
+msgid "Welcome to GeekyBot Features"
+msgstr "ยินดีต้อนรับสู่คุณสมบัติของ GeekyBot"
+
+msgid "GeekyBot Features"
+msgstr "คุณสมบัติ GeekyBot"
+
+msgid "WooCommerce Integration"
+msgstr "การบูรณาการ WooCommerce"
+
+msgid "Quick Installation"
+msgstr "การติดตั้งอย่างรวดเร็ว"
+
+msgid "Version: 1.0.0"
+msgstr "เวอร์ชัน: 1.0.0"
+
+msgid "AI Chat Bot"
+msgstr "AI แชทบอท"
+
+msgid "Enable/Disable"
+msgstr "เปิด/ปิดการใช้งาน"
+
+msgid "Enable/Disable Bot"
+msgstr "เปิด/ปิดบอท"
+
+msgid "Select Template"
+msgstr "เลือกเทมเพลต"
+
+msgid ""
+"AI Chat in GeekyBot provides instant, personalized responses to user queries, ensuring seamless support around the clock. "
+"With its ability to engage users at any time, GeekyBot enhances the reliability of your service, making sure that your "
+"customers' needs are always met."
+msgstr ""
+"AI Chat ใน GeekyBot มอบการตอบสนองต่อคำถามของผู้ใช้แบบทันทีและเป็นส่วนตัว รับประกันการสนับสนุนที่ราบรื่นตลอดเวลา "
+"ด้วยความสามารถในการดึงดูดผู้ใช้ได้ตลอดเวลา GeekyBot ช่วยเพิ่มความน่าเชื่อถือของบริการของคุณ เพื่อให้แน่ใจว่าลูกค้าของคุณจะได้รับการตอบสนองเสมอ"
+
+msgid ""
+"By training GeekyBot with your specific data, you can create dynamic, tailored interactions that reflect your business's "
+"unique voice and services. This customization allows for more relevant, effective conversations that build stronger "
+"connections with your users."
+msgstr ""
+"ด้วยการฝึกอบรม GeekyBot ด้วยข้อมูลเฉพาะของคุณ "
+"คุณสามารถสร้างการโต้ตอบแบบไดนามิกที่ได้รับการปรับแต่งซึ่งสะท้อนถึงเสียงและบริการที่เป็นเอกลักษณ์ของธุรกิจของคุณ "
+"การปรับแต่งนี้ช่วยให้เกิดการสนทนาที่เกี่ยวข้องและมีประสิทธิภาพมากขึ้น ซึ่งสร้างการเชื่อมต่อที่แน่นแฟ้นยิ่งขึ้นกับผู้ใช้ของคุณ"
+
+msgid "Bot Image"
+msgstr "รูปภาพบอท"
+
+msgid "image"
+msgstr "ภาพ"
+
+msgid "Watch AI ChatBot Video"
+msgstr "ชมวิดีโอ AI ChatBot"
+
+msgid "AI Web Search Bot"
+msgstr "บอทค้นหาเว็บ AI"
+
+msgid ""
+"Effortlessly search for specific posts and content across your entire site using our powerful AI web search tool. GeekyBot "
+"goes beyond standard searches, delivering results from all types of data on your site. Whether you're looking for posts, "
+"pages, custom post types, or other information, GeekyBot ensures you find what you need quickly and efficiently by "
+"displaying relevant articles, posts, and more in a single, streamlined search experience."
+msgstr ""
+"ค้นหาโพสต์และเนื้อหาที่เฉพาะเจาะจงทั่วทั้งไซต์ของคุณได้อย่างง่ายดายโดยใช้เครื่องมือค้นหาเว็บ AI อันทรงพลังของเรา GeekyBot เป็นมากกว่าการค้นหามาตรฐาน "
+"โดยให้ผลลัพธ์จากข้อมูลทุกประเภทบนเว็บไซต์ของคุณ ไม่ว่าคุณกำลังมองหาโพสต์ เพจ ประเภทโพสต์ที่กำหนดเอง หรือข้อมูลอื่นๆ GeekyBot "
+"ช่วยให้คุณค้นหาสิ่งที่คุณต้องการได้อย่างรวดเร็วและมีประสิทธิภาพโดยการแสดงบทความ โพสต์ และอื่นๆ "
+"ที่เกี่ยวข้องในประสบการณ์การค้นหาที่มีประสิทธิภาพและเรียบง่ายในที่เดียว"
+
+msgid "New Post Type Search"
+msgstr "ค้นหาประเภทโพสต์ใหม่"
+
+msgid "Enable this option to directly include new post types in search results, enhancing user access to all content."
+msgstr "เปิดใช้งานตัวเลือกนี้เพื่อรวมประเภทโพสต์ใหม่ในผลการค้นหาโดยตรง ช่วยเพิ่มการเข้าถึงเนื้อหาทั้งหมดของผู้ใช้"
+
+msgid "Watch AI Web Search Video"
+msgstr "ชมวิดีโอค้นหาเว็บด้วย AI"
+
+msgid "Back"
+msgstr "กลับ"
+
+msgid "Finish"
+msgstr "เสร็จ"
+
+msgid "WooCommerce is not installed"
+msgstr "ไม่ได้ติดตั้ง WooCommerce"
+
+msgid "WooCommerce plugin is not installed on your site, you won't be able to integrate GeekyBot with WooCommerce."
+msgstr "ไม่ได้ติดตั้งปลั๊กอิน WooCommerce บนเว็บไซต์ของคุณ คุณจะไม่สามารถรวม GeekyBot กับ WooCommerce ได้"
+
+msgid ""
+"Easily integrate AI with WooCommerce to enhance your online store’s performance. GeekyBot boosts lead generation and "
+"customer interactions, automating key processes for a more effective and engaging shopping experience."
+msgstr ""
+"ผสานรวม AI เข้ากับ WooCommerce ได้อย่างง่ายดายเพื่อเพิ่มประสิทธิภาพร้านค้าออนไลน์ของคุณ GeekyBot "
+"ช่วยเพิ่มการสร้างลูกค้าเป้าหมายและการโต้ตอบกับลูกค้า ทำให้กระบวนการสำคัญเป็นอัตโนมัติเพื่อประสบการณ์การช็อปปิ้งที่มีประสิทธิภาพและน่าดึงดูดยิ่งขึ้น"
+
+msgid ""
+"GeekyBot also streamlines customer inquiries and provides real-time, intelligent responses. By improving retention and "
+"customer satisfaction, it ensures your store delivers an exceptional experience that keeps shoppers coming back."
+msgstr ""
+"GeekyBot ยังเพิ่มความคล่องตัวในการสอบถามข้อมูลของลูกค้าและให้การตอบกลับอัจฉริยะแบบเรียลไทม์ ด้วยการปรับปรุงการรักษาลูกค้าและความพึงพอใจของลูกค้า "
+"ช่วยให้มั่นใจได้ว่าร้านค้าของคุณจะได้รับประสบการณ์พิเศษที่ทำให้นักช้อปกลับมาอีก"
+
+msgid "Watch WooCommerce Video"
+msgstr "ชมวิดีโอ WooCommerce"
+
+msgid "Welcome to GeekyBot !..."
+msgstr "ยินดีต้อนรับสู่ GeekyBot!..."
+
+msgid ""
+"The ultimate AI chatbot for WooCommerce lead generation, intelligent content search, and interactive customer engagement "
+"on your WordPress website."
+msgstr ""
+"สุดยอดแชทบอท AI สำหรับการสร้างลูกค้าเป้าหมายของ WooCommerce การค้นหาเนื้อหาอัจฉริยะ และการมีส่วนร่วมของลูกค้าเชิงโต้ตอบบนเว็บไซต์ WordPress "
+"ของคุณ"
+
+msgid "Personalize interactions by dynamically processing user inputs using slots and variables."
+msgstr "ปรับแต่งการโต้ตอบโดยการประมวลผลอินพุตของผู้ใช้แบบไดนามิกโดยใช้ช่องและตัวแปร"
+
+msgid "Enhance shopping by enabling users to find products and add them to their cart seamlessly."
+msgstr "ปรับปรุงการช็อปปิ้งโดยให้ผู้ใช้สามารถค้นหาผลิตภัณฑ์และเพิ่มลงในรถเข็นได้อย่างราบรื่น"
+
+msgid "Website Search"
+msgstr "ค้นหาเว็บไซต์"
+
+msgid "Streamline discovery by helping users find relevant information on your WordPress site."
+msgstr "ปรับปรุงการค้นพบโดยช่วยให้ผู้ใช้ค้นหาข้อมูลที่เกี่ยวข้องบนเว็บไซต์ WordPress ของคุณ"
+
+msgid "Please insert activation key to proceed"
+msgstr "กรุณาใส่รหัสเปิดใช้งานเพื่อดำเนินการต่อ"
+
+msgid "Addon Installation Failed"
+msgstr "การติดตั้ง Addon ล้มเหลว"
+
+msgid "Addon installation failed"
+msgstr "การติดตั้ง Addon ล้มเหลว"
+
+msgid "Addon Installation Failed, File download error"
+msgstr "การติดตั้ง Addon ล้มเหลว การดาวน์โหลดไฟล์เกิดข้อผิดพลาด"
+
+msgid "Activated"
+msgstr "เปิดใช้งานแล้ว"
+
+msgid "Deactivate"
+msgstr "ปิดการใช้งาน"
+
+msgid "Deactivated"
+msgstr "ปิดการใช้งาน"
+
+msgid "Activate"
+msgstr "เปิดใช้งาน"
+
+msgid "Not Installed"
+msgstr "ไม่ได้ติดตั้ง"
+
+msgid "Addon Installed Successfully"
+msgstr "ติดตั้ง Addon สำเร็จแล้ว"
+
+msgid "Ticket Actions"
+msgstr "การดำเนินการตั๋ว"
+
+msgid "Agents"
+msgstr "ตัวแทน"
+
+msgid "Ticket Auto Close"
+msgstr "ตั๋วปิดอัตโนมัติ"
+
+msgid "left image"
+msgstr "ภาพซ้าย"
+
+msgid "right image"
+msgstr "ภาพขวา"
+
+msgid "Add-ons For Majestic Support"
+msgstr "ส่วนเสริมสำหรับการสนับสนุน Majestic"
+
+msgid ""
+"Get trusted WordPress add-ons. Guaranteed to work fast, safe to use, beautifully coded, packed with features, and are easy "
+"to use."
+msgstr "รับส่วนเสริม WordPress ที่เชื่อถือได้ รับรองว่าทำงานเร็ว ปลอดภัย โค้ดสวยงาม อัดแน่นด้วยฟีเจอร์และใช้งานง่าย"
+
+msgid "Save big today with an exclusive membership plan!"
+msgstr "ประหยัดได้มากในวันนี้ด้วยแผนสมาชิกสุดพิเศษ!"
+
+msgid "Show"
+msgstr "แสดง"
+
+msgid "show bundle pack"
+msgstr "แสดงแพ็ครวมกลุ่ม"
+
+msgid "Agent"
+msgstr "ตัวแทน"
+
+msgid "Add agents and assign roles and permissions to provide assistance and support for customer support tickets."
+msgstr "เพิ่มตัวแทนและกำหนดบทบาทและการอนุญาตเพื่อให้ความช่วยเหลือและสนับสนุนตั๋วสนับสนุนลูกค้า"
+
+msgid "buy now"
+msgstr "ซื้อตอนนี้"
+
+msgid "Installed"
+msgstr "ติดตั้งแล้ว"
+
+msgid "multiform"
+msgstr "หลายรูปแบบ"
+
+msgid "Multi Forms"
+msgstr "หลายรูปแบบ"
+
+msgid "Create multiple custom ticket forms with different custom fields for each request type that you support."
+msgstr "สร้างแบบฟอร์มตั๋วที่กำหนดเองหลายรายการพร้อมฟิลด์ที่กำหนดเองที่แตกต่างกันสำหรับคำขอแต่ละประเภทที่คุณสนับสนุน"
+
+msgid "Email Piping"
+msgstr "ท่ออีเมล"
+
+msgid "Email piping is the process of automatically turning incoming emails into support tickets without manual data entry."
+msgstr "การส่งอีเมลเป็นกระบวนการเปลี่ยนอีเมลขาเข้าให้เป็นตั๋วสนับสนุนโดยอัตโนมัติโดยไม่ต้องป้อนข้อมูลด้วยตนเอง"
+
+msgid "agent auto assign"
+msgstr "มอบหมายตัวแทนอัตโนมัติ"
+
+msgid "Agent Auto Assign"
+msgstr "มอบหมายตัวแทนอัตโนมัติ"
+
+msgid "Make the ticket assignment process automatic and assign the most qualified agent to your tickets with conditions."
+msgstr "ทำให้กระบวนการมอบหมายตั๋วอัตโนมัติและมอบหมายตัวแทนที่มีคุณสมบัติเหมาะสมที่สุดให้กับตั๋วของคุณโดยมีเงื่อนไข"
+
+msgid "private note"
+msgstr "บันทึกส่วนตัว"
+
+msgid "Private Note"
+msgstr "หมายเหตุส่วนตัว"
+
+msgid ""
+"Add private notes to a ticket and share crucial information internally with your agents, this private note is not visible "
+"to the customer."
+msgstr "เพิ่มบันทึกส่วนตัวลงในตั๋วและแบ่งปันข้อมูลสำคัญภายในกับตัวแทนของคุณ บันทึกส่วนตัวนี้จะไม่ปรากฏให้ลูกค้าเห็น"
+
+msgid "merge tickets"
+msgstr "รวมตั๋ว"
+
+msgid "Merge Tickets"
+msgstr "รวมตั๋ว"
+
+msgid ""
+"Merge one or more tickets into another if you receive two support requests from the same end user about the same issue."
+msgstr "รวมตั๋วหนึ่งรายการขึ้นไปเข้ากับอีกตั๋วหนึ่ง หากคุณได้รับคำขอการสนับสนุนจากผู้ใช้คนเดียวกันเกี่ยวกับปัญหาเดียวกันสองรายการ"
+
+msgid "helptopic"
+msgstr "หัวข้อช่วยเหลือ"
+
+msgid "Help Topics"
+msgstr "หัวข้อช่วยเหลือ"
+
+msgid "The user can search for and choose the topic for which they need help using help topics"
+msgstr "ผู้ใช้สามารถค้นหาและเลือกหัวข้อที่ต้องการความช่วยเหลือโดยใช้หัวข้อวิธีใช้"
+
+msgid "Auto Close Ticket"
+msgstr "ตั๋วปิดอัตโนมัติ"
+
+msgid ""
+"Manage abandoned tickets, and set rules for tickets over time, and those tickets will be closed automatically after a "
+"certain period."
+msgstr "จัดการตั๋วที่ถูกละทิ้ง และตั้งกฎสำหรับตั๋วเมื่อเวลาผ่านไป และตั๋วเหล่านั้นจะถูกปิดโดยอัตโนมัติหลังจากช่วงระยะเวลาหนึ่ง"
+
+msgid "Knowledgebase"
+msgstr "ฐานความรู้"
+
+msgid ""
+"Stop wasting time on repetitive inquiries, build your knowledge base, and organize your solutions into categories for "
+"users."
+msgstr "หยุดเสียเวลากับการสอบถามซ้ำๆ สร้างฐานความรู้ของคุณ และจัดระเบียบโซลูชันของคุณเป็นหมวดหมู่สำหรับผู้ใช้"
+
+msgid "Ticket Overdue"
+msgstr "ตั๋วเกินกำหนด"
+
+msgid "Define rules or set a specific time interval for making tickets automatically overdue."
+msgstr "กำหนดกฎหรือกำหนดช่วงเวลาเฉพาะเพื่อให้ตั๋วเกินกำหนดโดยอัตโนมัติ"
+
+msgid "time tracking"
+msgstr "การติดตามเวลา"
+
+msgid "Time Tracking"
+msgstr "การติดตามเวลา"
+
+msgid "Track the amount of time spent on each customer support ticket without losing focus and enhance team productivity."
+msgstr "ติดตามระยะเวลาที่ใช้ในตั๋วสนับสนุนลูกค้าแต่ละใบโดยไม่สูญเสียสมาธิและเพิ่มประสิทธิภาพการทำงานของทีม"
+
+msgid "Ticket History"
+msgstr "ประวัติตั๋ว"
+
+msgid "Show the whole history of the ticket, including its status and any action taken in response to it."
+msgstr "แสดงประวัติทั้งหมดของตั๋ว รวมถึงสถานะและการดำเนินการใด ๆ เพื่อตอบสนองต่อตั๋ว"
+
+msgid "Paid Support"
+msgstr "การสนับสนุนแบบชำระเงิน"
+
+msgid "The simplest approach to effectively manage payments for premium help is through paid support."
+msgstr "วิธีที่ง่ายที่สุดในการจัดการการชำระเงินสำหรับความช่วยเหลือแบบพรีเมียมอย่างมีประสิทธิภาพคือผ่านการสนับสนุนแบบชำระเงิน"
+
+msgid "Private Credentials"
+msgstr "ข้อมูลรับรองส่วนตัว"
+
+msgid ""
+"Customers will enter sensitive information on tickets, and this add-on is designed to help you keep that information "
+"secure."
+msgstr "ลูกค้าจะป้อนข้อมูลที่ละเอียดอ่อนบนตั๋ว และส่วนเสริมนี้ออกแบบมาเพื่อช่วยให้คุณรักษาข้อมูลนั้นให้ปลอดภัย"
+
+msgid "Ticket close reason"
+msgstr "เหตุผลในการปิดตั๋ว"
+
+msgid "Ticket Closed Reason"
+msgstr "เหตุผลในการปิดตั๋ว"
+
+msgid "Empowers users to provide clear and concise explanations for why customer service tickets are being closed."
+msgstr "ให้อำนาจผู้ใช้ในการให้คำอธิบายที่ชัดเจนและกระชับว่าทำไมตั๋วบริการลูกค้าจึงถูกปิด"
+
+msgid "Premade Responses"
+msgstr "การตอบกลับที่ทำไว้ล่วงหน้า"
+
+msgid "Make ready-made responses to the most common questions in the tickets to swiftly address client issues."
+msgstr "จัดทำคำตอบสำหรับคำถามที่พบบ่อยที่สุดในตั๋วเพื่อแก้ไขปัญหาของลูกค้าอย่างรวดเร็ว"
+
+msgid "max ticket"
+msgstr "ตั๋วสูงสุด"
+
+msgid "Max Tickets"
+msgstr "ตั๋วแม็กซ์"
+
+msgid ""
+"Admins can limit the number of tickets that users can create as well as the number of tickets that agents can open "
+"individually."
+msgstr "ผู้ดูแลระบบสามารถจำกัดจำนวนตั๋วที่ผู้ใช้สามารถสร้างได้ เช่นเดียวกับจำนวนตั๋วที่ตัวแทนสามารถเปิดเป็นรายบุคคลได้"
+
+msgid "Feedback"
+msgstr "ข้อเสนอแนะ"
+
+msgid "To enhance the quality of your services, ask your customers to complete a survey when a ticket is closed."
+msgstr "เพื่อปรับปรุงคุณภาพการบริการของคุณ ขอให้ลูกค้าของคุณทำแบบสำรวจเมื่อตั๋วถูกปิด"
+
+msgid "ticket actions"
+msgstr "การดำเนินการตั๋ว"
+
+msgid "Ticket action options allow you to execute additional actions on tickets."
+msgstr "ตัวเลือกการดำเนินการกับตั๋วช่วยให้คุณสามารถดำเนินการเพิ่มเติมกับตั๋วได้"
+
+msgid "Export"
+msgstr "ส่งออก"
+
+msgid ""
+"Easily export ticket data and performance report data from your majestic support to an Excel spreadsheet with our "
+"efficient and user-friendly solution."
+msgstr ""
+"ส่งออกข้อมูลตั๋วและข้อมูลรายงานประสิทธิภาพจากการสนับสนุนที่ยอดเยี่ยมของคุณไปยังสเปรดชีต Excel "
+"ได้อย่างง่ายดายด้วยโซลูชันที่มีประสิทธิภาพและใช้งานง่ายของเรา"
+
+msgid "email cc"
+msgstr "อีเมลซีซี"
+
+msgid "Email CC"
+msgstr "อีเมล CC"
+
+msgid "Send the exact copy of the email to the provided email address with Email CC or BCC."
+msgstr "ส่งสำเนาอีเมลที่ถูกต้องไปยังที่อยู่อีเมลที่ให้ไว้พร้อมอีเมล CC หรือ BCC"
+
+msgid "user options"
+msgstr "ตัวเลือกผู้ใช้"
+
+msgid "User Options"
+msgstr "ตัวเลือกผู้ใช้"
+
+msgid "User options enable you to define roles for new users when they are registered."
+msgstr "ตัวเลือกผู้ใช้ช่วยให้คุณสามารถกำหนดบทบาทสำหรับผู้ใช้ใหม่เมื่อลงทะเบียนแล้ว"
+
+msgid "SMTP"
+msgstr "SMTP"
+
+msgid "SMTP enables you to add  custom mail protocols to send and receive emails with the support ticket system."
+msgstr "SMTP ช่วยให้คุณสามารถเพิ่มโปรโตคอลอีเมลที่กำหนดเองเพื่อส่งและรับอีเมลด้วยระบบตั๋วสนับสนุน"
+
+msgid "Multi Language Email Templates"
+msgstr "เทมเพลตอีเมลหลายภาษา"
+
+msgid ""
+"Create multi-language email templates for all default email templates to send customers emails in the language that they "
+"prefer."
+msgstr "สร้างเทมเพลตอีเมลหลายภาษาสำหรับเทมเพลตอีเมลเริ่มต้นทั้งหมดเพื่อส่งอีเมลถึงลูกค้าในภาษาที่พวกเขาต้องการ"
+
+msgid "Downloads"
+msgstr "ดาวน์โหลด"
+
+msgid "Downloads can be very helpful for users who are looking to obtain the necessary information to resolve issues."
+msgstr "การดาวน์โหลดจะมีประโยชน์มากสำหรับผู้ใช้ที่ต้องการรับข้อมูลที่จำเป็นในการแก้ไขปัญหา"
+
+msgid "Announcements"
+msgstr "ประกาศ"
+
+msgid "Make an unlimited number of announcements related to the support system to encourage customer interaction."
+msgstr "จัดทำประกาศที่เกี่ยวข้องกับระบบสนับสนุนได้ไม่จำกัดจำนวนเพื่อส่งเสริมการมีปฏิสัมพันธ์กับลูกค้า"
+
+msgid "Ban Email"
+msgstr "อีเมล์บ้าน"
+
+msgid "With Ban Email, you can limit a users ability to create new tickets by blocking their email address."
+msgstr "ด้วย Ban Email คุณสามารถจำกัดความสามารถของผู้ใช้ในการสร้างตั๋วใหม่ได้โดยการบล็อกที่อยู่อีเมลของพวกเขา"
+
+msgid "FAQ"
+msgstr "คำถามที่พบบ่อย"
+
+msgid "Provide answers to common user questions with the FAQ extension before they become tickets."
+msgstr "ให้คำตอบสำหรับคำถามทั่วไปของผู้ใช้ด้วยส่วนขยายคำถามที่พบบ่อยก่อนที่จะกลายเป็นตั๋ว"
+
+msgid "admin widgets"
+msgstr "วิดเจ็ตผู้ดูแลระบบ"
+
+msgid "Admin Widgets"
+msgstr "วิดเจ็ตผู้ดูแลระบบ"
+
+msgid "Get immediate data on your support operations as soon as you log into your WordPress administration area."
+msgstr "รับข้อมูลทันทีเกี่ยวกับการดำเนินการสนับสนุนของคุณทันทีที่คุณเข้าสู่ระบบพื้นที่การดูแลระบบ WordPress ของคุณ"
+
+msgid "desktop notifications"
+msgstr "การแจ้งเตือนบนเดสก์ท็อป"
+
+msgid "Desktop Notifications"
+msgstr "การแจ้งเตือนบนเดสก์ท็อป"
+
+msgid "You will be informed of anything that occurs on your support system by the desktop notifications."
+msgstr "คุณจะได้รับแจ้งถึงสิ่งใดก็ตามที่เกิดขึ้นบนระบบสนับสนุนของคุณผ่านการแจ้งเตือนบนเดสก์ท็อป"
+
+msgid "woocommerce"
+msgstr "วูคอมเมิร์ซ"
+
+msgid ""
+"The integration of the support ticket system for WooCommerce with your e-shop makes your support better and more "
+"professional."
+msgstr "การรวมระบบตั๋วสนับสนุนสำหรับ WooCommerce เข้ากับร้านค้าออนไลน์ของคุณทำให้การสนับสนุนของคุณดีขึ้นและเป็นมืออาชีพมากขึ้น"
+
+msgid "mail chimp"
+msgstr "เมลชิมแปนซี"
+
+msgid "Mail Chimp"
+msgstr "เมลชิมแปนซี"
+
+msgid ""
+"Manage your email marketing campaigns directly from your majestic support by adding new user accounts to your Mailchimp "
+"email list."
+msgstr "จัดการแคมเปญการตลาดผ่านอีเมลของคุณโดยตรงจากฝ่ายสนับสนุนอันทรงเกียรติของคุณโดยการเพิ่มบัญชีผู้ใช้ใหม่ลงในรายการอีเมล Mailchimp ของคุณ"
+
+msgid "internal mail"
+msgstr "จดหมายภายใน"
+
+msgid "Internal Mail"
+msgstr "จดหมายภายใน"
+
+msgid "Send messages internally about support tickets and other issues between agents with internal mail."
+msgstr "ส่งข้อความภายในเกี่ยวกับตั๋วการสนับสนุนและปัญหาอื่นๆ ระหว่างตัวแทนด้วยอีเมลภายใน"
+
+msgid "frontend widget"
+msgstr "วิดเจ็ตส่วนหน้า"
+
+msgid "Front-End Widgets"
+msgstr "วิดเจ็ตส่วนหน้า"
+
+msgid ""
+"Frontend Widgets include several widgets that can be used to enhance the plugin's functionality in various areas of the "
+"website."
+msgstr "วิดเจ็ตส่วนหน้าประกอบด้วยวิดเจ็ตหลายตัวที่สามารถใช้เพื่อปรับปรุงการทำงานของปลั๊กอินในส่วนต่างๆ ของเว็บไซต์"
+
+msgid "envato"
+msgstr "เอนวาโต"
+
+msgid "Envato"
+msgstr "เอนวาโต"
+
+msgid ""
+"Clients won't be able to open a new ticket using the Envato Validation plugin if they don't have a valid Envato license."
+msgstr "ลูกค้าจะไม่สามารถเปิดตั๋วใหม่โดยใช้ปลั๊กอิน Envato Validation ได้ หากพวกเขาไม่มีใบอนุญาต Envato ที่ถูกต้อง"
+
+msgid "easy digital download"
+msgstr "ดาวน์โหลดดิจิตอลได้ง่าย"
+
+msgid "Easy Digital Download"
+msgstr "ดาวน์โหลดดิจิตอลอย่างง่ายดาย"
+
+msgid ""
+"Learn about a customer's purchase directly from the support dashboard by integrating Majestic Support with your EDD store."
+msgstr "เรียนรู้เกี่ยวกับการซื้อของลูกค้าโดยตรงจากแดชบอร์ดการสนับสนุนโดยการรวม Majestic Support เข้ากับร้านค้า EDD ของคุณ"
+
+msgid "Majestic Support Add-ons Bundle Pack"
+msgstr "ชุดเสริมเสริม Majestic Support"
+
+msgid "Basic"
+msgstr "ขั้นพื้นฐาน"
+
+msgid "Unlimited Agents"
+msgstr "ไม่จำกัดตัวแทน"
+
+msgid "Helptopic"
+msgstr "หัวข้อช่วยเหลือ"
+
+msgid "Show all"
+msgstr "แสดงทั้งหมด"
+
+msgid "Standard"
+msgstr "มาตรฐาน"
+
+msgid "Everything in basic included and "
+msgstr "รวมทุกอย่างไว้ในพื้นฐานและ"
+
+msgid "Premade Response"
+msgstr "การตอบสนองที่ทำไว้ล่วงหน้า"
+
+msgid "Professional"
+msgstr "มืออาชีพ"
+
+msgid "Everything in standard included and"
+msgstr "รวมทุกอย่างที่เป็นมาตรฐานและ"
+
+msgid "All Future Addons"
+msgstr "ส่วนเสริมในอนาคตทั้งหมด"
+
+msgid "spinning wheel"
+msgstr "ล้อหมุน"
+
+msgid "New Update Version"
+msgstr "เวอร์ชันอัปเดตใหม่"
+
+msgid "is Available"
+msgstr "สามารถใช้ได้"
+
+msgid "Status: "
+msgstr "สถานะ:"
+
+msgid "Version"
+msgstr "เวอร์ชัน"
+
+msgid "addon in no longer active"
+msgstr "addon ไม่ทำงานอีกต่อไป"
+
+msgid "Please Insert Your Activation Key"
+msgstr "กรุณาใส่รหัสเปิดใช้งานของคุณ"
+
+msgid "XXXX-XXXX-XXXXX-XXXXX"
+msgstr "XXXX-XXXX-XXXXX-XXXXX"
+
+msgid "Proceed"
+msgstr "ดำเนินการ"
+
+msgid "GeekyBot Addon Installer"
+msgstr "โปรแกรมติดตั้ง Addon GeekyBot"
+
+msgid "Select All Addons"
+msgstr "เลือก Addons ทั้งหมด"
+
+msgid "All allowed add ons are already installed"
+msgstr "ส่วนเสริมที่อนุญาตทั้งหมดได้รับการติดตั้งแล้ว"
+
+msgid "You are not allowed to install any add on"
+msgstr "คุณไม่ได้รับอนุญาตให้ติดตั้งส่วนเสริมใดๆ"
+
+msgid "Something went wrong"
+msgstr "มีบางอย่างผิดพลาด"
+
+msgid "Addons Installed Successfully"
+msgstr "ติดตั้ง Addons สำเร็จแล้ว"
+
+msgid "Open Dashboard"
+msgstr "เปิดแดชบอร์ด"
+
+msgid "Open Plugins Page"
+msgstr "เปิดหน้าปลั๊กอิน"
+
+msgid "PersonName"
+msgstr "ชื่อบุคคล"
+
+msgid "Facility"
+msgstr "สิ่งอำนวยความสะดวก"
+
+msgid "Organization"
+msgstr "องค์กร"
+
+msgid "Location"
+msgstr "ที่ตั้ง"
+
+msgid "Location_NON_GPE"
+msgstr "ตำแหน่ง_NON_GPE"
+
+msgid "Product"
+msgstr "ผลิตภัณฑ์"
+
+msgid "Event"
+msgstr "เหตุการณ์"
+
+msgid "ArtWork"
+msgstr "อาร์ตเวิร์ก"
+
+msgid "LawDocument"
+msgstr "เอกสารกฎหมาย"
+
+msgid "Language"
+msgstr "ภาษา"
+
+msgid "Date"
+msgstr "วันที่"
+
+msgid "Time"
+msgstr "เวลา"
+
+msgid "Percentage"
+msgstr "เปอร์เซ็นต์"
+
+msgid "Money"
+msgstr "เงิน"
+
+msgid "Quantity"
+msgstr "ปริมาณ"
+
+msgid "Ordinal"
+msgstr "ลำดับ"
+
+msgid "Cardinal"
+msgstr "พระคาร์ดินัล"
+
+msgid "Select Variable For"
+msgstr "เลือกตัวแปรสำหรับ"
+
+msgid "Attribute"
+msgstr "คุณลักษณะ"
+
+msgid "Name"
+msgstr "ชื่อ"
+
+msgid "Varibale Name"
+msgstr "ชื่อตัวแปร"
+
+msgid "Type"
+msgstr "พิมพ์"
+
+msgid "Possible Field Values"
+msgstr "ค่าฟิลด์ที่เป็นไปได้"
+
+msgid "Add Comma Seprated Values"
+msgstr "เพิ่มค่าที่คั่นด้วยเครื่องหมายจุลภาค"
+
+msgid "Variable For"
+msgstr "ตัวแปรสำหรับ"
+
+msgid "Select Variable For in case of Woocommerce Variable"
+msgstr "เลือกตัวแปรสำหรับในกรณีของตัวแปร Woocommerce"
+
+msgid "cancel"
+msgstr "ยกเลิก"
+
+msgid "Cancel"
+msgstr "ยกเลิก"
+
+msgid "Save Changes"
+msgstr "บันทึกการเปลี่ยนแปลง"
+
+msgid "Save Variable"
+msgstr "บันทึกตัวแปร"
+
+msgid "Reset"
+msgstr "รีเซ็ต"
+
+msgid "Are you sure to delete it?"
+msgstr "คุณแน่ใจหรือว่าจะลบมัน?"
+
+msgid "Delete Variable"
+msgstr "ลบตัวแปร"
+
+msgid "Add Variable"
+msgstr "เพิ่มตัวแปร"
+
+msgid "name"
+msgstr "ชื่อ"
+
+msgid "type"
+msgstr "พิมพ์"
+
+msgid "Possible Values Here"
+msgstr "ค่าที่เป็นไปได้ที่นี่"
+
+msgid "Edit Variable"
+msgstr "แก้ไขตัวแปร"
+
+msgid "Are you sure to delete it"
+msgstr "คุณแน่ใจว่าจะลบมัน"
+
+msgid "Add New"
+msgstr "เพิ่มใหม่"
+
+msgid "User Input"
+msgstr "ข้อมูลผู้ใช้"
+
+msgid "Close"
+msgstr "ปิด"
+
+msgid "Add"
+msgstr "เพิ่ม"
+
+msgid "Add More"
+msgstr "เพิ่มมากขึ้น"
+
+msgid "Available Variables"
+msgstr "ตัวแปรที่มีอยู่"
+
+msgid "Enter bot response here..."
+msgstr "ป้อนการตอบกลับของบอทที่นี่..."
+
+msgid "Button text here"
+msgstr "ข้อความปุ่มที่นี่"
+
+msgid "URL"
+msgstr "URL"
+
+msgid "Button value here"
+msgstr "ค่าปุ่มที่นี่"
+
+msgid "Enter URL here"
+msgstr "ป้อน URL ที่นี่"
+
+msgid "Add New Button"
+msgstr "เพิ่มปุ่มใหม่"
+
+msgid "Select Predefined Function"
+msgstr "เลือกฟังก์ชันที่กำหนดไว้ล่วงหน้า"
+
+msgid "Select Action"
+msgstr "เลือก การดำเนินการ"
+
+msgid "Add New Action"
+msgstr "เพิ่มการกระทำใหม่"
+
+msgid "Add New Form"
+msgstr "เพิ่มแบบฟอร์มใหม่"
+
+msgid "Enter default fallback here..."
+msgstr "ป้อนทางเลือกเริ่มต้นที่นี่..."
+
+msgid "Enter default fallback for intent here..."
+msgstr "ป้อนทางเลือกเริ่มต้นสำหรับความตั้งใจที่นี่..."
+
+msgid "Start Point"
+msgstr "จุดเริ่มต้น"
+
+msgid "Error: The template file does not exist."
+msgstr "ข้อผิดพลาด: ไม่มีไฟล์เทมเพลต"
+
+msgid "Text"
+msgstr "ข้อความ"
+
+msgid "Function"
+msgstr "การทำงาน"
+
+msgid "Error: The"
+msgstr "ข้อผิดพลาด: The"
+
+msgid "tag in"
+msgstr "แท็กเข้า"
+
+msgid "at position"
+msgstr "ที่ตำแหน่ง"
+
+msgid "is missing."
+msgstr "หายไป"
+
+msgid "is empty."
+msgstr "ว่างเปล่า"
+
+msgid "tag associated with the user input"
+msgstr "แท็กที่เกี่ยวข้องกับการป้อนข้อมูลของผู้ใช้"
+
+msgid "in"
+msgstr "ใน"
+
+msgid "tag of the"
+msgstr "แท็กของ"
+
+msgid "block associated with the user input"
+msgstr "บล็อกที่เกี่ยวข้องกับการป้อนข้อมูลของผู้ใช้"
+
+msgid "or"
+msgstr "หรือ"
+
+msgid "Error: The function name"
+msgstr "ข้อผิดพลาด: ชื่อฟังก์ชัน"
+
+msgid "in the"
+msgstr "ใน"
+
+msgid "is invalid."
+msgstr "ไม่ถูกต้อง"
+
+msgid "Error: The type name"
+msgstr "ข้อผิดพลาด: ชื่อประเภท"
+
+msgid "is invalid. This should be"
+msgstr "ไม่ถูกต้อง นี่ควรจะเป็น"
+
+msgid "You might like these products."
+msgstr "คุณอาจจะชอบผลิตภัณฑ์เหล่านี้"
+
+msgid "No exact match was found. Explore these similar products."
+msgstr "ไม่พบรายการที่ตรงกันทุกประการ สำรวจผลิตภัณฑ์ที่คล้ายกันเหล่านี้"
+
+msgid "Here are some suggestions."
+msgstr "นี่คือข้อเสนอแนะบางส่วน"
+
+msgid "Showing"
+msgstr "กำลังแสดง"
+
+msgid "of"
+msgstr "ของ"
+
+msgid "Add to cart"
+msgstr "เพิ่มลงในรถเข็น"
+
+msgid "Empty Story"
+msgstr "เรื่องราวที่ว่างเปล่า"
+
+msgid "Show All Products"
+msgstr "แสดงผลิตภัณฑ์ทั้งหมด"
+
+msgid "Search Product"
+msgstr "ค้นหาผลิตภัณฑ์"
+
+msgid "Get Products Under Price"
+msgstr "รับสินค้าภายใต้ราคา"
+
+msgid "Get Products Above Price"
+msgstr "รับสินค้าเหนือราคา"
+
+msgid "View Cart/Remove Items"
+msgstr "ดูตะกร้าสินค้า/ลบรายการ"
+
+msgid "Checkout"
+msgstr "ชำระเงิน"
+
+msgid "Reset Password"
+msgstr "รีเซ็ตรหัสผ่าน"
+
+msgid "Send Chat To Admin"
+msgstr "ส่งแชทถึงผู้ดูแลระบบ"
+
+msgid "Integer"
+msgstr "จำนวนเต็ม"
+
+msgid "Float"
+msgstr "ลอย"
+
+msgid "Boolean"
+msgstr "บูลีน"
+
+msgid "String"
+msgstr "สตริง"
+
+msgid "Default Fallback"
+msgstr "ทางเลือกสำรองเริ่มต้น"
+
+msgid "Are you sure to reset it?"
+msgstr "คุณแน่ใจหรือว่าจะรีเซ็ตมัน?"
+
+msgid "Parameter Name *"
+msgstr "ชื่อพารามิเตอร์ *"
+
+msgid "Varibale Name *"
+msgstr "ชื่อตัวแปร *"
+
+msgid "User input has been successfully saved."
+msgstr "บันทึกการป้อนข้อมูลของผู้ใช้เรียบร้อยแล้ว"
+
+msgid "An empty user input field."
+msgstr "ช่องป้อนข้อมูลของผู้ใช้ว่างเปล่า"
+
+msgid "An empty bot response."
+msgstr "การตอบสนองของบอทที่ว่างเปล่า"
+
+msgid "Response Successfully Saved!"
+msgstr "บันทึกการตอบสนองเรียบร้อยแล้ว!"
+
+msgid "Action Successfully Saved!"
+msgstr "บันทึกการดำเนินการสำเร็จแล้ว!"
+
+msgid "Form Successfully Saved!"
+msgstr "บันทึกแบบฟอร์มเรียบร้อยแล้ว!"
+
+msgid "Default Fallback Successfully Saved!"
+msgstr "บันทึกทางเลือกสำรองเริ่มต้นสำเร็จแล้ว!"
+
+msgid "Store relevant user input first, then fallback."
+msgstr "เก็บข้อมูลอินพุตของผู้ใช้ที่เกี่ยวข้องไว้ก่อน จากนั้นจึงเลือกสำรอง"
+
+msgid "An empty default fallback."
+msgstr "ทางเลือกสำรองเริ่มต้นที่ว่างเปล่า"
+
+msgid "Default Intent Fallback Successfully Saved!"
+msgstr "บันทึกความตั้งใจสำรองเริ่มต้นเรียบร้อยแล้ว!"
+
+msgid "Discard"
+msgstr "ทิ้ง"
+
+msgid "Temporary discard"
+msgstr "ทิ้งชั่วคราว"
+
+msgid "Automate"
+msgstr "อัตโนมัติ"
+
+msgid "User input"
+msgstr "ข้อมูลผู้ใช้"
+
+msgid "Form"
+msgstr "รูปร่าง"
+
+msgid "Fallback"
+msgstr "ทางเลือกสำรอง"
+
+msgid "Chat "
+msgstr "แชท"
+
+msgid "Available Variable"
+msgstr "ตัวแปรที่มีอยู่"
+
+msgid "Product Name"
+msgstr "ชื่อสินค้า"
+
+msgid "Minimum Price"
+msgstr "ราคาขั้นต่ำ"
+
+msgid "Maximum Price"
+msgstr "ราคาสูงสุด"
+
+msgid "User Login"
+msgstr "เข้าสู่ระบบผู้ใช้"
+
+msgid "Action Icon"
+msgstr "ไอคอนการดำเนินการ"
+
+msgid "User Icon"
+msgstr "ไอคอนผู้ใช้"
+
+msgid "User"
+msgstr "ผู้ใช้"
+
+msgid "Bot Response"
+msgstr "การตอบสนองของบอท"
+
+msgid "User Text Icon"
+msgstr "ผู้ใช้ข้อความไอคอน"
+
+msgid "Bot Function Icon"
+msgstr "ไอคอนฟังก์ชั่นบอท"
+
+msgid "Bot Function"
+msgstr "ฟังก์ชั่นบอท"
+
+msgid "Predefined Function"
+msgstr "ฟังก์ชั่นที่กำหนดไว้ล่วงหน้า"
+
+msgid "Bot Action Icon"
+msgstr "ไอคอนแอคชั่นบอท"
+
+msgid "Bot Action"
+msgstr "การกระทำของบอท"
+
+msgid "Bot Form Icon"
+msgstr "ไอคอนแบบฟอร์มบอท"
+
+msgid "Bot Form"
+msgstr "แบบฟอร์มบอท"
+
+msgid "Fallback Icon"
+msgstr "ไอคอนทางเลือก"
+
+msgid "Fallback Massege"
+msgstr "ข้อความทางเลือก"
+
+msgid "Save & Close"
+msgstr "บันทึกและปิด"
+
+msgid "Info Icon"
+msgstr "ไอคอนข้อมูล"
+
+msgid "How to add parameters"
+msgstr "วิธีเพิ่มพารามิเตอร์"
+
+msgid "User form Icon"
+msgstr "ไอคอนแบบฟอร์มผู้ใช้"
+
+msgid "Form Name *"
+msgstr "ชื่อแบบฟอร์ม *"
+
+msgid "Add New Variable"
+msgstr "เพิ่มตัวแปรใหม่"
+
+msgid "Function Form"
+msgstr "แบบฟอร์มฟังก์ชัน"
+
+msgid "Action Form"
+msgstr "แบบฟอร์มการดำเนินการ"
+
+msgid "Custom Action"
+msgstr "การกระทำที่กำหนดเอง"
+
+msgid "Add New Custom Action"
+msgstr "เพิ่มการกระทำแบบกำหนดเองใหม่"
+
+msgid "Add New Parameter"
+msgstr "เพิ่มพารามิเตอร์ใหม่"
+
+msgid "Intent Fallback"
+msgstr "ความตั้งใจสำรอง"
+
+msgid "Save Story"
+msgstr "บันทึกเรื่องราว"
+
+msgid "Reset Story"
+msgstr "รีเซ็ตเรื่องราว"
+
+msgid "Story has been successfully saved."
+msgstr "บันทึกเรื่องราวเรียบร้อยแล้ว"
+
+msgid "WooCommerce is not active!"
+msgstr "WooCommerce ใช้งานไม่ได้!"
+
+msgid "Error encountered in template."
+msgstr "พบข้อผิดพลาดในเทมเพลต"
+
+msgid "An empty story name."
+msgstr "ชื่อเรื่องราวที่ว่างเปล่า"
+
+msgid "An empty story template."
+msgstr "เทมเพลตเรื่องราวที่ว่างเปล่า"
+
+msgid "title"
+msgstr "ชื่อ"
+
+msgid "Active"
+msgstr "คล่องแคล่ว"
+
+msgid "Disable"
+msgstr "ปิดการใช้งาน"
+
+msgid "Edit Story"
+msgstr "แก้ไขเรื่องราว"
+
+msgid "Are you sure to delete"
+msgstr "คุณแน่ใจที่จะลบ"
+
+msgid "Delete Story"
+msgstr "ลบเรื่องราว"
+
+msgid "Built Story"
+msgstr "เรื่องราวที่สร้างขึ้น"
+
+msgid "Built"
+msgstr "สร้าง"
+
+msgid "WooCommerce Story"
+msgstr "เรื่องราวของ WooCommerce"
+
+msgid "Story Name *"
+msgstr "ชื่อเรื่อง *"
+
+msgid "Edit Story Name"
+msgstr "แก้ไขชื่อเรื่อง"
+
+msgid "Invalid username or email."
+msgstr "ชื่อผู้ใช้หรืออีเมลไม่ถูกต้อง"
+
+msgid "Looks like there was a problem resetting your password:"
+msgstr "ดูเหมือนว่ามีปัญหาในการรีเซ็ตรหัสผ่านของคุณ:"
+
+msgid "User not found!"
+msgstr "ไม่พบผู้ใช้!"
+
+msgid "Okay, I have sent the recovery email. Thank you for your patience."
+msgstr "โอเค ฉันได้ส่งอีเมลสำรองแล้ว ขอบคุณสำหรับความอดทนของคุณ"
+
+msgid "Your query is sent to the admin."
+msgstr "คำถามของคุณถูกส่งไปยังผู้ดูแลระบบ"
+
+msgid "Enable"
+msgstr "เปิดใช้งาน"
+
+msgid "Smart Popup"
+msgstr "ป๊อปอัปอัจฉริยะ"
+
+msgid "Standard Popup"
+msgstr "ป๊อปอัปมาตรฐาน"
+
+msgid "Appearance"
+msgstr "รูปร่าง"
+
+msgid "Choose File"
+msgstr "เลือกไฟล์"
+
+msgid "User Default Image"
+msgstr "รูปภาพเริ่มต้นของผู้ใช้"
+
+msgid "Primary Color"
+msgstr "สีหลัก"
+
+msgid "Choose Color"
+msgstr "เลือกสี"
+
+msgid "User Text Background"
+msgstr "พื้นหลังข้อความของผู้ใช้"
+
+msgid "User Text Color"
+msgstr "สีข้อความของผู้ใช้"
+
+msgid "Bot Link Color"
+msgstr "สีลิงค์บอท"
+
+msgid "Presets"
+msgstr "ค่าที่ตั้งล่วงหน้า"
+
+msgid "Preset"
+msgstr "ที่ตั้งไว้ล่วงหน้า"
+
+msgid "online"
+msgstr "ออนไลน์"
+
+msgid "User Image"
+msgstr "รูปภาพของผู้ใช้"
+
+msgid "Hi I am John"
+msgstr "สวัสดี ฉันชื่อจอห์น"
+
+msgid "Hi John! How can I help you?"
+msgstr "สวัสดีจอห์น! ฉันจะช่วยคุณได้อย่างไร?"
+
+msgid "Can you help me find a new backpack?"
+msgstr "คุณช่วยฉันหากระเป๋าเป้ใบใหม่ได้ไหม"
+
+msgid "Product Icon"
+msgstr "ไอคอนผลิตภัณฑ์"
+
+msgid "Fusion Backpack"
+msgstr "กระเป๋าเป้ฟิวชั่น"
+
+msgid "$"
+msgstr "-"
+
+msgid "59"
+msgstr "59"
+
+msgid "Send message"
+msgstr "ส่งข้อความ"
+
+msgid "Welcome Message"
+msgstr "ข้อความต้อนรับ"
+
+msgid "Welcome Image"
+msgstr "รูปภาพยินดีต้อนรับ"
+
+msgid "Chat Auto-Popup"
+msgstr "แชทป๊อปอัพอัตโนมัติ"
+
+msgid "Controls whether the chat popup appears automatically on your site."
+msgstr "ควบคุมว่าป๊อปอัปแชทจะปรากฏบนเว็บไซต์ของคุณโดยอัตโนมัติหรือไม่"
+
+msgid "Chat Pop-up Style"
+msgstr "แชทป๊อปอัพสไตล์"
+
+msgid "Choose how the chat will appear: Smart or Standard pop-up."
+msgstr "เลือกลักษณะการแชทที่จะปรากฏ: ป๊อปอัปอัจฉริยะหรือมาตรฐาน"
+
+msgid "Chat Auto-Popup Timing"
+msgstr "กำหนดเวลาป๊อปอัพแชทอัตโนมัติ"
+
+msgid "Define the delay time in seconds for the chatbot to auto-appear on the site."
+msgstr "กำหนดเวลาหน่วงเป็นวินาทีเพื่อให้แชทบอทปรากฏบนเว็บไซต์โดยอัตโนมัติ"
+
+msgid "Note"
+msgstr "บันทึก"
+
+msgid "If the colors have been saved but the user-side colors are still the same, it is advised to clear the cache."
+msgstr "หากสีได้รับการบันทึกแล้ว แต่สีฝั่งผู้ใช้ยังคงเหมือนเดิม แนะนำให้ล้างแคช"
+
+msgid "Also"
+msgstr "อีกด้วย"
+
+msgid "Found"
+msgstr "พบ"
+
+msgid "Here are some"
+msgstr "นี่คือบางส่วน"
+
+msgid "Help"
+msgstr "ช่วย"
+
+msgid "Have any problem?"
+msgstr "มีปัญหาอะไรไหม?"
+
+msgid "If you experience any difficulties, we're here to help! Simply click the"
+msgstr "หากคุณประสบปัญหาใดๆ เราพร้อมให้ความช่วยเหลือ! เพียงคลิกที่"
+
+msgid "Create A Ticket"
+msgstr "สร้างตั๋ว"
+
+msgid "button to report your issue, and our dedicated support team will assist you promptly."
+msgstr "เพื่อรายงานปัญหาของคุณ และทีมสนับสนุนเฉพาะของเราจะช่วยเหลือคุณทันที"
+
+msgid "Create Ticket"
+msgstr "สร้างตั๋ว"
+
+msgid "Post Type"
+msgstr "ประเภทการโพสต์"
+
+msgid "post type"
+msgstr "ประเภทการโพสต์"
+
+msgid "Post Label"
+msgstr "ป้ายกำกับโพสต์"
+
+msgid "Associated Plugin"
+msgstr "ปลั๊กอินที่เกี่ยวข้อง"
+
+msgid "Add associated plugin's name"
+msgstr "เพิ่มชื่อปลั๊กอินที่เกี่ยวข้อง"
+
+msgid "For better data consistency, please provide a associated plugin's name."
+msgstr "เพื่อความสอดคล้องของข้อมูลที่ดีขึ้น โปรดระบุชื่อปลั๊กอินที่เกี่ยวข้อง"
+
+msgid "Status"
+msgstr "สถานะ"
+
+msgid "For status changes, please use the options available in the listing."
+msgstr "สำหรับการเปลี่ยนแปลงสถานะ โปรดใช้ตัวเลือกที่มีอยู่ในรายการ"
+
+msgid "Template Section"
+msgstr "ส่วนเทมเพลต"
+
+msgid "Fields are currently auto-filled for preview purposes only. Please save your changes to apply them."
+msgstr "ขณะนี้มีการกรอกฟิลด์อัตโนมัติเพื่อจุดประสงค์ในการดูตัวอย่างเท่านั้น โปรดบันทึกการเปลี่ยนแปลงของคุณเพื่อนำไปใช้"
+
+msgid "Choose one template style from the given below"
+msgstr "เลือกรูปแบบเทมเพลตหนึ่งรายการจากด้านล่าง"
+
+msgid "Add Button /Link"
+msgstr "เพิ่มปุ่ม /ลิงค์"
+
+msgid "Add New Button /Link"
+msgstr "เพิ่มปุ่ม / ลิงค์ใหม่"
+
+msgid "Show on Listing"
+msgstr "แสดงในรายการ"
+
+msgid "View Details"
+msgstr "ดูรายละเอียด"
+
+msgid "detail page link"
+msgstr "ลิงค์หน้ารายละเอียด"
+
+msgid "Save Template"
+msgstr "บันทึกเทมเพลต"
+
+msgid "Create a Post"
+msgstr "สร้างโพสต์"
+
+msgid "Please first create a sample post to use template section."
+msgstr "โปรดสร้างโพสต์ตัวอย่างก่อนเพื่อใช้ส่วนเทมเพลต"
+
+msgid "AI web search enabled successfully."
+msgstr "เปิดใช้งานการค้นหาเว็บ AI สำเร็จแล้ว"
+
+msgid "AI web search already enabled."
+msgstr "เปิดใช้งานการค้นหาเว็บ AI แล้ว"
+
+msgid "Something went wrong."
+msgstr "มีบางอย่างผิดพลาด"
+
+msgid "AI web search disabled successfully."
+msgstr "ปิดการใช้งานการค้นหาเว็บ AI เรียบร้อยแล้ว"
+
+msgid "New post type search enabled successfully."
+msgstr "เปิดใช้งานการค้นหาประเภทโพสต์ใหม่สำเร็จแล้ว"
+
+msgid "New post type search disabled successfully."
+msgstr "การค้นหาประเภทโพสต์ใหม่ปิดใช้งานสำเร็จแล้ว"
+
+msgid "Data Synchronization Needed"
+msgstr "จำเป็นต้องมีการซิงโครไนซ์ข้อมูล"
+
+msgid "Your data is not updated. To ensure accurate results, please synchronize your AI web search data."
+msgstr "ข้อมูลของคุณไม่ได้รับการอัพเดต เพื่อให้แน่ใจว่าผลลัพธ์ถูกต้อง โปรดซิงโครไนซ์ข้อมูลการค้นหาเว็บ AI ของคุณ"
+
+msgid "Enable AI web Search"
+msgstr "เปิดใช้งานการค้นหาเว็บ AI"
+
+msgid ""
+"Enable this feature to provide users with direct AI web search results in the chat, offering them a broader context for "
+"their queries."
+msgstr "เปิดใช้งานคุณสมบัตินี้เพื่อให้ผู้ใช้ได้รับผลลัพธ์การค้นหาเว็บ AI โดยตรงในการแชท โดยเสนอบริบทที่กว้างขึ้นสำหรับคำถามของพวกเขา"
+
+msgid "Enable New Post Type Search"
+msgstr "เปิดใช้งานการค้นหาประเภทโพสต์ใหม่"
+
+msgid "Lable"
+msgstr "ฉลาก"
+
+msgid "Post lable"
+msgstr "โพสต์ป้ายกำกับ"
+
+msgid "WooCommerce is currently inactive."
+msgstr "WooCommerce ไม่ได้ใช้งานอยู่ในขณะนี้"
+
+msgid "No product was found."
+msgstr "ไม่พบสินค้า."
+
+msgid "Please enter a valid product or category name."
+msgstr "โปรดป้อนชื่อผลิตภัณฑ์หรือหมวดหมู่ที่ถูกต้อง"
+
+msgid "Please enter a valid price."
+msgstr "กรุณากรอกราคาที่ถูกต้อง"
+
+msgid "Please enter a valid price range."
+msgstr "โปรดป้อนช่วงราคาที่ถูกต้อง"
+
+msgid "Your cart is currently empty."
+msgstr "ขณะนี้รถเข็นของคุณว่างเปล่า"
+
+msgid "Cart Details"
+msgstr "รายละเอียดรถเข็น"
+
+msgid "Price"
+msgstr "ราคา"
+
+msgid "Change"
+msgstr "เปลี่ยน"
+
+msgid "Total Price"
+msgstr "ราคารวม"
+
+msgid "Remove Item"
+msgstr "ลบรายการ"
+
+msgid "Subtotal"
+msgstr "ผลรวมย่อย"
+
+msgid "Total"
+msgstr "ทั้งหมด"
+
+msgid "Proceed to Checkout"
+msgstr "ดำเนินการชำระเงิน"
+
+msgid "is out of stock."
+msgstr "สินค้าหมด"
+
+msgid "You cannot add another “"
+msgstr "คุณไม่สามารถเพิ่มอีก “"
+
+msgid "” to your cart."
+msgstr "” ไปยังรถเข็นของคุณ"
+
+msgid "You cannot add more than"
+msgstr "คุณไม่สามารถเพิ่มมากกว่า"
+
+msgid "of this product to your cart."
+msgstr "ของผลิตภัณฑ์นี้ไปยังรถเข็นของคุณ"
+
+msgid "has been added to your cart."
+msgstr "ถูกเพิ่มลงในรถเข็นของคุณแล้ว"
+
+msgid "has not been added to your cart. Please try again."
+msgstr "ยังไม่ได้รับการเพิ่มลงในรถเข็นของคุณ โปรดลองอีกครั้ง"
+
+msgid "View Cart"
+msgstr "ดูตะกร้าสินค้า"
+
+msgid "Please select a product!"
+msgstr "กรุณาเลือกสินค้า!"
+
+msgid "There are no variations available."
+msgstr "ไม่มีรูปแบบให้เลือก"
+
+msgid "Product not found or not a variable product."
+msgstr "ไม่พบผลิตภัณฑ์หรือไม่ใช่ผลิตภัณฑ์แปรผัน"
+
+msgid "You can't add another “"
+msgstr "คุณไม่สามารถเพิ่มอีก “"
+
+msgid "There was an error while adding the product to the cart."
+msgstr "เกิดข้อผิดพลาดขณะเพิ่มสินค้าลงตะกร้า"
+
+msgid "The requested variation with the specified attributes could not be found."
+msgstr "ไม่พบรูปแบบที่ร้องขอพร้อมกับแอตทริบิวต์ที่ระบุ"
+
+msgid "Change Quantity"
+msgstr "เปลี่ยนปริมาณ"
+
+msgid "Update"
+msgstr "อัปเดต"
+
+msgid "The cart is empty."
+msgstr "รถเข็นว่างเปล่า"
+
+msgid "Cart item is not found."
+msgstr "ไม่พบรายการในรถเข็น"
+
+msgid "The item was not found in the cart."
+msgstr "ไม่พบสินค้าในรถเข็น"
+
+msgid "Quantity updated successfully!"
+msgstr "อัปเดตจำนวนสำเร็จแล้ว!"
+
+msgid "Change quantity"
+msgstr "เปลี่ยนปริมาณ"
+
+msgid "Edit Post Type"
+msgstr "แก้ไขประเภทโพสต์"
+
+msgid "Parameter"
+msgstr "พารามิเตอร์"
+
+msgid "delete"
+msgstr "ลบ"
+
+msgid "add intent"
+msgstr "เพิ่มความตั้งใจ"
+
+msgid "plus icon"
+msgstr "บวกไอคอน"
+
+msgid "Add Intents"
+msgstr "เพิ่มความตั้งใจ"
+
+msgid "On the responses listing page, all the responses are listed here; you can check them out."
+msgstr "ในหน้ารายการคำตอบ การตอบกลับทั้งหมดจะแสดงอยู่ที่นี่ คุณสามารถตรวจสอบได้"
+
+msgid "Add Intent"
+msgstr "เพิ่มความตั้งใจ"
+
+msgid "On the form listing page, all the forms are listed here; you can check them out."
+msgstr "ในหน้ารายการแบบฟอร์ม แบบฟอร์มทั้งหมดจะแสดงอยู่ที่นี่ คุณสามารถตรวจสอบได้"
+
+msgid "Add Forms"
+msgstr "เพิ่มแบบฟอร์ม"
+
+msgid "On the add form page, you can add a new form."
+msgstr "ในหน้าเพิ่มแบบฟอร์ม คุณสามารถเพิ่มแบบฟอร์มใหม่ได้"
+
+msgid "Responses"
+msgstr "คำตอบ"
+
+msgid "Add Response"
+msgstr "เพิ่มการตอบกลับ"
+
+msgid "On the add Response page, you can add a new Response."
+msgstr "บนหน้าเพิ่มการตอบกลับ คุณสามารถเพิ่มการตอบกลับใหม่ได้"
+
+msgid "On the actions listing page, all the actions are listed here; you can check them out."
+msgstr "ในหน้ารายการการดำเนินการ การดำเนินการทั้งหมดจะแสดงอยู่ที่นี่ คุณสามารถตรวจสอบได้"
+
+msgid "Add  Action"
+msgstr "เพิ่มการดำเนินการ"
+
+msgid "On the add action page, you can add a new action."
+msgstr "บนหน้าเพิ่มการดำเนินการ คุณสามารถเพิ่มการดำเนินการใหม่ได้"
+
+msgid "Add Intent Group"
+msgstr "เพิ่มกลุ่มความตั้งใจ"
+
+msgid "Import"
+msgstr "นำเข้า"
+
+msgid "Menu"
+msgstr "เมนู"
+
+msgid "End Chat"
+msgstr "สิ้นสุดการแชท"
+
+msgid "Restart Chat"
+msgstr "เริ่มแชทใหม่"
+
+msgid "Image"
+msgstr "ภาพ"
+
+msgid "Send Icon"
+msgstr "ส่งไอคอน"
+
+msgid "Welcome to GeekyBot! Let me know how I can assist you today."
+msgstr "ยินดีต้อนรับสู่ GeekyBot! แจ้งให้เราทราบว่าฉันสามารถช่วยเหลือคุณได้อย่างไรในวันนี้"
+
+msgid "admin."
+msgstr "ผู้ดูแลระบบ"
+
+msgid "Account Assistance"
+msgstr "ความช่วยเหลือด้านบัญชี"
+
+msgid "Diet Plan Assistant"
+msgstr "ผู้ช่วยแผนอาหาร"
+
+msgid "Job Application"
+msgstr "การสมัครงาน"
+
+msgid "Offline Form"
+msgstr "แบบฟอร์มออฟไลน์"
+
+msgid "Real Estate"
+msgstr "อสังหาริมทรัพย์"
+
+msgid "Sales Support"
+msgstr "การสนับสนุนการขาย"
+
+msgid "University"
+msgstr "มหาวิทยาลัย"
+
+msgid "Vacation Planner"
+msgstr "นักวางแผนวันหยุด"

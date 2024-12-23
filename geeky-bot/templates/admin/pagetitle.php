@@ -83,10 +83,6 @@ if ($module) {
 				$html.='<h1 class="geekybot-head-text">'. esc_html(__('Stories', 'geeky-bot')) .'</h1>
 						';
 			break;
-			case 'stories01':
-				$html.='<h1 class="geekybot-head-text">'. esc_html(__('Stories01', 'geeky-bot')) .'</h1>';
-				$html.='<p class="geekybot-head-text">'. esc_html(__('On the stories listing page, all the stories are listed here; you can check them out.', 'geeky-bot')) .'</p>';
-			break;
 			case 'chathistory':
 				$html.='<h1 class="geekybot-head-text">'. esc_html(__('Chat History', 'geeky-bot')) .'</h1>';
 			break;

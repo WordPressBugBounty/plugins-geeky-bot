@@ -36,13 +36,8 @@ if (!defined('ABSPATH'))
                         <?php echo esc_html(__('Export' , 'geeky-bot')); ?>
                     </span>
                 </a>
-                <a class="geekybot-navebar-right-settingbtn" title="<?php echo esc_html(__('Settings','geeky-bot')); ?>" href="<?php echo esc_url(admin_url("admin.php?page=geekybot_configuration")); ?>">
-                    <img src="<?php echo esc_url(GEEKYBOT_PLUGIN_URL); ?>includes/images/control_panel/admin-left-menu/setting.png" />
-                    <span class="geekybotadmin-text">
-                            <?php echo esc_html(__('Settings' , 'geeky-bot')); ?>
-                    </span>
-                </a>
                 <span class="geekybot-navebar-right-version" title="<?php echo esc_html(__('Version','geeky-bot')); ?>">
+                    <img src="<?php echo esc_url(GEEKYBOT_PLUGIN_URL); ?>includes/images/control_panel/admin-left-menu/version-logo.png" alt="<?php echo esc_attr(__('Version' , 'geeky-bot')); ?>" />
                     <?php echo esc_html(__('Version' , 'geeky-bot')).': '; ?><?php echo esc_html(GEEKYBOTincluder::GEEKYBOT_getModel('configuration')->getConfigValue('versioncode')); ?>
                 </span>
             </div>

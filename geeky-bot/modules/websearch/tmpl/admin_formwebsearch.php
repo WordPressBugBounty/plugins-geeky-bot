@@ -7,7 +7,7 @@ $geekybot_js ="
     wp_add_inline_script('geekybot-main-js',$geekybot_js);
 ?>
 <!-- main wrapper -->
-<div id="geekybotadmin-wrapper">
+<div id="geekybotadmin-wrapper" class="geekybot-admin-main-wrapper">
     <?php  wp_kses(GEEKYBOTincluder::GEEKYBOT_getTemplate('templates/admin/upper-nav',array('module' => 'websearch','layouts' => 'formwebsearch')), GEEKYBOT_ALLOWED_TAGS); ?>
     <div class="geekybotadmin-body-main">
     	<!-- left menu -->
@@ -88,7 +88,10 @@ $geekybot_js ="
                         <a id="form-cancel-button" class="geekybot-form-cancel-btn" href="<?php echo esc_url(wp_nonce_url(admin_url('admin.php?page=geekybot_websearch'),'websearch')); ?>" title="<?php echo esc_attr(__('cancel', 'geeky-bot')); ?>">
                             <?php echo esc_html(__('Cancel', 'geeky-bot')); ?>
                         </a>
-                        <?php echo wp_kses(GEEKYBOTformfield::GEEKYBOT_submitbutton('save', __('Save','geeky-bot'), array('class' => 'button geekybot-form-save-btn')), GEEKYBOT_ALLOWED_TAGS); ?>
+                        <button title="<?php echo esc_html(__('Save Changes', 'geeky-bot')); ?>" type="submit" class="geekybot-form-savevar-btnwrp">
+                            <img src="<?php echo esc_url(GEEKYBOT_PLUGIN_URL); ?>includes/images/story/save.png" srcset="">
+                            <?php echo __('Save','geeky-bot'); ?>
+                        </button>
                     </div>
                     <?php echo wp_kses(GEEKYBOTformfield::GEEKYBOT_hidden('id', isset(geekybot::$_data[0]->id) ? geekybot::$_data[0]->id : ''), GEEKYBOT_ALLOWED_TAGS); ?>
                     <?php echo wp_kses(GEEKYBOTformfield::GEEKYBOT_hidden('status', isset(geekybot::$_data[0]->status) ? geekybot::$_data[0]->status : ''), GEEKYBOT_ALLOWED_TAGS); ?>
@@ -96,6 +99,113 @@ $geekybot_js ="
                     <?php echo wp_kses(GEEKYBOTformfield::GEEKYBOT_hidden('form_request', 'geekybot'), GEEKYBOT_ALLOWED_TAGS); ?>
     		    </form>
     		</div>
+            <?php 
+            $custom_listing = '';
+            if(in_array('customlistingstyle', geekybot::$_active_addons) || in_array('customlistingtext', geekybot::$_active_addons)){
+                $all_meta_keys = GEEKYBOTincluder::GEEKYBOT_getModel('websearch')->geekybotGetAllMetaKeys(geekybot::$_data[0]->post_type);
+            }
+            if(in_array('customlistingstyle', geekybot::$_active_addons)){
+                $custom_listing .= apply_filters('geekybot_custom_listing_style_form', geekybot::$_data[0]->post_type, $all_meta_keys);
+            }
+            if(in_array('customlistingtext', geekybot::$_active_addons)){
+                $custom_listing .= apply_filters('geekybot_custom_listing_text_form', geekybot::$_data[0]->post_type, $all_meta_keys);
+            }
+            if ($custom_listing != '') {
+                if (!empty(geekybot::$_data[0]->action_data)) {
+                    $action_data_array = json_decode(geekybot::$_data[0]->action_data, true);
+                } else {
+                    $action_data_array = array();
+                } ?>
+                <div class="geekybot-template-section-heading"><?php echo esc_html(__('Template Section', 'geeky-bot')); ?></div>
+                <div class="geekybot-template-section">
+                    <?php
+                    if (!empty($all_meta_keys)) { ?>
+                        <form id="geekybot-custom-listing" class="geekybot-form" method="post" action="<?php echo esc_url(wp_nonce_url(admin_url("admin.php?page=geekybot_websearch&task=savecustomlisting"), "save-custom-listing")); ?>">
+                            <?php
+                            if (empty(geekybot::$_data[0]->style_id) && empty(geekybot::$_data[0]->text_id)) { ?>
+                                <div class="geekybot-custom-listing-tmplate-infowrp">
+                                    <img src="<?php echo esc_url(GEEKYBOT_PLUGIN_URL); ?>includes/images/postinstallation/info.png" title="<?php echo esc_attr(__('Info', 'geeky-bot')); ?>" alt="<?php echo esc_attr(__('Info', 'geeky-bot')); ?>" class="geekybot-custom-listing-tmplate-infoimg">
+                                    <?php echo esc_html(__('Fields are currently auto-filled for preview purposes only. Please save your changes to apply them.', 'geeky-bot')); ?>
+                                </div>
+                                <?php
+                            } ?>
+                                <div class="geekybot-template-section-subtitle">
+                                    <?php echo esc_html(__('Choose one template style from the given below', 'geeky-bot')); ?>
+                               </div>
+                            <?php
+                            echo wp_kses($custom_listing, GEEKYBOT_ALLOWED_TAGS);
+                            ?>
+                            <div class="geekybot-template-section-title"><?php echo esc_html(__('Add Button /Link', 'geeky-bot')); ?></div>
+                            <div class="geekybot-template-section-field geekybot-tmptform-button-section-fields">
+                                <div class="geekybot-form-title">
+                                    <?php echo esc_html(__('Add New Button / Link', 'geeky-bot')); ?> :
+                                </div>
+                                <div class="geekybot-tmptform-field-valuewrp geekybot-tmptform-button-valuewrp">
+                                    <div class="geekybot-form-field-value">
+                                        <div class="geekybot-form-field-enbledsable-wrp">
+                                            <?php echo wp_kses(GEEKYBOTformfield::GEEKYBOT_checkbox('action_enable', array('1' => esc_html(__('Show on Listing', 'geeky-bot'))), isset($action_data_array['action_enable']) ? $action_data_array['action_enable'] : 1, array('class' => 'radiobutton geekybot-form-field-enabled')), GEEKYBOT_ALLOWED_TAGS); ?>
+                                        </div>
+                                        <?php 
+                                        $actionType = array(
+                                            (object) array('id' => '1', 'text' => __('Button', 'geeky-bot')),
+                                            (object) array('id' => '2', 'text' => __('Link', 'geeky-bot'))
+                                        );
+                                        ?>
+                                        <?php echo wp_kses(GEEKYBOTformfield::GEEKYBOT_select('action_type', $actionType, isset($action_data_array['action_type']) ? $action_data_array['action_type'] : 1, esc_html(__('Select Type', 'geeky-bot')), array('class' => 'inputbox geekybot-form-select-field')), GEEKYBOT_ALLOWED_TAGS); ?>
+                                    </div>
+                                    <div class="geekybot-form-label-value">
+                                        <?php echo wp_kses(GEEKYBOTformfield::GEEKYBOT_text('action_title', isset($action_data_array['action_title']) ? geekybot::GEEKYBOT_getVarValue($action_data_array['action_title']) :  esc_html(__( 'View Details', 'geeky-bot' )), array('class' => 'inputbox two geekybot-form-input-field', 'data-validation' => '', 'placeholder' => __('Label', 'geeky-bot'))), GEEKYBOT_ALLOWED_TAGS) ?>
+                                    </div>
+                                    <div class="geekybot-form-field-value">
+                                        <?php echo wp_kses(GEEKYBOTformfield::GEEKYBOT_select('action_link', $all_meta_keys, isset($action_data_array['action_link']) ? $action_data_array['action_link'] : '', esc_html(__('detail page link', 'geeky-bot')), array('class' => 'inputbox geekybot-form-select-field')), GEEKYBOT_ALLOWED_TAGS); ?>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="geekybot-template-form-buttons-wrp">
+                                <button title="<?php echo esc_html(__('Save Changes', 'geeky-bot')); ?>" type="submit" class="geekybot-form-savetem-btnwrp">
+                                    <img src="<?php echo esc_url(GEEKYBOT_PLUGIN_URL); ?>includes/images/story/save.png" srcset="">
+                                    <?php echo __('Save Template', 'geeky-bot'); ?>
+                                </button>
+                                <a id="form-cancel-button" class="geekybot-form-cancel-btn" href="<?php echo esc_url(wp_nonce_url(admin_url('admin.php?page=geekybot_websearch'), 'websearch')); ?>" title="<?php echo esc_attr(__('cancel', 'geeky-bot')); ?>">
+                                    <?php echo esc_html(__('Cancel', 'geeky-bot')); ?>
+                                </a>
+                            </div>
+                            <?php echo wp_kses(GEEKYBOTformfield::GEEKYBOT_hidden('id', isset(geekybot::$_data[0]->style_id) ? geekybot::$_data[0]->style_id : ''), GEEKYBOT_ALLOWED_TAGS); ?>
+                            <?php echo wp_kses(GEEKYBOTformfield::GEEKYBOT_hidden('text_id', isset(geekybot::$_data[0]->text_id) ? geekybot::$_data[0]->text_id : ''), GEEKYBOT_ALLOWED_TAGS); ?>
+                            <?php echo wp_kses(GEEKYBOTformfield::GEEKYBOT_hidden('template_id', isset(geekybot::$_data[0]->template_id) ? geekybot::$_data[0]->template_id : 1), GEEKYBOT_ALLOWED_TAGS); ?>
+                            <?php echo wp_kses(GEEKYBOTformfield::GEEKYBOT_hidden('post_type', isset(geekybot::$_data[0]->post_type) ? geekybot::$_data[0]->post_type : ''), GEEKYBOT_ALLOWED_TAGS); ?>
+                            <?php echo wp_kses(GEEKYBOTformfield::GEEKYBOT_hidden('action', 'websearch_savewebsearch'), GEEKYBOT_ALLOWED_TAGS); ?>
+                            <?php echo wp_kses(GEEKYBOTformfield::GEEKYBOT_hidden('form_request', 'geekybot'), GEEKYBOT_ALLOWED_TAGS); ?>
+                        </form>
+                        <?php
+                        if(in_array('customlistingstyle', geekybot::$_active_addons)){
+                            $custom_listing_style_popup = apply_filters('geekybot_custom_listing_style_popup', geekybot::$_data[0]->post_type);
+                            echo wp_kses($custom_listing_style_popup, GEEKYBOT_ALLOWED_TAGS);
+                        }
+                    } else { ?>
+                        <div class="geekybot-custom-listing-nodata-wrp">
+                            <img src="<?php echo esc_url(GEEKYBOT_PLUGIN_URL); ?>includes/images/websearch/nodata.png" title="<?php echo esc_attr(__('Create a Post', 'geeky-bot')); ?>" alt="<?php echo esc_attr(__('Create a Post', 'geeky-bot')); ?>" class="geekybot-websearch-creat-postimg">
+                            <span class="geekybot-websearch-creat-posttitle"><?php echo esc_html(__('Please first create a sample post to use template section.', 'geeky-bot')); ?></span>
+                        </div>
+                        <?php
+                    }
+                    $geekybot_js ="
+                    jQuery(document).ready(function() {
+                        let selectedOption = null;
+                        jQuery('.geekybot-template-section-tmpcard').click(function() {
+                            jQuery('.geekybot-template-section-tmpcard').removeClass('geeky-bot-selectedtemp');
+                            jQuery(this).addClass('geeky-bot-selectedtemp');
+                            var template_id = jQuery(this).attr('data-templateid');
+                            jQuery('#template_id').val(template_id);
+                            selectedOption = jQuery(this).data('option');
+                        });
+                    });
+                    ";
+                    wp_add_inline_script('geekybot-main-js',$geekybot_js);
+                    ?>
+                </div>
+                <?php
+            } ?>
     	</div>
     </div>
 </div>

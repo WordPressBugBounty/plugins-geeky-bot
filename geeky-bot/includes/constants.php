@@ -62,6 +62,7 @@ if (!defined('GEEKYBOT_FILE_TYPE_ERROR')) {
             'data-per' => array(),
             'data-nonce' => array(),
             'style' => array(),
+            'data-templateid' => array(),
         ),
         'section'      => array(
             'class'  => array(),
@@ -149,6 +150,7 @@ if (!defined('GEEKYBOT_FILE_TYPE_ERROR')) {
             'data-dismiss' => array(),
             'data-validation-optional' => array(),
             'style' => array(),
+            'title' => array(),
         ),
         'textarea'     => array(
             'rows' => array(),

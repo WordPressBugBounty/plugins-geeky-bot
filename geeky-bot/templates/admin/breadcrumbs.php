@@ -11,13 +11,13 @@ if ($module) {
 			case 'controlpanel':
 				$html.='
 				<a href="'. esc_url(wp_nonce_url('admin.php?page=geekybot','geeky-bot')) .'" title="'. esc_html(__('Dashboard', 'geeky-bot')) .'" class="breadcrumb">
-            		'. esc_html(__('Dashboard', 'geeky-bot')) .'
+            		<i class="fa fa-home"></i>
         		</a>';
 			break;
             case 'configurations':
 				$html.='
 				<a href="'. esc_url(wp_nonce_url('admin.php?page=geekybot','geeky-bot')) .'" title="'. esc_html(__('Dashboard', 'geeky-bot')) .'" class="breadcrumb">
-            		'. esc_html(__('Dashboard', 'geeky-bot')) .'
+            		<i class="fa fa-home"></i>
         		</a>
         		<span class="geekybot-breadcrumbs-slash">/</span>
     			<span class="active-breadcrumb">
@@ -27,7 +27,7 @@ if ($module) {
             case 'themes':
 				$html.='
 				<a href="'. esc_url(wp_nonce_url('admin.php?page=geekybot','geeky-bot')) .'" title="'. esc_html(__('Dashboard', 'geeky-bot')) .'" class="breadcrumb">
-            		'. esc_html(__('Dashboard', 'geeky-bot')) .'
+            		<i class="fa fa-home"></i>
         		</a>
         		<span class="geekybot-breadcrumbs-slash">/</span>
     			<span class="active-breadcrumb">
@@ -37,7 +37,7 @@ if ($module) {
             case 'slots':
 				$html.='
 				<a href="'. esc_url(wp_nonce_url('admin.php?page=geekybot','geeky-bot')) .'" title="'. esc_html(__('Dashboard', 'geeky-bot')) .'" class="breadcrumb">
-            		'. esc_html(__('Dashboard', 'geeky-bot')) .'
+            		<i class="fa fa-home"></i>
         		</a>
         		<span class="geekybot-breadcrumbs-slash">/</span>
         		<span class="active-breadcrumb">
@@ -47,7 +47,7 @@ if ($module) {
             case 'formslots':
                 $html.='
                 <a href="'. esc_url(wp_nonce_url('admin.php?page=geekybot','geeky-bot')) .'" title="'. esc_html(__('Dashboard', 'geeky-bot')) .'" class="breadcrumb">
-            		'. esc_html(__('Dashboard', 'geeky-bot')) .'
+            		<i class="fa fa-home"></i>
         		</a>
         		<span class="geekybot-breadcrumbs-slash">/</span>
         		<a href="'. esc_url(wp_nonce_url('admin.php?page=geekybot_slots','geeky-bot')) .'" title="'. esc_html(__('Dashboard', 'geeky-bot')) .'" class="breadcrumb">
@@ -66,7 +66,7 @@ if ($module) {
 			case 'websearch':
 				$html.='
 				<a href="'. esc_url(wp_nonce_url('admin.php?page=geekybot','geeky-bot')) .'" title="'. esc_html(__('Dashboard', 'geeky-bot')) .'" class="breadcrumb">
-            		'. esc_html(__('Dashboard', 'geeky-bot')) .'
+            		<i class="fa fa-home"></i>
         		</a>
         		<span class="geekybot-breadcrumbs-slash">/</span>
         		<span class="active-breadcrumb">
@@ -76,7 +76,7 @@ if ($module) {
             case 'formwebsearch':
                 $html.='
                 <a href="'. esc_url(wp_nonce_url('admin.php?page=geekybot','geeky-bot')) .'" title="'. esc_html(__('Dashboard', 'geeky-bot')) .'" class="breadcrumb">
-            		'. esc_html(__('Dashboard', 'geeky-bot')) .'
+            		<i class="fa fa-home"></i>
         		</a>
         		<span class="geekybot-breadcrumbs-slash">/</span>
         		<a href="'. esc_url(wp_nonce_url('admin.php?page=geekybot_websearch','geeky-bot')) .'" title="'. esc_html(__('Dashboard', 'geeky-bot')) .'" class="breadcrumb">
@@ -90,10 +90,20 @@ if ($module) {
 	                $html.='
                 </span>';
 			break;
+			case 'step1':
+				$html.='
+				<a href="'. esc_url(wp_nonce_url('admin.php?page=geekybot','geeky-bot')) .'" title="'. esc_html(__('Dashboard', 'geeky-bot')) .'" class="breadcrumb">
+            		<i class="fa fa-home"></i>
+        		</a>
+        		<span class="geekybot-breadcrumbs-slash">/</span>
+        		<span class="active-breadcrumb">
+		            '. esc_html(__('Install Add-ons', 'geeky-bot')) .'
+		        </span>';
+			break;
 			case 'formstory':
 				$html.='
 				<a href="'. esc_url(wp_nonce_url('admin.php?page=geekybot','geeky-bot')) .'" title="'. esc_html(__('Dashboard', 'geeky-bot')) .'" class="breadcrumb">
-            		'. esc_html(__('Dashboard', 'geeky-bot')) .'
+            		<i class="fa fa-home"></i>
         		</a>
         		<span class="geekybot-breadcrumbs-slash">/</span>
         		<a href="'. esc_url(wp_nonce_url('admin.php?page=geekybot_stories&geekybotlt=stories','geeky-bot')) .'" title="'. esc_html(__('Dashboard', 'geeky-bot')) .'" class="breadcrumb">
@@ -107,7 +117,7 @@ if ($module) {
 			case 'stories':
 				$html.='
 				<a href="'. esc_url(wp_nonce_url('admin.php?page=geekybot','geeky-bot')) .'" title="'. esc_html(__('Dashboard', 'geeky-bot')) .'" class="breadcrumb">
-            		'. esc_html(__('Dashboard', 'geeky-bot')) .'
+            		<i class="fa fa-home"></i>
         		</a>
         		<span class="geekybot-breadcrumbs-slash">/</span>
         		<span class="active-breadcrumb">
@@ -117,7 +127,7 @@ if ($module) {
 			case 'chathistory':
 				$html.='
 				<a href="'. esc_url(wp_nonce_url('admin.php?page=geekybot','geeky-bot')) .'" title="'. esc_html(__('Dashboard', 'geeky-bot')) .'" class="breadcrumb">
-            		'. esc_html(__('Dashboard', 'geeky-bot')) .'
+            		<i class="fa fa-home"></i>
         		</a>
         		<span class="geekybot-breadcrumbs-slash">/</span>
         		<span class="active-breadcrumb">

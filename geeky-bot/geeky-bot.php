@@ -3,14 +3,14 @@
 /**
  * @package Geeky Bot
  * @author Geeky Bot
- * @version 1.0.4
+ * @version 1.0.5
  */
 /*
   * Plugin Name: Geeky Bot
   * Plugin URI: https://geekybot.com/
   * Description: The ultimate AI chatbot for WooCommerce lead generation, intelligent web search, and interactive customer engagement on your WordPress website.
   * Author: Geeky Bot
-  * Version: 1.0.4
+  * Version: 1.0.5
   * Text Domain: geeky-bot
   * Domain Path: /languages
   * Author URI: https://geekybot.com/
@@ -87,7 +87,7 @@ class geekybot {
         self::$_data = array();
         self::$_error_flag = null;
         self::$_error_flag_message = null;
-        self::$_currentversion = '104';
+        self::$_currentversion = '105';
         self::$_addon_query = array('select'=>'','join'=>'','where'=>'');
         self::$_config = GEEKYBOTincluder::GEEKYBOT_getModel('configuration');
         self::$_isgeekybotplugin = true;
@@ -121,7 +121,7 @@ class geekybot {
         add_action('admin_init', array($this,'geekybot_handle_delete_cookies'));
         add_action('init', array($this,'geekybot_handle_search_form_data'));
         add_action( 'geekybot_delete_expire_session_data', array($this , 'geekybot_delete_expire_session_data') );
-        add_filter('safe_style_css', array($this,'geekybot_safe_style_css'));
+        add_filter('safe_style_css', array($this,'geekybot_safe_style_css'), 10, 1);
         if( !wp_next_scheduled( 'geekybot_delete_expire_session_data' ) ) {
             // Schedule the event
             wp_schedule_event( time(), 'daily', 'geekybot_delete_expire_session_data' );
@@ -143,14 +143,12 @@ class geekybot {
         }
         // for maintaing the post data in the custome post table
         add_action( 'wp_insert_post', array($this , 'geekyboot_update_or_create_geekybot_post'), 10, 3 );
-        add_action( 'bbp_new_topic', array( $this, 'geekybot_bbpress_topic_create_and_update'), 10, 3 );
-        add_action( 'bbp_edit_topic', array( $this, 'geekybot_bbpress_topic_create_and_update'), 10, 3 );
     }
 
     function geekybot_activation_redirect(){
         if (get_option('geekybot_do_activation_redirect') == true) {
             update_option('geekybot_do_activation_redirect',false);
-            exit(esc_url(wp_redirect(admin_url('admin.php?page=geekybot_postinstallation&geekybotlt=stepone'))));
+            exit(esc_url(wp_redirect(admin_url('admin.php?page=geekybot_postinstallation&geekybotlt=welcomescreen'))));
         }
     }
 
@@ -211,7 +209,7 @@ class geekybot {
                     // restore colors data end
                     update_option('geekybot_currentversion', self::$_currentversion);
                     include_once GEEKYBOT_PLUGIN_PATH . 'includes/updates/updates.php';
-                    GEEKYBOTupdates::GEEKYBOT_checkUpdates('104');
+                    GEEKYBOTupdates::GEEKYBOT_checkUpdates('105');
                     GEEKYBOTincluder::GEEKYBOT_getModel('geekybot')->updateColorFile();
                 }
             }
@@ -288,6 +286,10 @@ class geekybot {
                         if ($post_type_status == 1) {
                             GEEKYBOTincluder::GEEKYBOT_getModel('websearch')->geekybotSynchronizePostTypeData($post_type);
                         }
+                        if(in_array('customlistingstyle', geekybot::$_active_addons)){
+                            // load the default listing style for this post type if available
+                            apply_filters('geekybot_load_custom_listing_style_template', $post_type);
+                        }
                     }
                 }
             }
@@ -334,6 +336,14 @@ class geekybot {
                     // Delete related posts from the geekybot_posts table.
                     $query = "DELETE FROM `".geekybot::$_db->prefix . "geekybot_posts` WHERE `post_type` = '".$post_type."'";
                     geekybot::$_db->query($query);
+                    if(in_array('customlistingstyle', geekybot::$_active_addons)){
+                        // delete post type style
+                        apply_filters('geekybot_delete_custom_listing_style', $post_type);
+                    }
+                    if(in_array('customlistingtext', geekybot::$_active_addons)){
+                        // delete post type text
+                        apply_filters('geekybot_delete_custom_listing_text', $post_type);
+                    }
                 }
             }
             // Reset the plugin list update flag and save the new list of active plugins.
@@ -363,9 +373,6 @@ class geekybot {
     }
 
     function geekybot_add_loading_message_script() {
-        $logdata = "\n geekybot_add_loading_message_script";
-        $logdata .= "\n ------------------ \n ";
-        GEEKYBOTincluder::GEEKYBOT_getObjectClass('logging')->GEEKYBOTlwrite($logdata);
         ?>
         <script>
             jQuery(document).ready(function($) {
@@ -498,832 +505,8 @@ class geekybot {
     */
     static function checkScreenTag(){
         if(!is_admin() && geekybot::$_configuration['offline'] == '2'){
-            if (geekybot::$_configuration['title'] != '') {
-                $title = geekybot::$_configuration['title'];
-            } else {
-                $title = __('GeekyBot', 'geeky-bot');
-            }
-            $botImgScr = GEEKYBOTincluder::GEEKYBOT_getModel('geekybot')->getBotImagePath();
-            $userImgScr = GEEKYBOTincluder::GEEKYBOT_getModel('geekybot')->getUserImagePath();
-            $html = wp_enqueue_style('geekybot-fontawesome', GEEKYBOT_PLUGIN_URL . 'includes/css/font-awesome.css', array(), GEEKYBOT_PLUGIN_VERSION, 'all');
-            if (geekybot::$_configuration['welcome_message'] != '') {
-                $html .='
-                <div class="chat-open-outer-popup-dialog" style="display: none;">';
-                    if(geekybot::$_configuration['welcome_message_img'] != '0'){
-                        $msgImgPath =GEEKYBOTincluder::GEEKYBOT_getModel('geekybot')->getWelcomeMessageImagePath();
-                        $html .='
-                        <div class="chat-open-outer-popup-dialog-image"><img src="'.esc_url($msgImgPath).'" alt="'.esc_html(__('Logo', 'geeky-bot')).'" title="'.esc_html(__('Logo', 'geeky-bot')).'"/></div>';
-                    }
-                    $html .='
-                    <p onclick="geekybotChatOpenDialog();" class="chat-open-outer-popup-dialog-text">'.wp_kses(geekybot::$_configuration['welcome_message'], GEEKYBOT_ALLOWED_TAGS).'</p>
-                    <span onclick="geekybotHideSmartPopup();" id="hideSmartPopup" class="chat-open-outer-popup-dialog-top-cross-button">
-                        <img src="'.esc_url(GEEKYBOT_PLUGIN_URL).'/includes/images/control_panel/close-icon.png" alt="'.esc_html(__('Close', 'geeky-bot')).'" title="'.esc_html(__('Close', 'geeky-bot')).'"/>
-                    </span>
-                    <span class="chat-open-outer-popup-dialog-btmborderwrp"></apan>
-                </div>';
-            }
-            $html .='
-            <div class="chat-open-dialog-main">
-                <div class="chat-open-dialog-main-inner">
-                    <button class="chat-open-dialog">
-                      <div class="chat-open-dialog-img">
-                       <img class="wp-chat-image" alt="screen tag" src="'. esc_url($botImgScr) .'" /></button>
-                      </div>
-                </div>
-            </div>
-            <div class="chat-button-destroy-main">
-                <div class="chat-button-destroy-main-inner">
-                    <button class="chat-button-destroy"></button>
-                </div>
-            </div>
-            <div class="chat-popup">
-              <div class="chat-windows chat-main">
-                <div class="chat-window-one">
-                    <div class="chat-header">
-                      <h4>Hello</h4>
-                      <h4>I am ChatBot</h4>
-                    </div>
-                    <div class="chat-middle">
-                      <div class="chat-middle-inner">
-                        <div class="chat-middle-inner-border">
-                            <div class="chat-middle-inner-img">
-                                <img src="'.esc_url($botImgScr).'" alt="'.esc_html(__('Bot', 'geeky-bot')).'" />
-                            </div>
-                        </div>
-                      </div>
-                      <h5>How can I help you?</h5>
-                    </div>
-                    <div class="chat-start chat-btm" id="customerdata">
-                      <div class="chat-start-inner" id="startchat">
-                            <span class="chat-start-title">Start Conversation</span>
-                            <span class="chat-start-img">
-                                <img src="'.esc_url(GEEKYBOT_PLUGIN_URL).'/includes/images/chat-img/arrow.png" alt="'.esc_html(__('arrow', 'geeky-bot')).'" />
-                            </span>
-                      </div>
-                    </div>
-                    <div class="chat-powered-by">
-                        <div class="chat-powered-by-inner">
-                            <div class="chat-powered-by-inner-img">
-                                <img src="'.esc_url($botImgScr).'" alt="'.esc_html(__('Bot', 'geeky-bot')).'" />
-                            </div>
-                            <div class="chat-powered-by-inner-cnt">
-                                <a class="chat-start-title" href="#"> Powered by WPChatBot</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div id="main-messages" class="chat-window-two" style="display: none;">
-                <div class="geekybot-title-main-overlay">
-                    <div id="window-two-title" class="window-two-top">
-                        <div class="window-two-top-inner">
-                            <div class="window-two-top-inner-left">
-                                <div class="window-two-profile">
-                                    <div class="window-two-profile-img">
-                                        <img src="'.esc_url($botImgScr).'" alt="'.esc_html(__('Bot', 'geeky-bot')).'" />
-                                    </div>
-                                </div>
-                                <i class="fa fa-circle"></i>
-                                <div class="window-two-profile-text">
-                                    <div class="window-two-text">
-                                        <span>'.esc_html($title).'</span>
-                                        <span>'.esc_html(__('online', 'geeky-bot')).'</span>
-                                    </div>
-                                </div>
-                                <div class="geekybot-title-overlay"></div>
-                            </div>
-                            <div class="window-two-top-inner-right">
-                                <div class="window-two-top-dot-img" onclick="myFunction()" id="dna">
-                                    <img src="'. esc_url(GEEKYBOT_PLUGIN_URL) .'/includes/images/chat-img/menu.png" alt="'.esc_html(__('Menu', 'geeky-bot')).'" />
-                                </div>
-                            </div>
-                        </div>
-                        <div id="myDropdown" class="dropdown-content">
-                            <div class="geekybot-main-overlay" id="jsendchat">
-                                <div>'.esc_html(__('End Chat', 'geeky-bot')).'</div>
-                                <div class="geekybot-overlay">'.esc_html(__('End Chat', 'geeky-bot')).'</div>
-                            </div>
-                            <div class="geekybot-main-overlay" id="restartchat">
-                                <div>'.esc_html(__('Restart Chat', 'geeky-bot')).'</div>
-                                <div class="geekybot-overlay">'.esc_html(__('Restart Chat', 'geeky-bot')).'</div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div id="previouschatbox" class="chat-content"></div>
-                <div class="geekbot-actualmsg-main-section">';
-                    if (geekybot::$_configuration['welcome_message'] != '') {
-                        $html .= '
-                        <div class="chat-content welcome-message">
-                            <li class="actual_msg actual_msg_adm">
-                                <section class="actual_msg_adm-img">
-                                    <img src="'.esc_url($botImgScr).'" alt="'.esc_html(__('Image', 'geeky-bot')).'">
-                                </section>
-                                <section class="actual_msg_text">
-                                    '.geekybot::$_configuration['welcome_message'].'
-                                </section>
-                            </li>
-                        </div>';
-                    }
-                    $html .= '
-                    <div id="chatbox" class="chat-content">';
-                        if(isset($_COOKIE['geekybot_chat_id'])){
-                            $chatId = GEEKYBOTincluder::GEEKYBOT_getModel('chathistory')->geekybot_getchatid();  
-                            $query = "SELECT sessionmsgvalue  FROM `" . geekybot::$_db->prefix . "geekybot_sessiondata` WHERE usersessionid = '".esc_sql($chatId)."' and sessionmsgkey = 'chathistory'";
-                            $conversion = geekybotdb::GEEKYBOT_get_var($query);
-                            if ($conversion != null) {
-                                $html .= html_entity_decode($conversion);
-                            }
-                        }
-                    $html .='
-                    </div>
-                </div>
-                    <div id="send-message" class="col-md-12 p-2 msg-box window-two-btm">';
-                        $chat_id = GEEKYBOTincluder::GEEKYBOT_getModel('chathistory')->geekybot_getchatid();
-                        $html .='
-                        <input type="hidden" id="chatsession"  value="'.$chat_id.'">
-                        <input type="hidden" id="response_id"  value="">
-                        <div class="window-two-btm-inner">
-                            <div class="window-two-btm-inner-left">
-                                <input id="msg_box" type="text" class="border-0 msg_box" placeholder="'.esc_html(__('Send message', 'geeky-bot')).'" autocomplete="off" />
-                            </div>
-                            <div class="window-two-btm-inner-right">
-                                <div class="window-two-btm-send-img">
-                                    <img id="snd-btn" src="'. esc_url(GEEKYBOT_PLUGIN_URL) .'/includes/images/chat-img/send-icon.png" alt="'.esc_html(__('Send Icon', 'geeky-bot')).'" />
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-              </div>
-            </div>';
-            $chatpopupcode = $html;
-            $html = '';
-            if(isset($_COOKIE['geekybot_chat_id'])){
-                $html .= 'jQuery(".chat-popup").addClass("active");';
-                if (geekybot::$_configuration['welcome_screen'] == '2') {
-                    $html.='
-                    jQuery(".chat-window-one").hide();
-                    jQuery(".chat-popup").addClass("chat-init");
-                    jQuery("#main-messages").show();
-                    jQuery(".chat-button-destroy").addClass("active");
-                    ';
-                } else {
-                    $html.='
-                    jQuery(".chat-button-destroy").addClass("active");
-                    ';
-                }
-                $html.='
-                var scrollableDiv = jQuery("#main-messages");
-                scrollableDiv.scrollTop(scrollableDiv[0].scrollHeight);
-                ';
-            }
-            $html .= '
-            function geekybot_DecodeHTML(html) {
-                var txt = document.createElement("textarea");
-                txt.innerHTML = html;
-                return txt.value;
-            }
-            function geekybot_scrollToTop(difference) {
-                var scrollheight = jQuery("#main-messages").get(0).scrollHeight;
-                var scrollPosition = jQuery(".chat-window-two").get(0).scrollHeight;
-                if(scrollheight > 600) {
-                    jQuery(".chat-window-two").animate({scrollTop: scrollPosition - difference},350);
-                }
-            }
-            jQuery(function() {
-                jQuery(".chat-open-dialog").click(function() {
-                    jQuery(".chat-open-outer-popup-dialog").hide();
-                    jQuery(this).toggleClass("active");
-                    jQuery(".chat-popup").toggleClass("active");
-                    jQuery(".chat-button-destroy").toggleClass("active");
-                    jQuery(".chat-popup").toggleClass("");
-                    if (jQuery(".chat-popup").hasClass("active")) {
-                        getRandomChatId();';
-                        if (geekybot::$_configuration['welcome_screen'] == '2') {
-                            $html.='
-                            jQuery(".chat-window-one").hide();
-                            jQuery(".chat-popup").addClass("chat-init");
-                            jQuery("#main-messages").show();
-                            ';
-                        }
-                        $html.='
-                    }
-                });
-            });
-
-            jQuery(function() {
-                jQuery(".chat-button-destroy").click(function() {
-                    jQuery(".chat-popup").removeClass("active");
-                    jQuery(".chat-open-dialog").removeClass("active");
-                    jQuery(this).removeClass("active");
-                });
-            });
-            /* When the user clicks on the button,
-            toggle between hiding and showing the dropdown content */
-            function myFunction() {
-                document.getElementById("myDropdown").classList.toggle("show");
-            }
-            ( function( jQuery ) {
-                jQuery("#startchat").on("click",function(e){
-                    e.preventDefault();
-                    // var jslc_id = Cookies.get("jslc_id");
-                    //var path = window.location.href;
-                    //jQuery(".chat-button-destroy").addClass("active-inner");
-                    //var mySecondDiv=jQuery(\'<div class="chat-open-dialog-img"><img class="wp-chat-image" alt="" src="'.esc_url($botImgScr).'"></div>\');
-                    //jQuery(".chat-button-destroy").append(mySecondDiv);
-                    //jQuery(this).toggleClass("active");
-                    jQuery(".chat-popup").toggleClass("chat-init");
-                    jQuery("#main-messages").show();
-                    jQuery(".chat-window-one").hide();
-                });
-            } )( jQuery );';
-
-           $html.=' jQuery("#snd-btn").click(function(event){
-                var message = jQuery(".msg_box").val();
-                if (!message) {
-                    alert("Please enter a message to before sending");
-                    return false;
-                } else {
-                    var sender = "user";
-
-                    jQuery(".msg_box").val("");';
-            $html .=" var sender = 'user';
-                      var btnflag = 'false';
-                     var chat_id = jQuery('#chatsession').val();
-                    jQuery(\"#chatbox\").append(\"<li class='actual_msg actual_msg_user'><section class='actual_msg_user-img'><img src='".esc_url($userImgScr)."' alt='' /></section><section class='actual_msg_text'>\"+message+\"</section></li>\");
-                    var response_id =  jQuery('#response_id').val();
-                    // SaveChathistory(message,sender);
-                    sendRequestToServer(message,message,sender,chat_id);
-
-            }});";
-
-            $html.=' jQuery(".msg_box").keypress(function(event){
-                    if ( event.which == 13 ) {
-                        var message = jQuery(".msg_box").val();
-                        if (!message) {
-                            alert("Please enter a message to before sending");
-                            return false;
-                        } else {
-                            var sender = "user";
-
-                            jQuery(".msg_box").val("");';
-            $html .=" var sender = 'user';
-                     var chat_id = jQuery('#chatsession').val();
-                    jQuery(\"#chatbox\").append(\"<li class='actual_msg actual_msg_user'><section class='actual_msg_user-img'><img src='".esc_url($userImgScr)."' alt='' /></section><section class='actual_msg_text'>\"+message+\"</section></li>\");
-                     var response_id =  jQuery('#response_id').val();
-                     var btnflag = 'false';
-                    // SaveChathistory(message,sender);
-                    sendRequestToServer(message,message,sender,chat_id);
-                  }
-                    }});";
-
-            $html.='
-            function getRandomChatId() {
-                var x = new Date();
-
-                var hours=x.getHours().toString();
-                hours=hours.length==1 ? 0+hours : hours;
-
-                var minutes=x.getMinutes().toString();
-                minutes=minutes.length==1 ? 0+minutes : minutes;
-
-                var seconds=x.getSeconds().toString();
-                seconds=seconds.length==1 ? 0+seconds : seconds;
-
-                var month=(x.getMonth() +1).toString();
-                month=month.length==1 ? 0+month : month;
-
-                var dt=x.getDate().toString();
-                dt=dt.length==1 ? 0+dt : dt;
-
-                var x1=  x.getFullYear() + "-" + month + "-" + dt;
-                x1 = x1 + "  " +  hours + ":" +  minutes + ":" +  seconds ;
-                var dt = x1;
-                var user = "user";
-                ';
-
-            $html .= "var ajaxurl = '".esc_url(admin_url('admin-ajax.php'))."';";
-
-            $html .= "
-                jQuery.post(ajaxurl, { action: 'geekybot_frontendajax', geekybotme: 'chathistory', task: 'getRandomChatId', datetime: dt, '_wpnonce':'". esc_attr(wp_create_nonce("get-random-chat-id"))."' }, function (data) {";
-            $html .= ' if (data) {
-                        var chat_id = data;
-                        jQuery("#chatsession").val(data);
-                        // closechat(); recheck
-                        // it close the chat after some time even if the user is typing message - hamza
-                    }';
-
-          $html.='});
-                }
-                function startDictation() {
-                var sender = "user";
-                var chat_id = jQuery("#chatsession").val();
-                $i = jQuery(".fa-microphone");
-                $i.removeClass("fa-microphone").addClass("fa-circle");
-                $i.css({"color":"red",});
-                console.log($i);
-                if (window.hasOwnProperty("webkitSpeechRecognition")) {
-                    var recognition = new webkitSpeechRecognition();
-                    recognition.continuous = false;
-                    recognition.interimResults = false;
-                    recognition.lang = "en-US";
-                    recognition.start();
-                    recognition.onresult = function(e) {
-                        jQuery(".msg_box").val("");
-                        var message = e.results[0][0].transcript';
-                    $html .="
-                  jQuery(\"#chatbox\").append(\"<li class='actual_msg actual_msg_user'><section class='actual_msg_user-img'><img src='".esc_url($userImgScr)."' alt='' /></section><section class='actual_msg_text'>\"+message+\"</section></li>\");
-                      var response_id =  jQuery('#response_id').val();
-                      var btnflag = 'false';
-                       // SaveChathistory(message,sender);
-                       sendRequestToServer(message,message,sender,chat_id);
-
-                        recognition.stop();
-                    };";
-             $html.='
-                    recognition.onerror = function(e) {
-                        console.log(e);
-                        recognition.stop();
-                    }
-                }
-
-                setTimeout(function() {
-                    $i.removeClass("fa-circle").addClass("fa-microphone");
-                    $i.css("color", "#bdbfc1");
-                }, 2000);
-
-            }';
-            $html.='function SaveChathistory(message,sender) {
-
-            ';
-            $html.="var ajaxurl = '".esc_url(admin_url('admin-ajax.php'))."';";
-            $html.="
-            var response_id =  jQuery('#response_id').val();
-            jQuery.post(ajaxurl, { action: 'geekybot_frontendajax', geekybotme: 'chathistory', task: 'SaveChathistory', cmessage: message,csender:sender, '_wpnonce':'".esc_attr(wp_create_nonce("save-chat-history"))."' }, function (data) {";
-            $html.='if (data) {
-                        if(sender=="user") {
-                            jQuery("#response_id").val(data);
-                        }
-                    }
-                });';
-         $html.='}';
-         $server_url = "";
-         $html.='function sendRequestToServer(message,text,sender,chat_id){
-
-            jQuery.ajax({
-                ';
-            if(geekybot::$_configuration['ai_search'] == 0){
-                $html .= 'url: "'.esc_url(admin_url('admin-ajax.php')).'",type: "POST",async: true,
-                data:( {"action": "geekybot_frontendajax", "geekybotme": "chatserver", "task": "getMessageResponse", "message": message,cmessage: message,ctext: text,csender:sender, "_wpnonce":"'.esc_attr(wp_create_nonce('get-message-response')).'"}),
-                ';
-            } else {
-                //link removed form here
-				//http://216.128.138.145:8039
-				//https://bulkoff.com/test_bot8 
-				
-                $html .= '
-				url: "http://216.128.138.145:8042/webhooks/rest/webhook",type: "POST",async: true,data:JSON.stringify( { "message": message,"senser" : "adnan",}),
-                headers: {';
-                  $html.="  'Content-Type':'application/json',
-                            'accept': 'application/json',
-                            'Access-Control-Allow-Origin':'*'
-                  ";
-
-                 $html.='    },';
-
-            }
-            $html .='
-            }).done(function(data) {
-                // console.log(data);
-                geekybot_scrollToTop(150);
-                //jQuery(\"#main-messages\").scrollTop(jQuery(\"#main-messages\")[0].scrollHeight);
-
-
-
-                    // if(data.id==uid){
-                    jQuery("#typing_message").remove();
-
-                  ';
-                if(geekybot::$_configuration['ai_search'] == 0){
-                    $html.='
-                    var data = JSON.parse(data);';
-                } else {
-                    $html.=' ';
-                }
-                $html .="
-                if (data && Array.isArray(data) && data.length > 0) {
-                    jQuery.each(data, function( index, value ) {
-                        if (value.text) {
-                            var sender = 'bot';
-                            ";
-							if(geekybot::$_configuration['ai_search'] == 0){
-								$html .= "
-                                var message = geekybot_DecodeHTML(value.text.bot_response);
-                                if (typeof value.text.bot_articles !== 'undefined') {
-                                    message += geekybot_DecodeHTML(value.text.bot_articles);
-                                }";
-							}else{
-								$html .= " var message = geekybot_DecodeHTML(value.text);";
-							}
-				            $html .="
-                            var btn   = value.buttons;
-                            var btnhtml ='';
-                            var text = value.text;
-                            var btnflag = 'false';
-                            var response_id =  jQuery('#response_id').val();
-                            // error with woocommerce code
-                            //message = message.replace( /((http|https|ftp|ftps)\:\/\/[a-zA-Z0-9\-\.]+\.[a-zA-Z]{2,3}(\/\S*)?)/g,'<a href=\"$1\">$1</a>');
-                            jQuery(\"#chatbox\").append(\"<li class='actual_msg actual_msg_adm'><section class='actual_msg_adm-img'><img src='".esc_url($botImgScr)."' alt='' /></section><section class='actual_msg_text'>\"+message+\"</section>\");
-                            
-                            // SaveChathistory(message,sender);
-                            if(btn) {
-                                btnhtml += \"<div class='actual_msg_btn'>\";
-                                jQuery.each(btn, function(i,btns){
-                                    var btntext = btns.text;
-                                    var btnvalue = btns.value;
-                                    var btntype = btns.type;
-                                    var btnflag = 'true';
-                                    if(btntype == 1) {
-                                        btnhtml+=  \"<li class='actual_msg actual_msg_btn' style=''><section><button class='wp-chat-btn' onclick='sendbtnrsponse(this);' value='\"+btnvalue+\"'><span>\"+btntext+\"</span></section></button></li>\";
-                                    } else if(btntype == 2) {
-                                        btnhtml+=  \"<li class='actual_msg actual_msg_btn' style=''><section><button class='wp-chat-btn'><span><a class='wp-chat-btn-link' href='\"+btnvalue+\"'>\"+btntext+\"</a></span></section></button></li>\";
-                                    }
-                                });
-                                btnhtml += \"</div>\"; 
-                                jQuery(\"#chatbox\").append(btnhtml);
-                            }
-                            jQuery(\"#chatbox\").append(\"</li>\");
-                        } else if (value.image) {
-                            var sender = 'bot';
-                            var message = value.image;
-                            var btnflag = 'true';
-                            // SaveChathistory(message,sender);
-
-                            jQuery(\"#chatbox\").append(\"<li class='actual_msg_img'><img src=\"+value.image+\" alt='Girl in a jacket' width='250' height='150'></li>\");
-                        } else if (value.action) {
-                            var sender = 'bot';
-                            var message = geekybot_DecodeHTML(value.action.text);
-                            var btn   = value.buttons;
-                            var btnhtml ='';
-                            var btnflag = 'false';
-                            var response_id =  jQuery('#response_id').val();
-                            jQuery(\"#chatbox\").append(\"<li class='actual_msg actual_msg_adm'><section class='actual_msg_adm-img'><img src='".esc_url($botImgScr)."' alt='' /></section><section class='actual_msg_text'>\"+ message+\"</section></li>\");
-                            // SaveChathistory(message,sender);
-                                if(btn) {
-                                    btnhtml += \"<div class='actual_msg_btn'>\";
-                                    jQuery.each(btn, function(i,btns){
-                                    var btnmsg = btns.title;
-                                    var btnflag = 'true';
-                                    // SaveChathistory(btnmsg,sender);
-                                    btnhtml+=  \"<li class='actual_msg actual_msg_btn' style=''><section><button class='wp-chat-btn' onclick='sendbtnrsponse(this);' value='\"+btns.title+\"'><span>\"+btns.title+\"</span></section></button></li>\";
-
-                                });
-                                btnhtml += \"</div>\"; 
-                                jQuery(\"#chatbox\").append(btnhtml);
-
-                            }
-                        }
-                    });
-                } else {
-                    var ajaxurl = '".esc_url(admin_url('admin-ajax.php'))."';
-                    jQuery.post(ajaxurl, {
-                        action: 'geekybot_frontendajax',
-                        geekybotme: 'chatserver',
-                        task: 'getDefaultFallBackFormAjax',
-                        chat_id: chat_id,
-                        '_wpnonce':'". esc_attr(wp_create_nonce('get-fallback')) ."'
-                    }, function(fbdata) {
-                        if (fbdata) {
-                            console.log(fbdata);
-                            jQuery(\"#chatbox\").append(\"<li class='actual_msg actual_msg_adm'><section class='actual_msg_adm-img'><img src='".esc_url($botImgScr)."' alt='' /></section><section class='actual_msg_text'>\"+fbdata+\"</section></li>\");
-                        } else {
-                            console.error('AJAX Error:', textStatus, errorThrown);
-                        }
-                    });
-                }
-            }).fail(function(data, textStatus, xhr) {
-                var configmsg = '".esc_attr(geekybot::$_configuration['default_message'])."';
-
-                jQuery(\"#chatbox\").append(\"<li class='actual_msg actual_msg_adm'><section class='actual_msg_adm-img'><img src='".esc_url($botImgScr)."' alt='' /></section><section class='actual_msg_text'>\"+configmsg+\"</section></li>\");
-            });
-        }";
-        $html .="jQuery(document).ready(function(){
-        jQuery(\"div#jsendchat\").on('click',function(){
-            var sender = 'user';
-            var chat_id = jQuery('#chatsession').val();
-            var message = 'Chat End by user';
-            var date = new Date();
-            date.setTime(date.getTime());
-                ";
-        $html.="var ajaxurl = '".esc_url(admin_url('admin-ajax.php'))."';";
-        $html.="
-        jQuery.post(ajaxurl, { action: 'geekybot_frontendajax', geekybotme: 'chathistory', task: 'endUserChat', cmessage: message,sender:sender ,chat_id:chat_id, '_wpnonce':'". esc_attr(wp_create_nonce("end-user-chat")) ."'}, function (data) {";
-        $html.='
-            if (data) {
-                jQuery("#chatbox").empty();
-                var path = window.location.href;
-                jQuery(".chat-popup").toggleClass("chat-init");';
-                if (geekybot::$_configuration['welcome_screen'] == '1') {
-                    $html.='jQuery("#main-messages").hide();
-                    jQuery(".chat-window-one").show();';
-                } else {
-                    $html.='jQuery(".chat-popup").toggleClass("chat-init");
-                    jQuery("#main-messages").show();
-                    jQuery(".chat-window-one").hide();';
-                }
-                $html.='
-                jQuery(".chat-open-dialog").removeClass("active");
-                jQuery(".chat-button-destroy").removeClass("active");
-                jQuery(".chat-popup").removeClass("active");
-                jQuery(".dropdown-content").removeClass("show");
-                // set empty value for session on end chat
-                jQuery("#chatsession").val("");
-            } else {
-            }
-        });
-    });
-});';
-        // code start for custom function
-        $html .= "
-        function geekybotAddToCart(pid) {
-            var message = '".esc_html(__('Add to cart', 'geeky-bot'))."';
-            SaveChathistory(message,'user');
-            var ajaxurl = '".esc_url(admin_url('admin-ajax.php'))."';";
-            $html .= "
-            jQuery.post(ajaxurl, { action: 'geekybot_frontendajax', geekybotme: 'woocommerce', task: 'geekybotAddToCart', productid: pid, '_wpnonce':'".esc_attr(wp_create_nonce("add-to-cart")) ."'}, function (data) {
-                if (data) {
-                    geekybot_scrollToTop(120);
-                    jQuery(\"#chatbox\").append(\"<li class='actual_msg actual_msg_adm'><section class='actual_msg_adm-img'><img src='".esc_url($botImgScr)."' alt='' /></section><section class='actual_msg_text'>\"+data+\"</section></li>\");
-                }
-            });
-        }
-        function getProductAttributes(pid, isnew, attr) {
-            // var attributes_recheck = JSON.parse(attr);
-            var attributes = attr;
-            var ajaxurl = '".esc_url(admin_url('admin-ajax.php'))."';";
-            $html.="
-            jQuery.post(ajaxurl, { action: 'geekybot_frontendajax', geekybotme: 'woocommerce', task: 'getProductAttributes', productid: pid, isnew: isnew, attr: attributes, '_wpnonce':'".esc_attr(wp_create_nonce("product-attributes")) ."'}, function (data) {
-                if (data) {
-                    geekybot_scrollToTop(100);
-                    jQuery(\"#chatbox\").append(\"<li class='actual_msg actual_msg_adm'><section class='actual_msg_adm-img'><img src='".esc_url($botImgScr)."' alt='' /></section><section class='actual_msg_text'>\"+data+\"</section></li>\");
-                }
-            });
-        }
-        function saveProductAttributeToSession(productid, attributekey, attributevalue, userattributes) {
-            var ajaxurl = '".esc_url(admin_url('admin-ajax.php'))."';";
-            $html.="
-            jQuery.post(ajaxurl, { action: 'geekybot_frontendajax', geekybotme: 'woocommerce', task: 'saveProductAttributeToSession', productid: productid, attributekey: attributekey, attributevalue: attributevalue, userattributes: userattributes, '_wpnonce':'".esc_attr(wp_create_nonce("save-product-attribute")) ."'}, function (data) {
-                if (data) {
-                    geekybot_scrollToTop(100);
-                    jQuery(\"#chatbox\").append(\"<li class='actual_msg actual_msg_adm'><section class='actual_msg_adm-img'><img src='".esc_url($botImgScr)."' alt='' /></section><section class='actual_msg_text'>\"+data+\"</section></li>\");
-                    
-                }
-            });
-        }
-        function geekybotLoadMoreProducts(msg, next_page, model_name, function_name, dataArray) {
-            var message = '".esc_html(__('Show More', 'geeky-bot'))."';
-            SaveChathistory(message,'user');
-            var ajaxurl = '".esc_url(admin_url('admin-ajax.php'))."';";
-            $html.="
-            jQuery.post(ajaxurl, { action: 'geekybot_frontendajax', geekybotme: 'geekybot', task: 'geekybotLoadMoreProducts', msg: msg, next_page: next_page,modelName : model_name,functionName : function_name,data : dataArray, '_wpnonce':'".esc_attr(wp_create_nonce("load-more")) ."'}, function (data) {
-                if (data) {
-                    geekybot_scrollToTop(190);
-                    var message = geekybot_DecodeHTML(data)
-                    jQuery(\"div.geekybot_wc_product_load_more_wrp\").css(\"display\", \"none\");
-                    jQuery(\"#chatbox\").append(\"<li class='actual_msg actual_msg_adm'><section class='actual_msg_adm-img'><img src='".esc_url($botImgScr)."' alt='' /></section><section class='actual_msg_text'>\"+message+\"</section></li>\");
-                    
-                }
-            });
-        }
-        function geekybotLoadMoreCustomPosts(msg, data_array, next_page, function_name) {
-            var message = '".esc_html(__('Show More', 'geeky-bot'))."';
-            SaveChathistory(message,'user');
-            var ajaxurl = '".esc_url(admin_url('admin-ajax.php'))."';";
-            $html.="
-            jQuery.post(ajaxurl, { action: 'geekybot_frontendajax', geekybotme: 'geekybot', task: 'geekybotLoadMoreCustomPosts', msg : msg, dataArray : data_array, next_page: next_page, functionName : function_name, '_wpnonce':'".esc_attr(wp_create_nonce("load-more")) ."'}, function (data) {
-                if (data) {
-                    geekybot_scrollToTop(190);
-                    var message = geekybot_DecodeHTML(data);
-                    jQuery(\"div.geekybot_wc_product_load_more_wrp\").css(\"display\", \"none\");
-                    jQuery(\"#chatbox\").append(\"<li class='actual_msg actual_msg_adm'><section class='actual_msg_adm-img'><img src='".esc_url($botImgScr)."' alt='' /></section><section class='actual_msg_text'>\"+message+\"</section></li>\");
-                    
-                }
-            });
-        }
-        function geekybotRemoveCartItem(variation_id, product_id) {
-            var message = '".esc_html(__('Remove Item', 'geeky-bot'))."';
-            SaveChathistory(message,'user');
-            var ajaxurl = '".esc_url(admin_url('admin-ajax.php'))."';";
-            $html.="
-            jQuery.post(ajaxurl, { action: 'geekybot_frontendajax', geekybotme: 'woocommerce', task: 'geekybotRemoveCartItem', variation_id: variation_id, product_id: product_id, '_wpnonce':'".esc_attr(wp_create_nonce("remove-item")) ."'}, function (data) {
-                if (data) {
-                    geekybot_scrollToTop(100);
-                    var message = geekybot_DecodeHTML(data)
-                    jQuery(\"#chatbox\").append(\"<li class='actual_msg actual_msg_adm'><section class='actual_msg_adm-img'><img src='".esc_url($botImgScr)."' alt='' /></section><section class='actual_msg_text'>\"+message+\"</section></li>\");
-                    
-                }
-            });
-        }
-        function geekybotUpdateCartItemQty(cart_item_key) {
-            var message = '".esc_html(__('Change quantity', 'geeky-bot'))."';
-            SaveChathistory(message,'user');
-            var ajaxurl = '".esc_url(admin_url('admin-ajax.php'))."';";
-            $html.="
-            jQuery.post(ajaxurl, { action: 'geekybot_frontendajax', geekybotme: 'woocommerce', task: 'geekybotUpdateCartItemQty', cart_item_key: cart_item_key, '_wpnonce':'".esc_attr(wp_create_nonce("update-quantity")) ."'}, function (data) {
-                if (data) {
-                    geekybot_scrollToTop(100);
-                    var message = geekybot_DecodeHTML(data)
-                    jQuery(\"#chatbox\").append(\"<li class='actual_msg actual_msg_adm'><section class='actual_msg_adm-img'><img src='".esc_url($botImgScr)."' alt='' /></section><section class='actual_msg_text'>\"+message+\"</section></li>\");
-                    
-                }
-            });
-        }
-        function geekybotUpdateCartItemQuantity(cart_item_key,product_id) {
-            const clickedSpan = jQuery(event.target);
-            var product_quantity = clickedSpan.siblings('input#product_quantity').val();
-            var ajaxurl = '".esc_url(admin_url('admin-ajax.php'))."';";
-            $html.="
-            jQuery.post(ajaxurl, { action: 'geekybot_frontendajax', geekybotme: 'woocommerce', task: 'geekybotUpdateCartItemQuantity', product_quantity: product_quantity, cart_item_key: cart_item_key, '_wpnonce':'".esc_attr(wp_create_nonce("update-quantity")) ."'}, function (data) {
-                if (data) {
-                    geekybot_scrollToTop(100);
-                    var message = geekybot_DecodeHTML(data)
-                    jQuery(\"#chatbox\").append(\"<li class='actual_msg actual_msg_adm'><section class='actual_msg_adm-img'><img src='".esc_url($botImgScr)."' alt='' /></section><section class='actual_msg_text'>\"+message+\"</section></li>\");
-                    
-                }
-            });
-        }
-        function geekybotViewCart() {
-            var message = '".esc_html(__('View Cart', 'geeky-bot'))."';
-            SaveChathistory(message,'user');
-            var ajaxurl = '".esc_url(admin_url('admin-ajax.php'))."';";
-            $html.="
-            jQuery.post(ajaxurl, { action: 'geekybot_frontendajax', geekybotme: 'woocommerce', task: 'geekybotViewCart', '_wpnonce':'".esc_attr(wp_create_nonce("view-cart")) ."'}, function (data) {
-                if (data) {
-                    geekybot_scrollToTop(100);
-                    var message = geekybot_DecodeHTML(data)
-                    jQuery(\"#chatbox\").append(\"<li class='actual_msg actual_msg_adm'><section class='actual_msg_adm-img'><img src='".esc_url($botImgScr)."' alt='' /></section><section class='actual_msg_text'>\"+message+\"</section></li>\");
-                }
-            });
-        }
-
-        function showArticlesList(msg, type, highest_score, total_posts, current_page) {
-            var message = '".esc_html(__('Show Articles', 'geeky-bot'))."';
-            SaveChathistory(message,'user');
-            var ajaxurl = '".esc_url(admin_url('admin-ajax.php'))."';";
-            $html.="
-            jQuery.post(ajaxurl, { action: 'geekybot_frontendajax', geekybotme: 'websearch', task: 'showArticlesList', msg: msg, type: type, highestScore: highest_score, totalPosts: total_posts, currentPage: current_page, '_wpnonce':'".esc_attr(wp_create_nonce("articles-list")) ."'}, function (data) {
-                if (data) {
-                    geekybot_scrollToTop(100);
-                    var message = geekybot_DecodeHTML(data);
-                    jQuery(\".geekybot_wc_post_load_more\").css(\"display\", \"none\");
-                    jQuery(\"#chatbox\").append(\"<li class='actual_msg actual_msg_adm'><section class='actual_msg_adm-img'><img src='".esc_url($botImgScr)."' alt='' /></section><section class='actual_msg_text'>\"+message+\"</section></li>\");
-                    
-                }
-            });
-        }
-        ";
-        // code end for custome function
-    $html .="jQuery(document).ready(function(){
-        jQuery(\"div#restartchat\").on('click',function(){
-            var sender = 'user';
-            var chat_id = jQuery('#chatsession').val();
-            var message = 'Chat Restarted';
-            var x = new Date();
-            var hours=x.getHours().toString();
-            hours=hours.length==1 ? 0+hours : hours;
-            var minutes=x.getMinutes().toString();
-            minutes=minutes.length==1 ? 0+minutes : minutes;
-            var seconds=x.getSeconds().toString();
-            seconds=seconds.length==1 ? 0+seconds : seconds;
-            var month=(x.getMonth() +1).toString();
-            month=month.length==1 ? 0+month : month;
-            var dt=x.getDate().toString();
-            dt=dt.length==1 ? 0+dt : dt; ";
-
-    $html .='
-            var x1=  x.getFullYear() + "-" + month + "-" + dt;
-            x1 = x1 + "  " +  hours + ":" +  minutes + ":" +  seconds ;
-            var dt = x1;
-                ';
-        $html.="var ajaxurl = '".esc_url(admin_url('admin-ajax.php'))."';";
-        $html.="
-                   jQuery.post(ajaxurl, { action: 'geekybot_frontendajax', geekybotme: 'chathistory', task: 'restartUserChat', datetime:dt, '_wpnonce':'". esc_attr(wp_create_nonce("restart-user-chat")). "'}, function (data) {";
-        $html.=' if (data) {
-                        jQuery("#chatsession").val(data)
-                        jQuery("#chatbox").empty();
-                        jQuery(".dropdown-content").removeClass("show");
-                     }else{
-
-                      }  ';
-
-          $html.='});';
-
-
-                 $html .='
-           });
-           });  ';
-        $html.='
-        function closechat(){
-        var chat_id = jQuery("#chatsession").val();
-        if(chat_id!=""){
-            setTimeout(function(){';
-                $html.="
-                var message = '".__('session time out', 'geeky-bot')."';
-                var sender  = 'user';
-                var ajaxurl = '".esc_url(admin_url('admin-ajax.php'))."';
-                jQuery.post(ajaxurl, { action: 'geekybot_frontendajax', geekybotme: 'chathistory', task: 'endUserChat', cmessage: message,sender:sender ,chat_id:chat_id, '_wpnonce':'". esc_attr(wp_create_nonce("end-user-chat")) ."'}, function (data) {";
-                        $html.='
-                        if (data) {
-                            jQuery("#chatbox").empty();
-                            var path = window.location.href;
-                            jQuery(".chat-popup").toggleClass("chat-init");
-                            jQuery("#main-messages").hide();';
-                            if (geekybot::$_configuration['welcome_screen'] == '2') {
-                                $html.='
-                                jQuery(".chat-window-one").hide();';
-                            }
-                            $html.='
-                            jQuery(".chat-open-dialog").removeClass("active");
-                            jQuery(".chat-button-destroy").removeClass("active");
-                            jQuery(".chat-popup").removeClass("active");
-                            jQuery(".dropdown-content").removeClass("show");
-                        }else{
-
-                        }';
-                        $html.='
-                    });
-                }, 500000);
-            }
-        };
-
-        function sendbtnrsponse(msg) {
-            var sender = "user";
-            var message = msg.value;
-            var text = jQuery(msg).find("span").text();
-            var chat_id = jQuery("#chatsession").val();
-            ';
-            $html.="
-            jQuery(\"#chatbox\").append(\"<li class='actual_msg actual_msg_user'><section class='actual_msg_user-img'><img src='".esc_url($userImgScr)."' alt='' /></section><section class='actual_msg_text'>\"+text+\"</section></li>\");
-            var ajaxurl =
-                '". esc_url(admin_url("admin-ajax.php")) ."';
-            jQuery.post(ajaxurl, {
-                action: 'geekybot_ajax',
-                geekybotme: 'slots',
-                message: message,
-                task: 'saveVariableFromButtonIntent',
-                '_wpnonce':'". esc_attr(wp_create_nonce("button-intent")). "'
-            }, function(data) {
-                if (data) {
-                    sendRequestToServer(data,text,sender,chat_id);
-                }
-            });
-        }
-
-        function geekybotHideSmartPopup(msg) {
-            jQuery('.chat-open-outer-popup-dialog').fadeOut();
-        }
-
-        function geekybotChatOpenDialog() {
-            jQuery('.chat-open-dialog').click();
-        }
-
-        // Code to open the chat popup
-        document.addEventListener('DOMContentLoaded', function() {";
-            if ( geekybot::$_configuration['auto_chat_start'] == 1 && geekybot::$_configuration['auto_chat_start_time'] != '' ) {
-                $startTime = geekybot::$_configuration['auto_chat_start_time'];
-                // change time from seconds to miliseconds
-                $startTime = $startTime * 1000;
-                $html.="
-                setTimeout(function() {
-                    // Code to open the chat popup if not already opened
-                    if (!jQuery('.chat-popup').hasClass('active')) { ";
-                        if(!isset($_COOKIE['geekybot_chat_id'])){
-                            if ( geekybot::$_configuration['auto_chat_type'] == 1  ) {
-                                $html.="
-                                jQuery('.chat-open-outer-popup-dialog').fadeIn().css('display', 'flex');
-                                ";
-                            } else {
-                                $html.="    
-                                jQuery('.chat-open-dialog').click();
-                                ";
-                            }
-                        }
-                        $html.="
-                    }
-                }, ".$startTime.");";
-            }
-            $html.="
-        });
-
-
-        ";
-        $geekybot_js = $html;
-        wp_register_script( 'geekybot-frontend-handle', '' , array(), GEEKYBOT_PLUGIN_VERSION, 'all');
-        wp_enqueue_script( 'geekybot-frontend-handle' );
-        wp_add_inline_script('geekybot-frontend-handle',$geekybot_js);
-        echo wp_kses($chatpopupcode, GEEKYBOT_ALLOWED_TAGS);
-        // wp_add_inline_script('geekybot-main-js',$geekybot_js);
-        }
+            GEEKYBOTincluder::GEEKYBOT_getTemplate('templates/chatpopup');
+        }   
     }
 
     public static function tagfillin($string) {
@@ -1452,7 +635,7 @@ class geekybot {
 
     }
 
-      function geekybot_new_site($new_site){
+    function geekybot_new_site($new_site){
         $pluginname = plugin_basename(__FILE__);
         if(is_plugin_active_for_network($pluginname)){
             include_once 'includes/activation.php';
@@ -1568,53 +751,53 @@ class geekybot {
         wp_add_inline_script('geekybot-main-js',$geekybot_js);
     }
 
-    function geekybot_safe_style_css(){
-        $styles[] = 'display';
-        $styles[] = 'color';
-        $styles[] = 'width';
-        $styles[] = 'max-width';
-        $styles[] = 'min-width';
-        $styles[] = 'height';
-        $styles[] = 'min-height';
-        $styles[] = 'max-height';
-        $styles[] = 'background-color';
-        $styles[] = 'border';
-        $styles[] = 'border-bottom';
-        $styles[] = 'border-top';
-        $styles[] = 'border-left';
-        $styles[] = 'border-right';
-        $styles[] = 'border-color';
-        $styles[] = 'padding';
-        $styles[] = 'padding-top';
-        $styles[] = 'padding-bottom';
-        $styles[] = 'padding-left';
-        $styles[] = 'padding-right';
-        $styles[] = 'margin';
-        $styles[] = 'margin-top';
-        $styles[] = 'margin-bottom';
-        $styles[] = 'margin-left';
-        $styles[] = 'margin-right';
-        $styles[] = 'background';
-        $styles[] = 'font-weight';
-        $styles[] = 'font-size';
-        $styles[] = 'text-align';
-        $styles[] = 'text-decoration';
-        $styles[] = 'text-transform';
-        $styles[] = 'line-height';
-        $styles[] = 'visibility';
-        $styles[] = 'cellspacing';
-        $styles[] = 'data-id';
-        $styles[] = 'cursor';
-        $styles[] = 'vertical-align';
-        $styles[] = 'float';
-        $styles[] = 'position';
-        $styles[] = 'left';
-        $styles[] = 'right';
-        $styles[] = 'bottom';
-        $styles[] = 'top';
-        $styles[] = 'z-index';
-        $styles[] = 'overflow';
-        return $styles;
+    function geekybot_safe_style_css($styles){
+        $custom_styles[] = 'display';
+        $custom_styles[] = 'color';
+        $custom_styles[] = 'width';
+        $custom_styles[] = 'max-width';
+        $custom_styles[] = 'min-width';
+        $custom_styles[] = 'height';
+        $custom_styles[] = 'min-height';
+        $custom_styles[] = 'max-height';
+        $custom_styles[] = 'background-color';
+        $custom_styles[] = 'border';
+        $custom_styles[] = 'border-bottom';
+        $custom_styles[] = 'border-top';
+        $custom_styles[] = 'border-left';
+        $custom_styles[] = 'border-right';
+        $custom_styles[] = 'border-color';
+        $custom_styles[] = 'padding';
+        $custom_styles[] = 'padding-top';
+        $custom_styles[] = 'padding-bottom';
+        $custom_styles[] = 'padding-left';
+        $custom_styles[] = 'padding-right';
+        $custom_styles[] = 'margin';
+        $custom_styles[] = 'margin-top';
+        $custom_styles[] = 'margin-bottom';
+        $custom_styles[] = 'margin-left';
+        $custom_styles[] = 'margin-right';
+        $custom_styles[] = 'background';
+        $custom_styles[] = 'font-weight';
+        $custom_styles[] = 'font-size';
+        $custom_styles[] = 'text-align';
+        $custom_styles[] = 'text-decoration';
+        $custom_styles[] = 'text-transform';
+        $custom_styles[] = 'line-height';
+        $custom_styles[] = 'visibility';
+        $custom_styles[] = 'cellspacing';
+        $custom_styles[] = 'data-id';
+        $custom_styles[] = 'cursor';
+        $custom_styles[] = 'vertical-align';
+        $custom_styles[] = 'float';
+        $custom_styles[] = 'position';
+        $custom_styles[] = 'left';
+        $custom_styles[] = 'right';
+        $custom_styles[] = 'bottom';
+        $custom_styles[] = 'top';
+        $custom_styles[] = 'z-index';
+        $custom_styles[] = 'overflow';
+        return array_merge($styles, $custom_styles);
     }
 
     function geekybot_handle_search_form_data(){
@@ -1686,222 +869,11 @@ class geekybot {
         if (isset($post_type_status) && $post_type_status == 1) {
             $post_type_object = get_post_type_object($post->post_type);
             if ($post_type_object && $post_type_object->public && $post_type_object->publicly_queryable) {
-                // Get the post data from WordPress
-                $title = get_the_title( $post_id );
-                $content = $post->post_content;
-                $status = get_post_status( $post_id );
-                $post_text = $title.' '.$post->post_content.' ';
-                // ---------------
-                // Get all taxonomies associated with the post
-                $taxonomies = get_object_taxonomies(get_post_type($post_id));
-                // Loop through each taxonomy to get the terms
-                foreach ($taxonomies as $taxonomy) {
-                    // Get terms for this taxonomy
-                    $terms = get_the_terms($post_id, $taxonomy);
-                    if ( ! empty($terms) && ! is_wp_error($terms) ) {
-                        foreach ( $terms as $term ) {
-                            $post_text .= $term->name.' ';
-                        }
-                    }
-                }
-                // ---------------
-                $skip_storing_process = 0;
-                if ($post->post_type == 'forum') {
-                    $skip_storing_process = 1;
-                    
-                    $p_id = $post->ID;
-                    $p_title = $post->post_title;
-                    $p_content = $post->post_content;
-                    $p_post_text = '';
-                    $p_post_type = $post->post_type;
-                    $p_post_id = $post->ID;
-                    $p_status = $post->post_status;
-                    $bbp_forum_id = $post->ID;
-                    $store_topic = GEEKYBOTincluder::GEEKYBOT_getModel('websearch')->geekybotCheckTopicStatusForBBpress();
-                    if ($store_topic == 1) {
-                        // get all the topics related to this forum
-                        $meta_key = '_bbp_forum_id';
-                        $meta_value = $bbp_forum_id;
-                        $args = array(
-                            'post_type'  => 'topic',// Limit to post type 'topic'
-                            'post_status'   => 'publish',// Only fetch published posts
-                            'meta_key'   => $meta_key,
-                            'meta_value' => $meta_value,
-                            'posts_per_page' => -1, // Get all matching posts
-                            'orderby' => 'ID', // Order by ID
-                            'order' => 'ASC', // Order by assending
-                        );
-                        $topics = get_posts($args);
-                        if (!empty($topics)) {
-                            foreach ($topics as $topic) {
-                                $post_text .= $topic->post_title . ' ' .$topic->post_content .' ';
-                            }
-                        }
-                    }
-                    $post_text = geekybot::GEEKYBOT_sanitizeData($post_text);// GEEKYBOT_sanitizeData() function uses wordpress santize functions
-                    $post_text = GEEKYBOTincluder::GEEKYBOT_getModel('intent')->stripslashesFull($post_text);// remove slashes with quotes.
-                    $p_post_text = $post_text;
-                    $batch_data[] = '("'.esc_sql($p_id).'","'.esc_sql($p_title).'","'.esc_sql($p_content).'","'.esc_sql($p_post_text).'","'.esc_sql($p_post_id).'","'.esc_sql($p_post_type).'","'.esc_sql($p_status).'")';
-                    // Insert the current batch
-                    $insert_query = GEEKYBOTincluder::GEEKYBOT_getModel('websearch')->geekybotPostTypeBuildQuery($batch_data);
-                    geekybot::$_db->query($insert_query);
-                    
-                } elseif ($post->post_type == 'topic') {
-                    $skip_storing_process = 1;
-                    if (is_admin()) {
-                        $bbp_forum_id = get_post_meta($post->ID, '_bbp_forum_id', true);
-                        if (isset($bbp_forum_id) && is_numeric($bbp_forum_id) && $bbp_forum_id != 0) {
-                            $post_text = '';
-                            $forum = get_post( $bbp_forum_id );
-                            $post_text = $forum->post_title.' ';
-                            $post_text .= $forum->post_content.' ';
-
-                            $p_id = $bbp_forum_id;
-                            $p_title = $forum->post_title;
-                            $p_content = $forum->post_content;
-                            $p_post_type = $forum->post_type;
-                            $p_post_id = $bbp_forum_id;
-                            $p_status = $forum->post_status;
-
-                            $meta_key = '_bbp_forum_id';
-                            $meta_value = $bbp_forum_id;
-                            $args = array(
-                                'post_type'  => 'topic',// Limit to post type 'topic'
-                                'post_status'   => 'publish',// Only fetch published posts
-                                'meta_key'   => $meta_key,
-                                'meta_value' => $meta_value,
-                                'posts_per_page' => -1, // Get all matching posts
-                                'orderby' => 'ID', // Order by ID
-                                'order' => 'ASC', // Order by assending
-                            );
-                            $topics = get_posts($args);
-                            if (!empty($topics)) {
-                                foreach ($topics as $topic) {
-                                    $post_text .= $topic->post_title . ' ' .$topic->post_content .' ';
-                                }
-                            }
-                            $post_text = geekybot::GEEKYBOT_sanitizeData($post_text);// GEEKYBOT_sanitizeData() function uses wordpress santize functions
-                            $post_text = GEEKYBOTincluder::GEEKYBOT_getModel('intent')->stripslashesFull($post_text);// remove slashes with quotes.
-                            $p_post_text = $post_text;
-                            $batch_data[] = '("'.esc_sql($p_id).'","'.esc_sql($p_title).'","'.esc_sql($p_content).'","'.esc_sql($p_post_text).'","'.esc_sql($p_post_id).'","'.esc_sql($p_post_type).'","'.esc_sql($p_status).'")';
-                            // Insert the current batch
-                            $insert_query = GEEKYBOTincluder::GEEKYBOT_getModel('websearch')->geekybotPostTypeBuildQuery($batch_data);
-                            geekybot::$_db->query($insert_query);
-                        }
-                    }
-                } else {
-                    // List of meta keys to exclude
-                    $exclude_meta_keys = array(
-                        '_edit_lock',
-                        '_edit_last',
-                        '_wp_old_slug',
-                        '_thumbnail_id',
-                        '_wp_trash_meta_status',
-                        '_wp_trash_meta_time',
-                        '_pingme',
-                        '_encloseme',
-                        '_wp_attached_file',
-                        '_wp_attachment_metadata',
-                        '_wp_attachment_image_alt',
-                        '_wp_page_template',
-                        '_menu_item',
-                        '_wpb_vc_js_status',
-                        '_elementor_data'
-                    );
-                    $post_meta = get_post_meta($post->ID); // Get all post meta
-                    // Loop through the meta and filter useful data
-                    if (!empty($post_meta)) {
-                        foreach ($post_meta as $meta_key => $meta_value) {
-                            // Filter out empty values
-                            if (!empty($meta_value) && !in_array($meta_key, $exclude_meta_keys)) {
-                                $post_text .= $meta_key.' ';
-                                $post_text .= $meta_value[0].' ';
-                            }
-                        }
-                    }
-                }
-                if ($skip_storing_process == 0) {
-                    $post_text = geekybot::GEEKYBOT_sanitizeData($post_text);// GEEKYBOT_sanitizeData() function uses wordpress santize functions
-                    $post_text = GEEKYBOTincluder::GEEKYBOT_getModel('intent')->stripslashesFull($post_text);// remove slashes with quotes.
-
-                    $query = "SELECT id  FROM `" . geekybot::$_db->prefix . "geekybot_posts` WHERE post_id = ".esc_sql($post_id);
-                    $query .= " ORDER BY id DESC ";
-                    $bot_post_id = geekybotdb::GEEKYBOT_get_var($query);
-                    if (isset($bot_post_id) && $bot_post_id != '') {
-                        $post_data['id'] = $bot_post_id;
-                    }
-                    $post_data['ID'] = $post_id;
-                    $post_data['title'] = $title;
-                    $post_data['content'] = $content;
-                    $post_data['post_text'] = $post_text;
-                    $post_data['post_id'] = $post_id;
-                    $post_data['post_type'] = $post->post_type;
-                    $post_data['status'] = $status;
-                    // check for duplicate record
-                    $post_row = GEEKYBOTincluder::GEEKYBOT_getTable('posts');
-                    $post_row->bind($post_data);
-                    $post_row->store();
-                }
+                // Add the current post to the batch
+                $batch_data[] = $post_id;
+                $insert_query = GEEKYBOTincluder::GEEKYBOT_getModel('websearch')->geekybotPostTypeBuildQuery($batch_data);
+                geekybot::$_db->query($insert_query);
             }
-        }
-    }
-
-    function geekybot_bbpress_topic_create_and_update( $topic_id = 0, $forum_id = 0, $anonymous_data = array()) {
-        // Bail early if topic is by anonymous user
-        if ( ! empty( $anonymous_data ) ) {
-            return;
-        }
-        // Bail if site is private
-        if ( ! bbp_is_site_public() ) {
-            return;
-        }
-        // Bail if topic is not published
-        if ( ! bbp_is_topic_published( $topic_id ) ) {
-            return;
-        }
-        // Check if posts are enabled for your system
-        if ( geekybot::$_configuration['is_posts_enable'] == 0 ) {
-            return;
-        }
-        $store_topic = GEEKYBOTincluder::GEEKYBOT_getModel('websearch')->geekybotCheckTopicStatusForBBpress();
-        if ( $store_topic == 0 ) {
-            return;
-        }
-        // Check if the post type matches the one you're interested in
-        if (isset($forum_id) && is_numeric($forum_id) && $forum_id != 0 && $forum_id != $topic_id) {
-            // get the forum data
-            $forum = get_post( $forum_id );
-            $post_text = $forum->post_title.' ';
-            $post_text .= $forum->post_content.' ';
-
-            $p_id = $forum_id;
-            $p_title = $forum->post_title;
-            $p_content = $forum->post_content;
-            $p_post_type = $forum->post_type;
-            $p_post_id = $forum_id;
-            $p_status = $forum->post_status;
-            $args = array(
-                'post_type'     => 'topic',// Limit to post type 'topic'
-                'post_status'   => 'publish',// Only fetch published posts
-                'meta_key'      => '_bbp_forum_id',
-                'meta_value'    => $forum_id,
-                'posts_per_page'=> -1, // Get all matching posts
-                'orderby'       => 'ID', // Order by ID
-                'order'         => 'ASC', // Order by assending (optional)
-            );
-            $topics = get_posts($args);
-            if (!empty($topics)) {
-                foreach ($topics as $topic) {
-                    $post_text .= $topic->post_title . ' ' .$topic->post_content .' ';
-                }
-            }
-            $post_text = geekybot::GEEKYBOT_sanitizeData($post_text);// GEEKYBOT_sanitizeData() function uses wordpress santize functions
-            $post_text = GEEKYBOTincluder::GEEKYBOT_getModel('intent')->stripslashesFull($post_text);// remove slashes with quotes.
-            $p_post_text = $post_text;
-            $batch_data[] = '("'.esc_sql($p_id).'","'.esc_sql($p_title).'","'.esc_sql($p_content).'","'.esc_sql($p_post_text).'","'.esc_sql($p_post_id).'","'.esc_sql($p_post_type).'","'.esc_sql($p_status).'")';
-            // Insert the current batch
-            $insert_query = GEEKYBOTincluder::GEEKYBOT_getModel('websearch')->geekybotPostTypeBuildQuery($batch_data);
-            geekybot::$_db->query($insert_query);
         }
     }
 
@@ -2038,80 +1010,5 @@ if(!empty(geekybot::$_active_addons)){
 
 if(is_file('includes/updater/updater.php')){
     include_once 'includes/updater/updater.php';
-}
-/*
-To Handle you are not allowed to manage plugins for this site Error
-*/
-function json_basic_auth_handler( $user ) {
-    global $wp_json_basic_auth_error;
-    $wp_json_basic_auth_error = null;
-    // Don't authenticate twice
-    if ( ! empty( $user ) ) {
-        return $user;
-    }
-    // Check that we're trying to authenticate
-    if ( !isset( $_SERVER['PHP_AUTH_USER'] ) ) {
-        return $user;
-    }
-    $username = geekybot::GEEKYBOT_sanitizeData($_SERVER['PHP_AUTH_USER']);// GEEKYBOT_sanitizeData() function uses wordpress santize functions
-    $password = geekybot::GEEKYBOT_sanitizeData($_SERVER['PHP_AUTH_PW']);// GEEKYBOT_sanitizeData() function uses wordpress santize functions
-    /**
-     * In multi-site, wp_authenticate_spam_check filter is run on authentication. This filter calls
-     * get_currentuserinfo which in turn calls the determine_current_user filter. This leads to infinite
-     * recursion and a stack overflow unless the current function is removed from the determine_current_user
-     * filter during authentication.
-     */
-    remove_filter( 'determine_current_user', 'json_basic_auth_handler', 20 );
-    $user = wp_authenticate( $username, $password );
-    add_filter( 'determine_current_user', 'json_basic_auth_handler', 20 );
-    if ( is_wp_error( $user ) ) {
-        $wp_json_basic_auth_error = $user;
-        return null;
-    }
-    $wp_json_basic_auth_error = true;
-    return $user->ID;
-}
-add_filter( 'determine_current_user', 'json_basic_auth_handler', 20 );
-
-function json_basic_auth_error( $error ) {
-    // Passthrough other errors
-    if ( ! empty( $error ) ) {
-        return $error;
-    }
-
-    global $wp_json_basic_auth_error;
-
-    return $wp_json_basic_auth_error;
-}
-add_filter( 'rest_authentication_errors', 'json_basic_auth_error' );
-/*
- * Rest API to connect with geekybot , we will use it to check status etc
- */
-// recheck
-// add_action('rest_api_init', 'GeekyBotCustomRoutes');
-// add_action( 'rest_api_init', array( 'Geekybot_REST_API', 'init' ) );
-
-function GeekyBotCustomRoutes() {
-    register_rest_route('geekybot', '/createRig', array(
-        // 'methods' => 'POST',  //\WP_REST_Server::CREATABLE,//
-        'callback' => 'createbotRig',
-    ));
-    register_rest_route('geekybot', '/updateActivationKeyStatus', array(
-        // 'methods' => 'POST',  //\WP_REST_Server::CREATABLE,//
-        'callback' => 'updateActivationKeyStatus',
-    ));
-}
-
-function createbotRig($data) {
-    $response = 'This is test API';
-    /*   $query = "SELECT name  FROM `" . geekybot::$_db->prefix . "geekybot_intents` ";
-    $rows = geekybotdb::GEEKYBOT_get_results($query);*/
-    return rest_ensure_response($response);
-}
-
-function updateActivationKeyStatus($data) {
-    // GEEKYBOTincluder::GEEKYBOT_getModel('geekybot')->checkLicense();
-    $response = 'Status Updated Successfully!';
-    return rest_ensure_response($response);
 }
 ?>

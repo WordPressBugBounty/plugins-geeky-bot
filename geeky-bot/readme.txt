@@ -3,8 +3,8 @@ Contributors: ahmadgb
 Tags: chatbot, AI, woocommerce chat, live chat
 Donate link: https://geekybot.com
 Requires at least: WordPress 5.0
-Tested up to: 6.6.2
-Stable tag: 1.0.4
+Tested up to: 6.7.1
+Stable tag: 1.0.5
 License: GPLv2
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -223,6 +223,11 @@ If you activate certain features in this plugin, the user's personal data, inclu
 * Font Awesome (https://fontawesome.com/privacy)
 
 == Changelog ==
+= 1.0.5
+* Improve Admin dashboard
+* Security Updates.
+* Add default fallback for user input.
+
 = 1.0.4
 * Expanded Plugin Support for AI Web Search: Geeky Bot now supports AI web search across all WordPress plugins.
 

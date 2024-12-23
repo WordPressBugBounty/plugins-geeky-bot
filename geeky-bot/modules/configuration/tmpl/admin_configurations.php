@@ -10,7 +10,7 @@ function submitConfigForm(){
 wp_add_inline_script('geekybot-main-js',$geekybot_js);
 ?>
 <!-- main wrapper -->
-<div id="geekybotadmin-wrapper">
+<div id="geekybotadmin-wrapper" class="geekybot-admin-main-wrapper">
     <?php  GEEKYBOTincluder::GEEKYBOT_getTemplate('templates/admin/upper-nav',array('module' => 'configuration','layouts' => 'configurations')); ?>
     <div class="geekybotadmin-body-main">
         <!-- left menu -->
@@ -46,7 +46,7 @@ wp_add_inline_script('geekybot-main-js',$geekybot_js);
                                 <?php echo esc_html(__('Default Fallback Message', 'geeky-bot')); ?>
                             </div>
                             <div class="geekybot-config-value-text">
-                                <?php echo wp_kses(GEEKYBOTformfield::GEEKYBOT_textarea('default_message', isset(geekybot::$_data[0]['default_message']) ? geekybot::$_data[0]['default_message'] : '', array('class' => 'inputbox js-textarea', 'data-validation' => 'required')), GEEKYBOT_ALLOWED_TAGS) ?>
+                                <?php echo wp_kses(GEEKYBOTformfield::GEEKYBOT_textarea('default_message', isset(geekybot::$_data[0]['default_message']) ? geekybot::GEEKYBOT_getVarValue(geekybot::$_data[0]['default_message']) : '', array('class' => 'inputbox js-textarea', 'data-validation' => 'required')), GEEKYBOT_ALLOWED_TAGS) ?>
                             </div>
                             <div class="geekybot-config-description">
                                 <?php

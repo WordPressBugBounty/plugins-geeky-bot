@@ -1,0 +1,2664 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"POT-Creation-Date: \n"
+"PO-Revision-Date: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: ja_JP\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 3.5\n"
+
+msgid "Logo"
+msgstr "ロゴ"
+
+msgid "Template Field 1"
+msgstr "テンプレートフィールド1"
+
+msgid "Title"
+msgstr "タイトル"
+
+msgid "Template Field 2"
+msgstr "テンプレートフィールド2"
+
+msgid "Template Field 3"
+msgstr "テンプレートフィールド 3"
+
+msgid "Template Field 4"
+msgstr "テンプレートフィールド 4"
+
+msgid "Template Field 10"
+msgstr "テンプレートフィールド10"
+
+msgid "Simple Link here"
+msgstr "簡易リンクはこちら"
+
+msgid "Button"
+msgstr "ボタン"
+
+msgid "Selected"
+msgstr "選択済み"
+
+msgid "Template Content"
+msgstr "テンプレートの内容"
+
+msgid "Template Field"
+msgstr "テンプレートフィールド"
+
+msgid "Show On Listing"
+msgstr "リストに表示"
+
+msgid "Select Field"
+msgstr "フィールドの選択"
+
+msgid "Label"
+msgstr "ラベル"
+
+msgid "Select Type"
+msgstr "タイプの選択"
+
+msgid "Set Value"
+msgstr "設定値"
+
+msgid "No template fields are available!"
+msgstr "使用できるテンプレート フィールドがありません。"
+
+msgid "Set Values"
+msgstr "設定値"
+
+msgid "Field Name :"
+msgstr "フィールド名:"
+
+msgid "Save"
+msgstr "保存"
+
+msgid "Something went wrong try again later!"
+msgstr "問題が発生しましたので、後でもう一度試してください。"
+
+msgid "Info"
+msgstr "情報"
+
+msgid "An empty expected value or display value field."
+msgstr "空の期待値または表示値フィールド。"
+
+msgid "Values set successfully."
+msgstr "値が正常に設定されました。"
+
+msgid "Expected Value"
+msgstr "期待値"
+
+msgid "Display Value"
+msgstr "表示値"
+
+msgid "Delete"
+msgstr "消去"
+
+msgid "Add Value"
+msgstr "付加価値"
+
+msgid "Edit"
+msgstr "編集"
+
+msgid "Text Field"
+msgstr "テキストフィールド"
+
+msgid "Checkbox"
+msgstr "チェックボックス"
+
+msgid "Radio Button"
+msgstr "ラジオボタン"
+
+msgid "Dropdown"
+msgstr "落ちる"
+
+msgid "Link"
+msgstr "リンク"
+
+msgid ""
+"It is a long established fact that a reader will be distracted by the "
+"readable content of a page when looking at its layout Content here, content "
+"here..."
+msgstr ""
+"読者がページのレイアウトを見ると、ページの読みやすいコンテンツに気を取られて"
+"しまうというのは、長い間確立されてきた事実です。ここにコンテンツ、ここにコン"
+"テンツ..."
+
+msgid "Description"
+msgstr "説明"
+
+msgid "Content Description"
+msgstr "コンテンツの説明"
+
+msgid "Max Number Of Sentance"
+msgstr "最大文数"
+
+msgid "1"
+msgstr "1"
+
+msgid "2"
+msgstr "2"
+
+msgid "3"
+msgstr "3"
+
+msgid "4"
+msgstr "4"
+
+msgid "5"
+msgstr "5"
+
+msgid "6"
+msgstr "6"
+
+msgid "Please wait a moment; this may take some time."
+msgstr "ちょっとお待ちください。これには時間がかかる場合があります。"
+
+msgid "Synchronize"
+msgstr "同期する"
+
+msgid "Data Synchronization Uncomplete"
+msgstr "データ同期が不完全です"
+
+msgid ""
+"Your GeekyBot data is not updated. To ensure accurate results, please "
+"synchronize your AI web search data."
+msgstr ""
+"GeekyBot データは更新されません。正確な結果を保証するには、AI Web 検索データ"
+"を同期してください。"
+
+msgid "Synchronize Data"
+msgstr "データの同期"
+
+msgid "user"
+msgstr "ユーザー"
+
+msgid "Dashboard"
+msgstr "ダッシュボード"
+
+msgid "key check"
+msgstr "キーチェック"
+
+msgid "keys"
+msgstr "キー"
+
+msgid "Stories"
+msgstr "ストーリー"
+
+msgid "AI Web Search"
+msgstr "AIウェブ検索"
+
+msgid "Settings"
+msgstr "設定"
+
+msgid "Chatbot"
+msgstr "チャットボット"
+
+msgid "Install Add-ons"
+msgstr "アドオンのインストール"
+
+msgid "export"
+msgstr "輸出"
+
+msgid "import"
+msgstr "輸入"
+
+msgid "Chat History"
+msgstr "チャット履歴"
+
+msgid "build"
+msgstr "建てる"
+
+msgid "Build"
+msgstr "建てる"
+
+msgid "Variables"
+msgstr "変数"
+
+msgid "forms"
+msgstr "フォーム"
+
+msgid "Forms"
+msgstr "フォーム"
+
+msgid "actions"
+msgstr "アクション"
+
+msgid "Actions"
+msgstr "アクション"
+
+msgid "File ext. is mismatched"
+msgstr "ファイル拡張子不一致です"
+
+msgid "File size is greater then allowed file size"
+msgstr "ファイル サイズが許可されているファイル サイズを超えています"
+
+msgid "Total Stats"
+msgstr "合計統計"
+
+msgid "Intents"
+msgstr "インテント"
+
+msgid "No record found"
+msgstr "記録が見つかりませんでした"
+
+msgid "Control Panel"
+msgstr "コントロールパネル"
+
+msgid "GeekyBot"
+msgstr "ギーキーボット"
+
+msgid "Keys"
+msgstr "キー"
+
+msgid "Post Installation"
+msgstr "インストール後"
+
+msgid "Premium Addon"
+msgstr "プレミアムアドオン"
+
+msgid "Could not find any matching results"
+msgstr "一致する結果が見つかりませんでした"
+
+msgid "no record"
+msgstr "記録がない"
+
+msgid "No record found !..."
+msgstr "記録が見つかりません!..."
+
+msgid "system offline"
+msgstr "システムがオフライン"
+
+msgid ""
+"Unfortunately sytem is offline for a bit of maintenance right now. But soon "
+"we will be up."
+msgstr ""
+"残念ながら、現在システムはメンテナンスのためオフラインになっています。でもす"
+"ぐに起きます。"
+
+msgid "user ban"
+msgstr "ユーザーの禁止"
+
+msgid "Your account is disabled, please contact system administrator !..."
+msgstr ""
+"あなたのアカウントは無効になっています。システム管理者に連絡してください。"
+
+msgid "login"
+msgstr "ログイン"
+
+msgid "To Access This Page Please Login !..."
+msgstr "このページにアクセスするにはログインしてください!..."
+
+msgid "Back to control panel"
+msgstr "コントロールパネルに戻る"
+
+msgid "You are not logged in"
+msgstr "ログインしていません"
+
+msgid "User Is Disabled By Admin"
+msgstr "ユーザーは管理者によって無効にされています"
+
+msgid "The page you are looking for no longer exists"
+msgstr "お探しのページはもう存在しません"
+
+msgid "You are already logged in"
+msgstr "あなたはすでにログインしています"
+
+msgid "Please select your role"
+msgstr "あなたの役割を選択してください"
+
+msgid "You are not allowed"
+msgstr "あなたは許可されていません"
+
+msgid "You are Not Allowed To add More than One"
+msgstr "複数の追加は許可されていません"
+
+msgid "Contact Adminstrator"
+msgstr "管理者に連絡する"
+
+msgid "not allowed"
+msgstr "許可されていません"
+
+msgid "You are already logged in !..."
+msgstr "あなたはすでにログインしています!..."
+
+msgid "Logout"
+msgstr "ログアウト"
+
+msgid "Please first make a selection from the list"
+msgstr "まずリストから選択してください"
+
+msgid "Unknown"
+msgstr "未知"
+
+msgid "Invalid request"
+msgstr "無効なリクエスト"
+
+msgid "has been successfully applied."
+msgstr "正常に適用されました。"
+
+msgid "Error applying the new theme."
+msgstr "新しいテーマの適用中にエラーが発生しました。"
+
+msgid "has been successfully saved."
+msgstr "正常に保存されました。"
+
+msgid "has not been saved."
+msgstr "保存されていません。"
+
+msgid "has been successfully reset."
+msgstr "正常にリセットされました。"
+
+msgid "Every Story must have a name."
+msgstr "すべてのストーリーには名前が必要です。"
+
+msgid "Every Story must have at least 1 intent."
+msgstr "すべてのストーリーには少なくとも 1 つのインテントが必要です。"
+
+msgid "has been successfully deleted."
+msgstr "は正常に削除されました。"
+
+msgid "has been successfully exported."
+msgstr "正常にエクスポートされました。"
+
+msgid "Data has not been exported."
+msgstr "データはエクスポートされていません。"
+
+msgid "Record not exist."
+msgstr "レコードが存在しません。"
+
+msgid "has not been deleted."
+msgstr "は削除されていません。"
+
+msgid "Please insert key."
+msgstr "キーを挿入してください。"
+
+msgid "key is not Valid."
+msgstr "キーが有効ではありません。"
+
+msgid "transaction has been successfully verified."
+msgstr "トランザクションは正常に確認されました。"
+
+msgid "transaction has been successfully un-verified."
+msgstr "トランザクションは正常に検証解除されました。"
+
+msgid "transaction has not been successfully verified."
+msgstr "トランザクションが正常に検証されていません。"
+
+msgid "transaction has not been successfully un-verified."
+msgstr "トランザクションの検証が正常に解除されていません。"
+
+msgid "Fields has been successfully required."
+msgstr "フィールドは正常に要求されました。"
+
+msgid "Field has not been required."
+msgstr "フィールドは必須ではありません。"
+
+msgid "Fields has not been required."
+msgstr "フィールドは必須ではありません。"
+
+msgid "Fields has been successfully not required."
+msgstr "フィールドは正常に不要になりました。"
+
+msgid "Field has not been not required."
+msgstr "フィールドは必須ではありません。"
+
+msgid "Fields has not been not required."
+msgstr "フィールドは必須ではありません。"
+
+msgid "status has been updated."
+msgstr "ステータスが更新されました。"
+
+msgid "status has not been updated."
+msgstr "ステータスは更新されていません。"
+
+msgid "data has been synchronized."
+msgstr "データは同期されました。"
+
+msgid "data has not been synchronized."
+msgstr "データは同期されていません。"
+
+msgid "in use cannot deleted."
+msgstr "使用中は削除できません。"
+
+msgid "already exist."
+msgstr "すでに存在します。"
+
+msgid "File type error."
+msgstr "ファイルタイプエラー。"
+
+msgid "File size error."
+msgstr "ファイルサイズエラー。"
+
+msgid "Intent"
+msgstr "意図"
+
+msgid "Response"
+msgstr "応答"
+
+msgid "Intent Group"
+msgstr "インテントグループ"
+
+msgid "Variable"
+msgstr "変数"
+
+msgid "Story"
+msgstr "話"
+
+msgid "Post type"
+msgstr "投稿タイプ"
+
+msgid "AI web search"
+msgstr "AIウェブ検索"
+
+msgid "Action"
+msgstr "アクション"
+
+msgid "Changes"
+msgstr "変更点"
+
+msgid "Data"
+msgstr "データ"
+
+msgid "Message"
+msgstr "メッセージ"
+
+msgid "Configuration"
+msgstr "構成"
+
+msgid "Previous"
+msgstr "前の"
+
+msgid "Next"
+msgstr "次"
+
+msgid "Guest"
+msgstr "ゲスト"
+
+msgid "User ID"
+msgstr "ユーザーID"
+
+msgid "Add to Story"
+msgstr "ストーリーに追加"
+
+msgid "Add to story"
+msgstr "ストーリーに追加"
+
+msgid "Search"
+msgstr "検索"
+
+msgid "Search with user name"
+msgstr "ユーザー名で検索する"
+
+msgid "reset"
+msgstr "リセット"
+
+msgid "Select Chat"
+msgstr "チャットを選択"
+
+msgid "Sender"
+msgstr "送信者"
+
+msgid "select chat"
+msgstr "チャットを選択"
+
+msgid "Chat history is not selected."
+msgstr "チャット履歴が選択されていません。"
+
+msgid "Please select a conversation to view the user's chat history."
+msgstr "ユーザーのチャット履歴を表示するには、会話を選択してください。"
+
+msgid "Add User Input To Story"
+msgstr "ユーザー入力をストーリーに追加"
+
+msgid "Select"
+msgstr "選択"
+
+msgid "Add User Input"
+msgstr "ユーザー入力の追加"
+
+msgid "You must choose a story; it cannot be empty."
+msgstr "ストーリーを選択する必要があります。空にすることはできません。"
+
+msgid "Security verification Failed, Please restart you chat to continue."
+msgstr ""
+"セキュリティ検証に失敗しました。続行するにはチャットを再起動してください。"
+
+msgid "Your session has expired; please restart your chat."
+msgstr "セッションの有効期限が切れました。チャットを再開してください。"
+
+msgid "Hi, I am Chatbot. I do not have specific knowledge."
+msgstr "こんにちは、チャットボットです。特別な知識はありません。"
+
+msgid "Your message is too long. Please enter only a username or email."
+msgstr ""
+"メッセージが長すぎます。ユーザー名またはメールアドレスのみを入力してくださ"
+"い。"
+
+msgid "Invalid username or email. Try again with the correct one."
+msgstr ""
+"ユーザー名またはメールアドレスが無効です。正しいものを使用して再試行してくだ"
+"さい。"
+
+msgid "Show More"
+msgstr "もっと見る"
+
+msgid "Show Articles"
+msgstr "記事を表示"
+
+msgid "session time out"
+msgstr "セッションタイムアウト"
+
+msgid "Data directory can not empty."
+msgstr "データ ディレクトリを空にすることはできません。"
+
+msgid "Data directory is not proper."
+msgstr "データディレクトリが正しくありません。"
+
+msgid "Data directory is not writable."
+msgstr "データ ディレクトリは書き込み可能ではありません。"
+
+msgid "Default fallback message can not be empty."
+msgstr "デフォルトのフォールバック メッセージを空にすることはできません。"
+
+msgid "Admin pagination not saved."
+msgstr "管理ページネーションが保存されませんでした。"
+
+msgid "User pagination not saved."
+msgstr "ユーザーのページネーションは保存されません。"
+
+msgid ""
+"The title of your chatbot or the primary title displayed on your chat "
+"interface."
+msgstr ""
+"チャットボットのタイトル、またはチャット インターフェイスに表示される主要なタ"
+"イトル。"
+
+msgid "Default Fallback Message"
+msgstr "デフォルトのフォールバックメッセージ"
+
+msgid "The message displayed when the chatbot cannot understand."
+msgstr "チャットボットが理解できない場合に表示されるメッセージ。"
+
+msgid "Offline"
+msgstr "オフライン"
+
+msgid "Online"
+msgstr "オンライン"
+
+msgid "Set your plugin offline for front end."
+msgstr "フロントエンド用にプラグインをオフラインに設定します。"
+
+msgid "Data Directory"
+msgstr "データディレクトリ"
+
+msgid "The directory where all chatbot data files are stored."
+msgstr "すべてのチャットボット データ ファイルが保存されるディレクトリ。"
+
+msgid "Admin Pagination"
+msgstr "管理者のページネーション"
+
+msgid "The number of items displayed in a paginated list in the admin panel."
+msgstr "管理パネルのページ分割されたリストに表示されるアイテムの数。"
+
+msgid "User Pagination"
+msgstr "ユーザーのページネーション"
+
+msgid "The number of items displayed in a paginated list on the user side."
+msgstr "ユーザー側でページ分割されたリストに表示される項目の数。"
+
+msgid "Save Settings"
+msgstr "設定の保存"
+
+msgid "Add Icon"
+msgstr "アイコンを追加"
+
+msgid "years"
+msgstr "年"
+
+msgid "year"
+msgstr "年"
+
+msgid "ago"
+msgstr "前"
+
+msgid "months"
+msgstr "月"
+
+msgid "month"
+msgstr "月"
+
+msgid "days"
+msgstr "日"
+
+msgid "day"
+msgstr "日"
+
+msgid "hours"
+msgstr "時間"
+
+msgid "hour"
+msgstr "時間"
+
+msgid "minutes"
+msgstr "分"
+
+msgid "minute"
+msgstr "分"
+
+msgid "Just now"
+msgstr "ちょうど今"
+
+msgid "AI ChatBot is disabled."
+msgstr "AIチャットボットは無効になっています。"
+
+msgid "Active Now"
+msgstr "現在アクティブです"
+
+msgid "AI ChatBot story not built."
+msgstr "AI ChatBot ストーリーは構築されていません。"
+
+msgid "Built Now"
+msgstr "今すぐ構築"
+
+msgid "WooCommerce plugin is not installed."
+msgstr "WooCommerce プラグインがインストールされていません。"
+
+msgid "Install Now"
+msgstr "今すぐインストール"
+
+msgid "WooCommerce plugin is not activated."
+msgstr "WooCommerce プラグインが有効化されていません。"
+
+msgid "WooCommerce Bot is disabled."
+msgstr "WooCommerce ボットが無効になっています。"
+
+msgid "WooCommerce story not built."
+msgstr "WooCommerce ストーリーが構築されていません。"
+
+msgid "Post Type not found."
+msgstr "投稿タイプが見つかりません。"
+
+msgid "AI Web Search is disabled!"
+msgstr "AI ウェブ検索が無効になっています。"
+
+msgid "AI ChatBot Sessions"
+msgstr "AIチャットボットセッション"
+
+msgid "Session Card"
+msgstr "セッションカード"
+
+msgid "Graph"
+msgstr "グラフ"
+
+msgid "Card"
+msgstr "カード"
+
+msgid "WooCommerce Sessions"
+msgstr "WooCommerce セッション"
+
+msgid "AI Web Search Sessions"
+msgstr "AI Web 検索セッション"
+
+msgid "Icon"
+msgstr "アイコン"
+
+msgid "GeekyBot Setup and Usage Guides"
+msgstr "GeekyBot のセットアップと使用ガイド"
+
+msgid "Explore installation, training, and effective usage guides."
+msgstr "インストール、トレーニング、効果的な使用ガイドをご覧ください。"
+
+msgid "Play"
+msgstr "遊ぶ"
+
+msgid "Youtube Icon"
+msgstr "Youtubeのアイコン"
+
+msgid "How to add Story"
+msgstr "ストーリーの追加方法"
+
+msgid "How to add Variable"
+msgstr "変数の追加方法"
+
+msgid "Change Settings"
+msgstr "設定を変更する"
+
+msgid "Change Color"
+msgstr "色の変更"
+
+msgid "Remove"
+msgstr "取り除く"
+
+msgid "Cross Icon"
+msgstr "十字アイコン"
+
+msgid "Stories Date"
+msgstr "ストーリーの日付"
+
+msgid "View Stories"
+msgstr "ストーリーを見る"
+
+msgid "AI Chatbot"
+msgstr "AIチャットボット"
+
+msgid "WooCommerce"
+msgstr "ウーコマース"
+
+msgid "Bot Icon"
+msgstr "ボットアイコン"
+
+msgid "AI ChatBot"
+msgstr "AIチャットボット"
+
+msgid "Last Month Stats"
+msgstr "先月の統計"
+
+msgid "Woo Icon"
+msgstr "ウーアイコン"
+
+msgid "AI Web Search "
+msgstr "AIウェブ検索"
+
+msgid "Manage Post Types"
+msgstr "投稿タイプの管理"
+
+msgid "Enable AI Web Search"
+msgstr "AI ウェブ検索を有効にする"
+
+msgid "Search Icon"
+msgstr "検索アイコン"
+
+msgid "History"
+msgstr "歴史"
+
+msgid "WooCommerce Bot"
+msgstr "WooCommerce ボット"
+
+msgid "logo"
+msgstr "ロゴ"
+
+msgid "No of Conversation"
+msgstr "会話数"
+
+msgid "View History"
+msgstr "履歴を見る"
+
+msgid "No data"
+msgstr "データなし"
+
+msgid "No Data"
+msgstr "データなし"
+
+msgid "Addons"
+msgstr "アドオン"
+
+msgid "addon"
+msgstr "アドオン"
+
+msgid "Custom Listing Style"
+msgstr "カスタム出品スタイル"
+
+msgid "Custom Listing Text"
+msgstr "カスタムリストテキスト"
+
+msgid "WooCommerce Features"
+msgstr "WooCommerceの機能"
+
+msgid "Addon List"
+msgstr "アドオン一覧"
+
+msgid "WooCommerce "
+msgstr "ウーコマース"
+
+msgid "Lead Generation"
+msgstr "リードジェネレーション"
+
+msgid ""
+"GeekyBot simplifies the WooCommerce experience with intelligent product "
+"discovery and purchasing. It seamlessly integrates with WooCommerce for "
+"efficient product searches, detailed listings, and a smooth shopping "
+"experience."
+msgstr ""
+"GeekyBot は、インテリジェントな製品発見と購入により WooCommerce エクスペリエ"
+"ンスを簡素化します。 WooCommerce とシームレスに統合されており、効率的な商品検"
+"索、詳細なリスト表示、スムーズなショッピング体験を実現します。"
+
+msgid "Find Product"
+msgstr "製品を探す"
+
+msgid "Find Products"
+msgstr "製品を探す"
+
+msgid "Find products by name, category, or price range via chat."
+msgstr "チャットを通じて、名前、カテゴリ、または価格帯で製品を検索します。"
+
+msgid "List Product"
+msgstr "製品一覧"
+
+msgid "List Products"
+msgstr "製品一覧"
+
+msgid "Show relevant products with details and prices based on preferences."
+msgstr "好みに基づいて、関連する製品を詳細と価格とともに表示します。"
+
+msgid "Add To Cart Product"
+msgstr "カートに入れる 製品"
+
+msgid "Add to Cart"
+msgstr "カートに追加"
+
+msgid "Easily add products to the cart list directly through chat."
+msgstr "チャットを通じて直接商品をカート リストに簡単に追加できます。"
+
+msgid "Watch Video"
+msgstr "ビデオを見る"
+
+msgid "AI Chat"
+msgstr "AIチャット"
+
+msgid "Custom"
+msgstr "カスタム"
+
+msgid " AI Chat Bot "
+msgstr "AIチャットボット"
+
+msgid "Conversation Handling"
+msgstr "会話の処理"
+
+msgid ""
+"AI Chat Conversation provides intelligent and context-aware interactions to "
+"enhance user engagement. Define key conversation elements to capture "
+"specific user inputs dynamically and adapt responses based on the context."
+msgstr ""
+"AI チャット会話は、インテリジェントでコンテキストを認識した対話を提供し、ユー"
+"ザー エンゲージメントを強化します。主要な会話要素を定義して、特定のユーザー入"
+"力を動的に取得し、コンテキストに基づいて応答を調整します。"
+
+msgid "Capture and process inputs dynamically for personalized responses."
+msgstr "入力を動的に取得して処理し、パーソナライズされた応答を実現します。"
+
+msgid "Adjust interactions based on the ongoing conversation for relevance."
+msgstr "関連性を考慮して、進行中の会話に基づいてインタラクションを調整します。"
+
+msgid "Use collected data to tailor responses and improve satisfaction."
+msgstr "収集したデータを使用して対応を調整し、満足度を向上させます。"
+
+msgid "Discover Our "
+msgstr "私たちのことを発見してください"
+
+msgid " AI Web Search"
+msgstr "AIウェブ検索"
+
+msgid "Bot"
+msgstr "ボット"
+
+msgid ""
+"AI Web Search improves user experience by delivering advanced, intuitive "
+"content discovery on your WordPress site. With powerful searches, users can "
+"quickly find relevant information, enhancing overall interest and "
+"accessibility."
+msgstr ""
+"AI Web Search は、WordPress サイト上で高度で直感的なコンテンツ検出を提供する"
+"ことで、ユーザー エクスペリエンスを向上させます。強力な検索により、ユーザーは"
+"関連情報をすばやく見つけることができ、全体的な関心とアクセスしやすさが向上し"
+"ます。"
+
+msgid "GeekyBot swiftly retrieves posts and pages based on user queries."
+msgstr ""
+"GeekyBot は、ユーザーのクエリに基づいて投稿やページを迅速に取得します。"
+
+msgid "Displays full content or excerpts that match search terms."
+msgstr "完全なコンテンツまたは検索語に一致する抜粋を表示します。"
+
+msgid "Activate GeekyBot’s search for an AI web search with one click."
+msgstr "ワンクリックで GeekyBot の AI Web 検索を有効にします。"
+
+msgid "Web Search"
+msgstr "ウェブ検索"
+
+msgid "GeekyBot Supported Plugins"
+msgstr "GeekyBot がサポートするプラグイン"
+
+msgid "Plugin"
+msgstr "プラグイン"
+
+msgid "WP Job Manager"
+msgstr "WPジョブマネージャー"
+
+msgid "Tutor LMS"
+msgstr "講師LMS"
+
+msgid "bbPress"
+msgstr "bbプレス"
+
+msgid "LearnPress"
+msgstr "学ぶプレス"
+
+msgid "Knowledge Base"
+msgstr "ナレッジベース"
+
+msgid "BetterDocs"
+msgstr "ベタードキュメント"
+
+msgid "Motors"
+msgstr "モーター"
+
+msgid "Estatik Real Estate"
+msgstr "エスタティック・リアル・エステート"
+
+msgid "Auto Listings"
+msgstr "自動出品"
+
+msgid "Welcome to GeekyBot Features"
+msgstr "GeekyBot の機能へようこそ"
+
+msgid "GeekyBot Features"
+msgstr "GeekyBot の機能"
+
+msgid "WooCommerce Integration"
+msgstr "WooCommerce の統合"
+
+msgid "Quick Installation"
+msgstr "クイックインストール"
+
+msgid "Version: 1.0.0"
+msgstr "バージョン: 1.0.0"
+
+msgid "AI Chat Bot"
+msgstr "AIチャットボット"
+
+msgid "Enable/Disable"
+msgstr "有効化/無効化"
+
+msgid "Enable/Disable Bot"
+msgstr "ボットの有効化/無効化"
+
+msgid "Select Template"
+msgstr "テンプレートの選択"
+
+msgid ""
+"AI Chat in GeekyBot provides instant, personalized responses to user "
+"queries, ensuring seamless support around the clock. With its ability to "
+"engage users at any time, GeekyBot enhances the reliability of your service, "
+"making sure that your customers' needs are always met."
+msgstr ""
+"GeekyBot の AI チャットは、ユーザーのクエリに対して即座にパーソナライズされた"
+"応答を提供し、24 時間のシームレスなサポートを保証します。 GeekyBot は、いつで"
+"もユーザーを関与させることができるため、サービスの信頼性を高め、顧客のニーズ"
+"が常に満たされるようにします。"
+
+msgid ""
+"By training GeekyBot with your specific data, you can create dynamic, "
+"tailored interactions that reflect your business's unique voice and "
+"services. This customization allows for more relevant, effective "
+"conversations that build stronger connections with your users."
+msgstr ""
+"特定のデータを使用して GeekyBot をトレーニングすることにより、ビジネス固有の"
+"意見やサービスを反映する、動的でカスタマイズされたインタラクションを作成でき"
+"ます。このカスタマイズにより、より関連性の高い効果的な会話が可能になり、ユー"
+"ザーとのより強いつながりを構築できます。"
+
+msgid "Bot Image"
+msgstr "ボット画像"
+
+msgid "image"
+msgstr "画像"
+
+msgid "Watch AI ChatBot Video"
+msgstr "AI チャットボットのビデオを見る"
+
+msgid "AI Web Search Bot"
+msgstr "AIウェブ検索ボット"
+
+msgid ""
+"Effortlessly search for specific posts and content across your entire site "
+"using our powerful AI web search tool. GeekyBot goes beyond standard "
+"searches, delivering results from all types of data on your site. Whether "
+"you're looking for posts, pages, custom post types, or other information, "
+"GeekyBot ensures you find what you need quickly and efficiently by "
+"displaying relevant articles, posts, and more in a single, streamlined "
+"search experience."
+msgstr ""
+"強力な AI Web 検索ツールを使用して、サイト全体で特定の投稿やコンテンツを簡単"
+"に検索します。 GeekyBot は標準的な検索を超えて、サイト上のあらゆる種類のデー"
+"タから結果を提供します。投稿、ページ、カスタム投稿タイプ、その他の情報を探し"
+"ている場合でも、GeekyBot は関連する記事や投稿などを 1 つの合理化された検索エ"
+"クスペリエンスで表示することで、必要なものを迅速かつ効率的に見つけられるよう"
+"にします。"
+
+msgid "New Post Type Search"
+msgstr "新しい投稿タイプの検索"
+
+msgid ""
+"Enable this option to directly include new post types in search results, "
+"enhancing user access to all content."
+msgstr ""
+"このオプションを有効にすると、新しい投稿タイプが検索結果に直接含まれ、すべて"
+"のコンテンツへのユーザー アクセスが強化されます。"
+
+msgid "Watch AI Web Search Video"
+msgstr "AI ウェブ検索ビデオを見る"
+
+msgid "Back"
+msgstr "戻る"
+
+msgid "Finish"
+msgstr "仕上げる"
+
+msgid "WooCommerce is not installed"
+msgstr "WooCommerceがインストールされていません"
+
+msgid ""
+"WooCommerce plugin is not installed on your site, you won't be able to "
+"integrate GeekyBot with WooCommerce."
+msgstr ""
+"WooCommerce プラグインがサイトにインストールされていないため、GeekyBot を "
+"WooCommerce と統合することはできません。"
+
+msgid ""
+"Easily integrate AI with WooCommerce to enhance your online store’s "
+"performance. GeekyBot boosts lead generation and customer interactions, "
+"automating key processes for a more effective and engaging shopping "
+"experience."
+msgstr ""
+"AI を WooCommerce と簡単に統合して、オンライン ストアのパフォーマンスを向上さ"
+"せます。 GeekyBot は見込み顧客の発掘と顧客とのやり取りを促進し、主要なプロセ"
+"スを自動化して、より効果的で魅力的なショッピング エクスペリエンスを実現しま"
+"す。"
+
+msgid ""
+"GeekyBot also streamlines customer inquiries and provides real-time, "
+"intelligent responses. By improving retention and customer satisfaction, it "
+"ensures your store delivers an exceptional experience that keeps shoppers "
+"coming back."
+msgstr ""
+"また、GeekyBot は顧客からの問い合わせを効率化し、リアルタイムでインテリジェン"
+"トな応答を提供します。維持率と顧客満足度を向上させることで、ストアが買い物客"
+"を継続させる優れたエクスペリエンスを提供できるようになります。"
+
+msgid "Watch WooCommerce Video"
+msgstr "WooCommerce ビデオを見る"
+
+msgid "Welcome to GeekyBot !..."
+msgstr "GeekyBot へようこそ!..."
+
+msgid ""
+"The ultimate AI chatbot for WooCommerce lead generation, intelligent content "
+"search, and interactive customer engagement on your WordPress website."
+msgstr ""
+"WooCommerce のリード生成、インテリジェントなコンテンツ検索、WordPress ウェブ"
+"サイトでのインタラクティブな顧客エンゲージメントのための究極の AI チャット"
+"ボットです。"
+
+msgid ""
+"Personalize interactions by dynamically processing user inputs using slots "
+"and variables."
+msgstr ""
+"スロットと変数を使用してユーザー入力を動的に処理することで、インタラクション"
+"をパーソナライズします。"
+
+msgid ""
+"Enhance shopping by enabling users to find products and add them to their "
+"cart seamlessly."
+msgstr ""
+"ユーザーがシームレスに商品を見つけてカートに追加できるようにすることで、"
+"ショッピングを強化します。"
+
+msgid "Website Search"
+msgstr "ウェブサイト検索"
+
+msgid ""
+"Streamline discovery by helping users find relevant information on your "
+"WordPress site."
+msgstr ""
+"ユーザーが WordPress サイトで関連情報を見つけられるようにすることで、発見を効"
+"率化します。"
+
+msgid "Please insert activation key to proceed"
+msgstr "続行するにはアクティベーション キーを挿入してください"
+
+msgid "Addon Installation Failed"
+msgstr "アドオンのインストールに失敗しました"
+
+msgid "Addon installation failed"
+msgstr "アドオンのインストールに失敗しました"
+
+msgid "Addon Installation Failed, File download error"
+msgstr "アドオンのインストールに失敗しました、ファイルのダウンロードエラー"
+
+msgid "Activated"
+msgstr "アクティブ化された"
+
+msgid "Deactivate"
+msgstr "非アクティブ化"
+
+msgid "Deactivated"
+msgstr "無効化されました"
+
+msgid "Activate"
+msgstr "活性化"
+
+msgid "Not Installed"
+msgstr "インストールされていません"
+
+msgid "Addon Installed Successfully"
+msgstr "アドオンが正常にインストールされました"
+
+msgid "Ticket Actions"
+msgstr "チケットアクション"
+
+msgid "Agents"
+msgstr "エージェント"
+
+msgid "Ticket Auto Close"
+msgstr "チケットの自動終了"
+
+msgid "left image"
+msgstr "左の画像"
+
+msgid "right image"
+msgstr "右の画像"
+
+msgid "Add-ons For Majestic Support"
+msgstr "Majestic サポート用のアドオン"
+
+msgid ""
+"Get trusted WordPress add-ons. Guaranteed to work fast, safe to use, "
+"beautifully coded, packed with features, and are easy to use."
+msgstr ""
+"信頼できる WordPress アドオンを入手してください。高速に動作し、安全に使用で"
+"き、美しくコード化され、機能が満載で、使いやすいことが保証されています。"
+
+msgid "Save big today with an exclusive membership plan!"
+msgstr "特別な会員プランで今すぐ大幅節約!"
+
+msgid "Show"
+msgstr "見せる"
+
+msgid "show bundle pack"
+msgstr "バンドルパックを表示"
+
+msgid "Agent"
+msgstr "エージェント"
+
+msgid ""
+"Add agents and assign roles and permissions to provide assistance and "
+"support for customer support tickets."
+msgstr ""
+"エージェントを追加し、カスタマー サポート チケットに対する支援とサポートを提"
+"供する役割と権限を割り当てます。"
+
+msgid "buy now"
+msgstr "今すぐ購入"
+
+msgid "Installed"
+msgstr "インストール済み"
+
+msgid "multiform"
+msgstr "マルチフォーム"
+
+msgid "Multi Forms"
+msgstr "マルチフォーム"
+
+msgid ""
+"Create multiple custom ticket forms with different custom fields for each "
+"request type that you support."
+msgstr ""
+"サポートするリクエスト タイプごとに、異なるカスタム フィールドを持つ複数のカ"
+"スタム チケット フォームを作成します。"
+
+msgid "Email Piping"
+msgstr "電子メールの配管"
+
+msgid ""
+"Email piping is the process of automatically turning incoming emails into "
+"support tickets without manual data entry."
+msgstr ""
+"電子メールのパイプ処理は、手動でデータを入力することなく、受信電子メールを自"
+"動的にサポート チケットに変換するプロセスです。"
+
+msgid "agent auto assign"
+msgstr "エージェントの自動割り当て"
+
+msgid "Agent Auto Assign"
+msgstr "エージェントの自動割り当て"
+
+msgid ""
+"Make the ticket assignment process automatic and assign the most qualified "
+"agent to your tickets with conditions."
+msgstr ""
+"チケット割り当てプロセスを自動化し、条件付きで最も適切なエージェントをチケッ"
+"トに割り当てます。"
+
+msgid "private note"
+msgstr "私的なメモ"
+
+msgid "Private Note"
+msgstr "プライベートノート"
+
+msgid ""
+"Add private notes to a ticket and share crucial information internally with "
+"your agents, this private note is not visible to the customer."
+msgstr ""
+"チケットに非公開メモを追加し、重要な情報を社内でエージェントと共有します。こ"
+"の非公開メモは顧客には表示されません。"
+
+msgid "merge tickets"
+msgstr "チケットをマージする"
+
+msgid "Merge Tickets"
+msgstr "チケットを統合する"
+
+msgid ""
+"Merge one or more tickets into another if you receive two support requests "
+"from the same end user about the same issue."
+msgstr ""
+"同じ問題に関して同じエンド ユーザーから 2 つのサポート リクエストを受け取った"
+"場合は、1 つ以上のチケットを別のチケットにマージします。"
+
+msgid "helptopic"
+msgstr "ヘルプトピック"
+
+msgid "Help Topics"
+msgstr "ヘルプトピック"
+
+msgid ""
+"The user can search for and choose the topic for which they need help using "
+"help topics"
+msgstr ""
+"ユーザーは、ヘルプ トピックを使用して、ヘルプが必要なトピックを検索して選択で"
+"きます。"
+
+msgid "Auto Close Ticket"
+msgstr "自動終了チケット"
+
+msgid ""
+"Manage abandoned tickets, and set rules for tickets over time, and those "
+"tickets will be closed automatically after a certain period."
+msgstr ""
+"放棄されたチケットを管理し、時間の経過とともにチケットのルールを設定すると、"
+"それらのチケットは一定期間後に自動的に閉じられます。"
+
+msgid "Knowledgebase"
+msgstr "ナレッジベース"
+
+msgid ""
+"Stop wasting time on repetitive inquiries, build your knowledge base, and "
+"organize your solutions into categories for users."
+msgstr ""
+"繰り返しの問い合わせに時間を無駄にするのをやめ、知識ベースを構築し、ソリュー"
+"ションをユーザー向けのカテゴリに整理します。"
+
+msgid "Ticket Overdue"
+msgstr "チケット期限切れ"
+
+msgid ""
+"Define rules or set a specific time interval for making tickets "
+"automatically overdue."
+msgstr ""
+"ルールを定義するか、チケットを自動的に期限切れにする特定の時間間隔を設定しま"
+"す。"
+
+msgid "time tracking"
+msgstr "時間の追跡"
+
+msgid "Time Tracking"
+msgstr "時間の追跡"
+
+msgid ""
+"Track the amount of time spent on each customer support ticket without "
+"losing focus and enhance team productivity."
+msgstr ""
+"集中力を失うことなく各カスタマー サポート チケットに費やした時間を追跡し、"
+"チームの生産性を向上させます。"
+
+msgid "Ticket History"
+msgstr "チケット履歴"
+
+msgid ""
+"Show the whole history of the ticket, including its status and any action "
+"taken in response to it."
+msgstr ""
+"チケットのステータスとそれに応じて実行されたアクションを含む、チケットの履歴"
+"全体を表示します。"
+
+msgid "Paid Support"
+msgstr "有料サポート"
+
+msgid ""
+"The simplest approach to effectively manage payments for premium help is "
+"through paid support."
+msgstr ""
+"プレミアム ヘルプの支払いを効果的に管理する最も簡単なアプローチは、有料サポー"
+"トを利用することです。"
+
+msgid "Private Credentials"
+msgstr "プライベート認証情報"
+
+msgid ""
+"Customers will enter sensitive information on tickets, and this add-on is "
+"designed to help you keep that information secure."
+msgstr ""
+"顧客はチケットに機密情報を入力します。このアドオンは、その情報を安全に保つた"
+"めに設計されています。"
+
+msgid "Ticket close reason"
+msgstr "チケットクローズの理由"
+
+msgid "Ticket Closed Reason"
+msgstr "チケットがクローズされた理由"
+
+msgid ""
+"Empowers users to provide clear and concise explanations for why customer "
+"service tickets are being closed."
+msgstr ""
+"ユーザーは、カスタマー サービス チケットが終了する理由について明確かつ簡潔な"
+"説明を提供できるようになります。"
+
+msgid "Premade Responses"
+msgstr "あらかじめ用意された応答"
+
+msgid ""
+"Make ready-made responses to the most common questions in the tickets to "
+"swiftly address client issues."
+msgstr ""
+"クライアントの問題に迅速に対処するために、チケット内の最も一般的な質問に対す"
+"る既成の回答を作成します。"
+
+msgid "max ticket"
+msgstr "最大チケット"
+
+msgid "Max Tickets"
+msgstr "最大チケット数"
+
+msgid ""
+"Admins can limit the number of tickets that users can create as well as the "
+"number of tickets that agents can open individually."
+msgstr ""
+"管理者は、ユーザーが作成できるチケットの数と、エージェントが個別に開くことが"
+"できるチケットの数を制限できます。"
+
+msgid "Feedback"
+msgstr "フィードバック"
+
+msgid ""
+"To enhance the quality of your services, ask your customers to complete a "
+"survey when a ticket is closed."
+msgstr ""
+"サービスの品質を向上させるために、チケットがクローズされたときに顧客にアン"
+"ケートに回答するよう依頼してください。"
+
+msgid "ticket actions"
+msgstr "チケットアクション"
+
+msgid ""
+"Ticket action options allow you to execute additional actions on tickets."
+msgstr ""
+"チケット アクション オプションを使用すると、チケットに対して追加のアクション"
+"を実行できます。"
+
+msgid "Export"
+msgstr "輸出"
+
+msgid ""
+"Easily export ticket data and performance report data from your majestic "
+"support to an Excel spreadsheet with our efficient and user-friendly "
+"solution."
+msgstr ""
+"当社の効率的でユーザーフレンドリーなソリューションを使用して、チケット データ"
+"とパフォーマンス レポート データを Majestic サポートから Excel スプレッドシー"
+"トに簡単にエクスポートします。"
+
+msgid "email cc"
+msgstr "メールCC"
+
+msgid "Email CC"
+msgstr "メールCC"
+
+msgid ""
+"Send the exact copy of the email to the provided email address with Email CC "
+"or BCC."
+msgstr ""
+"電子メールの正確なコピーを、電子メール CC または BCC を使用して、指定された電"
+"子メール アドレスに送信します。"
+
+msgid "user options"
+msgstr "ユーザーオプション"
+
+msgid "User Options"
+msgstr "ユーザーオプション"
+
+msgid ""
+"User options enable you to define roles for new users when they are "
+"registered."
+msgstr ""
+"ユーザー オプションを使用すると、新規ユーザーの登録時にそのユーザーのロールを"
+"定義できます。"
+
+msgid "SMTP"
+msgstr "SMTP"
+
+msgid ""
+"SMTP enables you to add  custom mail protocols to send and receive emails "
+"with the support ticket system."
+msgstr ""
+"SMTP を使用すると、サポート チケット システムで電子メールを送受信するためのカ"
+"スタム メール プロトコルを追加できます。"
+
+msgid "Multi Language Email Templates"
+msgstr "多言語メールテンプレート"
+
+msgid ""
+"Create multi-language email templates for all default email templates to "
+"send customers emails in the language that they prefer."
+msgstr ""
+"すべてのデフォルトの電子メール テンプレートに対して多言語電子メール テンプ"
+"レートを作成し、顧客が希望する言語で電子メールを送信できるようにします。"
+
+msgid "Downloads"
+msgstr "ダウンロード"
+
+msgid ""
+"Downloads can be very helpful for users who are looking to obtain the "
+"necessary information to resolve issues."
+msgstr ""
+"ダウンロードは、問題を解決するために必要な情報を入手したいユーザーにとって非"
+"常に役立ちます。"
+
+msgid "Announcements"
+msgstr "お知らせ"
+
+msgid ""
+"Make an unlimited number of announcements related to the support system to "
+"encourage customer interaction."
+msgstr ""
+"サポート システムに関するアナウンスを無制限に行い、顧客とのやり取りを促進しま"
+"す。"
+
+msgid "Ban Email"
+msgstr "禁止メール"
+
+msgid ""
+"With Ban Email, you can limit a users ability to create new tickets by "
+"blocking their email address."
+msgstr ""
+"電子メール禁止を使用すると、電子メール アドレスをブロックすることで、ユーザー"
+"が新しいチケットを作成できるように制限できます。"
+
+msgid "FAQ"
+msgstr "よくある質問"
+
+msgid ""
+"Provide answers to common user questions with the FAQ extension before they "
+"become tickets."
+msgstr ""
+"ユーザーの一般的な質問に対しては、チケットになる前に FAQ 拡張機能を使用して回"
+"答を提供します。"
+
+msgid "admin widgets"
+msgstr "管理ウィジェット"
+
+msgid "Admin Widgets"
+msgstr "管理者ウィジェット"
+
+msgid ""
+"Get immediate data on your support operations as soon as you log into your "
+"WordPress administration area."
+msgstr ""
+"WordPress 管理エリアにログインするとすぐに、サポート業務に関するデータをすぐ"
+"に取得できます。"
+
+msgid "desktop notifications"
+msgstr "デスクトップ通知"
+
+msgid "Desktop Notifications"
+msgstr "デスクトップ通知"
+
+msgid ""
+"You will be informed of anything that occurs on your support system by the "
+"desktop notifications."
+msgstr ""
+"サポート システムで発生したことはすべて、デスクトップ通知によって通知されま"
+"す。"
+
+msgid "woocommerce"
+msgstr "ウーコマース"
+
+msgid ""
+"The integration of the support ticket system for WooCommerce with your e-"
+"shop makes your support better and more professional."
+msgstr ""
+"WooCommerce のサポート チケット システムと e ショップの統合により、サポートが"
+"より優れた、よりプロフェッショナルなものになります。"
+
+msgid "mail chimp"
+msgstr "メールチンパンジー"
+
+msgid "Mail Chimp"
+msgstr "メールチンパンジー"
+
+msgid ""
+"Manage your email marketing campaigns directly from your majestic support by "
+"adding new user accounts to your Mailchimp email list."
+msgstr ""
+"新しいユーザー アカウントを Mailchimp メール リストに追加することで、"
+"Majestic サポートから直接メール マーケティング キャンペーンを管理できます。"
+
+msgid "internal mail"
+msgstr "社内メール"
+
+msgid "Internal Mail"
+msgstr "社内メール"
+
+msgid ""
+"Send messages internally about support tickets and other issues between "
+"agents with internal mail."
+msgstr ""
+"内部メールを使用して、サポート チケットやその他の問題に関するメッセージをエー"
+"ジェント間で社内に送信します。"
+
+msgid "frontend widget"
+msgstr "フロントエンドウィジェット"
+
+msgid "Front-End Widgets"
+msgstr "フロントエンドウィジェット"
+
+msgid ""
+"Frontend Widgets include several widgets that can be used to enhance the "
+"plugin's functionality in various areas of the website."
+msgstr ""
+"フロントエンド ウィジェットには、Web サイトのさまざまな領域でプラグインの機能"
+"を強化するために使用できるいくつかのウィジェットが含まれています。"
+
+msgid "envato"
+msgstr "エンバト"
+
+msgid "Envato"
+msgstr "エンバト"
+
+msgid ""
+"Clients won't be able to open a new ticket using the Envato Validation "
+"plugin if they don't have a valid Envato license."
+msgstr ""
+"有効な Envato ライセンスがない場合、クライアントは Envato Validation プラグイ"
+"ンを使用して新しいチケットを開くことができません。"
+
+msgid "easy digital download"
+msgstr "簡単なデジタルダウンロード"
+
+msgid "Easy Digital Download"
+msgstr "簡単なデジタルダウンロード"
+
+msgid ""
+"Learn about a customer's purchase directly from the support dashboard by "
+"integrating Majestic Support with your EDD store."
+msgstr ""
+"Majestic サポートを EDD ストアと統合することで、サポート ダッシュボードから顧"
+"客の購入について直接知ることができます。"
+
+msgid "Majestic Support Add-ons Bundle Pack"
+msgstr "Majestic サポート アドオン バンドル パック"
+
+msgid "Basic"
+msgstr "基本"
+
+msgid "Unlimited Agents"
+msgstr "無制限のエージェント"
+
+msgid "Helptopic"
+msgstr "ヘルプトピック"
+
+msgid "Show all"
+msgstr "すべて表示"
+
+msgid "Standard"
+msgstr "標準"
+
+msgid "Everything in basic included and "
+msgstr "基本的なものはすべて含まれており、"
+
+msgid "Premade Response"
+msgstr "事前に作成された応答"
+
+msgid "Professional"
+msgstr "プロ"
+
+msgid "Everything in standard included and"
+msgstr "標準ですべてが含まれており、"
+
+msgid "All Future Addons"
+msgstr "今後のすべてのアドオン"
+
+msgid "spinning wheel"
+msgstr "糸車"
+
+msgid "New Update Version"
+msgstr "新しいアップデートバージョン"
+
+msgid "is Available"
+msgstr "利用可能です"
+
+msgid "Status: "
+msgstr "状態："
+
+msgid "Version"
+msgstr "バージョン"
+
+msgid "addon in no longer active"
+msgstr "アドオンはもうアクティブではありません"
+
+msgid "Please Insert Your Activation Key"
+msgstr "アクティベーション キーを挿入してください"
+
+msgid "XXXX-XXXX-XXXXX-XXXXX"
+msgstr "XXXX-XXXX-XXXXX-XXXXX"
+
+msgid "Proceed"
+msgstr "進む"
+
+msgid "GeekyBot Addon Installer"
+msgstr "GeekyBot アドオン インストーラー"
+
+msgid "Select All Addons"
+msgstr "すべてのアドオンを選択"
+
+msgid "All allowed add ons are already installed"
+msgstr "許可されたアドオンはすべてすでにインストールされています"
+
+msgid "You are not allowed to install any add on"
+msgstr "アドオンのインストールは許可されていません"
+
+msgid "Something went wrong"
+msgstr "何か問題が発生しました"
+
+msgid "Addons Installed Successfully"
+msgstr "アドオンが正常にインストールされました"
+
+msgid "Open Dashboard"
+msgstr "ダッシュボードを開く"
+
+msgid "Open Plugins Page"
+msgstr "プラグインページを開く"
+
+msgid "PersonName"
+msgstr "人名"
+
+msgid "Facility"
+msgstr "施設"
+
+msgid "Organization"
+msgstr "組織"
+
+msgid "Location"
+msgstr "位置"
+
+msgid "Location_NON_GPE"
+msgstr "場所_NON_GPE"
+
+msgid "Product"
+msgstr "製品"
+
+msgid "Event"
+msgstr "イベント"
+
+msgid "ArtWork"
+msgstr "アートワーク"
+
+msgid "LawDocument"
+msgstr "法律文書"
+
+msgid "Language"
+msgstr "言語"
+
+msgid "Date"
+msgstr "日付"
+
+msgid "Time"
+msgstr "時間"
+
+msgid "Percentage"
+msgstr "パーセンテージ"
+
+msgid "Money"
+msgstr "お金"
+
+msgid "Quantity"
+msgstr "量"
+
+msgid "Ordinal"
+msgstr "序数"
+
+msgid "Cardinal"
+msgstr "枢機卿"
+
+msgid "Select Variable For"
+msgstr "変数の選択"
+
+msgid "Attribute"
+msgstr "属性"
+
+msgid "Name"
+msgstr "名前"
+
+msgid "Varibale Name"
+msgstr "変数名"
+
+msgid "Type"
+msgstr "タイプ"
+
+msgid "Possible Field Values"
+msgstr "可能なフィールド値"
+
+msgid "Add Comma Seprated Values"
+msgstr "カンマ区切り値を追加"
+
+msgid "Variable For"
+msgstr "変数"
+
+msgid "Select Variable For in case of Woocommerce Variable"
+msgstr "Woocommerce 変数の場合は変数を選択してください"
+
+msgid "cancel"
+msgstr "キャンセル"
+
+msgid "Cancel"
+msgstr "キャンセル"
+
+msgid "Save Changes"
+msgstr "変更を保存"
+
+msgid "Save Variable"
+msgstr "変数の保存"
+
+msgid "Reset"
+msgstr "リセット"
+
+msgid "Are you sure to delete it?"
+msgstr "削除してもよろしいですか?"
+
+msgid "Delete Variable"
+msgstr "変数の削除"
+
+msgid "Add Variable"
+msgstr "変数の追加"
+
+msgid "name"
+msgstr "名前"
+
+msgid "type"
+msgstr "タイプ"
+
+msgid "Possible Values Here"
+msgstr "ここで可能な値"
+
+msgid "Edit Variable"
+msgstr "変数の編集"
+
+msgid "Are you sure to delete it"
+msgstr "削除してもよろしいですか"
+
+msgid "Add New"
+msgstr "新規追加"
+
+msgid "User Input"
+msgstr "ユーザー入力"
+
+msgid "Close"
+msgstr "近い"
+
+msgid "Add"
+msgstr "追加"
+
+msgid "Add More"
+msgstr "さらに追加"
+
+msgid "Available Variables"
+msgstr "利用可能な変数"
+
+msgid "Enter bot response here..."
+msgstr "ここにボットの応答を入力してください..."
+
+msgid "Button text here"
+msgstr "ここにボタンのテキストが表示されます"
+
+msgid "URL"
+msgstr "URL"
+
+msgid "Button value here"
+msgstr "ここのボタンの値"
+
+msgid "Enter URL here"
+msgstr "ここにURLを入力してください"
+
+msgid "Add New Button"
+msgstr "新しいボタンを追加"
+
+msgid "Select Predefined Function"
+msgstr "定義済み関数の選択"
+
+msgid "Select Action"
+msgstr "アクションの選択"
+
+msgid "Add New Action"
+msgstr "新しいアクションの追加"
+
+msgid "Add New Form"
+msgstr "新しいフォームを追加"
+
+msgid "Enter default fallback here..."
+msgstr "ここにデフォルトのフォールバックを入力します..."
+
+msgid "Enter default fallback for intent here..."
+msgstr "ここにインテントのデフォルトのフォールバックを入力します..."
+
+msgid "Start Point"
+msgstr "スタートポイント"
+
+msgid "Error: The template file does not exist."
+msgstr "エラー: テンプレート ファイルが存在しません。"
+
+msgid "Text"
+msgstr "文章"
+
+msgid "Function"
+msgstr "関数"
+
+msgid "Error: The"
+msgstr "エラー:"
+
+msgid "tag in"
+msgstr "タグイン"
+
+msgid "at position"
+msgstr "位置にある"
+
+msgid "is missing."
+msgstr "が欠けています。"
+
+msgid "is empty."
+msgstr "は空です。"
+
+msgid "tag associated with the user input"
+msgstr "ユーザー入力に関連付けられたタグ"
+
+msgid "in"
+msgstr "で"
+
+msgid "tag of the"
+msgstr "のタグ"
+
+msgid "block associated with the user input"
+msgstr "ユーザー入力に関連付けられたブロック"
+
+msgid "or"
+msgstr "または"
+
+msgid "Error: The function name"
+msgstr "エラー: 関数名"
+
+msgid "in the"
+msgstr "で"
+
+msgid "is invalid."
+msgstr "は無効です。"
+
+msgid "Error: The type name"
+msgstr "エラー: タイプ名"
+
+msgid "is invalid. This should be"
+msgstr "は無効です。これはそうあるべきです"
+
+msgid "You might like these products."
+msgstr "これらの製品が気に入るかもしれません。"
+
+msgid "No exact match was found. Explore these similar products."
+msgstr ""
+"完全に一致するものは見つかりませんでした。これらの類似製品を調べてください。"
+
+msgid "Here are some suggestions."
+msgstr "ここにいくつかの提案があります。"
+
+msgid "Showing"
+msgstr "表示中"
+
+msgid "of"
+msgstr "の"
+
+msgid "Add to cart"
+msgstr "カートに追加"
+
+msgid "Empty Story"
+msgstr "空っぽのストーリー"
+
+msgid "Show All Products"
+msgstr "すべての製品を表示"
+
+msgid "Search Product"
+msgstr "製品を検索"
+
+msgid "Get Products Under Price"
+msgstr "製品を低価格で入手"
+
+msgid "Get Products Above Price"
+msgstr "価格以上の製品を入手"
+
+msgid "View Cart/Remove Items"
+msgstr "カートを見る/商品を削除する"
+
+msgid "Checkout"
+msgstr "チェックアウト"
+
+msgid "Reset Password"
+msgstr "パスワードのリセット"
+
+msgid "Send Chat To Admin"
+msgstr "チャットを管理者に送信"
+
+msgid "Integer"
+msgstr "整数"
+
+msgid "Float"
+msgstr "フロート"
+
+msgid "Boolean"
+msgstr "ブール値"
+
+msgid "String"
+msgstr "弦"
+
+msgid "Default Fallback"
+msgstr "デフォルトのフォールバック"
+
+msgid "Are you sure to reset it?"
+msgstr "本当にリセットしますか?"
+
+msgid "Parameter Name *"
+msgstr "パラメータ名 *"
+
+msgid "Varibale Name *"
+msgstr "変数名 *"
+
+msgid "User input has been successfully saved."
+msgstr "ユーザー入力は正常に保存されました。"
+
+msgid "An empty user input field."
+msgstr "空のユーザー入力フィールド。"
+
+msgid "An empty bot response."
+msgstr "空のボット応答。"
+
+msgid "Response Successfully Saved!"
+msgstr "応答が正常に保存されました。"
+
+msgid "Action Successfully Saved!"
+msgstr "アクションが正常に保存されました。"
+
+msgid "Form Successfully Saved!"
+msgstr "フォームが正常に保存されました。"
+
+msgid "Default Fallback Successfully Saved!"
+msgstr "デフォルトのフォールバックが正常に保存されました。"
+
+msgid "Store relevant user input first, then fallback."
+msgstr "関連するユーザー入力を最初に保存してから、フォールバックします。"
+
+msgid "An empty default fallback."
+msgstr "空のデフォルトのフォールバック。"
+
+msgid "Default Intent Fallback Successfully Saved!"
+msgstr "デフォルトのインテント フォールバックが正常に保存されました。"
+
+msgid "Discard"
+msgstr "破棄"
+
+msgid "Temporary discard"
+msgstr "一時廃棄"
+
+msgid "Automate"
+msgstr "自動化する"
+
+msgid "User input"
+msgstr "ユーザー入力"
+
+msgid "Form"
+msgstr "形状"
+
+msgid "Fallback"
+msgstr "後退する"
+
+msgid "Chat "
+msgstr "チャット"
+
+msgid "Available Variable"
+msgstr "利用可能な変数"
+
+msgid "Product Name"
+msgstr "製品名"
+
+msgid "Minimum Price"
+msgstr "最低価格"
+
+msgid "Maximum Price"
+msgstr "最高価格"
+
+msgid "User Login"
+msgstr "ユーザーログイン"
+
+msgid "Action Icon"
+msgstr "アクションアイコン"
+
+msgid "User Icon"
+msgstr "ユーザーアイコン"
+
+msgid "User"
+msgstr "ユーザー"
+
+msgid "Bot Response"
+msgstr "ボットの応答"
+
+msgid "User Text Icon"
+msgstr "ユーザーテキストアイコン"
+
+msgid "Bot Function Icon"
+msgstr "ボット機能アイコン"
+
+msgid "Bot Function"
+msgstr "ボット機能"
+
+msgid "Predefined Function"
+msgstr "定義済み関数"
+
+msgid "Bot Action Icon"
+msgstr "ボットアクションアイコン"
+
+msgid "Bot Action"
+msgstr "ボットアクション"
+
+msgid "Bot Form Icon"
+msgstr "ボットフォームアイコン"
+
+msgid "Bot Form"
+msgstr "ボットフォーム"
+
+msgid "Fallback Icon"
+msgstr "フォールバックアイコン"
+
+msgid "Fallback Massege"
+msgstr "フォールバックメッセージ"
+
+msgid "Save & Close"
+msgstr "保存して閉じる"
+
+msgid "Info Icon"
+msgstr "情報アイコン"
+
+msgid "How to add parameters"
+msgstr "パラメータの追加方法"
+
+msgid "User form Icon"
+msgstr "ユーザーフォームアイコン"
+
+msgid "Form Name *"
+msgstr "フォーム名 *"
+
+msgid "Add New Variable"
+msgstr "新しい変数の追加"
+
+msgid "Function Form"
+msgstr "関数形式"
+
+msgid "Action Form"
+msgstr "アクションフォーム"
+
+msgid "Custom Action"
+msgstr "カスタムアクション"
+
+msgid "Add New Custom Action"
+msgstr "新しいカスタムアクションを追加"
+
+msgid "Add New Parameter"
+msgstr "新しいパラメータの追加"
+
+msgid "Intent Fallback"
+msgstr "インテントフォールバック"
+
+msgid "Save Story"
+msgstr "ストーリーを保存する"
+
+msgid "Reset Story"
+msgstr "リセットストーリー"
+
+msgid "Story has been successfully saved."
+msgstr "ストーリーが正常に保存されました。"
+
+msgid "WooCommerce is not active!"
+msgstr "WooCommerce はアクティブではありません。"
+
+msgid "Error encountered in template."
+msgstr "テンプレートでエラーが発生しました。"
+
+msgid "An empty story name."
+msgstr "空のストーリー名。"
+
+msgid "An empty story template."
+msgstr "空のストーリー テンプレート。"
+
+msgid "title"
+msgstr "タイトル"
+
+msgid "Active"
+msgstr "アクティブ"
+
+msgid "Disable"
+msgstr "無効にする"
+
+msgid "Edit Story"
+msgstr "ストーリーを編集する"
+
+msgid "Are you sure to delete"
+msgstr "削除してもよろしいですか"
+
+msgid "Delete Story"
+msgstr "ストーリーの削除"
+
+msgid "Built Story"
+msgstr "構築されたストーリー"
+
+msgid "Built"
+msgstr "建てられた"
+
+msgid "WooCommerce Story"
+msgstr "WooCommerce ストーリー"
+
+msgid "Story Name *"
+msgstr "ストーリー名 *"
+
+msgid "Edit Story Name"
+msgstr "ストーリー名の編集"
+
+msgid "Invalid username or email."
+msgstr "ユーザー名またはメールアドレスが無効です。"
+
+msgid "Looks like there was a problem resetting your password:"
+msgstr "パスワードのリセット中に問題が発生したようです:"
+
+msgid "User not found!"
+msgstr "ユーザーが見つかりません!"
+
+msgid "Okay, I have sent the recovery email. Thank you for your patience."
+msgstr "はい、回復メールを送信しました。ご理解いただきありがとうございます。"
+
+msgid "Your query is sent to the admin."
+msgstr "あなたのクエリは管理者に送信されます。"
+
+msgid "Enable"
+msgstr "有効にする"
+
+msgid "Smart Popup"
+msgstr "スマートポップアップ"
+
+msgid "Standard Popup"
+msgstr "標準ポップアップ"
+
+msgid "Appearance"
+msgstr "外観"
+
+msgid "Choose File"
+msgstr "ファイルを選択"
+
+msgid "User Default Image"
+msgstr "ユーザーデフォルト画像"
+
+msgid "Primary Color"
+msgstr "原色"
+
+msgid "Choose Color"
+msgstr "色の選択"
+
+msgid "User Text Background"
+msgstr "ユーザーテキストの背景"
+
+msgid "User Text Color"
+msgstr "ユーザーテキストの色"
+
+msgid "Bot Link Color"
+msgstr "ボットリンクの色"
+
+msgid "Presets"
+msgstr "プリセット"
+
+msgid "Preset"
+msgstr "プリセット"
+
+msgid "online"
+msgstr "オンライン"
+
+msgid "User Image"
+msgstr "ユーザーイメージ"
+
+msgid "Hi I am John"
+msgstr "こんにちは、私はジョンです"
+
+msgid "Hi John! How can I help you?"
+msgstr "こんにちは、ジョン！どんな御用でしょうか？"
+
+msgid "Can you help me find a new backpack?"
+msgstr "新しいバックパックを探すのを手伝ってくれませんか?"
+
+msgid "Product Icon"
+msgstr "製品アイコン"
+
+msgid "Fusion Backpack"
+msgstr "フュージョン バックパック"
+
+msgid "$"
+msgstr "$"
+
+msgid "59"
+msgstr "59"
+
+msgid "Send message"
+msgstr "メッセージを送信する"
+
+msgid "Welcome Message"
+msgstr "ウェルカムメッセージ"
+
+msgid "Welcome Image"
+msgstr "ウェルカムイメージ"
+
+msgid "Chat Auto-Popup"
+msgstr "チャット自動ポップアップ"
+
+msgid "Controls whether the chat popup appears automatically on your site."
+msgstr "チャット ポップアップをサイトに自動的に表示するかどうかを制御します。"
+
+msgid "Chat Pop-up Style"
+msgstr "チャットポップアップスタイル"
+
+msgid "Choose how the chat will appear: Smart or Standard pop-up."
+msgstr ""
+"チャットの表示方法を選択します: スマート ポップアップまたは標準ポップアップ。"
+
+msgid "Chat Auto-Popup Timing"
+msgstr "チャット自動ポップアップのタイミング"
+
+msgid ""
+"Define the delay time in seconds for the chatbot to auto-appear on the site."
+msgstr ""
+"チャットボットがサイトに自動表示されるまでの遅延時間を秒単位で定義します。"
+
+msgid "Note"
+msgstr "注記"
+
+msgid ""
+"If the colors have been saved but the user-side colors are still the same, "
+"it is advised to clear the cache."
+msgstr ""
+"カラーが保存されているが、ユーザー側のカラーがまだ同じ場合は、キャッシュをク"
+"リアすることをお勧めします。"
+
+msgid "Also"
+msgstr "また"
+
+msgid "Found"
+msgstr "見つかった"
+
+msgid "Here are some"
+msgstr "ここにいくつかあります"
+
+msgid "Help"
+msgstr "ヘルプ"
+
+msgid "Have any problem?"
+msgstr "何か問題がありますか？"
+
+msgid ""
+"If you experience any difficulties, we're here to help! Simply click the"
+msgstr ""
+"何か問題が発生した場合は、私たちがお手伝いいたします。をクリックするだけです"
+
+msgid "Create A Ticket"
+msgstr "チケットを作成する"
+
+msgid ""
+"button to report your issue, and our dedicated support team will assist you "
+"promptly."
+msgstr ""
+"ボタンをクリックして問題を報告してください。専任のサポート チームが迅速に対応"
+"します。"
+
+msgid "Create Ticket"
+msgstr "チケットの作成"
+
+msgid "Post Type"
+msgstr "投稿タイプ"
+
+msgid "post type"
+msgstr "投稿タイプ"
+
+msgid "Post Label"
+msgstr "ポストラベル"
+
+msgid "Associated Plugin"
+msgstr "関連するプラグイン"
+
+msgid "Add associated plugin's name"
+msgstr "関連するプラグインの名前を追加します"
+
+msgid "For better data consistency, please provide a associated plugin's name."
+msgstr ""
+"データの一貫性を高めるため、関連するプラグインの名前を指定してください。"
+
+msgid "Status"
+msgstr "状態"
+
+msgid "For status changes, please use the options available in the listing."
+msgstr "ステータスを変更するには、リストにあるオプションを使用してください。"
+
+msgid "Template Section"
+msgstr "テンプレートセクション"
+
+msgid ""
+"Fields are currently auto-filled for preview purposes only. Please save your "
+"changes to apply them."
+msgstr ""
+"現在、フィールドはプレビューのみを目的として自動入力されています。変更を保存"
+"して適用してください。"
+
+msgid "Choose one template style from the given below"
+msgstr "以下からテンプレート スタイルを 1 つ選択してください"
+
+msgid "Add Button /Link"
+msgstr "ボタン/リンクを追加"
+
+msgid "Add New Button /Link"
+msgstr "新しいボタン/リンクを追加"
+
+msgid "Show on Listing"
+msgstr "リストに表示"
+
+msgid "View Details"
+msgstr "詳細を見る"
+
+msgid "detail page link"
+msgstr "詳細ページリンク"
+
+msgid "Save Template"
+msgstr "テンプレートの保存"
+
+msgid "Create a Post"
+msgstr "投稿を作成する"
+
+msgid "Please first create a sample post to use template section."
+msgstr ""
+"まず、テンプレート セクションを使用するサンプル投稿を作成してください。"
+
+msgid "AI web search enabled successfully."
+msgstr "AI Web 検索が正常に有効になりました。"
+
+msgid "AI web search already enabled."
+msgstr "AI ウェブ検索はすでに有効になっています。"
+
+msgid "Something went wrong."
+msgstr "何か問題が発生しました。"
+
+msgid "AI web search disabled successfully."
+msgstr "AI Web 検索が正常に無効になりました。"
+
+msgid "New post type search enabled successfully."
+msgstr "新しい投稿タイプの検索が正常に有効になりました。"
+
+msgid "New post type search disabled successfully."
+msgstr "新しい投稿タイプの検索が正常に無効になりました。"
+
+msgid "Data Synchronization Needed"
+msgstr "データ同期が必要です"
+
+msgid ""
+"Your data is not updated. To ensure accurate results, please synchronize "
+"your AI web search data."
+msgstr ""
+"データは更新されていません。正確な結果を保証するには、AI Web 検索データを同期"
+"してください。"
+
+msgid "Enable AI web Search"
+msgstr "AI ウェブ検索を有効にする"
+
+msgid ""
+"Enable this feature to provide users with direct AI web search results in "
+"the chat, offering them a broader context for their queries."
+msgstr ""
+"この機能を有効にすると、チャット内で直接 AI Web 検索結果がユーザーに提供さ"
+"れ、クエリに対するより広範なコンテキストが提供されます。"
+
+msgid "Enable New Post Type Search"
+msgstr "新しい投稿タイプの検索を有効にする"
+
+msgid "Lable"
+msgstr "ラベル"
+
+msgid "Post lable"
+msgstr "郵便ラベル"
+
+msgid "WooCommerce is currently inactive."
+msgstr "WooCommerce は現在非アクティブです。"
+
+msgid "No product was found."
+msgstr "製品が見つかりませんでした。"
+
+msgid "Please enter a valid product or category name."
+msgstr "有効な製品名またはカテゴリ名を入力してください。"
+
+msgid "Please enter a valid price."
+msgstr "有効な価格を入力してください。"
+
+msgid "Please enter a valid price range."
+msgstr "有効な価格範囲を入力してください。"
+
+msgid "Your cart is currently empty."
+msgstr "カートは現在空です。"
+
+msgid "Cart Details"
+msgstr "カートの詳細"
+
+msgid "Price"
+msgstr "価格"
+
+msgid "Change"
+msgstr "変化"
+
+msgid "Total Price"
+msgstr "合計価格"
+
+msgid "Remove Item"
+msgstr "アイテムの削除"
+
+msgid "Subtotal"
+msgstr "小計"
+
+msgid "Total"
+msgstr "合計"
+
+msgid "Proceed to Checkout"
+msgstr "チェックアウトに進む"
+
+msgid "is out of stock."
+msgstr "在庫切れです。"
+
+msgid "You cannot add another “"
+msgstr "別の「」を追加することはできません"
+
+msgid "” to your cart."
+msgstr "”をカートに入れてください。"
+
+msgid "You cannot add more than"
+msgstr "以上を追加することはできません"
+
+msgid "of this product to your cart."
+msgstr "この商品をカートに入れます。"
+
+msgid "has been added to your cart."
+msgstr "がカートに追加されました。"
+
+msgid "has not been added to your cart. Please try again."
+msgstr "カートに追加されていません。もう一度試してください。"
+
+msgid "View Cart"
+msgstr "カートを見る"
+
+msgid "Please select a product!"
+msgstr "商品をお選びください！"
+
+msgid "There are no variations available."
+msgstr "バリエーションはありません。"
+
+msgid "Product not found or not a variable product."
+msgstr "製品が見つからないか、可変製品ではありません。"
+
+msgid "You can't add another “"
+msgstr "別の「」を追加することはできません"
+
+msgid "There was an error while adding the product to the cart."
+msgstr "商品をカートに追加する際にエラーが発生しました。"
+
+msgid ""
+"The requested variation with the specified attributes could not be found."
+msgstr "指定された属性を持つ要求されたバリエーションが見つかりませんでした。"
+
+msgid "Change Quantity"
+msgstr "数量の変更"
+
+msgid "Update"
+msgstr "アップデート"
+
+msgid "The cart is empty."
+msgstr "カートは空です。"
+
+msgid "Cart item is not found."
+msgstr "カートの項目が見つかりません。"
+
+msgid "The item was not found in the cart."
+msgstr "カート内に商品が見つかりませんでした。"
+
+msgid "Quantity updated successfully!"
+msgstr "数量が正常に更新されました。"
+
+msgid "Change quantity"
+msgstr "数量変更"
+
+msgid "Edit Post Type"
+msgstr "投稿タイプの編集"
+
+msgid "Parameter"
+msgstr "パラメータ"
+
+msgid "delete"
+msgstr "消去"
+
+msgid "add intent"
+msgstr "インテントを追加する"
+
+msgid "plus icon"
+msgstr "プラスアイコン"
+
+msgid "Add Intents"
+msgstr "インテントの追加"
+
+msgid ""
+"On the responses listing page, all the responses are listed here; you can "
+"check them out."
+msgstr ""
+"回答リスト ページでは、すべての回答がここにリストされます。チェックしてみるこ"
+"とができます。"
+
+msgid "Add Intent"
+msgstr "インテントの追加"
+
+msgid ""
+"On the form listing page, all the forms are listed here; you can check them "
+"out."
+msgstr ""
+"フォーム一覧ページには、すべてのフォームが一覧表示されます。チェックしてみる"
+"ことができます。"
+
+msgid "Add Forms"
+msgstr "フォームの追加"
+
+msgid "On the add form page, you can add a new form."
+msgstr "フォームの追加ページでは、新しいフォームを追加できます。"
+
+msgid "Responses"
+msgstr "応答"
+
+msgid "Add Response"
+msgstr "応答を追加"
+
+msgid "On the add Response page, you can add a new Response."
+msgstr "[応答の追加] ページで、新しい応答を追加できます。"
+
+msgid ""
+"On the actions listing page, all the actions are listed here; you can check "
+"them out."
+msgstr ""
+"アクションのリスト ページには、すべてのアクションがリストされます。チェックし"
+"てみることができます。"
+
+msgid "Add  Action"
+msgstr "アクションの追加"
+
+msgid "On the add action page, you can add a new action."
+msgstr "アクションの追加ページでは、新しいアクションを追加できます。"
+
+msgid "Add Intent Group"
+msgstr "インテントグループの追加"
+
+msgid "Import"
+msgstr "輸入"
+
+msgid "Menu"
+msgstr "メニュー"
+
+msgid "End Chat"
+msgstr "チャットを終了する"
+
+msgid "Restart Chat"
+msgstr "チャットを再開する"
+
+msgid "Image"
+msgstr "画像"
+
+msgid "Send Icon"
+msgstr "送信アイコン"
+
+msgid "Welcome to GeekyBot! Let me know how I can assist you today."
+msgstr ""
+"ギーキーボットへようこそ!今日はどのようにお手伝いできるかお知らせください。"
+
+msgid "admin."
+msgstr "管理者。"
+
+msgid "Account Assistance"
+msgstr "アカウントサポート"
+
+msgid "Diet Plan Assistant"
+msgstr "ダイエットプランアシスタント"
+
+msgid "Job Application"
+msgstr "求人応募"
+
+msgid "Offline Form"
+msgstr "オフラインフォーム"
+
+msgid "Real Estate"
+msgstr "不動産"
+
+msgid "Sales Support"
+msgstr "販売サポート"
+
+msgid "University"
+msgstr "大学"
+
+msgid "Vacation Planner"
+msgstr "バケーションプランナー"

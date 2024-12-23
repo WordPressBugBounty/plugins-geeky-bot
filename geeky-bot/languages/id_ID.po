@@ -1,0 +1,2678 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"POT-Creation-Date: \n"
+"PO-Revision-Date: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: id_ID\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 3.5\n"
+
+msgid "Logo"
+msgstr "logo"
+
+msgid "Template Field 1"
+msgstr "Bidang Templat 1"
+
+msgid "Title"
+msgstr "Judul"
+
+msgid "Template Field 2"
+msgstr "Bidang Templat 2"
+
+msgid "Template Field 3"
+msgstr "Bidang Templat 3"
+
+msgid "Template Field 4"
+msgstr "Bidang Templat 4"
+
+msgid "Template Field 10"
+msgstr "Bidang Templat 10"
+
+msgid "Simple Link here"
+msgstr "Tautan Sederhana di sini"
+
+msgid "Button"
+msgstr "Tombol"
+
+msgid "Selected"
+msgstr "Terpilih"
+
+msgid "Template Content"
+msgstr "Konten Templat"
+
+msgid "Template Field"
+msgstr "Bidang Templat"
+
+msgid "Show On Listing"
+msgstr "Tampilkan Di Daftar"
+
+msgid "Select Field"
+msgstr "Pilih Bidang"
+
+msgid "Label"
+msgstr "Label"
+
+msgid "Select Type"
+msgstr "Pilih Jenis"
+
+msgid "Set Value"
+msgstr "Tetapkan Nilai"
+
+msgid "No template fields are available!"
+msgstr "Tidak ada bidang templat yang tersedia!"
+
+msgid "Set Values"
+msgstr "Tetapkan Nilai"
+
+msgid "Field Name :"
+msgstr "Nama Bidang :"
+
+msgid "Save"
+msgstr "Menyimpan"
+
+msgid "Something went wrong try again later!"
+msgstr "Ada yang tidak beres, coba lagi nanti!"
+
+msgid "Info"
+msgstr "Informasi"
+
+msgid "An empty expected value or display value field."
+msgstr "Bidang nilai yang diharapkan atau nilai tampilan kosong."
+
+msgid "Values set successfully."
+msgstr "Nilai berhasil ditetapkan."
+
+msgid "Expected Value"
+msgstr "Nilai yang Diharapkan"
+
+msgid "Display Value"
+msgstr "Nilai Tampilan"
+
+msgid "Delete"
+msgstr "Menghapus"
+
+msgid "Add Value"
+msgstr "Tambahkan Nilai"
+
+msgid "Edit"
+msgstr "Sunting"
+
+msgid "Text Field"
+msgstr "Bidang Teks"
+
+msgid "Checkbox"
+msgstr "kotak centang"
+
+msgid "Radio Button"
+msgstr "Tombol Radio"
+
+msgid "Dropdown"
+msgstr "tarik-turun"
+
+msgid "Link"
+msgstr "Link"
+
+msgid ""
+"It is a long established fact that a reader will be distracted by the "
+"readable content of a page when looking at its layout Content here, content "
+"here..."
+msgstr ""
+"Sudah menjadi fakta lama bahwa pembaca akan terganggu oleh konten halaman "
+"yang dapat dibaca ketika melihat tata letaknya. Konten di sini, konten di "
+"sini..."
+
+msgid "Description"
+msgstr "Keterangan"
+
+msgid "Content Description"
+msgstr "Deskripsi Konten"
+
+msgid "Max Number Of Sentance"
+msgstr "Jumlah Kalimat Maks"
+
+msgid "1"
+msgstr "1"
+
+msgid "2"
+msgstr "2"
+
+msgid "3"
+msgstr "3"
+
+msgid "4"
+msgstr "4"
+
+msgid "5"
+msgstr "5"
+
+msgid "6"
+msgstr "6"
+
+msgid "Please wait a moment; this may take some time."
+msgstr "Mohon tunggu sebentar; ini mungkin memerlukan waktu."
+
+msgid "Synchronize"
+msgstr "Sinkronisasi"
+
+msgid "Data Synchronization Uncomplete"
+msgstr "Sinkronisasi Data Tidak Selesai"
+
+msgid ""
+"Your GeekyBot data is not updated. To ensure accurate results, please "
+"synchronize your AI web search data."
+msgstr ""
+"Data GeekyBot Anda tidak diperbarui. Untuk memastikan hasil yang akurat, "
+"harap sinkronkan data pencarian web AI Anda."
+
+msgid "Synchronize Data"
+msgstr "Sinkronisasi Data"
+
+msgid "user"
+msgstr "pengguna"
+
+msgid "Dashboard"
+msgstr "Dasbor"
+
+msgid "key check"
+msgstr "pemeriksaan kunci"
+
+msgid "keys"
+msgstr "kunci"
+
+msgid "Stories"
+msgstr "Cerita"
+
+msgid "AI Web Search"
+msgstr "Pencarian Web AI"
+
+msgid "Settings"
+msgstr "Pengaturan"
+
+msgid "Chatbot"
+msgstr "bot obrolan"
+
+msgid "Install Add-ons"
+msgstr "Instal Add-on"
+
+msgid "export"
+msgstr "ekspor"
+
+msgid "import"
+msgstr "impor"
+
+msgid "Chat History"
+msgstr "Riwayat Obrolan"
+
+msgid "build"
+msgstr "membangun"
+
+msgid "Build"
+msgstr "Membangun"
+
+msgid "Variables"
+msgstr "Variabel"
+
+msgid "forms"
+msgstr "formulir"
+
+msgid "Forms"
+msgstr "Formulir"
+
+msgid "actions"
+msgstr "tindakan"
+
+msgid "Actions"
+msgstr "Tindakan"
+
+msgid "File ext. is mismatched"
+msgstr "File ekst. tidak cocok"
+
+msgid "File size is greater then allowed file size"
+msgstr "Ukuran file lebih besar dari ukuran file yang diperbolehkan"
+
+msgid "Total Stats"
+msgstr "Statistik Jumlah"
+
+msgid "Intents"
+msgstr "Maksud"
+
+msgid "No record found"
+msgstr "Tidak ada catatan yang ditemukan"
+
+msgid "Control Panel"
+msgstr "Panel Kontrol"
+
+msgid "GeekyBot"
+msgstr "culunbot"
+
+msgid "Keys"
+msgstr "Kunci"
+
+msgid "Post Installation"
+msgstr "Pasca Instalasi"
+
+msgid "Premium Addon"
+msgstr "Tambahan Premium"
+
+msgid "Could not find any matching results"
+msgstr "Tidak dapat menemukan hasil yang cocok"
+
+msgid "no record"
+msgstr "tidak ada catatan"
+
+msgid "No record found !..."
+msgstr "Tidak ada catatan yang ditemukan!..."
+
+msgid "system offline"
+msgstr "sistem offline"
+
+msgid ""
+"Unfortunately sytem is offline for a bit of maintenance right now. But soon "
+"we will be up."
+msgstr ""
+"Sayangnya sistem sedang offline untuk sedikit pemeliharaan saat ini. Tapi "
+"sebentar lagi kita akan bangun."
+
+msgid "user ban"
+msgstr "larangan pengguna"
+
+msgid "Your account is disabled, please contact system administrator !..."
+msgstr "Akun Anda dinonaktifkan, silakan hubungi administrator sistem!..."
+
+msgid "login"
+msgstr "login"
+
+msgid "To Access This Page Please Login !..."
+msgstr "Untuk Mengakses Halaman Ini Silakan Masuk!..."
+
+msgid "Back to control panel"
+msgstr "Kembali ke panel kontrol"
+
+msgid "You are not logged in"
+msgstr "Anda belum masuk"
+
+msgid "User Is Disabled By Admin"
+msgstr "Pengguna Dinonaktifkan Oleh Admin"
+
+msgid "The page you are looking for no longer exists"
+msgstr "Halaman yang Anda cari sudah tidak ada lagi"
+
+msgid "You are already logged in"
+msgstr "Anda sudah masuk"
+
+msgid "Please select your role"
+msgstr "Silakan pilih peran Anda"
+
+msgid "You are not allowed"
+msgstr "Anda tidak diperbolehkan"
+
+msgid "You are Not Allowed To add More than One"
+msgstr "Anda Tidak Diizinkan Menambahkan Lebih dari Satu"
+
+msgid "Contact Adminstrator"
+msgstr "Hubungi Administrator"
+
+msgid "not allowed"
+msgstr "tidak diperbolehkan"
+
+msgid "You are already logged in !..."
+msgstr "Anda sudah masuk!..."
+
+msgid "Logout"
+msgstr "Keluar"
+
+msgid "Please first make a selection from the list"
+msgstr "Silakan pilih terlebih dahulu dari daftar"
+
+msgid "Unknown"
+msgstr "Tidak dikenal"
+
+msgid "Invalid request"
+msgstr "Permintaan tidak valid"
+
+msgid "has been successfully applied."
+msgstr "telah berhasil diterapkan."
+
+msgid "Error applying the new theme."
+msgstr "Terjadi kesalahan saat menerapkan tema baru."
+
+msgid "has been successfully saved."
+msgstr "telah berhasil disimpan."
+
+msgid "has not been saved."
+msgstr "belum disimpan."
+
+msgid "has been successfully reset."
+msgstr "telah berhasil diatur ulang."
+
+msgid "Every Story must have a name."
+msgstr "Setiap Cerita pasti punya nama."
+
+msgid "Every Story must have at least 1 intent."
+msgstr "Setiap Cerita harus memiliki setidaknya 1 maksud."
+
+msgid "has been successfully deleted."
+msgstr "telah berhasil dihapus."
+
+msgid "has been successfully exported."
+msgstr "telah berhasil diekspor."
+
+msgid "Data has not been exported."
+msgstr "Data belum diekspor."
+
+msgid "Record not exist."
+msgstr "Catatan tidak ada."
+
+msgid "has not been deleted."
+msgstr "belum dihapus."
+
+msgid "Please insert key."
+msgstr "Silakan masukkan kunci."
+
+msgid "key is not Valid."
+msgstr "kuncinya tidak Valid."
+
+msgid "transaction has been successfully verified."
+msgstr "transaksi telah berhasil diverifikasi."
+
+msgid "transaction has been successfully un-verified."
+msgstr "transaksi telah berhasil dibatalkan verifikasinya."
+
+msgid "transaction has not been successfully verified."
+msgstr "transaksi belum berhasil diverifikasi."
+
+msgid "transaction has not been successfully un-verified."
+msgstr "transaksi belum berhasil dibatalkan verifikasinya."
+
+msgid "Fields has been successfully required."
+msgstr "Bidang telah berhasil dibutuhkan."
+
+msgid "Field has not been required."
+msgstr "Bidang belum diperlukan."
+
+msgid "Fields has not been required."
+msgstr "Bidang belum diperlukan."
+
+msgid "Fields has been successfully not required."
+msgstr "Bidang telah berhasil tidak diperlukan."
+
+msgid "Field has not been not required."
+msgstr "Bidang belum diperlukan."
+
+msgid "Fields has not been not required."
+msgstr "Bidang belum diperlukan."
+
+msgid "status has been updated."
+msgstr "statusnya telah diperbarui."
+
+msgid "status has not been updated."
+msgstr "statusnya belum diperbarui."
+
+msgid "data has been synchronized."
+msgstr "data telah disinkronkan."
+
+msgid "data has not been synchronized."
+msgstr "data belum tersinkronisasi."
+
+msgid "in use cannot deleted."
+msgstr "sedang digunakan tidak dapat dihapus."
+
+msgid "already exist."
+msgstr "sudah ada."
+
+msgid "File type error."
+msgstr "Kesalahan jenis file."
+
+msgid "File size error."
+msgstr "Kesalahan ukuran file."
+
+msgid "Intent"
+msgstr "Maksud"
+
+msgid "Response"
+msgstr "Tanggapan"
+
+msgid "Intent Group"
+msgstr "Grup Niat"
+
+msgid "Variable"
+msgstr "Variabel"
+
+msgid "Story"
+msgstr "Cerita"
+
+msgid "Post type"
+msgstr "Jenis posting"
+
+msgid "AI web search"
+msgstr "Pencarian web AI"
+
+msgid "Action"
+msgstr "Tindakan"
+
+msgid "Changes"
+msgstr "Perubahan"
+
+msgid "Data"
+msgstr "Data"
+
+msgid "Message"
+msgstr "Pesan"
+
+msgid "Configuration"
+msgstr "Konfigurasi"
+
+msgid "Previous"
+msgstr "Sebelumnya"
+
+msgid "Next"
+msgstr "Berikutnya"
+
+msgid "Guest"
+msgstr "Tamu"
+
+msgid "User ID"
+msgstr "ID Pengguna"
+
+msgid "Add to Story"
+msgstr "Tambahkan ke Cerita"
+
+msgid "Add to story"
+msgstr "Tambahkan ke cerita"
+
+msgid "Search"
+msgstr "Mencari"
+
+msgid "Search with user name"
+msgstr "Cari dengan nama pengguna"
+
+msgid "reset"
+msgstr "mengatur ulang"
+
+msgid "Select Chat"
+msgstr "Pilih Obrolan"
+
+msgid "Sender"
+msgstr "Pengirim"
+
+msgid "select chat"
+msgstr "pilih obrolan"
+
+msgid "Chat history is not selected."
+msgstr "Riwayat obrolan tidak dipilih."
+
+msgid "Please select a conversation to view the user's chat history."
+msgstr "Silakan pilih percakapan untuk melihat riwayat obrolan pengguna."
+
+msgid "Add User Input To Story"
+msgstr "Tambahkan Masukan Pengguna ke Cerita"
+
+msgid "Select"
+msgstr "Memilih"
+
+msgid "Add User Input"
+msgstr "Tambahkan Masukan Pengguna"
+
+msgid "You must choose a story; it cannot be empty."
+msgstr "Anda harus memilih sebuah cerita; itu tidak boleh kosong."
+
+msgid "Security verification Failed, Please restart you chat to continue."
+msgstr ""
+"Verifikasi keamanan Gagal, Silakan mulai ulang obrolan Anda untuk "
+"melanjutkan."
+
+msgid "Your session has expired; please restart your chat."
+msgstr "Sesi Anda telah berakhir; silakan mulai ulang obrolan Anda."
+
+msgid "Hi, I am Chatbot. I do not have specific knowledge."
+msgstr "Hai, saya Chatbot. Saya tidak memiliki pengetahuan khusus."
+
+msgid "Your message is too long. Please enter only a username or email."
+msgstr ""
+"Pesan Anda terlalu panjang. Silakan masukkan hanya nama pengguna atau email."
+
+msgid "Invalid username or email. Try again with the correct one."
+msgstr "Nama pengguna atau email tidak valid. Coba lagi dengan yang benar."
+
+msgid "Show More"
+msgstr "Tampilkan Lebih Banyak"
+
+msgid "Show Articles"
+msgstr "Tampilkan Artikel"
+
+msgid "session time out"
+msgstr "waktu sesi habis"
+
+msgid "Data directory can not empty."
+msgstr "Direktori data tidak boleh kosong."
+
+msgid "Data directory is not proper."
+msgstr "Direktori data tidak tepat."
+
+msgid "Data directory is not writable."
+msgstr "Direktori data tidak dapat ditulis."
+
+msgid "Default fallback message can not be empty."
+msgstr "Pesan fallback default tidak boleh kosong."
+
+msgid "Admin pagination not saved."
+msgstr "Penomoran halaman admin tidak disimpan."
+
+msgid "User pagination not saved."
+msgstr "Penomoran halaman pengguna tidak disimpan."
+
+msgid ""
+"The title of your chatbot or the primary title displayed on your chat "
+"interface."
+msgstr ""
+"Judul chatbot Anda atau judul utama yang ditampilkan di antarmuka obrolan "
+"Anda."
+
+msgid "Default Fallback Message"
+msgstr "Pesan Penggantian Default"
+
+msgid "The message displayed when the chatbot cannot understand."
+msgstr "Pesan ditampilkan ketika chatbot tidak dapat memahami."
+
+msgid "Offline"
+msgstr "Luring"
+
+msgid "Online"
+msgstr "On line"
+
+msgid "Set your plugin offline for front end."
+msgstr "Atur plugin Anda offline untuk front end."
+
+msgid "Data Directory"
+msgstr "Direktori Data"
+
+msgid "The directory where all chatbot data files are stored."
+msgstr "Direktori tempat semua file data chatbot disimpan."
+
+msgid "Admin Pagination"
+msgstr "Paginasi Admin"
+
+msgid "The number of items displayed in a paginated list in the admin panel."
+msgstr "Jumlah item yang ditampilkan dalam daftar paginasi di panel admin."
+
+msgid "User Pagination"
+msgstr "Paginasi Pengguna"
+
+msgid "The number of items displayed in a paginated list on the user side."
+msgstr "Jumlah item yang ditampilkan dalam daftar paginasi di sisi pengguna."
+
+msgid "Save Settings"
+msgstr "Simpan Pengaturan"
+
+msgid "Add Icon"
+msgstr "Tambahkan Ikon"
+
+msgid "years"
+msgstr "bertahun-tahun"
+
+msgid "year"
+msgstr "tahun"
+
+msgid "ago"
+msgstr "yang lalu"
+
+msgid "months"
+msgstr "bulan"
+
+msgid "month"
+msgstr "bulan"
+
+msgid "days"
+msgstr "hari"
+
+msgid "day"
+msgstr "hari"
+
+msgid "hours"
+msgstr "jam"
+
+msgid "hour"
+msgstr "jam"
+
+msgid "minutes"
+msgstr "menit"
+
+msgid "minute"
+msgstr "menit"
+
+msgid "Just now"
+msgstr "Baru saja"
+
+msgid "AI ChatBot is disabled."
+msgstr "AI ChatBot dinonaktifkan."
+
+msgid "Active Now"
+msgstr "Aktif Sekarang"
+
+msgid "AI ChatBot story not built."
+msgstr "Kisah AI ChatBot tidak dibuat."
+
+msgid "Built Now"
+msgstr "Dibangun Sekarang"
+
+msgid "WooCommerce plugin is not installed."
+msgstr "Plugin WooCommerce tidak diinstal."
+
+msgid "Install Now"
+msgstr "Instal Sekarang"
+
+msgid "WooCommerce plugin is not activated."
+msgstr "Plugin WooCommerce tidak diaktifkan."
+
+msgid "WooCommerce Bot is disabled."
+msgstr "Bot WooCommerce dinonaktifkan."
+
+msgid "WooCommerce story not built."
+msgstr "Cerita WooCommerce tidak dibuat."
+
+msgid "Post Type not found."
+msgstr "Jenis Posting tidak ditemukan."
+
+msgid "AI Web Search is disabled!"
+msgstr "Pencarian Web AI dinonaktifkan!"
+
+msgid "AI ChatBot Sessions"
+msgstr "Sesi AI ChatBot"
+
+msgid "Session Card"
+msgstr "Kartu Sesi"
+
+msgid "Graph"
+msgstr "Grafik"
+
+msgid "Card"
+msgstr "Kartu"
+
+msgid "WooCommerce Sessions"
+msgstr "Sesi WooCommerce"
+
+msgid "AI Web Search Sessions"
+msgstr "Sesi Pencarian Web AI"
+
+msgid "Icon"
+msgstr "Ikon"
+
+msgid "GeekyBot Setup and Usage Guides"
+msgstr "Panduan Pengaturan dan Penggunaan GeekyBot"
+
+msgid "Explore installation, training, and effective usage guides."
+msgstr "Jelajahi instalasi, pelatihan, dan panduan penggunaan yang efektif."
+
+msgid "Play"
+msgstr "Bermain"
+
+msgid "Youtube Icon"
+msgstr "Ikon Youtube"
+
+msgid "How to add Story"
+msgstr "Bagaimana cara menambahkan Cerita"
+
+msgid "How to add Variable"
+msgstr "Bagaimana cara menambahkan Variabel"
+
+msgid "Change Settings"
+msgstr "Ubah Pengaturan"
+
+msgid "Change Color"
+msgstr "Ubah Warna"
+
+msgid "Remove"
+msgstr "Menghapus"
+
+msgid "Cross Icon"
+msgstr "Ikon Salib"
+
+msgid "Stories Date"
+msgstr "Tanggal Cerita"
+
+msgid "View Stories"
+msgstr "Lihat Cerita"
+
+msgid "AI Chatbot"
+msgstr "AI Obrolan"
+
+msgid "WooCommerce"
+msgstr "WooCommerce"
+
+msgid "Bot Icon"
+msgstr "Ikon Bot"
+
+msgid "AI ChatBot"
+msgstr "AI ObrolanBot"
+
+msgid "Last Month Stats"
+msgstr "Statistik Bulan Lalu"
+
+msgid "Woo Icon"
+msgstr "Ikon Woo"
+
+msgid "AI Web Search "
+msgstr "Pencarian Web AI"
+
+msgid "Manage Post Types"
+msgstr "Kelola Jenis Posting"
+
+msgid "Enable AI Web Search"
+msgstr "Aktifkan Pencarian Web AI"
+
+msgid "Search Icon"
+msgstr "Ikon Pencarian"
+
+msgid "History"
+msgstr "Sejarah"
+
+msgid "WooCommerce Bot"
+msgstr "Bot WooCommerce"
+
+msgid "logo"
+msgstr "logo"
+
+msgid "No of Conversation"
+msgstr "Tidak Ada Percakapan"
+
+msgid "View History"
+msgstr "Lihat Riwayat"
+
+msgid "No data"
+msgstr "Tidak ada data"
+
+msgid "No Data"
+msgstr "Tidak Ada Data"
+
+msgid "Addons"
+msgstr "tambahan"
+
+msgid "addon"
+msgstr "tambahan"
+
+msgid "Custom Listing Style"
+msgstr "Gaya Daftar Kustom"
+
+msgid "Custom Listing Text"
+msgstr "Teks Daftar Kustom"
+
+msgid "WooCommerce Features"
+msgstr "Fitur WooCommerce"
+
+msgid "Addon List"
+msgstr "Daftar Tambahan"
+
+msgid "WooCommerce "
+msgstr "WooCommerce"
+
+msgid "Lead Generation"
+msgstr "Generasi Pemimpin"
+
+msgid ""
+"GeekyBot simplifies the WooCommerce experience with intelligent product "
+"discovery and purchasing. It seamlessly integrates with WooCommerce for "
+"efficient product searches, detailed listings, and a smooth shopping "
+"experience."
+msgstr ""
+"GeekyBot menyederhanakan pengalaman WooCommerce dengan penemuan dan "
+"pembelian produk yang cerdas. Ini terintegrasi secara mulus dengan "
+"WooCommerce untuk pencarian produk yang efisien, daftar terperinci, dan "
+"pengalaman berbelanja yang lancar."
+
+msgid "Find Product"
+msgstr "Temukan Produk"
+
+msgid "Find Products"
+msgstr "Temukan Produk"
+
+msgid "Find products by name, category, or price range via chat."
+msgstr ""
+"Temukan produk berdasarkan nama, kategori, atau kisaran harga melalui "
+"obrolan."
+
+msgid "List Product"
+msgstr "Daftar Produk"
+
+msgid "List Products"
+msgstr "Daftar Produk"
+
+msgid "Show relevant products with details and prices based on preferences."
+msgstr ""
+"Tampilkan produk yang relevan dengan detail dan harga berdasarkan preferensi."
+
+msgid "Add To Cart Product"
+msgstr "Tambahkan Ke Keranjang Produk"
+
+msgid "Add to Cart"
+msgstr "Tambahkan ke Keranjang"
+
+msgid "Easily add products to the cart list directly through chat."
+msgstr ""
+"Tambahkan produk ke daftar keranjang dengan mudah langsung melalui obrolan."
+
+msgid "Watch Video"
+msgstr "Tonton Video"
+
+msgid "AI Chat"
+msgstr "Obrolan AI"
+
+msgid "Custom"
+msgstr "Kebiasaan"
+
+msgid " AI Chat Bot "
+msgstr "Bot Obrolan AI"
+
+msgid "Conversation Handling"
+msgstr "Penanganan Percakapan"
+
+msgid ""
+"AI Chat Conversation provides intelligent and context-aware interactions to "
+"enhance user engagement. Define key conversation elements to capture "
+"specific user inputs dynamically and adapt responses based on the context."
+msgstr ""
+"Percakapan Obrolan AI memberikan interaksi cerdas dan sadar konteks untuk "
+"meningkatkan keterlibatan pengguna. Tentukan elemen percakapan utama untuk "
+"menangkap masukan pengguna tertentu secara dinamis dan menyesuaikan respons "
+"berdasarkan konteks."
+
+msgid "Capture and process inputs dynamically for personalized responses."
+msgstr ""
+"Tangkap dan proses masukan secara dinamis untuk respons yang dipersonalisasi."
+
+msgid "Adjust interactions based on the ongoing conversation for relevance."
+msgstr ""
+"Sesuaikan interaksi berdasarkan percakapan yang sedang berlangsung agar "
+"relevan."
+
+msgid "Use collected data to tailor responses and improve satisfaction."
+msgstr ""
+"Gunakan data yang dikumpulkan untuk menyesuaikan respons dan meningkatkan "
+"kepuasan."
+
+msgid "Discover Our "
+msgstr "Temukan Kami"
+
+msgid " AI Web Search"
+msgstr "Pencarian Web AI"
+
+msgid "Bot"
+msgstr "Bot"
+
+msgid ""
+"AI Web Search improves user experience by delivering advanced, intuitive "
+"content discovery on your WordPress site. With powerful searches, users can "
+"quickly find relevant information, enhancing overall interest and "
+"accessibility."
+msgstr ""
+"AI Web Search meningkatkan pengalaman pengguna dengan menghadirkan penemuan "
+"konten yang canggih dan intuitif di situs WordPress Anda. Dengan penelusuran "
+"canggih, pengguna dapat dengan cepat menemukan informasi relevan, sehingga "
+"meningkatkan minat dan aksesibilitas secara keseluruhan."
+
+msgid "GeekyBot swiftly retrieves posts and pages based on user queries."
+msgstr ""
+"GeekyBot dengan cepat mengambil postingan dan halaman berdasarkan permintaan "
+"pengguna."
+
+msgid "Displays full content or excerpts that match search terms."
+msgstr ""
+"Menampilkan konten lengkap atau kutipan yang cocok dengan istilah pencarian."
+
+msgid "Activate GeekyBot’s search for an AI web search with one click."
+msgstr "Aktifkan pencarian GeekyBot untuk pencarian web AI dengan satu klik."
+
+msgid "Web Search"
+msgstr "Pencarian Web"
+
+msgid "GeekyBot Supported Plugins"
+msgstr "Plugin yang Didukung GeekyBot"
+
+msgid "Plugin"
+msgstr "Pengaya"
+
+msgid "WP Job Manager"
+msgstr "Manajer Pekerjaan WP"
+
+msgid "Tutor LMS"
+msgstr "LMS guru"
+
+msgid "bbPress"
+msgstr "bbPress"
+
+msgid "LearnPress"
+msgstr "Pelajari Pers"
+
+msgid "Knowledge Base"
+msgstr "Basis Pengetahuan"
+
+msgid "BetterDocs"
+msgstr "Dokumen yang Lebih Baik"
+
+msgid "Motors"
+msgstr "Motor"
+
+msgid "Estatik Real Estate"
+msgstr "Real Estat Estatik"
+
+msgid "Auto Listings"
+msgstr "Daftar Otomatis"
+
+msgid "Welcome to GeekyBot Features"
+msgstr "Selamat datang di Fitur GeekyBot"
+
+msgid "GeekyBot Features"
+msgstr "Fitur GeekyBot"
+
+msgid "WooCommerce Integration"
+msgstr "Integrasi WooCommerce"
+
+msgid "Quick Installation"
+msgstr "Instalasi Cepat"
+
+msgid "Version: 1.0.0"
+msgstr "Versi: 1.0.0"
+
+msgid "AI Chat Bot"
+msgstr "Bot Obrolan AI"
+
+msgid "Enable/Disable"
+msgstr "Aktifkan/Nonaktifkan"
+
+msgid "Enable/Disable Bot"
+msgstr "Aktifkan/Nonaktifkan Bot"
+
+msgid "Select Template"
+msgstr "Pilih Templat"
+
+msgid ""
+"AI Chat in GeekyBot provides instant, personalized responses to user "
+"queries, ensuring seamless support around the clock. With its ability to "
+"engage users at any time, GeekyBot enhances the reliability of your service, "
+"making sure that your customers' needs are always met."
+msgstr ""
+"AI Chat di GeekyBot memberikan respons instan dan terpersonalisasi terhadap "
+"pertanyaan pengguna, memastikan dukungan lancar sepanjang waktu. Dengan "
+"kemampuannya untuk melibatkan pengguna kapan saja, GeekyBot meningkatkan "
+"keandalan layanan Anda, memastikan bahwa kebutuhan pelanggan Anda selalu "
+"terpenuhi."
+
+msgid ""
+"By training GeekyBot with your specific data, you can create dynamic, "
+"tailored interactions that reflect your business's unique voice and "
+"services. This customization allows for more relevant, effective "
+"conversations that build stronger connections with your users."
+msgstr ""
+"Dengan melatih GeekyBot menggunakan data spesifik, Anda dapat menciptakan "
+"interaksi dinamis dan disesuaikan yang mencerminkan suara dan layanan unik "
+"bisnis Anda. Penyesuaian ini memungkinkan percakapan yang lebih relevan dan "
+"efektif yang membangun hubungan lebih kuat dengan pengguna Anda."
+
+msgid "Bot Image"
+msgstr "Gambar Bot"
+
+msgid "image"
+msgstr "gambar"
+
+msgid "Watch AI ChatBot Video"
+msgstr "Tonton Video AI ChatBot"
+
+msgid "AI Web Search Bot"
+msgstr "Bot Pencarian Web AI"
+
+msgid ""
+"Effortlessly search for specific posts and content across your entire site "
+"using our powerful AI web search tool. GeekyBot goes beyond standard "
+"searches, delivering results from all types of data on your site. Whether "
+"you're looking for posts, pages, custom post types, or other information, "
+"GeekyBot ensures you find what you need quickly and efficiently by "
+"displaying relevant articles, posts, and more in a single, streamlined "
+"search experience."
+msgstr ""
+"Telusuri postingan dan konten tertentu dengan mudah di seluruh situs Anda "
+"menggunakan alat penelusuran web AI kami yang canggih. GeekyBot melampaui "
+"pencarian standar, memberikan hasil dari semua jenis data di situs Anda. "
+"Baik Anda mencari postingan, halaman, jenis postingan khusus, atau informasi "
+"lainnya, GeekyBot memastikan Anda menemukan apa yang Anda butuhkan dengan "
+"cepat dan efisien dengan menampilkan artikel, postingan, dan lainnya yang "
+"relevan dalam satu pengalaman pencarian yang efisien."
+
+msgid "New Post Type Search"
+msgstr "Pencarian Jenis Posting Baru"
+
+msgid ""
+"Enable this option to directly include new post types in search results, "
+"enhancing user access to all content."
+msgstr ""
+"Aktifkan opsi ini untuk secara langsung memasukkan jenis postingan baru "
+"dalam hasil pencarian, sehingga meningkatkan akses pengguna ke semua konten."
+
+msgid "Watch AI Web Search Video"
+msgstr "Tonton Video Penelusuran Web AI"
+
+msgid "Back"
+msgstr "Kembali"
+
+msgid "Finish"
+msgstr "Menyelesaikan"
+
+msgid "WooCommerce is not installed"
+msgstr "WooCommerce tidak diinstal"
+
+msgid ""
+"WooCommerce plugin is not installed on your site, you won't be able to "
+"integrate GeekyBot with WooCommerce."
+msgstr ""
+"Plugin WooCommerce tidak diinstal di situs Anda, Anda tidak akan dapat "
+"mengintegrasikan GeekyBot dengan WooCommerce."
+
+msgid ""
+"Easily integrate AI with WooCommerce to enhance your online store’s "
+"performance. GeekyBot boosts lead generation and customer interactions, "
+"automating key processes for a more effective and engaging shopping "
+"experience."
+msgstr ""
+"Integrasikan AI dengan WooCommerce dengan mudah untuk meningkatkan kinerja "
+"toko online Anda. GeekyBot meningkatkan perolehan prospek dan interaksi "
+"pelanggan, mengotomatiskan proses utama untuk pengalaman berbelanja yang "
+"lebih efektif dan menarik."
+
+msgid ""
+"GeekyBot also streamlines customer inquiries and provides real-time, "
+"intelligent responses. By improving retention and customer satisfaction, it "
+"ensures your store delivers an exceptional experience that keeps shoppers "
+"coming back."
+msgstr ""
+"GeekyBot juga menyederhanakan pertanyaan pelanggan dan memberikan respons "
+"cerdas dan real-time. Dengan meningkatkan retensi dan kepuasan pelanggan, "
+"ini memastikan toko Anda memberikan pengalaman luar biasa yang membuat "
+"pembeli datang kembali."
+
+msgid "Watch WooCommerce Video"
+msgstr "Tonton Video WooCommerce"
+
+msgid "Welcome to GeekyBot !..."
+msgstr "Selamat datang di GeekyBot!..."
+
+msgid ""
+"The ultimate AI chatbot for WooCommerce lead generation, intelligent content "
+"search, and interactive customer engagement on your WordPress website."
+msgstr ""
+"Chatbot AI terbaik untuk menghasilkan prospek WooCommerce, pencarian konten "
+"cerdas, dan keterlibatan pelanggan interaktif di situs WordPress Anda."
+
+msgid ""
+"Personalize interactions by dynamically processing user inputs using slots "
+"and variables."
+msgstr ""
+"Personalisasikan interaksi dengan memproses masukan pengguna secara dinamis "
+"menggunakan slot dan variabel."
+
+msgid ""
+"Enhance shopping by enabling users to find products and add them to their "
+"cart seamlessly."
+msgstr ""
+"Tingkatkan belanja dengan memungkinkan pengguna menemukan produk dan "
+"menambahkannya ke keranjang mereka dengan lancar."
+
+msgid "Website Search"
+msgstr "Pencarian Situs Web"
+
+msgid ""
+"Streamline discovery by helping users find relevant information on your "
+"WordPress site."
+msgstr ""
+"Sederhanakan penemuan dengan membantu pengguna menemukan informasi yang "
+"relevan di situs WordPress Anda."
+
+msgid "Please insert activation key to proceed"
+msgstr "Silakan masukkan kunci aktivasi untuk melanjutkan"
+
+msgid "Addon Installation Failed"
+msgstr "Instalasi Addon Gagal"
+
+msgid "Addon installation failed"
+msgstr "Instalasi addon gagal"
+
+msgid "Addon Installation Failed, File download error"
+msgstr "Instalasi Addon Gagal, Kesalahan pengunduhan file"
+
+msgid "Activated"
+msgstr "Diaktifkan"
+
+msgid "Deactivate"
+msgstr "Menonaktifkan"
+
+msgid "Deactivated"
+msgstr "Dinonaktifkan"
+
+msgid "Activate"
+msgstr "Mengaktifkan"
+
+msgid "Not Installed"
+msgstr "Tidak Dipasang"
+
+msgid "Addon Installed Successfully"
+msgstr "Addon Berhasil Diinstal"
+
+msgid "Ticket Actions"
+msgstr "Tindakan Tiket"
+
+msgid "Agents"
+msgstr "Agen"
+
+msgid "Ticket Auto Close"
+msgstr "Tutup Otomatis Tiket"
+
+msgid "left image"
+msgstr "gambar kiri"
+
+msgid "right image"
+msgstr "gambar yang tepat"
+
+msgid "Add-ons For Majestic Support"
+msgstr "Pengaya Untuk Dukungan Luar Biasa"
+
+msgid ""
+"Get trusted WordPress add-ons. Guaranteed to work fast, safe to use, "
+"beautifully coded, packed with features, and are easy to use."
+msgstr ""
+"Dapatkan add-on WordPress tepercaya. Dijamin bekerja cepat, aman digunakan, "
+"kodenya indah, dikemas dengan fitur, dan mudah digunakan."
+
+msgid "Save big today with an exclusive membership plan!"
+msgstr "Hemat banyak hari ini dengan paket keanggotaan eksklusif!"
+
+msgid "Show"
+msgstr "Menunjukkan"
+
+msgid "show bundle pack"
+msgstr "tunjukkan paket bundel"
+
+msgid "Agent"
+msgstr "Agen"
+
+msgid ""
+"Add agents and assign roles and permissions to provide assistance and "
+"support for customer support tickets."
+msgstr ""
+"Tambahkan agen dan tetapkan peran dan izin untuk memberikan bantuan dan "
+"dukungan untuk tiket dukungan pelanggan."
+
+msgid "buy now"
+msgstr "beli sekarang"
+
+msgid "Installed"
+msgstr "Dipasang"
+
+msgid "multiform"
+msgstr "beraneka ragam"
+
+msgid "Multi Forms"
+msgstr "Multi Bentuk"
+
+msgid ""
+"Create multiple custom ticket forms with different custom fields for each "
+"request type that you support."
+msgstr ""
+"Buat beberapa formulir tiket khusus dengan bidang khusus berbeda untuk "
+"setiap jenis permintaan yang Anda dukung."
+
+msgid "Email Piping"
+msgstr "Perpipaan Email"
+
+msgid ""
+"Email piping is the process of automatically turning incoming emails into "
+"support tickets without manual data entry."
+msgstr ""
+"Perpipaan email adalah proses mengubah email masuk menjadi tiket dukungan "
+"secara otomatis tanpa entri data manual."
+
+msgid "agent auto assign"
+msgstr "penetapan otomatis agen"
+
+msgid "Agent Auto Assign"
+msgstr "Penetapan Otomatis Agen"
+
+msgid ""
+"Make the ticket assignment process automatic and assign the most qualified "
+"agent to your tickets with conditions."
+msgstr ""
+"Jadikan proses penetapan tiket otomatis dan tetapkan agen yang paling "
+"memenuhi syarat untuk tiket Anda dengan ketentuan."
+
+msgid "private note"
+msgstr "catatan pribadi"
+
+msgid "Private Note"
+msgstr "Catatan Pribadi"
+
+msgid ""
+"Add private notes to a ticket and share crucial information internally with "
+"your agents, this private note is not visible to the customer."
+msgstr ""
+"Tambahkan catatan pribadi ke tiket dan bagikan informasi penting secara "
+"internal dengan agen Anda, catatan pribadi ini tidak terlihat oleh pelanggan."
+
+msgid "merge tickets"
+msgstr "menggabungkan tiket"
+
+msgid "Merge Tickets"
+msgstr "Gabungkan Tiket"
+
+msgid ""
+"Merge one or more tickets into another if you receive two support requests "
+"from the same end user about the same issue."
+msgstr ""
+"Gabungkan satu atau lebih tiket ke tiket lainnya jika Anda menerima dua "
+"permintaan dukungan dari pengguna akhir yang sama tentang masalah yang sama."
+
+msgid "helptopic"
+msgstr "topik bantuan"
+
+msgid "Help Topics"
+msgstr "Topik Bantuan"
+
+msgid ""
+"The user can search for and choose the topic for which they need help using "
+"help topics"
+msgstr ""
+"Pengguna dapat mencari dan memilih topik bantuan yang mereka perlukan "
+"menggunakan topik bantuan"
+
+msgid "Auto Close Ticket"
+msgstr "Tiket Tutup Otomatis"
+
+msgid ""
+"Manage abandoned tickets, and set rules for tickets over time, and those "
+"tickets will be closed automatically after a certain period."
+msgstr ""
+"Kelola tiket yang ditinggalkan, dan tetapkan aturan untuk tiket seiring "
+"berjalannya waktu, dan tiket tersebut akan ditutup secara otomatis setelah "
+"jangka waktu tertentu."
+
+msgid "Knowledgebase"
+msgstr "Basis Pengetahuan"
+
+msgid ""
+"Stop wasting time on repetitive inquiries, build your knowledge base, and "
+"organize your solutions into categories for users."
+msgstr ""
+"Berhentilah membuang waktu untuk pertanyaan berulang, bangun basis "
+"pengetahuan Anda, dan atur solusi Anda ke dalam kategori untuk pengguna."
+
+msgid "Ticket Overdue"
+msgstr "Tiket Terlambat"
+
+msgid ""
+"Define rules or set a specific time interval for making tickets "
+"automatically overdue."
+msgstr ""
+"Tetapkan aturan atau tetapkan interval waktu tertentu untuk membuat tiket "
+"lewat waktu secara otomatis."
+
+msgid "time tracking"
+msgstr "pelacakan waktu"
+
+msgid "Time Tracking"
+msgstr "Pelacakan Waktu"
+
+msgid ""
+"Track the amount of time spent on each customer support ticket without "
+"losing focus and enhance team productivity."
+msgstr ""
+"Lacak jumlah waktu yang dihabiskan untuk setiap tiket dukungan pelanggan "
+"tanpa kehilangan fokus dan tingkatkan produktivitas tim."
+
+msgid "Ticket History"
+msgstr "Sejarah Tiket"
+
+msgid ""
+"Show the whole history of the ticket, including its status and any action "
+"taken in response to it."
+msgstr ""
+"Tampilkan seluruh riwayat tiket, termasuk statusnya dan tindakan apa pun "
+"yang diambil sebagai tanggapan terhadap tiket tersebut."
+
+msgid "Paid Support"
+msgstr "Dukungan Berbayar"
+
+msgid ""
+"The simplest approach to effectively manage payments for premium help is "
+"through paid support."
+msgstr ""
+"Pendekatan paling sederhana untuk mengelola pembayaran bantuan premium "
+"secara efektif adalah melalui dukungan berbayar."
+
+msgid "Private Credentials"
+msgstr "Kredensial Pribadi"
+
+msgid ""
+"Customers will enter sensitive information on tickets, and this add-on is "
+"designed to help you keep that information secure."
+msgstr ""
+"Pelanggan akan memasukkan informasi sensitif pada tiket, dan add-on ini "
+"dirancang untuk membantu Anda menjaga keamanan informasi tersebut."
+
+msgid "Ticket close reason"
+msgstr "Alasan penutupan tiket"
+
+msgid "Ticket Closed Reason"
+msgstr "Alasan Tiket Ditutup"
+
+msgid ""
+"Empowers users to provide clear and concise explanations for why customer "
+"service tickets are being closed."
+msgstr ""
+"Memberdayakan pengguna untuk memberikan penjelasan yang jelas dan ringkas "
+"tentang alasan penutupan tiket layanan pelanggan."
+
+msgid "Premade Responses"
+msgstr "Tanggapan yang Telah Dibuat Sebelumnya"
+
+msgid ""
+"Make ready-made responses to the most common questions in the tickets to "
+"swiftly address client issues."
+msgstr ""
+"Buat tanggapan siap pakai terhadap pertanyaan paling umum di tiket untuk "
+"mengatasi masalah klien dengan cepat."
+
+msgid "max ticket"
+msgstr "tiket maksimal"
+
+msgid "Max Tickets"
+msgstr "Tiket Maks"
+
+msgid ""
+"Admins can limit the number of tickets that users can create as well as the "
+"number of tickets that agents can open individually."
+msgstr ""
+"Admin dapat membatasi jumlah tiket yang dapat dibuat pengguna serta jumlah "
+"tiket yang dapat dibuka oleh agen secara individual."
+
+msgid "Feedback"
+msgstr "Masukan"
+
+msgid ""
+"To enhance the quality of your services, ask your customers to complete a "
+"survey when a ticket is closed."
+msgstr ""
+"Untuk meningkatkan kualitas layanan Anda, minta pelanggan Anda untuk mengisi "
+"survei saat tiket ditutup."
+
+msgid "ticket actions"
+msgstr "tindakan tiket"
+
+msgid ""
+"Ticket action options allow you to execute additional actions on tickets."
+msgstr ""
+"Opsi tindakan tiket memungkinkan Anda melakukan tindakan tambahan pada tiket."
+
+msgid "Export"
+msgstr "Ekspor"
+
+msgid ""
+"Easily export ticket data and performance report data from your majestic "
+"support to an Excel spreadsheet with our efficient and user-friendly "
+"solution."
+msgstr ""
+"Ekspor data tiket dan data laporan kinerja dengan mudah dari dukungan agung "
+"Anda ke spreadsheet Excel dengan solusi kami yang efisien dan ramah pengguna."
+
+msgid "email cc"
+msgstr "email cc"
+
+msgid "Email CC"
+msgstr "Surel CC"
+
+msgid ""
+"Send the exact copy of the email to the provided email address with Email CC "
+"or BCC."
+msgstr ""
+"Kirim salinan persis email ke alamat email yang diberikan dengan Email CC "
+"atau BCC."
+
+msgid "user options"
+msgstr "pilihan pengguna"
+
+msgid "User Options"
+msgstr "Opsi Pengguna"
+
+msgid ""
+"User options enable you to define roles for new users when they are "
+"registered."
+msgstr ""
+"Opsi pengguna memungkinkan Anda menentukan peran bagi pengguna baru saat "
+"mereka terdaftar."
+
+msgid "SMTP"
+msgstr "SMTP"
+
+msgid ""
+"SMTP enables you to add  custom mail protocols to send and receive emails "
+"with the support ticket system."
+msgstr ""
+"SMTP memungkinkan Anda menambahkan protokol email khusus untuk mengirim dan "
+"menerima email dengan sistem tiket dukungan."
+
+msgid "Multi Language Email Templates"
+msgstr "Templat Email Multi Bahasa"
+
+msgid ""
+"Create multi-language email templates for all default email templates to "
+"send customers emails in the language that they prefer."
+msgstr ""
+"Buat templat email multi-bahasa untuk semua templat email default guna "
+"mengirim email kepada pelanggan dalam bahasa yang mereka sukai."
+
+msgid "Downloads"
+msgstr "Unduhan"
+
+msgid ""
+"Downloads can be very helpful for users who are looking to obtain the "
+"necessary information to resolve issues."
+msgstr ""
+"Unduhan bisa sangat membantu bagi pengguna yang ingin memperoleh informasi "
+"yang diperlukan untuk menyelesaikan masalah."
+
+msgid "Announcements"
+msgstr "Pengumuman"
+
+msgid ""
+"Make an unlimited number of announcements related to the support system to "
+"encourage customer interaction."
+msgstr ""
+"Buat pengumuman dalam jumlah tidak terbatas terkait sistem pendukung untuk "
+"mendorong interaksi pelanggan."
+
+msgid "Ban Email"
+msgstr "Larangan Email"
+
+msgid ""
+"With Ban Email, you can limit a users ability to create new tickets by "
+"blocking their email address."
+msgstr ""
+"Dengan Larangan Email, Anda dapat membatasi kemampuan pengguna untuk membuat "
+"tiket baru dengan memblokir alamat email mereka."
+
+msgid "FAQ"
+msgstr "Pertanyaan Umum"
+
+msgid ""
+"Provide answers to common user questions with the FAQ extension before they "
+"become tickets."
+msgstr ""
+"Berikan jawaban atas pertanyaan umum pengguna dengan ekstensi FAQ sebelum "
+"menjadi tiket."
+
+msgid "admin widgets"
+msgstr "widget admin"
+
+msgid "Admin Widgets"
+msgstr "Widget Admin"
+
+msgid ""
+"Get immediate data on your support operations as soon as you log into your "
+"WordPress administration area."
+msgstr ""
+"Dapatkan data langsung tentang operasi dukungan Anda segera setelah Anda "
+"masuk ke area administrasi WordPress Anda."
+
+msgid "desktop notifications"
+msgstr "pemberitahuan desktop"
+
+msgid "Desktop Notifications"
+msgstr "Pemberitahuan Desktop"
+
+msgid ""
+"You will be informed of anything that occurs on your support system by the "
+"desktop notifications."
+msgstr ""
+"Anda akan diberitahu tentang apa pun yang terjadi pada sistem pendukung Anda "
+"melalui pemberitahuan desktop."
+
+msgid "woocommerce"
+msgstr "woocommerce"
+
+msgid ""
+"The integration of the support ticket system for WooCommerce with your e-"
+"shop makes your support better and more professional."
+msgstr ""
+"Integrasi sistem tiket dukungan untuk WooCommerce dengan toko elektronik "
+"Anda menjadikan dukungan Anda lebih baik dan profesional."
+
+msgid "mail chimp"
+msgstr "simpanan surat"
+
+msgid "Mail Chimp"
+msgstr "simpanan surat"
+
+msgid ""
+"Manage your email marketing campaigns directly from your majestic support by "
+"adding new user accounts to your Mailchimp email list."
+msgstr ""
+"Kelola kampanye pemasaran email Anda langsung dari dukungan luar biasa Anda "
+"dengan menambahkan akun pengguna baru ke daftar email Mailchimp Anda."
+
+msgid "internal mail"
+msgstr "surat internal"
+
+msgid "Internal Mail"
+msgstr "Surat Internal"
+
+msgid ""
+"Send messages internally about support tickets and other issues between "
+"agents with internal mail."
+msgstr ""
+"Kirim pesan secara internal tentang tiket dukungan dan masalah lain antar "
+"agen dengan surat internal."
+
+msgid "frontend widget"
+msgstr "widget bagian depan"
+
+msgid "Front-End Widgets"
+msgstr "Widget Front-End"
+
+msgid ""
+"Frontend Widgets include several widgets that can be used to enhance the "
+"plugin's functionality in various areas of the website."
+msgstr ""
+"Widget Frontend mencakup beberapa widget yang dapat digunakan untuk "
+"meningkatkan fungsionalitas plugin di berbagai area situs web."
+
+msgid "envato"
+msgstr "envato"
+
+msgid "Envato"
+msgstr "Envato"
+
+msgid ""
+"Clients won't be able to open a new ticket using the Envato Validation "
+"plugin if they don't have a valid Envato license."
+msgstr ""
+"Klien tidak akan dapat membuka tiket baru menggunakan plugin Validasi Envato "
+"jika mereka tidak memiliki lisensi Envato yang valid."
+
+msgid "easy digital download"
+msgstr "pengunduhan digital yang mudah"
+
+msgid "Easy Digital Download"
+msgstr "Unduhan Digital Mudah"
+
+msgid ""
+"Learn about a customer's purchase directly from the support dashboard by "
+"integrating Majestic Support with your EDD store."
+msgstr ""
+"Pelajari pembelian pelanggan langsung dari dasbor dukungan dengan "
+"mengintegrasikan Majestic Support dengan toko EDD Anda."
+
+msgid "Majestic Support Add-ons Bundle Pack"
+msgstr "Paket Bundel Add-on Dukungan Majestic"
+
+msgid "Basic"
+msgstr "Dasar"
+
+msgid "Unlimited Agents"
+msgstr "Agen Tanpa Batas"
+
+msgid "Helptopic"
+msgstr "topik bantuan"
+
+msgid "Show all"
+msgstr "Tunjukkan semuanya"
+
+msgid "Standard"
+msgstr "Standar"
+
+msgid "Everything in basic included and "
+msgstr "Segala sesuatu yang dasar termasuk dan"
+
+msgid "Premade Response"
+msgstr "Respon yang Telah Dibuat Sebelumnya"
+
+msgid "Professional"
+msgstr "Profesional"
+
+msgid "Everything in standard included and"
+msgstr "Semuanya dalam standar termasuk dan"
+
+msgid "All Future Addons"
+msgstr "Semua Add-on Masa Depan"
+
+msgid "spinning wheel"
+msgstr "roda berputar"
+
+msgid "New Update Version"
+msgstr "Versi Pembaruan Baru"
+
+msgid "is Available"
+msgstr "Tersedia"
+
+msgid "Status: "
+msgstr "Status:"
+
+msgid "Version"
+msgstr "Versi"
+
+msgid "addon in no longer active"
+msgstr "addon di tidak lagi aktif"
+
+msgid "Please Insert Your Activation Key"
+msgstr "Silakan Masukkan Kunci Aktivasi Anda"
+
+msgid "XXXX-XXXX-XXXXX-XXXXX"
+msgstr "XXXX-XXXX-XXXXX-XXXXX"
+
+msgid "Proceed"
+msgstr "Melanjutkan"
+
+msgid "GeekyBot Addon Installer"
+msgstr "Penginstal Addon GeekyBot"
+
+msgid "Select All Addons"
+msgstr "Pilih Semua Add-on"
+
+msgid "All allowed add ons are already installed"
+msgstr "Semua add-on yang diizinkan telah diinstal"
+
+msgid "You are not allowed to install any add on"
+msgstr "Anda tidak diperbolehkan memasang add-on apa pun"
+
+msgid "Something went wrong"
+msgstr "Ada yang tidak beres"
+
+msgid "Addons Installed Successfully"
+msgstr "Addons berhasil diinstal"
+
+msgid "Open Dashboard"
+msgstr "Buka Dasbor"
+
+msgid "Open Plugins Page"
+msgstr "Buka Halaman Plugin"
+
+msgid "PersonName"
+msgstr "Nama Orang"
+
+msgid "Facility"
+msgstr "Fasilitas"
+
+msgid "Organization"
+msgstr "Organisasi"
+
+msgid "Location"
+msgstr "Lokasi"
+
+msgid "Location_NON_GPE"
+msgstr "Lokasi_NON_GPE"
+
+msgid "Product"
+msgstr "Produk"
+
+msgid "Event"
+msgstr "Peristiwa"
+
+msgid "ArtWork"
+msgstr "Karya Seni"
+
+msgid "LawDocument"
+msgstr "Dokumen Hukum"
+
+msgid "Language"
+msgstr "Bahasa"
+
+msgid "Date"
+msgstr "Tanggal"
+
+msgid "Time"
+msgstr "Waktu"
+
+msgid "Percentage"
+msgstr "Persentase"
+
+msgid "Money"
+msgstr "Uang"
+
+msgid "Quantity"
+msgstr "Kuantitas"
+
+msgid "Ordinal"
+msgstr "Urut"
+
+msgid "Cardinal"
+msgstr "Kardinal"
+
+msgid "Select Variable For"
+msgstr "Pilih Variabel Untuk"
+
+msgid "Attribute"
+msgstr "Atribut"
+
+msgid "Name"
+msgstr "Nama"
+
+msgid "Varibale Name"
+msgstr "Nama Variabel"
+
+msgid "Type"
+msgstr "Jenis"
+
+msgid "Possible Field Values"
+msgstr "Kemungkinan Nilai Bidang"
+
+msgid "Add Comma Seprated Values"
+msgstr "Tambahkan Nilai yang Dipisahkan Koma"
+
+msgid "Variable For"
+msgstr "Variabel Untuk"
+
+msgid "Select Variable For in case of Woocommerce Variable"
+msgstr "Pilih Variabel Untuk dalam kasus Variabel Woocommerce"
+
+msgid "cancel"
+msgstr "membatalkan"
+
+msgid "Cancel"
+msgstr "Membatalkan"
+
+msgid "Save Changes"
+msgstr "Simpan Perubahan"
+
+msgid "Save Variable"
+msgstr "Simpan Variabel"
+
+msgid "Reset"
+msgstr "Mengatur ulang"
+
+msgid "Are you sure to delete it?"
+msgstr "Apakah Anda yakin akan menghapusnya?"
+
+msgid "Delete Variable"
+msgstr "Hapus Variabel"
+
+msgid "Add Variable"
+msgstr "Tambahkan Variabel"
+
+msgid "name"
+msgstr "nama"
+
+msgid "type"
+msgstr "jenis"
+
+msgid "Possible Values Here"
+msgstr "Nilai yang Mungkin Di Sini"
+
+msgid "Edit Variable"
+msgstr "Sunting Variabel"
+
+msgid "Are you sure to delete it"
+msgstr "Apakah Anda yakin untuk menghapusnya"
+
+msgid "Add New"
+msgstr "Tambahkan Baru"
+
+msgid "User Input"
+msgstr "Masukan Pengguna"
+
+msgid "Close"
+msgstr "Menutup"
+
+msgid "Add"
+msgstr "Menambahkan"
+
+msgid "Add More"
+msgstr "Tambahkan Lebih Banyak"
+
+msgid "Available Variables"
+msgstr "Variabel yang Tersedia"
+
+msgid "Enter bot response here..."
+msgstr "Masukkan respons bot di sini..."
+
+msgid "Button text here"
+msgstr "Teks tombol di sini"
+
+msgid "URL"
+msgstr "URL"
+
+msgid "Button value here"
+msgstr "Nilai tombol di sini"
+
+msgid "Enter URL here"
+msgstr "Masukkan URL di sini"
+
+msgid "Add New Button"
+msgstr "Tambahkan Tombol Baru"
+
+msgid "Select Predefined Function"
+msgstr "Pilih Fungsi Standar"
+
+msgid "Select Action"
+msgstr "Pilih Tindakan"
+
+msgid "Add New Action"
+msgstr "Tambahkan Tindakan Baru"
+
+msgid "Add New Form"
+msgstr "Tambahkan Formulir Baru"
+
+msgid "Enter default fallback here..."
+msgstr "Masukkan penggantian default di sini..."
+
+msgid "Enter default fallback for intent here..."
+msgstr "Masukkan fallback default untuk maksud di sini..."
+
+msgid "Start Point"
+msgstr "Titik Awal"
+
+msgid "Error: The template file does not exist."
+msgstr "Kesalahan: File templat tidak ada."
+
+msgid "Text"
+msgstr "Teks"
+
+msgid "Function"
+msgstr "Fungsi"
+
+msgid "Error: The"
+msgstr "Kesalahan: Itu"
+
+msgid "tag in"
+msgstr "masuk"
+
+msgid "at position"
+msgstr "di posisi"
+
+msgid "is missing."
+msgstr "hilang."
+
+msgid "is empty."
+msgstr "kosong."
+
+msgid "tag associated with the user input"
+msgstr "tag yang terkait dengan input pengguna"
+
+msgid "in"
+msgstr "di dalam"
+
+msgid "tag of the"
+msgstr "tag dari"
+
+msgid "block associated with the user input"
+msgstr "blok yang terkait dengan input pengguna"
+
+msgid "or"
+msgstr "atau"
+
+msgid "Error: The function name"
+msgstr "Kesalahan: Nama fungsi"
+
+msgid "in the"
+msgstr "di"
+
+msgid "is invalid."
+msgstr "tidak valid."
+
+msgid "Error: The type name"
+msgstr "Kesalahan: Nama tipe"
+
+msgid "is invalid. This should be"
+msgstr "tidak valid. Ini seharusnya"
+
+msgid "You might like these products."
+msgstr "Anda mungkin menyukai produk ini."
+
+msgid "No exact match was found. Explore these similar products."
+msgstr "Tidak ditemukan kecocokan persis. Jelajahi produk serupa ini."
+
+msgid "Here are some suggestions."
+msgstr "Berikut beberapa saran."
+
+msgid "Showing"
+msgstr "Menampilkan"
+
+msgid "of"
+msgstr "dari"
+
+msgid "Add to cart"
+msgstr "Tambahkan ke troli"
+
+msgid "Empty Story"
+msgstr "Cerita Kosong"
+
+msgid "Show All Products"
+msgstr "Tampilkan Semua Produk"
+
+msgid "Search Product"
+msgstr "Cari Produk"
+
+msgid "Get Products Under Price"
+msgstr "Dapatkan Produk Sesuai Harga"
+
+msgid "Get Products Above Price"
+msgstr "Dapatkan Produk Di Atas Harga"
+
+msgid "View Cart/Remove Items"
+msgstr "Lihat Keranjang/Hapus Item"
+
+msgid "Checkout"
+msgstr "Check-out"
+
+msgid "Reset Password"
+msgstr "Atur Ulang Kata Sandi"
+
+msgid "Send Chat To Admin"
+msgstr "Kirim Obrolan Ke Admin"
+
+msgid "Integer"
+msgstr "Bilangan bulat"
+
+msgid "Float"
+msgstr "Mengambang"
+
+msgid "Boolean"
+msgstr "Boolean"
+
+msgid "String"
+msgstr "Rangkaian"
+
+msgid "Default Fallback"
+msgstr "Penggantian Bawaan"
+
+msgid "Are you sure to reset it?"
+msgstr "Apakah Anda yakin untuk mengatur ulang?"
+
+msgid "Parameter Name *"
+msgstr "Nama Parameter *"
+
+msgid "Varibale Name *"
+msgstr "Nama Variabel *"
+
+msgid "User input has been successfully saved."
+msgstr "Masukan pengguna telah berhasil disimpan."
+
+msgid "An empty user input field."
+msgstr "Bidang input pengguna kosong."
+
+msgid "An empty bot response."
+msgstr "Respons bot kosong."
+
+msgid "Response Successfully Saved!"
+msgstr "Respons Berhasil Disimpan!"
+
+msgid "Action Successfully Saved!"
+msgstr "Tindakan Berhasil Disimpan!"
+
+msgid "Form Successfully Saved!"
+msgstr "Formulir Berhasil Disimpan!"
+
+msgid "Default Fallback Successfully Saved!"
+msgstr "Penggantian Default Berhasil Disimpan!"
+
+msgid "Store relevant user input first, then fallback."
+msgstr ""
+"Simpan input pengguna yang relevan terlebih dahulu, lalu lakukan fallback."
+
+msgid "An empty default fallback."
+msgstr "Penggantian default yang kosong."
+
+msgid "Default Intent Fallback Successfully Saved!"
+msgstr "Penggantian Intent Default Berhasil Disimpan!"
+
+msgid "Discard"
+msgstr "Membuang"
+
+msgid "Temporary discard"
+msgstr "Pembuangan sementara"
+
+msgid "Automate"
+msgstr "Mengotomatisasikan"
+
+msgid "User input"
+msgstr "masukan pengguna"
+
+msgid "Form"
+msgstr "Membentuk"
+
+msgid "Fallback"
+msgstr "Penggantian"
+
+msgid "Chat "
+msgstr "Mengobrol"
+
+msgid "Available Variable"
+msgstr "Variabel yang Tersedia"
+
+msgid "Product Name"
+msgstr "Nama Produk"
+
+msgid "Minimum Price"
+msgstr "Harga Minimum"
+
+msgid "Maximum Price"
+msgstr "Harga Maksimum"
+
+msgid "User Login"
+msgstr "Masuk Pengguna"
+
+msgid "Action Icon"
+msgstr "Ikon Aksi"
+
+msgid "User Icon"
+msgstr "Ikon Pengguna"
+
+msgid "User"
+msgstr "Pengguna"
+
+msgid "Bot Response"
+msgstr "Respon Bot"
+
+msgid "User Text Icon"
+msgstr "Ikon Teks Pengguna"
+
+msgid "Bot Function Icon"
+msgstr "Ikon Fungsi Bot"
+
+msgid "Bot Function"
+msgstr "Fungsi Bot"
+
+msgid "Predefined Function"
+msgstr "Fungsi yang Telah Ditentukan Sebelumnya"
+
+msgid "Bot Action Icon"
+msgstr "Ikon Tindakan Bot"
+
+msgid "Bot Action"
+msgstr "Aksi Bot"
+
+msgid "Bot Form Icon"
+msgstr "Ikon Bentuk Bot"
+
+msgid "Bot Form"
+msgstr "Formulir Bot"
+
+msgid "Fallback Icon"
+msgstr "Ikon Penggantian"
+
+msgid "Fallback Massege"
+msgstr "Pesan Penggantian"
+
+msgid "Save & Close"
+msgstr "Simpan & Tutup"
+
+msgid "Info Icon"
+msgstr "Ikon Info"
+
+msgid "How to add parameters"
+msgstr "Cara menambahkan parameter"
+
+msgid "User form Icon"
+msgstr "Ikon formulir pengguna"
+
+msgid "Form Name *"
+msgstr "Nama Formulir *"
+
+msgid "Add New Variable"
+msgstr "Tambahkan Variabel Baru"
+
+msgid "Function Form"
+msgstr "Bentuk Fungsi"
+
+msgid "Action Form"
+msgstr "Formulir Tindakan"
+
+msgid "Custom Action"
+msgstr "Tindakan Kustom"
+
+msgid "Add New Custom Action"
+msgstr "Tambahkan Tindakan Kustom Baru"
+
+msgid "Add New Parameter"
+msgstr "Tambahkan Parameter Baru"
+
+msgid "Intent Fallback"
+msgstr "Penggantian Niat"
+
+msgid "Save Story"
+msgstr "Simpan Cerita"
+
+msgid "Reset Story"
+msgstr "Atur Ulang Cerita"
+
+msgid "Story has been successfully saved."
+msgstr "Cerita telah berhasil disimpan."
+
+msgid "WooCommerce is not active!"
+msgstr "WooCommerce tidak aktif!"
+
+msgid "Error encountered in template."
+msgstr "Terjadi kesalahan pada templat."
+
+msgid "An empty story name."
+msgstr "Nama cerita kosong."
+
+msgid "An empty story template."
+msgstr "Templat cerita kosong."
+
+msgid "title"
+msgstr "judul"
+
+msgid "Active"
+msgstr "Aktif"
+
+msgid "Disable"
+msgstr "Cacat"
+
+msgid "Edit Story"
+msgstr "Sunting Cerita"
+
+msgid "Are you sure to delete"
+msgstr "Apakah Anda yakin untuk menghapus"
+
+msgid "Delete Story"
+msgstr "Hapus Cerita"
+
+msgid "Built Story"
+msgstr "Kisah yang Dibangun"
+
+msgid "Built"
+msgstr "Dibuat"
+
+msgid "WooCommerce Story"
+msgstr "Kisah WooCommerce"
+
+msgid "Story Name *"
+msgstr "Nama Cerita *"
+
+msgid "Edit Story Name"
+msgstr "Edit Nama Cerita"
+
+msgid "Invalid username or email."
+msgstr "Nama pengguna atau email tidak valid."
+
+msgid "Looks like there was a problem resetting your password:"
+msgstr "Sepertinya ada masalah saat menyetel ulang sandi Anda:"
+
+msgid "User not found!"
+msgstr "Pengguna tidak ditemukan!"
+
+msgid "Okay, I have sent the recovery email. Thank you for your patience."
+msgstr ""
+"Oke, saya sudah mengirimkan email pemulihannya. Terima kasih atas kesabaran "
+"Anda."
+
+msgid "Your query is sent to the admin."
+msgstr "Permintaan Anda dikirim ke admin."
+
+msgid "Enable"
+msgstr "Memungkinkan"
+
+msgid "Smart Popup"
+msgstr "Popup Cerdas"
+
+msgid "Standard Popup"
+msgstr "Popup Standar"
+
+msgid "Appearance"
+msgstr "Penampilan"
+
+msgid "Choose File"
+msgstr "Pilih File"
+
+msgid "User Default Image"
+msgstr "Gambar Default Pengguna"
+
+msgid "Primary Color"
+msgstr "Warna Primer"
+
+msgid "Choose Color"
+msgstr "Pilih Warna"
+
+msgid "User Text Background"
+msgstr "Latar Belakang Teks Pengguna"
+
+msgid "User Text Color"
+msgstr "Warna Teks Pengguna"
+
+msgid "Bot Link Color"
+msgstr "Warna Tautan Bot"
+
+msgid "Presets"
+msgstr "Preset"
+
+msgid "Preset"
+msgstr "Prasetel"
+
+msgid "online"
+msgstr "on line"
+
+msgid "User Image"
+msgstr "Gambar Pengguna"
+
+msgid "Hi I am John"
+msgstr "Hai, saya John"
+
+msgid "Hi John! How can I help you?"
+msgstr "Hai Yohanes! Apa yang bisa saya bantu?"
+
+msgid "Can you help me find a new backpack?"
+msgstr "Bisakah Anda membantu saya menemukan ransel baru?"
+
+msgid "Product Icon"
+msgstr "Ikon Produk"
+
+msgid "Fusion Backpack"
+msgstr "Ransel Fusi"
+
+msgid "$"
+msgstr "$"
+
+msgid "59"
+msgstr "59"
+
+msgid "Send message"
+msgstr "Kirim pesan"
+
+msgid "Welcome Message"
+msgstr "Pesan Selamat Datang"
+
+msgid "Welcome Image"
+msgstr "Gambar Selamat Datang"
+
+msgid "Chat Auto-Popup"
+msgstr "Popup Otomatis Obrolan"
+
+msgid "Controls whether the chat popup appears automatically on your site."
+msgstr "Mengontrol apakah popup obrolan muncul secara otomatis di situs Anda."
+
+msgid "Chat Pop-up Style"
+msgstr "Gaya Pop-up Obrolan"
+
+msgid "Choose how the chat will appear: Smart or Standard pop-up."
+msgstr "Pilih tampilan obrolan: Pop-up Cerdas atau Standar."
+
+msgid "Chat Auto-Popup Timing"
+msgstr "Waktu Popup Otomatis Obrolan"
+
+msgid ""
+"Define the delay time in seconds for the chatbot to auto-appear on the site."
+msgstr ""
+"Tentukan waktu tunda dalam hitungan detik agar chatbot muncul secara "
+"otomatis di situs."
+
+msgid "Note"
+msgstr "Catatan"
+
+msgid ""
+"If the colors have been saved but the user-side colors are still the same, "
+"it is advised to clear the cache."
+msgstr ""
+"Jika warna sudah disimpan namun warna sisi pengguna masih sama, disarankan "
+"untuk menghapus cache."
+
+msgid "Also"
+msgstr "Juga"
+
+msgid "Found"
+msgstr "Ditemukan"
+
+msgid "Here are some"
+msgstr "Ini beberapa"
+
+msgid "Help"
+msgstr "Membantu"
+
+msgid "Have any problem?"
+msgstr "Ada masalah?"
+
+msgid ""
+"If you experience any difficulties, we're here to help! Simply click the"
+msgstr "Jika Anda mengalami kesulitan, kami siap membantu! Cukup klik"
+
+msgid "Create A Ticket"
+msgstr "Buat Tiket"
+
+msgid ""
+"button to report your issue, and our dedicated support team will assist you "
+"promptly."
+msgstr ""
+"tombol untuk melaporkan masalah Anda, dan tim dukungan khusus kami akan "
+"segera membantu Anda."
+
+msgid "Create Ticket"
+msgstr "Buat Tiket"
+
+msgid "Post Type"
+msgstr "Jenis Posting"
+
+msgid "post type"
+msgstr "jenis posting"
+
+msgid "Post Label"
+msgstr "Label Pos"
+
+msgid "Associated Plugin"
+msgstr "Plugin Terkait"
+
+msgid "Add associated plugin's name"
+msgstr "Tambahkan nama plugin terkait"
+
+msgid "For better data consistency, please provide a associated plugin's name."
+msgstr "Untuk konsistensi data yang lebih baik, berikan nama plugin terkait."
+
+msgid "Status"
+msgstr "Status"
+
+msgid "For status changes, please use the options available in the listing."
+msgstr ""
+"Untuk perubahan status, silakan gunakan opsi yang tersedia dalam daftar."
+
+msgid "Template Section"
+msgstr "Bagian Templat"
+
+msgid ""
+"Fields are currently auto-filled for preview purposes only. Please save your "
+"changes to apply them."
+msgstr ""
+"Bidang saat ini diisi secara otomatis untuk tujuan pratinjau saja. Harap "
+"simpan perubahan Anda untuk menerapkannya."
+
+msgid "Choose one template style from the given below"
+msgstr "Pilih satu gaya templat dari yang diberikan di bawah ini"
+
+msgid "Add Button /Link"
+msgstr "Tambahkan Tombol / Tautan"
+
+msgid "Add New Button /Link"
+msgstr "Tambahkan Tombol/Tautan Baru"
+
+msgid "Show on Listing"
+msgstr "Tampilkan di Daftar"
+
+msgid "View Details"
+msgstr "Lihat Detail"
+
+msgid "detail page link"
+msgstr "tautan halaman detail"
+
+msgid "Save Template"
+msgstr "Simpan Templat"
+
+msgid "Create a Post"
+msgstr "Buat Postingan"
+
+msgid "Please first create a sample post to use template section."
+msgstr "Silakan buat dulu contoh postingan untuk menggunakan bagian template."
+
+msgid "AI web search enabled successfully."
+msgstr "Pencarian web AI berhasil diaktifkan."
+
+msgid "AI web search already enabled."
+msgstr "Pencarian web AI sudah diaktifkan."
+
+msgid "Something went wrong."
+msgstr "Ada yang tidak beres."
+
+msgid "AI web search disabled successfully."
+msgstr "Pencarian web AI berhasil dinonaktifkan."
+
+msgid "New post type search enabled successfully."
+msgstr "Pencarian jenis postingan baru berhasil diaktifkan."
+
+msgid "New post type search disabled successfully."
+msgstr "Pencarian jenis postingan baru berhasil dinonaktifkan."
+
+msgid "Data Synchronization Needed"
+msgstr "Sinkronisasi Data Diperlukan"
+
+msgid ""
+"Your data is not updated. To ensure accurate results, please synchronize "
+"your AI web search data."
+msgstr ""
+"Data Anda tidak diperbarui. Untuk memastikan hasil yang akurat, harap "
+"sinkronkan data pencarian web AI Anda."
+
+msgid "Enable AI web Search"
+msgstr "Aktifkan Pencarian web AI"
+
+msgid ""
+"Enable this feature to provide users with direct AI web search results in "
+"the chat, offering them a broader context for their queries."
+msgstr ""
+"Aktifkan fitur ini untuk memberikan hasil penelusuran web AI langsung kepada "
+"pengguna dalam obrolan, sehingga menawarkan konteks yang lebih luas untuk "
+"kueri mereka."
+
+msgid "Enable New Post Type Search"
+msgstr "Aktifkan Pencarian Jenis Posting Baru"
+
+msgid "Lable"
+msgstr "Label"
+
+msgid "Post lable"
+msgstr "Label pos"
+
+msgid "WooCommerce is currently inactive."
+msgstr "WooCommerce saat ini tidak aktif."
+
+msgid "No product was found."
+msgstr "Tidak ada produk yang ditemukan."
+
+msgid "Please enter a valid product or category name."
+msgstr "Silakan masukkan nama produk atau kategori yang valid."
+
+msgid "Please enter a valid price."
+msgstr "Silakan masukkan harga yang valid."
+
+msgid "Please enter a valid price range."
+msgstr "Silakan masukkan kisaran harga yang valid."
+
+msgid "Your cart is currently empty."
+msgstr "Keranjang Anda saat ini kosong."
+
+msgid "Cart Details"
+msgstr "Detail Keranjang"
+
+msgid "Price"
+msgstr "Harga"
+
+msgid "Change"
+msgstr "Mengubah"
+
+msgid "Total Price"
+msgstr "Harga Total"
+
+msgid "Remove Item"
+msgstr "Hapus Barang"
+
+msgid "Subtotal"
+msgstr "Subtotal"
+
+msgid "Total"
+msgstr "Total"
+
+msgid "Proceed to Checkout"
+msgstr "Lanjutkan ke Pembayaran"
+
+msgid "is out of stock."
+msgstr "kehabisan stok."
+
+msgid "You cannot add another “"
+msgstr "Anda tidak dapat menambahkan yang lain “"
+
+msgid "” to your cart."
+msgstr "” ke keranjang Anda."
+
+msgid "You cannot add more than"
+msgstr "Anda tidak dapat menambahkan lebih dari"
+
+msgid "of this product to your cart."
+msgstr "produk ini ke keranjang Anda."
+
+msgid "has been added to your cart."
+msgstr "telah ditambahkan ke keranjang Anda."
+
+msgid "has not been added to your cart. Please try again."
+msgstr "belum ditambahkan ke keranjang Anda. Silakan coba lagi."
+
+msgid "View Cart"
+msgstr "Lihat Keranjang"
+
+msgid "Please select a product!"
+msgstr "Silakan pilih produk!"
+
+msgid "There are no variations available."
+msgstr "Tidak ada variasi yang tersedia."
+
+msgid "Product not found or not a variable product."
+msgstr "Produk tidak ditemukan atau bukan produk variabel."
+
+msgid "You can't add another “"
+msgstr "Anda tidak dapat menambahkan yang lain “"
+
+msgid "There was an error while adding the product to the cart."
+msgstr "Terjadi kesalahan saat menambahkan produk ke keranjang."
+
+msgid ""
+"The requested variation with the specified attributes could not be found."
+msgstr ""
+"Variasi yang diminta dengan atribut yang ditentukan tidak dapat ditemukan."
+
+msgid "Change Quantity"
+msgstr "Ubah Kuantitas"
+
+msgid "Update"
+msgstr "Memperbarui"
+
+msgid "The cart is empty."
+msgstr "Gerobaknya kosong."
+
+msgid "Cart item is not found."
+msgstr "Item keranjang tidak ditemukan."
+
+msgid "The item was not found in the cart."
+msgstr "Barang tidak ditemukan di keranjang."
+
+msgid "Quantity updated successfully!"
+msgstr "Kuantitas berhasil diperbarui!"
+
+msgid "Change quantity"
+msgstr "Ubah kuantitas"
+
+msgid "Edit Post Type"
+msgstr "Edit Jenis Posting"
+
+msgid "Parameter"
+msgstr "Parameter"
+
+msgid "delete"
+msgstr "menghapus"
+
+msgid "add intent"
+msgstr "menambahkan niat"
+
+msgid "plus icon"
+msgstr "ditambah ikon"
+
+msgid "Add Intents"
+msgstr "Tambahkan Maksud"
+
+msgid ""
+"On the responses listing page, all the responses are listed here; you can "
+"check them out."
+msgstr ""
+"Pada halaman daftar tanggapan, semua tanggapan tercantum di sini; Anda dapat "
+"memeriksanya."
+
+msgid "Add Intent"
+msgstr "Tambahkan Niat"
+
+msgid ""
+"On the form listing page, all the forms are listed here; you can check them "
+"out."
+msgstr ""
+"Pada halaman daftar formulir, semua formulir tercantum di sini; Anda dapat "
+"memeriksanya."
+
+msgid "Add Forms"
+msgstr "Tambahkan Formulir"
+
+msgid "On the add form page, you can add a new form."
+msgstr "Pada halaman tambah formulir, Anda dapat menambahkan formulir baru."
+
+msgid "Responses"
+msgstr "Tanggapan"
+
+msgid "Add Response"
+msgstr "Tambahkan Respon"
+
+msgid "On the add Response page, you can add a new Response."
+msgstr "Pada halaman tambah Respon, Anda dapat menambahkan Respon baru."
+
+msgid ""
+"On the actions listing page, all the actions are listed here; you can check "
+"them out."
+msgstr ""
+"Pada halaman daftar tindakan, semua tindakan tercantum di sini; Anda dapat "
+"memeriksanya."
+
+msgid "Add  Action"
+msgstr "Tambahkan Tindakan"
+
+msgid "On the add action page, you can add a new action."
+msgstr "Di halaman tambahkan tindakan, Anda dapat menambahkan tindakan baru."
+
+msgid "Add Intent Group"
+msgstr "Tambahkan Grup Intent"
+
+msgid "Import"
+msgstr "Impor"
+
+msgid "Menu"
+msgstr "Menu"
+
+msgid "End Chat"
+msgstr "Akhiri Obrolan"
+
+msgid "Restart Chat"
+msgstr "Mulai ulang Obrolan"
+
+msgid "Image"
+msgstr "Gambar"
+
+msgid "Send Icon"
+msgstr "Kirim Ikon"
+
+msgid "Welcome to GeekyBot! Let me know how I can assist you today."
+msgstr ""
+"Selamat datang di GeekyBot! Beri tahu saya bagaimana saya dapat membantu "
+"Anda hari ini."
+
+msgid "admin."
+msgstr "admin."
+
+msgid "Account Assistance"
+msgstr "Bantuan Akun"
+
+msgid "Diet Plan Assistant"
+msgstr "Asisten Rencana Diet"
+
+msgid "Job Application"
+msgstr "Lamaran Pekerjaan"
+
+msgid "Offline Form"
+msgstr "Formulir Offline"
+
+msgid "Real Estate"
+msgstr "Real Estat"
+
+msgid "Sales Support"
+msgstr "Dukungan Penjualan"
+
+msgid "University"
+msgstr "Universitas"
+
+msgid "Vacation Planner"
+msgstr "Perencana Liburan"

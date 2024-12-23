@@ -1,0 +1,2683 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"POT-Creation-Date: \n"
+"PO-Revision-Date: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: nl_NL\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 3.5\n"
+
+msgid "Logo"
+msgstr "Logo"
+
+msgid "Template Field 1"
+msgstr "Sjabloonveld 1"
+
+msgid "Title"
+msgstr "Titel"
+
+msgid "Template Field 2"
+msgstr "Sjabloonveld 2"
+
+msgid "Template Field 3"
+msgstr "Sjabloonveld 3"
+
+msgid "Template Field 4"
+msgstr "Sjabloonveld 4"
+
+msgid "Template Field 10"
+msgstr "Sjabloonveld 10"
+
+msgid "Simple Link here"
+msgstr "Eenvoudige link hier"
+
+msgid "Button"
+msgstr "Knop"
+
+msgid "Selected"
+msgstr "Gekozen"
+
+msgid "Template Content"
+msgstr "Sjablooninhoud"
+
+msgid "Template Field"
+msgstr "Sjabloonveld"
+
+msgid "Show On Listing"
+msgstr "Weergeven op vermelding"
+
+msgid "Select Field"
+msgstr "Selecteer Veld"
+
+msgid "Label"
+msgstr "Label"
+
+msgid "Select Type"
+msgstr "Selecteer Type"
+
+msgid "Set Value"
+msgstr "Waarde instellen"
+
+msgid "No template fields are available!"
+msgstr "Er zijn geen sjabloonvelden beschikbaar!"
+
+msgid "Set Values"
+msgstr "Waarden instellen"
+
+msgid "Field Name :"
+msgstr "Veldnaam:"
+
+msgid "Save"
+msgstr "Redden"
+
+msgid "Something went wrong try again later!"
+msgstr "Er is iets misgegaan. Probeer het later opnieuw!"
+
+msgid "Info"
+msgstr "Info"
+
+msgid "An empty expected value or display value field."
+msgstr "Een leeg veld voor verwachte waarde of weergavewaarde."
+
+msgid "Values set successfully."
+msgstr "Waarden zijn succesvol ingesteld."
+
+msgid "Expected Value"
+msgstr "Verwachte waarde"
+
+msgid "Display Value"
+msgstr "Weergavewaarde"
+
+msgid "Delete"
+msgstr "Verwijderen"
+
+msgid "Add Value"
+msgstr "Voeg waarde toe"
+
+msgid "Edit"
+msgstr "Bewerking"
+
+msgid "Text Field"
+msgstr "Tekstveld"
+
+msgid "Checkbox"
+msgstr "Selectievakje"
+
+msgid "Radio Button"
+msgstr "Keuzerondje"
+
+msgid "Dropdown"
+msgstr "Dropdownmenu"
+
+msgid "Link"
+msgstr "Link"
+
+msgid ""
+"It is a long established fact that a reader will be distracted by the "
+"readable content of a page when looking at its layout Content here, content "
+"here..."
+msgstr ""
+"Het is een al lang bekend feit dat een lezer wordt afgeleid door de leesbare "
+"inhoud van een pagina als hij naar de lay-out kijkt. Inhoud hier, inhoud "
+"hier..."
+
+msgid "Description"
+msgstr "Beschrijving"
+
+msgid "Content Description"
+msgstr "Inhoud Beschrijving"
+
+msgid "Max Number Of Sentance"
+msgstr "Maximaal aantal zinnen"
+
+msgid "1"
+msgstr "1"
+
+msgid "2"
+msgstr "2"
+
+msgid "3"
+msgstr "3"
+
+msgid "4"
+msgstr "4"
+
+msgid "5"
+msgstr "5"
+
+msgid "6"
+msgstr "6"
+
+msgid "Please wait a moment; this may take some time."
+msgstr "Een ogenblik geduld alstublieft; dit kan enige tijd duren."
+
+msgid "Synchronize"
+msgstr "Synchroniseren"
+
+msgid "Data Synchronization Uncomplete"
+msgstr "Gegevenssynchronisatie niet voltooid"
+
+msgid ""
+"Your GeekyBot data is not updated. To ensure accurate results, please "
+"synchronize your AI web search data."
+msgstr ""
+"Uw GeekyBot-gegevens zijn niet bijgewerkt. Synchroniseer uw AI-"
+"webzoekgegevens om nauwkeurige resultaten te garanderen."
+
+msgid "Synchronize Data"
+msgstr "Synchroniseer gegevens"
+
+msgid "user"
+msgstr "gebruiker"
+
+msgid "Dashboard"
+msgstr "Dashboard"
+
+msgid "key check"
+msgstr "sleutel controle"
+
+msgid "keys"
+msgstr "sleutels"
+
+msgid "Stories"
+msgstr "Verhalen"
+
+msgid "AI Web Search"
+msgstr "AI-webzoekopdracht"
+
+msgid "Settings"
+msgstr "Instellingen"
+
+msgid "Chatbot"
+msgstr "Chatbot"
+
+msgid "Install Add-ons"
+msgstr "Installeer add-ons"
+
+msgid "export"
+msgstr "exporteren"
+
+msgid "import"
+msgstr "importeren"
+
+msgid "Chat History"
+msgstr "Chatgeschiedenis"
+
+msgid "build"
+msgstr "bouwen"
+
+msgid "Build"
+msgstr "Bouwen"
+
+msgid "Variables"
+msgstr "Variabelen"
+
+msgid "forms"
+msgstr "vormen"
+
+msgid "Forms"
+msgstr "Formulieren"
+
+msgid "actions"
+msgstr "acties"
+
+msgid "Actions"
+msgstr "Acties"
+
+msgid "File ext. is mismatched"
+msgstr "Bestand ext. komt niet overeen"
+
+msgid "File size is greater then allowed file size"
+msgstr "De bestandsgrootte is groter dan de toegestane bestandsgrootte"
+
+msgid "Total Stats"
+msgstr "Totale statistieken"
+
+msgid "Intents"
+msgstr "Intenties"
+
+msgid "No record found"
+msgstr "Geen record gevonden"
+
+msgid "Control Panel"
+msgstr "Configuratiescherm"
+
+msgid "GeekyBot"
+msgstr "GeekyBot"
+
+msgid "Keys"
+msgstr "Sleutels"
+
+msgid "Post Installation"
+msgstr "Post-installatie"
+
+msgid "Premium Addon"
+msgstr "Premium-add-on"
+
+msgid "Could not find any matching results"
+msgstr "Kon geen overeenkomende resultaten vinden"
+
+msgid "no record"
+msgstr "geen record"
+
+msgid "No record found !..."
+msgstr "Geen record gevonden!..."
+
+msgid "system offline"
+msgstr "systeem offline"
+
+msgid ""
+"Unfortunately sytem is offline for a bit of maintenance right now. But soon "
+"we will be up."
+msgstr ""
+"Helaas is het systeem momenteel offline vanwege een beetje onderhoud. Maar "
+"binnenkort zijn we op."
+
+msgid "user ban"
+msgstr "gebruikersverbod"
+
+msgid "Your account is disabled, please contact system administrator !..."
+msgstr ""
+"Uw account is uitgeschakeld, neem contact op met de systeembeheerder!..."
+
+msgid "login"
+msgstr "login"
+
+msgid "To Access This Page Please Login !..."
+msgstr "Om toegang te krijgen tot deze pagina dient u in te loggen!..."
+
+msgid "Back to control panel"
+msgstr "Terug naar het configuratiescherm"
+
+msgid "You are not logged in"
+msgstr "U bent niet ingelogd"
+
+msgid "User Is Disabled By Admin"
+msgstr "Gebruiker is uitgeschakeld door beheerder"
+
+msgid "The page you are looking for no longer exists"
+msgstr "De pagina die u zoekt bestaat niet meer"
+
+msgid "You are already logged in"
+msgstr "U bent al ingelogd"
+
+msgid "Please select your role"
+msgstr "Selecteer uw rol"
+
+msgid "You are not allowed"
+msgstr "Je bent niet toegestaan"
+
+msgid "You are Not Allowed To add More than One"
+msgstr "U mag er niet meer dan één toevoegen"
+
+msgid "Contact Adminstrator"
+msgstr "Neem contact op met de beheerder"
+
+msgid "not allowed"
+msgstr "niet toegestaan"
+
+msgid "You are already logged in !..."
+msgstr "Je bent al ingelogd!..."
+
+msgid "Logout"
+msgstr "Uitloggen"
+
+msgid "Please first make a selection from the list"
+msgstr "Maak eerst een keuze uit de lijst"
+
+msgid "Unknown"
+msgstr "Onbekend"
+
+msgid "Invalid request"
+msgstr "Ongeldig verzoek"
+
+msgid "has been successfully applied."
+msgstr "is met succes toegepast."
+
+msgid "Error applying the new theme."
+msgstr "Fout bij het toepassen van het nieuwe thema."
+
+msgid "has been successfully saved."
+msgstr "is succesvol opgeslagen."
+
+msgid "has not been saved."
+msgstr "is niet opgeslagen."
+
+msgid "has been successfully reset."
+msgstr "is succesvol gereset."
+
+msgid "Every Story must have a name."
+msgstr "Elk verhaal moet een naam hebben."
+
+msgid "Every Story must have at least 1 intent."
+msgstr "Elk verhaal moet minstens één intentie hebben."
+
+msgid "has been successfully deleted."
+msgstr "is succesvol verwijderd."
+
+msgid "has been successfully exported."
+msgstr "is met succes geëxporteerd."
+
+msgid "Data has not been exported."
+msgstr "Gegevens zijn niet geëxporteerd."
+
+msgid "Record not exist."
+msgstr "Opname bestaat niet."
+
+msgid "has not been deleted."
+msgstr "is niet verwijderd."
+
+msgid "Please insert key."
+msgstr "Gelieve de sleutel in te steken."
+
+msgid "key is not Valid."
+msgstr "sleutel is niet geldig."
+
+msgid "transaction has been successfully verified."
+msgstr "transactie is succesvol geverifieerd."
+
+msgid "transaction has been successfully un-verified."
+msgstr "transactie is succesvol ongedaan gemaakt."
+
+msgid "transaction has not been successfully verified."
+msgstr "transactie is niet succesvol geverifieerd."
+
+msgid "transaction has not been successfully un-verified."
+msgstr "transactie is niet succesvol ongedaan gemaakt."
+
+msgid "Fields has been successfully required."
+msgstr "Velden zijn met succes vereist."
+
+msgid "Field has not been required."
+msgstr "Veld is niet verplicht."
+
+msgid "Fields has not been required."
+msgstr "Velden zijn niet verplicht."
+
+msgid "Fields has been successfully not required."
+msgstr "Velden zijn succesvol niet vereist."
+
+msgid "Field has not been not required."
+msgstr "Veld is niet niet vereist."
+
+msgid "Fields has not been not required."
+msgstr "Velden zijn niet niet vereist."
+
+msgid "status has been updated."
+msgstr "status is bijgewerkt."
+
+msgid "status has not been updated."
+msgstr "status is niet bijgewerkt."
+
+msgid "data has been synchronized."
+msgstr "gegevens zijn gesynchroniseerd."
+
+msgid "data has not been synchronized."
+msgstr "gegevens zijn niet gesynchroniseerd."
+
+msgid "in use cannot deleted."
+msgstr "in gebruik kan niet worden verwijderd."
+
+msgid "already exist."
+msgstr "bestaan ​​al."
+
+msgid "File type error."
+msgstr "Fout met bestandstype."
+
+msgid "File size error."
+msgstr "Fout met bestandsgrootte."
+
+msgid "Intent"
+msgstr "Intentie"
+
+msgid "Response"
+msgstr "Antwoord"
+
+msgid "Intent Group"
+msgstr "Intentiegroep"
+
+msgid "Variable"
+msgstr "Variabel"
+
+msgid "Story"
+msgstr "Verhaal"
+
+msgid "Post type"
+msgstr "Berichttype"
+
+msgid "AI web search"
+msgstr "AI-webzoekopdracht"
+
+msgid "Action"
+msgstr "Actie"
+
+msgid "Changes"
+msgstr "Veranderingen"
+
+msgid "Data"
+msgstr "Gegevens"
+
+msgid "Message"
+msgstr "Bericht"
+
+msgid "Configuration"
+msgstr "Configuratie"
+
+msgid "Previous"
+msgstr "Vorig"
+
+msgid "Next"
+msgstr "Volgende"
+
+msgid "Guest"
+msgstr "Gast"
+
+msgid "User ID"
+msgstr "Gebruikers-ID"
+
+msgid "Add to Story"
+msgstr "Toevoegen aan verhaal"
+
+msgid "Add to story"
+msgstr "Voeg toe aan verhaal"
+
+msgid "Search"
+msgstr "Zoekopdracht"
+
+msgid "Search with user name"
+msgstr "Zoeken met gebruikersnaam"
+
+msgid "reset"
+msgstr "opnieuw instellen"
+
+msgid "Select Chat"
+msgstr "Selecteer Chatten"
+
+msgid "Sender"
+msgstr "Afzender"
+
+msgid "select chat"
+msgstr "selecteer chatten"
+
+msgid "Chat history is not selected."
+msgstr "Chatgeschiedenis is niet geselecteerd."
+
+msgid "Please select a conversation to view the user's chat history."
+msgstr ""
+"Selecteer een gesprek om de chatgeschiedenis van de gebruiker te bekijken."
+
+msgid "Add User Input To Story"
+msgstr "Voeg gebruikersinvoer toe aan het verhaal"
+
+msgid "Select"
+msgstr "Selecteer"
+
+msgid "Add User Input"
+msgstr "Voeg gebruikersinvoer toe"
+
+msgid "You must choose a story; it cannot be empty."
+msgstr "Je moet een verhaal kiezen; het kan niet leeg zijn."
+
+msgid "Security verification Failed, Please restart you chat to continue."
+msgstr ""
+"Beveiligingsverificatie mislukt. Start uw chat opnieuw om door te gaan."
+
+msgid "Your session has expired; please restart your chat."
+msgstr "Uw sessie is verlopen; start alstublieft uw chat opnieuw."
+
+msgid "Hi, I am Chatbot. I do not have specific knowledge."
+msgstr "Hallo, ik ben Chatbot. Ik heb geen specifieke kennis."
+
+msgid "Your message is too long. Please enter only a username or email."
+msgstr ""
+"Je bericht is te lang. Voer alleen een gebruikersnaam of e-mailadres in."
+
+msgid "Invalid username or email. Try again with the correct one."
+msgstr ""
+"Ongeldige gebruikersnaam of e-mailadres. Probeer het opnieuw met de juiste."
+
+msgid "Show More"
+msgstr "Toon meer"
+
+msgid "Show Articles"
+msgstr "Toon artikelen"
+
+msgid "session time out"
+msgstr "time-out van de sessie"
+
+msgid "Data directory can not empty."
+msgstr "Gegevensmap kan niet leeg worden gemaakt."
+
+msgid "Data directory is not proper."
+msgstr "De gegevensdirectory is niet juist."
+
+msgid "Data directory is not writable."
+msgstr "Gegevensmap is niet beschrijfbaar."
+
+msgid "Default fallback message can not be empty."
+msgstr "Het standaard fallback-bericht mag niet leeg zijn."
+
+msgid "Admin pagination not saved."
+msgstr "Beheerderspaginering niet opgeslagen."
+
+msgid "User pagination not saved."
+msgstr "Gebruikerspaginering niet opgeslagen."
+
+msgid ""
+"The title of your chatbot or the primary title displayed on your chat "
+"interface."
+msgstr ""
+"De titel van uw chatbot of de primaire titel die wordt weergegeven op uw "
+"chatinterface."
+
+msgid "Default Fallback Message"
+msgstr "Standaard terugvalbericht"
+
+msgid "The message displayed when the chatbot cannot understand."
+msgstr ""
+"Het bericht dat wordt weergegeven wanneer de chatbot het niet begrijpt."
+
+msgid "Offline"
+msgstr "Offline"
+
+msgid "Online"
+msgstr "Online"
+
+msgid "Set your plugin offline for front end."
+msgstr "Zet uw plug-in offline voor front-end."
+
+msgid "Data Directory"
+msgstr "Gegevensmap"
+
+msgid "The directory where all chatbot data files are stored."
+msgstr "De map waar alle chatbotgegevensbestanden worden opgeslagen."
+
+msgid "Admin Pagination"
+msgstr "Beheerderspaginering"
+
+msgid "The number of items displayed in a paginated list in the admin panel."
+msgstr ""
+"Het aantal items dat wordt weergegeven in een gepagineerde lijst in het "
+"beheerdersdashboard."
+
+msgid "User Pagination"
+msgstr "Paginering van gebruikers"
+
+msgid "The number of items displayed in a paginated list on the user side."
+msgstr ""
+"Het aantal items dat wordt weergegeven in een gepagineerde lijst aan de "
+"gebruikerszijde."
+
+msgid "Save Settings"
+msgstr "Instellingen opslaan"
+
+msgid "Add Icon"
+msgstr "Pictogram toevoegen"
+
+msgid "years"
+msgstr "jaren"
+
+msgid "year"
+msgstr "jaar"
+
+msgid "ago"
+msgstr "geleden"
+
+msgid "months"
+msgstr "maanden"
+
+msgid "month"
+msgstr "maand"
+
+msgid "days"
+msgstr "dagen"
+
+msgid "day"
+msgstr "dag"
+
+msgid "hours"
+msgstr "uur"
+
+msgid "hour"
+msgstr "uur"
+
+msgid "minutes"
+msgstr "notulen"
+
+msgid "minute"
+msgstr "minuut"
+
+msgid "Just now"
+msgstr "Zojuist"
+
+msgid "AI ChatBot is disabled."
+msgstr "AI ChatBot is uitgeschakeld."
+
+msgid "Active Now"
+msgstr "Nu actief"
+
+msgid "AI ChatBot story not built."
+msgstr "AI ChatBot-verhaal niet gebouwd."
+
+msgid "Built Now"
+msgstr "Nu gebouwd"
+
+msgid "WooCommerce plugin is not installed."
+msgstr "De WooCommerce-plug-in is niet geïnstalleerd."
+
+msgid "Install Now"
+msgstr "Installeer nu"
+
+msgid "WooCommerce plugin is not activated."
+msgstr "De WooCommerce-plug-in is niet geactiveerd."
+
+msgid "WooCommerce Bot is disabled."
+msgstr "WooCommerce Bot is uitgeschakeld."
+
+msgid "WooCommerce story not built."
+msgstr "WooCommerce-verhaal niet gebouwd."
+
+msgid "Post Type not found."
+msgstr "Berichttype niet gevonden."
+
+msgid "AI Web Search is disabled!"
+msgstr "AI-webzoekopdracht is uitgeschakeld!"
+
+msgid "AI ChatBot Sessions"
+msgstr "AI ChatBot-sessies"
+
+msgid "Session Card"
+msgstr "Sessiekaart"
+
+msgid "Graph"
+msgstr "Grafiek"
+
+msgid "Card"
+msgstr "Kaart"
+
+msgid "WooCommerce Sessions"
+msgstr "WooCommerce-sessies"
+
+msgid "AI Web Search Sessions"
+msgstr "AI-webzoeksessies"
+
+msgid "Icon"
+msgstr "Icon"
+
+msgid "GeekyBot Setup and Usage Guides"
+msgstr "GeekyBot installatie- en gebruikshandleidingen"
+
+msgid "Explore installation, training, and effective usage guides."
+msgstr "Ontdek installatie-, training- en effectieve gebruikshandleidingen."
+
+msgid "Play"
+msgstr "Toneelstuk"
+
+msgid "Youtube Icon"
+msgstr "Youtube-icoon"
+
+msgid "How to add Story"
+msgstr "Verhaal toevoegen"
+
+msgid "How to add Variable"
+msgstr "Variabele toevoegen"
+
+msgid "Change Settings"
+msgstr "Wijzig instellingen"
+
+msgid "Change Color"
+msgstr "Verander kleur"
+
+msgid "Remove"
+msgstr "Verwijderen"
+
+msgid "Cross Icon"
+msgstr "Kruis icoon"
+
+msgid "Stories Date"
+msgstr "Verhalen Datum"
+
+msgid "View Stories"
+msgstr "Bekijk Verhalen"
+
+msgid "AI Chatbot"
+msgstr "AI-chatbot"
+
+msgid "WooCommerce"
+msgstr "WooCommerce"
+
+msgid "Bot Icon"
+msgstr "Bot-pictogram"
+
+msgid "AI ChatBot"
+msgstr "AI-chatbot"
+
+msgid "Last Month Stats"
+msgstr "Statistieken van de afgelopen maand"
+
+msgid "Woo Icon"
+msgstr "Woo-icoon"
+
+msgid "AI Web Search "
+msgstr "AI-webzoekopdracht"
+
+msgid "Manage Post Types"
+msgstr "Beheer berichttypen"
+
+msgid "Enable AI Web Search"
+msgstr "Schakel AI-webzoekopdracht in"
+
+msgid "Search Icon"
+msgstr "Zoekpictogram"
+
+msgid "History"
+msgstr "Geschiedenis"
+
+msgid "WooCommerce Bot"
+msgstr "WooCommerce-bot"
+
+msgid "logo"
+msgstr "logo"
+
+msgid "No of Conversation"
+msgstr "Nr. van gesprek"
+
+msgid "View History"
+msgstr "Geschiedenis bekijken"
+
+msgid "No data"
+msgstr "Geen gegevens"
+
+msgid "No Data"
+msgstr "Geen gegevens"
+
+msgid "Addons"
+msgstr "Add-ons"
+
+msgid "addon"
+msgstr "add-on"
+
+msgid "Custom Listing Style"
+msgstr "Aangepaste lijststijl"
+
+msgid "Custom Listing Text"
+msgstr "Aangepaste vermeldingstekst"
+
+msgid "WooCommerce Features"
+msgstr "WooCommerce-functies"
+
+msgid "Addon List"
+msgstr "Add-onlijst"
+
+msgid "WooCommerce "
+msgstr "WooCommerce"
+
+msgid "Lead Generation"
+msgstr "Leadgeneratie"
+
+msgid ""
+"GeekyBot simplifies the WooCommerce experience with intelligent product "
+"discovery and purchasing. It seamlessly integrates with WooCommerce for "
+"efficient product searches, detailed listings, and a smooth shopping "
+"experience."
+msgstr ""
+"GeekyBot vereenvoudigt de WooCommerce-ervaring met intelligente "
+"productontdekking en -aankoop. Het kan naadloos worden geïntegreerd met "
+"WooCommerce voor efficiënt zoeken naar producten, gedetailleerde lijsten en "
+"een soepele winkelervaring."
+
+msgid "Find Product"
+msgstr "Zoek product"
+
+msgid "Find Products"
+msgstr "Vind producten"
+
+msgid "Find products by name, category, or price range via chat."
+msgstr "Vind producten op naam, categorie of prijsklasse via chat."
+
+msgid "List Product"
+msgstr "Lijstproduct"
+
+msgid "List Products"
+msgstr "Lijst producten"
+
+msgid "Show relevant products with details and prices based on preferences."
+msgstr ""
+"Toon relevante producten met details en prijzen op basis van voorkeuren."
+
+msgid "Add To Cart Product"
+msgstr "Voeg toe aan winkelwagenproduct"
+
+msgid "Add to Cart"
+msgstr "Voeg toe aan winkelwagen"
+
+msgid "Easily add products to the cart list directly through chat."
+msgstr ""
+"Voeg eenvoudig producten rechtstreeks via chat toe aan de winkelwagenlijst."
+
+msgid "Watch Video"
+msgstr "Bekijk video"
+
+msgid "AI Chat"
+msgstr "AI-chat"
+
+msgid "Custom"
+msgstr "Aangepast"
+
+msgid " AI Chat Bot "
+msgstr "AI-chatbot"
+
+msgid "Conversation Handling"
+msgstr "Gespreksafhandeling"
+
+msgid ""
+"AI Chat Conversation provides intelligent and context-aware interactions to "
+"enhance user engagement. Define key conversation elements to capture "
+"specific user inputs dynamically and adapt responses based on the context."
+msgstr ""
+"AI Chat Conversation biedt intelligente en contextbewuste interacties om de "
+"betrokkenheid van gebruikers te vergroten. Definieer belangrijke "
+"gesprekselementen om specifieke gebruikersinvoer dynamisch vast te leggen en "
+"reacties aan te passen op basis van de context."
+
+msgid "Capture and process inputs dynamically for personalized responses."
+msgstr ""
+"Leg invoer dynamisch vast en verwerk deze voor gepersonaliseerde antwoorden."
+
+msgid "Adjust interactions based on the ongoing conversation for relevance."
+msgstr "Pas interacties aan op basis van het lopende gesprek op relevantie."
+
+msgid "Use collected data to tailor responses and improve satisfaction."
+msgstr ""
+"Gebruik verzamelde gegevens om reacties op maat te maken en de tevredenheid "
+"te verbeteren."
+
+msgid "Discover Our "
+msgstr "Ontdek onze"
+
+msgid " AI Web Search"
+msgstr "AI-webzoekopdracht"
+
+msgid "Bot"
+msgstr "Bot"
+
+msgid ""
+"AI Web Search improves user experience by delivering advanced, intuitive "
+"content discovery on your WordPress site. With powerful searches, users can "
+"quickly find relevant information, enhancing overall interest and "
+"accessibility."
+msgstr ""
+"AI Web Search verbetert de gebruikerservaring door geavanceerde, intuïtieve "
+"inhouddetectie op uw WordPress-site te bieden. Met krachtige zoekopdrachten "
+"kunnen gebruikers snel relevante informatie vinden, waardoor de algemene "
+"interesse en toegankelijkheid worden vergroot."
+
+msgid "GeekyBot swiftly retrieves posts and pages based on user queries."
+msgstr ""
+"GeekyBot haalt snel berichten en pagina's op op basis van gebruikersvragen."
+
+msgid "Displays full content or excerpts that match search terms."
+msgstr ""
+"Toont de volledige inhoud of fragmenten die overeenkomen met zoektermen."
+
+msgid "Activate GeekyBot’s search for an AI web search with one click."
+msgstr ""
+"Activeer GeekyBot's zoektocht naar een AI-webzoekopdracht met één klik."
+
+msgid "Web Search"
+msgstr "Zoeken op internet"
+
+msgid "GeekyBot Supported Plugins"
+msgstr "Door GeekyBot ondersteunde plug-ins"
+
+msgid "Plugin"
+msgstr "Plug-in"
+
+msgid "WP Job Manager"
+msgstr "WP Jobmanager"
+
+msgid "Tutor LMS"
+msgstr "Docent LMS"
+
+msgid "bbPress"
+msgstr "bbDruk"
+
+msgid "LearnPress"
+msgstr "LeerDruk"
+
+msgid "Knowledge Base"
+msgstr "Kennisbank"
+
+msgid "BetterDocs"
+msgstr "BeterDocs"
+
+msgid "Motors"
+msgstr "Motoren"
+
+msgid "Estatik Real Estate"
+msgstr "Estatik Vastgoed"
+
+msgid "Auto Listings"
+msgstr "Automatische vermeldingen"
+
+msgid "Welcome to GeekyBot Features"
+msgstr "Welkom bij GeekyBot-functies"
+
+msgid "GeekyBot Features"
+msgstr "GeekyBot-functies"
+
+msgid "WooCommerce Integration"
+msgstr "WooCommerce-integratie"
+
+msgid "Quick Installation"
+msgstr "Snelle installatie"
+
+msgid "Version: 1.0.0"
+msgstr "Versie: 1.0.0"
+
+msgid "AI Chat Bot"
+msgstr "AI-chatbot"
+
+msgid "Enable/Disable"
+msgstr "Inschakelen/Uitschakelen"
+
+msgid "Enable/Disable Bot"
+msgstr "Bot in-/uitschakelen"
+
+msgid "Select Template"
+msgstr "Selecteer Sjabloon"
+
+msgid ""
+"AI Chat in GeekyBot provides instant, personalized responses to user "
+"queries, ensuring seamless support around the clock. With its ability to "
+"engage users at any time, GeekyBot enhances the reliability of your service, "
+"making sure that your customers' needs are always met."
+msgstr ""
+"AI Chat in GeekyBot biedt directe, gepersonaliseerde antwoorden op vragen "
+"van gebruikers, waardoor 24 uur per dag naadloze ondersteuning wordt "
+"gegarandeerd. Met zijn vermogen om gebruikers op elk moment te betrekken, "
+"verbetert GeekyBot de betrouwbaarheid van uw service en zorgt ervoor dat "
+"altijd aan de behoeften van uw klanten wordt voldaan."
+
+msgid ""
+"By training GeekyBot with your specific data, you can create dynamic, "
+"tailored interactions that reflect your business's unique voice and "
+"services. This customization allows for more relevant, effective "
+"conversations that build stronger connections with your users."
+msgstr ""
+"Door GeekyBot te trainen met uw specifieke gegevens, kunt u dynamische, op "
+"maat gemaakte interacties creëren die de unieke stem en diensten van uw "
+"bedrijf weerspiegelen. Deze aanpassing zorgt voor relevantere, effectievere "
+"gesprekken die een sterkere band met uw gebruikers opbouwen."
+
+msgid "Bot Image"
+msgstr "Bot-afbeelding"
+
+msgid "image"
+msgstr "afbeelding"
+
+msgid "Watch AI ChatBot Video"
+msgstr "Bekijk AI ChatBot-video"
+
+msgid "AI Web Search Bot"
+msgstr "AI-webzoekbot"
+
+msgid ""
+"Effortlessly search for specific posts and content across your entire site "
+"using our powerful AI web search tool. GeekyBot goes beyond standard "
+"searches, delivering results from all types of data on your site. Whether "
+"you're looking for posts, pages, custom post types, or other information, "
+"GeekyBot ensures you find what you need quickly and efficiently by "
+"displaying relevant articles, posts, and more in a single, streamlined "
+"search experience."
+msgstr ""
+"Zoek moeiteloos naar specifieke berichten en inhoud op uw hele site met "
+"behulp van onze krachtige AI-webzoekfunctie. GeekyBot gaat verder dan "
+"standaardzoekopdrachten en levert resultaten uit alle soorten gegevens op uw "
+"site. Of je nu op zoek bent naar berichten, pagina's, aangepaste "
+"berichttypen of andere informatie, GeekyBot zorgt ervoor dat je snel en "
+"efficiënt vindt wat je nodig hebt door relevante artikelen, berichten en "
+"meer weer te geven in één enkele, gestroomlijnde zoekervaring."
+
+msgid "New Post Type Search"
+msgstr "Zoeken naar nieuw berichttype"
+
+msgid ""
+"Enable this option to directly include new post types in search results, "
+"enhancing user access to all content."
+msgstr ""
+"Schakel deze optie in om nieuwe berichttypen direct in de zoekresultaten op "
+"te nemen, waardoor de gebruikerstoegang tot alle inhoud wordt verbeterd."
+
+msgid "Watch AI Web Search Video"
+msgstr "Bekijk de AI Web Search-video"
+
+msgid "Back"
+msgstr "Rug"
+
+msgid "Finish"
+msgstr "Finish"
+
+msgid "WooCommerce is not installed"
+msgstr "WooCommerce is niet geïnstalleerd"
+
+msgid ""
+"WooCommerce plugin is not installed on your site, you won't be able to "
+"integrate GeekyBot with WooCommerce."
+msgstr ""
+"De WooCommerce-plug-in is niet op uw site geïnstalleerd, u kunt GeekyBot "
+"niet met WooCommerce integreren."
+
+msgid ""
+"Easily integrate AI with WooCommerce to enhance your online store’s "
+"performance. GeekyBot boosts lead generation and customer interactions, "
+"automating key processes for a more effective and engaging shopping "
+"experience."
+msgstr ""
+"Integreer AI eenvoudig met WooCommerce om de prestaties van uw online winkel "
+"te verbeteren. GeekyBot stimuleert het genereren van leads en "
+"klantinteracties, waardoor belangrijke processen worden geautomatiseerd voor "
+"een effectievere en boeiendere winkelervaring."
+
+msgid ""
+"GeekyBot also streamlines customer inquiries and provides real-time, "
+"intelligent responses. By improving retention and customer satisfaction, it "
+"ensures your store delivers an exceptional experience that keeps shoppers "
+"coming back."
+msgstr ""
+"GeekyBot stroomlijnt ook vragen van klanten en biedt realtime, intelligente "
+"antwoorden. Door de retentie en klanttevredenheid te verbeteren, zorgt u "
+"ervoor dat uw winkel een uitzonderlijke ervaring biedt waardoor klanten "
+"terugkomen."
+
+msgid "Watch WooCommerce Video"
+msgstr "Bekijk de WooCommerce-video"
+
+msgid "Welcome to GeekyBot !..."
+msgstr "Welkom bij GeekyBot!..."
+
+msgid ""
+"The ultimate AI chatbot for WooCommerce lead generation, intelligent content "
+"search, and interactive customer engagement on your WordPress website."
+msgstr ""
+"De ultieme AI-chatbot voor het genereren van WooCommerce-leads, intelligent "
+"zoeken naar inhoud en interactieve klantbetrokkenheid op uw WordPress-"
+"website."
+
+msgid ""
+"Personalize interactions by dynamically processing user inputs using slots "
+"and variables."
+msgstr ""
+"Personaliseer interacties door gebruikersinvoer dynamisch te verwerken met "
+"behulp van slots en variabelen."
+
+msgid ""
+"Enhance shopping by enabling users to find products and add them to their "
+"cart seamlessly."
+msgstr ""
+"Verbeter het winkelen door gebruikers in staat te stellen producten te "
+"vinden en deze naadloos aan hun winkelwagentje toe te voegen."
+
+msgid "Website Search"
+msgstr "Zoeken op website"
+
+msgid ""
+"Streamline discovery by helping users find relevant information on your "
+"WordPress site."
+msgstr ""
+"Stroomlijn de ontdekking door gebruikers te helpen relevante informatie op "
+"uw WordPress-site te vinden."
+
+msgid "Please insert activation key to proceed"
+msgstr "Voer de activeringssleutel in om door te gaan"
+
+msgid "Addon Installation Failed"
+msgstr "Add-on-installatie mislukt"
+
+msgid "Addon installation failed"
+msgstr "Installatie van add-ons is mislukt"
+
+msgid "Addon Installation Failed, File download error"
+msgstr "Installatie van add-on mislukt, fout bij downloaden van bestand"
+
+msgid "Activated"
+msgstr "Geactiveerd"
+
+msgid "Deactivate"
+msgstr "Deactiveren"
+
+msgid "Deactivated"
+msgstr "Gedeactiveerd"
+
+msgid "Activate"
+msgstr "Activeren"
+
+msgid "Not Installed"
+msgstr "Niet geïnstalleerd"
+
+msgid "Addon Installed Successfully"
+msgstr "Add-on succesvol geïnstalleerd"
+
+msgid "Ticket Actions"
+msgstr "Ticketacties"
+
+msgid "Agents"
+msgstr "Agenten"
+
+msgid "Ticket Auto Close"
+msgstr "Ticket automatisch sluiten"
+
+msgid "left image"
+msgstr "linker afbeelding"
+
+msgid "right image"
+msgstr "juiste afbeelding"
+
+msgid "Add-ons For Majestic Support"
+msgstr "Add-ons voor majestueuze ondersteuning"
+
+msgid ""
+"Get trusted WordPress add-ons. Guaranteed to work fast, safe to use, "
+"beautifully coded, packed with features, and are easy to use."
+msgstr ""
+"Ontvang vertrouwde WordPress-add-ons. Gegarandeerd snel werkend, veilig in "
+"gebruik, prachtig gecodeerd, boordevol functies en gemakkelijk te gebruiken."
+
+msgid "Save big today with an exclusive membership plan!"
+msgstr "Bespaar vandaag nog flink met een exclusief lidmaatschapsplan!"
+
+msgid "Show"
+msgstr "Show"
+
+msgid "show bundle pack"
+msgstr "toon bundelpakket"
+
+msgid "Agent"
+msgstr "Tussenpersoon"
+
+msgid ""
+"Add agents and assign roles and permissions to provide assistance and "
+"support for customer support tickets."
+msgstr ""
+"Voeg agenten toe en wijs rollen en machtigingen toe om hulp en ondersteuning "
+"te bieden voor klantenondersteuningstickets."
+
+msgid "buy now"
+msgstr "koop nu"
+
+msgid "Installed"
+msgstr "Geïnstalleerd"
+
+msgid "multiform"
+msgstr "veelvormig"
+
+msgid "Multi Forms"
+msgstr "Meerdere formulieren"
+
+msgid ""
+"Create multiple custom ticket forms with different custom fields for each "
+"request type that you support."
+msgstr ""
+"Maak meerdere aangepaste ticketformulieren met verschillende aangepaste "
+"velden voor elk verzoektype dat u ondersteunt."
+
+msgid "Email Piping"
+msgstr "E-mailleidingen"
+
+msgid ""
+"Email piping is the process of automatically turning incoming emails into "
+"support tickets without manual data entry."
+msgstr ""
+"E-mail piping is het proces waarbij inkomende e-mails automatisch worden "
+"omgezet in supporttickets zonder handmatige gegevensinvoer."
+
+msgid "agent auto assign"
+msgstr "agent automatisch toewijzen"
+
+msgid "Agent Auto Assign"
+msgstr "Agent automatisch toewijzen"
+
+msgid ""
+"Make the ticket assignment process automatic and assign the most qualified "
+"agent to your tickets with conditions."
+msgstr ""
+"Maak het tickettoewijzingsproces automatisch en wijs onder voorwaarden de "
+"meest gekwalificeerde agent aan uw tickets toe."
+
+msgid "private note"
+msgstr "privé notitie"
+
+msgid "Private Note"
+msgstr "Privé notitie"
+
+msgid ""
+"Add private notes to a ticket and share crucial information internally with "
+"your agents, this private note is not visible to the customer."
+msgstr ""
+"Voeg privénotities toe aan een ticket en deel cruciale informatie intern met "
+"uw agenten. Deze privénotitie is niet zichtbaar voor de klant."
+
+msgid "merge tickets"
+msgstr "kaartjes samenvoegen"
+
+msgid "Merge Tickets"
+msgstr "Tickets samenvoegen"
+
+msgid ""
+"Merge one or more tickets into another if you receive two support requests "
+"from the same end user about the same issue."
+msgstr ""
+"Voeg een of meer tickets samen als u twee ondersteuningsverzoeken ontvangt "
+"van dezelfde eindgebruiker over hetzelfde probleem."
+
+msgid "helptopic"
+msgstr "helponderwerp"
+
+msgid "Help Topics"
+msgstr "Help-onderwerpen"
+
+msgid ""
+"The user can search for and choose the topic for which they need help using "
+"help topics"
+msgstr ""
+"De gebruiker kan het onderwerp waarvoor hij hulp nodig heeft, zoeken en "
+"kiezen met behulp van helponderwerpen"
+
+msgid "Auto Close Ticket"
+msgstr "Ticket voor automatisch sluiten"
+
+msgid ""
+"Manage abandoned tickets, and set rules for tickets over time, and those "
+"tickets will be closed automatically after a certain period."
+msgstr ""
+"Beheer achtergelaten tickets en stel in de loop van de tijd regels voor "
+"tickets in, zodat deze tickets na een bepaalde periode automatisch worden "
+"gesloten."
+
+msgid "Knowledgebase"
+msgstr "Kennisbank"
+
+msgid ""
+"Stop wasting time on repetitive inquiries, build your knowledge base, and "
+"organize your solutions into categories for users."
+msgstr ""
+"Stop met het verspillen van tijd aan herhaalde vragen, bouw uw kennisbank op "
+"en organiseer uw oplossingen in categorieën voor gebruikers."
+
+msgid "Ticket Overdue"
+msgstr "Ticket te laat"
+
+msgid ""
+"Define rules or set a specific time interval for making tickets "
+"automatically overdue."
+msgstr ""
+"Definieer regels of stel een specifiek tijdsinterval in om tickets "
+"automatisch te laat te laten verlopen."
+
+msgid "time tracking"
+msgstr "tijdregistratie"
+
+msgid "Time Tracking"
+msgstr "Tijdregistratie"
+
+msgid ""
+"Track the amount of time spent on each customer support ticket without "
+"losing focus and enhance team productivity."
+msgstr ""
+"Houd de hoeveelheid tijd bij die aan elk klantenondersteuningsticket wordt "
+"besteed zonder de focus te verliezen en verhoog de teamproductiviteit."
+
+msgid "Ticket History"
+msgstr "Ticketgeschiedenis"
+
+msgid ""
+"Show the whole history of the ticket, including its status and any action "
+"taken in response to it."
+msgstr ""
+"Toon de hele geschiedenis van het ticket, inclusief de status ervan en "
+"eventuele acties die naar aanleiding daarvan zijn ondernomen."
+
+msgid "Paid Support"
+msgstr "Betaalde ondersteuning"
+
+msgid ""
+"The simplest approach to effectively manage payments for premium help is "
+"through paid support."
+msgstr ""
+"De eenvoudigste aanpak om betalingen voor premiumhulp effectief te beheren, "
+"is via betaalde ondersteuning."
+
+msgid "Private Credentials"
+msgstr "Privégegevens"
+
+msgid ""
+"Customers will enter sensitive information on tickets, and this add-on is "
+"designed to help you keep that information secure."
+msgstr ""
+"Klanten voeren gevoelige informatie op tickets in en deze add-on is "
+"ontworpen om u te helpen die informatie veilig te houden."
+
+msgid "Ticket close reason"
+msgstr "Reden voor ticketsluiting"
+
+msgid "Ticket Closed Reason"
+msgstr "Reden ticket gesloten"
+
+msgid ""
+"Empowers users to provide clear and concise explanations for why customer "
+"service tickets are being closed."
+msgstr ""
+"Stelt gebruikers in staat duidelijke en beknopte uitleg te geven waarom "
+"klantenservicetickets worden gesloten."
+
+msgid "Premade Responses"
+msgstr "Vooraf gemaakte reacties"
+
+msgid ""
+"Make ready-made responses to the most common questions in the tickets to "
+"swiftly address client issues."
+msgstr ""
+"Maak kant-en-klare antwoorden op de meest voorkomende vragen in de tickets "
+"om problemen van klanten snel aan te pakken."
+
+msgid "max ticket"
+msgstr "maximaal kaartje"
+
+msgid "Max Tickets"
+msgstr "Maximale kaartjes"
+
+msgid ""
+"Admins can limit the number of tickets that users can create as well as the "
+"number of tickets that agents can open individually."
+msgstr ""
+"Beheerders kunnen het aantal tickets beperken dat gebruikers kunnen maken, "
+"evenals het aantal tickets dat agenten individueel kunnen openen."
+
+msgid "Feedback"
+msgstr "Feedback"
+
+msgid ""
+"To enhance the quality of your services, ask your customers to complete a "
+"survey when a ticket is closed."
+msgstr ""
+"Om de kwaliteit van uw dienstverlening te verbeteren, kunt u uw klanten "
+"vragen een enquête in te vullen wanneer een ticket wordt gesloten."
+
+msgid "ticket actions"
+msgstr "ticket acties"
+
+msgid ""
+"Ticket action options allow you to execute additional actions on tickets."
+msgstr "Met ticketactieopties kunt u aanvullende acties op tickets uitvoeren."
+
+msgid "Export"
+msgstr "Exporteren"
+
+msgid ""
+"Easily export ticket data and performance report data from your majestic "
+"support to an Excel spreadsheet with our efficient and user-friendly "
+"solution."
+msgstr ""
+"Exporteer eenvoudig ticketgegevens en prestatierapportgegevens van uw "
+"majestueuze ondersteuning naar een Excel-spreadsheet met onze efficiënte en "
+"gebruiksvriendelijke oplossing."
+
+msgid "email cc"
+msgstr "e-mail cc"
+
+msgid "Email CC"
+msgstr "E-mail CC"
+
+msgid ""
+"Send the exact copy of the email to the provided email address with Email CC "
+"or BCC."
+msgstr ""
+"Stuur de exacte kopie van de e-mail naar het opgegeven e-mailadres met E-"
+"mail CC of BCC."
+
+msgid "user options"
+msgstr "gebruikersopties"
+
+msgid "User Options"
+msgstr "Gebruikersopties"
+
+msgid ""
+"User options enable you to define roles for new users when they are "
+"registered."
+msgstr ""
+"Met gebruikersopties kunt u rollen definiëren voor nieuwe gebruikers wanneer "
+"ze worden geregistreerd."
+
+msgid "SMTP"
+msgstr "SMTP"
+
+msgid ""
+"SMTP enables you to add  custom mail protocols to send and receive emails "
+"with the support ticket system."
+msgstr ""
+"Met SMTP kunt u aangepaste e-mailprotocollen toevoegen om e-mails te "
+"verzenden en ontvangen met het supportticketsysteem."
+
+msgid "Multi Language Email Templates"
+msgstr "Meertalige e-mailsjablonen"
+
+msgid ""
+"Create multi-language email templates for all default email templates to "
+"send customers emails in the language that they prefer."
+msgstr ""
+"Maak meertalige e-mailsjablonen voor alle standaard e-mailsjablonen om "
+"klanten e-mails te sturen in de taal van hun voorkeur."
+
+msgid "Downloads"
+msgstr "Downloads"
+
+msgid ""
+"Downloads can be very helpful for users who are looking to obtain the "
+"necessary information to resolve issues."
+msgstr ""
+"Downloads kunnen zeer nuttig zijn voor gebruikers die de nodige informatie "
+"willen verkrijgen om problemen op te lossen."
+
+msgid "Announcements"
+msgstr "Aankondigingen"
+
+msgid ""
+"Make an unlimited number of announcements related to the support system to "
+"encourage customer interaction."
+msgstr ""
+"Maak een onbeperkt aantal aankondigingen met betrekking tot het "
+"ondersteuningssysteem om klantinteractie te stimuleren."
+
+msgid "Ban Email"
+msgstr "E-mail verbieden"
+
+msgid ""
+"With Ban Email, you can limit a users ability to create new tickets by "
+"blocking their email address."
+msgstr ""
+"Met Ban Email kunt u de mogelijkheid van een gebruiker om nieuwe tickets aan "
+"te maken beperken door zijn e-mailadres te blokkeren."
+
+msgid "FAQ"
+msgstr "Veelgestelde vragen"
+
+msgid ""
+"Provide answers to common user questions with the FAQ extension before they "
+"become tickets."
+msgstr ""
+"Geef antwoorden op veelgestelde gebruikersvragen met de FAQ-extensie voordat "
+"het tickets worden."
+
+msgid "admin widgets"
+msgstr "beheerderswidgets"
+
+msgid "Admin Widgets"
+msgstr "Beheerderswidgets"
+
+msgid ""
+"Get immediate data on your support operations as soon as you log into your "
+"WordPress administration area."
+msgstr ""
+"Ontvang onmiddellijk gegevens over uw ondersteuningsactiviteiten zodra u "
+"zich aanmeldt bij uw WordPress-beheergedeelte."
+
+msgid "desktop notifications"
+msgstr "bureaubladmeldingen"
+
+msgid "Desktop Notifications"
+msgstr "Bureaubladmeldingen"
+
+msgid ""
+"You will be informed of anything that occurs on your support system by the "
+"desktop notifications."
+msgstr ""
+"Via de bureaubladmeldingen wordt u op de hoogte gehouden van alles wat er op "
+"uw ondersteuningssysteem gebeurt."
+
+msgid "woocommerce"
+msgstr "woocommerce"
+
+msgid ""
+"The integration of the support ticket system for WooCommerce with your e-"
+"shop makes your support better and more professional."
+msgstr ""
+"De integratie van het supportticketsysteem voor WooCommerce met uw e-shop "
+"maakt uw support beter en professioneler."
+
+msgid "mail chimp"
+msgstr "mailchimp"
+
+msgid "Mail Chimp"
+msgstr "Mailchimp"
+
+msgid ""
+"Manage your email marketing campaigns directly from your majestic support by "
+"adding new user accounts to your Mailchimp email list."
+msgstr ""
+"Beheer uw e-mailmarketingcampagnes rechtstreeks vanuit uw majestueuze "
+"ondersteuning door nieuwe gebruikersaccounts toe te voegen aan uw Mailchimp-"
+"e-maillijst."
+
+msgid "internal mail"
+msgstr "interne post"
+
+msgid "Internal Mail"
+msgstr "Interne post"
+
+msgid ""
+"Send messages internally about support tickets and other issues between "
+"agents with internal mail."
+msgstr ""
+"Stuur intern berichten over supporttickets en andere problemen tussen "
+"agenten met interne mail."
+
+msgid "frontend widget"
+msgstr "frontend-widget"
+
+msgid "Front-End Widgets"
+msgstr "Front-endwidgets"
+
+msgid ""
+"Frontend Widgets include several widgets that can be used to enhance the "
+"plugin's functionality in various areas of the website."
+msgstr ""
+"Frontend-widgets bevatten verschillende widgets die kunnen worden gebruikt "
+"om de functionaliteit van de plug-in in verschillende delen van de website "
+"te verbeteren."
+
+msgid "envato"
+msgstr "envato"
+
+msgid "Envato"
+msgstr "Envato"
+
+msgid ""
+"Clients won't be able to open a new ticket using the Envato Validation "
+"plugin if they don't have a valid Envato license."
+msgstr ""
+"Klanten kunnen geen nieuw ticket openen met de Envato Validation-plug-in als "
+"ze geen geldige Envato-licentie hebben."
+
+msgid "easy digital download"
+msgstr "eenvoudig digitaal downloaden"
+
+msgid "Easy Digital Download"
+msgstr "Gemakkelijk digitaal downloaden"
+
+msgid ""
+"Learn about a customer's purchase directly from the support dashboard by "
+"integrating Majestic Support with your EDD store."
+msgstr ""
+"Leer rechtstreeks vanaf het ondersteuningsdashboard meer over de aankoop van "
+"een klant door Majestic Support te integreren met uw EDD-winkel."
+
+msgid "Majestic Support Add-ons Bundle Pack"
+msgstr "Majestic Support Add-ons-bundelpakket"
+
+msgid "Basic"
+msgstr "Basis"
+
+msgid "Unlimited Agents"
+msgstr "Onbeperkte agenten"
+
+msgid "Helptopic"
+msgstr "Helponderwerp"
+
+msgid "Show all"
+msgstr "Toon alles"
+
+msgid "Standard"
+msgstr "Standaard"
+
+msgid "Everything in basic included and "
+msgstr "Alles in de basis inbegrepen en"
+
+msgid "Premade Response"
+msgstr "Vooraf gemaakte reactie"
+
+msgid "Professional"
+msgstr "Professioneel"
+
+msgid "Everything in standard included and"
+msgstr "Alles standaard inbegrepen en"
+
+msgid "All Future Addons"
+msgstr "Alle toekomstige add-ons"
+
+msgid "spinning wheel"
+msgstr "spinnewiel"
+
+msgid "New Update Version"
+msgstr "Nieuwe updateversie"
+
+msgid "is Available"
+msgstr "is beschikbaar"
+
+msgid "Status: "
+msgstr "Status:"
+
+msgid "Version"
+msgstr "Versie"
+
+msgid "addon in no longer active"
+msgstr "add-on is niet meer actief"
+
+msgid "Please Insert Your Activation Key"
+msgstr "Voer uw activeringssleutel in"
+
+msgid "XXXX-XXXX-XXXXX-XXXXX"
+msgstr "XXXX-XXXX-XXXXX-XXXX"
+
+msgid "Proceed"
+msgstr "Doorgaan"
+
+msgid "GeekyBot Addon Installer"
+msgstr "GeekyBot Add-on-installatieprogramma"
+
+msgid "Select All Addons"
+msgstr "Selecteer Alle add-ons"
+
+msgid "All allowed add ons are already installed"
+msgstr "Alle toegestane add-ons zijn al geïnstalleerd"
+
+msgid "You are not allowed to install any add on"
+msgstr "Het is niet toegestaan ​​om een ​​add-on te installeren"
+
+msgid "Something went wrong"
+msgstr "Er is iets misgegaan"
+
+msgid "Addons Installed Successfully"
+msgstr "Add-ons zijn succesvol geïnstalleerd"
+
+msgid "Open Dashboard"
+msgstr "Dashboard openen"
+
+msgid "Open Plugins Page"
+msgstr "Open Plug-inspagina"
+
+msgid "PersonName"
+msgstr "Persoonsnaam"
+
+msgid "Facility"
+msgstr "Faciliteit"
+
+msgid "Organization"
+msgstr "Organisatie"
+
+msgid "Location"
+msgstr "Locatie"
+
+msgid "Location_NON_GPE"
+msgstr "Locatie_NON_GPE"
+
+msgid "Product"
+msgstr "Product"
+
+msgid "Event"
+msgstr "Evenement"
+
+msgid "ArtWork"
+msgstr "Kunstwerk"
+
+msgid "LawDocument"
+msgstr "WetDocument"
+
+msgid "Language"
+msgstr "Taal"
+
+msgid "Date"
+msgstr "Datum"
+
+msgid "Time"
+msgstr "Tijd"
+
+msgid "Percentage"
+msgstr "Percentage"
+
+msgid "Money"
+msgstr "Geld"
+
+msgid "Quantity"
+msgstr "Hoeveelheid"
+
+msgid "Ordinal"
+msgstr "Ordinaal"
+
+msgid "Cardinal"
+msgstr "Kardinaal"
+
+msgid "Select Variable For"
+msgstr "Selecteer Variabele voor"
+
+msgid "Attribute"
+msgstr "Attribuut"
+
+msgid "Name"
+msgstr "Naam"
+
+msgid "Varibale Name"
+msgstr "Variabele naam"
+
+msgid "Type"
+msgstr "Type"
+
+msgid "Possible Field Values"
+msgstr "Mogelijke veldwaarden"
+
+msgid "Add Comma Seprated Values"
+msgstr "Voeg door komma's gescheiden waarden toe"
+
+msgid "Variable For"
+msgstr "Variabele voor"
+
+msgid "Select Variable For in case of Woocommerce Variable"
+msgstr "Selecteer Variabele voor in het geval van Woocommerce Variabele"
+
+msgid "cancel"
+msgstr "annuleren"
+
+msgid "Cancel"
+msgstr "Annuleren"
+
+msgid "Save Changes"
+msgstr "Wijzigingen opslaan"
+
+msgid "Save Variable"
+msgstr "Variabele opslaan"
+
+msgid "Reset"
+msgstr "Opnieuw instellen"
+
+msgid "Are you sure to delete it?"
+msgstr "Weet je zeker dat je het wilt verwijderen?"
+
+msgid "Delete Variable"
+msgstr "Variabele verwijderen"
+
+msgid "Add Variable"
+msgstr "Variabele toevoegen"
+
+msgid "name"
+msgstr "naam"
+
+msgid "type"
+msgstr "type"
+
+msgid "Possible Values Here"
+msgstr "Mogelijke waarden hier"
+
+msgid "Edit Variable"
+msgstr "Variabele bewerken"
+
+msgid "Are you sure to delete it"
+msgstr "Weet u zeker dat u het wilt verwijderen"
+
+msgid "Add New"
+msgstr "Nieuw toevoegen"
+
+msgid "User Input"
+msgstr "Gebruikersinvoer"
+
+msgid "Close"
+msgstr "Dichtbij"
+
+msgid "Add"
+msgstr "Toevoegen"
+
+msgid "Add More"
+msgstr "Voeg meer toe"
+
+msgid "Available Variables"
+msgstr "Beschikbare variabelen"
+
+msgid "Enter bot response here..."
+msgstr "Voer hier de botreactie in..."
+
+msgid "Button text here"
+msgstr "Knoptekst hier"
+
+msgid "URL"
+msgstr "URL"
+
+msgid "Button value here"
+msgstr "Knopwaarde hier"
+
+msgid "Enter URL here"
+msgstr "Voer hier de URL in"
+
+msgid "Add New Button"
+msgstr "Nieuwe knop toevoegen"
+
+msgid "Select Predefined Function"
+msgstr "Selecteer Voorgedefinieerde functie"
+
+msgid "Select Action"
+msgstr "Selecteer Actie"
+
+msgid "Add New Action"
+msgstr "Nieuwe actie toevoegen"
+
+msgid "Add New Form"
+msgstr "Nieuw formulier toevoegen"
+
+msgid "Enter default fallback here..."
+msgstr "Voer hier de standaard fallback in..."
+
+msgid "Enter default fallback for intent here..."
+msgstr "Voer hier de standaard fallback voor intentie in..."
+
+msgid "Start Point"
+msgstr "Startpunt"
+
+msgid "Error: The template file does not exist."
+msgstr "Fout: het sjabloonbestand bestaat niet."
+
+msgid "Text"
+msgstr "Tekst"
+
+msgid "Function"
+msgstr "Functie"
+
+msgid "Error: The"
+msgstr "Fout: de"
+
+msgid "tag in"
+msgstr "taggen"
+
+msgid "at position"
+msgstr "op positie"
+
+msgid "is missing."
+msgstr "ontbreekt."
+
+msgid "is empty."
+msgstr "is leeg."
+
+msgid "tag associated with the user input"
+msgstr "tag die is gekoppeld aan de gebruikersinvoer"
+
+msgid "in"
+msgstr "in"
+
+msgid "tag of the"
+msgstr "etiket van de"
+
+msgid "block associated with the user input"
+msgstr "blok dat is gekoppeld aan de gebruikersinvoer"
+
+msgid "or"
+msgstr "of"
+
+msgid "Error: The function name"
+msgstr "Fout: de functienaam"
+
+msgid "in the"
+msgstr "in de"
+
+msgid "is invalid."
+msgstr "is ongeldig."
+
+msgid "Error: The type name"
+msgstr "Fout: de typenaam"
+
+msgid "is invalid. This should be"
+msgstr "is ongeldig. Dit zou zo moeten zijn"
+
+msgid "You might like these products."
+msgstr "Misschien vind je deze producten leuk."
+
+msgid "No exact match was found. Explore these similar products."
+msgstr "Er is geen exacte match gevonden. Ontdek deze vergelijkbare producten."
+
+msgid "Here are some suggestions."
+msgstr "Hier zijn enkele suggesties."
+
+msgid "Showing"
+msgstr "Tonen"
+
+msgid "of"
+msgstr "van"
+
+msgid "Add to cart"
+msgstr "Voeg toe aan winkelwagen"
+
+msgid "Empty Story"
+msgstr "Leeg verhaal"
+
+msgid "Show All Products"
+msgstr "Toon alle producten"
+
+msgid "Search Product"
+msgstr "Zoek product"
+
+msgid "Get Products Under Price"
+msgstr "Ontvang producten onder de prijs"
+
+msgid "Get Products Above Price"
+msgstr "Koop producten boven de prijs"
+
+msgid "View Cart/Remove Items"
+msgstr "Bekijk winkelwagen/verwijder items"
+
+msgid "Checkout"
+msgstr "Afrekenen"
+
+msgid "Reset Password"
+msgstr "Wachtwoord opnieuw instellen"
+
+msgid "Send Chat To Admin"
+msgstr "Chat naar beheerder verzenden"
+
+msgid "Integer"
+msgstr "Geheel getal"
+
+msgid "Float"
+msgstr "Vlot"
+
+msgid "Boolean"
+msgstr "Booleaans"
+
+msgid "String"
+msgstr "Snaar"
+
+msgid "Default Fallback"
+msgstr "Standaard terugval"
+
+msgid "Are you sure to reset it?"
+msgstr "Weet je zeker dat je het opnieuw wilt instellen?"
+
+msgid "Parameter Name *"
+msgstr "Parameternaam *"
+
+msgid "Varibale Name *"
+msgstr "Variabele naam *"
+
+msgid "User input has been successfully saved."
+msgstr "Gebruikersinvoer is succesvol opgeslagen."
+
+msgid "An empty user input field."
+msgstr "Een leeg gebruikersinvoerveld."
+
+msgid "An empty bot response."
+msgstr "Een lege botreactie."
+
+msgid "Response Successfully Saved!"
+msgstr "Reactie succesvol opgeslagen!"
+
+msgid "Action Successfully Saved!"
+msgstr "Actie succesvol opgeslagen!"
+
+msgid "Form Successfully Saved!"
+msgstr "Formulier succesvol opgeslagen!"
+
+msgid "Default Fallback Successfully Saved!"
+msgstr "Standaard terugval succesvol opgeslagen!"
+
+msgid "Store relevant user input first, then fallback."
+msgstr "Sla relevante gebruikersinvoer eerst op en pas daarna terug."
+
+msgid "An empty default fallback."
+msgstr "Een lege standaard fallback."
+
+msgid "Default Intent Fallback Successfully Saved!"
+msgstr "Terugval in standaardintentie succesvol opgeslagen!"
+
+msgid "Discard"
+msgstr "Weggooien"
+
+msgid "Temporary discard"
+msgstr "Tijdelijk weggooien"
+
+msgid "Automate"
+msgstr "Automatiseer"
+
+msgid "User input"
+msgstr "Gebruikersinvoer"
+
+msgid "Form"
+msgstr "Formulier"
+
+msgid "Fallback"
+msgstr "Terugval"
+
+msgid "Chat "
+msgstr "Chatten"
+
+msgid "Available Variable"
+msgstr "Beschikbare variabele"
+
+msgid "Product Name"
+msgstr "Productnaam"
+
+msgid "Minimum Price"
+msgstr "Minimumprijs"
+
+msgid "Maximum Price"
+msgstr "Maximale prijs"
+
+msgid "User Login"
+msgstr "Gebruiker inloggen"
+
+msgid "Action Icon"
+msgstr "Actie-icoon"
+
+msgid "User Icon"
+msgstr "Gebruikerspictogram"
+
+msgid "User"
+msgstr "Gebruiker"
+
+msgid "Bot Response"
+msgstr "Bot-reactie"
+
+msgid "User Text Icon"
+msgstr "Gebruikerstekstpictogram"
+
+msgid "Bot Function Icon"
+msgstr "Bot-functiepictogram"
+
+msgid "Bot Function"
+msgstr "Bot-functie"
+
+msgid "Predefined Function"
+msgstr "Voorgedefinieerde functie"
+
+msgid "Bot Action Icon"
+msgstr "Bot-actiepictogram"
+
+msgid "Bot Action"
+msgstr "Bot-actie"
+
+msgid "Bot Form Icon"
+msgstr "Bot-formulierpictogram"
+
+msgid "Bot Form"
+msgstr "Bot-formulier"
+
+msgid "Fallback Icon"
+msgstr "Terugvalpictogram"
+
+msgid "Fallback Massege"
+msgstr "Terugvalbericht"
+
+msgid "Save & Close"
+msgstr "Opslaan en sluiten"
+
+msgid "Info Icon"
+msgstr "Info-pictogram"
+
+msgid "How to add parameters"
+msgstr "Hoe parameters toe te voegen"
+
+msgid "User form Icon"
+msgstr "Gebruikersformulier Icoon"
+
+msgid "Form Name *"
+msgstr "Formuliernaam *"
+
+msgid "Add New Variable"
+msgstr "Nieuwe variabele toevoegen"
+
+msgid "Function Form"
+msgstr "Functie formulier"
+
+msgid "Action Form"
+msgstr "Actieformulier"
+
+msgid "Custom Action"
+msgstr "Aangepaste actie"
+
+msgid "Add New Custom Action"
+msgstr "Nieuwe aangepaste actie toevoegen"
+
+msgid "Add New Parameter"
+msgstr "Voeg nieuwe parameter toe"
+
+msgid "Intent Fallback"
+msgstr "Opzettelijke terugval"
+
+msgid "Save Story"
+msgstr "Verhaal opslaan"
+
+msgid "Reset Story"
+msgstr "Verhaal opnieuw instellen"
+
+msgid "Story has been successfully saved."
+msgstr "Het verhaal is succesvol opgeslagen."
+
+msgid "WooCommerce is not active!"
+msgstr "WooCommerce is niet actief!"
+
+msgid "Error encountered in template."
+msgstr "Er is een fout opgetreden in de sjabloon."
+
+msgid "An empty story name."
+msgstr "Een lege verhaalnaam."
+
+msgid "An empty story template."
+msgstr "Een leeg verhaalsjabloon."
+
+msgid "title"
+msgstr "titel"
+
+msgid "Active"
+msgstr "Actief"
+
+msgid "Disable"
+msgstr "Uitzetten"
+
+msgid "Edit Story"
+msgstr "Verhaal bewerken"
+
+msgid "Are you sure to delete"
+msgstr "Weet u zeker dat u het wilt verwijderen"
+
+msgid "Delete Story"
+msgstr "Verhaal verwijderen"
+
+msgid "Built Story"
+msgstr "Gebouwd verhaal"
+
+msgid "Built"
+msgstr "Gebouwd"
+
+msgid "WooCommerce Story"
+msgstr "WooCommerce-verhaal"
+
+msgid "Story Name *"
+msgstr "Verhaalnaam *"
+
+msgid "Edit Story Name"
+msgstr "Verhaalnaam bewerken"
+
+msgid "Invalid username or email."
+msgstr "Ongeldige gebruikersnaam of e-mailadres."
+
+msgid "Looks like there was a problem resetting your password:"
+msgstr ""
+"Het lijkt erop dat er een probleem is opgetreden bij het opnieuw instellen "
+"van je wachtwoord:"
+
+msgid "User not found!"
+msgstr "Gebruiker niet gevonden!"
+
+msgid "Okay, I have sent the recovery email. Thank you for your patience."
+msgstr "Oké, ik heb de herstelmail verzonden. Bedankt voor uw geduld."
+
+msgid "Your query is sent to the admin."
+msgstr "Uw vraag wordt naar de beheerder verzonden."
+
+msgid "Enable"
+msgstr "Inschakelen"
+
+msgid "Smart Popup"
+msgstr "Slimme pop-up"
+
+msgid "Standard Popup"
+msgstr "Standaard pop-up"
+
+msgid "Appearance"
+msgstr "Verschijning"
+
+msgid "Choose File"
+msgstr "Kies Bestand"
+
+msgid "User Default Image"
+msgstr "Standaardafbeelding gebruiker"
+
+msgid "Primary Color"
+msgstr "Primaire kleur"
+
+msgid "Choose Color"
+msgstr "Kies Kleur"
+
+msgid "User Text Background"
+msgstr "Achtergrond van gebruikerstekst"
+
+msgid "User Text Color"
+msgstr "Kleur gebruikerstekst"
+
+msgid "Bot Link Color"
+msgstr "Kleur van botlink"
+
+msgid "Presets"
+msgstr "Voorinstellingen"
+
+msgid "Preset"
+msgstr "Voorinstelling"
+
+msgid "online"
+msgstr "online"
+
+msgid "User Image"
+msgstr "Gebruikersafbeelding"
+
+msgid "Hi I am John"
+msgstr "Hallo ik ben Johan"
+
+msgid "Hi John! How can I help you?"
+msgstr "Hallo Johannes! Hoe kan ik je helpen?"
+
+msgid "Can you help me find a new backpack?"
+msgstr "Kunnen jullie mij helpen een nieuwe rugzak te vinden?"
+
+msgid "Product Icon"
+msgstr "Productpictogram"
+
+msgid "Fusion Backpack"
+msgstr "Fusion-rugzak"
+
+msgid "$"
+msgstr "$"
+
+msgid "59"
+msgstr "59"
+
+msgid "Send message"
+msgstr "Bericht verzenden"
+
+msgid "Welcome Message"
+msgstr "Welkomstbericht"
+
+msgid "Welcome Image"
+msgstr "Welkom afbeelding"
+
+msgid "Chat Auto-Popup"
+msgstr "Chat automatische pop-up"
+
+msgid "Controls whether the chat popup appears automatically on your site."
+msgstr "Bepaalt of de chatpop-up automatisch op uw site verschijnt."
+
+msgid "Chat Pop-up Style"
+msgstr "Chatpop-upstijl"
+
+msgid "Choose how the chat will appear: Smart or Standard pop-up."
+msgstr "Kies hoe de chat eruit zal zien: Slimme of Standaard pop-up."
+
+msgid "Chat Auto-Popup Timing"
+msgstr "Chat automatische pop-uptiming"
+
+msgid ""
+"Define the delay time in seconds for the chatbot to auto-appear on the site."
+msgstr ""
+"Definieer de vertragingstijd in seconden voordat de chatbot automatisch op "
+"de site verschijnt."
+
+msgid "Note"
+msgstr "Opmerking"
+
+msgid ""
+"If the colors have been saved but the user-side colors are still the same, "
+"it is advised to clear the cache."
+msgstr ""
+"Als de kleuren zijn opgeslagen maar de kleuren aan de gebruikerszijde nog "
+"steeds hetzelfde zijn, wordt geadviseerd de cache te wissen."
+
+msgid "Also"
+msgstr "Ook"
+
+msgid "Found"
+msgstr "Gevonden"
+
+msgid "Here are some"
+msgstr "Hier zijn er enkele"
+
+msgid "Help"
+msgstr "Hulp"
+
+msgid "Have any problem?"
+msgstr "Heeft u een probleem?"
+
+msgid ""
+"If you experience any difficulties, we're here to help! Simply click the"
+msgstr ""
+"Als u problemen ondervindt, zijn wij er om u te helpen! Klik eenvoudig op de"
+
+msgid "Create A Ticket"
+msgstr "Maak een kaartje"
+
+msgid ""
+"button to report your issue, and our dedicated support team will assist you "
+"promptly."
+msgstr ""
+"knop om uw probleem te melden, en ons toegewijde ondersteuningsteam zal u "
+"snel helpen."
+
+msgid "Create Ticket"
+msgstr "Ticket aanmaken"
+
+msgid "Post Type"
+msgstr "Berichttype"
+
+msgid "post type"
+msgstr "berichttype"
+
+msgid "Post Label"
+msgstr "Postlabel"
+
+msgid "Associated Plugin"
+msgstr "Bijbehorende plug-in"
+
+msgid "Add associated plugin's name"
+msgstr "Voeg de naam van de bijbehorende plug-in toe"
+
+msgid "For better data consistency, please provide a associated plugin's name."
+msgstr ""
+"Voor een betere gegevensconsistentie geeft u de naam van de bijbehorende "
+"plug-in op."
+
+msgid "Status"
+msgstr "Status"
+
+msgid "For status changes, please use the options available in the listing."
+msgstr "Gebruik voor statuswijzigingen de beschikbare opties in de aanbieding."
+
+msgid "Template Section"
+msgstr "Sjabloonsectie"
+
+msgid ""
+"Fields are currently auto-filled for preview purposes only. Please save your "
+"changes to apply them."
+msgstr ""
+"Velden worden momenteel alleen automatisch ingevuld voor "
+"voorbeelddoeleinden. Sla uw wijzigingen op om ze toe te passen."
+
+msgid "Choose one template style from the given below"
+msgstr "Kies één sjabloonstijl uit de onderstaande lijst"
+
+msgid "Add Button /Link"
+msgstr "Knop/Link toevoegen"
+
+msgid "Add New Button /Link"
+msgstr "Nieuwe knop/link toevoegen"
+
+msgid "Show on Listing"
+msgstr "Weergeven op vermelding"
+
+msgid "View Details"
+msgstr "Details bekijken"
+
+msgid "detail page link"
+msgstr "link naar detailpagina"
+
+msgid "Save Template"
+msgstr "Sjabloon opslaan"
+
+msgid "Create a Post"
+msgstr "Maak een bericht"
+
+msgid "Please first create a sample post to use template section."
+msgstr "Maak eerst een voorbeeldbericht om de sjabloonsectie te gebruiken."
+
+msgid "AI web search enabled successfully."
+msgstr "AI-webzoeken is succesvol ingeschakeld."
+
+msgid "AI web search already enabled."
+msgstr "AI-webzoeken is al ingeschakeld."
+
+msgid "Something went wrong."
+msgstr "Er is iets misgegaan."
+
+msgid "AI web search disabled successfully."
+msgstr "AI-webzoeken is uitgeschakeld."
+
+msgid "New post type search enabled successfully."
+msgstr "Zoeken naar nieuw berichttype is succesvol ingeschakeld."
+
+msgid "New post type search disabled successfully."
+msgstr "Zoeken naar nieuw berichttype is succesvol uitgeschakeld."
+
+msgid "Data Synchronization Needed"
+msgstr "Gegevenssynchronisatie vereist"
+
+msgid ""
+"Your data is not updated. To ensure accurate results, please synchronize "
+"your AI web search data."
+msgstr ""
+"Uw gegevens worden niet bijgewerkt. Synchroniseer uw AI-webzoekgegevens om "
+"nauwkeurige resultaten te garanderen."
+
+msgid "Enable AI web Search"
+msgstr "Schakel AI-webzoeken in"
+
+msgid ""
+"Enable this feature to provide users with direct AI web search results in "
+"the chat, offering them a broader context for their queries."
+msgstr ""
+"Schakel deze functie in om gebruikers directe AI-webzoekresultaten te bieden "
+"in de chat, waardoor ze een bredere context krijgen voor hun vragen."
+
+msgid "Enable New Post Type Search"
+msgstr "Schakel Zoeken naar nieuw berichttype in"
+
+msgid "Lable"
+msgstr "Etiket"
+
+msgid "Post lable"
+msgstr "Postlabel"
+
+msgid "WooCommerce is currently inactive."
+msgstr "WooCommerce is momenteel inactief."
+
+msgid "No product was found."
+msgstr "Er is geen product gevonden."
+
+msgid "Please enter a valid product or category name."
+msgstr "Voer een geldige product- of categorienaam in."
+
+msgid "Please enter a valid price."
+msgstr "Voer een geldige prijs in."
+
+msgid "Please enter a valid price range."
+msgstr "Voer een geldige prijsklasse in."
+
+msgid "Your cart is currently empty."
+msgstr "Uw winkelwagen is momenteel leeg."
+
+msgid "Cart Details"
+msgstr "Winkelwagendetails"
+
+msgid "Price"
+msgstr "Prijs"
+
+msgid "Change"
+msgstr "Wijziging"
+
+msgid "Total Price"
+msgstr "Totale prijs"
+
+msgid "Remove Item"
+msgstr "Artikel verwijderen"
+
+msgid "Subtotal"
+msgstr "Subtotaal"
+
+msgid "Total"
+msgstr "Totaal"
+
+msgid "Proceed to Checkout"
+msgstr "Ga verder naar afrekenen"
+
+msgid "is out of stock."
+msgstr "is niet op voorraad."
+
+msgid "You cannot add another “"
+msgstr "U kunt geen nieuwe toevoegen “"
+
+msgid "” to your cart."
+msgstr "' naar uw winkelwagen."
+
+msgid "You cannot add more than"
+msgstr "Je kunt niet meer toevoegen dan"
+
+msgid "of this product to your cart."
+msgstr "van dit product in uw winkelwagen."
+
+msgid "has been added to your cart."
+msgstr "is aan uw winkelwagen toegevoegd."
+
+msgid "has not been added to your cart. Please try again."
+msgstr "is niet aan uw winkelwagen toegevoegd. Probeer het opnieuw."
+
+msgid "View Cart"
+msgstr "Bekijk winkelwagen"
+
+msgid "Please select a product!"
+msgstr "Selecteer een product!"
+
+msgid "There are no variations available."
+msgstr "Er zijn geen varianten beschikbaar."
+
+msgid "Product not found or not a variable product."
+msgstr "Product niet gevonden of geen variabel product."
+
+msgid "You can't add another “"
+msgstr "Je kunt niet nog een toevoegen “"
+
+msgid "There was an error while adding the product to the cart."
+msgstr ""
+"Er is een fout opgetreden bij het toevoegen van het product aan de "
+"winkelwagen."
+
+msgid ""
+"The requested variation with the specified attributes could not be found."
+msgstr ""
+"De gevraagde variant met de opgegeven kenmerken kan niet worden gevonden."
+
+msgid "Change Quantity"
+msgstr "Wijzig hoeveelheid"
+
+msgid "Update"
+msgstr "Update"
+
+msgid "The cart is empty."
+msgstr "De winkelwagen is leeg."
+
+msgid "Cart item is not found."
+msgstr "Winkelwagenitem is niet gevonden."
+
+msgid "The item was not found in the cart."
+msgstr "Het artikel is niet gevonden in de winkelwagen."
+
+msgid "Quantity updated successfully!"
+msgstr "Aantal succesvol bijgewerkt!"
+
+msgid "Change quantity"
+msgstr "Wijzig hoeveelheid"
+
+msgid "Edit Post Type"
+msgstr "Berichttype bewerken"
+
+msgid "Parameter"
+msgstr "Parameter"
+
+msgid "delete"
+msgstr "verwijderen"
+
+msgid "add intent"
+msgstr "intentie toevoegen"
+
+msgid "plus icon"
+msgstr "plus-pictogram"
+
+msgid "Add Intents"
+msgstr "Intenties toevoegen"
+
+msgid ""
+"On the responses listing page, all the responses are listed here; you can "
+"check them out."
+msgstr ""
+"Op de pagina met antwoordenoverzicht worden alle reacties hier vermeld; je "
+"kunt ze bekijken."
+
+msgid "Add Intent"
+msgstr "Intentie toevoegen"
+
+msgid ""
+"On the form listing page, all the forms are listed here; you can check them "
+"out."
+msgstr ""
+"Op de formulierlijstpagina worden alle formulieren hier vermeld; je kunt ze "
+"bekijken."
+
+msgid "Add Forms"
+msgstr "Formulieren toevoegen"
+
+msgid "On the add form page, you can add a new form."
+msgstr "Op de formulierformulierpagina kunt u een nieuw formulier toevoegen."
+
+msgid "Responses"
+msgstr "Reacties"
+
+msgid "Add Response"
+msgstr "Reactie toevoegen"
+
+msgid "On the add Response page, you can add a new Response."
+msgstr "Op de pagina Reactie toevoegen kunt u een nieuwe reactie toevoegen."
+
+msgid ""
+"On the actions listing page, all the actions are listed here; you can check "
+"them out."
+msgstr ""
+"Op de actieslijstpagina worden alle acties hier vermeld; je kunt ze bekijken."
+
+msgid "Add  Action"
+msgstr "Actie toevoegen"
+
+msgid "On the add action page, you can add a new action."
+msgstr "Op de actiepagina toevoegen kunt u een nieuwe actie toevoegen."
+
+msgid "Add Intent Group"
+msgstr "Intentiegroep toevoegen"
+
+msgid "Import"
+msgstr "Importeren"
+
+msgid "Menu"
+msgstr "Menu"
+
+msgid "End Chat"
+msgstr "Beëindig de chat"
+
+msgid "Restart Chat"
+msgstr "Start het chatten opnieuw"
+
+msgid "Image"
+msgstr "Afbeelding"
+
+msgid "Send Icon"
+msgstr "Verzendpictogram"
+
+msgid "Welcome to GeekyBot! Let me know how I can assist you today."
+msgstr "Welkom bij GeekyBot! Laat me vandaag nog weten hoe ik je kan helpen."
+
+msgid "admin."
+msgstr "beheerder."
+
+msgid "Account Assistance"
+msgstr "Accounthulp"
+
+msgid "Diet Plan Assistant"
+msgstr "Assistent dieetplan"
+
+msgid "Job Application"
+msgstr "Sollicitatie"
+
+msgid "Offline Form"
+msgstr "Offline formulier"
+
+msgid "Real Estate"
+msgstr "Vastgoed"
+
+msgid "Sales Support"
+msgstr "Verkoopondersteuning"
+
+msgid "University"
+msgstr "Universiteit"
+
+msgid "Vacation Planner"
+msgstr "Vakantieplanner"

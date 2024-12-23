@@ -25,8 +25,8 @@
             if (data) {
                 geekybotHideLoading();
                 if(data == 1){
-                    var msg = "'. __('AI web search enabled successfully.', 'geeky-bot') .'";
-                    alert(msg);
+                    // var msg = "'. __('AI web search enabled successfully.', 'geeky-bot') .'";
+                    // alert(msg);
                     window.location.reload();
                 } else if(data == 2){
                     var msg = "'. __('AI web search already enabled.', 'geeky-bot') .'";
@@ -46,8 +46,8 @@
             if (data) {
                 geekybotHideLoading();
                 if(data == 1){
-                    var msg = "'. __('AI web search disabled successfully.', 'geeky-bot') .'";
-                    alert(msg);
+                    // var msg = "'. __('AI web search disabled successfully.', 'geeky-bot') .'";
+                    // alert(msg);
                     window.location.reload();
                 } else {
                     var msg = "'. __('Something went wrong.', 'geeky-bot') .'";
@@ -90,7 +90,7 @@
     }
 ?>
 <!-- main wrapper -->
-<div id="geekybotadmin-wrapper">
+<div id="geekybotadmin-wrapper" class="geekybot-admin-main-wrapper">
     <?php  GEEKYBOTincluder::GEEKYBOT_getTemplate('templates/admin/upper-nav',array('module' => 'websearch','layouts' => 'websearch')); ?>
     <div class="geekybotadmin-body-main">
         <!-- left menu -->
