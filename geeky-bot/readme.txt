@@ -1,16 +1,16 @@
-=== GeekyBot - The Ultimate FREE AI Chatbot ===
+=== Woo Lead Generation, AI Chatbot and AI Web Search - GeekyBot ===
 Contributors: ahmadgb
 Tags: chatbot, AI, woocommerce chat, live chat
 Donate link: https://geekybot.com
 Requires at least: WordPress 5.0
 Tested up to: 6.7.1
-Stable tag: 1.0.5
+Stable tag: 1.0.6
 License: GPLv2
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
 == Description ==
 
-The ultimate and FREE AI chatbot for WooCommerce lead generation, intelligent content search, and interactive customer engagement on your WordPress website.
+The ultimate and FREE AI chatbot, WooCommerce lead generation, intelligent web search, and interactive customer engagement on your WordPress website.
 
 == ChatBot Free from Third-Party API ==
 GeekyBot is fully independent, with no dependency on **third-party APIs** like **ChatGPT, DialogFlow, or Alexa**, and works freely.
@@ -18,9 +18,8 @@ GeekyBot is fully independent, with no dependency on **third-party APIs** like *
 ==Top Features ==
 
 - **WooCommerce Lead Generation:** Streamline shopping experiences by allowing users to find products, explore variations, and add items to their cart directly through GeekyBot.
-- **AI Chat:** Customize interactions using slots and variables to dynamically capture and process user inputs.
+- **AI Chatbot:** Customize interactions using slots and variables to dynamically capture and process user inputs.
 - **AI Web Search:** Assist users in discovering relevant information within your blog posts or articles by searching or topics and displaying content as per user requests.
-- **User Account Management:** Provide support for password resets and username retrieval through GeekyBot's intuitive interface.
 
 https://www.youtube.com/watch?v=0asuw6p8EGI
 
@@ -123,7 +122,7 @@ GeekyBot’s AI technology creates unique and relevant responses to user inquiri
 GeekyBot’s NLP AI allows for natural topic switching among responses. Switch seamlessly between Scripted NLP AI and Generative AI to control responses.
 
 **Abandoned Cart**
-Notify customers of abandoned items in their cart and incomplete checkouts.
+Notify customers of abandoned items in their cart and incomplete checkouts (coming soon).
 
 **Order Status**
 Answer the common question, “Where’s my order?” by providing order status and tracking information.
@@ -139,9 +138,6 @@ Identify obstacles preventing purchases, such as site bugs or confusing processe
 
 **Awesome Support**
 We’re committed to your satisfaction. Contact us anytime with questions.
-
-**Some Bonus Engagement Tools**
-Includes Live Chat, LeadBot, Exit Popups, Mobile Banners, Lead & Offer Sliders, and more.
 
 ###Language Support
 
@@ -170,7 +166,6 @@ Right-to-left (RTL) language support is available.
 GeekyBot seamlessly integrates with WooCommerce. After installation, configure WooCommerce settings within GeekyBot's plugin settings to enable product search and cart interactions.
 
 **How can I report security bugs?**
-
 You can report security bugs through the Patchstack Vulnerability Disclosure Program. The Patchstack team help validate, triage and handle any security vulnerabilities. [Report a security vulnerability.](https://patchstack.com/database/vdp/geeky-bot)
 
 == Installation ==
@@ -223,6 +218,9 @@ If you activate certain features in this plugin, the user's personal data, inclu
 * Font Awesome (https://fontawesome.com/privacy)
 
 == Changelog ==
+= 1.0.6
+* Improve AI Web Search
+
 = 1.0.5
 * Improve Admin dashboard
 * Security Updates.

@@ -317,42 +317,74 @@ class GEEKYBOTwebsearchModel {
                 }
             }
         }
-        $query = 'SELECT DISTINCT posts.id, posts.post_type, labels.post_label, MATCH (posts.post_text) AGAINST ("'.esc_sql($msg).'" IN NATURAL LANGUAGE MODE) AS score FROM `' . geekybot::$_db->prefix . 'geekybot_posts` AS posts
+        $query = "(SELECT DISTINCT posts.id, posts.post_type, labels.post_label, '999' AS score FROM `" . geekybot::$_db->prefix . "geekybot_posts` AS posts
+            LEFT JOIN `" . geekybot::$_db->prefix . "geekybot_post_types` AS labels ON posts.post_type = labels.post_type
+            WHERE posts.post_text LIKE '%".esc_sql($msg)."%' AND posts.status = 'publish' AND labels.status = 1";
+        $query .= $inquery;
+        $query .= " ORDER BY score DESC LIMIT 100) ";
+
+        $query .= ' UNION ';
+
+        $query .= '(SELECT DISTINCT posts.id, posts.post_type, labels.post_label, MATCH (posts.post_text) AGAINST ("'.esc_sql($msg).'" IN NATURAL LANGUAGE MODE) AS score FROM `' . geekybot::$_db->prefix . 'geekybot_posts` AS posts
             LEFT JOIN `' . geekybot::$_db->prefix . 'geekybot_post_types` AS labels ON posts.post_type = labels.post_type
             WHERE MATCH (posts.post_text) AGAINST ("'.esc_sql($msg).'" IN NATURAL LANGUAGE MODE) AND posts.status = "publish" AND labels.status = 1';
         $query .= $inquery;
-        $query .= " ORDER BY score DESC ";
+        $query .= " ORDER BY score DESC LIMIT 100) ";
+        $query .= '; ';
+
         $logdata .="\n".$query;
         $posts = geekybotdb::GEEKYBOT_get_results($query);
-        $posts = $this->applyThresholdOnWebSearch($posts);
-        $highest_score = isset($posts[0]->score) ? $posts[0]->score : 0;  // Get the score of the first post
-        // Initialize an empty array to store the counts
-        $post_type_counts = array();
-        // Iterate through the array to count post types
+
+        $post_highest_score = 0;
         foreach ($posts as $post) {
-            if (isset($post_type_counts[$post->post_type])) {
-                $post_type_counts[$post->post_type]['count']++;
-            } else {
-                $post_type_counts[$post->post_type]['type'] = $post->post_type;
-                $post_type_counts[$post->post_type]['label'] = $post->post_label;
-                $post_type_counts[$post->post_type]['count'] = 1;
+            if($post->score != 999){ // not like static score
+                if($post->score > $post_highest_score){
+                    $post_highest_score = $post->score;
+                }
+            }
+        }
+
+        $post_ids = array();
+        foreach ($posts as &$post) {
+            if (in_array($post->id, $post_ids)){ // dublicate idspost_ids
+                $post->score = 0; 
+            }else{
+                $post_ids[] = $post->id;
+                if($post->score == 999){
+                    $post->score = $post_highest_score + 5; // set score to make post relevant
+                }
+            }
+        }
+        unset($post);
+        $logdata .="\n after loop: ".print_r($posts, true);
+        $posts = $this->applyThresholdOnWebSearch($posts);
+        $logdata .="\n after threshold: ".print_r($posts, true);
+
+        $post_types = array();
+        foreach ($posts as $post) {
+            if (!isset($post_types[$post->post_type]) || !in_array($post->id, $post_types[$post->post_type]['post_ids'])) { 
+                $post_types[$post->post_type]['label'] = $post->post_label;
+                $post_types[$post->post_type]['post_ids'][] = $post->id;
             }
         }
         $titleHtml = '';
         $btnHtml = '';
         $html = '';
         // Display results directly instead of buttons when data for only a single post type is found.
-        if ((count($post_type_counts) > 1) || (count($post_type_counts) == 1 && $type == 1)) {
-            foreach ($post_type_counts as $post_type_count) {
-                if ($post_type_count['count'] > 0) {
-                    $titleHtml .= ' '.$post_type_count['count'].' '.$post_type_count['label'].' ';
+        if ((count($post_types) > 1) || (count($post_types) == 1 && $type == 1)) {
+            foreach ($post_types as $index => $data) {
+                $post_ids_count = count($data['post_ids']);
+                if ($post_ids_count > 0) {
+                    $titleHtml .= ' '.$post_ids_count.' '.$data['label'].' ';
+                    // Encrypt the data
+                    $encrypted_post_ids = openssl_encrypt(json_encode($data['post_ids']), 'AES-128-ECB', 'geekybot_websearch');
                     $btnHtml .= "
                     <div class='geekybot_article_bnt_wrp'>
-                        <span onclick=\"showArticlesList('".$msg."','".$post_type_count['type']."','".$post_type_count['label']."','".$highest_score."','".$post_type_count['count']."', 1);\" class='geekybot_article_bnt' class='button'>" . __('Show', 'geeky-bot').' '. $post_type_count['label'] ."</span>
+                        <span onclick=\"showArticlesList('".$encrypted_post_ids."','".$msg."','".$index."','".$data['label']."','".$post_ids_count."', 1);\" class='geekybot_article_bnt' class='button'>" . __('Show', 'geeky-bot').' '. $data['label'] ."</span>
                     </div>";
                 }
             }
-            if (!empty($post_type_counts)) {
+            if (!empty($post_types)) {
                 $html = '<div class="geekybot_article_message_wrp">';
                 if ($type == 1) {
                     $html .= __('Also', 'geeky-bot').' ';
@@ -363,9 +395,14 @@ class GEEKYBOTwebsearchModel {
                 $html .= $btnHtml;
             }
             $return['save_history'] = 1;
-        } elseif (count($post_type_counts) == 1) {
-            $post_type_count = reset($post_type_counts);
-            $html = $this->showArticlesList($msg, $post_type_count['type'], $post_type_count['label'], $highest_score, $post_type_count['count'], 1);
+        } elseif (count($post_types) == 1) {
+            // Get the first index of the main array
+            $post_type = key($post_types);
+            // Access the data of the first index
+            $post_type_data = $post_types[$post_type];
+            // Encrypt the data
+            $encrypted_post_ids = openssl_encrypt(json_encode($post_type_data['post_ids']), 'AES-128-ECB', 'geekybot_websearch');
+            $html = $this->showArticlesList($encrypted_post_ids,$msg, $post_type, $post_type_data['label'], count($post_type_data['post_ids']), 1);
             $html = html_entity_decode($html);
             $return['save_history'] = 0;
         }
@@ -374,29 +411,34 @@ class GEEKYBOTwebsearchModel {
         return $return;
     }
 
-    function showArticlesList($msg = '', $type = '', $label = '', $highest_score = '', $total_posts = '', $current_page = '') {
+    function showArticlesList($post_ids = '', $msg = '', $type = '', $label = '', $total_posts = '', $current_page = '') {
         $logdata = "\n\nshowArticlesList";
         if ($type == '') {
             $nonce = GEEKYBOTrequest::GEEKYBOT_getVar('_wpnonce');
             if (! wp_verify_nonce( $nonce, 'articles-list') ) {
                 die( 'Security check Failed' ); 
             }
+            $post_ids = GEEKYBOTrequest::GEEKYBOT_getVar('post_ids');
             $msg = GEEKYBOTrequest::GEEKYBOT_getVar('msg');
             $type = GEEKYBOTrequest::GEEKYBOT_getVar('type');
             $label = GEEKYBOTrequest::GEEKYBOT_getVar('label');
-            $highest_score = GEEKYBOTrequest::GEEKYBOT_getVar('highestScore');
             $total_posts = GEEKYBOTrequest::GEEKYBOT_getVar('totalPosts');
             $current_page = GEEKYBOTrequest::GEEKYBOT_getVar('currentPage');
         }
         $postsPerPage = geekybot::$_configuration['pagination_product_page_size'];
         $offset = ($current_page - 1) * $postsPerPage;
 
-        $query = 'SELECT `id`,`post_id`,`post_type`,`title`,`content`, MATCH (post_text) AGAINST ("'.esc_sql($msg).'" IN NATURAL LANGUAGE MODE) AS score FROM `' . geekybot::$_db->prefix . 'geekybot_posts` WHERE MATCH (post_text) AGAINST ("'.esc_sql($msg).'" IN NATURAL LANGUAGE MODE) AND post_type = "'.$type.'" AND status = "publish"';
-        $query .= " ORDER BY score DESC ";
+        $decrypted_post_ids = openssl_decrypt($post_ids, 'AES-128-ECB', 'geekybot_websearch');
+        $post_ids_array = json_decode($decrypted_post_ids, true);
+        $escaped_post_ids = array_map('intval', $post_ids_array); // Convert to integers for safety
+        $in_clause = "'" . implode("', '", $escaped_post_ids) . "'"; // Join with commas
+
+        $query = 'SELECT `id`,`post_id`,`post_type`,`title`,`content` FROM `' . geekybot::$_db->prefix . 'geekybot_posts` WHERE id IN ('.$in_clause.')';
+        // $query .= " ORDER BY score DESC ";
         $query .= " LIMIT $postsPerPage OFFSET $offset";
         // Get paginated posts
         $posts = geekybotdb::GEEKYBOT_get_results($query);
-        $posts = $this->applyThresholdOnWebSearch($posts, $highest_score);
+
         $text = '';
         if($posts){
             if(in_array('customlistingstyle', geekybot::$_active_addons)){
@@ -410,7 +452,7 @@ class GEEKYBOTwebsearchModel {
             $from_post = $offset + 1;
             $text = "<div class='geekybot_wc_post_heading geekybot_wc_post_title'>".__('Here are some', 'geeky-bot')." ".$label."."." <span class='geekybot_wc_post_heading_nums'>".__('Showing', 'geeky-bot')." ".$from_post." - ".$to_post." ".__('of', 'geeky-bot')." ".$total_posts."</span></div>";
             foreach ($posts as $post) {
-                $logdata .= "\nTitle: ".$post->title." score: ".$post->score;
+                $logdata .= "\nTitle: ".$post->title;
                 if (!empty($geekybot_custom_listing->template_id)) {
                     if (in_array($geekybot_custom_listing->template_id, [1, 2, 3])) {
                         // Check if template_id is 1, 2, or 3
@@ -429,7 +471,7 @@ class GEEKYBOTwebsearchModel {
                     $permalink = get_permalink( $post->post_id );
                     $text .= '
                     <div class="geekybot_wc_article_wrp">
-                        <div class="geekybot_wc_article_header geekybot_wc_article_title 01">';
+                        <div class="geekybot_wc_article_header geekybot_wc_article_title">';
                             if ( !empty($image_url) ) {
                             $text .= '<span class="geekybot-websearch-image-wrp"><img src="' . esc_url( $image_url ) . '" alt="' . esc_attr( get_the_title() ) . '"></span>';
                             }
@@ -477,7 +519,7 @@ class GEEKYBOTwebsearchModel {
             $text .= "<div class='geekybot_wc_post_load_more_wrp'>";
                 if ($total_posts > ($current_page * $postsPerPage)) {
                     $next_page = $current_page + 1;
-                    $text .= "<span class='geekybot_wc_post_load_more' onclick=\"showArticlesList('".$msg."','".$type."','".$label."','". $highest_score."','". $total_posts."','". $next_page."');\">".__('Show More', 'geeky-bot')."</span>";
+                    $text .= "<span class='geekybot_wc_post_load_more' onclick=\"showArticlesList('".$post_ids."','".$msg."','".$type."','".$label."','". $total_posts."','". $next_page."');\">".__('Show More', 'geeky-bot')."</span>";
                 }
             $text .= "</div>";
         }

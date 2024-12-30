@@ -379,11 +379,11 @@ if (!defined('ABSPATH'))
         });
     }
 
-    function showArticlesList(msg, type, label, highest_score, total_posts, current_page) {
+    function showArticlesList(post_ids, msg, type, label, total_posts, current_page) {
         var message = '".esc_html(__('Show Articles', 'geeky-bot'))."';
         SaveChathistory(message,'user');
         var ajaxurl = '".esc_url(admin_url('admin-ajax.php'))."';
-        jQuery.post(ajaxurl, { action: 'geekybot_frontendajax', geekybotme: 'websearch', task: 'showArticlesList', msg: msg, type: type, label: label, highestScore: highest_score, totalPosts: total_posts, currentPage: current_page, '_wpnonce':'".esc_attr(wp_create_nonce("articles-list")) ."'}, function (data) {
+        jQuery.post(ajaxurl, { action: 'geekybot_frontendajax', geekybotme: 'websearch', task: 'showArticlesList', post_ids: post_ids, msg: msg, type: type, label: label, totalPosts: total_posts, currentPage: current_page, '_wpnonce':'".esc_attr(wp_create_nonce("articles-list")) ."'}, function (data) {
             if (data) {
                 geekybot_scrollToTop(100);
                 var message = geekybot_DecodeHTML(data);

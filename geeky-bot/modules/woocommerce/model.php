@@ -965,6 +965,7 @@ class GEEKYBOTwoocommerceModel {
                     // Get the stock quantity of the product
                     $stock_quantity = $variation['max_qty'];
                     $new_quantity = $stock_quantity + 1;
+                    // $new_quantity = 1;
                     // Check if the product is in stock and if adding more than the available quantity
                     if ( $stock_quantity && $new_quantity > $stock_quantity ) {
                         $canAddProduct_quantity = false;
@@ -993,7 +994,7 @@ class GEEKYBOTwoocommerceModel {
                         $text = "
                         <div class='geekybot_wc_product_wrp geekybot_wc_product_options_wrp'>
                             <div class='geekybot_wc_success_msg_wrp success'>
-                                ".$product->get_title(). __('has been added to your cart.', 'geeky-bot')." 
+                                ".$product->get_title()." ". __('has been added to your cart.', 'geeky-bot')." 
                             </div>
                             <div class='geekybot_wc_product_left_wrp'>
                                 ".$product->get_image('thumbnail')."
