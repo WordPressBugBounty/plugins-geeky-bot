@@ -41,6 +41,12 @@ class GEEKYBOTconfigurationModel {
         $error = false;
         //DB class limitations
         foreach ($data as $key => $value) {
+            if ($key == 'fallback_btn_text' || 
+                $key == 'fallback_btn_type' || 
+                $key == 'fallback_btn_value' || 
+                $key == 'fallback_btn_url') {
+                continue;
+            }
             if ($key == 'data_directory') {
                 $data_directory = $value;
                 if(empty($data_directory)){
@@ -89,6 +95,29 @@ class GEEKYBOTconfigurationModel {
                 }
             }
             $query = 'UPDATE `' . geekybot::$_db->prefix . 'geekybot_config` SET `configvalue` = "'.esc_sql($value).'" WHERE `configname`= "' . esc_sql($key) . '"';
+            if (false === geekybotdb::query($query)) {
+                $error = true;
+            }
+        }
+        $fallback_btn = [];
+        if (is_array($data['fallback_btn_text']) && is_array($data['fallback_btn_type'])) {
+            foreach ($data['fallback_btn_text'] as $index => $text) {
+                if (isset($data['fallback_btn_type'][$index]) && $text != '') {
+                    $type = $data['fallback_btn_type'][$index];
+                    if ($type == 1 && isset($data['fallback_btn_value'][$index]) && $data['fallback_btn_value'][$index] != '') {
+                        $value = $data['fallback_btn_value'][$index];
+                    } elseif ($type == 2 && isset($data['fallback_btn_url'][$index]) && $data['fallback_btn_url'][$index] != '') {
+                        $value = $data['fallback_btn_url'][$index];
+                    }
+                    $fallback_btn[] = array(
+                        'text' => $text,
+                        'type' => $type,
+                        'value' => $value
+                    );
+                }
+            }
+            $default_message_buttons = wp_json_encode($fallback_btn);
+            $query = 'UPDATE `' . geekybot::$_db->prefix . 'geekybot_config` SET `configvalue` = "'.esc_sql($default_message_buttons).'" WHERE `configname`= "default_message_buttons"';
             if (false === geekybotdb::query($query)) {
                 $error = true;
             }

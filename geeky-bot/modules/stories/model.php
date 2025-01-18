@@ -302,9 +302,32 @@ class GEEKYBOTstoriesModel {
         $default_fallback = GEEKYBOTrequest::GEEKYBOT_getVar('default_fallback');
         if (!is_numeric($story_id))
             return false;
+        $btn_text = GEEKYBOTrequest::GEEKYBOT_getVar('btn_text');
+        $btn_type = GEEKYBOTrequest::GEEKYBOT_getVar('btn_type');
+        $btn_value = GEEKYBOTrequest::GEEKYBOT_getVar('btn_value');
+        $btn_url = GEEKYBOTrequest::GEEKYBOT_getVar('btn_url');
 
+        $fallback_btn = [];
+        if (is_array($btn_text) && is_array($btn_type)) {
+            foreach ($btn_text as $index => $text) {
+                if (isset($btn_type[$index]) && $text != '') {
+                    $type = $btn_type[$index];
+                    if ($type == 1 && isset($btn_value[$index]) && $btn_value[$index] != '') {
+                        $value = $btn_value[$index];
+                    } elseif ($type == 2 && isset($btn_url[$index]) && $btn_url[$index] != '') {
+                        $value = $btn_url[$index];
+                    }
+                    $fallback_btn[] = array(
+                        'text' => $text,
+                        'type' => $type,
+                        'value' => $value
+                    );
+                }
+            }
+        }
+        $default_fallback_buttons = wp_json_encode($fallback_btn);
         // default_fallback
-        $query = 'UPDATE `' . geekybot::$_db->prefix . 'geekybot_stories` SET `default_fallback` = "'.esc_sql($default_fallback).'" WHERE `id`= "' . esc_sql($story_id) . '"';
+        $query = 'UPDATE `' . geekybot::$_db->prefix . 'geekybot_stories` SET `default_fallback` = "'.esc_sql($default_fallback).'", `default_fallback_buttons` = "'.esc_sql($default_fallback_buttons).'" WHERE `id`= "' . esc_sql($story_id) . '"';
         geekybotdb::query($query);
         return 1;
     }
@@ -316,7 +339,7 @@ class GEEKYBOTstoriesModel {
         }
         $story_id = GEEKYBOTrequest::GEEKYBOT_getVar('story_id');
         // delete the default fallback
-        $query = "UPDATE `" . geekybot::$_db->prefix . "geekybot_stories` SET `default_fallback` = '' WHERE `id`= " . esc_sql($story_id);
+        $query = "UPDATE `" . geekybot::$_db->prefix . "geekybot_stories` SET `default_fallback` = '', `default_fallback_buttons` = '' WHERE `id`= " . esc_sql($story_id);
         geekybotdb::query($query);
         return;
     }
@@ -611,7 +634,7 @@ class GEEKYBOTstoriesModel {
             </div>
         </div>
         <div class="geekybot-form-add-newfield-button">
-            <div id="response-popup-text">';
+            <div class="response-popup-text" id="response-popup-text">';
                 $responseButtonDivId = 1;
                 foreach ($response_buttons as $response_button){
                     if ($response_button->type == 1) {
@@ -743,15 +766,62 @@ class GEEKYBOTstoriesModel {
         $html = '';
         $fallback = '';
         if (isset($storyId) && is_numeric($storyId)) {
-            $query = "SELECT default_fallback FROM `" . geekybot::$_db->prefix . "geekybot_stories` where id = ".esc_sql($storyId);
-            $fallback = geekybotdb::GEEKYBOT_get_var($query);
-        } 
+            $query = "SELECT default_fallback, default_fallback_buttons FROM `" . geekybot::$_db->prefix . "geekybot_stories` where id = ".esc_sql($storyId);
+            $fallbackData = geekybotdb::GEEKYBOT_get_row($query);
+            $fallback = $fallbackData->default_fallback;
+            // fallback buttons
+            $fallback_buttons = [];
+            if (!empty($fallbackData->default_fallback_buttons)) {
+                $fallback_buttons = json_decode($fallbackData->default_fallback_buttons);
+            }
+        }
         $html .= '
             <div class="geekybot-form-wrapper">
                 <div class="geekybot-popup-textarea-text">
                     <textarea name="default_fallback_text" class="text-area-popuptxt" id="default_fallback_text" placeholder="'. esc_html(__('Enter default fallback here...','geeky-bot')) .'">'.$fallback.'</textarea>
                 </div>
-            </div>';
+            </div>
+            <div class="geekybot-form-add-newfield-button">
+                <div class="response-popup-text" id="fallback-popup-text">';
+                    $fallbackButtonDivId = 1;
+                    foreach ($fallback_buttons as $fallback_button){
+                        if ($fallback_button->type == 1) {
+                            $optionOneSelected = 'selected="selected"';
+                            $optionTwoSelected = '';
+                            $optionOneStyle = 'style="display:block"';
+                            $optionTwoStyle = 'style="display:none"';
+                        } else if ($fallback_button->type == 2) {
+                            $optionOneSelected = '';
+                            $optionTwoSelected = 'selected="selected"';
+                            $optionOneStyle = 'style="display:none"';
+                            $optionTwoStyle = 'style="display:block"';
+                        }
+                        $html .= '
+                        <div class="geeky-popup-dynamic-field" id="div_'.$fallbackButtonDivId.'">
+                            <input name = "fallback_btn_text[]" type="text" value = "'.$fallback_button->text.'" class="inputbox geeky-popup-dynamic-field-input" autocomplete="off" placeholder="'. esc_attr(__('Button text here','geeky-bot')).'" />
+                            <select name="fallback_btn_type[]" class="response-btn-type inputbox geeky-popup-dynamic-field-input geeky-popup-dynamic-field-select" data-validation="required">
+                                <option value="1" '.$optionOneSelected.' >'. esc_attr(__('User Input','geeky-bot')).'</option>
+                                <option value="2" '.$optionTwoSelected.' >'. esc_attr(__('URL','geeky-bot')).'</option>
+                            </select>
+                            <input name = "fallback_btn_value[]" type="text" value = "'.$fallback_button->value.'" class="response-btn-value inputbox geeky-popup-dynamic-field-input" autocomplete="off" placeholder="'. esc_attr(__('Button value here','geeky-bot')).'" '.$optionOneStyle.' />
+                            <input name = "fallback_btn_url[]" type="text" value = "'.$fallback_button->value.'" class="response-btn-url inputbox geeky-popup-dynamic-field-input" autocomplete="off" placeholder="'. esc_attr(__('Enter URL here','geeky-bot')).'" '.$optionTwoStyle.' />
+                            <span class="geeky-popup-dynamic-remov-image remove-btn" title="'. esc_attr(__('Delete','geeky-bot')) .'" onClick="deleteFallbackBotton(div_'.$fallbackButtonDivId.')">
+                                '. esc_html(__('Delete','geeky-bot')) .'
+                            </span>
+                        </div>';
+                        $fallbackButtonDivId++;
+                    }
+                    $html .= '
+                </div>
+                <div id="create-intent-fallback-buttons">
+                    <span class="geekybot-frm-add-field-button" title="'. esc_attr(__('Add New Button','geeky-bot')) .'" onclick="addFallBackButton('.$fallbackButtonDivId.');">
+                        <span class="geekybot-frm-add-field-add-iconbtn-wrp"><img alt="'. esc_html(__('Add Icon','geeky-bot')) .'"title="'. esc_html(__('Add','geeky-bot')) .'" class="userpopup-plus-icon" src="'. esc_url(GEEKYBOT_PLUGIN_URL) .'includes/images/add-icon.png" /></span>
+                        '. esc_attr(__('Add New Button','geeky-bot')) .'
+                    </span>
+                </div>
+            </div>
+
+            ';
         return geekybotphplib::GEEKYBOT_htmlentities($html);
     }
 
@@ -763,14 +833,58 @@ class GEEKYBOTstoriesModel {
         $groupId = GEEKYBOTrequest::GEEKYBOT_getVar('groupId');
         $html = '';
         if (!empty($groupId) && is_numeric($groupId)) {
-            $query = "SELECT id, default_fallback FROM `" . geekybot::$_db->prefix . "geekybot_intents_fallback` where group_id = ".esc_sql($groupId);
+            $query = "SELECT id, default_fallback, default_fallback_buttons FROM `" . geekybot::$_db->prefix . "geekybot_intents_fallback` where group_id = ".esc_sql($groupId);
             $fallback = geekybotdb::GEEKYBOT_get_row($query);
+            // fallback buttons
+            $fallback_buttons = [];
+            if (!empty($fallback->default_fallback_buttons)) {
+                $fallback_buttons = json_decode($fallback->default_fallback_buttons);
+            }
         }
         $default_fallback = isset($fallback->default_fallback) ? $fallback->default_fallback : "";
         $html .= '
             <div class="geekybot-form-wrapper">
                 <div class="geekybot-popup-textarea-text">
                     <textarea name="default_intent_fallback_text" class="text-area-popuptxt" id="default_intent_fallback_text" placeholder="'. esc_html(__('Enter default fallback for intent here...','geeky-bot')) .'">'. $default_fallback .'</textarea>
+                </div>
+            </div>
+            <div class="geekybot-form-add-newfield-button">
+                <div class="response-popup-text" id="intent-fallback-popup-text">';
+                    $fallbackButtonDivId = 1;
+                    foreach ($fallback_buttons as $fallback_button){
+                        if ($fallback_button->type == 1) {
+                            $optionOneSelected = 'selected="selected"';
+                            $optionTwoSelected = '';
+                            $optionOneStyle = 'style="display:block"';
+                            $optionTwoStyle = 'style="display:none"';
+                        } else if ($fallback_button->type == 2) {
+                            $optionOneSelected = '';
+                            $optionTwoSelected = 'selected="selected"';
+                            $optionOneStyle = 'style="display:none"';
+                            $optionTwoStyle = 'style="display:block"';
+                        }
+                        $html .= '
+                        <div class="geeky-popup-dynamic-field" id="div_'.$fallbackButtonDivId.'">
+                            <input name = "fallback_btn_text[]" type="text" value = "'.$fallback_button->text.'" class="inputbox geeky-popup-dynamic-field-input" autocomplete="off" placeholder="'. esc_attr(__('Button text here','geeky-bot')).'" />
+                            <select name="fallback_btn_type[]" class="response-btn-type inputbox geeky-popup-dynamic-field-input geeky-popup-dynamic-field-select" data-validation="required">
+                                <option value="1" '.$optionOneSelected.' >'. esc_attr(__('User Input','geeky-bot')).'</option>
+                                <option value="2" '.$optionTwoSelected.' >'. esc_attr(__('URL','geeky-bot')).'</option>
+                            </select>
+                            <input name = "fallback_btn_value[]" type="text" value = "'.$fallback_button->value.'" class="response-btn-value inputbox geeky-popup-dynamic-field-input" autocomplete="off" placeholder="'. esc_attr(__('Button value here','geeky-bot')).'" '.$optionOneStyle.' />
+                            <input name = "fallback_btn_url[]" type="text" value = "'.$fallback_button->value.'" class="response-btn-url inputbox geeky-popup-dynamic-field-input" autocomplete="off" placeholder="'. esc_attr(__('Enter URL here','geeky-bot')).'" '.$optionTwoStyle.' />
+                            <span class="geeky-popup-dynamic-remov-image remove-btn" title="'. esc_attr(__('Delete','geeky-bot')) .'" onClick="deleteFallbackBotton(div_'.$fallbackButtonDivId.')">
+                                '. esc_html(__('Delete','geeky-bot')) .'
+                            </span>
+                        </div>';
+                        $fallbackButtonDivId++;
+                    }
+                    $html .= '
+                </div>
+                <div id="create-fallback-buttons">
+                    <span class="geekybot-frm-add-field-button" title="'. esc_attr(__('Add New Button','geeky-bot')) .'" onclick="addIntentFallBackButton('.$fallbackButtonDivId.');">
+                        <span class="geekybot-frm-add-field-add-iconbtn-wrp"><img alt="'. esc_html(__('Add Icon','geeky-bot')) .'"title="'. esc_html(__('Add','geeky-bot')) .'" class="userpopup-plus-icon" src="'. esc_url(GEEKYBOT_PLUGIN_URL) .'includes/images/add-icon.png" /></span>
+                        '. esc_attr(__('Add New Button','geeky-bot')) .'
+                    </span>
                 </div>
             </div>';
         $html .= wp_kses(GEEKYBOTformfield::GEEKYBOT_hidden('id', isset($fallback->id) ? $fallback->id : ''), GEEKYBOT_ALLOWED_TAGS);
@@ -1722,8 +1836,6 @@ class GEEKYBOTstoriesModel {
         foreach ($products as $product) {
             $productid = $product->get_id();
             $data = $this->getProductDataForFallback($productid);
-            $data = geekybot::GEEKYBOT_sanitizeData($data);// GEEKYBOT_sanitizeData() function uses wordpress santize functions
-            $data = GEEKYBOTincluder::GEEKYBOT_getModel('intent')->stripslashesFull($data);// remove slashes with quotes.
             $row = GEEKYBOTincluder::GEEKYBOT_getTable('products');
             $data = geekybot::GEEKYBOT_sanitizeData($data);// GEEKYBOT_sanitizeData() function uses wordpress santize functions
             $data = GEEKYBOTincluder::GEEKYBOT_getModel('slots')->stripslashesFull($data);// remove slashes with quotes.
@@ -1734,12 +1846,34 @@ class GEEKYBOTstoriesModel {
                 return GEEKYBOT_SAVE_ERROR;
             }
         }
-        return;
+        return 1;
     }
 
     function getProductDataForFallback($productid){
-        $product_text = '';
         $product = wc_get_product( $productid );
+        // Get categories using get_category_ids and terms
+        $category_ids = $product->get_category_ids();
+        $categories = array();
+        foreach ( $category_ids as $category_id ) {
+            $category = get_term_by( 'id', $category_id, 'product_cat' );  // Get category object
+            if ( $category ) {
+                $categories[] = $category->name;  // Add category name to array
+            }
+        }
+        $categories_text = implode(' ', $categories);
+        // Get tags using get_tag_ids and terms
+        $tag_ids = $product->get_tag_ids();
+        $tags = array();
+        foreach ( $tag_ids as $tag_id ) {
+            $tag = get_term_by( 'id', $tag_id, 'product_tag' );  // Get tag object
+            if ( $tag ) {
+                $tags[] = $tag->name;  // Add tag name to array
+            }
+        }
+        $tags_text = implode(' ', $tags);
+        $product_title = $product->get_name();
+        $product_taxonomy = $categories_text . ' ' . $tags_text;
+        $product_text = '';
         $product_text .= ' '.$product->get_name();
         $product_text .= ' '.$product->get_sku();
         $pattributes = $product->get_attributes();
@@ -1768,27 +1902,8 @@ class GEEKYBOTstoriesModel {
                 $product_text .= ' '.$optionName;
             }
         }
-        // Get categories using get_category_ids and terms
-        $category_ids = $product->get_category_ids();
-        $categories = array();
-        foreach ( $category_ids as $category_id ) {
-            $category = get_term_by( 'id', $category_id, 'product_cat' );  // Get category object
-            if ( $category ) {
-                $categories[] = $category->name;  // Add category name to array
-            }
-        }
-        $categories_text = implode(' ', $categories);
+        
         $product_text .= ' '.$categories_text;
-        // Get tags using get_tag_ids and terms
-        $tag_ids = $product->get_tag_ids();
-        $tags = array();
-        foreach ( $tag_ids as $tag_id ) {
-            $tag = get_term_by( 'id', $tag_id, 'product_tag' );  // Get tag object
-            if ( $tag ) {
-                $tags[] = $tag->name;  // Add tag name to array
-            }
-        }
-        $tags_text = implode(' ', $tags);
         $product_text .= ' '.$tags_text;
 
         $stopwords = GEEKYBOTincluder::GEEKYBOT_getModel('slots')->getStopWords();
@@ -1801,6 +1916,8 @@ class GEEKYBOTstoriesModel {
 
         $filtered_ldescription = array_diff(explode(' ', $long_description), $stopwords);
         $filtered_long_description = implode(' ', $filtered_ldescription);
+        $data['product_title'] = $product_title;
+        $data['product_taxonomy'] = $product_taxonomy;
         $data['product_text'] = $filtered_product_text;
         $data['product_description'] = $filtered_short_description .' '.$filtered_long_description;
         $data['product_id'] = $productid;
@@ -1809,7 +1926,7 @@ class GEEKYBOTstoriesModel {
         return $data;
     }
 
-    function getWcProductListingHtml($msg, $products, $type, $all_products_count, $current_page, $model_name, $function_name, $data) {
+    function getWcProductListingHtml($msg, $products, $type, $all_products_count, $current_page, $function_name, $data) {
         $text = "";
         if($products){
             $products_per_page = geekybot::$_configuration['pagination_product_page_size'];
@@ -1874,9 +1991,11 @@ class GEEKYBOTstoriesModel {
             // Display the "Load More" button if there are more products to show
             $text .= "<div class='geekybot_wc_product_load_more_wrp'>";
                 if ($all_products_count > ($current_page * $products_per_page)) {
-                    $data = htmlspecialchars(wp_json_encode($data), ENT_QUOTES, 'UTF-8');
+                    $data = geekybotphplib::GEEKYBOT_htmlspecialchars(wp_json_encode($data), ENT_QUOTES, 'UTF-8');
+                    $message = '';
+
                     $next_page = $current_page + 1;
-                    $text .= "<span class='geekybot_wc_product_load_more' onclick=\"geekybotLoadMoreProducts('".$msg."','".$next_page."','".$model_name."','".$function_name."','".$data."');\">".__('Show More', 'geeky-bot')."</span>";
+                    $text .= "<span class='geekybot_wc_product_load_more' onclick=\"geekybotLoadMoreProducts('".$message."','".$next_page."','".$function_name."','".$data."');\">".__('Show More', 'geeky-bot')."</span>";
                 }
             $text .= "</div>";
             $text = geekybotphplib::GEEKYBOT_htmlentities($text);

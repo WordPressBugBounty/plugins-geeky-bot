@@ -60,6 +60,7 @@ class GEEKYBOTactivation {
             `group_id` int(11) NOT NULL,
             `story_id` int(11) NOT NULL,
             `default_fallback` text NOT NULL,
+            `default_fallback_buttons` text NOT NULL,
             PRIMARY KEY (`id`)
             ) ENGINE=InnoDB DEFAULT CHARSET=utf8;";
             geekybot::$_db->query($query);
@@ -117,6 +118,7 @@ class GEEKYBOTactivation {
                 `form_ids` varchar(255) NOT NULL,
                 `story_mode` int(11) NOT NULL,
                 `default_fallback` TEXT NULL,
+                `default_fallback_buttons` TEXT NULL,
                 `positions_array` MEDIUMTEXT NULL,
                 `story_type` int(11) DEFAULT '1',
                 `status` tinyint(1) DEFAULT '1',
@@ -142,7 +144,7 @@ class GEEKYBOTactivation {
             ('title',   'GeekyBot',   'default',  NULL),
             ('pagination_default_page_size',    '10',   'default',  NULL),
             ('pagination_product_page_size',    '3',   'default',  NULL),
-            ('versioncode', '1.0.6',    'default',  NULL),
+            ('versioncode', '1.0.7',    'default',  NULL),
             ('last_version',    '101',  'default',  NULL),
             ('image_file_type', 'png,jpeg,gif,jpg', 'default', NULL),
             ('bot_custom_img',  '0',    'default',  NULL),
@@ -151,6 +153,7 @@ class GEEKYBOTactivation {
             ('ai_search_type',  '1',    'default',  NULL),
             ('ai_search',   '0',    'default',  NULL),
             ('default_message', 'Hi, I am Chatbot. I do not have specific knowledge.',    'default',  NULL),
+            ('default_message_buttons', '',    'default',  NULL),
             ('customer_token',  '', 'default',  NULL),
             ('bot_name',    '', 'default',  NULL),
             ('server_ip',   '', 'default',  NULL),
@@ -234,6 +237,7 @@ class GEEKYBOTactivation {
             $query = "CREATE TABLE IF NOT EXISTS `" . geekybot::$_db->prefix . "geekybot_posts` (
                       `id` int(11) NOT NULL PRIMARY KEY AUTO_INCREMENT,
                       `title` text DEFAULT NULL,
+                      `taxonomy` text DEFAULT NULL,
                       `content` LONGTEXT DEFAULT NULL,
                       `post_text` LONGTEXT DEFAULT NULL,
                       `post_id` int(11) NOT NULL,
@@ -256,6 +260,8 @@ class GEEKYBOTactivation {
 
             $query = "CREATE TABLE IF NOT EXISTS `" . geekybot::$_db->prefix . "geekybot_products` (
                     `id` int(11) NOT NULL PRIMARY KEY AUTO_INCREMENT,
+                    `product_title` varchar(2000) DEFAULT NULL,
+                    `product_taxonomy` varchar(5000) DEFAULT NULL,
                     `product_text` text DEFAULT NULL,
                     `product_description` text DEFAULT NULL,
                     `product_id` int(11) NOT NULL,

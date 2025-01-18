@@ -12,7 +12,7 @@ class GEEKYBOTfrontendajax {
     }
 
     function GEEKYBOT_frontendajaxhandler() {
-        $fucntin_allowed = array( 'getMessageResponse','getRandomChatId', 'getUserChatHistoryMessages','SaveChathistory','endUserChat','restartUserChat','geekybotAddToCart','getProductAttributes','saveProductAttributeToSession', 'getDefaultFallBackFormAjax', 'geekybotLoadMoreProducts','geekybotLoadMoreCustomPosts', 'geekybotRemoveCartItem', 'geekybotUpdateCartItemQty', 'geekybotUpdateCartItemQuantity', 'geekybotViewCart', 'showArticlesList');
+        $fucntin_allowed = array( 'getMessageResponse','getRandomChatId', 'getUserChatHistoryMessages','SaveChathistory','endUserChat','restartUserChat','geekybotAddToCart','getProductAttributes','saveProductAttributeToSession', 'getDefaultFallBackFormAjax', 'geekybotLoadMoreProducts','geekybotLoadMoreCustomPosts', 'geekybotRemoveCartItem', 'geekybotUpdateCartItemQty', 'geekybotUpdateCartItemQuantity', 'geekybotViewCart', 'showArticlesList', 'showProductsList');
         $task = GEEKYBOTrequest::GEEKYBOT_getVar('task');
         if($task != '' && in_array($task, $fucntin_allowed)){
             $module = GEEKYBOTrequest::GEEKYBOT_getVar('geekybotme');

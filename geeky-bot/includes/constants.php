@@ -151,6 +151,7 @@ if (!defined('GEEKYBOT_FILE_TYPE_ERROR')) {
             'data-validation-optional' => array(),
             'style' => array(),
             'title' => array(),
+            'pattern' => array(),
         ),
         'textarea'     => array(
             'rows' => array(),

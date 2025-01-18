@@ -41,7 +41,7 @@ class GEEKYBOTMessages {
     }
 
     public static function GEEKYBOT_getMessage($result, $entity) {
-       $msg['message'] = __('Unknown', 'geeky-bot');
+        $msg['message'] = __('Unknown', 'geeky-bot');
         $msg['status'] = "updated";
         $msg1 = GEEKYBOTMessages::GEEKYBOT_getEntityName($entity);
         switch ($result) {
@@ -271,8 +271,9 @@ class GEEKYBOTMessages {
                 break;
             case 'import':$name = __('Data', 'geeky-bot');
                 break;
-
             case 'message':$name = __('Message', 'geeky-bot');
+                break;
+            case 'woocommerce':$name = __('Woocommerce', 'geeky-bot');
                 break;
             case CONFIGURATION:$name = __('Configuration', 'geeky-bot');
                 break;

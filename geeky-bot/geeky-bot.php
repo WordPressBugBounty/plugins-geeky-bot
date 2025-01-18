@@ -3,14 +3,14 @@
 /**
  * @package Geeky Bot
  * @author Geeky Bot
- * @version 1.0.6
+ * @version 1.0.7
  */
 /*
   * Plugin Name: Geeky Bot
   * Plugin URI: https://geekybot.com/
   * Description: The ultimate AI chatbot for WooCommerce lead generation, intelligent web search, and interactive customer engagement on your WordPress website.
   * Author: Geeky Bot
-  * Version: 1.0.6
+  * Version: 1.0.7
   * Text Domain: geeky-bot
   * Domain Path: /languages
   * Author URI: https://geekybot.com/
@@ -87,7 +87,7 @@ class geekybot {
         self::$_data = array();
         self::$_error_flag = null;
         self::$_error_flag_message = null;
-        self::$_currentversion = '106';
+        self::$_currentversion = '107';
         self::$_addon_query = array('select'=>'','join'=>'','where'=>'');
         self::$_config = GEEKYBOTincluder::GEEKYBOT_getModel('configuration');
         self::$_isgeekybotplugin = true;
@@ -138,8 +138,18 @@ class geekybot {
         add_action('deactivated_plugin', array($this, 'geekybot_on_plugin_deactivation'), 10, 1);
         add_action('wp_loaded', array($this, 'geekybot_handle_plugin_events'));
         if (isset(geekybot::$_configuration['is_posts_enable']) && geekybot::$_configuration['is_posts_enable'] == 1 && get_option('geekybot_synchronize_available') == 1) {
-            add_action( 'admin_notices', array($this, 'geekybot_synchronize_available_notice') );
+            add_action( 'admin_notices', array($this, 'geekybot_websearch_synchronize_available_notice') );
             add_action('admin_footer', array($this, 'geekybot_add_loading_message_script'), 10, 1);
+        }
+        if (is_plugin_active('woocommerce/woocommerce.php') && get_option('geekybot_woocommerce_synchronize_available') == 1) {
+            $query = "SELECT status FROM `" . geekybot::$_db->prefix . "geekybot_stories` WHERE `story_type` = 2";
+            $WooStoryStatus = geekybotdb::GEEKYBOT_get_var($query);
+            if (!isset($WooStoryStatus) || $WooStoryStatus != 1 ) {
+                update_option('geekybot_woocommerce_synchronize_available', 0);
+            } else {
+                add_action( 'admin_notices', array($this, 'geekybot_woocommerce_synchronize_available_notice') );
+                add_action('admin_footer', array($this, 'geekybot_add_loading_message_script'), 10, 1);
+            }
         }
         // for maintaing the post data in the custome post table
         add_action( 'wp_insert_post', array($this , 'geekyboot_update_or_create_geekybot_post'), 10, 3 );
@@ -209,7 +219,7 @@ class geekybot {
                     // restore colors data end
                     update_option('geekybot_currentversion', self::$_currentversion);
                     include_once GEEKYBOT_PLUGIN_PATH . 'includes/updates/updates.php';
-                    GEEKYBOTupdates::GEEKYBOT_checkUpdates('106');
+                    GEEKYBOTupdates::GEEKYBOT_checkUpdates('107');
                     GEEKYBOTincluder::GEEKYBOT_getModel('geekybot')->updateColorFile();
                 }
             }
@@ -357,6 +367,9 @@ class geekybot {
         } elseif (get_option('geekybot_websearch_synchronization_flag') == 1) {
             update_option('geekybot_websearch_synchronization_flag', 0);
             $result = GEEKYBOTincluder::GEEKYBOT_getModel('websearch')->geekybotSynchronizeWebSearchData();
+        } elseif (get_option('geekybot_woocommerce_synchronization_flag') == 1) {
+            update_option('geekybot_woocommerce_synchronization_flag', 0);
+            $result = GEEKYBOTincluder::GEEKYBOT_getModel('woocommerce')->geekybotSynchronizeWooCommerceProducts();
         }
     }
 
@@ -401,7 +414,7 @@ class geekybot {
         
     }
 
-    public function geekybot_synchronize_available_notice() {
+    public function geekybot_websearch_synchronize_available_notice() {
         ?>
         <div class="notice geekybot-synchronize-section-mainwrp is-dismissible">
              <div class="geekybot-synchronize-section">
@@ -414,6 +427,28 @@ class geekybot {
                 </div>
                 <div class="geekybot-synchronize-button-wrp">
                     <a class="geekybot_synchronize_data" title="<?php echo esc_attr(__('Synchronize Data', 'geeky-bot')); ?>" href="<?php echo esc_url(wp_nonce_url(admin_url('admin.php?page=geekybot_websearch&task=synchronizeWebSearchData&action=geekybottask'),'synchronize-data')); ?>">
+                        <img src="<?php echo esc_url(GEEKYBOT_PLUGIN_URL); ?>includes/images/synchronize.png" alt="<?php echo esc_attr(__('Synchronize', 'geeky-bot')); ?>" class="geekybot-synchronize-img">
+                        <?php echo esc_html(__('Synchronize Data', 'geeky-bot')); ?>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <?php
+    }
+
+    public function geekybot_woocommerce_synchronize_available_notice() {
+        ?>
+        <div class="notice geekybot-synchronize-section-mainwrp is-dismissible">
+             <div class="geekybot-synchronize-section">
+                <div class="geekybot-synchronize-imgwrp">
+                    <img src="<?php echo esc_url(GEEKYBOT_PLUGIN_URL); ?>includes/images/syc-icon.png"title="<?php echo esc_attr(__('Synchronize', 'geeky-bot')); ?>" alt="<?php echo esc_attr(__('Synchronize', 'geeky-bot')); ?>" class="geekybot-synchronize-img">
+                </div>
+                <div class="geekybot-synchronize-content-wrp">
+                    <span class="geekybot-synchronize-content-title"><?php echo esc_html(__('Data Synchronization Uncomplete', 'geeky-bot'));?></span>
+                    <span class="geekybot-synchronize-content-disc"><?php echo esc_html(__("Your GeekyBot data is not updated. To ensure accurate results, please synchronize your Woocommerce products data.", 'geeky-bot'));?></span>
+                </div>
+                <div class="geekybot-synchronize-button-wrp">
+                    <a class="geekybot_synchronize_data" title="<?php echo esc_attr(__('Synchronize Data', 'geeky-bot')); ?>" href="<?php echo esc_url(wp_nonce_url(admin_url('admin.php?page=geekybot_woocommerce&task=synchronizeWooCommerceProducts&action=geekybottask'),'synchronize-data')); ?>">
                         <img src="<?php echo esc_url(GEEKYBOT_PLUGIN_URL); ?>includes/images/synchronize.png" alt="<?php echo esc_attr(__('Synchronize', 'geeky-bot')); ?>" class="geekybot-synchronize-img">
                         <?php echo esc_html(__('Synchronize Data', 'geeky-bot')); ?>
                     </a>

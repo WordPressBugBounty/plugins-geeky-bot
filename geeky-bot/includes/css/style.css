@@ -46,13 +46,17 @@ div#main-messages div.geekybot-title-main-overlay {position: relative;width: 100
 .chat-popup .chat-windows .chat-window-two div.chat-content li.actual_msg.actual_msg_user section.actual_msg_user-img {position: relative;width: 45px;height: 45px;border-radius: 50%;overflow: hidden;}
 .chat-popup .chat-windows .chat-window-two div.chat-content li.actual_msg.actual_msg_adm section.actual_msg_adm-img img,
 .chat-popup .chat-windows .chat-window-two div.chat-content li.actual_msg.actual_msg_user section.actual_msg_user-img img {position: absolute;top: 0;bottom: 0;left: 0; right: 0;margin: auto;width:100%;height: auto;}
-.chat-popup .chat-windows .chat-window-two div.chat-content li.actual_msg.actual_msg_adm section.actual_msg_text {background-color: #ededef;padding: 5px 10px;border-radius: 5px;color: #373435;float: left;max-width: calc(100% - 53px);box-sizing: border-box;}
+.chat-popup .chat-windows .chat-window-two div.chat-content li.actual_msg.actual_msg_adm section.actual_msg_text_wrp {float: left;max-width: calc(100% - 53px);box-sizing: border-box;}
+.chat-popup .chat-windows .chat-window-two div.chat-content li.actual_msg.actual_msg_adm section.actual_msg_text {background-color: #ededef;padding: 5px 10px;border-radius: 5px;color: #373435;float: left;max-width: calc(100% - 53px);box-sizing: border-box;margin-bottom: 10px;}
+.chat-popup .chat-windows .chat-window-two div.chat-content li.actual_msg.actual_msg_adm .actual_msg_text_wrp section.actual_msg_text {max-width: 100%;}
+.chat-popup .chat-windows .chat-window-two div.chat-content li.actual_msg.actual_msg_adm section.actual_msg_text .actual_msg_text_inner:first-child {border-bottom: 1px solid #d7d8da;padding: 5px 0 10px}
+.chat-popup .chat-windows .chat-window-two div.chat-content li.actual_msg.actual_msg_adm section.actual_msg_text .actual_msg_text_inner {float: left;width: 100%;box-sizing: border-box;}
 .chat-popup .chat-windows .chat-window-two div.chat-content li.actual_msg.actual_msg_btn {text-align:left;float:left;list-style: none;width: auto;margin: unset;padding: 0px 0 10px 5px;}
 .chat-popup .chat-windows .chat-window-two div.chat-content li.actual_msg.actual_msg_btn section {background-color: unset;color: unset;padding: unset;border-radius: unset;}
 .chat-popup .chat-windows .chat-window-two div.chat-content li.actual_msg.actual_msg_btn .wp-chat-btn {background-color: transparent;padding: 0.3em 1.4em;text-align: center;font-size: 14px;transition: 0.3s;display: inline-block;text-decoration: none;cursor: pointer;border-radius: 30px;outline: none;}
 .chat-popup .chat-windows .chat-window-two div.chat-content li.actual_msg.actual_msg_btn .wp-chat-btn span a.wp-chat-btn-link {text-decoration: unset;}
-.chat-popup .chat-windows .chat-window-two div.chat-content div.actual_msg_btn {float: left;width: 100%;padding-left: 65px;box-sizing: border-box;}
-.chat-popup .chat-windows .chat-window-two div.chat-content div.actual_msg_btn:last-child {margin-bottom: 80px;}
+.chat-popup .chat-windows .chat-window-two div.chat-content div.actual_msg_btn {float: left;width: 100%;box-sizing: border-box;}
+/*.chat-popup .chat-windows .chat-window-two div.chat-content div.actual_msg_btn:last-child {margin-bottom: 80px;}*/
 .chat-popup .chat-windows .chat-window-two .window-two-top .window-two-top-inner {float: left;width: 100%;}
 .chat-popup .chat-windows .chat-window-two .window-two-top .window-two-top-inner .window-two-top-inner-left {float: left;width: calc(100% - 74px);}
 .chat-popup .chat-windows .chat-window-two .window-two-top .window-two-top-inner .window-two-top-inner-left .window-two-profile {box-sizing: border-box; float: left;width: 80px;height: 80px;border:5px solid #fff;border-radius: 50%;position: absolute;left: 15px; top: 20px;overflow: hidden;z-index: 9999;}
@@ -197,8 +201,9 @@ li.geeky_bot_wc_msg_btn .geeky_bot_wc_btn{color: #2b2b2b;background: #FFF;font-w
 .geekybot_wc_article_header.geekybot_wc_article_title a{padding-bottom: 10px;}
 .geekybot_wc_article_header.geekybot_wc_article_title a.geekybot-action-button{float: left;text-align: center;margin-top: 8px; font-weight: 500;cursor: pointer;box-sizing: border-box;border: 1px solid black;background-color: #373435;color: #fff; padding: 7px 0;width: 100%;border-radius: 0;}
 .geekybot_article_bnt_wrp {float: left;width: 100%;}
-.geekybot_article_bnt_wrp .geekybot_article_bnt {float: left;width: 70%;margin: 0 15% 13px;text-align: center;text-decoration: underline;padding: 5px;font-weight: 500;background: #FFF;color: #373435;cursor: pointer;}
-.geekybot_article_message_wrp {float: left;width: 100%;margin: 10px 0;font-weight: 500;}
+.geekybot_article_bnt_wrp .geekybot_article_bnt {float: left;width: 100%;margin: 0;text-align: left;padding: 7px 5px 7px 0;border-bottom: 1px solid #FFF;cursor: pointer;}
+.geekybot_article_bnt_wrp .geekybot_article_bnt img{float: right;padding-top: 3px;}
+.geekybot_article_message_wrp {float: left;width: 100%;margin: 10px 0;font-weight: bold;color: #2f2f2f;}
 .geekybot_wc_post_heading {float: left;width: 100%;margin: 10px 2px 15px;color: #2b2b2b;font-size: 16px;font-weight: 500;}
 .geekybot_wc_article_wrp {box-sizing: border-box; float: left;width: 100%;border: 2px solid #e6e6e6;margin: 5px 0px;background: #FFFFFF;padding: 15px;}
 .geekybot_wc_article_wrp .geekybot_wc_article_header a{float: left;width: 100%;font-weight: 600;font-size: 17px;color:#2b2b2b;text-decoration: unset;}
@@ -242,7 +247,10 @@ div.chat-open-outer-popup-dialog div.chat-open-outer-popup-dialog-image img{posi
 	.chat-popup .chat-windows .chat-powered-by .chat-powered-by-inner{display: flex;flex-wrap: wrap;justify-content: center;margin-top: 30px;}
 	#send-message{width: 100%;bottom:100px;top: auto;}
 	#send-message .window-two-btm-inner .window-two-btm-inner-right .window-two-btm-send-img{width: 41px;height: 36px;float: right;}
-	.chat-popup .chat-windows .chat-window-two div.chat-content li.actual_msg.actual_msg_adm section.actual_msg_text{max-width: calc(50% - 53px);}
+	.chat-popup .chat-windows .chat-window-two div.chat-content li.actual_msg.actual_msg_adm section.actual_msg_text{max-width:calc(65% - 33px);width: fit-content;}
+	.chat-popup .chat-windows .chat-window-two div.chat-content li.actual_msg.actual_msg_adm .actual_msg_text_wrp section.actual_msg_text{max-width: 65%;width:fit-content;}
+	.chat-popup .chat-windows .chat-window-two div.chat-content li.actual_msg.actual_msg_user section.actual_msg_text{max-width:calc(65% - 33px);width: fit-content;}
+	.chat-popup .chat-windows .chat-window-two div.chat-content li.actual_msg.actual_msg_adm section.actual_msg_text_wrp{display: flex;flex-direction: column;}
 	#send-message{left: 0;}
 	div.chat-open-dialog-main{bottom: 0;}
 	button.chat-button-destroy.active::after{bottom: 35px;}
@@ -250,12 +258,16 @@ div.chat-open-outer-popup-dialog div.chat-open-outer-popup-dialog-image img{posi
 
 }
 @media (max-width:600px){
-	.chat-popup .chat-windows .chat-window-two div.chat-content li.actual_msg.actual_msg_adm section.actual_msg_text{max-width: 80%;}
+	.chat-popup .chat-windows .chat-window-two div.chat-content li.actual_msg.actual_msg_adm section.actual_msg_text{max-width:calc(90% - 43px);}
+	.chat-popup .chat-windows .chat-window-two div.chat-content li.actual_msg.actual_msg_user section.actual_msg_text{max-width:calc(90% - 43px);width: fit-content;}
+	.chat-popup .chat-windows .chat-window-two div.chat-content li.actual_msg.actual_msg_adm .actual_msg_text_wrp section.actual_msg_text{max-width:90%;}
 }
 @media (max-width:416px){
 .chat-popup{right: 0;max-width: 100%;}
 .dropdown-content{max-width: 100%;}
 .chat-popup .chat-windows .chat-window-two{max-width: 100%;}
 #send-message{max-width: 100%;}
-.chat-popup .chat-windows .chat-window-two div.chat-content li.actual_msg.actual_msg_adm section.actual_msg_text{max-width: calc(90% - 53px);}
+.chat-popup .chat-windows .chat-window-two div.chat-content li.actual_msg.actual_msg_adm section.actual_msg_text{max-width: calc(100% - 43px);}
+.chat-popup .chat-windows .chat-window-two div.chat-content li.actual_msg.actual_msg_user section.actual_msg_text{max-width:calc(100% - 33px);width: fit-content;}
+.chat-popup .chat-windows .chat-window-two div.chat-content li.actual_msg.actual_msg_adm .actual_msg_text_wrp section.actual_msg_text{max-width: 100%;}
 }

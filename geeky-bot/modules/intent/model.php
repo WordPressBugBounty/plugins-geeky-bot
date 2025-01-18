@@ -57,11 +57,36 @@ class GEEKYBOTintentModel {
         if (empty($default_intent_fallback)){
             return -2;
         }
+        $btn_text = GEEKYBOTrequest::GEEKYBOT_getVar('btn_text');
+        $btn_type = GEEKYBOTrequest::GEEKYBOT_getVar('btn_type');
+        $btn_value = GEEKYBOTrequest::GEEKYBOT_getVar('btn_value');
+        $btn_url = GEEKYBOTrequest::GEEKYBOT_getVar('btn_url');
+
+        $fallback_btn = [];
+        if (is_array($btn_text) && is_array($btn_type)) {
+            foreach ($btn_text as $index => $text) {
+                if (isset($btn_type[$index]) && $text != '') {
+                    $type = $btn_type[$index];
+                    if ($type == 1 && isset($btn_value[$index]) && $btn_value[$index] != '') {
+                        $value = $btn_value[$index];
+                    } elseif ($type == 2 && isset($btn_url[$index]) && $btn_url[$index] != '') {
+                        $value = $btn_url[$index];
+                    }
+                    $fallback_btn[] = array(
+                        'text' => $text,
+                        'type' => $type,
+                        'value' => $value
+                    );
+                }
+            }
+        }
+        $default_fallback_buttons = wp_json_encode($fallback_btn);
 
         $data = [
             'id' => $id,
             'group_id' => $group_id,
             'default_fallback' => $default_intent_fallback,
+            'default_fallback_buttons' => $default_fallback_buttons,
         ];
         $row = GEEKYBOTincluder::GEEKYBOT_getTable('intents_fallback');
         $data = geekybot::GEEKYBOT_sanitizeData($data);// GEEKYBOT_sanitizeData() function uses wordpress santize functions

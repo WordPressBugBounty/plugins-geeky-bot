@@ -7,6 +7,7 @@ class GEEKYBOTpostsTable extends GEEKYBOTtable {
 
     public $id = '';
     public $title = '';
+    public $taxonomy = '';
     public $content = '';
     public $post_text = '';
     public $post_id = '';

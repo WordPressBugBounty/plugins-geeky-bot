@@ -140,6 +140,10 @@ jQuery(document).ready(function() {
         jQuery('div#editStoryName').slideUp('slow');
         jQuery('div#userpopupblack').hide();
     });
+    
+    jQuery('.geekybot-synchronize-products').on('click', function(e) {
+        geekybotShowLoading();
+    });
 });
 function clearNotifications(){
     setTimeout(function(){
@@ -308,6 +312,10 @@ if (!GEEKYBOTincluder::GEEKYBOT_getTemplate('templates/admin/header',array('modu
                                                     <img src="<?php echo esc_url(GEEKYBOT_PLUGIN_URL); ?>includes/images/control_panel/delete.png" alt="<?php echo esc_attr(__('Delete', 'geeky-bot')); ?>" class="geekybot-action-img">
                                                     <?php echo esc_html(__('Delete Story', 'geeky-bot')); ?>
                                                 </a>
+                                                <a class="geekybot-table-act-btn geekybot-delete geekybot-synchronize-products" href="<?php echo esc_url(wp_nonce_url(admin_url('admin.php?page=geekybot_woocommerce&task=synchronizeWooCommerceProducts&action=geekybottask'),'synchronize-data')); ?>">
+                                                    <img src="<?php echo esc_url(GEEKYBOT_PLUGIN_URL); ?>includes/images/syn-icon.png" alt="<?php echo esc_attr(__('Synchronize', 'geeky-bot')); ?>" class="geekybot-synchronize-img">
+                                                    <?php echo esc_html(__('Synchronize Products', 'geeky-bot')); ?>
+                                                </a>
                                             </div>
                                         </div>
                                         <?php 
@@ -386,7 +394,7 @@ if (!GEEKYBOTincluder::GEEKYBOT_getTemplate('templates/admin/header',array('modu
                     <div class="geekybot-form-wrapper">
                         <div class="geekybot-form-value">
                             <?php
-                            echo wp_kses(GEEKYBOTformfield::GEEKYBOT_text('name', isset($data->name) ? geekybot::GEEKYBOT_getVarValue(geekybot::$_data[0]->name) : '', array('class' => 'inputbox geekybot-form-input-field', 'data-validation' => 'required', 'placeholder' => __('Story Name *', 'geeky-bot') , 'pattern' => '^[a-zA-Z_\x80-\xff][a-zA-Z0-9_\x80-\xff]*$')), GEEKYBOT_ALLOWED_TAGS);
+                            echo wp_kses(GEEKYBOTformfield::GEEKYBOT_text('name', isset($data->name) ? geekybot::GEEKYBOT_getVarValue(geekybot::$_data[0]->name) : '', array('class' => 'inputbox geekybot-form-input-field', 'data-validation' => 'required', 'placeholder' => __('Story Name *', 'geeky-bot'))), GEEKYBOT_ALLOWED_TAGS);
                             echo wp_kses(GEEKYBOTformfield::GEEKYBOT_hidden('type', 'ai_story'), GEEKYBOT_ALLOWED_TAGS);
                             echo wp_kses(GEEKYBOTformfield::GEEKYBOT_select('template', GEEKYBOTincluder::GEEKYBOT_getModel('stories')->getTemplatesForCombobox(), isset($action->action_id) ? $action->action_id : '', esc_html(__('Select Template','geeky-bot')), array('class' => 'inputbox geekybot-form-select-field geeky_hide', 'data-validation' => 'required')), GEEKYBOT_ALLOWED_TAGS);
                             ?>
@@ -413,7 +421,7 @@ if (!GEEKYBOTincluder::GEEKYBOT_getTemplate('templates/admin/header',array('modu
                 <form id="editStoryNameForm" class="geekybot-popup-form" method="post" enctype="multipart/form-data" action="#">
                     <div class="geekybot-form-wrapper">
                         <div class="geekybot-form-value">
-                            <?php echo wp_kses(GEEKYBOTformfield::GEEKYBOT_text('name', '', array('class' => 'inputbox geekybot-form-input-field', 'data-validation' => 'required', 'placeholder' => __('Story Name *', 'geeky-bot') , 'pattern' => '^[a-zA-Z_\x80-\xff][a-zA-Z0-9_\x80-\xff]*$')), GEEKYBOT_ALLOWED_TAGS) ?>
+                            <?php echo wp_kses(GEEKYBOTformfield::GEEKYBOT_text('name', '', array('class' => 'inputbox geekybot-form-input-field', 'data-validation' => 'required', 'placeholder' => __('Story Name *', 'geeky-bot'))), GEEKYBOT_ALLOWED_TAGS) ?>
                             <?php echo wp_kses(GEEKYBOTformfield::GEEKYBOT_hidden('id', '0'), GEEKYBOT_ALLOWED_TAGS); ?>
                         </div>
                     </div>

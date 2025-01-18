@@ -98,7 +98,7 @@ if ( $dashboard_message == '1') {//isset($dashboard_message) &&
                     <p class="geekybot-dashboard-installation-guide-heading"><?php echo esc_html(__('GeekyBot Setup and Usage Guides', 'geeky-bot')); ?></p>
                     <p class="geekybot-dashboard-installation-guide-heading-dis"><?php echo esc_html(__("Explore installation, training, and effective usage guides.", 'geeky-bot')); ?></p>
                     <div class="geekybot-dashboard-installation-guide-videos-btnwrp">
-                        <a href="" title="<?php echo esc_html(__('Play', 'geeky-bot')); ?>" class="geekybot-dashboard-installation-guide-video-btn">
+                        <a href="https://youtu.be/kbaA_l5j_9w" target="_blank" title="<?php echo esc_html(__('Play', 'geeky-bot')); ?>" class="geekybot-dashboard-installation-guide-video-btn">
                             <img src="<?php echo esc_url(GEEKYBOT_PLUGIN_URL); ?>includes/images/control_panel/youtube-icon.png" alt="<?php echo esc_html(__('Youtube Icon', 'geeky-bot')); ?>" srcset="">
                             <?php echo esc_html(__('How to add Story', 'geeky-bot')); ?> 
                         </a>

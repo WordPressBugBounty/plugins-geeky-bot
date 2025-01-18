@@ -39,3 +39,5 @@ div.chat-open-outer-popup-dialog{right: auto;left: 50px;}
 /* web search */
 .chat-popup .chat-windows .chat-window-two div.chat-content li.actual_msg.actual_msg_adm section.actual_msg_text{float: right;}
 .chat-popup .chat-windows .chat-window-two div.chat-content li.actual_msg.actual_msg_adm{float: right;}
+/* new */
+.chat-popup .chat-windows .chat-window-two div.chat-content li.actual_msg.actual_msg_btn{float: right;}

@@ -9,6 +9,7 @@ class GEEKYBOTintents_fallbackTable extends GEEKYBOTtable {
     public $group_id= '';
     public $story_id= '';
     public $default_fallback = '';
+    public $default_fallback_buttons = '';
 
 
     function __construct() {

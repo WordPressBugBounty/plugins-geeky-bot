@@ -13,20 +13,15 @@ class GEEKYBOTWoocommerceController {
     }
 
     function handleRequest() {
-        $layout = GEEKYBOTrequest::GEEKYBOT_getLayout('geekybotlt', 'woocommerce', null);
-        if (self::canaddfile()) {
-            switch ($layout) {
-                case 'admin_woocommerce':
-                    
-                    break;
-                default:
-                    exit;
-            }
-            $module = (is_admin()) ? 'page' : 'geekybotme';
-            $module = GEEKYBOTrequest::GEEKYBOT_getVar($module, null, 'woocommerce');
-            $module = geekybotphplib::GEEKYBOT_str_replace('geekybot_', '', $module);
-            GEEKYBOTincluder::GEEKYBOT_include_file($layout, $module);
+        
+    }
+
+    function synchronizeWooCommerceProducts() {
+        $nonce = GEEKYBOTrequest::GEEKYBOT_getVar('_wpnonce');
+        if (! wp_verify_nonce( $nonce, 'synchronize-data') ) {
+            die( 'Security check Failed' );
         }
+        update_option('geekybot_woocommerce_synchronization_flag', 1);
     }
 
 

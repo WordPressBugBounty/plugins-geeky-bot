@@ -37,7 +37,7 @@ class GEEKYBOTwoocommerceModel {
         $products = wc_get_products($args);
         if($products){
             $allProducts = wp_count_posts('product')->publish;
-            $html = GEEKYBOTincluder::GEEKYBOT_getModel('stories')->getWcProductListingHtml($msg, $products, 'story', $allProducts, $currentPage, 'woocommerce', 'geekybot_showAllProducts', $data);
+            $html = GEEKYBOTincluder::GEEKYBOT_getModel('stories')->getWcProductListingHtml($msg, $products, 'story', $allProducts, $currentPage, 'geekybot_showAllProducts', $data);
         } else {
             $html = __("No product was found.", "geeky-bot");
         }
@@ -132,7 +132,7 @@ class GEEKYBOTwoocommerceModel {
             );
             $product_ids = wc_get_products($args);
             $allProducts = count($product_ids); // Get the total count of products
-            $html = GEEKYBOTincluder::GEEKYBOT_getModel('stories')->getWcProductListingHtml($msg, $products, 'story', $allProducts, $currentPage, 'woocommerce', 'geekybot_searchProduct', $data);
+            $html = GEEKYBOTincluder::GEEKYBOT_getModel('stories')->getWcProductListingHtml($msg, $products, 'story', $allProducts, $currentPage, 'geekybot_searchProduct', $data);
         }else{
             $args = array(
                 'name' => $search_value, // Search parameter for product title
@@ -154,38 +154,10 @@ class GEEKYBOTwoocommerceModel {
                 );
                 $product_ids = wc_get_products($args);
                 $allProducts = count($product_ids); // Get the total count of products
-                $html = GEEKYBOTincluder::GEEKYBOT_getModel('stories')->getWcProductListingHtml($msg, $products, 'story', $allProducts, $currentPage, 'woocommerce', 'geekybot_searchProduct', $data);
+                $html = GEEKYBOTincluder::GEEKYBOT_getModel('stories')->getWcProductListingHtml($msg, $products, 'story', $allProducts, $currentPage, 'geekybot_searchProduct', $data);
             } else {
                 // call the fallback
-                $fallbackResult = $this->getProductsFromWcFirstFallback($msg, $currentPage, $productsPerPage);
-                $products = $fallbackResult['products'];
-                $all_products = $fallbackResult['count'];
-                if($products){
-                    $html = GEEKYBOTincluder::GEEKYBOT_getModel('stories')->getWcProductListingHtml($msg, $products, 'fallbackone', $all_products, $currentPage, 'woocommerce', 'geekybot_searchProduct', $data);
-                } else {
-                    $fallbackProducts = $this->getProductsFromWcSecondFallback($msg, $currentPage, $productsPerPage);
-                    $products = $fallbackProducts['products'];
-                    $all_products = $fallbackProducts['count'];;
-                    if($products){
-                        $html = GEEKYBOTincluder::GEEKYBOT_getModel('stories')->getWcProductListingHtml($msg, $products, 'fallbacktwo', $all_products, $currentPage, 'woocommerce', 'geekybot_searchProduct', $data);
-                    } else {
-                        $html = __("No product was found.", "geeky-bot");
-                    }
-                    // add "show Articles" option in response in the case of woocommerce fallback two
-                    if (geekybot::$_configuration['is_posts_enable'] == 1) {
-                        if (isset($html) && $html != '') {
-                            $articleType = 1;
-                        } else {
-                            $articleType = 2;
-                        }
-                        $articleButton = GEEKYBOTincluder::GEEKYBOT_getModel('websearch')->getArticlesButton($msg, $articleType);
-                        // check if some related posts found
-                        if (isset($articleButton['html']) && $articleButton['html'] != '') {
-                            // Modified bot response if it exists
-                            $html .= $articleButton['html'];
-                        }
-                    }
-                }
+                // [v1.0.7] Change FallBack Logic.
             }
         }
         return $html; 
@@ -199,7 +171,7 @@ class GEEKYBOTwoocommerceModel {
         }
         // get the variable for product name from the given list of variable in the parameter
         $search_key = 'woo_product_max_price';
-        if (isset($data[$search_key])) {
+        if (isset($data[$search_key]) && is_numeric($data[$search_key])) {
             $max_price = $data[$search_key];
             $max_price = $this->geekybot_normalize_price_with_wc($max_price);
         } else {
@@ -267,7 +239,7 @@ class GEEKYBOTwoocommerceModel {
 
         $html = '';
         if ($products) {
-            $html = GEEKYBOTincluder::GEEKYBOT_getModel('stories')->getWcProductListingHtml($msg, $products, 'story', $totalProducts, $currentPage, 'woocommerce', 'geekybot_getProductsUnderPrice', $data);
+            $html = GEEKYBOTincluder::GEEKYBOT_getModel('stories')->getWcProductListingHtml($msg, $products, 'story', $totalProducts, $currentPage, 'geekybot_getProductsUnderPrice', $data);
         }
 
         return $html;
@@ -282,7 +254,7 @@ class GEEKYBOTwoocommerceModel {
 
         // Get the variable for product name from the given list of variables in the parameter
         $search_key = 'woo_product_min_price';
-        if (isset($data[$search_key])) {
+        if (isset($data[$search_key]) && is_numeric($data[$search_key])) {
             $min_price = $data[$search_key];
             $min_price = $this->geekybot_normalize_price_with_wc($min_price);
         } else {
@@ -350,7 +322,7 @@ class GEEKYBOTwoocommerceModel {
 
         $html = '';
         if ($products) {
-            $html = GEEKYBOTincluder::GEEKYBOT_getModel('stories')->getWcProductListingHtml($msg, $products, 'story', $totalProducts, $currentPage, 'woocommerce', 'geekybot_getProductsAbovePrice', $data);
+            $html = GEEKYBOTincluder::GEEKYBOT_getModel('stories')->getWcProductListingHtml($msg, $products, 'story', $totalProducts, $currentPage, 'geekybot_getProductsAbovePrice', $data);
         }
 
         return $html;
@@ -418,61 +390,246 @@ class GEEKYBOTwoocommerceModel {
         $products = array_slice($filteredProducts, $offset, $productsPerPage);
         $html = '';
         if($products){
-            $html = GEEKYBOTincluder::GEEKYBOT_getModel('stories')->getWcProductListingHtml($msg, $products, 'story', $allProducts, $currentPage, 'woocommerce', 'geekybot_getProductsBetweenPrice', $data);
+            $html = GEEKYBOTincluder::GEEKYBOT_getModel('stories')->getWcProductListingHtml($msg, $products, 'story', $allProducts, $currentPage, 'geekybot_getProductsBetweenPrice', $data);
         }
         return $html; 
         wp_die();
     }
 
-    function getProductsFromWcFirstFallback($msg, $currentPage, $productsPerPage) {
-        $offset = ($currentPage - 1) * $productsPerPage;
-        // match the products ids from the geekybot products table
-        $query = 'SELECT COUNT(`product_id`) FROM `' . geekybot::$_db->prefix . 'geekybot_products` WHERE MATCH (product_text) AGAINST ("'.esc_sql($msg).'" IN NATURAL LANGUAGE MODE) AND status = "publish"';
-        $allFallbackProducts = geekybotdb::GEEKYBOT_get_var($query);
-        $query = 'SELECT `product_id`, MATCH (product_text) AGAINST ("'.esc_sql($msg).'" IN NATURAL LANGUAGE MODE) AS score FROM `' . geekybot::$_db->prefix . 'geekybot_products` WHERE MATCH (product_text) AGAINST ("'.esc_sql($msg).'" IN NATURAL LANGUAGE MODE) AND status = "publish"';
-        $query .= " ORDER BY score DESC ";
-        $query .= " LIMIT $productsPerPage OFFSET $offset";
-        // Get paginated posts
-        $fallbackProducts = geekybotdb::GEEKYBOT_get_results($query);
-        // get products data against above ids
-        $allProducts = array();
-        foreach ( $fallbackProducts as $fallbackProduct ) {
-            $product_id = $fallbackProduct->product_id;
-            $product = wc_get_product( $product_id );
-            if ( $product ) {
-                $allProducts[] = $product;
-            }
+    function getProductsButton($message, $headerType) {
+        // Check if WooCommerce story is disabled (story_type = 2)
+        $query = "SELECT status FROM `" . geekybot::$_db->prefix . "geekybot_stories` WHERE `story_type` = 2";
+        $WooStoryStatus = geekybotdb::GEEKYBOT_get_var($query);
+
+        // Return early if WooCommerce story is not active
+        if (empty($WooStoryStatus) || $WooStoryStatus != 1) {
+            return '';
         }
-        $data['products'] = $allProducts;
-        $data['count'] = $allFallbackProducts;
-        return $data;
+
+        // Try to get products from first fallback
+        $type = 'fallbackone';
+        $fallback = $this->getProductsButtonFromFallback($message);
+        $products = $fallback['products'];
+        // Return empty if no products found
+        if (empty($products)) {
+            return '';
+        }
+
+        // Count the products and prepare encrypted data
+        $products_count = count($products);
+        // Assuming each product has an 'product_id' field
+        $product_ids = array_column($products, 'product_id');
+        $data['product_ids'] = $product_ids;
+        $data['total_products'] = $products_count;
+        $data['type'] = $type;
+        $encrypted_data = openssl_encrypt(json_encode($data), 'AES-128-ECB', 'geekybot_websearch');
+
+        // Build button HTML
+        $message = '';
+        $btnHtml = '<span class="geekybot_article_message_wrp">';
+        if ($headerType == 1) {
+            $btnHtml .= __('Additionally, here are other top matches for your search.', 'geeky-bot');
+        } else {
+            $btnHtml .= __('Here are the best matches for your search.', 'geeky-bot');
+        }
+        $btnHtml .= '</span>';
+        $btnHtml .= "
+        <span class='geekybot_article_bnt_wrp'>
+            <span onclick=\"showProductsList('".$message."','".$encrypted_data."', 1);\" class='geekybot_article_bnt button'>" 
+            . __('Products', 'geeky-bot').' ('.$products_count.') ' . "
+            <img src='". esc_url(GEEKYBOT_PLUGIN_URL) ."includes/images/chat-img/btn-arrow.png' />
+            </span>
+        </span>";
+        return [
+            'exact_match' => $fallback['exact_match'], 
+            'productsBtn' => ($btnHtml)
+        ];
     }
 
-    function getProductsFromWcSecondFallback($msg, $currentPage, $productsPerPage) {
-        $offset = ($currentPage - 1) * $productsPerPage;
-        // match the products ids from the geekybot products table
-        $query = 'SELECT COUNT(`product_id`) FROM `' . geekybot::$_db->prefix . 'geekybot_products` WHERE MATCH (product_description) AGAINST ("'.esc_sql($msg).'" IN NATURAL LANGUAGE MODE) AND status = "publish"';
-        $allFallbackProducts = geekybotdb::GEEKYBOT_get_var($query);
-        $query = 'SELECT `product_id`, MATCH (product_description) AGAINST ("'.esc_sql($msg).'" IN NATURAL LANGUAGE MODE) AS score FROM `' . geekybot::$_db->prefix . 'geekybot_products` WHERE MATCH (product_description) AGAINST ("'.esc_sql($msg).'" IN NATURAL LANGUAGE MODE) AND status = "publish"';
-        $query .= " ORDER BY score DESC ";
-        $query .= " LIMIT $productsPerPage OFFSET $offset";
-        // Get paginated posts
-        $fallbackProducts = geekybotdb::GEEKYBOT_get_results($query);
-        // get products data against above ids
-        $allProducts = array();
-        foreach ( $fallbackProducts as $fallbackProduct ) {
-            // score check
-            if ($fallbackProduct->score > 0.9) {
-                $product_id = $fallbackProduct->product_id;
-                $product = wc_get_product( $product_id );
-                if ( $product ) {
-                    $allProducts[] = $product;
-                }
+    function showProductsList($msg = '', $data = '', $current_page = '') {
+        $logdata = "\n\showProductsList";
+        if ($data == '') {
+            $nonce = GEEKYBOTrequest::GEEKYBOT_getVar('_wpnonce');
+            if (! wp_verify_nonce( $nonce, 'products-list') ) {
+                die( 'Security check Failed' ); 
+            }
+            $msg = GEEKYBOTrequest::GEEKYBOT_getVar('msg');
+            $data = GEEKYBOTrequest::GEEKYBOT_getVar('data');
+            $current_page = GEEKYBOTrequest::GEEKYBOT_getVar('currentPage');
+        }
+        
+        $decrypted_data = openssl_decrypt($data, 'AES-128-ECB', 'geekybot_websearch');
+        $decrypted_data_array = json_decode($decrypted_data, true);
+
+        $product_ids = $decrypted_data_array['product_ids'];
+        $total_products = $decrypted_data_array['total_products'];
+        $type = $decrypted_data_array['type'];
+
+        // Convert to integers for safety
+        $escaped_product_ids = array_map('intval', $product_ids);
+
+        // Calculate offset based on the current page and products per page
+
+        $productsPerPage = geekybot::$_configuration['pagination_product_page_size'];
+        $offset = ($current_page - 1) * $productsPerPage;
+
+        $paginated_product_ids = array_slice($escaped_product_ids, $offset, $productsPerPage);
+
+        // Fetch product data
+        $products = [];
+        foreach ($paginated_product_ids as $product_id) {
+            $product = wc_get_product($product_id);
+            if ($product) {
+                $products[] = $product;
             }
         }
-        $data['products'] = $allProducts;
-        $data['count'] = $allFallbackProducts;
-        return $data;
+
+        if($products){
+            $text = GEEKYBOTincluder::GEEKYBOT_getModel('stories')->getWcProductListingHtml($msg, $products, $type, $total_products, $current_page, 'showProductsList', $data);
+        } else {
+            $text = __("No product was found.", "geeky-bot");
+        }
+        $text = html_entity_decode($text);
+        $text = geekybotphplib::GEEKYBOT_htmlentities($text);
+        // save bot response to the session and chat history
+        geekybot::$_geekybotsessiondata->geekybot_addChatHistoryToSession($text, 'bot');
+        GEEKYBOTincluder::GEEKYBOT_getModel('chathistory')->SaveChathistoryFromchatServer($text, 'bot');
+        GEEKYBOTincluder::GEEKYBOT_getObjectClass('logging')->GEEKYBOTlwrite($logdata);
+        return $text;
+        wp_die();
+    }
+
+    function getProductsButtonFromFallback($msg) {
+        // Escape the input message for SQL
+        $msg = esc_sql(trim($msg));
+
+        // Break the message into words
+        $words = array_filter(explode(' ', $msg));
+        $wordCount = count($words);
+
+        // Construct the base query with full-text search
+        $query = "(SELECT `product_id`,`product_title`,`product_taxonomy`, '0' AS custom_score, '999' AS score FROM `" . geekybot::$_db->prefix . "geekybot_products` WHERE product_title LIKE '%".esc_sql($msg)."%' AND status = 'publish'";
+        $query .= " ORDER BY score DESC LIMIT 100) ";
+
+        $query .= ' UNION ';
+        
+        $query .= "(SELECT `product_id`,`product_title`,`product_taxonomy`, '0' AS custom_score, '888' AS score FROM `" . geekybot::$_db->prefix . "geekybot_products` WHERE product_taxonomy LIKE '%".esc_sql($msg)."%' AND status = 'publish'";
+        $query .= " ORDER BY score DESC LIMIT 100) ";
+
+        $query .= ' UNION ';
+
+        if ($wordCount > 1) {
+            $query .= "(SELECT `product_id`,`product_title`,`product_taxonomy`, '0' AS custom_score, '777' AS score FROM `" . geekybot::$_db->prefix . "geekybot_products` WHERE product_description LIKE '%".esc_sql($msg)."%' AND status = 'publish'";
+            $query .= " ORDER BY score DESC LIMIT 100) ";
+
+            $query .= ' UNION ';
+        }
+        
+        $query .= '(SELECT `product_id`,`product_title`,`product_taxonomy`, "0" AS custom_score, MATCH (product_text) AGAINST ("'.esc_sql($msg).'" IN NATURAL LANGUAGE MODE) AS score FROM `' . geekybot::$_db->prefix . 'geekybot_products` WHERE MATCH (product_text) AGAINST ("'.esc_sql($msg).'" IN NATURAL LANGUAGE MODE) AND status = "publish"';
+        $query .= " ORDER BY score DESC LIMIT 100) ";
+        $query .= '; ';
+        $products = geekybotdb::GEEKYBOT_get_results($query);
+        
+        $highest_score = 0;
+        $exact_match = false;
+
+        // Process products in PHP for prioritization
+        foreach ($products as &$product) {
+            $custom_score = 0;
+            // Exact match
+            if (strtolower($msg) == strtolower(trim($product->product_title))) {
+                $custom_score += ($wordCount * 10) + 8; // Higher base custom_score for exact title matches
+                $product->score = 0;
+                $exact_match = true;
+            }
+            // Exact match in title
+            elseif($product->score == 999) {
+                $custom_score += ($wordCount * 10) + 6; // Higher base custom_score for exact title matches
+                $product->score = 0;
+            }
+            // Exact match in taxonomy
+            elseif($product->score == 888) {
+                $custom_score += ($wordCount * 10) + 4; // Moderate weight for taxonomy matches
+                $product->score = 0;
+            } 
+            // Exact match in content
+            elseif($product->score == 777) {
+                $custom_score += ($wordCount * 10) + 2; // Moderate weight for content matches
+                $product->score = 0;
+            } 
+            // Partial word combination matching in title
+            else {
+                for ($i = 0; $i < $wordCount - 1; $i++) {
+                    $wordCombination = $words[$i] . ' ' . ($words[$i + 1] ?? '');
+                    if (stripos($product->product_title, $wordCombination) !== false) {
+                        $custom_score += 10;
+                        // $product->score = 0;
+                    }
+                }
+            }
+
+            // Store the post with its calculated custom_score
+            $product->custom_score = $custom_score;
+            // track highest score
+            if ($product->score > $highest_score) {
+                $highest_score = $product->score;
+            }
+        }
+        unset($product);
+
+        // Sort posts by custom_score and score
+        usort($products, function ($a, $b) {
+            if ($a->custom_score === $b->custom_score) {
+                return $b->score <=> $a->score;
+            }
+            return $b->custom_score <=> $a->custom_score;
+        });
+
+        
+        $products = $this->applyThresholdOnWCFallbackProducts($products, $highest_score);
+        return ['exact_match' => $exact_match, 'products' => $products];
+    }
+
+    function applyThresholdOnWCFallbackProducts($products, $highest_score) {
+        if (empty($products)) {
+            return $products; // Return early if no products
+        }
+
+        $threshold = 30; // Percentage threshold
+        $highest_custom_score = $products[0]->custom_score ?? 0;
+
+        // Calculate threshold values
+        $custom_score_threshold_value = ($threshold / 100) * $highest_custom_score;
+        $score_threshold_value = ($threshold / 100) * $highest_score;
+
+        // Track highest scores for each product_id
+        $unique_products = [];
+
+        foreach ($products as $product) {
+            // Skip products below the threshold (except the first product)
+            if (
+                ($product->custom_score <= $custom_score_threshold_value && $product !== $products[0]) &&
+                ($product->score <= $score_threshold_value && $product !== $products[0])
+            ) {
+                continue;
+            }
+
+            // Ensure uniqueness by post id, keeping the highest custom_score and then the highest score
+            $product_id = $product->product_id;
+            if (
+                !isset($unique_products[$product_id]) ||
+                $product->custom_score > $unique_products[$product_id]->custom_score ||
+                ($product->custom_score === $unique_products[$product_id]->custom_score && $product->score > $unique_products[$product_id]->score)
+            ) {
+                $unique_products[$product_id] = $product;
+            }
+
+            if (!isset($unique_products[$product_id]) || $product->score > $unique_products[$product_id]->score) {
+                $unique_products[$product_id] = $product;
+            }
+        }
+
+        return array_values($unique_products); // Return reindexed array
     }
 
     function geekybot_viewCart($msg, $data) {
@@ -851,7 +1008,7 @@ class GEEKYBOTwoocommerceModel {
                         $filteredKey =  end($filteredKey);
                         $filteredKey = str_replace(' ', "-", $filteredKey);
                         $filteredKey = strtolower($filteredKey);
-                        $jsonUserAttributes = htmlspecialchars($user_attributes, ENT_QUOTES, 'UTF-8');
+                        $jsonUserAttributes = geekybotphplib::GEEKYBOT_htmlspecialchars($user_attributes, ENT_QUOTES, 'UTF-8');
 
 
                         if ($variationkey == $filteredKey && $condition == 0) {
@@ -964,8 +1121,8 @@ class GEEKYBOTwoocommerceModel {
                 if ( isset($variation['max_qty']) && $variation['max_qty'] != '' ) {
                     // Get the stock quantity of the product
                     $stock_quantity = $variation['max_qty'];
-                    $new_quantity = $stock_quantity + 1;
-                    // $new_quantity = 1;
+                    // $new_quantity = $stock_quantity + 1;
+                    $new_quantity = 1;
                     // Check if the product is in stock and if adding more than the available quantity
                     if ( $stock_quantity && $new_quantity > $stock_quantity ) {
                         $canAddProduct_quantity = false;
@@ -1356,6 +1513,24 @@ class GEEKYBOTwoocommerceModel {
         $return['text'] = $text;
         return $return['text']; 
         wp_die();
+    }
+    
+    function geekybotSynchronizeWooCommerceProducts(){
+        $query = "DELETE FROM `".geekybot::$_db->prefix . "geekybot_products`";
+        geekybot::$_db->query($query);
+
+        $data = GEEKYBOTincluder::GEEKYBOT_getModel('stories')->saveProductDataForFallback();
+        if ($data == 1) {
+            update_option('geekybot_woocommerce_synchronize_available', 0);
+            $result = GEEKYBOT_DATA_SYNCHRONIZE;
+        } else {
+            $result = GEEKYBOT_DATA_SYNCHRONIZE_ERROR;
+        }
+        $msg = GEEKYBOTMessages::GEEKYBOT_getMessage($result, 'woocommerce');
+        GEEKYBOTMessages::GEEKYBOT_setLayoutMessage($msg['message'], $msg['status'],$this->getMessagekey());
+        $url = admin_url("admin.php?page=geekybot_stories&geekybotlt=stories");
+        wp_redirect($url);
+        die();
     }
 
     function geekybot_normalize_price_with_wc($price_input) {

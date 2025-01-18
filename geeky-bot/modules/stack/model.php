@@ -128,10 +128,10 @@ class GEEKYBOTstackModel {
     function getFallbackFromLastActiveIntent() {
         $chat_id = GEEKYBOTincluder::GEEKYBOT_getModel('chathistory')->geekybot_getchatid();
         // get type of the latest story of the user form stack
-        $query = "SELECT fallback.default_fallback FROM `" . geekybot::$_db->prefix . "geekybot_stack` as stack
+        $query = "SELECT fallback.default_fallback, fallback.default_fallback_buttons FROM `" . geekybot::$_db->prefix . "geekybot_stack` as stack
                   LEFT JOIN `" . geekybot::$_db->prefix . "geekybot_intents_fallback` as fallback ON stack.intent_id = fallback.group_id WHERE stack.chat_id = '".esc_sql($chat_id)."' AND stack.chat_id != ''";
         $query .= " ORDER BY stack.id DESC;";
-        return geekybotdb::GEEKYBOT_get_var($query);
+        return geekybotdb::GEEKYBOT_get_row($query);
     }
     
     function addResponseInStack($stackData){

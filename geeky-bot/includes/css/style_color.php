@@ -51,7 +51,7 @@ li.geeky_bot_wc_msg_btn .geeky_bot_wc_btn{border: 1px solid $color1}
 .geekybot_wc_product_quantity .product_quantity {border: 1px solid $color1;}
  .geekybot_wc_article_header.geekybot_wc_article_title a{color:$color4;}
  .geekybot_wc_product_load_more {border: 1px solid $color1;}
- .geekybot_article_bnt_wrp .geekybot_article_bnt {border: 1px solid $color1;}
+ .geekybot_article_bnt_wrp .geekybot_article_bnt {color: $color1;}
  .geekybot_wc_post_load_more{border: 1px solid $color1;}
  div.chat-open-outer-popup-dialog{border: 2px solid $color1;}
  div.chat-open-outer-popup-dialog .chat-open-outer-popup-dialog-top-cross-button{background-color: $color1;}

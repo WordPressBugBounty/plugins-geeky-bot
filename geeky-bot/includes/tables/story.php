@@ -13,6 +13,7 @@ class GEEKYBOTStoryTable extends GEEKYBOTtable {
     public $form_ids = '';
     public $story_mode = '';
     public $default_fallback = '';
+    public $default_fallback_buttons = '';
     public $positions_array = '';
     public $story_type = '';
     public $status = '';

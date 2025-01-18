@@ -6,6 +6,8 @@ if (!defined('ABSPATH'))
 class GEEKYBOTproductsTable extends GEEKYBOTtable {
 
     public $id = '';
+    public $product_title = '';
+    public $product_taxonomy = '';
     public $product_text = '';
     public $product_description = '';
     public $product_id = '';

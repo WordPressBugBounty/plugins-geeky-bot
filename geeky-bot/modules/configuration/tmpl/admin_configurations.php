@@ -3,10 +3,22 @@ if (!defined('ABSPATH'))
     die('Restricted Access');
 $msgkey = GEEKYBOTincluder::GEEKYBOT_getModel('configuration')->getMessagekey();
 GEEKYBOTMessages::GEEKYBOT_getLayoutMessage($msgkey);
-$geekybot_js = '
-function submitConfigForm(){
-    jQuery("form#geekybot-form").submit();
-}';
+$geekybot_js ="
+jQuery(document).ready(function() {
+    jQuery(document).on('change', 'select.response-btn-type', function() {
+        jQuery('.geeky-popup-dynamic-field').removeClass('geeky-popup-dynamic-field-active');
+        jQuery(this).closest('.geeky-popup-dynamic-field').addClass('geeky-popup-dynamic-field-active');
+
+        var type = jQuery(this).val();
+        if(type == '1') {
+            jQuery('.geeky-popup-dynamic-field-active .response-btn-url').css('display', 'none');
+            jQuery('.geeky-popup-dynamic-field-active .response-btn-value').css('display', 'block');
+        } else {
+            jQuery('.geeky-popup-dynamic-field-active .response-btn-value').css('display', 'none');
+            jQuery('.geeky-popup-dynamic-field-active .response-btn-url').css('display', 'block');
+        }
+    });
+});";
 wp_add_inline_script('geekybot-main-js',$geekybot_js);
 ?>
 <!-- main wrapper -->
@@ -56,6 +68,44 @@ wp_add_inline_script('geekybot-main-js',$geekybot_js);
                         </div>
                         <div class="geekybot-config-row">
                             <div class="geekybot-config-title">
+                                <?php echo esc_html(__('Default Fallback Action Button', 'geeky-bot')); ?>
+                            </div>
+                            <?php
+                                if (!empty(geekybot::$_data[0]['default_message_buttons']) && geekybot::$_data[0]['default_message_buttons'] != '[]') {
+                                    $default_message_buttons = json_decode(geekybot::$_data[0]['default_message_buttons']);
+                                    $buttons = $default_message_buttons[0];
+                                }
+                                if (isset($buttons->type) && $buttons->type == 2) {
+                                    $optionOneSelected = '';
+                                    $optionTwoSelected = 'selected="selected"';
+                                    $optionOneStyle = 'style="display:none"';
+                                    $optionTwoStyle = 'style="display:block"';
+                                } else {
+                                    $optionOneSelected = 'selected="selected"';
+                                    $optionTwoSelected = '';
+                                    $optionOneStyle = 'style="display:block"';
+                                    $optionTwoStyle = 'style="display:none"';
+                                }
+                            ?>
+                            <div class="geekybot-config-value">
+                                <div class="geeky-popup-dynamic-field" id="div_1">
+                                    <input name = "fallback_btn_text[]" type="text" value = "<?php echo isset($buttons->text) ? $buttons->text : ''; ?>" class="inputbox geeky-popup-dynamic-field-input" autocomplete="off" placeholder="<?php echo esc_attr(__('Button text here','geeky-bot')) ?>" />
+                                    <select name="fallback_btn_type[]" class="response-btn-type inputbox geeky-popup-dynamic-field-input geeky-popup-dynamic-field-select" data-validation="required">
+                                        <option value="1" <?php echo $optionOneSelected ?> ><?php echo esc_attr(__('User Input','geeky-bot')) ?></option>
+                                        <option value="2" <?php echo $optionTwoSelected ?> ><?php echo esc_attr(__('URL','geeky-bot')) ?></option>
+                                    </select>
+                                    <input name = "fallback_btn_value[]" type="text" value = "<?php echo isset($buttons->value) ? $buttons->value : ''; ?>" class="response-btn-value inputbox geeky-popup-dynamic-field-input" autocomplete="off" placeholder="<?php echo esc_attr(__('Button value here','geeky-bot')) ?>" <?php echo $optionOneStyle ?> />
+                                    <input name = "fallback_btn_url[]" type="text" value = "<?php echo isset($buttons->value) ? $buttons->value : ''; ?>" class="response-btn-url inputbox geeky-popup-dynamic-field-input" autocomplete="off" placeholder="<?php echo esc_attr(__('Enter URL here','geeky-bot')) ?>" <?php echo $optionTwoStyle ?>  />
+                                </div>
+                            </div>
+                            <div class="geekybot-config-description">
+                                <?php
+                                echo esc_html(__("Customizes the action button displayed with the fallback message when the chatbot doesn't understand user input.", 'geeky-bot'));
+                                ?>
+                            </div>
+                        </div>
+                        <div class="geekybot-config-row">
+                            <div class="geekybot-config-title">
                                 <?php echo esc_html(__('Offline', 'geeky-bot')); ?>
                             </div>
                             <div class="geekybot-config-value">
@@ -85,7 +135,7 @@ wp_add_inline_script('geekybot-main-js',$geekybot_js);
                                 <?php echo esc_html(__('Admin Pagination', 'geeky-bot')); ?>
                             </div>
                             <div class="geekybot-config-value">
-                                <?php echo wp_kses(GEEKYBOTformfield::GEEKYBOT_text('pagination_default_page_size', geekybot::$_data[0]['pagination_default_page_size'], array('class' => 'inputbox')),GEEKYBOT_ALLOWED_TAGS); ?>
+                                <?php echo wp_kses(GEEKYBOTformfield::GEEKYBOT_text('pagination_default_page_size', geekybot::$_data[0]['pagination_default_page_size'], array('class' => 'inputbox', 'pattern' => '^[0-9]+$')),GEEKYBOT_ALLOWED_TAGS); ?>
                             </div>
                             <div class="geekybot-config-description">
                                 <?php echo esc_html(__("The number of items displayed in a paginated list in the admin panel.", 'geeky-bot')); ?>
@@ -96,7 +146,7 @@ wp_add_inline_script('geekybot-main-js',$geekybot_js);
                                 <?php echo esc_html(__('User Pagination', 'geeky-bot')); ?>
                             </div>
                             <div class="geekybot-config-value">
-                                <?php echo wp_kses(GEEKYBOTformfield::GEEKYBOT_text('pagination_product_page_size', geekybot::$_data[0]['pagination_product_page_size'], array('class' => 'inputbox')),GEEKYBOT_ALLOWED_TAGS); ?>
+                                <?php echo wp_kses(GEEKYBOTformfield::GEEKYBOT_text('pagination_product_page_size', geekybot::$_data[0]['pagination_product_page_size'], array('class' => 'inputbox', 'pattern' => '^[0-9]+$')),GEEKYBOT_ALLOWED_TAGS); ?>
                             </div>
                             <div class="geekybot-config-description">
                                 <?php echo esc_html(__("The number of items displayed in a paginated list on the user side.", 'geeky-bot')); ?>
@@ -108,7 +158,7 @@ wp_add_inline_script('geekybot-main-js',$geekybot_js);
                     <?php echo wp_kses(GEEKYBOTformfield::GEEKYBOT_hidden('action', 'configuration_saveconfiguration'), GEEKYBOT_ALLOWED_TAGS); ?>
                     <?php echo wp_kses(GEEKYBOTformfield::GEEKYBOT_hidden('form_request', 'geekybot'), GEEKYBOT_ALLOWED_TAGS); ?>
                     <div class="geekybot-config-btn">
-                        <button onclick="submitConfigForm();" title="<?php echo esc_html(__('Save Settings', 'geeky-bot')); ?>" type="submit"class="button geekybot-config-save-btn">
+                        <button title="<?php echo esc_html(__('Save Settings', 'geeky-bot')); ?>" type="submit"class="button geekybot-config-save-btn">
                             <img src="<?php echo esc_url(GEEKYBOT_PLUGIN_URL); ?>includes/images/story/save.png" alt="<?php echo esc_html(__('Add Icon', 'geeky-bot')); ?>" srcset="">
                             <?php echo esc_html(__('Save Settings', 'geeky-bot')); ?>
                         </button>

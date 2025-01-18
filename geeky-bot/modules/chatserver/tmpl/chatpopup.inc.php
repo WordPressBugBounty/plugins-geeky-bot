@@ -237,46 +237,43 @@ if (!defined('ABSPATH'))
                 }
                 $geekybot_js .="
                 if (data && Array.isArray(data) && data.length > 0) {
+                    jQuery(\"#chatbox\").append(\"<li class='actual_msg actual_msg_adm'><section class='actual_msg_adm-img'><img src='" . esc_url($botImgScr) . "' alt='' /></section><section class='actual_msg_text_wrp'></section></li>\");
                     jQuery.each(data, function( index, value ) {
+                        var listItem = jQuery(\"#chatbox\").find(\"li.actual_msg_adm\").last(); // Get the last inserted <li>
                         if (value.text) {
-                            var sender = 'bot'; ";
-                            if(geekybot::$_configuration['ai_search'] == 0){
-                                $geekybot_js .= "
-                                var message = geekybot_DecodeHTML(value.text.bot_response);
+                            var sender = 'bot';
+                            var message = '';";
+                            if (geekybot::$_configuration['ai_search'] == 0) {
+                                $geekybot_js .= "message = geekybot_DecodeHTML(value.text.bot_response);
                                 if (typeof value.text.bot_articles !== 'undefined') {
                                     message += geekybot_DecodeHTML(value.text.bot_articles);
                                 }";
-                            }else{
-                                $geekybot_js .= " var message = geekybot_DecodeHTML(value.text);";
+                            } else {
+                                $geekybot_js .= "message = geekybot_DecodeHTML(value.text);";
                             }
                             $geekybot_js .= "
-                            var btn   = value.buttons;
-                            var btnhtml ='';
-                            var text = value.text;
-                            var btnflag = 'false';
-                            var response_id =  jQuery('#response_id').val();
+                            var btn = value.buttons;
                             // error with woocommerce code
                             //message = message.replace( /((http|https|ftp|ftps)\:\/\/[a-zA-Z0-9\-\.]+\.[a-zA-Z]{2,3}(\/\S*)?)/g,'<a href=\"$1\">$1</a>');
-                            jQuery(\"#chatbox\").append(\"<li class='actual_msg actual_msg_adm'><section class='actual_msg_adm-img'><img src='".esc_url($botImgScr)."' alt='' /></section><section class='actual_msg_text'>\"+message+\"</section>\");
-                            
+                            listItem.find(\"section.actual_msg_text_wrp\").append(\"<section class='actual_msg_text'>\" + message + \"</section>\"); // Append text inside the <section>
+
                             // SaveChathistory(message,sender);
-                            if(btn) {
-                                btnhtml += \"<div class='actual_msg_btn'>\";
-                                jQuery.each(btn, function(i,btns){
+                            if (btn) {
+                                var btnhtml = \"<div class='actual_msg_btn'>\";
+                                jQuery.each(btn, function(i, btns) {
                                     var btntext = btns.text;
                                     var btnvalue = btns.value;
                                     var btntype = btns.type;
                                     var btnflag = 'true';
-                                    if(btntype == 1) {
-                                        btnhtml+=  \"<li class='actual_msg actual_msg_btn' style=''><section><button class='wp-chat-btn' onclick='sendbtnrsponse(this);' value='\"+btnvalue+\"'><span>\"+btntext+\"</span></section></button></li>\";
-                                    } else if(btntype == 2) {
-                                        btnhtml+=  \"<li class='actual_msg actual_msg_btn' style=''><section><button class='wp-chat-btn'><span><a class='wp-chat-btn-link' href='\"+btnvalue+\"'>\"+btntext+\"</a></span></section></button></li>\";
+                                    if (btntype == 1) {
+                                        btnhtml += \"<li class='actual_msg actual_msg_btn' style=''><section><button class='wp-chat-btn' onclick='sendbtnrsponse(this);' value='\" + btnvalue + \"'><span>\" + btntext + \"</span></section></button></li>\";
+                                    } else if (btntype == 2) {
+                                        btnhtml += \"<li class='actual_msg actual_msg_btn' style=''><section><button class='wp-chat-btn'><span><a class='wp-chat-btn-link' href='\" + btnvalue + \"'>\" + btntext + \"</a></span></button></section></li>\";
                                     }
                                 });
-                                btnhtml += \"</div>\"; 
-                                jQuery(\"#chatbox\").append(btnhtml);
+                                btnhtml += \"</div>\";
+                                listItem.find(\"section.actual_msg_text_wrp\").append(btnhtml); // Append buttons inside the same <section>
                             }
-                            jQuery(\"#chatbox\").append(\"</li>\");
                         } else if (value.image) {
                             var sender = 'bot';
                             var message = value.image;
@@ -287,21 +284,22 @@ if (!defined('ABSPATH'))
                         } else if (value.action) {
                             var sender = 'bot';
                             var message = geekybot_DecodeHTML(value.action.text);
-                            var btn   = value.buttons;
-                            var btnhtml ='';
+                            listItem.find(\"section.actual_msg_text\").append(message); // Append action text inside the same <li>
+                            var btn = value.buttons;
+                            var btnhtml = '';
                             var btnflag = 'false';
-                            var response_id =  jQuery('#response_id').val();
-                            jQuery(\"#chatbox\").append(\"<li class='actual_msg actual_msg_adm'><section class='actual_msg_adm-img'><img src='".esc_url($botImgScr)."' alt='' /></section><section class='actual_msg_text'>\"+ message+\"</section></li>\");
+                            var response_id = jQuery('#response_id').val();
+                            jQuery(\"#chatbox\").append(\"<li class='actual_msg actual_msg_adm'><section class='actual_msg_adm-img'><img src='" . esc_url($botImgScr) . "' alt='' /></section><section class='actual_msg_text'>\" + message + \"</section></li>\");
                             // SaveChathistory(message,sender);
-                                if(btn) {
-                                    btnhtml += \"<div class='actual_msg_btn'>\";
-                                    jQuery.each(btn, function(i,btns){
+                            if (btn) {
+                                btnhtml += \"<div class='actual_msg_btn'>\";
+                                jQuery.each(btn, function(i, btns) {
                                     var btnmsg = btns.title;
                                     var btnflag = 'true';
                                     // SaveChathistory(btnmsg,sender);
-                                    btnhtml+=  \"<li class='actual_msg actual_msg_btn' style=''><section><button class='wp-chat-btn' onclick='sendbtnrsponse(this);' value='\"+btns.title+\"'><span>\"+btns.title+\"</span></section></button></li>\";
+                                    btnhtml += \"<li class='actual_msg actual_msg_btn' style=''><section><button class='wp-chat-btn' onclick='sendbtnrsponse(this);' value='\" + btns.title + \"'><span>\" + btns.title + \"</span></button></section></li>\";
                                 });
-                                btnhtml += \"</div>\"; 
+                                btnhtml += \"</div>\";
                                 jQuery(\"#chatbox\").append(btnhtml);
                             }
                         }
@@ -316,8 +314,28 @@ if (!defined('ABSPATH'))
                         '_wpnonce':'". esc_attr(wp_create_nonce('get-fallback')) ."'
                     }, function(fbdata) {
                         if (fbdata) {
-                            console.log(fbdata);
-                            jQuery(\"#chatbox\").append(\"<li class='actual_msg actual_msg_adm'><section class='actual_msg_adm-img'><img src='".esc_url($botImgScr)."' alt='' /></section><section class='actual_msg_text'>\"+fbdata+\"</section></li>\");
+                            var fbdata = JSON.parse(fbdata);
+                            if(fbdata.text) {
+                                var btnhtml = '';
+                                var btn = fbdata.buttons;
+                                if (btn) {
+                                    btnhtml = \"<div class='actual_msg_btn'>\";
+                                    jQuery.each(btn, function(i, btns) {
+                                        var btntext = btns.text;
+                                        var btnvalue = btns.value;
+                                        var btntype = btns.type;
+                                        var btnflag = 'true';
+                                        if (btntype == 1) {
+                                            btnhtml += \"<li class='actual_msg actual_msg_btn' style=''><section><button class='wp-chat-btn' onclick='sendbtnrsponse(this);' value='\" + btnvalue + \"'><span>\" + btntext + \"</span></section></button></li>\";
+                                        } else if (btntype == 2) {
+                                            btnhtml += \"<li class='actual_msg actual_msg_btn' style=''><section><button class='wp-chat-btn'><span><a class='wp-chat-btn-link' href='\" + btnvalue + \"'>\" + btntext + \"</a></span></button></section></li>\";
+                                        }
+                                    });
+                                    btnhtml += \"</div>\";
+                                }
+                                jQuery(\"#chatbox\").append(\"<li class='actual_msg actual_msg_adm'><section class='actual_msg_adm-img'><img src='".esc_url($botImgScr)."' alt='' /></section><section class='actual_msg_text_wrp'><section class='actual_msg_text'>\"+fbdata.text+\"</section>\"+btnhtml+\"</section></li>\");
+                            }
+                            
                         } else {
                             console.error('AJAX Error:', textStatus, errorThrown);
                         }

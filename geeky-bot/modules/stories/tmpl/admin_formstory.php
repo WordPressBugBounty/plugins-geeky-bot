@@ -236,6 +236,34 @@ if (isset(geekybot::$_data[0]['story'])) {
     function deleteResponseTextBotton(responseButtonId){
         jQuery(responseButtonId).remove();
     }
+    // Function to create fallback buttons
+    var fallbackButtonDivId = 1;
+    function addFallBackButton(param) {
+        if (fallbackButtonDivId != param && fallbackButtonDivId < param) {
+            fallbackButtonDivId = param;
+        }
+        // console.log(userInputDivId);
+        var container = jQuery('#fallback-popup-text');
+        container.append('<div class=\"geeky-popup-dynamic-field\" id=\"div_'+fallbackButtonDivId+'\"><input name = \"fallback_btn_text[]\" type=\"text\" value = \"\" class=\"inputbox geeky-popup-dynamic-field-input\" autocomplete=\"off\" placeholder=\"". esc_attr(__('Button text here','geeky-bot'))."\" /><select name=\"fallback_btn_type[]\" class=\"response-btn-type inputbox geeky-popup-dynamic-field-input geeky-popup-dynamic-field-select\" data-validation=\"required\"><option value=\"1\">". esc_attr(__('User Input','geeky-bot'))."</option><option value=\"2\">". esc_attr(__('URL','geeky-bot'))."</option></select><input name = \"fallback_btn_value[]\" type=\"text\" value = \"\" class=\"response-btn-value inputbox geeky-popup-dynamic-field-input\" autocomplete=\"off\" placeholder=\"". esc_attr(__('Button value here','geeky-bot'))."\" /><input name = \"fallback_btn_url[]\" type=\"text\" value = \"\" class=\"response-btn-url inputbox geeky-popup-dynamic-field-input\" autocomplete=\"off\" placeholder=\"". esc_attr(__('Enter URL here','geeky-bot'))."\" style=\"display: none\"  /><span class=\"geeky-popup-dynamic-remov-image remove-btn\" title=\"". esc_attr(__('Delete','geeky-bot'))."\" onClick=\"deleteFallbackBotton(div_'+fallbackButtonDivId+')\">". esc_html(__('Delete','geeky-bot')) ."</span></div>');
+        fallbackButtonDivId++;
+    }
+    function deleteFallbackBotton(fallbackButtonId){
+        jQuery(fallbackButtonId).remove();
+    }
+    // Function to create intent fallback buttons
+    var intentFallbackButtonDivId = 1;
+    function addIntentFallBackButton(param) {
+        if (intentFallbackButtonDivId != param && intentFallbackButtonDivId < param) {
+            intentFallbackButtonDivId = param;
+        }
+        // console.log(userInputDivId);
+        var container = jQuery('#intent-fallback-popup-text');
+        container.append('<div class=\"geeky-popup-dynamic-field\" id=\"div_'+intentFallbackButtonDivId+'\"><input name = \"fallback_btn_text[]\" type=\"text\" value = \"\" class=\"inputbox geeky-popup-dynamic-field-input\" autocomplete=\"off\" placeholder=\"". esc_attr(__('Button text here','geeky-bot'))."\" /><select name=\"fallback_btn_type[]\" class=\"response-btn-type inputbox geeky-popup-dynamic-field-input geeky-popup-dynamic-field-select\" data-validation=\"required\"><option value=\"1\">". esc_attr(__('User Input','geeky-bot'))."</option><option value=\"2\">". esc_attr(__('URL','geeky-bot'))."</option></select><input name = \"fallback_btn_value[]\" type=\"text\" value = \"\" class=\"response-btn-value inputbox geeky-popup-dynamic-field-input\" autocomplete=\"off\" placeholder=\"". esc_attr(__('Button value here','geeky-bot'))."\" /><input name = \"fallback_btn_url[]\" type=\"text\" value = \"\" class=\"response-btn-url inputbox geeky-popup-dynamic-field-input\" autocomplete=\"off\" placeholder=\"". esc_attr(__('Enter URL here','geeky-bot'))."\" style=\"display: none\"  /><span class=\"geeky-popup-dynamic-remov-image remove-btn\" title=\"". esc_attr(__('Delete','geeky-bot'))."\" onClick=\"deleteIntentFallbackBotton(div_'+intentFallbackButtonDivId+')\">". esc_html(__('Delete','geeky-bot')) ."</span></div>');
+        intentFallbackButtonDivId++;
+    }
+    function deleteIntentFallbackBotton(intentFallbackButtonId){
+        jQuery(intentFallbackButtonId).remove();
+    }
     // Function to create custome actions
     function addCustomeActions() {
         jQuery('div#response-add-action-popup').slideDown('slow');
@@ -580,6 +608,27 @@ if (isset(geekybot::$_data[0]['story'])) {
             e.preventDefault();
             var story_id = ". $story_id .";
             var default_fallback_text = jQuery('textarea#default_fallback_text').val();
+            var fallbackBtnText = [];
+            jQuery(\"input[name='fallback_btn_text[]']\").each(function() {
+                var value = jQuery(this).val();
+                fallbackBtnText.push(value);
+            });
+            var fallbackBtnType = [];
+            jQuery(\"select[name='fallback_btn_type[]']\").each(function() {
+                var value = jQuery(this).val();
+                fallbackBtnType.push(value);
+            });
+            var fallbackBtnValue = [];
+            jQuery(\"input[name='fallback_btn_value[]']\").each(function() {
+                var value = jQuery(this).val();
+                fallbackBtnValue.push(value);
+            });
+            var fallbackBtnUrl = [];
+            jQuery(\"input[name='fallback_btn_url[]']\").each(function() {
+                var value = jQuery(this).val();
+                fallbackBtnUrl.push(value);
+            });
+
             var ajaxurl =
                 '". esc_url(admin_url("admin-ajax.php")) ."';
             jQuery.post(ajaxurl, {
@@ -588,6 +637,10 @@ if (isset(geekybot::$_data[0]['story'])) {
                 task: 'savedefaultFallbackFormAjax',
                 story_id: story_id,
                 default_fallback: default_fallback_text,
+                btn_text: fallbackBtnText,
+                btn_type: fallbackBtnType,
+                btn_value: fallbackBtnValue,
+                btn_url: fallbackBtnUrl,
                 '_wpnonce':'". esc_attr(wp_create_nonce("save-default-fallback")) ."'
             }, function(data) {
                 if (data == 1) {
@@ -605,6 +658,26 @@ if (isset(geekybot::$_data[0]['story'])) {
             var group_id = jQuery('#group_id').val();
             var story_id = ". $story_id .";
             var default_intent_fallback_text = jQuery('textarea#default_intent_fallback_text').val();
+            var fallbackBtnText = [];
+            jQuery(\"input[name='fallback_btn_text[]']\").each(function() {
+                var value = jQuery(this).val();
+                fallbackBtnText.push(value);
+            });
+            var fallbackBtnType = [];
+            jQuery(\"select[name='fallback_btn_type[]']\").each(function() {
+                var value = jQuery(this).val();
+                fallbackBtnType.push(value);
+            });
+            var fallbackBtnValue = [];
+            jQuery(\"input[name='fallback_btn_value[]']\").each(function() {
+                var value = jQuery(this).val();
+                fallbackBtnValue.push(value);
+            });
+            var fallbackBtnUrl = [];
+            jQuery(\"input[name='fallback_btn_url[]']\").each(function() {
+                var value = jQuery(this).val();
+                fallbackBtnUrl.push(value);
+            });
             var ajaxurl =
                 '". esc_url(admin_url("admin-ajax.php")) ."';
             jQuery.post(ajaxurl, {
@@ -615,6 +688,10 @@ if (isset(geekybot::$_data[0]['story'])) {
                 group_id: group_id,
                 story_id: story_id,
                 default_intent_fallback: default_intent_fallback_text,
+                btn_text: fallbackBtnText,
+                btn_type: fallbackBtnType,
+                btn_value: fallbackBtnValue,
+                btn_url: fallbackBtnUrl,
                 '_wpnonce':'". esc_attr(wp_create_nonce("save-default-intent-fallback")) ."'
             }, function(data) {
                 if (data == -1) {
@@ -765,6 +842,7 @@ if (isset(geekybot::$_data[0]['story'])) {
                                     '_wpnonce':'". esc_attr(wp_create_nonce("get-form-html")) ."'
                                 }, function(data) {
                                     if (data) {
+                                        jQuery('div#defaultIntentFallbackFormBody').html('');
                                         jQuery('div#defaultFallbackFormBody').html(geekybot_DecodeHTML(data));
                                     } else {
                                         jQuery('div#defaultFallbackFormBody').html('<span class=\"geekybot_error_msg\">". esc_attr(__('Something went wrong try again later!', 'geeky-bot')) ."</span>');
@@ -892,6 +970,7 @@ if (isset(geekybot::$_data[0]['story'])) {
                                                 '_wpnonce':'". esc_attr(wp_create_nonce("get-form-html")) ."'
                                             }, function(data) {
                                                 if (data) {
+                                                    jQuery('div#defaultFallbackFormBody').html('');
                                                     jQuery('div#defaultIntentFallbackFormBody').html(geekybot_DecodeHTML(data));
                                                 } else {
                                                     jQuery('div#defaultIntentFallbackFormBody').html('<span class=\"geekybot_error_msg\">". esc_attr(__('Something went wrong try again later!', 'geeky-bot')) ."</span>');

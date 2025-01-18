@@ -104,7 +104,7 @@ class GEEKYBOTgeekybotsessiondata {
         return $data;
     }
 
-    public function geekybot_addChatHistoryToSession($msg, $type, $btns = ''){
+    public function geekybot_addChatHistoryToSession($msg, $type, $search = ''){
         if(is_null($msg)){
             return false;
         }
@@ -114,14 +114,10 @@ class GEEKYBOTgeekybotsessiondata {
             $message = "<li class='actual_msg actual_msg_user'><section class='actual_msg_user-img'><img src='".esc_url($img_scr)."' alt='' /></section><section class='actual_msg_text'>".$msg."</section></li>";
         } else if($type == 'bot') {
             $img_scr = GEEKYBOTincluder::GEEKYBOT_getModel('geekybot')->getBotImagePath();
-            $message = "<li class='actual_msg actual_msg_adm'><section class='actual_msg_adm-img'><img src='".esc_url($img_scr)."' alt='' /></section><section class='actual_msg_text'>".$msg."</section></li>";
-            if ($btns != '') {
-                $btnhtml = "<div class='actual_msg_btn'>";
-                foreach ($btns as $responseButton) {
-                    $btnhtml .=  "<li class='actual_msg actual_msg_btn' style=''><section><button class='wp-chat-btn' onclick='sendbtnrsponse(this);' value='".$responseButton->value."'><span>".$responseButton->text."</span></section></button></li>";
-                };
-                $btnhtml .= "</div>";
-                $message .= $btnhtml;
+            if (!empty($search)) {
+                $message = "<li class='actual_msg actual_msg_adm'><section class='actual_msg_adm-img'><img src='".esc_url($img_scr)."' alt='' /></section><section class='actual_msg_text_wrp'>".$msg."</section></li>";
+            } else {
+                $message = "<li class='actual_msg actual_msg_adm'><section class='actual_msg_adm-img'><img src='".esc_url($img_scr)."' alt='' /></section><section class='actual_msg_text_wrp'><section class='actual_msg_text'>".$msg."</section></section></li>";
             }
         }
         if(isset($chatId) && $chatId != ''){

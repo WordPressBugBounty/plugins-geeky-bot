@@ -122,7 +122,7 @@ class GEEKYBOTgeekybotModel {
         } elseif ( is_plugin_inactive( 'woocommerce/woocommerce.php' ) ) {
             // WooCommerce is installed but not activated
             geekybot::$_data['woocommerce_sessions']['error_message'] = __('WooCommerce plugin is not activated.', 'geeky-bot');
-            geekybot::$_data['woocommerce_sessions']['error_message_btn'] = "<a href='". esc_url(admin_url( 'plugins.php?s=woocommerce&plugin_status=all' )) ."''> ". esc_html(__('Active Now','geeky-bot'))."</a>";
+            geekybot::$_data['woocommerce_sessions']['error_message_btn'] = "<a href='". esc_url(admin_url( 'plugins.php?s=woocommerce&plugin_status=all' )) ."'> ". esc_html(__('Active Now','geeky-bot'))."</a>";
         } else {
             $wc_story = geekybotdb::GEEKYBOT_get_var("SELECT status FROM `" . geekybot::$_db->prefix . "geekybot_stories` WHERE `story_type` = 2");
             if ($wc_story == 1) {
@@ -415,11 +415,10 @@ class GEEKYBOTgeekybotModel {
         $data = GEEKYBOTrequest::GEEKYBOT_getVar('data');
         $next_page = GEEKYBOTrequest::GEEKYBOT_getVar('next_page');
         $functionName = GEEKYBOTrequest::GEEKYBOT_getVar('functionName');
-        $modelName = GEEKYBOTrequest::GEEKYBOT_getVar('modelName');
         if(!is_array($data)) {
             $data = json_decode($data,true);
         }
-        $products = GEEKYBOTincluder::GEEKYBOT_getModel($modelName)->$functionName($msg, $data, $next_page);
+        $products = GEEKYBOTincluder::GEEKYBOT_getModel('woocommerce')->$functionName($msg, $data, $next_page);
         // save bot response to the session and chat history
         geekybot::$_geekybotsessiondata->geekybot_addChatHistoryToSession($products, 'bot');
         GEEKYBOTincluder::GEEKYBOT_getModel('chathistory')->SaveChathistoryFromchatServer($products, 'bot');
@@ -435,9 +434,8 @@ class GEEKYBOTgeekybotModel {
         $data = GEEKYBOTrequest::GEEKYBOT_getVar('data_array');
         $next_page = GEEKYBOTrequest::GEEKYBOT_getVar('next_page');
         $functionName = GEEKYBOTrequest::GEEKYBOT_getVar('functionName');
-        $modelName = 'systemaction';
         $data = json_decode($data);
-        $posts = GEEKYBOTincluder::GEEKYBOT_getModel($modelName)->$functionName($msg, $data, $next_page);
+        $posts = GEEKYBOTincluder::GEEKYBOT_getModel('systemaction')->$functionName($msg, $data, $next_page);
         // save bot response to the session and chat history
         geekybot::$_geekybotsessiondata->geekybot_addChatHistoryToSession($posts, 'bot');
         GEEKYBOTincluder::GEEKYBOT_getModel('chathistory')->SaveChathistoryFromchatServer($posts, 'bot');

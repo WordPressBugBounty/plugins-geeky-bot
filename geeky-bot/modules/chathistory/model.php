@@ -161,6 +161,7 @@ class GEEKYBOTchathistoryModel {
                     }
                     $rightusermessage = 'right-user-message';
                     $plain_message = geekybotphplib::GEEKYBOT_wp_strip_all_tags($value->message);
+                    $plain_message = geekybotphplib::GEEKYBOT_htmlspecialchars(geekybotphplib::GEEKYBOT_addslashes($plain_message), ENT_QUOTES, 'UTF-8');
                 }
                 if ($value->sender == 'bot') {
                     $btn = '';
@@ -211,12 +212,12 @@ class GEEKYBOTchathistoryModel {
                     $str .='</div>';
                     $str .= '<div class=\"body-content-message\"><span class="geekybot-history-page-subheading"> '. esc_attr(__('Message', 'geeky-bot')).':</span>';
                     if ($value->sender == 'bot') {
-                        $str .= '<span class=\"body-content-message-value \"> '. $value->message .' </span>';
+                        $str .= '<span class=\"body-content-message-value \"><section class=\"actual_msg_text_wrp\"> '. $value->message .' </section></span>';
                         if ($value->buttons != '[]' && $value->buttons != '') {
                             $responseButtons = json_decode($value->buttons);
                             $str .= "<div class='actual_msg_btn'>";
                             foreach ($responseButtons as $responseButton) {
-                                $str .=  "<li class='actual_msg actual_msg_btn' style=''><section><button class='wp-chat-btn'><span>".$responseButton->text."</span></section></button></li>";
+                                $str .=  "<li class='actual_msg actual_msg_btn' style=''><section><button class='wp-chat-btn'><span>".$responseButton->text."</span></button></section></li>";
                             };
                             $str .= "</div>";
                         }
@@ -239,11 +240,11 @@ class GEEKYBOTchathistoryModel {
                 $prev = $chatlimit;
                 if($prev > 0){
                     $page_html .= '<a class="geekybot-jsst_userlink" href="#" onclick="makeMeActive('
-                        . '\'' . esc_js(addslashes($username)) . '\','
-                        . '\'' . esc_js(addslashes($userid)) . '\','
-                        . '\'' . esc_js(addslashes($chatHistoryId)) . '\','
-                        . '\'' . esc_js(addslashes($htmlDiv)) . '\','
-                        . '\'' . esc_js(addslashes($datet)) . '\','
+                        . '\'' . esc_js(geekybotphplib::GEEKYBOT_addslashes($username)) . '\','
+                        . '\'' . esc_js(geekybotphplib::GEEKYBOT_addslashes($userid)) . '\','
+                        . '\'' . esc_js(geekybotphplib::GEEKYBOT_addslashes($chatHistoryId)) . '\','
+                        . '\'' . esc_js(geekybotphplib::GEEKYBOT_addslashes($htmlDiv)) . '\','
+                        . '\'' . esc_js(geekybotphplib::GEEKYBOT_addslashes($datet)) . '\','
                         . esc_js(($prev - 1)) . ', 1);">'
                         . '<img class="geeky-pagnumber-previcon" src="' . esc_url(GEEKYBOT_PLUGIN_URL) . 'includes/images/previous.png" '
                         . 'title="' . esc_attr(__("Previous", "geeky-bot")) . '" '
@@ -254,17 +255,17 @@ class GEEKYBOTchathistoryModel {
                     if($i == $chatlimit)
                         $page_html .= '<span class="geekybot-jsst_userlink selected" >'.($i + 1).'</span>';
                     else
-                        $page_html .= '<a class="geekybot-jsst_userlink" href="#" onclick="makeMeActive('. '\'' . esc_js(addslashes($username)) . '\','. '\'' . esc_js(addslashes($userid)) . '\','. '\'' . esc_js(addslashes($chatHistoryId)) . '\','. '\'' . esc_js(addslashes($htmlDiv)) . '\','. '\'' . esc_js(addslashes($datet)) . '\','. esc_js($i) . ', 1);">'. esc_js(($i + 1)) . '</a>';
+                        $page_html .= '<a class="geekybot-jsst_userlink" href="#" onclick="makeMeActive('. '\'' . esc_js(geekybotphplib::GEEKYBOT_addslashes($username)) . '\','. '\'' . esc_js(geekybotphplib::GEEKYBOT_addslashes($userid)) . '\','. '\'' . esc_js(geekybotphplib::GEEKYBOT_addslashes($chatHistoryId)) . '\','. '\'' . esc_js(geekybotphplib::GEEKYBOT_addslashes($htmlDiv)) . '\','. '\'' . esc_js(geekybotphplib::GEEKYBOT_addslashes($datet)) . '\','. esc_js($i) . ', 1);">'. esc_js(($i + 1)) . '</a>';
 
                 }
                 $next = $chatlimit + 1;
                 if($next < $num_of_pages){
                     $page_html .= '<a class="geekybot-jsst_userlink" href="#" onclick="makeMeActive('
-                    . '\'' . esc_js(addslashes($username)) . '\','
-                    . '\'' . esc_js(addslashes($userid)) . '\','
-                    . '\'' . esc_js(addslashes($chatHistoryId)) . '\','
-                    . '\'' . esc_js(addslashes($htmlDiv)) . '\','
-                    . '\'' . esc_js(addslashes($datet)) . '\','
+                    . '\'' . esc_js(geekybotphplib::GEEKYBOT_addslashes($username)) . '\','
+                    . '\'' . esc_js(geekybotphplib::GEEKYBOT_addslashes($userid)) . '\','
+                    . '\'' . esc_js(geekybotphplib::GEEKYBOT_addslashes($chatHistoryId)) . '\','
+                    . '\'' . esc_js(geekybotphplib::GEEKYBOT_addslashes($htmlDiv)) . '\','
+                    . '\'' . esc_js(geekybotphplib::GEEKYBOT_addslashes($datet)) . '\','
                     . esc_js($next) . ', 1);">'
                     . '<img class="geeky-pagnumber-nexticon" src="' . esc_url(GEEKYBOT_PLUGIN_URL) . 'includes/images/next.png" '
                     . 'title="' . esc_attr(__("Next", "geeky-bot")) . '" '

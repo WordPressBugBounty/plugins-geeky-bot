@@ -9,23 +9,40 @@ class GEEKYBOTchatserverModel {
     }
 
     function getMessageResponse(){
-        $nonce = GEEKYBOTrequest::GEEKYBOT_getVar('_wpnonce');
-        $retVal = array();
-        $chat_id = GEEKYBOTincluder::GEEKYBOT_getModel('chathistory')->geekybot_getchatid();
-        if (! wp_verify_nonce( $nonce, 'get-message-response') ) {
-            $errorMessage = new stdClass();
-            $errorMessage->bot_response = esc_html(__("Security verification Failed, Please restart you chat to continue.", "geeky-bot"));
-            $retVal[] = array("recipient_id"=>$chat_id, "text"=>$errorMessage);
-            return wp_json_encode($retVal);
+        // [v1.0.7] Remove this code after some time
+        include_once GEEKYBOT_PLUGIN_PATH . 'includes/updates/updates.php';
+        $installedversion = GEEKYBOTupdates::geekybot_getInstalledVersion();
+        $cversion = '107';
+        if ($installedversion != $cversion) {
+            GEEKYBOTupdates::GEEKYBOT_checkUpdates($cversion);
         }
-        // check if the chat session is expire
-        if ($chat_id == '') {
+        // [v1.0.7]
+        $logdata = '';
+        $nonce = GEEKYBOTrequest::GEEKYBOT_getVar('_wpnonce');
+        $retVal = [];
+        $chat_id = GEEKYBOTincluder::GEEKYBOT_getModel('chathistory')->geekybot_getchatid();
+
+        // Verify nonce for security
+        if (!wp_verify_nonce($nonce, 'get-message-response')) {
             $errorMessage = new stdClass();
-            $errorMessage->bot_response = esc_html(__("Your session has expired; please restart your chat.", "geeky-bot"));
-            $retVal[] = array("recipient_id"=>$chat_id, "text"=>$errorMessage);
+            $errorMessage->bot_response = esc_html(
+                __("Security verification Failed, Please refresh your chat to continue.", "geeky-bot")
+            );
+            $retVal[] = ["recipient_id" => $chat_id, "text" => $errorMessage];
             return wp_json_encode($retVal);
         }
 
+        // Check if the chat session has expired
+        if (empty($chat_id)) {
+            $errorMessage = new stdClass();
+            $errorMessage->bot_response = esc_html(
+                __("Your session has expired; please restart your chat.", "geeky-bot")
+            );
+            $retVal[] = ["recipient_id" => $chat_id, "text" => $errorMessage];
+            return wp_json_encode($retVal);
+        }
+
+        // Retrieve user inputs
         $message = GEEKYBOTrequest::GEEKYBOT_getVar('cmessage');
         $text = GEEKYBOTrequest::GEEKYBOT_getVar('ctext');
         $sender = GEEKYBOTrequest::GEEKYBOT_getVar('csender');
@@ -35,247 +52,285 @@ class GEEKYBOTchatserverModel {
 
 		$logdata = "\n chatserver->getMessageResponse";
 		$logdata .= "\n message: ".$message;
-
-        // save user search to the session
-        if (isset($text)) {
+        // Save user message to session and chat history
+        if (!empty($text)) {
             geekybot::$_geekybotsessiondata->geekybot_addChatHistoryToSession($text, 'user');
             GEEKYBOTincluder::GEEKYBOT_getModel('chathistory')->SaveChathistoryFromchatServer($text, 'user');
         }
-        // get session check if story change
+
+        // Get session story ID
         $sessionStoryId = geekybot::$_geekybotsessiondata->geekybot_getStoryIdFromSession();
-        
-		// get intent id and score form user message
+
+        // Determine user intent and retrieve intent details
         $intentIdAndScore = $this->getIntentIdAndScoreFromUserMessage($message);
-        if (isset($intentIdAndScore['id']) && $intentIdAndScore['id'] != 0) {
+        $intentGroupId = '';
+        if (!empty($intentIdAndScore['id'])) {
             // get intent data from intent id
             $query = "SELECT `id`, `user_messages`, `user_messages_text`, `group_id` FROM `" . geekybot::$_db->prefix . "geekybot_intents` WHERE `id` = " . esc_sql($intentIdAndScore['id']);
 			$logdata .= "\n query: ".$query;
             $intentData = geekybotdb::GEEKYBOT_get_row($query);
             $intentGroupId = $intentData->group_id;
-            $score = $intentIdAndScore['score'];
-            // save variables from the intent
-            GEEKYBOTincluder::GEEKYBOT_getModel('slots')->saveVariableFromIntent($message, $intentData->user_messages, $score);
-        } else {
-            $intentGroupId = '';
+
+            // Save intent variables
+            GEEKYBOTincluder::GEEKYBOT_getModel('slots')->saveVariableFromIntent(
+                $message, 
+                $intentData->user_messages, 
+                $intentIdAndScore['score']
+            );
         }
-        // get the response based on the found intent
+
+        // Get bot responses based on intent
         $responses = $this->getResponseData($message, $intentGroupId, $sessionStoryId);
-		//$logdata .= "\n 59- response: ".print_r($responses);
-        foreach ($responses as $key => $data) {
+        foreach ($responses as $data) {
             $session_type = $data->story_type;
-			$logdata .= "\n 46- response data type: ".$data->response_type;
-            // response_type
-            // 1-> Text
-            // 2-> Custom Action
-            // 3-> Form
-            // 4-> Predefine Function
-            if($data->response_type == '1'){
+            if ($data->response_type == '1') { // Text response
+                $buttons = [];
                 $data->story_type = 1;
-                $str = $data->bot_response;
-                $word = '<button>';
                 // In case of buttons in response
-                if($data->response_button != '[]' && $data->response_button != ''){
+                if (!empty($data->response_button) && $data->response_button != '[]') {
                     $responseButtons = json_decode($data->response_button);
-                    foreach($responseButtons as $responseButton) {
-                        $retVal2[] = array("text" => $responseButton->text, "type" => $responseButton->type, "value" => $responseButton->value);
+                    foreach ($responseButtons as $responseButton) {
+                        $buttons[] = [
+                            "text" => $responseButton->text,
+                            "type" => $responseButton->type,
+                            "value" => $responseButton->value
+                        ];
                     }
-                    $retVal[] = array("recipient_id"=>$chat_id, "text"=>$data,"buttons"=>$retVal2);
+                    $retVal[] = ["recipient_id" => $chat_id, "text" => $data, "buttons" => $buttons];
                 } else {
-                    $retVal[] = array("recipient_id"=>$chat_id, "text"=>$data);
+                    $retVal[] = ["recipient_id" => $chat_id, "text" => $data];
                 }
-            } else if($data->response_type == '4'){
+            } elseif ($data->response_type == '4') { // Predefined function
                 $functionResult = geekybot::$_geekybotsessiondata->geekybot_readVarFromSessionAndCallPredefinedFunction($message, $data->function_id);
-                if (isset($functionResult)) {
+                if (!empty($functionResult)) {
                     $data->bot_response = $functionResult;
+                    $retVal[] = ["recipient_id" => $chat_id, "text" => $data];
                 }
-                $retVal[] = array("recipient_id"=>$chat_id, "text"=>$data);
             }
-            $logdata .= "\n response data: ".$data->bot_response;
         }
 
         // if the indent found and bot response is not empty
         if (isset($retVal[0]['text']->bot_response)) {
             $isIndentFound = true;
             $isIndentFallback = false;
+            // If user intent found in the story
+            $logdata .= "\n isIndentFound:true";
         } else {
             // indent fallback on the base of last story
             $isIndentFound = false;
             $isIndentFallback = false;
 
             // intent base fallback
-            $intentBaseFallback = GEEKYBOTincluder::GEEKYBOT_getModel('stack')->getFallbackFromLastActiveIntent();
-            if (!empty($intentBaseFallback)) {
+            $intentFallback = GEEKYBOTincluder::GEEKYBOT_getModel('stack')->getFallbackFromLastActiveIntent();
+            if (!empty($intentFallback->default_fallback)) {
                 $fallbackData = new stdClass();
-                $fallbackData->bot_response = $intentBaseFallback;
-                $retVal[] = array("recipient_id"=>$chat_id, "text"=>$fallbackData);
-            }
-            $stackStory = GEEKYBOTincluder::GEEKYBOT_getModel('stack')->getLastActiveStoryFromStack();
-            if(isset($stackStory)) {
-                $session_type = $stackStory->story_type;
-                // story_type
-                // 1-> AI Story
-                // 2-> Woocommerce Story
-                // 3-> Forgot Password Story
-                if($stackStory->story_type == 1){
-                    $logdata .= "\n try ai fall back";
-                    // if last active story is AI story
-                    $fallback = $this->getFallbackForAIStory($message, $stackStory);
-                } elseif ($stackStory->story_type == 2) {
-                    // if last active story is Woocommerce
-                    if (class_exists('WooCommerce')) {
-                        $logdata .= "\n Woocommerce: Yes, try fall back";
-                        $fallback = $this->getFallbackForWoocommerceStory($message);
+                $fallbackData->bot_response = $intentFallback->default_fallback;
+                $buttons = [];
+                if (!empty($intentFallback->default_fallback_buttons) && $intentFallback->default_fallback_buttons != '[]') {
+                    $intentFallbackButtons = json_decode($intentFallback->default_fallback_buttons);
+                    foreach ($intentFallbackButtons as $intentFallbackButton) {
+                        $buttons[] = [
+                            "text" => $intentFallbackButton->text,
+                            "type" => $intentFallbackButton->type,
+                            "value" => $intentFallbackButton->value
+                        ];
                     }
-                } elseif ($stackStory->story_type == 3) {
-                    $logdata .= "\n try forgot password fall back";
-                    // if last active story is forgot password
-                    $fallback = $this->getFallbackForForgotPasswordStory($message);
-                }
-                if (isset($fallback) && $fallback != '') {
-                    // $logdata .= "\n fall back is:".$fallback;
-                    $isIndentFallback = true;
-                }
-            }
-        }
-        if ($isIndentFound) {
-            // If user intent found in the story
-            $logdata .= "\n isIndentFound:true";
-        } elseif($isIndentFallback) {
-            // If user intent not found in the story
-            // but the story fallback found
-            if (is_array($fallback)) {
-                foreach ($fallback as $key => $value) {
-                    $fallbackData = new stdClass();
-                    $fallbackData->bot_response = $value;
-                    $retVal[] = array("recipient_id"=>$chat_id, "text"=>$fallbackData);
-                }
-            } else {
-                $fallbackData = new stdClass();
-                $fallbackData->bot_response = $fallback;
-                $retVal[] = array("recipient_id"=>$chat_id, "text"=>$fallbackData);
-            }
-            $logdata .= "\n isIndentFallback:true";
-        } else {
-            // If user intent not found in the story
-            // if the story fallback also not found
-            // call the woocommerce story fallback
-            if (class_exists('WooCommerce')) {
-                $session_type = 2;
-                $logdata .= "\n Woocommerce fallback: Yes, try fall back";
-                $fallback = $this->getFallbackForWoocommerceStory($message);
-                if (isset($fallback) && $fallback != '') {
-                    $fallbackData = new stdClass();
-                    $fallbackData->bot_response = $fallback;
-                    $retVal[] = array("recipient_id"=>$chat_id, "text"=>$fallbackData);
-                }
-                $logdata .= "\n fallback:".$fallback;
-            }
-            // add "show Articles" option in response
-            $logdata .= "\n is_posts_enable:".geekybot::$_configuration['is_posts_enable'];
-            if (geekybot::$_configuration['is_posts_enable'] == 1) {
-                if (isset($fallbackData->bot_response) && $fallbackData->bot_response != '') {
-                    $articleType = 1;
+                    $retVal[] = ["recipient_id" => $chat_id, "text" => $fallbackData, "buttons" => $buttons];
                 } else {
-                    $articleType = 2;
-                    $session_type = '';
+                    $retVal[] = ["recipient_id" => $chat_id, "text" => $fallbackData];
                 }
-                $articleButton = GEEKYBOTincluder::GEEKYBOT_getModel('websearch')->getArticlesButton($message, $articleType);
-                $articleButtonHtml = $articleButton['html'];
-                // check if some related posts found
-                if (isset($articleButtonHtml) && $articleButtonHtml != '') {
-                    // Modified bot response if it exists
-                    if (isset($retVal[0]['text']->bot_response)) {
-                        $retVal[0]['text']->bot_articles = $articleButtonHtml;
-                    } else{
-                        // If no bot response, show post directly
+            }
+
+            $stackStory = GEEKYBOTincluder::GEEKYBOT_getModel('stack')->getLastActiveStoryFromStack();
+            if ($stackStory && $stackStory->story_type == 1) {
+                $fallback = $this->getFallbackForAIStory($message, $stackStory);
+                if (!empty($fallback)) {
+                    $session_type = $stackStory->story_type;
+                    // If user intent not found in the story
+                    // but the story fallback found
+                    $isIndentFallback = true;
+                    if (is_array($fallback)) {
+                        foreach ($fallback as $key => $value) {
+                            $fallbackData = new stdClass();
+                            $fallbackData->bot_response = $value;
+                            $retVal[] = array("recipient_id"=>$chat_id, "text"=>$fallbackData);
+                        }
+                    } else {
                         $fallbackData = new stdClass();
-                        $fallbackData->bot_response = $articleButtonHtml;
+                        $fallbackData->bot_response = $fallback;
                         $retVal[] = array("recipient_id"=>$chat_id, "text"=>$fallbackData);
                     }
-                    $logdata .= "\n show articles: true";
+                    $logdata .= "\n isIndentFallback:true";
                 }
             }
         }
-        // save bot response to the session and chat history
+
+        // WooCommerce fallback if the user intent is not found
+        $responseLinks = '';
+        if (class_exists('WooCommerce') && empty($intentIdAndScore['exact_match'])) {
+            $headerType = !empty($retVal) ? 1 : 2;
+            $logdata .= "\n WooCommerce fallback: Yes, attempting fallback.";
+
+            $products = GEEKYBOTincluder::GEEKYBOT_getModel('woocommerce')->getProductsButton($message, $headerType);
+            if (!empty($products)) {
+                $responseLinks .= $products['productsBtn'];
+            }
+        }
+
+        // Add "show Articles" option in the response
+        $logdata .= "\n is_posts_enable: " . geekybot::$_configuration['is_posts_enable'];
+        if (
+            geekybot::$_configuration['is_posts_enable'] == 1 &&
+            empty($products['exact_match']) &&
+            empty($intentIdAndScore['exact_match'])
+        ) {
+            if (!empty($retVal) && !empty($responseLinks)) {
+                $articleType = 1;
+            } elseif (!empty($retVal) && empty($responseLinks)) {
+                $articleType = 2;
+            } elseif (empty($retVal) && !empty($responseLinks)) {
+                $articleType = 3;
+            } else {
+                $articleType = 4;
+            }
+            // echo $articleType;
+            // die('here');
+            $session_type = !empty($responseLinks) || !empty($retVal)  ? $session_type : '';
+            $articleButton = GEEKYBOTincluder::GEEKYBOT_getModel('websearch')->getArticlesButton($message, $articleType);
+
+            // Append articles if related posts are found
+            if (!empty($articleButton)) {
+                $responseLinks .= $articleButton;
+                $logdata .= "\n Show articles: true";
+            }
+        }
+
+        // Create fallback response if additional links are available
+        if (!empty($responseLinks)) {
+            $fallbackData = new stdClass();
+            $fallbackData->bot_response = geekybotphplib::GEEKYBOT_htmlentities($responseLinks);
+            $retVal[] = [
+                "recipient_id" => $chat_id,
+                "text" => $fallbackData
+            ];
+        }
+
+        // Save bot response to session and chat history
         if (isset($retVal[0]['text']->bot_response)) {
-            foreach ($retVal as $retKey => $retValue) {
-                $botResponse = $retValue['text']->bot_response;
+            $botResponse = '';
+
+            // Construct the bot response
+            foreach ($retVal as $retValue) {
+                $botResponse .= '<section class="actual_msg_text">';
+                $botResponse .= html_entity_decode($retValue['text']->bot_response);
+                $botResponse .= '</section>';
+
+                // Include articles if present
                 if (isset($retValue['text']->bot_articles)) {
                     $botResponse .= $retValue['text']->bot_articles;
                 }
-                $botButtons = '';
+
+                // Add buttons to the response
                 if (isset($retValue['buttons'])) {
                     // Convert each sub-array to an object
                     $botButtons = array_map(function($item) {
                         return (object) $item;
                     }, $retValue['buttons']);
-                }
-                // Check if 'save_history' is not set or is set to 1
-                if (!isset($articleButton['save_history']) || $articleButton['save_history'] == 1) {
-                    // Save chat history to session and server
-                    geekybot::$_geekybotsessiondata->geekybot_addChatHistoryToSession($botResponse, 'bot', $botButtons);
-                    GEEKYBOTincluder::GEEKYBOT_getModel('chathistory')->SaveChathistoryFromchatServer($botResponse, 'bot', $session_type, $botButtons);
+                    $botResponse .= "<div class='actual_msg_btn'>";
+                    foreach ($botButtons as $responseButton) {
+                        if ($responseButton->type == 1) {
+                            $botResponse .= "<li class='actual_msg actual_msg_btn'>";
+                            $botResponse .= "<section><button class='wp-chat-btn' onclick='sendbtnrsponse(this);' value='".$responseButton->value."'>";
+                            $botResponse .= "<span>" . esc_html($responseButton->text) . "</span></button></section></li>";
+                        } elseif ($responseButton->type == 2) {
+                            $botResponse .= "<li class='actual_msg actual_msg_btn'>";
+                            $botResponse .= "<section><button class='wp-chat-btn'><span><a class='wp-chat-btn-link' href='".$responseButton->value."'>";
+                            $botResponse .= esc_html($responseButton->text) . "</a></span></button></section></li>";
+                        }
+                    }
+                    $botResponse .= "</div>";
                 }
             }
+
+            // Save chat history to session and server
+            geekybot::$_geekybotsessiondata->geekybot_addChatHistoryToSession($botResponse, 'bot', 1);
+            GEEKYBOTincluder::GEEKYBOT_getModel('chathistory')->SaveChathistoryFromchatServer(geekybotphplib::GEEKYBOT_htmlentities($botResponse), 'bot', $session_type);
         }
-        $logdata .= "\n ------------------ \n ";
-        GEEKYBOTincluder::GEEKYBOT_getObjectClass('logging')->GEEKYBOTlwrite($logdata);
+
         return wp_json_encode($retVal);
     }
 
     function getIntentIdAndScoreFromUserMessage($msg) {
+        $intent = [
+            'id' => 0,
+            'score' => 0,
+            'exact_match' => 0
+        ];
+
         $stackCount = GEEKYBOTincluder::GEEKYBOT_getModel('stack')->isUserStackEmpty();
-        $intent['id'] = 0;
-        $intent['score'] = 0;
-        // if stack is empty
+
         if ($stackCount == 0) {
-            // Get all intent groups of the top story with same score
-            $intentGroups = $this->getIntentsForSingleStoryByFullTextSearch($msg);
-            $intentData = $this->getSuitableIntentFromMultipleIntents($intentGroups, $msg);
-            if (isset($intentData['id'])) {
-                $intent['id'] = $intentData['id'];
-                $intent['score'] = $intentData['score'];
-            }
+            // Stack is empty, proceed with intent groups from a single story
+            $intentData = $this->getIntentFromSingleStory($msg);
         } else {
-            // Get all top stories with intent groups with same score
-            $storiesIntents = $this->getIntentsForMultipleStoryByFullTextSearch($msg);
-            // get last active story from stack
-            $stackStory = GEEKYBOTincluder::GEEKYBOT_getModel('stack')->getLastActiveStoryFromStack();
-            // select the stack story as active story
-            $activeStoryIntents = [];
-            foreach ($storiesIntents as $storyIntents) {
-                // get all intents of active/stack story
-                if ($storyIntents->story_id == $stackStory->story_id) {
-                    $activeStoryIntents[] = $storyIntents;
-                }
-            }
-            if (empty($activeStoryIntents) && isset($storiesIntents[0])) {
-                $topStoryIntents = $this->getAllIntentsFromTopSearchStory($storiesIntents, $msg);
-                $intentData = $this->getSuitableIntentFromMultipleIntents($topStoryIntents, $msg);
-                if (isset($intentData['id'])) {
-                    $intent_id = $intentData['id'];
-                    $intent_score = $intentData['score'];
-                }
-            } else {
-                $intentData = $this->getSuitableIntentFromMultipleIntentsUsingStack($stackStory, $activeStoryIntents, $msg);
-                if (isset($intentData['id'])) {
-                    $intent_id = $intentData['id'];
-                    $intent_score = $intentData['score'];
-                }
-            }
-            // if no suitable intent found from stack
-            // then get the top intent from intent search
-            if (!isset($intent_id) && isset($intentsdata[0])) {
-                $intent_id = $intentsdata[0]->id;
-                $intent_score = $intentsdata[0]->score;
-            }
-            // if suitable intent found then get story
-            if (isset($intent_id)) {
-                $intent['id'] = $intent_id;
-                $intent['score'] = $intent_score;
+            // Stack is not empty, check multiple stories and stack story
+            $intentData = $this->getIntentFromMultipleStories($msg);
+        }
+
+        if (isset($intentData['intent']['id'])) {
+            $intent['id'] = $intentData['intent']['id'];
+            $intent['score'] = $intentData['intent']['score'];
+            $intent['exact_match'] = $intentData['exact_match'];
+        }
+
+        return $intent;
+    }
+
+    private function getIntentFromSingleStory($msg) {
+        // Get all intent groups from a single story based on full text search
+        $intents = $this->getIntentsForSingleStoryByFullTextSearch($msg);
+        $intent = $this->getSuitableIntentFromMultipleIntents($intents['intents']);
+        return ['exact_match' => $intents['exact_match'], 'intent' => $intent];
+    }
+
+    private function getIntentFromMultipleStories($msg) {
+        // Get all top stories with intent groups with same score
+        $intentsData = $this->getIntentsForMultipleStoryByFullTextSearch($msg);
+        
+        // Get last active story from stack
+        $stackStory = GEEKYBOTincluder::GEEKYBOT_getModel('stack')->getLastActiveStoryFromStack();
+        
+        // Select intents for active story from stack
+        $activeStoryIntents = $this->getActiveStoryIntents($intentsData['intents'], $stackStory);
+
+        if (empty($activeStoryIntents)) {
+            $final_inents = $this->getIntentFromTopStory($intentsData['intents']);
+        } else {
+            $final_inents = $this->getIntentFromStack($stackStory, $activeStoryIntents, $msg);
+        }
+        $exact_match = $intentsData['exact_match'];
+        return ['exact_match' => $exact_match, 'intent' => $final_inents];
+    }
+
+    private function getActiveStoryIntents($storiesIntents, $stackStory) {
+        $activeStoryIntents = [];
+        foreach ($storiesIntents as $storyIntents) {
+            if ($storyIntents->story_id == $stackStory->story_id) {
+                $activeStoryIntents[] = $storyIntents;
             }
         }
-        return $intent;
+        return $activeStoryIntents;
+    }
+
+    private function getIntentFromTopStory($storiesIntents) {
+        // If no active story intents found, get the top intent from the top search story
+        $topStoryIntents = $this->getAllIntentsFromTopSearchStory($storiesIntents);
+        return $this->getSuitableIntentFromMultipleIntents($topStoryIntents);
+    }
+
+    private function getIntentFromStack($stackStory, $activeStoryIntents, $msg) {
+        // Get suitable intent from stack-based stories
+        return $this->getSuitableIntentFromMultipleIntentsUsingStack($stackStory, $activeStoryIntents, $msg);
     }
 
     function getResponseData($msg, $intentGroupId = '', $sessionStoryId = '') {
@@ -307,99 +362,91 @@ class GEEKYBOTchatserverModel {
         $logdata .= "\n msg ".$msg;
         $msg = addslashes($msg);
         // intent search with full text mood
-        $query = 'SELECT intent.id, intent.user_messages_text, intent.group_id, intent.story_id, MATCH (intent.user_messages_text) AGAINST ("'.esc_sql($msg).'" IN NATURAL LANGUAGE MODE) AS score FROM `' . geekybot::$_db->prefix . 'geekybot_intents` as intent
+        $query = "(SELECT intent.id, intent.user_messages_text, intent.group_id, intent.story_id, '999' AS score FROM `" . geekybot::$_db->prefix . "geekybot_intents` as intent
+                    INNER JOIN `". geekybot::$_db->prefix . "geekybot_stories` as story ON intent.story_id = story.id 
+                    WHERE intent.user_messages_text LIKE '%".esc_sql($msg)."%' AND story.status = 1";
+        $query .= " ORDER BY score DESC LIMIT 100)";
+        $query .= ' UNION ';
+        $query .= '(SELECT intent.id, intent.user_messages_text, intent.group_id, intent.story_id, MATCH (intent.user_messages_text) AGAINST ("'.esc_sql($msg).'" IN NATURAL LANGUAGE MODE) AS score FROM `' . geekybot::$_db->prefix . 'geekybot_intents` as intent
         INNER JOIN `'. geekybot::$_db->prefix .'geekybot_stories` as story ON intent.story_id = story.id
         WHERE MATCH (intent.user_messages_text) AGAINST ("'.esc_sql($msg).'" IN NATURAL LANGUAGE MODE) AND story.status = 1';
-        $query .= " ORDER BY score DESC ";
+        $query .= " ORDER BY score DESC LIMIT 100)";
         $logdata .= "\n".$query;
-        $fullTextQueryResults = geekybotdb::GEEKYBOT_get_results($query);
+        $intents = geekybotdb::GEEKYBOT_get_results($query);
 
-        if(count($fullTextQueryResults) == 0){
-            //search again without stop words removal
-            if(str_word_count($msg) <= 3){
-                $query = 'SELECT intent.id, intent.user_messages_text, intent.group_id, intent.story_id, "1" AS score FROM `' . geekybot::$_db->prefix . 'geekybot_intents` as intent
-                    INNER JOIN `'. geekybot::$_db->prefix . 'geekybot_stories` as story ON intent.story_id = story.id 
-                    WHERE intent.user_messages_text LIKE "%'.esc_sql($msg).'%" AND story.status = 1';
-                $query .= " ORDER BY score DESC";
-                $logdata .= "\n\n".$query;
-                $likeQueryResults = geekybotdb::GEEKYBOT_get_results($query);
-                $shortest = -1;
-                if(isset($likeQueryResults)){
-                    foreach ($likeQueryResults as $key => $value) {
-                        $intenttext = trim($value->user_messages_text);
-                        
-                        $input = $msg;
-                        $lev = levenshtein($msg, $intenttext);
-                        $logdata .= "\n lev ".$lev;
-                        if ($lev == 0) {
-                            // closest word is this one (exact match)
-                            $closest = $intenttext;
-                            $closestintent = $value;
-                            $shortest = 0;
+        // Process intents
+        $story_count = [];
+        $highest_score = 0;
+        $intent_ids = [];
 
-                            // break out of the loop; we've found an exact match
-                            break;
-                        }
+        foreach ($intents as $intent) {
+            // Update highest score for non-static intents
+            if ($intent->score != 999 && $intent->score > $highest_score) {
+                $highest_score = $intent->score;
+            }
 
-                        // if this distance is less than the next found shortest
-                        // distance, OR if a next shortest word has not yet been found
-                        if ($lev <= $shortest || $shortest < 0) {
-                            // set the closest match, and shortest distance
-                            $closest  = $intenttext;
-                            $closestintent = $value;
-                            $shortest = $lev;
-                        }
-                    }
-                    if(isset($closestintent)){
-                        $result[] = $closestintent;
-                        $logdata .= "\n ------------------ \n ";
-                        GEEKYBOTincluder::GEEKYBOT_getObjectClass('logging')->GEEKYBOTlwrite($logdata);
-                        return $this->getAllIntentsFromTopSearchStory($result, $msg);
-                    }
+            // Track story count
+            $story_count[$intent->story_id] = ($story_count[$intent->story_id] ?? 0) + 1;
+        }
+        
+        foreach ($intents as &$intent) {
+            // Avoid duplicate IDs and adjust scores
+            if (!in_array($intent->id, $intent_ids)) {
+                $intent_ids[] = $intent->id;
+                if ($intent->score == 999) {
+                    $intent->score = $highest_score + 1; // set score to make intent relevant
                 }
-
             }
         }
+        unset($intent);
 
-        $logdata .= "\n ------------------ \n ";
-        GEEKYBOTincluder::GEEKYBOT_getObjectClass('logging')->GEEKYBOTlwrite($logdata);
-        return $this->getAllIntentsFromTopSearchStory($fullTextQueryResults, $msg);
+        // Find the closest match using Levenshtein distance if multiple stories are present
+        $closest_intent = null;
+        $exact_match = false;
+        // if (count($story_count) > 1) {
+            $shortest_distance = -1;
+            foreach ($intents as $intent) {
+                $lev_distance = levenshtein(strtolower($msg), strtolower(trim($intent->user_messages_text)));
+                $logdata .= "\n lev ".$lev_distance;
+                if ($lev_distance == 0) {
+                    // closest word is this one (exact match)
+                    $closest_intent = $intent;
+                    $exact_match = true;
+                    // break out of the loop; we've found an exact match
+                    break;
+                }
+                // if this distance is less than the next found shortest
+                // distance, OR if a next shortest word has not yet been found
+                if ($lev_distance <= $shortest_distance || $shortest_distance < 0) {
+                    // set the closest match, and shortest distance
+                    $closest_intent = $intent;
+                    $shortest_distance = $lev_distance;
+                }
+            }
+        // }
+
+        if ($closest_intent) {
+            $final_inents = $this->getAllIntentsFromTopSearchStory([$closest_intent]);
+        } else {
+            $final_inents = $this->getAllIntentsFromTopSearchStory($intents);
+        }
+        return ['exact_match' => $exact_match, 'intents' => $final_inents];
     }
 
-    function getAllIntentsFromTopSearchStory($allIntents, $msg) {
-        // recke this code
+    function getAllIntentsFromTopSearchStory($allIntents) {
         if (empty($allIntents)) {
-            return ;
+            return [];
         }
-        $msg = addslashes($msg);
-        // intent search with like query
-        $query = "SELECT intent.id FROM " . geekybot::$_db->prefix . "geekybot_intents as intent
-            INNER JOIN ". geekybot::$_db->prefix ."geekybot_stories as story ON intent.story_id = story.id
-            WHERE intent.user_messages_text LIKE '%".esc_sql($msg)."%' AND story.status = 1";
-        $likeQueryResult = geekybotdb::GEEKYBOT_get_var($query);
-        // find the like query result in top 5 results
-        if (isset($likeQueryResult) && $likeQueryResult != '') {
-            for ($i=0; $i < 5; $i++) { 
-                if (isset($allIntents[$i])) {
-                    if ($allIntents[$i]->id == $likeQueryResult) {
-                        $maxScore = round($allIntents[$i]->score, 2);
-                        $storyId = $allIntents[$i]->story_id;
-                        $i = 5;
-                    }
-                }
-            }
-        }
-        // If the like query result is empty then select the top result
-        if (!isset($storyId) || !isset($maxScore)) {
-            $maxScore = round($allIntents[0]->score, 2);
-            $storyId = $allIntents[0]->story_id;
-        }
+
+        // Identify the top story ID and max score
+        $top_story_id = $allIntents[0]->story_id;
+        $max_score = round($allIntents[0]->score, 2);
+
+        // Filter and return relevant intents using a single loop
         $storyIntents = [];
-        foreach ($allIntents as $key => $value) {
-            $score = round($value->score, 2);
-            // get all intents of top story with same score
-            if ($value->story_id == $storyId && $score >= $maxScore) {
-                $storyIntents[] = $value;
+        foreach ($allIntents as $intent) {
+            if ($intent->story_id == $top_story_id && round($intent->score, 2) >= $max_score && $intent->score > 0) {
+                $storyIntents[] = $intent;
             }
         }
         return $storyIntents;
@@ -408,222 +455,184 @@ class GEEKYBOTchatserverModel {
     function getIntentsForMultipleStoryByFullTextSearch($msg) {
         $msg = addslashes($msg);
         // intent search
-        $query = 'SELECT intent.id, intent.user_messages_text, intent.group_id, intent.story_id, MATCH (intent.user_messages_text) AGAINST ("'.esc_sql($msg).'" IN NATURAL LANGUAGE MODE) AS score FROM `' . geekybot::$_db->prefix . 'geekybot_intents` as intent
+        $query = "(SELECT intent.id, intent.user_messages_text, intent.group_id, intent.story_id, '999' AS score FROM `" . geekybot::$_db->prefix . "geekybot_intents` as intent
+            INNER JOIN `". geekybot::$_db->prefix . "geekybot_stories` as story ON intent.story_id = story.id 
+            WHERE intent.user_messages_text LIKE '%".esc_sql($msg)."%' AND story.status = 1";
+        $query .= " ORDER BY score DESC LIMIT 100) ";
+        $query .= ' UNION ';
+        $query .= '(SELECT intent.id, intent.user_messages_text, intent.group_id, intent.story_id, MATCH (intent.user_messages_text) AGAINST ("'.esc_sql($msg).'" IN NATURAL LANGUAGE MODE) AS score FROM `' . geekybot::$_db->prefix . 'geekybot_intents` as intent
             INNER JOIN `'. geekybot::$_db->prefix . 'geekybot_stories` as story ON intent.story_id = story.id 
             WHERE MATCH (intent.user_messages_text) AGAINST ("'.esc_sql($msg).'" IN NATURAL LANGUAGE MODE) AND story.status = 1';
-        $query .= " ORDER BY score DESC";
-        $intentsData = geekybotdb::GEEKYBOT_get_results($query);
+        $query .= " ORDER BY score DESC LIMIT 100 ) ";
+        $intents = geekybotdb::GEEKYBOT_get_results($query);
+
+        // Process intents
+        $story_count = [];
+        $highest_score = 0;
+        $intent_ids = [];
+
+        foreach ($intents as $intent) {
+            // Update highest score for non-static intents
+            if ($intent->score != 999 && $intent->score > $highest_score) {
+                $highest_score = $intent->score;
+            }
+
+            // Track story count
+            $story_count[$intent->story_id] = ($story_count[$intent->story_id] ?? 0) + 1;
+        }
         
-        if(count($intentsData) == 0){
-            //search again without stop words removal
-            if(str_word_count($msg) <= 3){
-                $query = 'SELECT intent.id, intent.user_messages_text, intent.group_id, intent.story_id, "1" AS score FROM `' . geekybot::$_db->prefix . 'geekybot_intents` as intent
-                    INNER JOIN `'. geekybot::$_db->prefix . 'geekybot_stories` as story ON intent.story_id = story.id 
-                    WHERE intent.user_messages_text LIKE "%'.esc_sql($msg).'%" AND story.status = 1';
-                $query .= " ORDER BY score DESC";
-                $likeQueryResults = geekybotdb::GEEKYBOT_get_results($query);
-                $shortest = -1;
-                if(isset($likeQueryResults)){
-                    foreach ($likeQueryResults as $key => $value) {
-                        $intenttext = trim($value->user_messages_text);
-                        
-                        $input = $msg;
-                        $lev = levenshtein($msg, $intenttext);
-                        if ($lev == 0) {
-                            // closest word is this one (exact match)
-                            $closest = $intenttext;
-                            $closestintent = $value;
-                            $shortest = 0;
-
-                            // break out of the loop; we've found an exact match
-                            break;
-                        }
-
-                        // if this distance is less than the next found shortest
-                        // distance, OR if a next shortest word has not yet been found
-                        if ($lev <= $shortest || $shortest < 0) {
-                            // set the closest match, and shortest distance
-                            $closest  = $intenttext;
-                            $closestintent = $value;
-                            $shortest = $lev;
-                        }
-                    }
-                    if(isset($closestintent)){
-                        $result[] = $closestintent;
-                        return $result;
-                    }
+        foreach ($intents as &$intent) {
+            // Avoid duplicate IDs and adjust scores
+            if (!in_array($intent->id, $intent_ids)) {
+                $intent_ids[] = $intent->id;
+                if ($intent->score == 999) {
+                    $intent->score = $highest_score + 1; // set score to make intent relevant
                 }
-
             }
         }
+        unset($intent);
         
-        // get the maximum score
-        $maxScore = isset($intentsData[0]->score) ? round($intentsData[0]->score, 2) : 0;
-        $allIntents = [];
-        foreach ($intentsData as $key => $value) {
-            $score = round($value->score, 2);
+        // Find the closest match using Levenshtein distance if multiple stories are present
+        $closest_intent = null;
+        $exact_match = false;
+        // if (count($story_count) > 1) {
+            $shortest_distance = -1;
+            foreach ($intents as $intent) {
+                $lev_distance = levenshtein(strtolower($msg), strtolower(trim($intent->user_messages_text)));
+                if ($lev_distance == 0) {
+                    // closest word is this one (exact match)
+                    $closest_intent = $intent;
+                    $exact_match = true;
+                    // break out of the loop; we've found an exact match
+                    break;
+                }
+                // if this distance is less than the next found shortest
+                // distance, OR if a next shortest word has not yet been found
+                if ($lev_distance <= $shortest_distance || $shortest_distance < 0) {
+                    // set the closest match, and shortest distance
+                    $closest_intent = $intent;
+                    $shortest_distance = $lev_distance;
+                }
+            }
+            if($closest_intent){
+                $result[] = $closest_intent;
+                return ['exact_match' => $exact_match, 'intents' => $result];
+            }
+        // }
+        // Identify the top story ID and max score
+        $max_score = isset($intents[0]->score) ? round($intents[0]->score, 2) : 0;
+        $top_intents = [];
+        foreach ($intents as $intent) {
+            $score = round($intent->score, 2);
             // get multiple stories with intents having same score
-            if ($score == $maxScore) {
-                $allIntents[] = $value;
+            if ($score == $max_score) {
+                $top_intents[] = $intent;
             }
         }
-        $uniqueCombinations = [];
+        $unique_combinations = [];
         $result = [];
         // get multiple stories with intents having same score with unique intent group
-        foreach ($allIntents as $intent) {
+        foreach ($top_intents as $intent) {
             $key = $intent->story_id . '-' . $intent->group_id;
-            if (!isset($uniqueCombinations[$key])) {
-                $uniqueCombinations[$key] = true;
+            if (!isset($unique_combinations[$key])) {
+                $unique_combinations[$key] = true;
                 $result[] = $intent;
             }
         }
-        if (empty($result) && isset($intentsData[0])) {
-            $result[] = $intentsData[0];
-        }
-        return $result;
+        $final_inents = empty($result) && isset($intents[0]) ? [$intents[0]] : $result;
+        return ['exact_match' => $exact_match, 'intents' => $final_inents];
     }
 
-    function getSuitableIntentFromMultipleIntents($intentGroups, $msg) {
+    function getSuitableIntentFromMultipleIntents($intentGroups) {
         if (empty($intentGroups)) {
             return false;
         }
-        $msg = addslashes($msg);
-        $intent_ids = array_map(function($item) {
-            return $item->id;
-        }, $intentGroups);
-        $intentIdsString = implode(',', $intent_ids);
 
-        // check if the same intent found against the user search
-        $query = "SELECT intent.id FROM " . geekybot::$_db->prefix . "geekybot_intents as intent
-            INNER JOIN ". geekybot::$_db->prefix ."geekybot_stories as story ON intent.story_id = story.id
-            WHERE intent.user_messages_text LIKE '%".esc_sql($msg)."%' AND intent.id IN (".esc_sql($intentIdsString).") AND story.status = 1 ";
-        $likeQueryResult = geekybotdb::GEEKYBOT_get_var($query);
-        if (isset($likeQueryResult) && is_numeric($likeQueryResult)) {
-            $result = array_filter($intentGroups, function($item) use ($likeQueryResult) {
-                return $item->id == $likeQueryResult;
-            });
-            if (!empty($result)) {
-                $result = reset($result);
-                $id = $result->id;
-                $userMessage = $result->user_messages_text;
-                $storyId = $result->story_id;
-                $score = $result->score;
+        // Initialize top search result details
+        $topIntent = $intentGroups[0];
+        $id = $topIntent->id;
+        $userMessage = $topIntent->user_messages_text;
+        $storyId = $topIntent->story_id;
+        $score = $topIntent->score;
+
+        // Track similar messages and scores
+        $sameMessageGroups = [];
+        $sameScoreGroups = [];
+
+        foreach ($intentGroups as $intent) {
+            if ($intent->user_messages_text === $userMessage) {
+                $sameMessageGroups[] = $intent->group_id;
+            }
+            if ($intent->score === $score) {
+                $sameScoreGroups[] = $intent->group_id;
             }
         }
-        // get data for the top search result
-        if (!isset($id) || !isset($score)) {
-            $id = $intentGroups[0]->id;
-            $userMessage = $intentGroups[0]->user_messages_text;
-            $storyId = $intentGroups[0]->story_id;
-            $score = $intentGroups[0]->score;
+
+        // Determine applicable group IDs
+        $groupIds = [];
+        if (count($sameMessageGroups) > 1) {
+            $groupIds = $sameMessageGroups;
+        } elseif (count($sameScoreGroups) > 1) {
+            $groupIds = $sameScoreGroups;
         }
-        $isSameMessage = 0;
-        $isSameScore = 0;
-        $sameMessageCount = 0;
-        $sameScoreCount = 0;
-        $sameMessageIntentIds = '';
-        $sameScoreIntentIds = '';
-        // Loop through the all intents with same user message
-        foreach ($intentGroups as $intentGroup) {
-            if ($intentGroup->user_messages_text == $userMessage) {
-                $isSameMessage = 1;
-                $sameMessageIntentIds .= $intentGroup->group_id . ',';
-                $sameMessageCount++;
-            }
-            if ($intentGroup->score == $score) {
-                $isSameScore = 1;
-                $sameScoreIntentIds .= $intentGroup->group_id . ',';
-                $sameScoreCount++;
-            }
-        }
-        if ($isSameMessage == 1 && $sameMessageCount > 1) {
-            $intentIds = rtrim($sameMessageIntentIds, ',');
-            
-        } else if($isSameScore == 1 && $sameScoreCount > 1) {
-            $intentIds = rtrim($sameScoreIntentIds, ',');   
-        }
-        if (isset($intentIds))   {
-            // get message with lowest rank from all user message
-            $query = "SELECT ranking, intent_id AS group_id FROM `" . geekybot::$_db->prefix . "geekybot_intents_ranking` WHERE `intent_id` IN (".esc_sql($intentIds).") AND `story_id` = ".esc_sql($storyId);
-            $query .= " ORDER BY ranking  ASC LIMIT 1;";
+
+        if (!empty($groupIds)) {
+            // Fetch the intent with the lowest rank from the matching groups
+            $query = "SELECT ranking, intent_id AS group_id 
+                      FROM `" . geekybot::$_db->prefix . "geekybot_intents_ranking` 
+                      WHERE `intent_id` IN (" . implode(',', array_map('esc_sql', $groupIds)) . ") 
+                      AND `story_id` = " . esc_sql($storyId) . " 
+                      ORDER BY ranking ASC LIMIT 1;";
             $nextRanking = geekybotdb::GEEKYBOT_get_row($query);
-            // If rank found then get data of this rank from intents array
-            if (isset($nextRanking->group_id)) {
-                foreach ($intentGroups as $intentGroup) {
-                    if ($intentGroup->group_id == $nextRanking->group_id) {
-                        $intentData['id'] = $intentGroup->id;
-                        $intentData['score'] = $intentGroup->score;
-                        return $intentData;
+
+            if (!empty($nextRanking->group_id)) {
+                foreach ($intentGroups as $intent) {
+                    if ($intent->group_id == $nextRanking->group_id) {
+                        return ['id' => $intent->id, 'score' => $intent->score];
                     }
                 }
             }
         }
-        $intentData['id'] = $id;
-        $intentData['score'] = $score;
-        return $intentData;
+
+        // Fallback to the top intent
+        return ['id' => $id, 'score' => $score];
     }
 
-    function getSuitableIntentFromMultipleIntentsUsingStack($stackStory, $storiesData, $msg) {
+    function getSuitableIntentFromMultipleIntentsUsingStack($stackStory, $storiesData) {
         if (empty($storiesData)) {
             return false;
         }
-        $msg = addslashes($msg);
-        $intent_ids = array_map(function($item) {
-            return $item->id;
-        }, $storiesData);
-        $intentIdsString = implode(',', $intent_ids);
-        // check if the same intent found against the user search
-        $query = "SELECT `id` FROM `" . geekybot::$_db->prefix . "geekybot_intents` WHERE `user_messages_text` LIKE '%".esc_sql($msg)."%' AND `id` IN (".esc_sql($intentIdsString).") ";
-        $likeQueryResult = geekybotdb::GEEKYBOT_get_var($query);
-        if (isset($likeQueryResult) && is_numeric($likeQueryResult)) {
-            $result = array_filter($storiesData, function($item) use ($likeQueryResult) {
-                return $item->id == $likeQueryResult;
-            });
-            if (!empty($result)) {
-                $result = reset($result);
-                $id = $result->id;
-                $userMessage = $result->user_messages_text;
-                $storyId = $result->story_id;
-                $score = $result->score;
-            }
-        }
-        // get data for the top search result
-        if(!isset($id) || !isset($score)) {
-            $id = $storiesData[0]->id;
-            $userMessage = $storiesData[0]->user_messages_text;
-            $storyId = $storiesData[0]->story_id;
-            $score = $storiesData[0]->score;
-        }
-        $isSameMessage = 0;
-        $isSameScore = 0;
-        $sameMessageCount = 0;
-        $sameScoreCount = 0;
-        $sameMessageIntentIds = '';
-        $sameScoreIntentIds = '';
-        // Loop through the all intents with same user message
+        
+        // Initialize top search result details
+        $topIntent = $storiesData[0];
+        $id = $topIntent->id;
+        $userMessage = $topIntent->user_messages_text;
+        $storyId = $topIntent->story_id;
+        $score = $topIntent->score;
+
+        // Track similar messages and scores
+        $sameMessageGroups = [];
+        $sameScoreGroups = [];
+        
         foreach ($storiesData as $storieData) {
-            if ($storieData->user_messages_text == $userMessage) {
-                $isSameMessage = 1;
-                $sameMessageIntentIds .= $storieData->group_id . ',';
-                $sameMessageCount++;
+            if ($storieData->user_messages_text === $userMessage) {
+                $sameMessageGroups[] = $storieData->group_id;
             }
-            if ($storieData->score == $storiesData[0]->score) {
-                $isSameScore = 1;
-                $sameScoreIntentIds .= $storieData->group_id . ',';
-                $sameScoreCount++;
+            if ($storieData->score === $storiesData[0]->score) {
+                $sameScoreGroups[] = $storieData->group_id;
             }
         }
-        if ($isSameMessage == 1 && $sameMessageCount > 1) {
-            $intentIdAccordingToRank = $this->getIntentIdAccordingToRank($storyId, $stackStory, $sameMessageIntentIds, $storiesData);
-        } else if($isSameScore == 1 && $sameScoreCount > 1) {
-            $intentIdAccordingToRank = $this->getIntentIdAccordingToRank($storyId, $stackStory, $sameScoreIntentIds, $storiesData);
+        if (count($sameMessageGroups) > 1) {
+            $intentIdAccordingToRank = $this->getIntentIdAccordingToRank($storyId, $stackStory, $sameMessageGroups, $storiesData);
+        } elseif (count($sameScoreGroups) > 1) {
+            $intentIdAccordingToRank = $this->getIntentIdAccordingToRank($storyId, $stackStory, $sameScoreGroups, $storiesData);
         }
-        if (isset($intentIdAccordingToRank) && $intentIdAccordingToRank != '') {
+        if (!empty($intentIdAccordingToRank)) {
             $id = $intentIdAccordingToRank;
         }
-        $intentData['id'] = $id;
-        $intentData['score'] = $score;
-        return $intentData;
+
+        // Fallback to the top intent
+        return ['id' => $id, 'score' => $score];
 
     }
 
@@ -631,15 +640,14 @@ class GEEKYBOTchatserverModel {
         // find the rank of stack story
         $query = "SELECT ranking FROM `" . geekybot::$_db->prefix . "geekybot_intents_ranking` WHERE `intent_id` = ".esc_sql($stackStory->intent_id)." AND `story_id` = ".esc_sql($stackStory->story_id);
         $stackRanking = geekybotdb::GEEKYBOT_get_var($query);
-        $intentIds = rtrim($intentIds, ',');
         // get next rank to the stack intent
-        $query = "SELECT ranking, intent_id AS group_id FROM `" . geekybot::$_db->prefix . "geekybot_intents_ranking` WHERE `intent_id` IN (".esc_sql($intentIds).") AND `ranking` > ".esc_sql($stackRanking)." AND `story_id` = ".esc_sql($storyId);
+        $query = "SELECT ranking, intent_id AS group_id FROM `" . geekybot::$_db->prefix . "geekybot_intents_ranking` WHERE `intent_id` IN (" . implode(',', array_map('esc_sql', $intentIds)) . ") AND `ranking` > ".esc_sql($stackRanking)." AND `story_id` = ".esc_sql($storyId);
         $query .= " ORDER BY ranking  ASC LIMIT 1;";
         $nextRanking = geekybotdb::GEEKYBOT_get_row($query);
         // if the next rank not found
         if (!isset($nextRanking->group_id)) {
             // get message with lowest rank from all user message
-            $query = "SELECT ranking, intent_id AS group_id FROM `" . geekybot::$_db->prefix . "geekybot_intents_ranking` WHERE `intent_id` IN (".esc_sql($intentIds).") AND `story_id` = ".esc_sql($storyId);
+            $query = "SELECT ranking, intent_id AS group_id FROM `" . geekybot::$_db->prefix . "geekybot_intents_ranking` WHERE `intent_id` IN (" . implode(',', array_map('esc_sql', $intentIds)) . ") AND `story_id` = ".esc_sql($storyId);
             $query .= " ORDER BY ranking  ASC LIMIT 1;";
             $nextRanking = geekybotdb::GEEKYBOT_get_row($query);
         }
@@ -732,24 +740,103 @@ class GEEKYBOTchatserverModel {
         $stackData = geekybotdb::GEEKYBOT_get_results($query);
         foreach ($stackData as $key => $value) {
             // get fallback from the stack story
-            $query = "SELECT default_fallback FROM `" . geekybot::$_db->prefix . "geekybot_stories` where id = ".esc_sql($value->story_id);
-            $fallbackMessage = geekybotdb::GEEKYBOT_get_var($query);
-            if (isset($fallbackMessage) && $fallbackMessage != '') {
-                geekybot::$_geekybotsessiondata->geekybot_addChatHistoryToSession($fallbackMessage, 'bot');
-                GEEKYBOTincluder::GEEKYBOT_getModel('chathistory')->SaveChathistoryFromchatServer($fallbackMessage, 'bot');
-                return $fallbackMessage;
+            $query = "SELECT default_fallback, default_fallback_buttons FROM `" . geekybot::$_db->prefix . "geekybot_stories` where id = ".esc_sql($value->story_id);
+            $fallbackMessage = geekybotdb::GEEKYBOT_get_row($query);
+            if (!empty($fallbackMessage->default_fallback)) {
+                $buttons = [];
+                if (!empty($fallbackMessage->default_fallback_buttons) && $fallbackMessage->default_fallback_buttons != '[]') {
+                    $fallbackButtons = json_decode($fallbackMessage->default_fallback_buttons);
+                    foreach ($fallbackButtons as $fallbackButton) {
+                        $buttons[] = [
+                            "text" => $fallbackButton->text,
+                            "type" => $fallbackButton->type,
+                            "value" => $fallbackButton->value
+                        ];
+                    }
+                }
+                $retVal = ["text" => $fallbackMessage->default_fallback, "buttons" => $buttons];
+                
+                $botFallBack = '<section class="actual_msg_text">';
+                $botFallBack .= $fallbackMessage->default_fallback;
+                $botFallBack .= '</section>';
+
+                // Add buttons to the response
+                if (!empty($buttons)) {
+                    // Convert each sub-array to an object
+                    $botButtons = array_map(function($item) {
+                        return (object) $item;
+                    }, $buttons);
+                    $botFallBack .= "<div class='actual_msg_btn'>";
+                    foreach ($botButtons as $fbButton) {
+                        if ($fbButton->type == 1) {
+                            $botFallBack .= "<li class='actual_msg actual_msg_btn'>";
+                            $botFallBack .= "<section><button class='wp-chat-btn' onclick='sendbtnrsponse(this);' value='".$fbButton->value."'>";
+                            $botFallBack .= "<span>" . esc_html($fbButton->text) . "</span></button></section></li>";
+                        } elseif ($fbButton->type == 2) {
+                            $botFallBack .= "<li class='actual_msg actual_msg_btn'>";
+                            $botFallBack .= "<section><button class='wp-chat-btn'><span><a class='wp-chat-btn-link' href='".$fbButton->value."'>";
+                            $botFallBack .= esc_html($fbButton->text) . "</a></span></button></section></li>";
+                        }
+                    }
+                    $botFallBack .= "</div>";
+                }
+                
+                geekybot::$_geekybotsessiondata->geekybot_addChatHistoryToSession($botFallBack, 'bot', 1);
+                GEEKYBOTincluder::GEEKYBOT_getModel('chathistory')->SaveChathistoryFromchatServer(geekybotphplib::GEEKYBOT_htmlentities($botFallBack), 'bot');
+                return wp_json_encode($retVal);
             }
         }
         // new get fallback from the configurations
+        $buttons = [];
         $configMsg = geekybot::$_configuration['default_message'];
         if (isset($configMsg) && $configMsg != '' ) {
             $fallbackMessage = geekybot::$_configuration['default_message'];
+            $default_message_buttons = geekybot::$_configuration['default_message_buttons'];
+            if (!empty($default_message_buttons) && $default_message_buttons != '[]') {
+                $fallbackButtons = json_decode($default_message_buttons);
+                foreach ($fallbackButtons as $fallbackButton) {
+                    $buttons[] = [
+                        "text" => $fallbackButton->text,
+                        "type" => $fallbackButton->type,
+                        "value" => $fallbackButton->value
+                    ];
+                }
+            }
         } else {
             $fallbackMessage =  __("Hi, I am Chatbot. I do not have specific knowledge.", "geeky-bot");
         }
-        geekybot::$_geekybotsessiondata->geekybot_addChatHistoryToSession($fallbackMessage, 'bot');
-        GEEKYBOTincluder::GEEKYBOT_getModel('chathistory')->SaveChathistoryFromchatServer($fallbackMessage, 'bot');
-        return $fallbackMessage;
+        $retVal = ["text" => $fallbackMessage, "buttons" => $buttons];
+
+        $botFallBack = '<section class="actual_msg_text">';
+        $botFallBack .= $fallbackMessage;
+        $botFallBack .= '</section>';
+        // Add buttons to the response
+        if (!empty($buttons)) {
+            // Convert each sub-array to an object
+            $botButtons = array_map(function($item) {
+                return (object) $item;
+            }, $buttons);
+            $botFallBack .= "<div class='actual_msg_btn'>";
+            foreach ($botButtons as $fbButton) {
+                if ($fbButton->type == 1) {
+                    $botFallBack .= "<li class='actual_msg actual_msg_btn'>";
+                    $botFallBack .= "<section><button class='wp-chat-btn' onclick='sendbtnrsponse(this);' value='".$fbButton->value."'>";
+                    $botFallBack .= "<span>" . esc_html($fbButton->text) . "</span></button></section></li>";
+                } elseif ($fbButton->type == 2) {
+                    $botFallBack .= "<li class='actual_msg actual_msg_btn'>";
+                    $botFallBack .= "<section><button class='wp-chat-btn'><span><a class='wp-chat-btn-link' href='".$fbButton->value."'>";
+                    $botFallBack .= esc_html($fbButton->text) . "</a></span></button></section></li>";
+                }
+            }
+            $botFallBack .= "</div>";
+        }
+        if (!empty($buttons)) {
+            geekybot::$_geekybotsessiondata->geekybot_addChatHistoryToSession($botFallBack, 'bot', 1);
+        } else {
+            geekybot::$_geekybotsessiondata->geekybot_addChatHistoryToSession($botFallBack, 'bot');
+        }
+        GEEKYBOTincluder::GEEKYBOT_getModel('chathistory')->SaveChathistoryFromchatServer(geekybotphplib::GEEKYBOT_htmlentities($botFallBack), 'bot');
+        return wp_json_encode($retVal);
     }
 
     function getFallbackForAIStory($message, $stackStory) {
@@ -842,7 +929,21 @@ class GEEKYBOTchatserverModel {
             // 1-> Text
             // 4-> Predrfine Function
             if($data->response_type == '1'){
-                $retVal[] = $data->bot_response;
+                $buttons = [];
+                // In case of buttons in response
+                if (!empty($data->response_button) && $data->response_button != '[]') {
+                    $responseButtons = json_decode($data->response_button);
+                    foreach ($responseButtons as $responseButton) {
+                        $buttons[] = [
+                            "text" => $responseButton->text,
+                            "type" => $responseButton->type,
+                            "value" => $responseButton->value
+                        ];
+                    }
+                    $retVal[] = ["bot_response" => $data->bot_response, "buttons" => $buttons];
+                } else {
+                    $retVal[] = $data->bot_response;
+                }
             } else if($data->response_type == '4'){
                 $functionResult = geekybot::$_geekybotsessiondata->geekybot_readVarFromSessionAndCallPredefinedFunction($message, $data->function_id);
                 if (isset($functionResult)) {
@@ -852,39 +953,6 @@ class GEEKYBOTchatserverModel {
             }
         }
         return $retVal;
-    }
-
-    function getFallbackForWoocommerceStory($message, $data = '', $currentPage = 1) {
-        // check if woocommerce story is disable
-        // story_type
-        // 1-> AI Story
-        // 2-> Woocommerce Story
-        // 3-> Forgot Password Story
-        $query = "SELECT status FROM `" . geekybot::$_db->prefix . "geekybot_stories` WHERE `story_type` = 2";
-        $WooStoryStatus = geekybotdb::GEEKYBOT_get_var($query);
-        if (!isset($WooStoryStatus) || $WooStoryStatus != 1 ) {
-            return;
-        }
-        // Set the number of products to display per page
-        $productsPerPage = geekybot::$_configuration['pagination_product_page_size'];
-        // Calculate the offset based on the current page and products per page
-        $offset = ($currentPage - 1) * $productsPerPage;
-
-        $fallbackProducts = GEEKYBOTincluder::GEEKYBOT_getModel('woocommerce')->getProductsFromWcFirstFallback($message, $currentPage, $productsPerPage);
-        $products = $fallbackProducts['products'];
-        $all_products = $fallbackProducts['count'];
-        $html = "";
-        if($products){
-            $html = GEEKYBOTincluder::GEEKYBOT_getModel('stories')->getWcProductListingHtml($message, $products, 'fallbackone', $all_products, $currentPage, 'chatserver', 'getFallbackForWoocommerceStory', $data);
-        } else {
-            $fallbackProducts = GEEKYBOTincluder::GEEKYBOT_getModel('woocommerce')->getProductsFromWcSecondFallback($message, $currentPage, $productsPerPage);
-            $products = $fallbackProducts['products'];
-            $all_products = $fallbackProducts['count'];
-            if($products){
-                $html = GEEKYBOTincluder::GEEKYBOT_getModel('stories')->getWcProductListingHtml($message, $products, 'fallbacktwo', $all_products, $currentPage, 'chatserver', 'getFallbackForWoocommerceStory', $data);
-            }
-        }
-        return $html;
     }
 
     function getFallbackForForgotPasswordStory($message) {
