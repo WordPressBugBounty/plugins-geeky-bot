@@ -390,28 +390,25 @@ if ( $dashboard_message == '1') {//isset($dashboard_message) &&
                     <?php echo esc_html(__('Addons', 'geeky-bot')); ?>
                 </div>
                 <div class="geekybot-dashboard-addons-card">
-                    <img class="geekybot-dashboard-addons-cards-comming-soon" src="<?php echo esc_url(GEEKYBOT_PLUGIN_URL); ?>includes/images/control_panel/addons/coming-soon.png" alt="<?php echo esc_html(__('Comming Soon', 'geeky-bot')); ?>" srcset="">
-                    <div class="geekybot-dashboard-addons-cards-tmpwrp">
+                    <a target="_blank" href="https://geekybot.com/add-ons/custom-text-style/" class="geekybot-dashboard-addons-cards-tmpwrp">
+                        <img src="<?php echo esc_url(GEEKYBOT_PLUGIN_URL); ?>includes/images/control_panel/addons/ad0n-2.png" alt="<?php echo esc_html(__('addon', 'geeky-bot')); ?>" srcset="">
+                        <span class="geekybot-dashboard-addons-card-subtitle"><?php echo esc_html(__('Custom Text Style', 'geeky-bot')); ?></span>
+                    </a>
+                </div>
+                <div class="geekybot-dashboard-addons-card">
+                    <a target="_blank" href="https://geekybot.com/add-ons/custom-listing-style/" class="geekybot-dashboard-addons-cards-tmpwrp">
                         <img src="<?php echo esc_url(GEEKYBOT_PLUGIN_URL); ?>includes/images/control_panel/addons/ad0n-1.png" alt="<?php echo esc_html(__('addon', 'geeky-bot')); ?>" srcset="">
                         <span class="geekybot-dashboard-addons-card-subtitle"><?php echo esc_html(__('Custom Listing Style', 'geeky-bot')); ?></span>
-                    </div>
+                    </a>
                 </div>
                 <div class="geekybot-dashboard-addons-card">
-                    <img class="geekybot-dashboard-addons-cards-comming-soon" src="<?php echo esc_url(GEEKYBOT_PLUGIN_URL); ?>includes/images/control_panel/addons/coming-soon.png" alt="<?php echo esc_html(__('Comming Soon', 'geeky-bot')); ?>" srcset="">
-                    <div class="geekybot-dashboard-addons-cards-tmpwrp">
-                        <img src="<?php echo esc_url(GEEKYBOT_PLUGIN_URL); ?>includes/images/control_panel/addons/ad0n-2.png" alt="<?php echo esc_html(__('addon', 'geeky-bot')); ?>" srcset="">
-                        <span class="geekybot-dashboard-addons-card-subtitle"><?php echo esc_html(__('Custom Listing Text', 'geeky-bot')); ?></span>
-                    </div>
-                </div>
-                <div class="geekybot-dashboard-addons-card">
-                    <img class="geekybot-dashboard-addons-cards-comming-soon" src="<?php echo esc_url(GEEKYBOT_PLUGIN_URL); ?>includes/images/control_panel/addons/coming-soon.png" alt="<?php echo esc_html(__('Comming Soon', 'geeky-bot')); ?>" srcset="">
-                    <div class="geekybot-dashboard-addons-cards-tmpwrp">
+                    <a target="_blank" href="https://geekybot.com/product/woocommerce-pro-pack/" class="geekybot-dashboard-addons-cards-tmpwrp">
                         <img src="<?php echo esc_url(GEEKYBOT_PLUGIN_URL); ?>includes/images/control_panel/addons/ad0n-3.png" alt="<?php echo esc_html(__('addon', 'geeky-bot')); ?>" srcset="">
-                        <span class="geekybot-dashboard-addons-card-subtitle"><?php echo esc_html(__('WooCommerce Features', 'geeky-bot')); ?></span>
-                    </div>
+                        <span class="geekybot-dashboard-addons-card-subtitle"><?php echo esc_html(__('WooCommerce Pro Pack', 'geeky-bot')); ?></span>
+                    </a>
                 </div>
                 <div class="geebot-dashboard-addonslist-button-wrp">
-                    <a class="geebot-dashboard-addonslist-button" href="<?php echo esc_url(wp_nonce_url('admin.php?page=geekybot_premiumplugin&geekybotlt=step1','PremiumAddons'))?>" title="<?php echo esc_attr(__('Install Add-ons' , 'geeky-bot')); ?>"><?php echo esc_html(__('Addon List', 'geeky-bot')); ?></a>
+                    <a class="geebot-dashboard-addonslist-button" href="https://geekybot.com/add-ons/" title="<?php echo esc_attr(__('Install Add-ons' , 'geeky-bot')); ?>"><?php echo esc_html(__('Addon List', 'geeky-bot')); ?></a>
                 </div>
             </div>
         </div>

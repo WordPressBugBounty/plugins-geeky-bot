@@ -238,7 +238,7 @@ class GEEKYBOTpremiumpluginModel {
         if(file_exists(WP_PLUGIN_DIR . '/'.$slug) && is_plugin_active($slug)){
             $status = esc_html(__("Activated",'geeky-bot'));
             $action = esc_html(__("Deactivate",'geeky-bot'));
-            $actionClass = 'ms-admin-adons-status-Deactive';
+            $actionClass = 'geekybot-admin-adons-status-Deactive';
             $url = "plugins.php?s=".$name."&plugin_status=active";
             $disabled = "disabled";
             $class = "geekybot-btn-activated";
@@ -247,7 +247,7 @@ class GEEKYBOTpremiumpluginModel {
         }else if(file_exists(WP_PLUGIN_DIR . '/'.$slug) && !is_plugin_active($slug)){
             $status = esc_html(__("Deactivated",'geeky-bot'));
             $action = esc_html(__("Activate",'geeky-bot'));
-            $actionClass = 'ms-admin-adons-status-Active';
+            $actionClass = 'geekybot-admin-adons-status-Active';
             $url = "plugins.php?s=".$name."&plugin_status=inactive";
             $disabled = "";
             $class = "geekybot-btn-green geekybot-btn-active-now";
@@ -256,7 +256,7 @@ class GEEKYBOTpremiumpluginModel {
         }else if(!file_exists(WP_PLUGIN_DIR . '/'.$slug)){
             $status = esc_html(__("Not Installed",'geeky-bot'));
             $action = esc_html(__("Install Now",'geeky-bot'));
-            $actionClass = 'ms-admin-adons-status-Install';
+            $actionClass = 'geekybot-admin-adons-status-Install';
             $url = admin_url("admin.php?page=geekybot_premiumplugin&geekybotlt=step1");
             $disabled = "";
             $class = "geekybot-btn-install-now";
@@ -294,7 +294,7 @@ class GEEKYBOTpremiumpluginModel {
             $site_url = geekybotphplib::GEEKYBOT_str_replace("https://","",$site_url);
             $site_url = geekybotphplib::GEEKYBOT_str_replace("http://","",$site_url);
         }
-        $url = 'https://geekybot.com/setup/index.php?token='.esc_attr($token).'&productcode='. wp_json_encode($addon_json_array).'&domain='. site_url();
+        $url = 'https://geekybot.com/setup/index.php?token='.esc_attr($token).'&productcode='. wp_json_encode($addon_json_array).'&domain='. $site_url;
         // verify token
         $verifytransactionkey = $this->verifytransactionkey($token, $url);
         if($verifytransactionkey['status'] == 0){
@@ -318,7 +318,7 @@ class GEEKYBOTpremiumpluginModel {
 
             // run update sql
             if ($installedversion != $newversion) {
-                $optionname = 'ms-addon-'. $plugin_slug .'s-version';
+                $optionname = 'geeky-bot-addon-'. $plugin_slug .'s-version';
                 update_option($optionname, $newversion);
                 $plugin_path = WP_CONTENT_DIR;
                 $plugin_path = $plugin_path.'/plugins/'.$key.'/includes';
@@ -332,7 +332,7 @@ class GEEKYBOTpremiumpluginModel {
                     $this->getAddonUpdateSqlFromUpdateDir($installedversion,$newversion,$plugin_path . '/sql/');
                     $updatesdir = $plugin_path.'/sql/';
                     if(geekybotphplib::GEEKYBOT_preg_match('/geeky-bot-[a-zA-Z]+/', $updatesdir)){
-                        msRemoveAddonUpdatesFolder($updatesdir);
+                        geekybotRemoveAddonUpdatesFolder($updatesdir);
                     }
                 }else{
                     $this->getAddonUpdateSqlFromLive($installedversion,$newversion,$plugin_slug);
@@ -435,9 +435,9 @@ class GEEKYBOTpremiumpluginModel {
 
     function geekybotGetAddonsArray(){
         return array(
-            'geeky-bot-actions' => array('title' => esc_html(__('Ticket Actions','geeky-bot')), 'price' => 0, 'status' => 1),
-            'geeky-bot-agent' => array('title' => esc_html(__('Agents','geeky-bot')), 'price' => 0, 'status' => 1),
-            'geeky-bot-autoclose' => array('title' => esc_html(__('Ticket Auto Close','geeky-bot')), 'price' => 0, 'status' => 1),
+            'geeky-bot-customtextstyle' => array('title' => esc_html(__('Custom Text Style','geeky-bot')), 'price' => 0, 'status' => 1),
+            'geeky-bot-customlistingstyle' => array('title' => esc_html(__('Custom Listing Style','geeky-bot')), 'price' => 0, 'status' => 1),
+            'geeky-bot-woocommercepropack' => array('title' => esc_html(__('WooCommerce Pro Pack','geeky-bot')), 'price' => 0, 'status' => 1),
         );
     }
 

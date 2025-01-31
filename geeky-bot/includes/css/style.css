@@ -48,6 +48,9 @@ div#main-messages div.geekybot-title-main-overlay {position: relative;width: 100
 .chat-popup .chat-windows .chat-window-two div.chat-content li.actual_msg.actual_msg_user section.actual_msg_user-img img {position: absolute;top: 0;bottom: 0;left: 0; right: 0;margin: auto;width:100%;height: auto;}
 .chat-popup .chat-windows .chat-window-two div.chat-content li.actual_msg.actual_msg_adm section.actual_msg_text_wrp {float: left;max-width: calc(100% - 53px);box-sizing: border-box;}
 .chat-popup .chat-windows .chat-window-two div.chat-content li.actual_msg.actual_msg_adm section.actual_msg_text {background-color: #ededef;padding: 5px 10px;border-radius: 5px;color: #373435;float: left;max-width: calc(100% - 53px);box-sizing: border-box;margin-bottom: 10px;}
+.chat-popup .chat-windows .chat-window-two div.chat-content li.actual_msg.actual_msg_adm.actual_msg_adm section.actual_msg_loading {float: left;width: calc(100% - 53px);}
+.chat-popup .chat-windows .chat-window-two div.chat-content li.actual_msg.actual_msg_adm.actual_msg_adm section.actual_msg_loading img{border-radius: 5px;float: left;max-width: 100%;}
+.chat-popup .chat-windows .chat-window-two div.chat-content li.actual_msg.actual_msg_adm.actual_msg_adm.geekybot_loading {min-height: 86.5px;}
 .chat-popup .chat-windows .chat-window-two div.chat-content li.actual_msg.actual_msg_adm .actual_msg_text_wrp section.actual_msg_text {max-width: 100%;}
 .chat-popup .chat-windows .chat-window-two div.chat-content li.actual_msg.actual_msg_adm section.actual_msg_text .actual_msg_text_inner:first-child {border-bottom: 1px solid #d7d8da;padding: 5px 0 10px}
 .chat-popup .chat-windows .chat-window-two div.chat-content li.actual_msg.actual_msg_adm section.actual_msg_text .actual_msg_text_inner {float: left;width: 100%;box-sizing: border-box;}
@@ -162,6 +165,9 @@ li.geeky_bot_wc_msg_btn .geeky_bot_wc_btn{color: #2b2b2b;background: #FFF;font-w
 .geekybot_wc_product_load_more {box-sizing: border-box; padding: 7px 15px;margin:5px 15% 10px;display:inline-block;cursor: pointer;background: #FFF;color: #373435;width: 70%;float: left;text-align: center;font-weight: 500;}
 .geekybot_wc_product_load_more:hover {text-decoration: underline;}
 .geekybot_wc_product_wrp.geekybot_wc_product_options_wrp .geekybot_wc_product_left_wrp{border: unset;margin: 0px;height: 150px;}
+.geekybot_wc_product_wrp .geekybot_wc_product_right_wrp .geekybot_wc_product_wishlist_btn {padding-top: 4px;margin-left: 5px;border: 1px solid;text-align: center;width: 20%;font-size: 19px;}
+.geekybot_wc_product_wrp .geekybot_wc_product_right_wrp .geekybot_wc_product_wishlist_btn.geekybot-wishlist-add {border-color: #2b2b2b;color: #2b2b2b;}
+.geekybot_wc_product_wrp .geekybot_wc_product_right_wrp .geekybot_wc_product_wishlist_btn.geekybot-wishlist-added {border-color: #e92e4d;color: #e92e4d;}
 /*success message */
 .geekybot_wc_success_msg_wrp{float: left;width: 100%;font-size: 16px;font-weight: 500;padding: 10px 12px;margin-bottom: 20px;}
 .geekybot_wc_success_msg_wrp.success{border: 1px solid #8bc3a6;color: #0f7d4b;background-color: #d8ede2;}
@@ -211,6 +217,11 @@ li.geeky_bot_wc_msg_btn .geeky_bot_wc_btn{color: #2b2b2b;background: #FFF;font-w
 .geekybot_wc_post_load_more{padding: 7px 15px;margin: 15px 15% 10px;display: inline-block;cursor: pointer;background: #FFF;color: #373435;width: 70%;float: left;text-align: center;font-weight: 500;box-sizing: border-box;}
 .geekybot_wc_post_load_more:hover{text-decoration: underline;}
 .geekybot_wc_product_wrp .geekybot_wc_product_right_wrp .geekybot_wc_product_price{float: left;width: 100%;padding: 5px 0;font-weight: 600;color: #2b2b2b;font-size: 16px;}
+.geekybot_wc_product_wrp .geekybot_wc_product_right_wrp .star-rating{float: left;height: 1.5em;line-height: unset;margin-right: 5px;overflow: hidden;position: relative;font-size: 1em;width: 5.4em;font-family: WooCommerce;}
+.geekybot_wc_product_wrp .geekybot_wc_product_right_wrp .star-rating::before {content: "sssss";color: #cfc8d8;float: left;top: 0;left: 0;position: absolute;}
+.geekybot_wc_product_wrp .geekybot_wc_product_right_wrp .star-rating span::before {color: #2b2b2b;content: "SSSSS";top: 0;position: absolute;left: 0;}
+.geekybot_wc_product_wrp .geekybot_wc_product_right_wrp .star-rating span {overflow: hidden;float: left;top: 0;left: 0;position: absolute;padding-top: 1.5em;color: #FFD700;}
+span.geekybot-websearch-field-value{word-wrap: break-word;}
 .geekybot_wc_success_action_wrp{float: left;width: 100%;margin: 5px 0 15px;}
 .geekybot_wc_success_action_wrp a{float: left;width: auto;padding: 10px 10px;display: flex;flex-wrap: wrap;align-items: center;min-height: 44px;box-sizing: border-box;}
 .geekybot_wc_success_action_wrp a.geekybot_wc_checkout{background-color: #FFF;color: #373435;}
@@ -222,7 +233,7 @@ div.geekybot_wc_post_heading.geekybot_wc_post_title{margin-bottom: 5px;}
 div.geekybot_wc_post_heading.geekybot_wc_post_title span.geekybot_wc_post_heading_nums{display: block;text-align: center;margin-top: 5px;color: #96989a;}
 div.geekybot_wc_article_header.geekybot_wc_article_title a{text-decoration: underline;}
 div.geekybot_wc_article_header.geekybot_wc_article_title a:hover{text-decoration:none;}
-div.geekybot_wc_article_header.geekybot_wc_article_title span.geekybot-websearch-image-wrp{display: block;width: 100%;height: 150px;position: relative;margin-bottom: 10px;}
+div.geekybot_wc_article_header.geekybot_wc_article_title span.geekybot-websearch-image-wrp{display:inline-block;width: 100%;height: 180px;position: relative;margin-bottom: 10px;}
 div.geekybot_wc_article_header.geekybot_wc_article_title span.geekybot-websearch-image-wrp img{width: auto;max-width: 100%;max-height: 100%; top: 0;left: 0;right: 0;bottom: 0;margin: auto; position: absolute;}
 /* story top message */
 div.chat-open-outer-popup-dialog{display: flex;align-items: center; padding:15px;z-index: 214748;position: fixed;bottom: 130px;right: 50px;border-radius:15px;cursor: pointer;background-color: white;color:#373435;width: 390px;max-width: 80%;}
@@ -235,6 +246,15 @@ div.chat-open-outer-popup-dialog div.chat-open-outer-popup-dialog-image{position
 div.chat-open-outer-popup-dialog div.chat-open-outer-popup-dialog-image img{position: absolute;top: 0;left: 0;right: 0;bottom: 0;margin: auto;max-width: 100%;height: auto;text-align: center;border-radius: 50px;padding: 4px;box-sizing: border-box;}
 .chat-open-outer-popup-dialog-btmborderwrp::after {position: absolute;content: '';width: 0;height: 0;right: 12px;border-left: 15px solid transparent;border-right: 15px solid transparent;bottom: -22px;border-top: 20px solid #ededef;}
 /* color */
+/* order history */
+.geekybot_order_history_cards {width: 100%;float: left;}
+.geekybot_order_card {background: #f9f9f9;border: 1px solid #e0e0e0;border-top: 0;box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);margin: 5px 0;width: 100%;float: left;}
+.geekybot_order_card p {padding: 15px;margin: 0;border-top: 2px solid #e6e6e6;float: left;width: 100%;}
+.geekybot_order_card p .geekybot_order_card_left {float: left;margin-right: 5px;}
+.geekybot_order_card p .geekybot_order_card_right {float: right;}
+.geekybot_order_card strong {color: #333;}
+.geekybot_order_view_btn {display: block;text-align: center;padding: 7px 0;font-weight: 500;background-color: #373435;color: #fff;text-decoration: none;}
+.geekybot_order_view_btn:hover {background-color: #444;color: #fff;}
 
 
 @media (max-width:1280px){
@@ -250,7 +270,7 @@ div.chat-open-outer-popup-dialog div.chat-open-outer-popup-dialog-image img{posi
 	.chat-popup .chat-windows .chat-window-two div.chat-content li.actual_msg.actual_msg_adm section.actual_msg_text{max-width:calc(65% - 33px);width: fit-content;}
 	.chat-popup .chat-windows .chat-window-two div.chat-content li.actual_msg.actual_msg_adm .actual_msg_text_wrp section.actual_msg_text{max-width: 65%;width:fit-content;}
 	.chat-popup .chat-windows .chat-window-two div.chat-content li.actual_msg.actual_msg_user section.actual_msg_text{max-width:calc(65% - 33px);width: fit-content;}
-	.chat-popup .chat-windows .chat-window-two div.chat-content li.actual_msg.actual_msg_adm section.actual_msg_text_wrp{display: flex;flex-direction: column;}
+	.chat-popup .chat-windows .chat-window-two div.chat-content li.actual_msg.actual_msg_adm section.actual_msg_text_wrp{display: flex;flex-direction: column;width: calc(100% - 53px );}
 	#send-message{left: 0;}
 	div.chat-open-dialog-main{bottom: 0;}
 	button.chat-button-destroy.active::after{bottom: 35px;}

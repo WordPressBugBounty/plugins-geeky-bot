@@ -30,6 +30,10 @@ class GEEKYBOTwebsearchModel {
 
         do_action('geekybot_custom_listing_query');
         $query = "SELECT post_type.*  ".geekybot::$_addon_query['select']." FROM `" . geekybot::$_db->prefix . "geekybot_post_types` AS post_type ".geekybot::$_addon_query['join']." WHERE post_type.id = " . esc_sql($id);
+        if (!empty(geekybot::$_addon_query['where'])) {
+            $query .= " AND ( " . geekybot::$_addon_query['where'] . " ) ";
+        }
+        
         geekybot::$_data[0] = geekybotdb::GEEKYBOT_get_row($query);
         do_action('reset_geekybot_aadon_query');
         return;
@@ -239,6 +243,10 @@ class GEEKYBOTwebsearchModel {
                     // load the default listing style for this post type if available
                     apply_filters('geekybot_load_custom_listing_style_template', $post_type);
                 }
+                if(in_array('customtextstyle', geekybot::$_active_addons)){
+                    // load the default listing style for this post type if available
+                    apply_filters('geekybot_load_custom_text_style_template', $post_type);
+                }
             }
         }
         $extra_post_types = array_diff_key($stored_post_types_transformed, $current_post_types);
@@ -252,7 +260,7 @@ class GEEKYBOTwebsearchModel {
                     // delete post type style
                     apply_filters('geekybot_delete_custom_listing_style', $post_type);
                 }
-                if(in_array('customlistingtext', geekybot::$_active_addons)){
+                if(in_array('customtextstyle', geekybot::$_active_addons)){
                     // delete post type text
                     apply_filters('geekybot_delete_custom_listing_text', $post_type);
                 }
@@ -298,6 +306,10 @@ class GEEKYBOTwebsearchModel {
                 if(in_array('customlistingstyle', geekybot::$_active_addons)){
                     // load the default listing style for this post type if available
                     apply_filters('geekybot_load_custom_listing_style_template', $post_type);
+                }
+                if(in_array('customtextstyle', geekybot::$_active_addons)){
+                    // load the default listing style for this post type if available
+                    apply_filters('geekybot_load_custom_text_style_template', $post_type);
                 }
             }
         }
@@ -502,7 +514,7 @@ class GEEKYBOTwebsearchModel {
             if(in_array('customlistingstyle', geekybot::$_active_addons)){
                 $geekybot_custom_listing = apply_filters('geekybot_custom_listing_style', $type);
             }
-            if ((empty($geekybot_custom_listing) || !in_array($geekybot_custom_listing->template_id, [1, 2, 3])) && in_array('customlistingtext', geekybot::$_active_addons)) {
+            if ((empty($geekybot_custom_listing) || !in_array($geekybot_custom_listing->template_id, [1, 2, 3])) && in_array('customtextstyle', geekybot::$_active_addons)) {
                 $geekybot_custom_listing = apply_filters('geekybot_custom_listing_text', $type);
             }
             $currentPostsCount = count($posts);
@@ -518,46 +530,10 @@ class GEEKYBOTwebsearchModel {
                         // Check if template_id is 3, 4, 5, or 6
                         $text .= apply_filters('geekybot_custom_listing_text_html', $geekybot_custom_listing, $post, $msg);
                     }
-                } elseif(in_array('customlistingstyle', geekybot::$_active_addons) || in_array('customlistingtext', geekybot::$_active_addons)) {
-                    $all_meta_keys = $this->geekybotGetAllMetaKeys($type);
-                    $defaultFieldForLogo = $this->geekybotGetDefaultFieldForLogo($type, $all_meta_keys);
-                    if (!empty($defaultFieldForLogo)) {
-                        $image_url = $this->geekybotGetLogoForListing($post->post_id, $defaultFieldForLogo);
-                    }
-                    $meta_keys_for_listing = $this->geekybotGetMetaKeysForListing($type);
-                    $permalink = get_permalink( $post->post_id );
-                    $text .= '
-                    <div class="geekybot_wc_article_wrp">
-                        <div class="geekybot_wc_article_header geekybot_wc_article_title">';
-                            if ( !empty($image_url) ) {
-                            $text .= '<span class="geekybot-websearch-image-wrp"><img src="' . esc_url( $image_url ) . '" alt="' . esc_attr( get_the_title() ) . '"></span>';
-                            }
-                            $text .= '
-                            <a target="_blank" href="' . esc_url( $permalink ) . '">'.$post->title.'</a>';
-                            foreach ($meta_keys_for_listing as $listing_key => $listing_value) {
-                                $meta_val = get_post_meta($post->post_id, $listing_value, true);
-                                if (is_array($meta_val)) {
-                                    $meta_value = implode(', ', $meta_val);
-                                } else {
-                                    $meta_value = $meta_val;
-                                }
-
-                                $text .="
-                                <div class='geekybot-websearch-field-wrp'>
-                                    <span class='geekybot-websearch-field-title'>
-                                        <b>
-                                        ".esc_html(geekybot::GEEKYBOT_getVarValue(ucwords(geekybotphplib::GEEKYBOT_str_replace('_', ' ', $listing_value)))).":
-                                        </b>
-                                    </span>
-                                    <span class='geekybot-websearch-field-value'>
-                                        ". $meta_value ."
-                                    </span>
-                                </div>
-                                ";
-                            }
-                            $text .= '
-                        </div>
-                    </div>';
+                } elseif(in_array('customlistingstyle', geekybot::$_active_addons)) {
+                    $text .= apply_filters('geekybot_custom_listing_style_default_html', $post);
+                } elseif(in_array('customtextstyle', geekybot::$_active_addons)) {
+                    $text .= apply_filters('geekybot_custom_listing_text_default_html', $post, $msg);
                 } else {
                     $permalink = get_permalink( $post->post_id );
                     $featured_image_url = get_the_post_thumbnail_url( $post->post_id, 'full' );
@@ -866,11 +842,14 @@ class GEEKYBOTwebsearchModel {
             return 1;
 
         $message = '';
-        if(in_array('customlistingstyle', geekybot::$_active_addons)){
-            $message = apply_filters('geekybot_store_custom_listing_style', $data);
-        }
-        if(in_array('customlistingtext', geekybot::$_active_addons)){
-            $message = apply_filters('geekybot_store_custom_listing_text', $data);
+        if (in_array($data['template_id'], [1, 2, 3])) {
+            if(in_array('customlistingstyle', geekybot::$_active_addons)){
+                $message = apply_filters('geekybot_store_custom_listing_style', $data);
+            }
+        } elseif (in_array($data['template_id'], [4, 5, 6])) {
+            if(in_array('customtextstyle', geekybot::$_active_addons)){
+                $message = apply_filters('geekybot_store_custom_listing_text', $data);
+            }
         }
         return $message;
     }
@@ -941,86 +920,6 @@ class GEEKYBOTwebsearchModel {
             }
         }
         return '';
-    }
-    
-    function geekybotGetMetaKeysForListing($post_type) {
-        // List of meta keys to exclude
-        $exclude_meta_keys = array(
-            '_edit_lock',
-            '_edit_last',
-            '_wp_old_slug',
-            '_thumbnail_id',
-            '_wp_trash_meta_status',
-            '_wp_trash_meta_time',
-            '_pingme',
-            '_encloseme',
-            '_wp_attached_file',
-            '_wp_attachment_metadata',
-            '_wp_attachment_image_alt',
-            '_wp_page_template',
-            '_menu_item',
-            '_wpb_vc_js_status',
-            '_elementor_data'
-        );
-        $all_meta_keys = [];
-        // Fetch all post IDs for the given post type
-        $post_ids = get_posts([
-            'post_type'      => $post_type,
-            'posts_per_page' => 100,  // Limit to 100 posts for performance
-            'fields'         => 'ids',  // Only retrieve post IDs
-        ]);
-
-        if (empty($post_ids)) {
-            return [];  // No posts found, return an empty array
-        }
-
-        // Fetch all meta keys and values for the given post IDs in a single query
-        global $wpdb;
-        $meta_data = $wpdb->get_results($wpdb->prepare(
-            "SELECT DISTINCT meta_key, meta_value FROM $wpdb->postmeta WHERE post_id IN (%s)",
-            implode(',', $post_ids)
-        ));
-        // Initialize an array to store filtered meta keys
-        $all_meta_keys = [];
-
-        foreach ($meta_data as $meta) {
-            // Skip excluded meta keys
-            if (in_array($meta->meta_key, $exclude_meta_keys)) {
-                continue;
-            }
-            // Skip keys with numeric values
-            if (is_numeric($meta->meta_value)) {
-                continue;
-            }
-            // Add to the list of meta keys
-            $all_meta_keys[] = $meta->meta_key;
-        }
-
-        // Loop through post IDs to gather meta keys
-        foreach ($post_ids as $post_id) {
-            $meta_keys = array_keys(get_post_meta($post_id));
-            $clean_meta_keys = array_diff($meta_keys, $exclude_meta_keys);
-            // Merge unique meta keys
-            $all_meta_keys = array_unique(array_merge($all_meta_keys, $clean_meta_keys));
-            // 
-            $taxonomies = get_object_taxonomies(get_post_type($post_id));
-            // Merge unique meta keys
-            $all_meta_keys = array_unique(array_merge($all_meta_keys, $taxonomies));
-        }
-
-        $logo_keywords = ['thumbnail', 'logo', 'image', 'header', 'brand', 'custom', 'icon', 'avatar', 'splash', 'cover'];
-        // Loop through all meta keys to find a match for the logo
-        foreach ($all_meta_keys as $key => $value) {
-            // Check if the key contains any of the logo-related keywords
-            foreach ($logo_keywords as $keyword) {
-                if (strpos(strtolower($value), $keyword) !== false) {
-                    // Return the first matching meta key
-                    unset($all_meta_keys[$key]);
-                }
-            }
-        }
-        // Return the first 3 filtered meta keys
-        return array_slice(array_values($all_meta_keys), 0, 3);
     }
 
     function geekybotGetAllMetaKeys($post_type) {

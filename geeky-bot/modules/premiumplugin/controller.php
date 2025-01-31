@@ -70,16 +70,16 @@ class GEEKYBOTPremiumpluginController {
                 $result = false;
                 if(!is_wp_error($response)){
                    $error = $response['response']['message'];
-               }else{
+                }else{
                     $error = $response->get_error_message();
-               }
+                }
             }
             if(is_array($result) && isset($result['status']) && $result['status'] == 1 ){ // means everthing ok
                 $resultaddon = wp_json_encode($result);
                 $resultaddon = geekybotphplib::GEEKYBOT_safe_encoding( $resultaddon );
                 $result['actual_transaction_key'] = $post_data['transactionkey'];
                 // in case of session not working
-                add_option('ms_addon_install_data',wp_json_encode($result));
+                add_option('geekybot_addon_install_data',wp_json_encode($result));
                 $url = admin_url("admin.php?page=geekybot_premiumplugin&geekybotlt=step2");
                 wp_redirect($url);
                 return;
@@ -99,9 +99,9 @@ class GEEKYBOTPremiumpluginController {
         $array['transactionkey'] = $post_data['transactionkey'];
         $array = wp_json_encode( $array );
         $array = geekybotphplib::GEEKYBOT_safe_encoding($array);
-        geekybotphplib::GEEKYBOT_setcookie('ms_addon_return_data' , $array , 0, COOKIEPATH);
+        geekybotphplib::GEEKYBOT_setcookie('geekybot_addon_return_data' , $array , 0, COOKIEPATH);
         if ( SITECOOKIEPATH != COOKIEPATH ){
-            geekybotphplib::GEEKYBOT_setcookie('ms_addon_return_data' , $array , 0, SITECOOKIEPATH);
+            geekybotphplib::GEEKYBOT_setcookie('geekybot_addon_return_data' , $array , 0, SITECOOKIEPATH);
         }
         $url = admin_url("admin.php?page=geekybot_premiumplugin&geekybotlt=step1");
         wp_redirect($url);
@@ -134,9 +134,9 @@ class GEEKYBOTPremiumpluginController {
             $array['transactionkey'] = $post_data['transactionkey'];
             $array = wp_json_encode( $array );
             $array = geekybotphplib::GEEKYBOT_safe_encoding($array);
-            geekybotphplib::GEEKYBOT_setcookie('ms_addon_return_data' , $array , 0, COOKIEPATH);
+            geekybotphplib::GEEKYBOT_setcookie('geekybot_addon_return_data' , $array , 0, COOKIEPATH);
             if ( SITECOOKIEPATH != COOKIEPATH ){
-                geekybotphplib::GEEKYBOT_setcookie('ms_addon_return_data' , $array , 0, SITECOOKIEPATH);
+                geekybotphplib::GEEKYBOT_setcookie('geekybot_addon_return_data' , $array , 0, SITECOOKIEPATH);
             }
             $url = admin_url("admin.php?page=geekybot_premiumplugin&geekybotlt=step1");
             wp_redirect($url);
@@ -174,9 +174,9 @@ class GEEKYBOTPremiumpluginController {
             $array['transactionkey'] = $post_data['transactionkey'];
             $array = wp_json_encode( $array );
             $array = geekybotphplib::GEEKYBOT_safe_encoding($array);
-            geekybotphplib::GEEKYBOT_setcookie('ms_addon_return_data' , $array , 0, COOKIEPATH);
+            geekybotphplib::GEEKYBOT_setcookie('geekybot_addon_return_data' , $array , 0, COOKIEPATH);
             if ( SITECOOKIEPATH != COOKIEPATH ){
-                geekybotphplib::GEEKYBOT_setcookie('ms_addon_return_data' , $array , 0, SITECOOKIEPATH);
+                geekybotphplib::GEEKYBOT_setcookie('geekybot_addon_return_data' , $array , 0, SITECOOKIEPATH);
             }
 
             $url = admin_url("admin.php?page=geekybot_premiumplugin&geekybotlt=step1");
@@ -215,9 +215,9 @@ class GEEKYBOTPremiumpluginController {
                 $array['transactionkey'] = $post_data['transactionkey'];
                 $array = wp_json_encode( $array );
                 $array = geekybotphplib::GEEKYBOT_safe_encoding($array);
-                geekybotphplib::GEEKYBOT_setcookie('ms_addon_return_data' , $array , 0, COOKIEPATH);
+                geekybotphplib::GEEKYBOT_setcookie('geekybot_addon_return_data' , $array , 0, COOKIEPATH);
                 if ( SITECOOKIEPATH != COOKIEPATH ){
-                    geekybotphplib::GEEKYBOT_setcookie('ms_addon_return_data' , $array , 0, SITECOOKIEPATH);
+                    geekybotphplib::GEEKYBOT_setcookie('geekybot_addon_return_data' , $array , 0, SITECOOKIEPATH);
                 }
 
                 $url = admin_url("admin.php?page=geekybot_premiumplugin&geekybotlt=step1");
@@ -234,9 +234,9 @@ class GEEKYBOTPremiumpluginController {
             $array['transactionkey'] = $post_data['transactionkey'];
             $array = wp_json_encode( $array );
             $array = geekybotphplib::GEEKYBOT_safe_encoding($array);
-            geekybotphplib::GEEKYBOT_setcookie('ms_addon_return_data' , $array , 0, COOKIEPATH);
+            geekybotphplib::GEEKYBOT_setcookie('geekybot_addon_return_data' , $array , 0, COOKIEPATH);
             if ( SITECOOKIEPATH != COOKIEPATH ){
-                geekybotphplib::GEEKYBOT_setcookie('ms_addon_return_data' , $array , 0, SITECOOKIEPATH);
+                geekybotphplib::GEEKYBOT_setcookie('geekybot_addon_return_data' , $array , 0, SITECOOKIEPATH);
             }
             $url = admin_url("admin.php?page=geekybot_premiumplugin&geekybotlt=step1");
             wp_redirect($url);

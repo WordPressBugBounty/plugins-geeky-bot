@@ -39,5 +39,10 @@ div.chat-open-outer-popup-dialog{right: auto;left: 50px;}
 /* web search */
 .chat-popup .chat-windows .chat-window-two div.chat-content li.actual_msg.actual_msg_adm section.actual_msg_text{float: right;}
 .chat-popup .chat-windows .chat-window-two div.chat-content li.actual_msg.actual_msg_adm{float: right;}
-/* new */
 .chat-popup .chat-windows .chat-window-two div.chat-content li.actual_msg.actual_msg_btn{float: right;}
+/* new */
+.geekybot_order_card p .geekybot_order_card_left{float: right;margin-right: 0;margin-left: 5px;}
+.geekybot_order_card p .geekybot_order_card_right{float: left;}
+.geekybot_article_bnt_wrp .geekybot_article_bnt{float: right;text-align: right;}
+.geekybot_article_bnt_wrp .geekybot_article_bnt img{float: left;transform: scaleX(-1);}
+li.geeky_bot_wc_msg_btn{float: right;}

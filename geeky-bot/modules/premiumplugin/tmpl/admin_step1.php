@@ -1,7 +1,7 @@
 <?php
 if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
-if(isset($_SESSION['ms_addon_install_data'])){
-    unset($_SESSION['ms_addon_install_data']);
+if(isset($_SESSION['geekybot_addon_install_data'])){
+    unset($_SESSION['geekybot_addon_install_data']);
 } ?>
     <div id="geekybotadmin-wrapper" class="geekybot-admin-main-wrapper">
         <?php  GEEKYBOTincluder::GEEKYBOT_getTemplate('templates/admin/upper-nav',array('module' => 'premiumplugin','layouts' => 'step1')); ?>
@@ -27,7 +27,7 @@ if(isset($_SESSION['ms_addon_install_data'])){
                         </div>
                     </div>
                     <div id="geekybot-lower-wrapper">
-                        <div class="geekybot-addon-installer-wrapper" >
+                        <div class="geekybot-addon-installer-wrapper geekybot-addon-installer-firststep-wrapper" >
                             <form id="mjsupportfrom" action="<?php echo esc_url(wp_nonce_url(admin_url('admin.php?page=geekybot_premiumplugin&task=verifytransactionkey&action=geekybottask'),"verify-transaction-key")); ?>" method="post">
                                 <div class="geekybot-addon-installer-section-wrap" >
                                 <img alt="<?php echo esc_html(__('image', 'geeky-bot')); ?>" src="<?php echo esc_url(GEEKYBOT_PLUGIN_URL); ?>includes/images/addon-images/main-logo.png" />
@@ -39,14 +39,14 @@ if(isset($_SESSION['ms_addon_install_data'])){
                                         <?php
                                         $error_message = '';
                                         $transactionkey = '';
-                                        if(isset($_COOKIE['ms_addon_return_data'])){
-                                            $ms_addon_return_data = json_decode(geekybotphplib::GEEKYBOT_safe_decoding(geekybot::GEEKYBOT_sanitizeData($_COOKIE['ms_addon_return_data'])),true);// GEEKYBOT_sanitizeData() function uses wordpress santize functions
-                                            $ms_error_msg = $ms_addon_return_data;
-                                            if(isset($ms_addon_return_data['status']) && $ms_addon_return_data['status'] == 0){
-                                                $error_message = $ms_addon_return_data['message'];
-                                                $transactionkey = $ms_addon_return_data['transactionkey'];
+                                        if(isset($_COOKIE['geekybot_addon_return_data'])){
+                                            $geekybot_addon_return_data = json_decode(geekybotphplib::GEEKYBOT_safe_decoding(geekybot::GEEKYBOT_sanitizeData($_COOKIE['geekybot_addon_return_data'])),true);// GEEKYBOT_sanitizeData() function uses wordpress santize functions
+                                            $ms_error_msg = $geekybot_addon_return_data;
+                                            if(isset($geekybot_addon_return_data['status']) && $geekybot_addon_return_data['status'] == 0){
+                                                $error_message = $geekybot_addon_return_data['message'];
+                                                $transactionkey = $geekybot_addon_return_data['transactionkey'];
                                             }
-                                            unset($ms_addon_return_data);
+                                            unset($geekybot_addon_return_data);
                                         }
                                         ?>
                                         <div class="geekybot-addon-installer-key-field" >
@@ -81,7 +81,7 @@ $geekybot_js ="
 
     function jsShowLoading(){
         jQuery('div#black_wrapper_translation').show();
-        jQuery('div#mstran_loading').show();
+        jQuery('div#geekybot_loading').show();
     }
 
 ";

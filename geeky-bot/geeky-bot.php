@@ -3,14 +3,14 @@
 /**
  * @package Geeky Bot
  * @author Geeky Bot
- * @version 1.0.7
+ * @version 1.0.8
  */
 /*
   * Plugin Name: Geeky Bot
   * Plugin URI: https://geekybot.com/
   * Description: The ultimate AI chatbot for WooCommerce lead generation, intelligent web search, and interactive customer engagement on your WordPress website.
   * Author: Geeky Bot
-  * Version: 1.0.7
+  * Version: 1.0.8
   * Text Domain: geeky-bot
   * Domain Path: /languages
   * Author URI: https://geekybot.com/
@@ -87,7 +87,7 @@ class geekybot {
         self::$_data = array();
         self::$_error_flag = null;
         self::$_error_flag_message = null;
-        self::$_currentversion = '107';
+        self::$_currentversion = '108';
         self::$_addon_query = array('select'=>'','join'=>'','where'=>'');
         self::$_config = GEEKYBOTincluder::GEEKYBOT_getModel('configuration');
         self::$_isgeekybotplugin = true;
@@ -219,7 +219,7 @@ class geekybot {
                     // restore colors data end
                     update_option('geekybot_currentversion', self::$_currentversion);
                     include_once GEEKYBOT_PLUGIN_PATH . 'includes/updates/updates.php';
-                    GEEKYBOTupdates::GEEKYBOT_checkUpdates('107');
+                    GEEKYBOTupdates::GEEKYBOT_checkUpdates('108');
                     GEEKYBOTincluder::GEEKYBOT_getModel('geekybot')->updateColorFile();
                 }
             }
@@ -300,6 +300,10 @@ class geekybot {
                             // load the default listing style for this post type if available
                             apply_filters('geekybot_load_custom_listing_style_template', $post_type);
                         }
+                        if(in_array('customtextstyle', geekybot::$_active_addons)){
+                            // load the default text style for this post type if available
+                            apply_filters('geekybot_load_custom_text_style_template', $post_type);
+                        }
                     }
                 }
             }
@@ -350,7 +354,7 @@ class geekybot {
                         // delete post type style
                         apply_filters('geekybot_delete_custom_listing_style', $post_type);
                     }
-                    if(in_array('customlistingtext', geekybot::$_active_addons)){
+                    if(in_array('customtextstyle', geekybot::$_active_addons)){
                         // delete post type text
                         apply_filters('geekybot_delete_custom_listing_text', $post_type);
                     }
@@ -370,6 +374,28 @@ class geekybot {
         } elseif (get_option('geekybot_woocommerce_synchronization_flag') == 1) {
             update_option('geekybot_woocommerce_synchronization_flag', 0);
             $result = GEEKYBOTincluder::GEEKYBOT_getModel('woocommerce')->geekybotSynchronizeWooCommerceProducts();
+        } elseif (get_option('geekybot_load_custom_listing_style_template_flag') == 1) {
+            update_option('geekybot_load_custom_listing_style_template_flag', 0);
+            // Fetch all public and queryable post types
+            $args = array(
+                'public'             => true, // Post types available on the front-end
+                'publicly_queryable' => true,  // Must be queryable via URLs
+            );
+            $current_post_types = get_post_types($args, 'names');
+            foreach ($current_post_types as $post_type) {
+                apply_filters('geekybot_load_custom_listing_style_template', $post_type);
+            }
+        } elseif (get_option('geekybot_load_custom_text_style_template_flag') == 1) {
+            update_option('geekybot_load_custom_text_style_template_flag', 0);
+            // Fetch all public and queryable post types
+            $args = array(
+                'public'             => true, // Post types available on the front-end
+                'publicly_queryable' => true,  // Must be queryable via URLs
+            );
+            $current_post_types = get_post_types($args, 'names');
+            foreach ($current_post_types as $post_type) {
+                apply_filters('geekybot_load_custom_text_style_template', $post_type);
+            }
         }
     }
 

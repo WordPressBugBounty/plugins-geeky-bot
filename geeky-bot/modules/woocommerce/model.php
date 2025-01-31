@@ -37,7 +37,7 @@ class GEEKYBOTwoocommerceModel {
         $products = wc_get_products($args);
         if($products){
             $allProducts = wp_count_posts('product')->publish;
-            $html = GEEKYBOTincluder::GEEKYBOT_getModel('stories')->getWcProductListingHtml($msg, $products, 'story', $allProducts, $currentPage, 'geekybot_showAllProducts', $data);
+            $html = GEEKYBOTincluder::GEEKYBOT_getModel('stories')->getWcProductListingHtml($msg, $products, 'story', $allProducts, $currentPage, 'woocommerce', 'geekybot_showAllProducts', $data);
         } else {
             $html = __("No product was found.", "geeky-bot");
         }
@@ -132,7 +132,7 @@ class GEEKYBOTwoocommerceModel {
             );
             $product_ids = wc_get_products($args);
             $allProducts = count($product_ids); // Get the total count of products
-            $html = GEEKYBOTincluder::GEEKYBOT_getModel('stories')->getWcProductListingHtml($msg, $products, 'story', $allProducts, $currentPage, 'geekybot_searchProduct', $data);
+            $html = GEEKYBOTincluder::GEEKYBOT_getModel('stories')->getWcProductListingHtml($msg, $products, 'story', $allProducts, $currentPage, 'woocommerce', 'geekybot_searchProduct', $data);
         }else{
             $args = array(
                 'name' => $search_value, // Search parameter for product title
@@ -154,7 +154,7 @@ class GEEKYBOTwoocommerceModel {
                 );
                 $product_ids = wc_get_products($args);
                 $allProducts = count($product_ids); // Get the total count of products
-                $html = GEEKYBOTincluder::GEEKYBOT_getModel('stories')->getWcProductListingHtml($msg, $products, 'story', $allProducts, $currentPage, 'geekybot_searchProduct', $data);
+                $html = GEEKYBOTincluder::GEEKYBOT_getModel('stories')->getWcProductListingHtml($msg, $products, 'story', $allProducts, $currentPage, 'woocommerce', 'geekybot_searchProduct', $data);
             } else {
                 // call the fallback
                 // [v1.0.7] Change FallBack Logic.
@@ -239,7 +239,7 @@ class GEEKYBOTwoocommerceModel {
 
         $html = '';
         if ($products) {
-            $html = GEEKYBOTincluder::GEEKYBOT_getModel('stories')->getWcProductListingHtml($msg, $products, 'story', $totalProducts, $currentPage, 'geekybot_getProductsUnderPrice', $data);
+            $html = GEEKYBOTincluder::GEEKYBOT_getModel('stories')->getWcProductListingHtml($msg, $products, 'story', $totalProducts, $currentPage, 'woocommerce', 'geekybot_getProductsUnderPrice', $data);
         }
 
         return $html;
@@ -322,7 +322,7 @@ class GEEKYBOTwoocommerceModel {
 
         $html = '';
         if ($products) {
-            $html = GEEKYBOTincluder::GEEKYBOT_getModel('stories')->getWcProductListingHtml($msg, $products, 'story', $totalProducts, $currentPage, 'geekybot_getProductsAbovePrice', $data);
+            $html = GEEKYBOTincluder::GEEKYBOT_getModel('stories')->getWcProductListingHtml($msg, $products, 'story', $totalProducts, $currentPage, 'woocommerce', 'geekybot_getProductsAbovePrice', $data);
         }
 
         return $html;
@@ -335,7 +335,7 @@ class GEEKYBOTwoocommerceModel {
             return $return['text'] = __("WooCommerce is currently inactive.", "geeky-bot");
         }
         // get the variable for product name from the given list of variable in the parameter
-        if (isset($data['woo_product_price_from']) && isset($data['woo_product_price_to'])) {
+        if (isset($data['woo_product_price_from']) && is_numeric($data['woo_product_price_from']) && isset($data['woo_product_price_to']) && is_numeric($data['woo_product_price_to'])) {
             $min_price = $data['woo_product_price_from'];
             $max_price = $data['woo_product_price_to'];
             $min_price = $this->geekybot_normalize_price_with_wc($min_price);
@@ -390,7 +390,7 @@ class GEEKYBOTwoocommerceModel {
         $products = array_slice($filteredProducts, $offset, $productsPerPage);
         $html = '';
         if($products){
-            $html = GEEKYBOTincluder::GEEKYBOT_getModel('stories')->getWcProductListingHtml($msg, $products, 'story', $allProducts, $currentPage, 'geekybot_getProductsBetweenPrice', $data);
+            $html = GEEKYBOTincluder::GEEKYBOT_getModel('stories')->getWcProductListingHtml($msg, $products, 'story', $allProducts, $currentPage, 'woocommerce', 'geekybot_getProductsBetweenPrice', $data);
         }
         return $html; 
         wp_die();
@@ -485,7 +485,7 @@ class GEEKYBOTwoocommerceModel {
         }
 
         if($products){
-            $text = GEEKYBOTincluder::GEEKYBOT_getModel('stories')->getWcProductListingHtml($msg, $products, $type, $total_products, $current_page, 'showProductsList', $data);
+            $text = GEEKYBOTincluder::GEEKYBOT_getModel('stories')->getWcProductListingHtml($msg, $products, $type, $total_products, $current_page, 'woocommerce', 'showProductsList', $data);
         } else {
             $text = __("No product was found.", "geeky-bot");
         }

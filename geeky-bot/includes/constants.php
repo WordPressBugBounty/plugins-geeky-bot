@@ -194,6 +194,7 @@ if (!defined('GEEKYBOT_FILE_TYPE_ERROR')) {
             'value' => array(),
             'selected' => array(),
             'style' => array(),
+            'disabled' => array(),
         ),
         'img'      => array(
             'src'  => array(),

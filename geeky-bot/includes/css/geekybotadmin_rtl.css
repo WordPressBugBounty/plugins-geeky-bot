@@ -100,7 +100,6 @@ div.geekybot-listing-section .geekybot-text-left .geekybot-listing-subheading{pa
 div#geekybotadmin-wrapper div#geekybotadmin-data div#geekybot-admin-wrapper div.tablenav div.geekybot-tablenav-pages .page-numbers img{transform: scaleX(-1);}
 div.geekybot-listing-section .geekybot-listing-button-wrp a img{margin-right: 0;margin-left: 5px;}
 div.geekybot-listing-section .geekybot-listing-button-wrp a{margin-right: 0;margin-left: 5px;}
-ul.geekybotadmin-sidebar-menu li a img.geekybotadmin-menu-icon{transform: scaleX(-1);}
 div.geekybot-listing-section .geekybot-listing-stories-heading-mainwrp{padding-right: 0;padding-left: 40px;}
 div.geekybot-listing-section .geekybot-listing-stories-heading-mainwrp .geekybot-listing-stories-heading-right-disable-btn{float: left;}
 div.geekybot-listing-section .geekybot-listing-stories-heading-mainwrp .geekybot-listing-stories-heading-right-active-btn{float: left;}
@@ -254,7 +253,18 @@ div.geekybot-template-set-value-popupwrp form.geekybot-form .geekybot-template-f
 div.geekybot-template-section .geekybot-custom-listing-nodata-wrp img{transform: scaleX(-1);}
 /* template message */
 div.geekybot-custom-listing-tmplate-infowrp img{margin-right: 0;margin-left: 10px;}
-
+/* addons pages */
+#geekybot-addon-installer-addon-checkall-checkbox{margin-right: 0;margin-left: 25px;}
+.geekybot-addon-installer-addon-section-select_all_div{text-align: right;}
+.geekybot-addon-installer-addon-section-select_all_div label{margin-left: 0;margin-right: 1rem;}
+div.geekybot-addon-installer-wrapper div.geekybot-addon-installer-section-wrap div.geekybot-addon-installer-addon-wrapper div.geekybot-addon-installer-addon-section div.geekybot-addon-installer-addon-single .geekybot-addon-installer-addon-single-checkbox{margin-right: 5px;margin-left: 25px;}
+div.geekybot-admin-addons-list-data .geekybot-admin-addons-list-wrp .geekybot-admin-addon-status-addonstatusbtn-wrp a{float: right;}
+div.geekybot-admin-addons-list-data .geekybot-admin-addons-list-wrp .geekybot-admin-addon-status-addonstatusbtn-wrp a.geekybot-admin-addons-update-btn{float: left;}
+div.geekybot-admin-addons-list-data .geekybot-admin-addons-list-wrp .geekybot-admin-addon-status-addonstatusbtn-wrp a.geekybot-admin-addon-status-updatedbtn{float: left;}
+div.geekybot-admin-addons-list-data .geekybot-admin-addons-list-wrp .geekybot-admin-addon-status-addonstatusbtn-wrp .geekybot-admin-addons-buy-btn{margin-left: 0;margin-right: 5px;}
+#geekybot-addon-installer-addon-checkall-checkbox[type="checkbox"]:checked::before, #geekybot-addon-installer-addon-checkall-checkbox[type="radio"]:checked::before{margin: -10px;}
+div.geekybot-addon-installer-wrapper div.geekybot-addon-installer-section-wrap div.geekybot-addon-installer-addon-wrapper div.geekybot-addon-installer-addon-section div.geekybot-addon-installer-addon-single{float: right;}
+.geekybot-addon-installer-addon-name input[type="checkbox"]:checked::before, .geekybot-addon-installer-addon-name input[type="radio"]:checked::before{margin: -10px;}
 
 @media (max-width:1650px){
   div.geekybot-template-section .geekybot-template-section-field .geekybot-form-title{text-align: start;}
@@ -341,6 +351,8 @@ div.geekybot-custom-listing-tmplate-infowrp img{margin-right: 0;margin-left: 10p
   div.geekybot-dashboard-story-section-innerwrp .geekybot-dashboard-story-section-button.search-enable-btn{margin-left: 10px;margin-right: 0;}
   /* template custon listing */
   div.geekybot-template-section .geekybot-form-field-enbledsable-wrp input[type="checkbox"]:checked::before {margin: -7px -6px;}
+  #geekybot-addon-installer-addon-checkall-checkbox[type="checkbox"]:checked::before, #geekybot-addon-installer-addon-checkall-checkbox[type="radio"]:checked::before {margin: -14px;}
+  .geekybot-addon-installer-addon-name input[type="checkbox"]:checked::before, .geekybot-addon-installer-addon-name input[type="radio"]:checked::before {margin: -14px;}
 }
 @media (max-width:650px){
   div.post-installtion-content-wrapper .post-installtion-content_wrapper_right{padding-right: 0;}

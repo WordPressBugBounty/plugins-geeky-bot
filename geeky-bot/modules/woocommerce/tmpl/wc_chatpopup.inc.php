@@ -55,11 +55,11 @@ if (!defined('ABSPATH'))
         });
     }
 
-    function geekybotLoadMoreProducts(msg, next_page, function_name, dataArray) {
+    function geekybotLoadMoreProducts(msg, next_page, model_name, function_name, dataArray) {
         var message = '".esc_html(__('Show More', 'geeky-bot'))."';
         SaveChathistory(message,'user');
         var ajaxurl = '".esc_url(admin_url('admin-ajax.php'))."';
-        jQuery.post(ajaxurl, { action: 'geekybot_frontendajax', geekybotme: 'geekybot', task: 'geekybotLoadMoreProducts', msg: msg, next_page: next_page,functionName : function_name,data : dataArray, '_wpnonce':'".esc_attr(wp_create_nonce("load-more")) ."'}, function (data) {
+        jQuery.post(ajaxurl, { action: 'geekybot_frontendajax', geekybotme: 'geekybot', task: 'geekybotLoadMoreProducts', msg: msg, next_page: next_page,modelName : model_name,functionName : function_name,data : dataArray, '_wpnonce':'".esc_attr(wp_create_nonce("load-more")) ."'}, function (data) {
             if (data) {
                 geekybot_scrollToTop(190);
                 var message = geekybot_DecodeHTML(data)

@@ -101,14 +101,14 @@ $geekybot_js ="
     		</div>
             <?php 
             $custom_listing = '';
-            if(in_array('customlistingstyle', geekybot::$_active_addons) || in_array('customlistingtext', geekybot::$_active_addons)){
+            if(in_array('customlistingstyle', geekybot::$_active_addons) || in_array('customtextstyle', geekybot::$_active_addons)){
                 $all_meta_keys = GEEKYBOTincluder::GEEKYBOT_getModel('websearch')->geekybotGetAllMetaKeys(geekybot::$_data[0]->post_type);
             }
             if(in_array('customlistingstyle', geekybot::$_active_addons)){
-                $custom_listing .= apply_filters('geekybot_custom_listing_style_form', geekybot::$_data[0]->post_type, $all_meta_keys);
+                $custom_listing .= apply_filters('geekybot_custom_listing_style_form', geekybot::$_data[0], $all_meta_keys);
             }
-            if(in_array('customlistingtext', geekybot::$_active_addons)){
-                $custom_listing .= apply_filters('geekybot_custom_listing_text_form', geekybot::$_data[0]->post_type, $all_meta_keys);
+            if(in_array('customtextstyle', geekybot::$_active_addons)){
+                $custom_listing .= apply_filters('geekybot_custom_listing_text_form', geekybot::$_data[0], $all_meta_keys);
             }
             if ($custom_listing != '') {
                 if (!empty(geekybot::$_data[0]->action_data)) {
@@ -185,18 +185,43 @@ $geekybot_js ="
                     } else { ?>
                         <div class="geekybot-custom-listing-nodata-wrp">
                             <img src="<?php echo esc_url(GEEKYBOT_PLUGIN_URL); ?>includes/images/websearch/nodata.png" title="<?php echo esc_attr(__('Create a Post', 'geeky-bot')); ?>" alt="<?php echo esc_attr(__('Create a Post', 'geeky-bot')); ?>" class="geekybot-websearch-creat-postimg">
-                            <span class="geekybot-websearch-creat-posttitle"><?php echo esc_html(__('Please first create a sample post to use template section.', 'geeky-bot')); ?></span>
+                            <span class="geekybot-websearch-creat-posttitle">
+                                <?php
+                                if (isset(geekybot::$_data[0]->post_label)) {
+                                    echo esc_html(__('Please create a', 'geeky-bot')) . " " .esc_html(geekybot::$_data[0]->post_label) . " " . esc_html(__('to use template section.', 'geeky-bot'));
+                                } else {
+                                    echo esc_html(__('Please create a post to use template section.', 'geeky-bot'));
+                                } ?>        
+                            </span>
                         </div>
                         <?php
                     }
                     $geekybot_js ="
-                    jQuery(document).ready(function() {
+                    jQuery(document).ready(function() {";
+
+                        if (isset(geekybot::$_data[0]->template_id)){
+                            if (in_array(geekybot::$_data[0]->template_id, [1, 2, 3])) {
+                                $geekybot_js .= "
+                                jQuery('.geekybot-template-section-block-two').hide();";
+                            } else if ( in_array(geekybot::$_data[0]->template_id, [4, 5, 6]) ) {
+                                $geekybot_js .= "
+                                jQuery('.geekybot-template-section-block-one').hide();";
+                            }
+                        }
+                        $geekybot_js .="
                         let selectedOption = null;
                         jQuery('.geekybot-template-section-tmpcard').click(function() {
                             jQuery('.geekybot-template-section-tmpcard').removeClass('geeky-bot-selectedtemp');
                             jQuery(this).addClass('geeky-bot-selectedtemp');
                             var template_id = jQuery(this).attr('data-templateid');
                             jQuery('#template_id').val(template_id);
+                            if ( template_id == 1 || template_id == 2 || template_id == 3 ) {
+                                jQuery('.geekybot-template-section-block-two').slideUp(1000);
+                                jQuery('.geekybot-template-section-block-one').slideDown(1000);
+                            } else if ( template_id == 4 || template_id == 5 || template_id == 6 ) {
+                                jQuery('.geekybot-template-section-block-one').slideUp(1000);
+                                jQuery('.geekybot-template-section-block-two').slideDown(1000);
+                            }
                             selectedOption = jQuery(this).data('option');
                         });
                     });

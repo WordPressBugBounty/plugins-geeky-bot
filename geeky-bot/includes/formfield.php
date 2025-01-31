@@ -126,11 +126,12 @@ class GEEKYBOTformfield {
         }
         if (!empty($list))
             foreach ($list AS $record) {
-                $class=isset($record->class)?$record->class:"";
+                $class = isset($record->class) ? $record->class : "";
+                $disabled = isset($record->disabled) ? $record->disabled : "";
                 if ((is_array($defaultvalue) && in_array($record->id, $defaultvalue)) || $defaultvalue == $record->id)
-                    $selectfield .= '<option class="' . $class . '"  selected="selected" value="' . $record->id . '">' . geekybot::GEEKYBOT_getVarValue($record->text) . '</option>';
+                    $selectfield .= '<option class="' . $class . '"  selected="selected" value="' . $record->id . '" '.$disabled.'>' . geekybot::GEEKYBOT_getVarValue($record->text) . '</option>';
                 else
-                    $selectfield .= '<option class="' . $class . '" value="' . $record->id . '">' . geekybot::GEEKYBOT_getVarValue($record->text) . '</option>';
+                    $selectfield .= '<option class="' . $class . '" value="' . $record->id . '" '.$disabled.'>' . geekybot::GEEKYBOT_getVarValue($record->text) . '</option>';
             }
 
         $selectfield .= '</select>';

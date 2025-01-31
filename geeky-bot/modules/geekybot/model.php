@@ -415,10 +415,11 @@ class GEEKYBOTgeekybotModel {
         $data = GEEKYBOTrequest::GEEKYBOT_getVar('data');
         $next_page = GEEKYBOTrequest::GEEKYBOT_getVar('next_page');
         $functionName = GEEKYBOTrequest::GEEKYBOT_getVar('functionName');
+        $modelName = GEEKYBOTrequest::GEEKYBOT_getVar('modelName');
         if(!is_array($data)) {
             $data = json_decode($data,true);
         }
-        $products = GEEKYBOTincluder::GEEKYBOT_getModel('woocommerce')->$functionName($msg, $data, $next_page);
+        $products = GEEKYBOTincluder::GEEKYBOT_getModel($modelName)->$functionName($msg, $data, $next_page);
         // save bot response to the session and chat history
         geekybot::$_geekybotsessiondata->geekybot_addChatHistoryToSession($products, 'bot');
         GEEKYBOTincluder::GEEKYBOT_getModel('chathistory')->SaveChathistoryFromchatServer($products, 'bot');

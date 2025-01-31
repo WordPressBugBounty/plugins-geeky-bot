@@ -681,16 +681,22 @@ class GEEKYBOTstoriesModel {
             die( 'Security check Failed' ); 
         }
         $function_id = GEEKYBOTrequest::GEEKYBOT_getVar('id');
+        $story_type = GEEKYBOTrequest::GEEKYBOT_getVar('story_type');
         $html = '';
         if (isset($function_id) && is_numeric($function_id)) {
             $query = "SELECT id, function_id FROM `" . geekybot::$_db->prefix . "geekybot_responses` where id = ".esc_sql($function_id);
             $function = geekybotdb::GEEKYBOT_get_row($query);
         }
+        if ($story_type == 2) {
+            $predefinedFunctions = GEEKYBOTincluder::GEEKYBOT_getModel('stories')->getPredefinedFunctionsForWCCombobox();
+        } else{
+            $predefinedFunctions = GEEKYBOTincluder::GEEKYBOT_getModel('stories')->getPredefinedFunctionsForAICombobox();
+        }
         $html .= '
             <div class="geekybot-form-wrapper">
                 '. wp_kses(GEEKYBOTformfield::GEEKYBOT_hidden('response_type_function', 4), GEEKYBOT_ALLOWED_TAGS).'
                 <div class="geekybot-form-value" id="visibleFunction">
-                    '. wp_kses(GEEKYBOTformfield::GEEKYBOT_select('function_id', GEEKYBOTincluder::GEEKYBOT_getModel('stories')->getPredefinedFunctionsForCombobox(), isset($function->function_id) ? $function->function_id : '', __('Select Predefined Function', 'geeky-bot'), array('class' => 'inputbox geekybot-form-select-field')), GEEKYBOT_ALLOWED_TAGS).'
+                    '. wp_kses(GEEKYBOTformfield::GEEKYBOT_select('function_id', $predefinedFunctions, isset($function->function_id) ? $function->function_id : '', __('Select Predefined Function', 'geeky-bot'), array('class' => 'inputbox geekybot-form-select-field')), GEEKYBOT_ALLOWED_TAGS).'
                 </div>
                 '.wp_kses(GEEKYBOTformfield::GEEKYBOT_hidden('id', isset($function->id) ? $function->id : ''),GEEKYBOT_ALLOWED_TAGS).'
             </div>';
@@ -1926,7 +1932,7 @@ class GEEKYBOTstoriesModel {
         return $data;
     }
 
-    function getWcProductListingHtml($msg, $products, $type, $all_products_count, $current_page, $function_name, $data) {
+    function getWcProductListingHtml($msg, $products, $type, $all_products_count, $current_page, $model_name, $function_name, $data) {
         $text = "";
         if($products){
             $products_per_page = geekybot::$_configuration['pagination_product_page_size'];
@@ -1941,6 +1947,14 @@ class GEEKYBOTstoriesModel {
                 $text .= "<div class='geekybot_wc_product_heading'>".__('You might like these products.', 'geeky-bot')."</div>";
             } elseif ($type == 'fallbacktwo') {
                 $text .= "<div class='geekybot_wc_product_heading'>".__("No exact match was found. Explore these similar products.", 'geeky-bot')."</div>";
+            } elseif ($type == 'saleProducts') {
+                $text .= "<div class='geekybot_wc_product_heading'>".__("Here are some sale products.", 'geeky-bot')."</div>";
+            } elseif ($type == 'trendingProducts') {
+                $text .= "<div class='geekybot_wc_product_heading'>".__("Here are some trending products.", 'geeky-bot')."</div>";
+            } elseif ($type == 'latestProducts') {
+                $text .= "<div class='geekybot_wc_product_heading'>".__("Here are some latest products.", 'geeky-bot')."</div>";
+            } elseif ($type == 'highestRatedProducts') {
+                $text .= "<div class='geekybot_wc_product_heading'>".__("Here are some highly rated products.", 'geeky-bot')."</div>";
             } else {
                 $text .= "<div class='geekybot_wc_product_heading'>".__('Here are some suggestions.', 'geeky-bot')."</div>";
             }
@@ -1957,7 +1971,11 @@ class GEEKYBOTstoriesModel {
                         </div>
                         <div class='geekybot_wc_product_price'>
                             ".$product->get_price_html()."
-                        </div>
+                        </div>";
+                        if(in_array('woocommercepropack', geekybot::$_active_addons)) {
+                            $text .= apply_filters('geekybot_woocommercepropack_reviews_html', $product);
+                        }
+                        $text .= "
                         <div class='geekybot_wc_product_action_btn_wrp'>";
                             $product_type = $product->get_type();
                             if ($product_type == 'simple') {
@@ -1982,6 +2000,9 @@ class GEEKYBOTstoriesModel {
                             } else {
                                 $text .= '<button class="geekybot_wc_product_action_btn btn-primary" onclick="geekybotAddToCart('.$product->get_id().')" value="/add_to_cart{&quot;product_id&quot;:'.$product->get_id().'}">'. __('Add to cart', 'geeky-bot') .'</button>';
                             }
+                            if(in_array('woocommercepropack', geekybot::$_active_addons)) {
+                                // $text .= apply_filters('geekybot_woocommercepropack_wishlist_html', 1);
+                            }
                             $text .= "
                         </div>
                     </div>
@@ -1995,7 +2016,7 @@ class GEEKYBOTstoriesModel {
                     $message = '';
 
                     $next_page = $current_page + 1;
-                    $text .= "<span class='geekybot_wc_product_load_more' onclick=\"geekybotLoadMoreProducts('".$message."','".$next_page."','".$function_name."','".$data."');\">".__('Show More', 'geeky-bot')."</span>";
+                    $text .= "<span class='geekybot_wc_product_load_more' onclick=\"geekybotLoadMoreProducts('".$message."','".$next_page."','".$model_name."','".$function_name."','".$data."');\">".__('Show More', 'geeky-bot')."</span>";
                 }
             $text .= "</div>";
             $text = geekybotphplib::GEEKYBOT_htmlentities($text);
@@ -2067,12 +2088,26 @@ class GEEKYBOTstoriesModel {
             $function_name = 'resetPassword';
         } else if ($function_id == 6) {
             $function_name = 'SendChatToAdmin';
+        } else if ($function_id == 7) {
+            $function_name = 'showAllSaleProducts';
+        } else if ($function_id == 8) {
+            $function_name = 'showAllTrendingProducts';
+        } else if ($function_id == 9) {
+            $function_name = 'showAllLatestProducts';
+        } else if ($function_id == 10) {
+            $function_name = 'showAllHighestRatedProducts';
+        } else if ($function_id == 11) {
+            $function_name = 'viewOrders';
+        } else if ($function_id == 12) {
+            $function_name = 'viewAccountDetails';
         } else if ($function_id == 13) {
             $function_name = 'getProductsUnderPrice';
         } else if ($function_id == 14) {
             $function_name = 'getProductsBetweenPrice';
         } else if ($function_id == 15) {
             $function_name = 'getProductsAbovePrice';
+        } else if ($function_id == 16) {
+            $function_name = 'orderTracking';
         } else {
             $function_name = 'showAllProducts';
         }
@@ -2092,12 +2127,26 @@ class GEEKYBOTstoriesModel {
             $function_id = 5;
         } else if ($function_name == 'SendChatToAdmin') {
             $function_id = 6;
+        } else if ($function_name == 'showAllSaleProducts') {
+            $function_id = 7;
+        } else if ($function_name == 'showAllTrendingProducts') {
+            $function_id = 8;
+        } else if ($function_name == 'showAllLatestProducts') {
+            $function_id = 9;
+        } else if ($function_name == 'showAllHighestRatedProducts') {
+            $function_id = 10;
+        } else if ($function_name == 'viewOrders') {
+            $function_id = 11;
+        } else if ($function_name == 'viewAccountDetails') {
+            $function_id = 12;
         } else if ($function_name == 'getProductsUnderPrice') {
             $function_id = 13;
         } else if ($function_name == 'getProductsBetweenPrice') {
             $function_id = 14;
         } else if ($function_name == 'getProductsAbovePrice') {
             $function_id = 15;
+        } else if ($function_name == 'orderTracking') {
+            $function_id = 16;
         } else {
             $function_id = 1;
         }
@@ -2157,25 +2206,46 @@ class GEEKYBOTstoriesModel {
         return $templatesList;
     }
 
-    function getPredefinedFunctionsForCombobox(){
+    function getPredefinedFunctionsForAICombobox(){
+        $functionsList = array();
+        $functionsList[] = (object) array('id' => '5', 'text' => __('Reset Password', 'geeky-bot'));
+        $functionsList[] = (object) array('id' => '6', 'text' => __('Email To Admin With Chat Conversation', 'geeky-bot'));
+        return $functionsList;
+    }
+
+    function getPredefinedFunctionsForWCCombobox(){
         $functionsList = array();
         // check if woocommerce is active
-        if (class_exists('WooCommerce')) {
-            $functionsList[] = (object) array('id' => '1', 'text' => __('Show All Products', 'geeky-bot'));
-            $functionsList[] = (object) array('id' => '2', 'text' => __('Search Product', 'geeky-bot'));
-            $functionsList[] = (object) array('id' => '13', 'text' => __('Get Products Under Price', 'geeky-bot'));
-            // $functionsList[] = (object) array('id' => '14', 'text' => __('Get Products Between Price', 'geeky-bot'));
-            $functionsList[] = (object) array('id' => '15', 'text' => __('Get Products Above Price', 'geeky-bot'));
-            $functionsList[] = (object) array('id' => '3', 'text' => __('View Cart/Remove Items', 'geeky-bot'));
-            $functionsList[] = (object) array('id' => '4', 'text' => __('Checkout', 'geeky-bot'));
+        
+        $functionsList[] = (object) array('id' => '1', 'text' => __('Show All Products', 'geeky-bot'));
+        $functionsList[] = (object) array('id' => '2', 'text' => __('Search Product', 'geeky-bot'));
+        $functionsList[] = (object) array('id' => '13', 'text' => __('Get Products Under Price', 'geeky-bot'));
+        // $functionsList[] = (object) array('id' => '14', 'text' => __('Get Products Between Price', 'geeky-bot'));
+        $functionsList[] = (object) array('id' => '15', 'text' => __('Get Products Above Price', 'geeky-bot'));
+        $functionsList[] = (object) array('id' => '3', 'text' => __('View Cart/Remove Items', 'geeky-bot'));
+        $functionsList[] = (object) array('id' => '4', 'text' => __('Checkout', 'geeky-bot'));
+        $functionsList[] = (object) array('id' => '6', 'text' => __('Email To Admin With Chat Conversation', 'geeky-bot'));
+        if(in_array('woocommercepropack', geekybot::$_active_addons)) {
+            $functionsList[] = (object) array('id' => '7', 'text' => __('Show All Sale Products', 'geeky-bot'));
+            $functionsList[] = (object) array('id' => '8', 'text' => __('Show All Trending Products', 'geeky-bot'));
+            $functionsList[] = (object) array('id' => '9', 'text' => __('Show All Latest Products', 'geeky-bot'));
+            $functionsList[] = (object) array('id' => '10', 'text' => __('Show All Highest Rated Products', 'geeky-bot'));
+            $functionsList[] = (object) array('id' => '11', 'text' => __('View Orders', 'geeky-bot'));
+            $functionsList[] = (object) array('id' => '12', 'text' => __('view Account Details', 'geeky-bot'));
+        } else {
+            $functionsList[] = (object) array('id' => '', 'text' => __('Show All Sale Products {add-on base}', 'geeky-bot'), 'disabled' => 'disabled');
+            $functionsList[] = (object) array('id' => '', 'text' => __('Show All Trending Products {add-on base}', 'geeky-bot'), 'disabled' => 'disabled');
+            $functionsList[] = (object) array('id' => '', 'text' => __('Show All Latest Products {add-on base}', 'geeky-bot'), 'disabled' => 'disabled');
+            $functionsList[] = (object) array('id' => '', 'text' => __('Show All Highest Rated Products {add-on base}', 'geeky-bot'), 'disabled' => 'disabled');
+            $functionsList[] = (object) array('id' => '', 'text' => __('View Orders {add-on base}', 'geeky-bot'), 'disabled' => 'disabled');
+            $functionsList[] = (object) array('id' => '', 'text' => __('view Account Details {add-on base}', 'geeky-bot'), 'disabled' => 'disabled');
         }
-        $functionsList[] = (object) array('id' => '5', 'text' => __('Reset Password', 'geeky-bot'));
-        $functionsList[] = (object) array('id' => '6', 'text' => __('Send Chat To Admin', 'geeky-bot'));
+        // $functionsList[] = (object) array('id' => '16', 'text' => __('Track Order', 'geeky-bot'));
         return $functionsList;
     }
 
     function getPredefinedFunctionsName(){
-        $predefinedFunctions = ['showAllProducts', 'searchProduct', 'getProductsUnderPrice', 'getProductsBetweenPrice', 'getProductsAbovePrice', 'viewCart', 'checkOut', 'resetPassword', 'SendChatToAdmin'];
+        $predefinedFunctions = ['showAllProducts', 'searchProduct', 'getProductsUnderPrice', 'getProductsBetweenPrice', 'getProductsAbovePrice', 'viewCart', 'checkOut', 'resetPassword', 'SendChatToAdmin', 'showAllSaleProducts', 'showAllTrendingProducts', 'showAllLatestProducts', 'showAllHighestRatedProducts', 'viewOrders', 'viewAccountDetails', 'orderTracking'];
         return $predefinedFunctions;
     }
 }

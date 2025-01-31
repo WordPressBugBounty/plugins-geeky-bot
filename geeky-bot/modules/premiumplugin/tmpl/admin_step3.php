@@ -27,14 +27,14 @@ if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
                                         <?php
                                         $error_message = '';
                                         $transactionkey = '';
-                                        if(isset($_COOKIE['ms_addon_return_data'])){
-                                            $ms_addon_return_data = json_decode(geekybotphplib::GEEKYBOT_safe_decoding(geekybot::GEEKYBOT_sanitizeData($_COOKIE['ms_addon_return_data'])),true);// GEEKYBOT_sanitizeData() function uses wordpress santize functions
-                                            $ms_error_msg = $ms_addon_return_data;
-                                            if(isset($ms_addon_return_data['status']) && $ms_addon_return_data['status'] == 0){
-                                                $error_message = $ms_addon_return_data['message'];
-                                                $transactionkey = $ms_addon_return_data['transactionkey'];
+                                        if(isset($_COOKIE['geekybot_addon_return_data'])){
+                                            $geekybot_addon_return_data = json_decode(geekybotphplib::GEEKYBOT_safe_decoding(geekybot::GEEKYBOT_sanitizeData($_COOKIE['geekybot_addon_return_data'])),true);// GEEKYBOT_sanitizeData() function uses wordpress santize functions
+                                            $ms_error_msg = $geekybot_addon_return_data;
+                                            if(isset($geekybot_addon_return_data['status']) && $geekybot_addon_return_data['status'] == 0){
+                                                $error_message = $geekybot_addon_return_data['message'];
+                                                $transactionkey = $geekybot_addon_return_data['transactionkey'];
                                             }
-                                            unset($ms_addon_return_data);
+                                            unset($geekybot_addon_return_data);
                                         }
                                         ?>
                                         <div class="geekybot-addon-installer-key-field" >

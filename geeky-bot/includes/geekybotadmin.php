@@ -58,7 +58,7 @@ class geekybotadmin {
             array($this, 'GEEKYBOT_showAdminPage') // function name
         );
 
-        add_submenu_page('geekybot_hide', // parent slug
+        add_submenu_page('geekybot', // parent slug
             __('Install Add-ons', 'geeky-bot'), // Page title
             __('Install Add-ons', 'geeky-bot'), // menu title
             'geekybot', // capability

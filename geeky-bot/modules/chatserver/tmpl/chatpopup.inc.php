@@ -203,9 +203,13 @@ if (!defined('ABSPATH'))
             );
         }";
         $server_url = "";
-        $geekybot_js.='function sendRequestToServer(message,text,sender,chat_id){
-
-        jQuery.ajax({ ';
+        $geekybot_js.="function sendRequestToServer(message,text,sender,chat_id){
+            geekybot_scrollToTop(1);
+            jQuery(\"#chatbox\").append(\"<li class='actual_msg actual_msg_adm geekybot_loading'><section class='actual_msg_adm-img'><img src='" . esc_url($botImgScr) . "' alt='' /></section><section class='actual_msg_text_wrp'></section></li>\");
+            var listItem = jQuery(\"#chatbox\").find(\"li.actual_msg_adm\").last(); // Get the last inserted <li>
+            
+            listItem.find(\"section.actual_msg_text_wrp\").append(\"<section class='actual_msg_loading'><img src='".esc_url(GEEKYBOT_PLUGIN_URL)."includes/images/bot-typing.gif' alt='' /></section>\");
+        jQuery.ajax({ ";
             if(geekybot::$_configuration['ai_search'] == 0){
                 $geekybot_js .= 'url: "'.esc_url(admin_url('admin-ajax.php')).'",type: "POST",async: true,
                 data:( {"action": "geekybot_frontendajax", "geekybotme": "chatserver", "task": "getMessageResponse", "message": message,cmessage: message,ctext: text,csender:sender, "_wpnonce":"'.esc_attr(wp_create_nonce('get-message-response')).'"}),
@@ -228,6 +232,7 @@ if (!defined('ABSPATH'))
             $geekybot_js .='
             }).done(function(data) {
                 geekybot_scrollToTop(150);
+                jQuery(".actual_msg_loading").remove();
                 jQuery("#typing_message").remove();';
                 if(geekybot::$_configuration['ai_search'] == 0){
                     $geekybot_js.='
@@ -237,9 +242,7 @@ if (!defined('ABSPATH'))
                 }
                 $geekybot_js .="
                 if (data && Array.isArray(data) && data.length > 0) {
-                    jQuery(\"#chatbox\").append(\"<li class='actual_msg actual_msg_adm'><section class='actual_msg_adm-img'><img src='" . esc_url($botImgScr) . "' alt='' /></section><section class='actual_msg_text_wrp'></section></li>\");
                     jQuery.each(data, function( index, value ) {
-                        var listItem = jQuery(\"#chatbox\").find(\"li.actual_msg_adm\").last(); // Get the last inserted <li>
                         if (value.text) {
                             var sender = 'bot';
                             var message = '';";
@@ -333,7 +336,8 @@ if (!defined('ABSPATH'))
                                     });
                                     btnhtml += \"</div>\";
                                 }
-                                jQuery(\"#chatbox\").append(\"<li class='actual_msg actual_msg_adm'><section class='actual_msg_adm-img'><img src='".esc_url($botImgScr)."' alt='' /></section><section class='actual_msg_text_wrp'><section class='actual_msg_text'>\"+fbdata.text+\"</section>\"+btnhtml+\"</section></li>\");
+                                listItem.find(\"section.actual_msg_text_wrp\").append(\"<section class='actual_msg_text'>\" + fbdata.text + \"</section>\"); // Append text inside the <section>
+                                listItem.find(\"section.actual_msg_text_wrp\").append(btnhtml); // Append buttons inside the same <section>
                             }
                             
                         } else {
@@ -342,10 +346,12 @@ if (!defined('ABSPATH'))
                     });
                 }
             }).fail(function(data, textStatus, xhr) {
+                jQuery('.actual_msg_loading').remove();
                 var configmsg = '".esc_attr(geekybot::$_configuration['default_message'])."';
 
                 jQuery(\"#chatbox\").append(\"<li class='actual_msg actual_msg_adm'><section class='actual_msg_adm-img'><img src='".esc_url($botImgScr)."' alt='' /></section><section class='actual_msg_text'>\"+configmsg+\"</section></li>\");
             });
+            jQuery('.actual_msg_adm').removeClass('geekybot_loading');
         }
         jQuery(document).ready(function(){
             jQuery(\"div#jsendchat\").on('click',function(){

@@ -46,10 +46,16 @@ $layout = GEEKYBOTrequest::GEEKYBOT_getVar('geekybotlt');
             <img class="geekybotadmin-menu-icon geekybotadmin-menu-icon-active" alt="<?php echo esc_attr(__('Chatbot' , 'geeky-bot')); ?>" src="<?php echo esc_url(GEEKYBOT_PLUGIN_URL).'includes/images/control_panel/admin-left-menu/chatbot-blue.png'; ?>" />
         </a>
     </li>
-    <li style="display: none;" class="treeview <?php if($c == 'geekybot_premiumplugin') echo esc_attr('active'); ?>">
+    <li class="treeview <?php if($c == 'geekybot_premiumplugin' && $layout != 'addonstatus') echo esc_attr('active'); ?>">
         <a href="<?php echo esc_url(wp_nonce_url('admin.php?page=geekybot_premiumplugin&geekybotlt=step1','PremiumAddons'))?>" title="<?php echo esc_attr(__('Install Add-ons' , 'geeky-bot')); ?>">
             <img class="geekybotadmin-menu-icon" alt="<?php echo esc_attr(__('Install Add-ons' , 'geeky-bot')); ?>" src="<?php echo esc_url(GEEKYBOT_PLUGIN_URL).'includes/images/control_panel/admin-left-menu/adon-white.png'; ?>" />
             <img class="geekybotadmin-menu-icon geekybotadmin-menu-icon-active" alt="<?php echo esc_attr(__('Install Add-ons' , 'geeky-bot')); ?>" src="<?php echo esc_url(GEEKYBOT_PLUGIN_URL).'includes/images/control_panel/admin-left-menu/adon-color.png'; ?>" />
+        </a>
+    </li>
+    <li class="treeview <?php if($c == 'geekybot_premiumplugin' && $layout == 'addonstatus') echo esc_attr('active'); ?>">
+        <a href="<?php echo esc_url(wp_nonce_url('admin.php?page=geekybot_premiumplugin&geekybotlt=addonstatus','addonstatus'))?>" title="<?php echo esc_attr(__('Add-ons Status' , 'geeky-bot')); ?>">
+            <img class="geekybotadmin-menu-icon" alt="<?php echo esc_attr(__('Add-ons Status' , 'geeky-bot')); ?>" src="<?php echo esc_url(GEEKYBOT_PLUGIN_URL).'includes/images/control_panel/admin-left-menu/status-white.png'; ?>" />
+            <img class="geekybotadmin-menu-icon geekybotadmin-menu-icon-active" alt="<?php echo esc_attr(__('Add-ons Status' , 'geeky-bot')); ?>" src="<?php echo esc_url(GEEKYBOT_PLUGIN_URL).'includes/images/control_panel/admin-left-menu/status-color.png'; ?>" />
         </a>
     </li>
     <li class="geeky_hide treeview <?php if($c == 'geekybot_export' || ($c == 'geekybot' && $layout == 'export') ) echo esc_attr('active'); ?>">

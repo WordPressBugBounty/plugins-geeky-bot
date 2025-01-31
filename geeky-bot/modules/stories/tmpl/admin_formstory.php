@@ -920,6 +920,7 @@ if (isset(geekybot::$_data[0]['story'])) {
                                                 geekybotme: 'stories',
                                                 task: 'getResponseFunctionFormBodyHTMLAjax',
                                                 id: idNumber,
+                                                story_type: ".esc_attr(geekybot::$_data[0]['story']->story_type).",
                                                 '_wpnonce':'". esc_attr(wp_create_nonce("get-form-html")) ."'
                                             }, function(data) {
                                                 if (data) {
