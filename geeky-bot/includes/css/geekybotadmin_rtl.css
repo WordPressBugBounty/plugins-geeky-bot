@@ -11,7 +11,7 @@ div.geekybot-dashboard-installation-guide-wrp .geekybot-dashboard-installation-g
 div.geekybot-dashboard-installation-guide-wrp .geekybot-dashboard-installation-guide-text-wrp .geekybot-dashboard-installation-guide-heading-dis{padding-left: 0;padding-right: 20px;}
 div.geekybot-dashboard-installation-guide-wrp .geekybot-dashboard-installation-guide-text-wrp .geekybot-dashboard-installation-guide-videos-btnwrp{padding-left: 0;padding-right: 15px;}
 div.geekybot-dashboard-installation-guide-wrp .geekybot-dashboard-installation-guide-text-wrp .geekybot-dashboard-installation-guide-videos-btnwrp .geekybot-dashboard-installation-guide-video-btn{margin-left: 0;margin-right: 5px;}
-div.geekybot-dashboard-installation-guide-wrp .geekybot-dashboard-installation-guide-text-wrp .geekybot-dashboard-installation-guide-videos-btnwrp .geekybot-dashboard-installation-guide-video-btn img{margin-right: 0;margin-left: 5px;}
+div.geekybot-dashboard-installation-guide-wrp .geekybot-dashboard-installation-guide-text-wrp .geekybot-dashboard-installation-guide-videos-btnwrp .geekybot-dashboard-installation-guide-video-btn img{margin-right: 0;margin-left: 7px;}
 div.geekybot-dashboard-installation-guide-wrp .geekybot-dashboard-installation-guide-left-image img{transform: scaleX(-1);}
 /* dashboard */
 div.geekybot-dashboard-history-addon-section-wrp .geebot-dashboard-history-innersection .geebot-dashboard-history-right-section{padding-right: 20px;}
@@ -22,7 +22,7 @@ div.geekybot-dashboard-woocommerce-section .geekybot-dashboard-woocommerce-lefts
 div.geekybot-dashboard-storywatch-videobtnwrp .geekybot-dashboard-storywatch-videobtn img{margin-right: 0;margin-left: 10px;}
 div.geekybot-dashboard-aiwebsearch-section .geekybot-dashboard-aiwebsearch-leftsection .geekybot-dashboard-aiwebsearch-leftsection-title .geekybot-dashboard-aiwebsearch-rightsection-coloredtitle{display: inline-block;margin-right: 0;margin-left: 10px;}
 div.geekybot-dashboard-woocommerce-section .geekybot-dashboard-woocommerce-leftsection .geekybot-dashboard-woocommerce-leftsection-title .geekybot-dashboard-woocommerce-leftsection-coloredtitle{display: inline-block;}
-
+div#geekybotadmin-wrapper-right div.geekybotadmin-navbar-right div.geekybot-navbar-img-right .geekybot-navebar-right-version img{margin-right: 0;margin-left: 10px;}
 /* menu */
 .majestic-support-configurations-toggle img{float: left;padding: 10px;}
 div.geekybot-breadcrumbs-wrp{float: right;}
@@ -181,6 +181,16 @@ div#geekybotadmin-wrapper div#geekybotadmin-data div#geekybot-admin-wrapper div.
 div.geekybot_story_slots_wrp div.geekybot_story_slots_heading{text-align: left;}
 div.geekybot_story_slots_wrp span.geekybot_story_slots{text-align: left;}
 div.geekybot_story_wrp #canvas_container{display: flex;flex-direction: row-reverse;}
+/* new */
+div#geekybotadmin-wrapper div#geekybotadmin-data.geekybotadmin-story-data .geekybot_story_main_heading h1{margin-right: 0;margin-left: 20px;}
+div#geekybotadmin-wrapper div#geekybotadmin-data .geekybot_story_search_section_mainwrp #geekybotSearchResultsWrp span{padding-right: 0;padding-left: 10px;}
+div#geekybotadmin-wrapper div#geekybotadmin-data .geekybot_story_search_section_mainwrp #geekybotSearchResultsWrp span.geekybot-right-arrow-result{padding-left: 0;}
+div#geekybotadmin-wrapper div#geekybotadmin-data .geekybot_story_search_section_mainwrp .geekybot_story_search_section_searchwrp{margin-right: 0;margin-left: 15px;}
+div#geekybotadmin-wrapper div#geekybotadmin-data .geekybot_story_search_section_mainwrp #geekybotSearchResultsWrp span.geekybot-left-arrow-result{padding-left: 0;}
+div#geekybotadmin-wrapper div#geekybotadmin-data .geekybot_story_search_section_mainwrp #geekybotSearchResultsWrp .geekybot-left-arrow-result-wrp{order: 4;}
+div#geekybotadmin-wrapper div#geekybotadmin-data .geekybot_story_search_section_mainwrp #geekybotSearchResultsWrp .geekybot-right-arrow-result-wrp{order: 2;}
+div#geekybotadmin-wrapper div#geekybotadmin-data .geekybot_story_search_section_mainwrp #geekybotSearchResultsWrp .geekybot-story-searchresult-wrp{order: 3;}
+div#geekybotadmin-wrapper div#geekybotadmin-data .geekybot_story_search_section_mainwrp #geekybotSearchResultsWrp span{order: 1;}
 
 /* woocommerce story */
 div#geekybotadmin-wrapper div#geekybotadmin-data div#geekybot-admin-wrapper div.chatHistory div.chatHistory.chatcontent div.body div.body-inner div.body-content div.body-content-message, div#geekybotadmin-wrapper div#geekybotadmin-data div#geekybot-admin-wrapper div.chatHistory div.chatHistory.chatcontent div.body div.body-content div.body-content-message{padding-left: 0;padding-right: 20px;}
@@ -265,6 +275,8 @@ div.geekybot-admin-addons-list-data .geekybot-admin-addons-list-wrp .geekybot-ad
 #geekybot-addon-installer-addon-checkall-checkbox[type="checkbox"]:checked::before, #geekybot-addon-installer-addon-checkall-checkbox[type="radio"]:checked::before{margin: -10px;}
 div.geekybot-addon-installer-wrapper div.geekybot-addon-installer-section-wrap div.geekybot-addon-installer-addon-wrapper div.geekybot-addon-installer-addon-section div.geekybot-addon-installer-addon-single{float: right;}
 .geekybot-addon-installer-addon-name input[type="checkbox"]:checked::before, .geekybot-addon-installer-addon-name input[type="radio"]:checked::before{margin: -10px;}
+/* story pagination */
+.geekybot_story_pagination_wrp{flex-direction: row-reverse;}
 
 @media (max-width:1650px){
   div.geekybot-template-section .geekybot-template-section-field .geekybot-form-title{text-align: start;}

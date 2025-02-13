@@ -39,6 +39,372 @@ if (isset(geekybot::$_data[0]['story'])) {
     $fallbackMsg = __('Default Fallback', 'geeky-bot');
     $geekybot_js ="
     jQuery(document).ready(function() {
+        jQuery(document).on('keypress', '#searchInput', function(event) {
+            // Check if the Enter key (key code 13) is pressed
+            if (event.which === 13) {
+                event.preventDefault();  // Prevent the default action (form submission or other behavior)
+                // Trigger the search button click
+                jQuery('#searchBtn').click();
+            }
+        });
+        jQuery(document).on('click', '#searchBtn', function(event) {
+            var storyid = jQuery('input#storyid').val();
+            var searchQuery = jQuery('#searchInput').val().trim();
+            var searchType = jQuery('#searchType').val().trim();
+            jQuery('#geekybotSearchResultsWrp').html('');
+
+            if (searchQuery === '') {
+                alert('" . __('Please enter a search term.', 'geeky-bot') . "');
+                return;
+            }
+            // get search results
+            var ajaxurl = '" . esc_url(admin_url("admin-ajax.php")) . "';
+            jQuery.post(ajaxurl, {
+                action: 'geekybot_ajax',
+                geekybotme: 'stories',
+                task: 'getSearchResults',
+                storyid: storyid,
+                query: searchQuery,
+                searchType: searchType,
+                '_wpnonce': '" . esc_attr(wp_create_nonce("story-search-results-".$story_id)) . "'
+            }, function(response) {
+                jQuery('#geekybotSearchResultsWrp').show();
+                if (response) {
+                    let data = JSON.parse(response);
+                    let html = '';
+                    // Display user inputs
+                    if (data.userinputs.length > 0) {
+                        data.userinputs.forEach(record => {
+                            let userInput = record.user_messages_text.split(' ').slice(0, 3).join(' '); // Get only first 3 words
+                            html += `<div id='` + record.group_id + `' title=\"` + record.user_messages_text + `\" class='user-input-search-result'>` + userInput + `</div>`;
+                        });
+                    }
+
+                    // Display bot responses (text & function names)
+                    if (data.responses.length > 0) {
+                        data.responses.forEach(record => {
+                            let responseText = record.bot_response || 'Unknown Response';
+                            let botResponse = record.bot_response.split(' ').slice(0, 3).join(' '); // Get only first 3 words
+                            if (record.response_type == 1) {
+                                html += `<div id='` + record.id + `' title=\"` + record.bot_response + `\" class='response-search-result'>` + botResponse + `</div>`;
+                            } else if (record.response_type == 4) {
+                                html += `<div id='` + record.id + `' title=\"` + record.bot_response + `\" class='function-search-result'>` + botResponse + `</div>`;
+                            }
+                        });
+                    }
+
+                    if (html === '') {
+                        jQuery('#geekybotSearchResultsWrp').html(`<span>" . __('No matching results found.', 'geeky-bot') . "</span>`).css('display', 'flex');
+                    } else {
+                        let mainhtml = `<span>" . __('Results:', 'geeky-bot') . " </span>`;
+                        mainhtml += `<div id='geekybot-story-result-left-arrow' class='geekybot-left-arrow-result-wrp'> <span class='geekybot-left-arrow-result'><img id=geekybot-left-arrow-icon src=".GEEKYBOT_PLUGIN_URL ."includes/images/story/story-left.png /></span> </div>`;
+                        mainhtml += `<div id='searchResults' class='geekybot-story-searchresult-wrp'>`;
+                        mainhtml += html;
+                        mainhtml += `</div>`;
+                        mainhtml += `<div id='geekybot-story-result-right-arrow' class='geekybot-right-arrow-result-wrp'> <span class='geekybot-right-arrow-result'><img id=geekybot-right-arrow-icon src=".GEEKYBOT_PLUGIN_URL ."includes/images/story/story-right.png /></span> </div>`;
+                        jQuery('#geekybotSearchResultsWrp').append(mainhtml).css('display', 'flex');
+                    }
+                } else {
+                    jQuery('#searchResults').html('" . __('No matching results found.', 'geeky-bot') . "');
+                }
+            });
+            jQuery(document).ready(function () {
+                jQuery('#geekybot-story-result-left-arrow').click(function () {
+                    jQuery('#searchResults').animate({ scrollLeft: '-=200' }, 300);
+                });
+            
+                jQuery('#geekybot-story-result-right-arrow').click(function () {
+                    jQuery('#searchResults').animate({ scrollLeft: '+=200' }, 300);
+                });
+            });
+            
+        });
+        jQuery(document).on('click', '#searchReset', function(event) {
+            jQuery('#searchInput').val('');
+            jQuery('#searchType').val('2');
+            jQuery('#geekybotSearchResultsWrp').hide();
+            jQuery('#geekybotSearchResultsWrp').html('');
+        });
+        jQuery(document).on('click', '.user-input-search-result', function(event) {
+            // open user input popup and close all other tags
+            jQuery('div.geekybot_story_right_popup_inner_wrp').slideUp('slow');
+            jQuery('div#userinput-popup').slideDown('slow');
+            jQuery('div.geekybot-avlble-varpopup').slideUp('slow');
+            jQuery('div#response-text-popup').slideUp('slow');
+            jQuery('div#response-function-popup').slideUp('slow');
+            jQuery('div#response-action-popup').slideUp('slow');
+            jQuery('div#default-fallback-popup').slideUp('slow');
+            jQuery('div#default-intent-fallback-popup').slideUp('slow');
+            jQuery('div#response-form-popup').slideUp('slow');
+            
+            // Find the input field within the parentDiv
+            var user_search = 'intentid_'+jQuery(this).attr('id');
+            var inputField = jQuery('input[type=\"hidden\"]').filter(function() {
+                return jQuery(this).val() === user_search;
+            });
+            // Access and manipulate the input field (if it exists)
+            if (inputField.length > 0) {
+                // Do something with the input field
+                jQuery('input[type=\"hidden\"]').removeClass('active_node');
+                jQuery('div.geekybot_story_leftaction_wrp').removeClass('active_node_parent');
+                inputField.addClass('active_node'); // Example: Set a new value
+                inputField.closest('.geekybot_story_leftaction_wrp').addClass('active_node_parent');
+                // bind data in case of update
+                var input_value = inputField.val();
+                if (input_value !== undefined || input_value !== \"\") {
+                    var idNumber = parseInt(input_value.split('_')[1]);
+                    jQuery('div#userInputFormBody').html('');
+                    jQuery('div#responseTextFormBody').html('');
+                    jQuery('div#responseFunctionFormBody').html('');
+                    // get values using ajax
+                    var ajaxurl = '". esc_url(admin_url("admin-ajax.php")) ."';
+                    jQuery('div#userInputFormBody').append('<img id=\"geekybot-loading-icon\" src=\"".GEEKYBOT_PLUGIN_URL ."includes/images/story/story_load.gif\" />');
+                    jQuery.post(ajaxurl, {
+                        action: 'geekybot_ajax',
+                        geekybotme: 'stories',
+                        task: 'getUserInputFormBodyHTMLAjax',
+                        id: idNumber,
+                        '_wpnonce':'". esc_attr(wp_create_nonce("get-form-html")) ."'
+                    }, function(data) {
+                        jQuery('div#userInputFormBody').find('img#geekybot-loading-icon').remove();
+                        if (data) {
+                            jQuery('div#userInputFormBody').html(geekybot_DecodeHTML(data));
+                        } else {
+                            jQuery('div#userInputFormBody').html('<span class=\"geekybot_error_msg\">". esc_attr(__('Something went wrong try again later!', 'geeky-bot')) ."</span>');
+                        }
+                    });
+                }
+                // move controll to the specific node
+                var nid = jQuery('.possible_node.active_node').attr('data-nodeid');
+                var node = jQuery('#' + nid); // Select the node using its ID
+                if (node.length) {
+                    var nodePosition = node.position().left; // Get the left position of the node
+                    nodePosition = nodePosition - 250;
+                    var canvasContainer = document.getElementById('canvas_container');
+
+                    // Scroll the canvas container to the node's position smoothly
+                    canvasContainer.scrollTo({left: nodePosition, behavior: 'smooth'});
+                    // canvasContainer.animate({ scrollLeft: nodePosition }, 800);
+                }
+            } else {
+                jQuery('input[type=\"hidden\"]').removeClass('active_node');
+                jQuery('div.geekybot_story_leftaction_wrp').removeClass('active_node_parent');
+            }
+        });
+        jQuery(document).on('click', '.response-search-result', function(event) {
+            // open response popup and close all other tags
+            jQuery('div.geekybot_story_right_popup_inner_wrp').slideUp('slow');
+            jQuery('div#response-text-popup').slideDown('slow');
+            jQuery('div.geekybot-avlble-varpopup').slideUp('slow');
+            jQuery('div#userinput-popup').slideUp('slow');
+            jQuery('div#response-function-popup').slideUp('slow');
+            jQuery('div#response-action-popup').slideUp('slow');
+            jQuery('div#default-fallback-popup').slideUp('slow');
+            jQuery('div#default-intent-fallback-popup').slideUp('slow');
+            jQuery('div#response-form-popup').slideUp('slow');
+            // Find the input field within the parentDiv
+            var user_search = 'responseid_'+jQuery(this).attr('id');
+            var inputField = jQuery('input[type=\"hidden\"]').filter(function() {
+                return jQuery(this).val() === user_search;
+            });
+            // Access and manipulate the input field (if it exists)
+            if (inputField.length > 0) {
+                // Do something with the input field
+                jQuery('input[type=\"hidden\"]').removeClass('active_node');
+                jQuery('div.geekybot_story_leftaction_wrp').removeClass('active_node_parent');
+                inputField.addClass('active_node'); // Example: Set a new value
+                inputField.closest('.geekybot_story_leftaction_wrp').addClass('active_node_parent');
+                // bind data in case of update
+                var input_value = inputField.val();
+                if (input_value !== undefined || input_value !== \"\") {
+                    var idNumber = parseInt(input_value.split('_')[1]);
+                    jQuery('div#userInputFormBody').html('');
+                    jQuery('div#responseTextFormBody').html('');
+                    jQuery('div#responseFunctionFormBody').html('');
+                    // get values using ajax
+                    var ajaxurl = '". esc_url(admin_url("admin-ajax.php")) ."';
+                    jQuery('div#responseTextFormBody').append('<img id=\"geekybot-loading-icon\" src=\"".GEEKYBOT_PLUGIN_URL ."includes/images/story/story_load.gif\" />');
+                    jQuery.post(ajaxurl, {
+                        action: 'geekybot_ajax',
+                        geekybotme: 'stories',
+                        task: 'getResponseTextFormBodyHTMLAjax',
+                        id: idNumber,
+                        '_wpnonce':'". esc_attr(wp_create_nonce("get-form-html")) ."'
+                    }, function(data) {
+                        jQuery('div#responseTextFormBody').find('img#geekybot-loading-icon').remove();
+                        if (data) {
+                            jQuery('div#responseTextFormBody').html(geekybot_DecodeHTML(data));
+                        } else {
+                            jQuery('div#responseTextFormBody').html('<span class=\"geekybot_error_msg\">". esc_attr(__('Something went wrong try again later!', 'geeky-bot')) ."</span>');
+                        }
+                    });
+                }
+                // move the controll to the specific node
+                var nid = jQuery('.possible_node.active_node').attr('data-nodeid');
+                var node = jQuery('#' + nid); // Select the node using its ID
+                if (node.length) {
+                    var nodePosition = node.position().left; // Get the left position of the node
+                    nodePosition = nodePosition - 250;
+                    var canvasContainer = document.getElementById('canvas_container');
+
+                    // Scroll the canvas container to the node's position smoothly
+                    canvasContainer.scrollTo({left: nodePosition, behavior: 'smooth'});
+                    // canvasContainer.animate({ scrollLeft: nodePosition }, 800);
+                }
+            } else {
+                jQuery('input[type=\"hidden\"]').removeClass('active_node');
+                jQuery('div.geekybot_story_leftaction_wrp').removeClass('active_node_parent');
+            }
+        });
+        jQuery(document).on('click', '.function-search-result', function(event) {
+            // open response type function popup and close all other tags
+            jQuery('div#response-function-popup').slideDown('slow');
+            jQuery('div.geekybot_story_right_popup_inner_wrp').slideUp('slow');
+            jQuery('div.geekybot-avlble-varpopup').slideUp('slow');
+            jQuery('div#userinput-popup').slideUp('slow');
+            jQuery('div#response-text-popup').slideUp('slow');
+            jQuery('div#response-action-popup').slideUp('slow');
+            jQuery('div#default-fallback-popup').slideUp('slow');
+            jQuery('div#default-intent-fallback-popup').slideUp('slow');
+            jQuery('div#response-form-popup').slideUp('slow');
+            // Find the input field within the parentDiv
+            var user_search = 'responseid_'+jQuery(this).attr('id');
+            var inputField = jQuery('input[type=\"hidden\"]').filter(function() {
+                return jQuery(this).val() === user_search;
+            });
+            // Access and manipulate the input field (if it exists)
+            if (inputField.length > 0) {
+                // Do something with the input field
+                jQuery('input[type=\"hidden\"]').removeClass('active_node');
+                jQuery('div.geekybot_story_leftaction_wrp').removeClass('active_node_parent');
+                inputField.addClass('active_node'); // Example: Set a new value
+                inputField.closest('.geekybot_story_leftaction_wrp').addClass('active_node_parent');
+                // bind data in case of update
+                var input_value = inputField.val();
+                if (input_value !== undefined || input_value !== \"\") {
+                    var idNumber = parseInt(input_value.split('_')[1]);
+                    jQuery('div#userInputFormBody').html('');
+                    jQuery('div#responseTextFormBody').html('');
+                    jQuery('div#responseFunctionFormBody').html('');
+                    // get values using ajax
+                    var ajaxurl = '". esc_url(admin_url("admin-ajax.php")) ."';
+                    jQuery('div#responseFunctionFormBody').append('<img id=\"geekybot-loading-icon\" src=\"".GEEKYBOT_PLUGIN_URL ."includes/images/story/story_load.gif\" />');
+                    jQuery.post(ajaxurl, {
+                        action: 'geekybot_ajax',
+                        geekybotme: 'stories',
+                        task: 'getResponseFunctionFormBodyHTMLAjax',
+                        id: idNumber,
+                        story_type: ".esc_attr(geekybot::$_data[0]['story']->story_type).",
+                        '_wpnonce':'". esc_attr(wp_create_nonce("get-form-html")) ."'
+                    }, function(data) {
+                        jQuery('div#responseFunctionFormBody').find('img#geekybot-loading-icon').remove();
+                        if (data) {
+                            jQuery('div#responseFunctionFormBody').html(geekybot_DecodeHTML(data));
+                        } else {
+                            jQuery('div#responseFunctionFormBody').html('<span class=\"geekybot_error_msg\">". esc_attr(__('Something went wrong try again later!', 'geeky-bot')) ."</span>');
+                        }
+                    });
+                }
+                // move the controll to the specific node
+                var nid = jQuery('.possible_node.active_node').attr('data-nodeid');
+                var node = jQuery('#' + nid); // Select the node using its ID
+                if (node.length) {
+                    var nodePosition = node.position().left; // Get the left position of the node
+                    nodePosition = nodePosition - 250;
+                    var canvasContainer = document.getElementById('canvas_container');
+
+                    // Scroll the canvas container to the node's position smoothly
+                    canvasContainer.scrollTo({left: nodePosition, behavior: 'smooth'});
+                    // canvasContainer.animate({ scrollLeft: nodePosition }, 800);
+                }
+            } else {
+                jQuery('input[type=\"hidden\"]').removeClass('active_node');
+                jQuery('div.geekybot_story_leftaction_wrp').removeClass('active_node_parent');
+            }
+        });
+        // 
+        function initScrollArrows() {
+            let scrollContainer = jQuery('#searchResults');
+            let leftArrow = jQuery('#geekybot-story-result-left-arrow');
+            let rightArrow = jQuery('#geekybot-story-result-right-arrow');
+
+            if (!scrollContainer.length) return;
+
+            let isRTL = scrollContainer.css('direction') === 'rtl';
+
+            function updateArrows() {
+                let scrollLeft = Math.abs(scrollContainer.scrollLeft());
+                let containerWidth = scrollContainer.outerWidth();
+                let scrollWidth = scrollContainer[0].scrollWidth;
+                let maxScrollLeft = Math.abs(scrollWidth - containerWidth);
+
+                let isScrollable = scrollWidth > containerWidth;
+
+                // Hide both arrows if no scrolling is needed
+                if (!isScrollable) {
+                    leftArrow.hide();
+                    rightArrow.hide();
+                    return;
+                }
+
+                // Show/hide arrows based on scroll position
+                leftArrow.toggle(scrollLeft > 0);
+                rightArrow.toggle(scrollLeft < maxScrollLeft - 1);
+            }
+
+            // Handle RTL scrolling properly
+            leftArrow.off('click').on('click', function () {
+                let scrollAmount = isRTL ? '+=200' : '-=200';
+                scrollContainer.animate({ scrollLeft: scrollAmount }, 300, updateArrows);
+            });
+
+            rightArrow.off('click').on('click', function () {
+                let scrollAmount = isRTL ? '-=200' : '+=200';
+                scrollContainer.animate({ scrollLeft: scrollAmount }, 300, updateArrows);
+            });
+
+            scrollContainer.off('scroll').on('scroll', updateArrows);
+            updateArrows();
+        }
+
+        // **MutationObserver for Dynamic Updates**
+        let observer = new MutationObserver(function () {
+            setTimeout(initScrollArrows, 100);
+        });
+
+        observer.observe(document.body, { childList: true, subtree: true });
+
+        initScrollArrows();
+
+        // 
+        jQuery(document).on('click', '#move_to_end', function(event) {
+            if (canvas.width > 1200) {
+                // Scroll the container to the end
+                var canvasContainer = document.getElementById('canvas_container');
+                canvasContainer.scrollTo({left: canvas.width, behavior: 'smooth'});
+            }
+        });
+        jQuery(document).on('click', '#move_to_start', function(event) {
+            if (canvas.width > 1200) {
+                // Scroll the container to the start
+                var canvasContainer = document.getElementById('canvas_container');
+                canvasContainer.scrollTo({left: 0, behavior: 'smooth'});
+            }
+        });
+        jQuery(document).on('click', '#move_to_left', function(event) {
+            if (canvas.width > 1200) {
+                // Scroll the container one screen width to the left
+                var canvasContainer = document.getElementById('canvas_container');
+                canvasContainer.scrollBy({ left: -canvasContainer.clientWidth, behavior: 'smooth' });
+            }
+        });
+        jQuery(document).on('click', '#move_to_right', function(event) {
+            if (canvas.width > 1200) {
+                // Scroll the container one screen width to the right
+                var canvasContainer = document.getElementById('canvas_container');
+                canvasContainer.scrollBy({ left: canvasContainer.clientWidth, behavior: 'smooth' });
+            }
+        });
         // reset story
         jQuery(document).on('click', '#Reset-Story', function(event) {
             var confirmed = confirm(\"".__('Are you sure to reset it?','geeky-bot')."\");
@@ -794,9 +1160,9 @@ if (isset(geekybot::$_data[0]['story'])) {
                             if (clickedElement.tagName === 'IMG' && clickedElement.classList.contains('geekybot_node_remove')) {
                                 mak_node_active = 1;
                             } else if (parentDiv.classList.contains('node_action_user_input')) {
+                                jQuery('div#userinput-popup').slideDown('slow');
                                 jQuery('div.geekybot_story_right_popup_inner_wrp').slideUp('slow');
                                 jQuery('div.geekybot-avlble-varpopup').slideUp('slow');
-                                jQuery('div#userinput-popup').slideDown('slow');
                                 jQuery('div#response-text-popup').slideUp('slow');
                                 jQuery('div#response-function-popup').slideUp('slow');
                                 jQuery('div#response-action-popup').slideUp('slow');
@@ -806,32 +1172,33 @@ if (isset(geekybot::$_data[0]['story'])) {
                                 mak_node_active = 1;
                                 node_type = 'user_input';
                             } else if (parentDiv.classList.contains('node_action_text')) {
-                                jQuery('div.geekybot_story_right_popup_inner_wrp,div.geekybot-avlble-varpopup , div#userinput-popup, div#response-function-popup, div#response-action-popup, div#default-fallback-popup, div#response-form-popup, div#default-intent-fallback-popup').slideUp('slow');
                                 jQuery('div#response-text-popup').slideDown('slow');
+                                jQuery('div.geekybot_story_right_popup_inner_wrp,div.geekybot-avlble-varpopup , div#userinput-popup, div#response-function-popup, div#response-action-popup, div#default-fallback-popup, div#response-form-popup, div#default-intent-fallback-popup').slideUp('slow');
                                 mak_node_active = 1;
                                 node_type = 'response_text';
                             } else if (parentDiv.classList.contains('node_action_function')) {
-                                jQuery('div.geekybot_story_right_popup_inner_wrp,div.geekybot-avlble-varpopup , div#userinput-popup, div#response-text-popup, div#response-action-popup, div#default-fallback-popup, div#response-form-popup, div#default-intent-fallback-popup').slideUp('slow');
                                 jQuery('div#response-function-popup').slideDown('slow');
+                                jQuery('div.geekybot_story_right_popup_inner_wrp,div.geekybot-avlble-varpopup , div#userinput-popup, div#response-text-popup, div#response-action-popup, div#default-fallback-popup, div#response-form-popup, div#default-intent-fallback-popup').slideUp('slow');
                                 mak_node_active = 1;
                                 node_type = 'response_function';
                             }  else if (parentDiv.classList.contains('node_action_action')) {
-                                jQuery('div.geekybot_story_right_popup_inner_wrp,div.geekybot-avlble-varpopup , div#userinput-popup, div#response-text-popup, div#response-function-popup, div#default-fallback-popup, div#response-form-popup, div#default-intent-fallback-popup').slideUp('slow');
                                 jQuery('div#response-action-popup').slideDown('slow');
+                                jQuery('div.geekybot_story_right_popup_inner_wrp,div.geekybot-avlble-varpopup , div#userinput-popup, div#response-text-popup, div#response-function-popup, div#default-fallback-popup, div#response-form-popup, div#default-intent-fallback-popup').slideUp('slow');
                                 mak_node_active = 1;
                                 node_type = 'response_action';
                             } else if (parentDiv.classList.contains('node_action_form')) {
-                                jQuery('div.geekybot_story_right_popup_inner_wrp,div.geekybot-avlble-varpopup , div#userinput-popup, div#response-text-popup, div#response-function-popup, div#response-action-popup, div#default-fallback-popup, div#default-intent-fallback-popup').slideUp('slow');
                                 jQuery('div#response-form-popup').slideDown('slow');
+                                jQuery('div.geekybot_story_right_popup_inner_wrp,div.geekybot-avlble-varpopup , div#userinput-popup, div#response-text-popup, div#response-function-popup, div#response-action-popup, div#default-fallback-popup, div#default-intent-fallback-popup').slideUp('slow');
                                 mak_node_active = 1;
                                 node_type = 'response_form';
                             } else if (parentDiv.classList.contains('node_action_fallback')) {
-                                jQuery('div.geekybot_story_right_popup_inner_wrp,div.geekybot-avlble-varpopup , div#userinput-popup, div#response-text-popup,div#response-function-popup, div#response-action-popup, div#response-form-popup, div#default-intent-fallback-popup').slideUp('slow');
+                                removeFormHTLM();
+                                jQuery('div#defaultFallbackFormBody').append('<img id=\"geekybot-loading-icon\" src=\"".GEEKYBOT_PLUGIN_URL ."includes/images/story/story_load.gif\" />');
                                 jQuery('div#default-fallback-popup').slideDown('slow');
+                                jQuery('div.geekybot_story_right_popup_inner_wrp,div.geekybot-avlble-varpopup , div#userinput-popup, div#response-text-popup,div#response-function-popup, div#response-action-popup, div#response-form-popup, div#default-intent-fallback-popup').slideUp('slow');
                                 mak_node_active = 1;
                                 node_type = 'fallback';
                                 //
-                                removeFormHTLM();
                                 var ajaxurl = '". esc_url(admin_url("admin-ajax.php")) ."';
                                 var storyId = ". $story_id .";
                                 jQuery.post(ajaxurl, {
@@ -841,6 +1208,7 @@ if (isset(geekybot::$_data[0]['story'])) {
                                     storyId: storyId,
                                     '_wpnonce':'". esc_attr(wp_create_nonce("get-form-html")) ."'
                                 }, function(data) {
+                                    jQuery('div#defaultFallbackFormBody').find('img#geekybot-loading-icon').remove();
                                     if (data) {
                                         jQuery('div#defaultIntentFallbackFormBody').html('');
                                         jQuery('div#defaultFallbackFormBody').html(geekybot_DecodeHTML(data));
@@ -885,6 +1253,7 @@ if (isset(geekybot::$_data[0]['story'])) {
                                         var ajaxurl = '". esc_url(admin_url("admin-ajax.php")) ."';
                                         if (node_type == 'user_input') {
                                             removeFormHTLM();
+                                            jQuery('div#userInputFormBody').append('<img id=\"geekybot-loading-icon\" src=\"".GEEKYBOT_PLUGIN_URL ."includes/images/story/story_load.gif\" />');
                                             jQuery.post(ajaxurl, {
                                                 action: 'geekybot_ajax',
                                                 geekybotme: 'stories',
@@ -892,6 +1261,7 @@ if (isset(geekybot::$_data[0]['story'])) {
                                                 id: idNumber,
                                                 '_wpnonce':'". esc_attr(wp_create_nonce("get-form-html")) ."'
                                             }, function(data) {
+                                                jQuery('div#userInputFormBody').find('img#geekybot-loading-icon').remove();
                                                 if (data) {
                                                     jQuery('div#userInputFormBody').html(geekybot_DecodeHTML(data));
                                                 } else {
@@ -900,6 +1270,7 @@ if (isset(geekybot::$_data[0]['story'])) {
                                             });
                                         } else if (node_type == 'response_text') {
                                             removeFormHTLM();
+                                            jQuery('div#responseTextFormBody').append('<img id=\"geekybot-loading-icon\" src=\"".GEEKYBOT_PLUGIN_URL ."includes/images/story/story_load.gif\" />');
                                             jQuery.post(ajaxurl, {
                                                 action: 'geekybot_ajax',
                                                 geekybotme: 'stories',
@@ -907,6 +1278,7 @@ if (isset(geekybot::$_data[0]['story'])) {
                                                 id: idNumber,
                                                 '_wpnonce':'". esc_attr(wp_create_nonce("get-form-html")) ."'
                                             }, function(data) {
+                                                jQuery('div#responseTextFormBody').find('img#geekybot-loading-icon').remove();
                                                 if (data) {
                                                     jQuery('div#responseTextFormBody').html(geekybot_DecodeHTML(data));
                                                 } else {
@@ -915,6 +1287,7 @@ if (isset(geekybot::$_data[0]['story'])) {
                                             });
                                         } else if (node_type == 'response_function') {
                                             removeFormHTLM();
+                                            jQuery('div#responseFunctionFormBody').append('<img id=\"geekybot-loading-icon\" src=\"".GEEKYBOT_PLUGIN_URL ."includes/images/story/story_load.gif\" />');
                                             jQuery.post(ajaxurl, {
                                                 action: 'geekybot_ajax',
                                                 geekybotme: 'stories',
@@ -923,6 +1296,7 @@ if (isset(geekybot::$_data[0]['story'])) {
                                                 story_type: ".esc_attr(geekybot::$_data[0]['story']->story_type).",
                                                 '_wpnonce':'". esc_attr(wp_create_nonce("get-form-html")) ."'
                                             }, function(data) {
+                                                jQuery('div#responseFunctionFormBody').find('img#geekybot-loading-icon').remove();
                                                 if (data) {
                                                     jQuery('div#responseFunctionFormBody').html(geekybot_DecodeHTML(data));
                                                 } else {
@@ -931,6 +1305,7 @@ if (isset(geekybot::$_data[0]['story'])) {
                                             });
                                         }  else if (node_type == 'response_action') {
                                             removeFormHTLM();
+                                            jQuery('div#responseActionFormBody').append('<img id=\"geekybot-loading-icon\" src=\"".GEEKYBOT_PLUGIN_URL ."includes/images/story/story_load.gif\" />');
                                             jQuery.post(ajaxurl, {
                                                 action: 'geekybot_ajax',
                                                 geekybotme: 'stories',
@@ -938,6 +1313,7 @@ if (isset(geekybot::$_data[0]['story'])) {
                                                 id: idNumber,
                                                 '_wpnonce':'". esc_attr(wp_create_nonce("get-form-html")) ."'
                                             }, function(data) {
+                                                jQuery('div#responseActionFormBody').find('img#geekybot-loading-icon').remove();
                                                 if (data) {
                                                     jQuery('div#responseActionFormBody').html(geekybot_DecodeHTML(data));
                                                 } else {
@@ -946,6 +1322,7 @@ if (isset(geekybot::$_data[0]['story'])) {
                                             });
                                         } else if (node_type == 'response_form') {
                                             removeFormHTLM();
+                                            jQuery('div#responseFormFormBody').append('<img id=\"geekybot-loading-icon\" src=\"".GEEKYBOT_PLUGIN_URL ."includes/images/story/story_load.gif\" />');
                                             jQuery.post(ajaxurl, {
                                                 action: 'geekybot_ajax',
                                                 geekybotme: 'stories',
@@ -953,6 +1330,7 @@ if (isset(geekybot::$_data[0]['story'])) {
                                                 id: idNumber,
                                                 '_wpnonce':'". esc_attr(wp_create_nonce("get-form-html")) ."'
                                             }, function(data) {
+                                                jQuery('div#responseFormFormBody').find('img#geekybot-loading-icon').remove();
                                                 if (data) {
                                                     jQuery('div#responseFormFormBody').html(geekybot_DecodeHTML(data));
                                                 } else {
@@ -963,6 +1341,7 @@ if (isset(geekybot::$_data[0]['story'])) {
                                             //
                                             removeFormHTLM();
                                             var ajaxurl = '". esc_url(admin_url("admin-ajax.php")) ."';
+                                            jQuery('div#defaultIntentFallbackFormBody').append('<img id=\"geekybot-loading-icon\" src=\"".GEEKYBOT_PLUGIN_URL ."includes/images/story/story_load.gif\" />');
                                             jQuery.post(ajaxurl, {
                                                 action: 'geekybot_ajax',
                                                 geekybotme: 'stories',
@@ -970,6 +1349,7 @@ if (isset(geekybot::$_data[0]['story'])) {
                                                 groupId: groupId,
                                                 '_wpnonce':'". esc_attr(wp_create_nonce("get-form-html")) ."'
                                             }, function(data) {
+                                                jQuery('div#defaultIntentFallbackFormBody').find('img#geekybot-loading-icon').remove();
                                                 if (data) {
                                                     jQuery('div#defaultFallbackFormBody').html('');
                                                     jQuery('div#defaultIntentFallbackFormBody').html(geekybot_DecodeHTML(data));
@@ -1438,6 +1818,8 @@ if (isset(geekybot::$_data[0]['story'])) {
             jQuery('div#responseFunctionFormBody').html('');
             jQuery('div#responseActionFormBody').html('');
             jQuery('div#responseFormFormBody').html('');
+            jQuery('div#defaultIntentFallbackFormBody').html('');
+            jQuery('div#defaultFallbackFormBody').html('');
         }
     }";
     wp_add_inline_script('geekybot-main-js',$geekybot_js);
@@ -1447,7 +1829,7 @@ if (isset(geekybot::$_data[0]['story'])) {
       (object) array('id' => '3', 'text' => __('Automate', 'geeky-bot'))
     );
     // if (!isset(geekybot::$_data[0]['missing_intent'])) {
-        $missing_intent = GEEKYBOTrequest::GEEKYBOT_getVar('missing_intent','GET');
+        $missing_intent = geekybotphplib::GEEKYBOT_htmlspecialchars((GEEKYBOTrequest::GEEKYBOT_getVar('missing_intent','GET')), ENT_QUOTES, 'UTF-8');
     // }
     if(!isset(geekybot::$_data[0]['story']->positions_array) || geekybot::$_data[0]['story']->positions_array == ''){
         $startPointMsg = __('Start Point', 'geeky-bot');
@@ -1512,10 +1894,23 @@ if (isset(geekybot::$_data[0]['story'])) {
                     parentTop = expectedParentTop;
                 }
                 parentLeft = parseInt(parentLeft, 10) + 241;
+                var maxIdNumber = 0;
+                var filtered_positions = positions.filter(obj => !obj.id.startsWith('fallback_'));
+                positions.forEach(function(node, index) {
+                    var nodeIdNumber = parseInt(node.id.replace('node', ''));
+                    if (nodeIdNumber > maxIdNumber) {
+                        maxIdNumber = nodeIdNumber;
+                    }
+                });
+                if(maxIdNumber == 0) {
+                    maxIdNumber = maxIdNumber + 1;
+                } else {
+                    maxIdNumber = maxIdNumber + 2;
+                }
                 
                 idCounter++;
                 var position = { 
-                    id: 'node' + idCounter, // Generate unique ID
+                    id: 'node' + maxIdNumber, // Generate unique ID
                     top: parentTop,   // Y coordinate relative to the parent
                     left: parentLeft, // X coordinate relative to the parent
                     parentId: parentId,
@@ -1569,6 +1964,7 @@ if (isset(geekybot::$_data[0]['story'])) {
             if (input_value !== undefined || input_value !== '') {
                 // get values using ajax
                 var ajaxurl = '". esc_url(admin_url('admin-ajax.php')) ."';
+                jQuery('div#userInputFormBody').append('<img id=\"geekybot-loading-icon\" src=\"".GEEKYBOT_PLUGIN_URL ."includes/images/story/story_load.gif\" />');
                 jQuery.post(ajaxurl, {
                     action: 'geekybot_ajax',
                     geekybotme: 'stories',
@@ -1576,6 +1972,7 @@ if (isset(geekybot::$_data[0]['story'])) {
                     id: '',
                     '_wpnonce':'". esc_attr(wp_create_nonce('get-form-html')) ."'
                 }, function(data) {
+                    jQuery('div#userInputFormBody').find('img#geekybot-loading-icon').remove();
                     if (data) {
                         jQuery('div#userInputFormBody').html(geekybot_DecodeHTML(data));
                         jQuery(\"input[name='user_messages[]']\").each(function() {
@@ -2039,6 +2436,10 @@ if (isset(geekybot::$_data[0]['story'])) {
 if (!GEEKYBOTincluder::GEEKYBOT_getTemplate('templates/admin/header',array('module' => 'stories'))){
   return;
 }
+$search_type_list = array(
+  (object) array('id' => '2', 'text' => __('NLP', 'geeky-bot')),
+  (object) array('id' => '1', 'text' => __('Simple', 'geeky-bot'))
+);
 ?>
 <!-- main wrapper -->
 <div id="geekybotadmin-wrapper" class="geekybot-admin-main-wrapper">
@@ -2049,12 +2450,38 @@ if (!GEEKYBOTincluder::GEEKYBOT_getTemplate('templates/admin/header',array('modu
             <?php  GEEKYBOTincluder::GEEKYBOT_getTemplate('templates/admin/leftmenue',array('module' => 'stories')); ?>
         </div>
         <div id="geekybotadmin-data" class="geekybotadmin-story-data">
-        <div class="geekybot_story_main_heading">
-            <h1 class="geekybot-head-text">
-                <?php echo isset(geekybot::$_data[0]['story']->name) ? esc_attr(geekybot::$_data[0]['story']->name) : ''; ?>
-            </h1>
-        </div>
-          <!-- page content -->
+            <div class="geekybot_story_search_section_mainwrp">
+                <div class="geekybot_story_search_section_searchwrp">
+                    <div class="geekybot_story_main_heading">
+                        <h1 class="geekybot-head-text">
+                            <?php echo isset(geekybot::$_data[0]['story']->name) ? esc_attr(geekybot::$_data[0]['story']->name) : ''; ?>
+                        </h1>
+                    </div>
+                    <!-- filter form -->
+                    <div class="geekybot_story_main_search_wrp">
+                        <div id="geekybot-searchbar" class="geekybot-searchbar-btn">
+                            <div class="window-two-btm-inner geekybot-story-inner">
+                                <button title="<?php echo esc_html(__('Search', 'geeky-bot')); ?>" type="submit" name="searchBtn" id="searchBtn" value="Search" class="button geekybot-form-search-btn">
+                                    <img src="<?php echo esc_url(GEEKYBOT_PLUGIN_URL); ?>includes/images/control_panel/loupe.png" alt="<?php echo esc_attr(__('Search', 'geeky-bot')); ?>" class="geekybot-action-img">
+                                </button>
+                                <?php echo wp_kses(GEEKYBOTformfield::GEEKYBOT_text('searchInput','', array('class' => 'inputbox geekybot-form-input-field', 'placeholder' => esc_attr(__('Search', 'geeky-bot')))), GEEKYBOT_ALLOWED_TAGS); ?>
+                                <?php echo wp_kses(GEEKYBOTformfield::GEEKYBOT_select('searchType', $search_type_list, '', null, array('class' => 'inputbox geekybot-form-input-field geekybot-form-select-field')), GEEKYBOT_ALLOWED_TAGS); ?>
+                            </div>
+                            <div id="geekybot-reset-btn-main" >
+                                <a id="searchReset" class="geekybot-Intents-reset-btn" href="#" title="<?php echo esc_attr(__('Reset', 'geeky-bot')); ?>">
+                                    <img src="<?php echo esc_url(GEEKYBOT_PLUGIN_URL); ?>includes/images/control_panel/reset.png" alt="<?php echo esc_attr(__('Reset', 'geeky-bot')); ?>" />
+                                </a>
+                            </div>
+                        </div>
+                        <!-- searchInput -->
+                    </div>
+                </div>
+                <div id="geekybotSearchResultsWrp">
+                    <!-- Results will appear here -->
+                </div>
+            </div>
+            <!-- filter form -->
+            <!-- page content -->
             <div id="geekybot-admin-wrapper" class="p0 bg-n bs-n">
                 <!-- filter form -->
                 <!-- top head -->
@@ -2094,6 +2521,20 @@ if (!GEEKYBOTincluder::GEEKYBOT_getTemplate('templates/admin/header',array('modu
                                             <div id="canvas_container">
                                                 <div id="geekybot_container"></div>
                                                 <canvas id="canvas" width="1200" height="800"></canvas>
+                                            </div>
+                                            <div class="geekybot_story_pagination_wrp">
+                                                <span id="move_to_start" >
+                                                    <img src="<?php echo esc_url(GEEKYBOT_PLUGIN_URL); ?>/includes/images/story/start.png" alt="<?php echo esc_attr(__('Move To Start', 'geeky-bot')); ?>" title="<?php echo esc_attr(__('Move To Start', 'geeky-bot')); ?>">
+                                                </span>
+                                                <span id="move_to_left" >
+                                                    <img src="<?php echo esc_url(GEEKYBOT_PLUGIN_URL); ?>/includes/images/story/left.png" alt="<?php echo esc_attr(__('Move To Left', 'geeky-bot')); ?>" title="<?php echo esc_attr(__('Move To Left', 'geeky-bot')); ?>">
+                                                </span>
+                                                <span id="move_to_right" >
+                                                    <img src="<?php echo esc_url(GEEKYBOT_PLUGIN_URL); ?>/includes/images/story/right.png" alt="<?php echo esc_attr(__('Move To Right', 'geeky-bot')); ?>" title="<?php echo esc_attr(__('Move To Right', 'geeky-bot')); ?>">
+                                                </span>
+                                                <span id="move_to_end" >
+                                                    <img src="<?php echo esc_url(GEEKYBOT_PLUGIN_URL); ?>/includes/images/story/end.png" alt="<?php echo esc_attr(__('Move To End', 'geeky-bot')); ?>" title="<?php echo esc_attr(__('Move To End', 'geeky-bot')); ?>">
+                                                </span>
                                             </div>
                                         </div>
                                     </div>

@@ -338,7 +338,15 @@ if (!defined('GEEKYBOT_FILE_TYPE_ERROR')) {
             'style' => array(),
         ),
         'small' => array(
-            'style' => array(),),
+            'style' => array(),
+        ),
+        'del' => array(
+            'aria-hidden' => array(),
+        ),
+        'ins' => array(
+            'aria-hidden' => array(),
+        ),
+        'bdi' => array(),
         ' ' => array(),
         '&nbsp' => array(),
     ));

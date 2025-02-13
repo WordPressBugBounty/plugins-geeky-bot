@@ -9,14 +9,6 @@ class GEEKYBOTchatserverModel {
     }
 
     function getMessageResponse(){
-        // [v1.0.7] Remove this code after some time
-        include_once GEEKYBOT_PLUGIN_PATH . 'includes/updates/updates.php';
-        $installedversion = GEEKYBOTupdates::geekybot_getInstalledVersion();
-        $cversion = '107';
-        if ($installedversion != $cversion) {
-            GEEKYBOTupdates::GEEKYBOT_checkUpdates($cversion);
-        }
-        // [v1.0.7]
         $logdata = '';
         $nonce = GEEKYBOTrequest::GEEKYBOT_getVar('_wpnonce');
         $retVal = [];

@@ -38,90 +38,90 @@
             </div>
         </div>
         <div class="chat-popup">
-          <div class="chat-windows chat-main">
-            <div id="main-messages" class="chat-window-two" style="display: none;">
-            <div class="geekybot-title-main-overlay">
-                <div id="window-two-title" class="window-two-top">
-                    <div class="window-two-top-inner">
-                        <div class="window-two-top-inner-left">
-                            <div class="window-two-profile">
-                                <div class="window-two-profile-img">
-                                    <img src="'.esc_url($botImgScr).'" alt="'.esc_html(__('Bot', 'geeky-bot')).'" />
+            <div class="chat-windows chat-main">
+                <div id="main-messages" class="chat-window-two">
+                    <div class="geekybot-title-main-overlay">
+                        <div id="window-two-title" class="window-two-top">
+                            <div class="window-two-top-inner">
+                                <div class="window-two-top-inner-left">
+                                    <div class="window-two-profile">
+                                        <div class="window-two-profile-img">
+                                            <img src="'.esc_url($botImgScr).'" alt="'.esc_html(__('Bot', 'geeky-bot')).'" />
+                                        </div>
+                                    </div>
+                                    <i class="fa fa-circle"></i>
+                                    <div class="window-two-profile-text">
+                                        <div class="window-two-text">
+                                            <span>'.esc_html($title).'</span>
+                                            <span>'.esc_html(__('online', 'geeky-bot')).'</span>
+                                        </div>
+                                    </div>
+                                    <div class="geekybot-title-overlay"></div>
+                                </div>
+                                <div class="window-two-top-inner-right">
+                                    <div class="window-two-top-dot-img" onclick="myFunction()" id="dna">
+                                        <img src="'. esc_url(GEEKYBOT_PLUGIN_URL) .'/includes/images/chat-img/menu.png" alt="'.esc_html(__('Menu', 'geeky-bot')).'" />
+                                    </div>
                                 </div>
                             </div>
-                            <i class="fa fa-circle"></i>
-                            <div class="window-two-profile-text">
-                                <div class="window-two-text">
-                                    <span>'.esc_html($title).'</span>
-                                    <span>'.esc_html(__('online', 'geeky-bot')).'</span>
+                            <div id="myDropdown" class="dropdown-content">
+                                <div class="geekybot-main-overlay" id="jsendchat">
+                                    <div>'.esc_html(__('End Chat', 'geeky-bot')).'</div>
+                                    <div class="geekybot-overlay">'.esc_html(__('End Chat', 'geeky-bot')).'</div>
                                 </div>
-                            </div>
-                            <div class="geekybot-title-overlay"></div>
-                        </div>
-                        <div class="window-two-top-inner-right">
-                            <div class="window-two-top-dot-img" onclick="myFunction()" id="dna">
-                                <img src="'. esc_url(GEEKYBOT_PLUGIN_URL) .'/includes/images/chat-img/menu.png" alt="'.esc_html(__('Menu', 'geeky-bot')).'" />
+                                <div class="geekybot-main-overlay" id="restartchat">
+                                    <div>'.esc_html(__('Restart Chat', 'geeky-bot')).'</div>
+                                    <div class="geekybot-overlay">'.esc_html(__('Restart Chat', 'geeky-bot')).'</div>
+                                </div>
                             </div>
                         </div>
                     </div>
-                    <div id="myDropdown" class="dropdown-content">
-                        <div class="geekybot-main-overlay" id="jsendchat">
-                            <div>'.esc_html(__('End Chat', 'geeky-bot')).'</div>
-                            <div class="geekybot-overlay">'.esc_html(__('End Chat', 'geeky-bot')).'</div>
-                        </div>
-                        <div class="geekybot-main-overlay" id="restartchat">
-                            <div>'.esc_html(__('Restart Chat', 'geeky-bot')).'</div>
-                            <div class="geekybot-overlay">'.esc_html(__('Restart Chat', 'geeky-bot')).'</div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div id="previouschatbox" class="chat-content"></div>
-            <div class="geekbot-actualmsg-main-section">';
-                if (geekybot::$_configuration['welcome_message'] != '') {
-                    $chatpopupcode .= '
-                    <div class="chat-content welcome-message">
-                        <li class="actual_msg actual_msg_adm">
-                            <section class="actual_msg_adm-img">
-                                <img src="'.esc_url($botImgScr).'" alt="'.esc_html(__('Image', 'geeky-bot')).'">
-                            </section>
-                            <section class="actual_msg_text">
-                                '.geekybot::$_configuration['welcome_message'].'
-                            </section>
-                        </li>
-                    </div>';
-                }
-                $chatpopupcode .= '
-                <div id="chatbox" class="chat-content">';
-                    if(isset($_COOKIE['geekybot_chat_id'])){
-                        $chatId = GEEKYBOTincluder::GEEKYBOT_getModel('chathistory')->geekybot_getchatid();  
-                        $query = "SELECT sessionmsgvalue  FROM `" . geekybot::$_db->prefix . "geekybot_sessiondata` WHERE usersessionid = '".esc_sql($chatId)."' and sessionmsgkey = 'chathistory'";
-                        $conversion = geekybotdb::GEEKYBOT_get_var($query);
-                        if ($conversion != null) {
-                            $chatpopupcode .= html_entity_decode($conversion);
+                    <div id="previouschatbox" class="chat-content"></div>
+                    <div class="geekbot-actualmsg-main-section">';
+                        if (geekybot::$_configuration['welcome_message'] != '') {
+                            $chatpopupcode .= '
+                            <div class="chat-content welcome-message">
+                                <li class="actual_msg actual_msg_adm">
+                                    <section class="actual_msg_adm-img">
+                                        <img src="'.esc_url($botImgScr).'" alt="'.esc_html(__('Image', 'geeky-bot')).'">
+                                    </section>
+                                    <section class="actual_msg_text">
+                                        '.geekybot::$_configuration['welcome_message'].'
+                                    </section>
+                                </li>
+                            </div>';
                         }
-                    }
-                $chatpopupcode .='
-                </div>
-            </div>
-                <div id="send-message" class="col-md-12 p-2 msg-box window-two-btm">';
-                    $chat_id = GEEKYBOTincluder::GEEKYBOT_getModel('chathistory')->geekybot_getchatid();
-                    $chatpopupcode .='
-                    <input type="hidden" id="chatsession"  value="'.$chat_id.'">
-                    <input type="hidden" id="response_id"  value="">
-                    <div class="window-two-btm-inner">
-                        <div class="window-two-btm-inner-left">
-                            <input id="msg_box" type="text" class="border-0 msg_box" placeholder="'.esc_html(__('Send message', 'geeky-bot')).'" autocomplete="off" />
+                        $chatpopupcode .= '
+                        <div id="chatbox" class="chat-content">';
+                            if(isset($_COOKIE['geekybot_chat_id'])){
+                                $chatId = GEEKYBOTincluder::GEEKYBOT_getModel('chathistory')->geekybot_getchatid();  
+                                $query = "SELECT sessionmsgvalue  FROM `" . geekybot::$_db->prefix . "geekybot_sessiondata` WHERE usersessionid = '".esc_sql($chatId)."' and sessionmsgkey = 'chathistory'";
+                                $conversion = geekybotdb::GEEKYBOT_get_var($query);
+                                if ($conversion != null) {
+                                    $chatpopupcode .= html_entity_decode($conversion);
+                                }
+                            }
+                        $chatpopupcode .='
                         </div>
-                        <div class="window-two-btm-inner-right">
-                            <div class="window-two-btm-send-img">
-                                <img id="snd-btn" src="'. esc_url(GEEKYBOT_PLUGIN_URL) .'/includes/images/chat-img/send-icon.png" alt="'.esc_html(__('Send Icon', 'geeky-bot')).'" />
+                    </div>
+                    <div id="send-message" class="col-md-12 p-2 msg-box window-two-btm">';
+                        $chat_id = GEEKYBOTincluder::GEEKYBOT_getModel('chathistory')->geekybot_getchatid();
+                        $chatpopupcode .='
+                        <input type="hidden" id="chatsession"  value="'.$chat_id.'">
+                        <input type="hidden" id="response_id"  value="">
+                        <div class="window-two-btm-inner">
+                            <div class="window-two-btm-inner-left">
+                                <input id="msg_box" type="text" class="border-0 msg_box" placeholder="'.esc_html(__('Send message', 'geeky-bot')).'" autocomplete="off" />
+                            </div>
+                            <div class="window-two-btm-inner-right">
+                                <div class="window-two-btm-send-img">
+                                    <img id="snd-btn" src="'. esc_url(GEEKYBOT_PLUGIN_URL) .'/includes/images/chat-img/send-icon.png" alt="'.esc_html(__('Send Icon', 'geeky-bot')).'" />
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-          </div>
         </div>';
         require_once(GEEKYBOT_PLUGIN_PATH . 'modules/chatserver/tmpl/chatpopup.inc.php');
         if (class_exists('WooCommerce')) {

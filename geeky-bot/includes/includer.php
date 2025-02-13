@@ -14,6 +14,8 @@ class GEEKYBOTincluder {
      */
 
     public static function GEEKYBOT_include_file($filename, $module_name = null) {
+        $module_name = geekybotphplib::GEEKYBOT_clean_file_path($module_name);
+        $filename = geekybotphplib::GEEKYBOT_clean_file_path($filename);
 
         if ($module_name != null) {
             $file_path = self::GEEKYBOT_getPluginPath($module_name,'file',$filename);
@@ -145,6 +147,8 @@ class GEEKYBOTincluder {
     }
 
     public static function GEEKYBOT_getPluginPath($module,$type,$file_name = '') {
+        $module = geekybotphplib::GEEKYBOT_clean_file_path($module);
+        $file_name = geekybotphplib::GEEKYBOT_clean_file_path($file_name);
         $addons_secondry = array('rating');
         if(in_array($module, geekybot::$_active_addons)){
 

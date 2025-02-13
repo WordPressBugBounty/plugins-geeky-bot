@@ -269,9 +269,9 @@ if (!defined('ABSPATH'))
                                     var btntype = btns.type;
                                     var btnflag = 'true';
                                     if (btntype == 1) {
-                                        btnhtml += \"<li class='actual_msg actual_msg_btn' style=''><section><button class='wp-chat-btn' onclick='sendbtnrsponse(this);' value='\" + btnvalue + \"'><span>\" + btntext + \"</span></section></button></li>\";
+                                        btnhtml += \"<li class='actual_msg actual_msg_btn'><section><button class='wp-chat-btn' onclick='sendbtnrsponse(this);' value='\" + btnvalue + \"'><span>\" + btntext + \"</span></section></button></li>\";
                                     } else if (btntype == 2) {
-                                        btnhtml += \"<li class='actual_msg actual_msg_btn' style=''><section><button class='wp-chat-btn'><span><a class='wp-chat-btn-link' href='\" + btnvalue + \"'>\" + btntext + \"</a></span></button></section></li>\";
+                                        btnhtml += \"<li class='actual_msg actual_msg_btn'><section><button class='wp-chat-btn'><span><a class='wp-chat-btn-link' href='\" + btnvalue + \"'>\" + btntext + \"</a></span></button></section></li>\";
                                     }
                                 });
                                 btnhtml += \"</div>\";
@@ -314,11 +314,11 @@ if (!defined('ABSPATH'))
                         geekybotme: 'chatserver',
                         task: 'getDefaultFallBackFormAjax',
                         chat_id: chat_id,
-                        '_wpnonce':'". esc_attr(wp_create_nonce('get-fallback')) ."'
+                        '_wpnonce': '" . esc_attr(wp_create_nonce('get-fallback')) . "'
                     }, function(fbdata) {
                         if (fbdata) {
                             var fbdata = JSON.parse(fbdata);
-                            if(fbdata.text) {
+                            if (fbdata.text) {
                                 var btnhtml = '';
                                 var btn = fbdata.buttons;
                                 if (btn) {

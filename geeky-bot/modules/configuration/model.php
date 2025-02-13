@@ -100,7 +100,7 @@ class GEEKYBOTconfigurationModel {
             }
         }
         $fallback_btn = [];
-        if (is_array($data['fallback_btn_text']) && is_array($data['fallback_btn_type'])) {
+        if (!empty($data['fallback_btn_text']) && is_array($data['fallback_btn_text']) && is_array($data['fallback_btn_type'])) {
             foreach ($data['fallback_btn_text'] as $index => $text) {
                 if (isset($data['fallback_btn_type'][$index]) && $text != '') {
                     $type = $data['fallback_btn_type'][$index];
@@ -117,10 +117,12 @@ class GEEKYBOTconfigurationModel {
                 }
             }
             $default_message_buttons = wp_json_encode($fallback_btn);
-            $query = 'UPDATE `' . geekybot::$_db->prefix . 'geekybot_config` SET `configvalue` = "'.esc_sql($default_message_buttons).'" WHERE `configname`= "default_message_buttons"';
-            if (false === geekybotdb::query($query)) {
-                $error = true;
-            }
+        } else {
+            $default_message_buttons = '';
+        }
+        $query = 'UPDATE `' . geekybot::$_db->prefix . 'geekybot_config` SET `configvalue` = "'.esc_sql($default_message_buttons).'" WHERE `configname`= "default_message_buttons"';
+        if (false === geekybotdb::query($query)) {
+            $error = true;
         }
         if ($error) {
             return GEEKYBOT_CONFIGURATION_SAVE_ERROR;

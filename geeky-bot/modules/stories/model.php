@@ -1948,13 +1948,13 @@ class GEEKYBOTstoriesModel {
             } elseif ($type == 'fallbacktwo') {
                 $text .= "<div class='geekybot_wc_product_heading'>".__("No exact match was found. Explore these similar products.", 'geeky-bot')."</div>";
             } elseif ($type == 'saleProducts') {
-                $text .= "<div class='geekybot_wc_product_heading'>".__("Here are some sale products.", 'geeky-bot')."</div>";
+                $text .= "<div class='geekybot_wc_product_heading'>".__("Discounted Items: Shop the Best Deals Today!", 'geeky-bot')."</div>";
             } elseif ($type == 'trendingProducts') {
-                $text .= "<div class='geekybot_wc_product_heading'>".__("Here are some trending products.", 'geeky-bot')."</div>";
+                $text .= "<div class='geekybot_wc_product_heading'>".__("Trending Now: Top Picks Just for You!", 'geeky-bot')."</div>";
             } elseif ($type == 'latestProducts') {
-                $text .= "<div class='geekybot_wc_product_heading'>".__("Here are some latest products.", 'geeky-bot')."</div>";
+                $text .= "<div class='geekybot_wc_product_heading'>".__("Latest Items: Discover Our Newest Additions!", 'geeky-bot')."</div>";
             } elseif ($type == 'highestRatedProducts') {
-                $text .= "<div class='geekybot_wc_product_heading'>".__("Here are some highly rated products.", 'geeky-bot')."</div>";
+                $text .= "<div class='geekybot_wc_product_heading'>".__("Loved by Many: Here Are Our Best-Reviewed Products!", 'geeky-bot')."</div>";
             } else {
                 $text .= "<div class='geekybot_wc_product_heading'>".__('Here are some suggestions.', 'geeky-bot')."</div>";
             }
@@ -2187,9 +2187,8 @@ class GEEKYBOTstoriesModel {
         $storyid = GEEKYBOTrequest::GEEKYBOT_getVar('storyid');
         $missing_intent = GEEKYBOTrequest::GEEKYBOT_getVar('missing_intent');
         $url = admin_url("admin.php?page=geekybot_stories&geekybotlt=formstory&missing_intent=".$missing_intent."&storyid=".$storyid);
-        return $url;
-        wp_redirect($url);
-        die();
+        echo $url;
+        wp_die();
     }
 
     function getTemplatesForCombobox(){
@@ -2244,9 +2243,139 @@ class GEEKYBOTstoriesModel {
         return $functionsList;
     }
 
+    function getPredefinedFunctionsForSearch(){
+        $functionsList = array();
+        
+        $functionsList[] = (object) array('id' => '1', 'text' => __('Show All Products', 'geeky-bot'));
+        $functionsList[] = (object) array('id' => '2', 'text' => __('Search Product', 'geeky-bot'));
+        $functionsList[] = (object) array('id' => '3', 'text' => __('View Cart/Remove Items', 'geeky-bot'));
+        $functionsList[] = (object) array('id' => '4', 'text' => __('Checkout', 'geeky-bot'));
+
+        $functionsList[] = (object) array('id' => '5', 'text' => __('Reset Password', 'geeky-bot'));
+        $functionsList[] = (object) array('id' => '6', 'text' => __('Email To Admin With Chat Conversation', 'geeky-bot'));
+        $functionsList[] = (object) array('id' => '7', 'text' => __('Show All Sale Products', 'geeky-bot'));
+        $functionsList[] = (object) array('id' => '8', 'text' => __('Show All Trending Products', 'geeky-bot'));
+        $functionsList[] = (object) array('id' => '9', 'text' => __('Show All Latest Products', 'geeky-bot'));
+        $functionsList[] = (object) array('id' => '10', 'text' => __('Show All Highest Rated Products', 'geeky-bot'));
+        $functionsList[] = (object) array('id' => '11', 'text' => __('View Orders', 'geeky-bot'));
+        $functionsList[] = (object) array('id' => '12', 'text' => __('view Account Details', 'geeky-bot'));
+
+        $functionsList[] = (object) array('id' => '13', 'text' => __('Get Products Under Price', 'geeky-bot'));
+        //$functionsList[] = (object) array('id' => '14', 'text' => __('Get Products Between Price', 'geeky-bot'));
+        $functionsList[] = (object) array('id' => '15', 'text' => __('Get Products Above Price', 'geeky-bot'));
+        // $functionsList[] = (object) array('id' => '16', 'text' => __('Track Order', 'geeky-bot'));
+        return $functionsList;
+    }
+
     function getPredefinedFunctionsName(){
         $predefinedFunctions = ['showAllProducts', 'searchProduct', 'getProductsUnderPrice', 'getProductsBetweenPrice', 'getProductsAbovePrice', 'viewCart', 'checkOut', 'resetPassword', 'SendChatToAdmin', 'showAllSaleProducts', 'showAllTrendingProducts', 'showAllLatestProducts', 'showAllHighestRatedProducts', 'viewOrders', 'viewAccountDetails', 'orderTracking'];
         return $predefinedFunctions;
+    }
+
+    function getSearchResults() {
+        if (!current_user_can('manage_options')){
+            die('Only Administrators can perform this action.');
+        }
+        $storyid = GEEKYBOTrequest::GEEKYBOT_getVar('storyid');
+        $nonce = GEEKYBOTrequest::GEEKYBOT_getVar('_wpnonce');
+        if (! wp_verify_nonce( $nonce, 'story-search-results-'.$storyid) ) {
+            die( 'Security check Failed' );
+        }
+
+        $searchQuery = GEEKYBOTrequest::GEEKYBOT_getVar('query');
+        $searchType = GEEKYBOTrequest::GEEKYBOT_getVar('searchType');
+
+        $functions = $this->getPredefinedFunctionsForSearch();
+
+        // Create an associative array for quick lookup
+        $functionMap = [];
+        foreach ($functions as $function) {
+            $functionMap[$function->id] = $function->text;
+        }
+
+        // Start function search logic
+        $matchedGroups = []; // Store matches by priority
+        $searchQuery = trim($searchQuery);
+        $searchWords = array_filter(explode(' ', strtolower($searchQuery))); // Convert to lowercase
+        $totalWords = count($searchWords);
+        
+        foreach ($functions as $function) {
+            $text = strtolower($function->text);
+            $wordsFound = 0;
+
+            foreach ($searchWords as $word) {
+                if (stripos($text, $word) !== false) {
+                    $wordsFound++;
+                }
+            }
+
+            if (!isset($matchedGroups[$wordsFound])) {
+                $matchedGroups[$wordsFound] = [];
+            }
+            
+            if ($wordsFound > 0) {
+                $matchedGroups[$wordsFound][] = $function->id;
+            }
+        }
+
+        // Sort matches: highest word count first
+        krsort($matchedGroups); // Sort keys in descending order
+
+        $finalMatchedIds = [];
+        foreach ($matchedGroups as $group) {
+            $finalMatchedIds = array_merge($finalMatchedIds, $group);
+        }
+
+        // Convert matched IDs into a SQL-friendly string
+        $matchedIdsString = implode(',', array_map('esc_sql', $finalMatchedIds));
+        // end function search
+
+        if ($searchType == 1) {
+            // query for user inputs table
+            $user_inputs_query = "SELECT DISTINCT group_id, user_messages_text 
+              FROM `" . geekybot::$_db->prefix . "geekybot_intents` WHERE story_id = " . esc_sql($storyid) . " AND user_messages_text LIKE '%" . esc_sql($searchQuery) . "%'";
+
+            // query for responses table
+            $responses_query = "SELECT DISTINCT id, response_type, bot_response, function_id 
+              FROM `" . geekybot::$_db->prefix . "geekybot_responses` WHERE story_id = " . esc_sql($storyid) . " AND bot_response LIKE '%" . esc_sql($searchQuery) . "%'";
+            // If function IDs matched, include function_id check
+            if (!empty($finalMatchedIds)) {
+                $responses_query .= " OR ( story_id = " . esc_sql($storyid) . " AND function_id IN ($matchedIdsString))";
+            }
+        } else {
+            // query for user inputs table
+            $user_inputs_query = 'SELECT DISTINCT group_id, user_messages_text, MATCH (user_messages_text) AGAINST ("'.esc_sql($searchQuery).'" IN NATURAL LANGUAGE MODE) AS score FROM `' . geekybot::$_db->prefix . 'geekybot_intents` 
+            WHERE MATCH (user_messages_text) AGAINST ("'.esc_sql($searchQuery).'" IN NATURAL LANGUAGE MODE) AND story_id = ' . esc_sql($storyid);
+            $user_inputs_query .= " ORDER BY score DESC";
+
+            // query for responses table
+            $responses_query = 'SELECT DISTINCT id, response_type, bot_response, function_id, MATCH (bot_response) AGAINST ("'.esc_sql($searchQuery).'" IN NATURAL LANGUAGE MODE) AS score FROM `' . geekybot::$_db->prefix . 'geekybot_responses` 
+            WHERE MATCH (bot_response) AGAINST ("'.esc_sql($searchQuery).'" IN NATURAL LANGUAGE MODE) AND story_id = ' . esc_sql($storyid);
+            // If function IDs matched, include function_id check
+            if (!empty($finalMatchedIds)) {
+                $responses_query .= " OR ( story_id = " . esc_sql($storyid) . " AND function_id IN ($matchedIdsString))";
+            }
+            $responses_query .= " ORDER BY score DESC";
+        }
+        // Fetch results
+        $userinputs = geekybotdb::GEEKYBOT_get_results($user_inputs_query);
+        $responses = geekybotdb::GEEKYBOT_get_results($responses_query);
+
+
+        // Process responses: fill missing `bot_response` for type 4
+        foreach ($responses as $response) {
+            if ($response->response_type == 4 && empty($response->bot_response) && isset($functionMap[$response->function_id])) {
+                $response->bot_response = $functionMap[$response->function_id]; // Fill missing bot_response
+            }
+        }
+
+        // Combine results
+        $results = [
+            'userinputs' => $userinputs,
+            'responses' => $responses
+        ];
+
+        return wp_json_encode($results);
     }
 }
 ?>

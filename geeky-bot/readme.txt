@@ -1,10 +1,10 @@
 === Woo Lead Generation, AI Chatbot and AI Web Search - GeekyBot ===
 Contributors: ahmadgb
-Tags: chatbot, AI, woocommerce chatbot, lead generation, live search
+Tags: chatbot, AI, woocommerce chatbot, lead generation, chat bots
 Donate link: https://geekybot.com
 Requires at least: WordPress 5.0
-Tested up to: 6.7.1
-Stable tag: 1.0.8
+Tested up to: 6.7.2
+Stable tag: 1.0.9
 License: GPLv2
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -219,6 +219,12 @@ If you activate certain features in this plugin, the user's personal data, inclu
 * Font Awesome (https://fontawesome.com/privacy)
 
 == Changelog ==
+= 1.0.9
+* Security Updates.
+* Add search in story detail page
+* Improved scroll in story detail page
+* Bug fix
+
 = 1.0.8
 * Add addons
 
