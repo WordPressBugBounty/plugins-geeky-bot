@@ -163,6 +163,9 @@
                 <response>
                     <text>Thank you for chatting with us! If you need any more assistance, feel free to reach out. Have a great day!</text>
                 </response>
+                <response>
+                    <function>SendChatToAdmin</function>
+                </response>
             </responses>
         </intent_group>
 

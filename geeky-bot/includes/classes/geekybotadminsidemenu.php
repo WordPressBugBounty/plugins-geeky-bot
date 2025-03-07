@@ -102,6 +102,13 @@ $layout = GEEKYBOTrequest::GEEKYBOT_getVar('geekybotlt');
         </a>
     </li>
 </ul>
+<div id="geekybotadmin_black_wrapper_built_loading" style="display: none;" ></div>
+<div class="geekybotadmin-built-story-loading" id="geekybotadmin_built_loading" style="display: none;" >
+    <img src="<?php echo esc_url(GEEKYBOT_PLUGIN_URL); ?>includes/images/spinning-wheel.gif" />
+    <div class="geekybotadmin-built-story-loading-text">
+        <?php echo esc_html(__('Please wait a moment; this may take some time.','geeky-bot')); ?>
+    </div>
+</div>
 <?php
 $geekybot_js ="
     jQuery(document).ready(function () {

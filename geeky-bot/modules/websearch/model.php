@@ -213,6 +213,10 @@ class GEEKYBOTwebsearchModel {
             'public'             => true, // Post types available on the front-end
             'publicly_queryable' => true,  // Must be queryable via URLs
         );
+        //
+        $ignored_post_types = array(
+            'attachment'
+        ); 
         // Get all the custom post types
         $current_post_types = get_post_types($args, 'names');
         // Get all stored post types
@@ -225,6 +229,9 @@ class GEEKYBOTwebsearchModel {
         if (!empty($new_post_types)) {
             $post_type_status = geekybot::$_configuration['is_new_post_type_enable'];
             foreach ($new_post_types as $post_type) {
+                if (in_array($post_type, $ignored_post_types)) {
+                    $post_type_status = 0;
+                }
                 // create a new record
                 $post_type_object = get_post_type_object($post_type);
                 $label = $post_type_object ? $post_type_object->labels->singular_name : $post_type;
@@ -458,9 +465,10 @@ class GEEKYBOTwebsearchModel {
                     // Encrypt the data
                     $encrypted_post_ids = openssl_encrypt(json_encode($data['post_ids']), 'AES-128-ECB', 'geekybot_websearch');
                     $message = geekybotphplib::GEEKYBOT_htmlentities(geekybotphplib::GEEKYBOT_htmlspecialchars(geekybotphplib::GEEKYBOT_addslashes($msg), ENT_QUOTES, 'UTF-8'));
+                    $label = geekybotphplib::GEEKYBOT_htmlentities(geekybotphplib::GEEKYBOT_htmlspecialchars(geekybotphplib::GEEKYBOT_addslashes($data['label']), ENT_QUOTES, 'UTF-8'));
                     $btnHtml .= "
                     <div class='geekybot_article_bnt_wrp'>
-                        <span onclick=\"showArticlesList('".$encrypted_post_ids."','".$message."','".$index."','".$data['label']."','".$post_ids_count."', 1);\" class='geekybot_article_bnt button'>" . $data['label'].' ('. $post_ids_count .')' ."<img src='". esc_url(GEEKYBOT_PLUGIN_URL) ."includes/images/chat-img/btn-arrow.png' /></span>
+                        <span onclick=\"showArticlesList('".$encrypted_post_ids."','".$message."','".$index."','".$label."','".$post_ids_count."', 1);\" class='geekybot_article_bnt button'>" . $data['label'].' ('. $post_ids_count .')' ."<img src='". esc_url(GEEKYBOT_PLUGIN_URL) ."includes/images/chat-img/btn-arrow.png' /></span>
                     </div>";
                 }
             }
@@ -473,7 +481,8 @@ class GEEKYBOTwebsearchModel {
             // Encrypt the data
             $encrypted_post_ids = openssl_encrypt(json_encode($post_type_data['post_ids']), 'AES-128-ECB', 'geekybot_websearch');
             $message = geekybotphplib::GEEKYBOT_htmlentities(geekybotphplib::GEEKYBOT_htmlspecialchars(geekybotphplib::GEEKYBOT_addslashes($msg), ENT_QUOTES, 'UTF-8'));
-            $html = $this->showArticlesList($encrypted_post_ids,$message, $post_type, $post_type_data['label'], count($post_type_data['post_ids']), 1);
+            $label = geekybotphplib::GEEKYBOT_htmlentities(geekybotphplib::GEEKYBOT_htmlspecialchars(geekybotphplib::GEEKYBOT_addslashes($post_type_data['label']), ENT_QUOTES, 'UTF-8'));
+            $html = $this->showArticlesList($encrypted_post_ids,$message, $post_type, $label, count($post_type_data['post_ids']), 1);
             $html = html_entity_decode($html);
         }
         GEEKYBOTincluder::GEEKYBOT_getObjectClass('logging')->GEEKYBOTlwrite($logdata);
@@ -484,7 +493,8 @@ class GEEKYBOTwebsearchModel {
         if ($type == '') {
             $nonce = GEEKYBOTrequest::GEEKYBOT_getVar('_wpnonce');
             if (! wp_verify_nonce( $nonce, 'articles-list') ) {
-                die( 'Security check Failed' ); 
+                // disable nonce
+                // die( 'Security check Failed' ); 
             }
             $post_ids = GEEKYBOTrequest::GEEKYBOT_getVar('post_ids');
             $msg = GEEKYBOTrequest::GEEKYBOT_getVar('msg');
@@ -495,6 +505,7 @@ class GEEKYBOTwebsearchModel {
             $save_history = 1;
         }
         $msg = htmlspecialchars_decode($this->stripslashesFull($msg));
+        $label = htmlspecialchars_decode($this->stripslashesFull($label));
         $postsPerPage = geekybot::$_configuration['pagination_product_page_size'];
         $offset = ($current_page - 1) * $postsPerPage;
 
@@ -553,7 +564,8 @@ class GEEKYBOTwebsearchModel {
                 if ($total_posts > ($current_page * $postsPerPage)) {
                     $next_page = $current_page + 1;
                     $message = geekybotphplib::GEEKYBOT_htmlspecialchars(geekybotphplib::GEEKYBOT_addslashes($msg), ENT_QUOTES, 'UTF-8');
-                    $text .= "<span class='geekybot_wc_post_load_more' onclick=\"showArticlesList('".$post_ids."','".$message."','".$type."','".$label."','". $total_posts."','". $next_page."');\">".__('Show More', 'geeky-bot')."</span>";
+                    $post_label = geekybotphplib::GEEKYBOT_htmlspecialchars(geekybotphplib::GEEKYBOT_addslashes($label), ENT_QUOTES, 'UTF-8');
+                    $text .= "<span class='geekybot_wc_post_load_more' onclick=\"showArticlesList('".$post_ids."','".$message."','".$type."','".$post_label."','". $total_posts."','". $next_page."');\">".__('Show More', 'geeky-bot')."</span>";
                 }
             $text .= "</div>";
         }
@@ -613,81 +625,81 @@ class GEEKYBOTwebsearchModel {
     }
 
     function geekybotEnableWebSearch($ajaxCall = 1) {
+        if (!current_user_can('manage_options')){
+            die('Only Administrators can perform this action.');
+        }
         if ($ajaxCall == 1) {
             $nonce = GEEKYBOTrequest::GEEKYBOT_getVar('_wpnonce');
             if (! wp_verify_nonce( $nonce, 'enable-post') ) {
                 die( 'Security check Failed' );
             }
         }
-        $status = $this->geekybotEnableDisableWebSearch(1);
         // Get all posts
-        if ($status == 1) {
-            update_option('geekybot_synchronize_available', 0);
-            $this->geekybotSynchronizePostTypes();
-            $available_post_types = $this->geekybotGetActivePostTypes();
-            if (empty($available_post_types)) {
-                return 1;
-            }
-            $max_batch_size = 1000; // Maximum number of records to process at once
-            $threshold = 10000; // Threshold to determine small vs. large datasets
-            $max_batch_size_in_bytes = 5 * 1024 * 1024; // 5 MB per batch
-            $batch_data = []; // Store data for the current batch
-            $offset = 0; // Start from the first batch
-            // Get total number of posts for the specified post type
-            $post_types_list = "'" . implode("', '", $available_post_types) . "'";
-            $query = "SELECT COUNT(ID) FROM `" . geekybot::$_db->prefix . "posts` WHERE post_type IN ($post_types_list) AND post_status = 'publish'";
-            $total_posts = geekybotdb::GEEKYBOT_get_var($query);
-            // Calculate an appropriate limit based on the total number of posts
-            if ($total_posts <= $threshold) {
-                $limit = min($total_posts, $max_batch_size); // Higher limit for small datasets
-            } else {
-                $limit = min($max_batch_size, ceil($total_posts / 100)); // Lower limit for large datasets
-            }
-            do {
-                // Modify the query arguments
-                $args = array(
-                    'post_type'      => $available_post_types, // Use the filtered post types
-                    'post_status'    => 'publish',
-                    'posts_per_page' => $limit, // Limit number of posts
-                    'offset'         => $offset,
-                    'orderby'        => 'date', // Order by date
-                    'order'          => 'DESC', // Order by descending
-                );
-
-                $posts = get_posts( $args );
-                if (empty($posts)) {
-                    break; // Exit the loop if no more posts are found
-                }
-                foreach($posts as $post){
-                    $post_text = $post->post_title.' ';
-                    $post_text .= $post->post_content.' ';
-                    // Calculate the size of current row in bytes
-                    $row_size = strlen($post_text);
-
-                    // If adding this row exceeds the batch size, insert current batch
-                    if ($row_size > $max_batch_size_in_bytes && !empty($batch_data)) {
-                        // Insert the current batch
-                        $insert_query = $this->geekybotPostTypeBuildQuery($batch_data);
-                        geekybot::$_db->query($insert_query);
-                        // Reset for the next batch
-                        $batch_data = [];
-                    }
-                    // Add the current row to the batch
-                    $batch_data[] = $post->ID;
-                }
-                // Insert any remaining data in the last batch
-                if (!empty($batch_data)) {
-                    $insert_query = $this->geekybotPostTypeBuildQuery($batch_data);
-                    geekybot::$_db->query($insert_query);
-                    $batch_data = [];
-                }
-                // Clear cache and free memory
-                wp_cache_flush();
-                gc_collect_cycles();
-                $offset += $limit; // Move to the next batch
-            } while ($offset < $total_posts);
+        update_option('geekybot_synchronize_available', 0);
+        $this->geekybotSynchronizePostTypes();
+        $available_post_types = $this->geekybotGetActivePostTypes();
+        if (empty($available_post_types)) {
             return 1;
         }
+        $max_batch_size = 1000; // Maximum number of records to process at once
+        $threshold = 10000; // Threshold to determine small vs. large datasets
+        $max_batch_size_in_bytes = 5 * 1024 * 1024; // 5 MB per batch
+        $batch_data = []; // Store data for the current batch
+        $offset = 0; // Start from the first batch
+        // Get total number of posts for the specified post type
+        $post_types_list = "'" . implode("', '", $available_post_types) . "'";
+        $query = "SELECT COUNT(ID) FROM `" . geekybot::$_db->prefix . "posts` WHERE post_type IN ($post_types_list) AND post_status = 'publish'";
+        $total_posts = geekybotdb::GEEKYBOT_get_var($query);
+        // Calculate an appropriate limit based on the total number of posts
+        if ($total_posts <= $threshold) {
+            $limit = min($total_posts, $max_batch_size); // Higher limit for small datasets
+        } else {
+            $limit = min($max_batch_size, ceil($total_posts / 100)); // Lower limit for large datasets
+        }
+        do {
+            // Modify the query arguments
+            $args = array(
+                'post_type'      => $available_post_types, // Use the filtered post types
+                'post_status'    => 'publish',
+                'posts_per_page' => $limit, // Limit number of posts
+                'offset'         => $offset,
+                'orderby'        => 'date', // Order by date
+                'order'          => 'DESC', // Order by descending
+            );
+
+            $posts = get_posts( $args );
+            if (empty($posts)) {
+                break; // Exit the loop if no more posts are found
+            }
+            foreach($posts as $post){
+                $post_text = $post->post_title.' ';
+                $post_text .= $post->post_content.' ';
+                // Calculate the size of current row in bytes
+                $row_size = strlen($post_text);
+
+                // If adding this row exceeds the batch size, insert current batch
+                if ($row_size > $max_batch_size_in_bytes && !empty($batch_data)) {
+                    // Insert the current batch
+                    $insert_query = $this->geekybotPostTypeBuildQuery($batch_data);
+                    geekybot::$_db->query($insert_query);
+                    // Reset for the next batch
+                    $batch_data = [];
+                }
+                // Add the current row to the batch
+                $batch_data[] = $post->ID;
+            }
+            // Insert any remaining data in the last batch
+            if (!empty($batch_data)) {
+                $insert_query = $this->geekybotPostTypeBuildQuery($batch_data);
+                geekybot::$_db->query($insert_query);
+                $batch_data = [];
+            }
+            // Clear cache and free memory
+            wp_cache_flush();
+            gc_collect_cycles();
+            $offset += $limit; // Move to the next batch
+        } while ($offset < $total_posts);
+        $status = $this->geekybotEnableDisableWebSearch(1);
         return $status;
     }
 
@@ -780,6 +792,9 @@ class GEEKYBOTwebsearchModel {
     }
 
     function geekybotDisableWebSearch($ajaxCall = 1) {
+        if (!current_user_can('manage_options')){
+            die('Only Administrators can perform this action.');
+        }
         if ($ajaxCall == 1) {
             $nonce = GEEKYBOTrequest::GEEKYBOT_getVar('_wpnonce');
             if (! wp_verify_nonce( $nonce, 'disable-post') ) {
@@ -945,7 +960,9 @@ class GEEKYBOTwebsearchModel {
             // Merge unique meta keys
             $all_meta_keys = array_unique(array_merge($all_meta_keys, $taxonomies));
         }
-
+        $custom_meta_keys[] = '_wp_created_date';
+        $custom_meta_keys[] = '_wp_modified_date';
+        $all_meta_keys = array_unique(array_merge($all_meta_keys, $custom_meta_keys));
         // Format the meta keys for the combobox
         $formatted_keys = array_map(function ($key) {
             return (object) [

@@ -95,6 +95,10 @@ class GEEKYBOTchathistoryModel {
     }
 
     function getUserChatHistoryMessages() {
+        if (!current_user_can('manage_options')){
+            // disable nonce
+            // die('Only Administrators can perform this action.');
+        }
         $nonce = GEEKYBOTrequest::GEEKYBOT_getVar('_wpnonce');
         if (! wp_verify_nonce( $nonce, 'get-user-chat-history') ) {
             die( 'Security check Failed' );
@@ -288,7 +292,8 @@ class GEEKYBOTchathistoryModel {
         // admin cards
         $nonce = GEEKYBOTrequest::GEEKYBOT_getVar('_wpnonce');
         if (! wp_verify_nonce( $nonce, 'save-chat-history') ) {
-            die( 'Security check Failed' );
+            // disable nonce
+            // die( 'Security check Failed' );
         }
         $message = GEEKYBOTrequest::GEEKYBOT_getVar('cmessage');
         $sender = GEEKYBOTrequest::GEEKYBOT_getVar('csender');
@@ -357,7 +362,8 @@ class GEEKYBOTchathistoryModel {
     function getRandomChatId() {
         $nonce = GEEKYBOTrequest::GEEKYBOT_getVar('_wpnonce');
         if (! wp_verify_nonce( $nonce, 'get-random-chat-id') ) {
-            die( 'Security check Failed' );
+            // disable nonce
+            // die( 'Security check Failed' );
         }
         $datetime = GEEKYBOTrequest::GEEKYBOT_getVar('datetime');
         // check from cookies data
@@ -383,7 +389,8 @@ class GEEKYBOTchathistoryModel {
     function restartUserChat() {
         $nonce = GEEKYBOTrequest::GEEKYBOT_getVar('_wpnonce');
         if (! wp_verify_nonce( $nonce, 'restart-user-chat') ) {
-            die( 'Security check Failed' );
+            // disable nonce
+            // die( 'Security check Failed' );
         }
         $datetime = GEEKYBOTrequest::GEEKYBOT_getVar('datetime');
         // unset the old chat id
@@ -408,7 +415,8 @@ class GEEKYBOTchathistoryModel {
     function endUserChat(){
         $nonce = GEEKYBOTrequest::GEEKYBOT_getVar('_wpnonce');
         if (! wp_verify_nonce( $nonce, 'end-user-chat') ) {
-            die( 'Security check Failed' );
+            // disable nonce
+            // die( 'Security check Failed' );
         }
         $this->geekybot_removechatidcookies();
         // save message

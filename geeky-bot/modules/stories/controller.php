@@ -49,15 +49,18 @@ class GEEKYBOTStoriesController {
     }
 
     function removeStory() {
+        if (!current_user_can('manage_options')){
+            die('Only Administrators can perform this action.');
+        }
+        $id = GEEKYBOTrequest::GEEKYBOT_getVar('geekybot-cb');
         $nonce = GEEKYBOTrequest::GEEKYBOT_getVar('_wpnonce');
-        if (! wp_verify_nonce( $nonce, 'delete-story') ) {
+        if (! wp_verify_nonce( $nonce, 'delete-story-'.$id) ) {
             die( 'Security check Failed' );
         }
         $data = GEEKYBOTrequest::GEEKYBOT_get('post');
         if (!isset($data['callfrom']) || $data['callfrom'] == null) {
             $data['callfrom'] = $callfrom = GEEKYBOTrequest::GEEKYBOT_getVar('callfrom');
         }
-        $id = GEEKYBOTrequest::GEEKYBOT_getVar('geekybot-cb');
         $result = GEEKYBOTincluder::GEEKYBOT_getModel('stories')->deleteStory($id);
         $msg = GEEKYBOTMessages::GEEKYBOT_getMessage($result, 'story');
         GEEKYBOTMessages::GEEKYBOT_setLayoutMessage($msg['message'], $msg['status'],$this->_msgkey);
@@ -67,12 +70,15 @@ class GEEKYBOTStoriesController {
     }
 
     function changeStatus() {
+        if (!current_user_can('manage_options')){
+            die('Only Administrators can perform this action.');
+        }
+        $storyid = GEEKYBOTrequest::GEEKYBOT_getVar('storyid');
         $nonce = GEEKYBOTrequest::GEEKYBOT_getVar('_wpnonce');
-        if (! wp_verify_nonce( $nonce, 'change-status') ) {
+        if (! wp_verify_nonce( $nonce, 'change-status-'.$storyid) ) {
             die( 'Security check Failed' );
         }
         $status = GEEKYBOTrequest::GEEKYBOT_getVar('status');
-        $storyid = GEEKYBOTrequest::GEEKYBOT_getVar('storyid');
         $result = GEEKYBOTincluder::GEEKYBOT_getModel('stories')->changeStatus($status, $storyid);
         $msg = GEEKYBOTMessages::GEEKYBOT_getMessage($result, 'story');
         GEEKYBOTMessages::GEEKYBOT_setLayoutMessage($msg['message'], $msg['status'],$this->_msgkey);
@@ -82,6 +88,9 @@ class GEEKYBOTStoriesController {
     }
 
     function savestories(){
+        if (!current_user_can('manage_options')){
+            die('Only Administrators can perform this action.');
+        }
         $nonce = GEEKYBOTrequest::GEEKYBOT_getVar('_wpnonce');
         if (! wp_verify_nonce( $nonce, 'save-story') ) {
             die( 'Security check Failed' );

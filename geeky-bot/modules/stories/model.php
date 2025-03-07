@@ -160,6 +160,9 @@ class GEEKYBOTstoriesModel {
     }
 
     function geekybotEditStoryName() {
+        if (!current_user_can('manage_options')){
+            die('Only Administrators can perform this action.');
+        }
         $nonce = GEEKYBOTrequest::GEEKYBOT_getVar('_wpnonce');
         if (! wp_verify_nonce( $nonce, 'edit-story-name') ) {
             die( 'Security check Failed' ); 
@@ -294,6 +297,9 @@ class GEEKYBOTstoriesModel {
     // new
 
     function savedefaultFallbackFormAjax(){
+        if (!current_user_can('manage_options')){
+            die('Only Administrators can perform this action.');
+        }
         $nonce = GEEKYBOTrequest::GEEKYBOT_getVar('_wpnonce');
         if (! wp_verify_nonce( $nonce, 'save-default-fallback') ) {
             die( 'Security check Failed' ); 
@@ -333,11 +339,14 @@ class GEEKYBOTstoriesModel {
     }
 
     function deleteDefaultFallback(){
-        $nonce = GEEKYBOTrequest::GEEKYBOT_getVar('_wpnonce');
-        if (! wp_verify_nonce( $nonce, 'delete-default-fallback') ) {
-            die( 'Security check Failed' ); 
+        if (!current_user_can('manage_options')){
+            die('Only Administrators can perform this action.');
         }
         $story_id = GEEKYBOTrequest::GEEKYBOT_getVar('story_id');
+        $nonce = GEEKYBOTrequest::GEEKYBOT_getVar('_wpnonce');
+        if (! wp_verify_nonce( $nonce, 'delete-default-fallback-'.$story_id) ) {
+            die( 'Security check Failed' ); 
+        }
         // delete the default fallback
         $query = "UPDATE `" . geekybot::$_db->prefix . "geekybot_stories` SET `default_fallback` = '', `default_fallback_buttons` = '' WHERE `id`= " . esc_sql($story_id);
         geekybotdb::query($query);
@@ -345,6 +354,9 @@ class GEEKYBOTstoriesModel {
     }
 
     function saveStoryAjax(){
+        if (!current_user_can('manage_options')){
+            die('Only Administrators can perform this action.');
+        }
         $nonce = GEEKYBOTrequest::GEEKYBOT_getVar('_wpnonce');
         if (! wp_verify_nonce( $nonce, 'save-story') ) {
             die( 'Security check Failed' ); 
@@ -367,6 +379,9 @@ class GEEKYBOTstoriesModel {
     }
 
     function updateStoryAjax(){
+        if (!current_user_can('manage_options')){
+            die('Only Administrators can perform this action.');
+        }
         $nonce = GEEKYBOTrequest::GEEKYBOT_getVar('_wpnonce');
         if (! wp_verify_nonce( $nonce, 'save-story') ) {
             die( 'Security check Failed' ); 
@@ -547,6 +562,9 @@ class GEEKYBOTstoriesModel {
     }
 
     function getUserInputFormBodyHTMLAjax(){
+        if (!current_user_can('manage_options')){
+            die('Only Administrators can perform this action.');
+        }
         $nonce = GEEKYBOTrequest::GEEKYBOT_getVar('_wpnonce');
         if (! wp_verify_nonce( $nonce, 'get-form-html') ) {
             die( 'Security check Failed' ); 
@@ -608,6 +626,9 @@ class GEEKYBOTstoriesModel {
     }
 
     function getResponseTextFormBodyHTMLAjax(){
+        if (!current_user_can('manage_options')){
+            die('Only Administrators can perform this action.');
+        }
         $nonce = GEEKYBOTrequest::GEEKYBOT_getVar('_wpnonce');
         if (! wp_verify_nonce( $nonce, 'get-form-html') ) {
             die( 'Security check Failed' ); 
@@ -650,11 +671,11 @@ class GEEKYBOTstoriesModel {
                     }
                     $html .= '
                     <div class="geeky-popup-dynamic-field" id="div_'.$responseButtonDivId.'">
-                        <input name = "response_btn_text[]" type="text" value = "'.$response_button->text.'" class="inputbox geeky-popup-dynamic-field-input" autocomplete="off" placeholder="'. esc_attr(__('Button text here','geeky-bot')).'" />
                         <select name="response_btn_type[]" id="response_btn_type[]" class="response-btn-type inputbox geeky-popup-dynamic-field-input geeky-popup-dynamic-field-select" data-validation="required">
                             <option value="1" '.$optionOneSelected.' >'. esc_attr(__('User Input','geeky-bot')).'</option>
                             <option value="2" '.$optionTwoSelected.' >'. esc_attr(__('URL','geeky-bot')).'</option>
                         </select>
+                        <input name = "response_btn_text[]" type="text" value = "'.$response_button->text.'" class="inputbox geeky-popup-dynamic-field-input" autocomplete="off" placeholder="'. esc_attr(__('Button text here','geeky-bot')).'" />
                         <input name = "response_btn_value[]" type="text" value = "'.$response_button->value.'" class="response-btn-value inputbox geeky-popup-dynamic-field-input" autocomplete="off" placeholder="'. esc_attr(__('Button value here','geeky-bot')).'" '.$optionOneStyle.' />
                         <input name = "response_btn_url[]" type="text" value = "'.$response_button->value.'" class="response-btn-url inputbox geeky-popup-dynamic-field-input" autocomplete="off" placeholder="'. esc_attr(__('Enter URL here','geeky-bot')).'" '.$optionTwoStyle.' />
                         <span class="geeky-popup-dynamic-remov-image remove-btn" title="'. esc_attr(__('Delete','geeky-bot')) .'" onClick="deleteResponseTextBotton(div_'.$responseButtonDivId.')">
@@ -676,6 +697,9 @@ class GEEKYBOTstoriesModel {
     }
 
     function getResponseFunctionFormBodyHTMLAjax(){
+        if (!current_user_can('manage_options')){
+            die('Only Administrators can perform this action.');
+        }
         $nonce = GEEKYBOTrequest::GEEKYBOT_getVar('_wpnonce');
         if (! wp_verify_nonce( $nonce, 'get-form-html') ) {
             die( 'Security check Failed' ); 
@@ -688,7 +712,7 @@ class GEEKYBOTstoriesModel {
             $function = geekybotdb::GEEKYBOT_get_row($query);
         }
         if ($story_type == 2) {
-            $predefinedFunctions = GEEKYBOTincluder::GEEKYBOT_getModel('stories')->getPredefinedFunctionsForWCCombobox();
+            $predefinedFunctions = $this->getPredefinedFunctionsForWCCombobox();
         } else{
             $predefinedFunctions = GEEKYBOTincluder::GEEKYBOT_getModel('stories')->getPredefinedFunctionsForAICombobox();
         }
@@ -704,6 +728,9 @@ class GEEKYBOTstoriesModel {
     }
 
     function getResponseActionFormBodyHTMLAjax(){
+        if (!current_user_can('manage_options')){
+            die('Only Administrators can perform this action.');
+        }
         $nonce = GEEKYBOTrequest::GEEKYBOT_getVar('_wpnonce');
         if (! wp_verify_nonce( $nonce, 'get-form-html') ) {
             die( 'Security check Failed' ); 
@@ -734,6 +761,9 @@ class GEEKYBOTstoriesModel {
     }
 
     function getResponseFormFormBodyHTMLAjax(){
+        if (!current_user_can('manage_options')){
+            die('Only Administrators can perform this action.');
+        }
         $nonce = GEEKYBOTrequest::GEEKYBOT_getVar('_wpnonce');
         if (! wp_verify_nonce( $nonce, 'get-form-html') ) {
             die( 'Security check Failed' ); 
@@ -764,6 +794,9 @@ class GEEKYBOTstoriesModel {
     }
 
     function getDefaultFallbackFormBodyHTMLAjax(){
+        if (!current_user_can('manage_options')){
+            die('Only Administrators can perform this action.');
+        }
         $nonce = GEEKYBOTrequest::GEEKYBOT_getVar('_wpnonce');
         if (! wp_verify_nonce( $nonce, 'get-form-html') ) {
             die( 'Security check Failed' ); 
@@ -832,6 +865,9 @@ class GEEKYBOTstoriesModel {
     }
 
     function getDefaultIntentFallbackFormBodyHTMLAjax(){
+        if (!current_user_can('manage_options')){
+            die('Only Administrators can perform this action.');
+        }
         $nonce = GEEKYBOTrequest::GEEKYBOT_getVar('_wpnonce');
         if (! wp_verify_nonce( $nonce, 'get-form-html') ) {
             die( 'Security check Failed' ); 
@@ -899,6 +935,9 @@ class GEEKYBOTstoriesModel {
     }
 
     function resetStory() {
+        if (!current_user_can('manage_options')){
+            die('Only Administrators can perform this action.');
+        }
         $nonce = GEEKYBOTrequest::GEEKYBOT_getVar('_wpnonce');
         if (! wp_verify_nonce( $nonce, 'reset-story') ) {
             die( 'Security check Failed' ); 
@@ -1214,6 +1253,9 @@ class GEEKYBOTstoriesModel {
     }
 
     function geekybotBuildAIStoryFromTemplate($template_name = '') {
+        if (!current_user_can('manage_options')){
+            die('Only Administrators can perform this action.');
+        }
         if ($template_name == '') {
             $nonce = GEEKYBOTrequest::GEEKYBOT_getVar('_wpnonce');
             if (! wp_verify_nonce( $nonce, 'save-story') ) {
@@ -1272,6 +1314,9 @@ class GEEKYBOTstoriesModel {
     }
 
     function geekybotBuildWooCommerceStory($story_name = '') {
+        if (!current_user_can('manage_options')){
+            die('Only Administrators can perform this action.');
+        }
         if ($story_name == '') {
             $nonce = GEEKYBOTrequest::GEEKYBOT_getVar('_wpnonce');
             if (! wp_verify_nonce( $nonce, 'save-story') ) {
@@ -2044,6 +2089,9 @@ class GEEKYBOTstoriesModel {
     }
 
     function getTextForTooltip(){
+        if (!current_user_can('manage_options')){
+            die('Only Administrators can perform this action.');
+        }
         $nonce = GEEKYBOTrequest::GEEKYBOT_getVar('_wpnonce');
         if (! wp_verify_nonce( $nonce, 'get-tooltip-text') ) {
             die( 'Security check Failed' ); 
@@ -2180,6 +2228,9 @@ class GEEKYBOTstoriesModel {
     }
 
     function addIntentToStory(){
+        if (!current_user_can('manage_options')){
+            die('Only Administrators can perform this action.');
+        }
         $nonce = GEEKYBOTrequest::GEEKYBOT_getVar('_wpnonce');
         if (! wp_verify_nonce( $nonce, 'add-intent') ) {
             die( 'Security check Failed' );

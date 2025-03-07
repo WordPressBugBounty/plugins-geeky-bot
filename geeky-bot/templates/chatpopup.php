@@ -6,6 +6,7 @@
             $title = __('GeekyBot', 'geeky-bot');
         }
         $botImgScr = GEEKYBOTincluder::GEEKYBOT_getModel('geekybot')->getBotImagePath();
+        $closeImgScr = esc_url(GEEKYBOT_PLUGIN_URL).'includes/images/chat_close.png';
         $chatpopupcode = wp_enqueue_style('geekybot-fontawesome', GEEKYBOT_PLUGIN_URL . 'includes/css/font-awesome.css', array(), GEEKYBOT_PLUGIN_VERSION, 'all');
         if (geekybot::$_configuration['welcome_message'] != '') {
             $chatpopupcode .='
@@ -27,9 +28,11 @@
         <div class="chat-open-dialog-main">
             <div class="chat-open-dialog-main-inner">
                 <button class="chat-open-dialog">
-                  <div class="chat-open-dialog-img">
-                   <img class="wp-chat-image" alt="screen tag" src="'. esc_url($botImgScr) .'" /></button>
-                  </div>
+                    <div class="chat-open-dialog-img">
+                        <img class="wp-chat-image wp-chat-logo" alt="screen tag" src="'. esc_url($botImgScr) .'" />
+                        <img class="wp-chat-image wp-chat-close" alt="screen tag" src="'. esc_url($closeImgScr) .'" />
+                    </div>
+                </button>
             </div>
         </div>
         <div class="chat-button-destroy-main">

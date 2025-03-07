@@ -451,7 +451,8 @@ class GEEKYBOTwoocommerceModel {
         if ($data == '') {
             $nonce = GEEKYBOTrequest::GEEKYBOT_getVar('_wpnonce');
             if (! wp_verify_nonce( $nonce, 'products-list') ) {
-                die( 'Security check Failed' ); 
+                // disable nonce
+                // die( 'Security check Failed' ); 
             }
             $msg = GEEKYBOTrequest::GEEKYBOT_getVar('msg');
             $data = GEEKYBOTrequest::GEEKYBOT_getVar('data');
@@ -664,30 +665,33 @@ class GEEKYBOTwoocommerceModel {
                     $product_id = $cart_item['product_id'];
                     $product_quantity = $cart_item['quantity'];
 
-                    $item_subtotal = $product_quantity * $cart_item['data']->get_price();
+                    // Check if product has a variation
+                    if ( $cart_item['variation_id'] ) {
+                        $_product = new WC_Product_Variation( $cart_item['variation_id'] );
+                    } else {
+                        $_product = wc_get_product( $product_id );
+                    }
+
+                    $item_subtotal = $product_quantity * $_product->get_price();
                     $formatted_item_subtotal = wc_price( $item_subtotal );
-                    $_product = wc_get_product($product_id);
-                    $thumbnail = get_the_post_thumbnail_url( $product_id, 'thumbnail' ); // Adjust image size as needed
+
+                    $thumbnail = get_the_post_thumbnail_url( $_product->get_id(), 'thumbnail' ); // Use variation image
+                    if ( !$thumbnail ) {
+                        $thumbnail = wc_placeholder_img_src();
+                    }
+
                     $product_price = $_product->get_price_html();
                     $product_price = str_replace('"', "'", $product_price);
 
                     $text .= "
                     <div class='geekybot_wc_cart_item'>
-                        <div class='geekybot_wc_cart_item_left'>";
-                            if ( $thumbnail ) {
-                                $text .= "<img src='" . $thumbnail . "' alt='" . $_product->get_name() . "' class='geekybot_wc_cart_item_image'>";
-                            } else {
-                                $default_product_image_url = wc_placeholder_img_src();
-                                if ( $default_product_image_url ) {
-                                    $text .= "<img src='" . $default_product_image_url . "' alt='" . $_product->get_name() . "' class='geekybot_wc_cart_item_image'>";
-                                }
-                            }
-                            $text .= "
+                        <div class='geekybot_wc_cart_item_left'>
+                            <img src='" . esc_url( $thumbnail ) . "' alt='" . esc_attr( $_product->get_name() ) . "' class='geekybot_wc_cart_item_image'>
                         </div>
                         <div class='geekybot_wc_cart_item_right'>
                             <div class='geekybot_wc_cart_item_title'>
-                                <a href='".$_product->get_permalink()."' target='_blank'>
-                                    ".$_product->get_name()."
+                                <a href='" . esc_url( $_product->get_permalink() ) . "' target='_blank'>
+                                    " . esc_html( $_product->get_name() ) . "
                                 </a>
                             </div>
                             <div class='geekybot_wc_cart_item_attr'>
@@ -702,13 +706,11 @@ class GEEKYBOTwoocommerceModel {
                                 $variation = new WC_Product_Variation( $cart_item['variation_id'] );
                                 $variation_attributes = $variation->get_variation_attributes();
                                 foreach ( $variation_attributes as $attribute_name => $attribute_value ) {
-                                    $filteredKey =  explode('_', $attribute_name);
-                                    $filteredKey =  end($filteredKey);
-                                    $filteredKey = ucfirst($filteredKey);
+                                    $filteredKey = ucfirst( end( explode('_', $attribute_name) ) );
                                     $text .= "
                                     <div class='geekybot_wc_cart_item_attr'>
                                         <p class='geekybot_wc_cart_item_attr_title'>
-                                            " . $filteredKey.": " . "
+                                            " . esc_html($filteredKey).": " . "
                                         </p>
                                         <p class='geekybot_wc_cart_item_attr_value'>
                                             " . $attribute_value . "
@@ -719,27 +721,25 @@ class GEEKYBOTwoocommerceModel {
                             $text .= "
                             <div class='geekybot_wc_cart_item_attr'>
                                 <p class='geekybot_wc_cart_item_attr_title'>
-                                    " . __('Quantity', 'geeky-bot').": " . "
+                                    " . __('Quantity', 'geeky-bot') . ": " . "
                                 </p>
                                 <p class='geekybot_wc_cart_item_attr_value'>
-                                    " . $product_quantity . "
+                                    " . esc_html( $product_quantity ) . "
                                 </p>
-                                <span class='geekybot_wc_cart_item_qty_change' onclick=\"geekybotUpdateCartItemQty('".$cart_item_key."');\">
+                                <span class='geekybot_wc_cart_item_qty_change' onclick=\"geekybotUpdateCartItemQty('" . esc_attr( $cart_item_key ) . "');\">
                                     " . __('Change', 'geeky-bot') . "
                                 </span>
-                            </div>";
-                            $text .= " 
-                        </div>";// Close right side
-                        $text .= "
+                            </div>
+                        </div>
                         <div class='geekybot_wc_cart_item_bottom'>
                             <div class='geekybot_wc_cart_item_totalp'>
-                                " . __('Total Price', 'geeky-bot').": ".$formatted_item_subtotal . "
+                                " . __('Total Price', 'geeky-bot') . ": " . $formatted_item_subtotal . "
                             </div>
-                            <div class='geekybot_wc_cart_item_remove' onclick='geekybotRemoveCartItem(".$cart_item['variation_id'].",".$cart_item['product_id'].");'>
+                            <div class='geekybot_wc_cart_item_remove' onclick='geekybotRemoveCartItem(" . esc_attr( $cart_item['variation_id'] ) . "," . esc_attr( $cart_item['product_id'] ) . ");'>
                                 " . __('Remove Item', 'geeky-bot') . "
                             </div>
-                        </div>";
-                    $text .= "</div>"; // Close cart-item wrp
+                        </div>
+                    </div>"; // Close cart-item wrapper
                 }
             $text .= "</div>"; // Close cart-items wrp
             $text .= "
@@ -795,7 +795,8 @@ class GEEKYBOTwoocommerceModel {
         }
         $nonce = GEEKYBOTrequest::GEEKYBOT_getVar('_wpnonce');
         if (! wp_verify_nonce( $nonce, 'add-to-cart') ) {
-            die( 'Security check Failed' ); 
+            // disable nonce
+            // die( 'Security check Failed' ); 
         }
         $pid = GEEKYBOTrequest::GEEKYBOT_getVar('productid');
         $buttons = array();
@@ -921,7 +922,8 @@ class GEEKYBOTwoocommerceModel {
         if ($productid == '') {
             $nonce = GEEKYBOTrequest::GEEKYBOT_getVar('_wpnonce');
             if (! wp_verify_nonce( $nonce, 'product-attributes') ) {
-                die( 'Security check Failed' ); 
+                // disable nonce
+                // die( 'Security check Failed' ); 
             }
             $productid = GEEKYBOTrequest::GEEKYBOT_getVar('productid');
 
@@ -1147,7 +1149,7 @@ class GEEKYBOTwoocommerceModel {
                     $added_to_cart = $woocommerce->cart->add_to_cart($product_id, $quantity, $variation_id, $variation, null);
                     // $added_to_cart = $woocommerce->cart->add_to_cart( $variation['variation_id'], 1 ); // Add to cart
                     if ($added_to_cart) {
-                        $product = wc_get_product( $product_id );
+                        $product = new WC_Product_Variation( $variation_id );
                         $text = "
                         <div class='geekybot_wc_product_wrp geekybot_wc_product_options_wrp'>
                             <div class='geekybot_wc_success_msg_wrp success'>
@@ -1239,7 +1241,8 @@ class GEEKYBOTwoocommerceModel {
     function saveProductAttributeToSession(){
         $nonce = GEEKYBOTrequest::GEEKYBOT_getVar('_wpnonce');
         if (! wp_verify_nonce( $nonce, 'save-product-attribute') ) {
-            die( 'Security check Failed' ); 
+            // disable nonce
+            // die( 'Security check Failed' ); 
         }
         $productid = GEEKYBOTrequest::GEEKYBOT_getVar('productid');
         $attributekey = GEEKYBOTrequest::GEEKYBOT_getVar('attributekey');
@@ -1257,7 +1260,8 @@ class GEEKYBOTwoocommerceModel {
         }
         $nonce = GEEKYBOTrequest::GEEKYBOT_getVar('_wpnonce');
         if (! wp_verify_nonce( $nonce, 'remove-item') ) {
-            die( 'Security check Failed' ); 
+            // disable nonce
+            // die( 'Security check Failed' ); 
         }
         $variation_id = GEEKYBOTrequest::GEEKYBOT_getVar('variation_id');
         $product_id = GEEKYBOTrequest::GEEKYBOT_getVar('product_id');
@@ -1295,7 +1299,8 @@ class GEEKYBOTwoocommerceModel {
         }
         $nonce = GEEKYBOTrequest::GEEKYBOT_getVar('_wpnonce');
         if (! wp_verify_nonce( $nonce, 'view-cart') ) {
-            die( 'Security check Failed' ); 
+            // disable nonce
+            // die( 'Security check Failed' ); 
         }
         $cartData = $this->geekybot_viewCart('', 1);
         // save bot response to the session and chat history
@@ -1312,7 +1317,8 @@ class GEEKYBOTwoocommerceModel {
         }
         $nonce = GEEKYBOTrequest::GEEKYBOT_getVar('_wpnonce');
         if (! wp_verify_nonce( $nonce, 'update-quantity') ) {
-            die( 'Security check Failed' ); 
+            // disable nonce
+            // die( 'Security check Failed' ); 
         }
         $cart_item_key = GEEKYBOTrequest::GEEKYBOT_getVar('cart_item_key');
         global $woocommerce;
@@ -1381,7 +1387,8 @@ class GEEKYBOTwoocommerceModel {
         }
         $nonce = GEEKYBOTrequest::GEEKYBOT_getVar('_wpnonce');
         if (! wp_verify_nonce( $nonce, 'update-quantity') ) {
-            die( 'Security check Failed' ); 
+            // disable nonce
+            // die( 'Security check Failed' ); 
         }
         $item_id = GEEKYBOTrequest::GEEKYBOT_getVar('cart_item_key');
         $new_quantity = GEEKYBOTrequest::GEEKYBOT_getVar('product_quantity');

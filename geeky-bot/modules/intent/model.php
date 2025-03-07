@@ -25,6 +25,9 @@ class GEEKYBOTintentModel {
     // new
 
     function saveUserInputAjax(){
+        if (!current_user_can('manage_options')){
+            die('Only Administrators can perform this action.');
+        }
         $nonce = GEEKYBOTrequest::GEEKYBOT_getVar('_wpnonce');
         if (! wp_verify_nonce( $nonce, 'save-intent') ) {
             die( 'Security check Failed' ); 
@@ -40,10 +43,13 @@ class GEEKYBOTintentModel {
         $commaSeparatedIntentIds = implode("','", $intentIds);
         $query = "DELETE FROM `".geekybot::$_db->prefix . "geekybot_intents` WHERE group_id = '".esc_sql($data['group_id'])."' AND id  NOT IN ('".$commaSeparatedIntentIds."')";
         geekybotdb::query($query);
-        return $data['group_id'];
+        return wp_json_encode($data['group_id']);
     }
 
     function savedefaultIntentFallbackFormAjax(){
+        if (!current_user_can('manage_options')){
+            die('Only Administrators can perform this action.');
+        }
         $nonce = GEEKYBOTrequest::GEEKYBOT_getVar('_wpnonce');
         if (! wp_verify_nonce( $nonce, 'save-default-intent-fallback') ) {
             die( 'Security check Failed' ); 
@@ -98,6 +104,9 @@ class GEEKYBOTintentModel {
     }
 
     function saveAutoBuildUserInput($data){
+        if (!current_user_can('manage_options')){
+            die('Only Administrators can perform this action.');
+        }
         $nonce = $data['_wpnonce'];
         if (! wp_verify_nonce( $nonce, 'save-intent') ) {
             die( 'Security check Failed' ); 
@@ -158,12 +167,15 @@ class GEEKYBOTintentModel {
     }
 
     function deleteIntentFallback(){
+        if (!current_user_can('manage_options')){
+            die('Only Administrators can perform this action.');
+        }
+        $story_id = GEEKYBOTrequest::GEEKYBOT_getVar('story_id');
         $nonce = GEEKYBOTrequest::GEEKYBOT_getVar('_wpnonce');
-        if (! wp_verify_nonce( $nonce, 'delete-intent-fallback') ) {
+        if (! wp_verify_nonce( $nonce, 'delete-intent-fallback-'.$story_id) ) {
             die( 'Security check Failed' ); 
         }
         $group_id = GEEKYBOTrequest::GEEKYBOT_getVar('group_id');
-        $story_id = GEEKYBOTrequest::GEEKYBOT_getVar('story_id');
         // delete the intents fallback
         $query = "DELETE FROM `".geekybot::$_db->prefix . "geekybot_intents_fallback` WHERE story_id = ".esc_sql($story_id)." AND group_id = ".esc_sql($group_id);
         geekybotdb::query($query);

@@ -215,6 +215,9 @@
                 <response>
                     <text>Anytime! Have a great day, [John](geekybot_user_name)!</text>
                 </response>
+                <response>
+                    <function>SendChatToAdmin</function>
+                </response>
             </responses>
         </intent_group>
     </intents>

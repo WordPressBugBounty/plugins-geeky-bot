@@ -144,7 +144,7 @@ class GEEKYBOTactivation {
             ('title',   'GeekyBot',   'default',  NULL),
             ('pagination_default_page_size',    '10',   'default',  NULL),
             ('pagination_product_page_size',    '3',   'default',  NULL),
-            ('versioncode', '1.0.9',    'default',  NULL),
+            ('versioncode', '1.1.0',    'default',  NULL),
             ('last_version',    '101',  'default',  NULL),
             ('image_file_type', 'png,jpeg,gif,jpg', 'default', NULL),
             ('bot_custom_img',  '0',    'default',  NULL),
@@ -210,6 +210,9 @@ class GEEKYBOTactivation {
               `created` datetime NOT NULL,
               PRIMARY KEY (`id`)
             ) ENGINE=InnoDB DEFAULT CHARSET=utf8;";
+            geekybot::$_db->query($query);
+
+            $query = "ALTER TABLE `" . geekybot::$_db->prefix . "geekybot_responses` ADD FULLtext(bot_response)";
             geekybot::$_db->query($query);
 
             $query = "CREATE TABLE IF NOT EXISTS `" . geekybot::$_db->prefix . "geekybot_sessiondata` (

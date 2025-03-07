@@ -1,0 +1,2717 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"POT-Creation-Date: \n"
+"PO-Revision-Date: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: el_GR\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 3.5\n"
+
+msgid "Logo"
+msgstr "Λογότυπο"
+
+msgid "Template Field 1"
+msgstr "Πεδίο προτύπου 1"
+
+msgid "Title"
+msgstr "Τίτλος"
+
+msgid "Template Field 2"
+msgstr "Πεδίο προτύπου 2"
+
+msgid "Template Field 3"
+msgstr "Πεδίο προτύπου 3"
+
+msgid "Template Field 4"
+msgstr "Πεδίο προτύπου 4"
+
+msgid "Template Field 10"
+msgstr "Πεδίο προτύπου 10"
+
+msgid "Simple Link here"
+msgstr "Απλός σύνδεσμος εδώ"
+
+msgid "Button"
+msgstr "Κουμπί"
+
+msgid "Selected"
+msgstr "Επιλεγμένο"
+
+msgid "Template Content"
+msgstr "Περιεχόμενο προτύπου"
+
+msgid "Template Field"
+msgstr "Πεδίο προτύπου"
+
+msgid "Show On Listing"
+msgstr "Εμφάνιση στην καταχώριση"
+
+msgid "Select Field"
+msgstr "Επιλέξτε Πεδίο"
+
+msgid "Label"
+msgstr "Επιγραφή"
+
+msgid "Select Type"
+msgstr "Επιλέξτε Τύπος"
+
+msgid "Set Value"
+msgstr "Ορισμός τιμής"
+
+msgid "No template fields are available!"
+msgstr "Δεν υπάρχουν διαθέσιμα πεδία προτύπου!"
+
+msgid "Set Values"
+msgstr "Ορισμός τιμών"
+
+msgid "Field Name :"
+msgstr "Όνομα πεδίου:"
+
+msgid "Save"
+msgstr "Εκτός"
+
+msgid "Something went wrong try again later!"
+msgstr "Κάτι πήγε στραβά δοκιμάστε ξανά αργότερα!"
+
+msgid "Info"
+msgstr "Πληροφορίες"
+
+msgid "An empty expected value or display value field."
+msgstr "Ένα κενό πεδίο αναμενόμενης τιμής ή τιμής εμφάνισης."
+
+msgid "Values set successfully."
+msgstr "Οι τιμές ορίστηκαν με επιτυχία."
+
+msgid "Expected Value"
+msgstr "Αναμενόμενη Αξία"
+
+msgid "Display Value"
+msgstr "Εμφάνιση τιμής"
+
+msgid "Delete"
+msgstr "Διαγράφω"
+
+msgid "Add Value"
+msgstr "Προσθήκη αξίας"
+
+msgid "Edit"
+msgstr "Εκδίδω"
+
+msgid "Text Field"
+msgstr "Πεδίο κειμένου"
+
+msgid "Checkbox"
+msgstr "Πλαίσιο ελέγχου"
+
+msgid "Radio Button"
+msgstr "Κουμπί ραδιοφώνου"
+
+msgid "Dropdown"
+msgstr "Αναπτυσσόμενο"
+
+msgid "Link"
+msgstr "Σύνδεσμος"
+
+msgid ""
+"It is a long established fact that a reader will be distracted by the "
+"readable content of a page when looking at its layout Content here, content "
+"here..."
+msgstr ""
+"Είναι από καιρό καθιερωμένο γεγονός ότι ο αναγνώστης θα αποσπαστεί από το "
+"αναγνώσιμο περιεχόμενο μιας σελίδας όταν κοιτάζει τη διάταξή της Περιεχόμενο "
+"εδώ, περιεχόμενο εδώ..."
+
+msgid "Description"
+msgstr "Περιγραφή"
+
+msgid "Content Description"
+msgstr "Περιγραφή περιεχομένου"
+
+msgid "Max Number Of Sentance"
+msgstr "Μέγιστος αριθμός πρότασης"
+
+msgid "1"
+msgstr "1"
+
+msgid "2"
+msgstr "2"
+
+msgid "3"
+msgstr "3"
+
+msgid "4"
+msgstr "4"
+
+msgid "5"
+msgstr "5"
+
+msgid "6"
+msgstr "6"
+
+msgid "Please wait a moment; this may take some time."
+msgstr "Περιμένετε λίγο. αυτό μπορεί να πάρει κάποιο χρόνο."
+
+msgid "Synchronize"
+msgstr "Συγχρονίζω"
+
+msgid "Data Synchronization Uncomplete"
+msgstr "Μη ολοκληρωμένος συγχρονισμός δεδομένων"
+
+msgid ""
+"Your GeekyBot data is not updated. To ensure accurate results, please "
+"synchronize your AI web search data."
+msgstr ""
+"Τα δεδομένα σας στο GeekyBot δεν έχουν ενημερωθεί. Για να διασφαλίσετε "
+"ακριβή αποτελέσματα, συγχρονίστε τα δεδομένα αναζήτησης ιστού AI."
+
+msgid "Synchronize Data"
+msgstr "Συγχρονισμός δεδομένων"
+
+msgid "user"
+msgstr "μεταχειριζόμενος"
+
+msgid "Dashboard"
+msgstr "Ταμπλό"
+
+msgid "key check"
+msgstr "έλεγχος κλειδιού"
+
+msgid "keys"
+msgstr "κλειδιά"
+
+msgid "Stories"
+msgstr "Ιστορίες"
+
+msgid "AI Web Search"
+msgstr "AI Web Search"
+
+msgid "Settings"
+msgstr "Ρυθμίσεις"
+
+msgid "Chatbot"
+msgstr "Chatbot"
+
+msgid "Install Add-ons"
+msgstr "Εγκαταστήστε πρόσθετα"
+
+msgid "export"
+msgstr "εξαγωγή"
+
+msgid "import"
+msgstr "εισαγωγή"
+
+msgid "Chat History"
+msgstr "Ιστορικό συνομιλίας"
+
+msgid "build"
+msgstr "οικοδομώ"
+
+msgid "Build"
+msgstr "Οικοδομώ"
+
+msgid "Variables"
+msgstr "Μεταβλητές"
+
+msgid "forms"
+msgstr "μορφές"
+
+msgid "Forms"
+msgstr "Έντυπα"
+
+msgid "actions"
+msgstr "δράσεις"
+
+msgid "Actions"
+msgstr "Δράσεις"
+
+msgid "File ext. is mismatched"
+msgstr "Εξετ. αρχείου. είναι αναντιστοιχία"
+
+msgid "File size is greater then allowed file size"
+msgstr ""
+"Το μέγεθος του αρχείου είναι μεγαλύτερο από το επιτρεπόμενο μέγεθος αρχείου"
+
+msgid "Total Stats"
+msgstr "Σύνολο στατιστικών"
+
+msgid "Intents"
+msgstr "Προθέσεις"
+
+msgid "No record found"
+msgstr "Δεν βρέθηκε κανένα αρχείο"
+
+msgid "Control Panel"
+msgstr "Πίνακας Ελέγχου"
+
+msgid "GeekyBot"
+msgstr "GeekyBot"
+
+msgid "Keys"
+msgstr "Κλειδιά"
+
+msgid "Post Installation"
+msgstr "Μετά την εγκατάσταση"
+
+msgid "Premium Addon"
+msgstr "Premium Addon"
+
+msgid "Could not find any matching results"
+msgstr "Δεν βρέθηκαν αποτελέσματα που να ταιριάζουν"
+
+msgid "no record"
+msgstr "κανένα αρχείο"
+
+msgid "No record found !..."
+msgstr "Δεν βρέθηκε κανένα αρχείο!..."
+
+msgid "system offline"
+msgstr "σύστημα εκτός σύνδεσης"
+
+msgid ""
+"Unfortunately sytem is offline for a bit of maintenance right now. But soon "
+"we will be up."
+msgstr ""
+"Δυστυχώς το σύστημα είναι εκτός σύνδεσης για λίγη συντήρηση αυτή τη στιγμή. "
+"Αλλά σύντομα θα σηκωθούμε."
+
+msgid "user ban"
+msgstr "απαγόρευση χρήστη"
+
+msgid "Your account is disabled, please contact system administrator !..."
+msgstr ""
+"Ο λογαριασμός σας είναι απενεργοποιημένος, επικοινωνήστε με τον διαχειριστή "
+"του συστήματος!..."
+
+msgid "login"
+msgstr "σύνδεση"
+
+msgid "To Access This Page Please Login !..."
+msgstr ""
+"Για να αποκτήσετε πρόσβαση σε αυτήν τη σελίδα, παρακαλούμε συνδεθείτε!..."
+
+msgid "Back to control panel"
+msgstr "Επιστροφή στον πίνακα ελέγχου"
+
+msgid "You are not logged in"
+msgstr "Δεν είστε συνδεδεμένοι"
+
+msgid "User Is Disabled By Admin"
+msgstr "Ο χρήστης είναι απενεργοποιημένος από τον διαχειριστή"
+
+msgid "The page you are looking for no longer exists"
+msgstr "Η σελίδα που αναζητάτε δεν υπάρχει πλέον"
+
+msgid "You are already logged in"
+msgstr "Έχετε ήδη συνδεθεί"
+
+msgid "Please select your role"
+msgstr "Επιλέξτε το ρόλο σας"
+
+msgid "You are not allowed"
+msgstr "Δεν επιτρέπεται"
+
+msgid "You are Not Allowed To add More than One"
+msgstr "Δεν επιτρέπεται να προσθέσετε περισσότερα από ένα"
+
+msgid "Contact Adminstrator"
+msgstr "Επικοινωνήστε με τον Διαχειριστή"
+
+msgid "not allowed"
+msgstr "δεν επιτρέπεται"
+
+msgid "You are already logged in !..."
+msgstr "Έχετε ήδη συνδεθεί!..."
+
+msgid "Logout"
+msgstr "Αποσύνδεση"
+
+msgid "Please first make a selection from the list"
+msgstr "Κάντε πρώτα μια επιλογή από τη λίστα"
+
+msgid "Unknown"
+msgstr "Αγνωστος"
+
+msgid "Invalid request"
+msgstr "Μη έγκυρο αίτημα"
+
+msgid "has been successfully applied."
+msgstr "έχει εφαρμοστεί με επιτυχία."
+
+msgid "Error applying the new theme."
+msgstr "Σφάλμα κατά την εφαρμογή του νέου θέματος."
+
+msgid "has been successfully saved."
+msgstr "έχει αποθηκευτεί με επιτυχία."
+
+msgid "has not been saved."
+msgstr "δεν έχει σωθεί."
+
+msgid "has been successfully reset."
+msgstr "έχει γίνει επιτυχής επαναφορά."
+
+msgid "Every Story must have a name."
+msgstr "Κάθε ιστορία πρέπει να έχει ένα όνομα."
+
+msgid "Every Story must have at least 1 intent."
+msgstr "Κάθε ιστορία πρέπει να έχει τουλάχιστον 1 πρόθεση."
+
+msgid "has been successfully deleted."
+msgstr "έχει διαγραφεί με επιτυχία."
+
+msgid "has been successfully exported."
+msgstr "έχει εξαχθεί με επιτυχία."
+
+msgid "Data has not been exported."
+msgstr "Τα δεδομένα δεν έχουν εξαχθεί."
+
+msgid "Record not exist."
+msgstr "Η εγγραφή δεν υπάρχει."
+
+msgid "has not been deleted."
+msgstr "δεν έχει διαγραφεί."
+
+msgid "Please insert key."
+msgstr "Εισαγάγετε το κλειδί."
+
+msgid "key is not Valid."
+msgstr "το κλειδί δεν είναι έγκυρο."
+
+msgid "transaction has been successfully verified."
+msgstr "η συναλλαγή επαληθεύτηκε με επιτυχία."
+
+msgid "transaction has been successfully un-verified."
+msgstr "Η συναλλαγή καταργήθηκε επιτυχώς."
+
+msgid "transaction has not been successfully verified."
+msgstr "η συναλλαγή δεν έχει επαληθευτεί με επιτυχία."
+
+msgid "transaction has not been successfully un-verified."
+msgstr "η συναλλαγή δεν έχει καταργηθεί επιτυχώς."
+
+msgid "Fields has been successfully required."
+msgstr "Τα πεδία απαιτήθηκαν με επιτυχία."
+
+msgid "Field has not been required."
+msgstr "Το πεδίο δεν απαιτείται."
+
+msgid "Fields has not been required."
+msgstr "Τα πεδία δεν απαιτήθηκαν."
+
+msgid "Fields has been successfully not required."
+msgstr "Τα πεδία δεν απαιτήθηκαν με επιτυχία."
+
+msgid "Field has not been not required."
+msgstr "Το πεδίο δεν απαιτείται."
+
+msgid "Fields has not been not required."
+msgstr "Τα πεδία δεν απαιτήθηκαν."
+
+msgid "status has been updated."
+msgstr "η κατάσταση έχει ενημερωθεί."
+
+msgid "status has not been updated."
+msgstr "η κατάσταση δεν έχει ενημερωθεί."
+
+msgid "data has been synchronized."
+msgstr "τα δεδομένα έχουν συγχρονιστεί."
+
+msgid "data has not been synchronized."
+msgstr "τα δεδομένα δεν έχουν συγχρονιστεί."
+
+msgid "in use cannot deleted."
+msgstr "σε χρήση δεν μπορεί να διαγραφεί."
+
+msgid "already exist."
+msgstr "υπάρχουν ήδη."
+
+msgid "File type error."
+msgstr "Σφάλμα τύπου αρχείου."
+
+msgid "File size error."
+msgstr "Σφάλμα μεγέθους αρχείου."
+
+msgid "Intent"
+msgstr "Πρόθεση"
+
+msgid "Response"
+msgstr "Απάντηση"
+
+msgid "Intent Group"
+msgstr "Ομάδα προθέσεων"
+
+msgid "Variable"
+msgstr "Μεταβλητός"
+
+msgid "Story"
+msgstr "Ιστορία"
+
+msgid "Post type"
+msgstr "Τύπος ανάρτησης"
+
+msgid "AI web search"
+msgstr "AI αναζήτηση στο διαδίκτυο"
+
+msgid "Action"
+msgstr "Δράση"
+
+msgid "Changes"
+msgstr "Αλλαγές"
+
+msgid "Data"
+msgstr "Δεδομένα"
+
+msgid "Message"
+msgstr "Μήνυμα"
+
+msgid "Configuration"
+msgstr "Διαμόρφωση"
+
+msgid "Previous"
+msgstr "Προηγούμενος"
+
+msgid "Next"
+msgstr "Επόμενος"
+
+msgid "Guest"
+msgstr "Επισκέπτης"
+
+msgid "User ID"
+msgstr "Αναγνωριστικό χρήστη"
+
+msgid "Add to Story"
+msgstr "Προσθήκη στην ιστορία"
+
+msgid "Add to story"
+msgstr "Προσθήκη στην ιστορία"
+
+msgid "Search"
+msgstr "Ερευνα"
+
+msgid "Search with user name"
+msgstr "Αναζήτηση με όνομα χρήστη"
+
+msgid "reset"
+msgstr "επαναφορά"
+
+msgid "Select Chat"
+msgstr "Επιλέξτε Συνομιλία"
+
+msgid "Sender"
+msgstr "Αποστολέας"
+
+msgid "select chat"
+msgstr "επιλέξτε συνομιλία"
+
+msgid "Chat history is not selected."
+msgstr "Το ιστορικό συνομιλιών δεν έχει επιλεγεί."
+
+msgid "Please select a conversation to view the user's chat history."
+msgstr "Επιλέξτε μια συνομιλία για να δείτε το ιστορικό συνομιλιών του χρήστη."
+
+msgid "Add User Input To Story"
+msgstr "Προσθήκη εισαγωγής χρήστη στην ιστορία"
+
+msgid "Select"
+msgstr "Επιλέγω"
+
+msgid "Add User Input"
+msgstr "Προσθήκη εισαγωγής χρήστη"
+
+msgid "You must choose a story; it cannot be empty."
+msgstr "Πρέπει να επιλέξετε μια ιστορία. δεν μπορεί να είναι άδειο."
+
+msgid "Security verification Failed, Please restart you chat to continue."
+msgstr ""
+"Η επαλήθευση ασφαλείας απέτυχε. Επανεκκινήστε τη συνομιλία σας για να "
+"συνεχίσετε."
+
+msgid "Your session has expired; please restart your chat."
+msgstr "Η συνεδρία σας έχει λήξει. επανεκκινήστε τη συνομιλία σας."
+
+msgid "Hi, I am Chatbot. I do not have specific knowledge."
+msgstr "Γεια, είμαι το Chatbot. Δεν έχω συγκεκριμένες γνώσεις."
+
+msgid "Your message is too long. Please enter only a username or email."
+msgstr "Το μήνυμά σας είναι πολύ μεγάλο. Εισαγάγετε μόνο όνομα χρήστη ή email."
+
+msgid "Invalid username or email. Try again with the correct one."
+msgstr "Μη έγκυρο όνομα χρήστη ή email. Δοκιμάστε ξανά με το σωστό."
+
+msgid "Show More"
+msgstr "Εμφάνιση περισσότερων"
+
+msgid "Show Articles"
+msgstr "Εμφάνιση άρθρων"
+
+msgid "session time out"
+msgstr "λήξη του χρόνου συνεδρίας"
+
+msgid "Data directory can not empty."
+msgstr "Ο κατάλογος δεδομένων δεν μπορεί να αδειάσει."
+
+msgid "Data directory is not proper."
+msgstr "Ο κατάλογος δεδομένων δεν είναι κατάλληλος."
+
+msgid "Data directory is not writable."
+msgstr "Ο κατάλογος δεδομένων δεν είναι εγγράψιμος."
+
+msgid "Default fallback message can not be empty."
+msgstr "Το προεπιλεγμένο εναλλακτικό μήνυμα δεν μπορεί να είναι κενό."
+
+msgid "Admin pagination not saved."
+msgstr "Η σελιδοποίηση διαχειριστή δεν αποθηκεύτηκε."
+
+msgid "User pagination not saved."
+msgstr "Η σελιδοποίηση χρήστη δεν αποθηκεύτηκε."
+
+msgid ""
+"The title of your chatbot or the primary title displayed on your chat "
+"interface."
+msgstr ""
+"Ο τίτλος του chatbot σας ή ο κύριος τίτλος που εμφανίζεται στη διεπαφή "
+"συνομιλίας σας."
+
+msgid "Default Fallback Message"
+msgstr "Προεπιλεγμένο εναλλακτικό μήνυμα"
+
+msgid "The message displayed when the chatbot cannot understand."
+msgstr "Το μήνυμα εμφανίζεται όταν το chatbot δεν μπορεί να καταλάβει."
+
+msgid "Offline"
+msgstr "Εκτός σύνδεσης"
+
+msgid "Online"
+msgstr "Διαδικτυακά"
+
+msgid "Set your plugin offline for front end."
+msgstr "Ρυθμίστε την προσθήκη εκτός σύνδεσης για διεπαφή."
+
+msgid "Data Directory"
+msgstr "Κατάλογος Δεδομένων"
+
+msgid "The directory where all chatbot data files are stored."
+msgstr "Ο κατάλογος όπου αποθηκεύονται όλα τα αρχεία δεδομένων chatbot."
+
+msgid "Admin Pagination"
+msgstr "Διαχειριστής Σελιδοποίησης"
+
+msgid "The number of items displayed in a paginated list in the admin panel."
+msgstr ""
+"Ο αριθμός των στοιχείων που εμφανίζονται σε μια σελιδοποιημένη λίστα στον "
+"πίνακα διαχείρισης."
+
+msgid "User Pagination"
+msgstr "Σελιδοποίηση χρήστη"
+
+msgid "The number of items displayed in a paginated list on the user side."
+msgstr ""
+"Ο αριθμός των στοιχείων που εμφανίζονται σε μια σελιδοποιημένη λίστα στην "
+"πλευρά του χρήστη."
+
+msgid "Save Settings"
+msgstr "Αποθήκευση ρυθμίσεων"
+
+msgid "Add Icon"
+msgstr "Προσθήκη εικονιδίου"
+
+msgid "years"
+msgstr "χρόνια"
+
+msgid "year"
+msgstr "έτος"
+
+msgid "ago"
+msgstr "πριν"
+
+msgid "months"
+msgstr "μήνες"
+
+msgid "month"
+msgstr "μήνας"
+
+msgid "days"
+msgstr "ημέρες"
+
+msgid "day"
+msgstr "ημέρα"
+
+msgid "hours"
+msgstr "ώρες"
+
+msgid "hour"
+msgstr "ώρα"
+
+msgid "minutes"
+msgstr "πρακτικά"
+
+msgid "minute"
+msgstr "λεπτό"
+
+msgid "Just now"
+msgstr "Μόλις τώρα"
+
+msgid "AI ChatBot is disabled."
+msgstr "Το AI ChatBot είναι απενεργοποιημένο."
+
+msgid "Active Now"
+msgstr "Ενεργός τώρα"
+
+msgid "AI ChatBot story not built."
+msgstr "Η ιστορία του AI ChatBot δεν δημιουργήθηκε."
+
+msgid "Built Now"
+msgstr "Κατασκευάστηκε τώρα"
+
+msgid "WooCommerce plugin is not installed."
+msgstr "Η προσθήκη WooCommerce δεν έχει εγκατασταθεί."
+
+msgid "Install Now"
+msgstr "Εγκαταστήστε τώρα"
+
+msgid "WooCommerce plugin is not activated."
+msgstr "Η προσθήκη WooCommerce δεν είναι ενεργοποιημένη."
+
+msgid "WooCommerce Bot is disabled."
+msgstr "Το WooCommerce Bot είναι απενεργοποιημένο."
+
+msgid "WooCommerce story not built."
+msgstr "Η ιστορία του WooCommerce δεν δημιουργήθηκε."
+
+msgid "Post Type not found."
+msgstr "Ο τύπος ανάρτησης δεν βρέθηκε."
+
+msgid "AI Web Search is disabled!"
+msgstr "Η AI Web Search είναι απενεργοποιημένη!"
+
+msgid "AI ChatBot Sessions"
+msgstr "AI ChatBot Sessions"
+
+msgid "Session Card"
+msgstr "Κάρτα συνεδρίας"
+
+msgid "Graph"
+msgstr "Γραφική παράσταση"
+
+msgid "Card"
+msgstr "Κάρτα"
+
+msgid "WooCommerce Sessions"
+msgstr "Συνεδρίες WooCommerce"
+
+msgid "AI Web Search Sessions"
+msgstr "AI Web Search Sessions"
+
+msgid "Icon"
+msgstr "Εικόνισμα"
+
+msgid "GeekyBot Setup and Usage Guides"
+msgstr "Οδηγοί εγκατάστασης και χρήσης GeekyBot"
+
+msgid "Explore installation, training, and effective usage guides."
+msgstr ""
+"Εξερευνήστε τους οδηγούς εγκατάστασης, εκπαίδευσης και αποτελεσματικής "
+"χρήσης."
+
+msgid "Play"
+msgstr "Παιχνίδι"
+
+msgid "Youtube Icon"
+msgstr "Εικονίδιο Youtube"
+
+msgid "How to add Story"
+msgstr "Πώς να προσθέσετε ιστορία"
+
+msgid "How to add Variable"
+msgstr "Πώς να προσθέσετε μεταβλητή"
+
+msgid "Change Settings"
+msgstr "Αλλαγή ρυθμίσεων"
+
+msgid "Change Color"
+msgstr "Αλλαγή χρώματος"
+
+msgid "Remove"
+msgstr "Αφαιρώ"
+
+msgid "Cross Icon"
+msgstr "Εικονίδιο σταυρού"
+
+msgid "Stories Date"
+msgstr "Ημερομηνία ιστοριών"
+
+msgid "View Stories"
+msgstr "Προβολή Ιστοριών"
+
+msgid "AI Chatbot"
+msgstr "AI Chatbot"
+
+msgid "WooCommerce"
+msgstr "WooCommerce"
+
+msgid "Bot Icon"
+msgstr "Εικονίδιο bot"
+
+msgid "AI ChatBot"
+msgstr "AI ChatBot"
+
+msgid "Last Month Stats"
+msgstr "Στατιστικά του περασμένου μήνα"
+
+msgid "Woo Icon"
+msgstr "Εικονίδιο Woo"
+
+msgid "AI Web Search "
+msgstr "AI Web Search"
+
+msgid "Manage Post Types"
+msgstr "Διαχείριση τύπων αναρτήσεων"
+
+msgid "Enable AI Web Search"
+msgstr "Ενεργοποίηση AI Web Search"
+
+msgid "Search Icon"
+msgstr "Εικονίδιο αναζήτησης"
+
+msgid "History"
+msgstr "Ιστορία"
+
+msgid "WooCommerce Bot"
+msgstr "WooCommerce Bot"
+
+msgid "logo"
+msgstr "λογότυπο"
+
+msgid "No of Conversation"
+msgstr "Αριθμός συνομιλίας"
+
+msgid "View History"
+msgstr "Προβολή Ιστορικού"
+
+msgid "No data"
+msgstr "Δεν υπάρχουν δεδομένα"
+
+msgid "No Data"
+msgstr "Δεν υπάρχουν δεδομένα"
+
+msgid "Addons"
+msgstr "Πρόσθετα"
+
+msgid "addon"
+msgstr "πρόσθετο"
+
+msgid "Custom Listing Style"
+msgstr "Προσαρμοσμένο στυλ καταχώρισης"
+
+msgid "Custom Listing Text"
+msgstr "Προσαρμοσμένο κείμενο καταχώρισης"
+
+msgid "WooCommerce Features"
+msgstr "Λειτουργίες WooCommerce"
+
+msgid "Addon List"
+msgstr "Λίστα πρόσθετων"
+
+msgid "WooCommerce "
+msgstr "WooCommerce"
+
+msgid "Lead Generation"
+msgstr "Lead Generation"
+
+msgid ""
+"GeekyBot simplifies the WooCommerce experience with intelligent product "
+"discovery and purchasing. It seamlessly integrates with WooCommerce for "
+"efficient product searches, detailed listings, and a smooth shopping "
+"experience."
+msgstr ""
+"Το GeekyBot απλοποιεί την εμπειρία WooCommerce με την έξυπνη ανακάλυψη και "
+"αγορά προϊόντων. Ενσωματώνεται απρόσκοπτα με το WooCommerce για "
+"αποτελεσματικές αναζητήσεις προϊόντων, λεπτομερείς καταχωρίσεις και ομαλή "
+"εμπειρία αγορών."
+
+msgid "Find Product"
+msgstr "Βρείτε Προϊόν"
+
+msgid "Find Products"
+msgstr "Βρείτε Προϊόντα"
+
+msgid "Find products by name, category, or price range via chat."
+msgstr "Βρείτε προϊόντα ανά όνομα, κατηγορία ή εύρος τιμών μέσω συνομιλίας."
+
+msgid "List Product"
+msgstr "Λίστα προϊόντων"
+
+msgid "List Products"
+msgstr "Κατάλογος προϊόντων"
+
+msgid "Show relevant products with details and prices based on preferences."
+msgstr ""
+"Εμφάνιση σχετικών προϊόντων με λεπτομέρειες και τιμές με βάση τις "
+"προτιμήσεις."
+
+msgid "Add To Cart Product"
+msgstr "Προσθήκη στο Καλάθι Προϊόντος"
+
+msgid "Add to Cart"
+msgstr "Προσθήκη στο καλάθι"
+
+msgid "Easily add products to the cart list directly through chat."
+msgstr ""
+"Προσθέστε εύκολα προϊόντα στη λίστα καλαθιών απευθείας μέσω συνομιλίας."
+
+msgid "Watch Video"
+msgstr "Δείτε το Βίντεο"
+
+msgid "AI Chat"
+msgstr "AI Chat"
+
+msgid "Custom"
+msgstr "Εθιμο"
+
+msgid " AI Chat Bot "
+msgstr "AI Chat Bot"
+
+msgid "Conversation Handling"
+msgstr "Χειρισμός συνομιλίας"
+
+msgid ""
+"AI Chat Conversation provides intelligent and context-aware interactions to "
+"enhance user engagement. Define key conversation elements to capture "
+"specific user inputs dynamically and adapt responses based on the context."
+msgstr ""
+"Το AI Chat Conversation παρέχει έξυπνες αλληλεπιδράσεις με επίγνωση του "
+"πλαισίου για τη βελτίωση της αφοσίωσης των χρηστών. Καθορίστε βασικά "
+"στοιχεία συνομιλίας για να καταγράψετε δυναμικά συγκεκριμένες εισροές "
+"χρηστών και να προσαρμόσετε τις απαντήσεις με βάση το περιβάλλον."
+
+msgid "Capture and process inputs dynamically for personalized responses."
+msgstr ""
+"Καταγράψτε και επεξεργαστείτε εισόδους δυναμικά για εξατομικευμένες "
+"απαντήσεις."
+
+msgid "Adjust interactions based on the ongoing conversation for relevance."
+msgstr ""
+"Προσαρμόστε τις αλληλεπιδράσεις για συνάφεια με βάση τη συνομιλία που "
+"βρίσκεται σε εξέλιξη."
+
+msgid "Use collected data to tailor responses and improve satisfaction."
+msgstr ""
+"Χρησιμοποιήστε δεδομένα που συλλέγονται για να προσαρμόσετε τις απαντήσεις "
+"και να βελτιώσετε την ικανοποίηση."
+
+msgid "Discover Our "
+msgstr "Ανακαλύψτε το δικό μας"
+
+msgid " AI Web Search"
+msgstr "AI Web Search"
+
+msgid "Bot"
+msgstr "Bot"
+
+msgid ""
+"AI Web Search improves user experience by delivering advanced, intuitive "
+"content discovery on your WordPress site. With powerful searches, users can "
+"quickly find relevant information, enhancing overall interest and "
+"accessibility."
+msgstr ""
+"Η AI Web Search βελτιώνει την εμπειρία χρήστη παρέχοντας προηγμένη, "
+"διαισθητική ανακάλυψη περιεχομένου στον ιστότοπό σας στο WordPress. Με "
+"ισχυρές αναζητήσεις, οι χρήστες μπορούν να βρουν γρήγορα σχετικές "
+"πληροφορίες, ενισχύοντας το συνολικό ενδιαφέρον και την προσβασιμότητα."
+
+msgid "GeekyBot swiftly retrieves posts and pages based on user queries."
+msgstr ""
+"Το GeekyBot ανακτά γρήγορα αναρτήσεις και σελίδες με βάση τα ερωτήματα των "
+"χρηστών."
+
+msgid "Displays full content or excerpts that match search terms."
+msgstr ""
+"Εμφανίζει πλήρες περιεχόμενο ή αποσπάσματα που ταιριάζουν με όρους "
+"αναζήτησης."
+
+msgid "Activate GeekyBot’s search for an AI web search with one click."
+msgstr ""
+"Ενεργοποιήστε την αναζήτηση του GeekyBot για αναζήτηση στον ιστό AI με ένα "
+"κλικ."
+
+msgid "Web Search"
+msgstr "Αναζήτηση στον Ιστό"
+
+msgid "GeekyBot Supported Plugins"
+msgstr "Υποστηριζόμενα πρόσθετα GeekyBot"
+
+msgid "Plugin"
+msgstr "Πρόσθετο"
+
+msgid "WP Job Manager"
+msgstr "WP Job Manager"
+
+msgid "Tutor LMS"
+msgstr "Δάσκαλος LMS"
+
+msgid "bbPress"
+msgstr "bbPress"
+
+msgid "LearnPress"
+msgstr "LearnPress"
+
+msgid "Knowledge Base"
+msgstr "Βάση γνώσεων"
+
+msgid "BetterDocs"
+msgstr "BetterDocs"
+
+msgid "Motors"
+msgstr "Κινητήρες"
+
+msgid "Estatik Real Estate"
+msgstr "Estatik Real Estate"
+
+msgid "Auto Listings"
+msgstr "Αυτόματες καταχωρίσεις"
+
+msgid "Welcome to GeekyBot Features"
+msgstr "Καλώς ορίσατε στις λειτουργίες GeekyBot"
+
+msgid "GeekyBot Features"
+msgstr "Χαρακτηριστικά GeekyBot"
+
+msgid "WooCommerce Integration"
+msgstr "Ενσωμάτωση WooCommerce"
+
+msgid "Quick Installation"
+msgstr "Γρήγορη Εγκατάσταση"
+
+msgid "Version: 1.0.0"
+msgstr "Έκδοση: 1.0.0"
+
+msgid "AI Chat Bot"
+msgstr "AI Chat Bot"
+
+msgid "Enable/Disable"
+msgstr "Ενεργοποίηση/Απενεργοποίηση"
+
+msgid "Enable/Disable Bot"
+msgstr "Ενεργοποίηση/Απενεργοποίηση Bot"
+
+msgid "Select Template"
+msgstr "Επιλέξτε Πρότυπο"
+
+msgid ""
+"AI Chat in GeekyBot provides instant, personalized responses to user "
+"queries, ensuring seamless support around the clock. With its ability to "
+"engage users at any time, GeekyBot enhances the reliability of your service, "
+"making sure that your customers' needs are always met."
+msgstr ""
+"Το AI Chat στο GeekyBot παρέχει άμεσες, εξατομικευμένες απαντήσεις σε "
+"ερωτήματα των χρηστών, εξασφαλίζοντας απρόσκοπτη υποστήριξη όλο το "
+"εικοσιτετράωρο. Με την ικανότητά του να προσελκύει χρήστες ανά πάσα στιγμή, "
+"το GeekyBot ενισχύει την αξιοπιστία της υπηρεσίας σας, διασφαλίζοντας ότι οι "
+"ανάγκες των πελατών σας ικανοποιούνται πάντα."
+
+msgid ""
+"By training GeekyBot with your specific data, you can create dynamic, "
+"tailored interactions that reflect your business's unique voice and "
+"services. This customization allows for more relevant, effective "
+"conversations that build stronger connections with your users."
+msgstr ""
+"Εκπαιδεύοντας το GeekyBot με τα συγκεκριμένα δεδομένα σας, μπορείτε να "
+"δημιουργήσετε δυναμικές, προσαρμοσμένες αλληλεπιδράσεις που αντικατοπτρίζουν "
+"τη μοναδική φωνή και τις υπηρεσίες της επιχείρησής σας. Αυτή η προσαρμογή "
+"επιτρέπει πιο σχετικές, αποτελεσματικές συνομιλίες που δημιουργούν "
+"ισχυρότερες συνδέσεις με τους χρήστες σας."
+
+msgid "Bot Image"
+msgstr "Εικόνα Bot"
+
+msgid "image"
+msgstr "εικών"
+
+msgid "Watch AI ChatBot Video"
+msgstr "Παρακολουθήστε το βίντεο AI ChatBot"
+
+msgid "AI Web Search Bot"
+msgstr "AI Web Search Bot"
+
+msgid ""
+"Effortlessly search for specific posts and content across your entire site "
+"using our powerful AI web search tool. GeekyBot goes beyond standard "
+"searches, delivering results from all types of data on your site. Whether "
+"you're looking for posts, pages, custom post types, or other information, "
+"GeekyBot ensures you find what you need quickly and efficiently by "
+"displaying relevant articles, posts, and more in a single, streamlined "
+"search experience."
+msgstr ""
+"Αναζητήστε χωρίς κόπο συγκεκριμένες αναρτήσεις και περιεχόμενο σε ολόκληρο "
+"τον ιστότοπό σας χρησιμοποιώντας το πανίσχυρο εργαλείο αναζήτησης ιστού AI. "
+"Το GeekyBot υπερβαίνει τις τυπικές αναζητήσεις, παρέχοντας αποτελέσματα από "
+"όλους τους τύπους δεδομένων στον ιστότοπό σας. Είτε αναζητάτε αναρτήσεις, "
+"σελίδες, προσαρμοσμένους τύπους αναρτήσεων ή άλλες πληροφορίες, το GeekyBot "
+"διασφαλίζει ότι βρίσκετε αυτό που χρειάζεστε γρήγορα και αποτελεσματικά "
+"προβάλλοντας σχετικά άρθρα, αναρτήσεις και άλλα σε μια ενιαία, "
+"βελτιστοποιημένη εμπειρία αναζήτησης."
+
+msgid "New Post Type Search"
+msgstr "Αναζήτηση τύπου νέας ανάρτησης"
+
+msgid ""
+"Enable this option to directly include new post types in search results, "
+"enhancing user access to all content."
+msgstr ""
+"Ενεργοποιήστε αυτήν την επιλογή για να συμπεριλάβετε απευθείας νέους τύπους "
+"αναρτήσεων στα αποτελέσματα αναζήτησης, βελτιώνοντας την πρόσβαση των "
+"χρηστών σε όλο το περιεχόμενο."
+
+msgid "Watch AI Web Search Video"
+msgstr "Παρακολουθήστε το βίντεο της AI Web Search"
+
+msgid "Back"
+msgstr "Πίσω"
+
+msgid "Finish"
+msgstr "Φινίρισμα"
+
+msgid "WooCommerce is not installed"
+msgstr "Το WooCommerce δεν είναι εγκατεστημένο"
+
+msgid ""
+"WooCommerce plugin is not installed on your site, you won't be able to "
+"integrate GeekyBot with WooCommerce."
+msgstr ""
+"Η προσθήκη WooCommerce δεν είναι εγκατεστημένη στον ιστότοπό σας, δεν θα "
+"μπορείτε να ενσωματώσετε το GeekyBot με το WooCommerce."
+
+msgid ""
+"Easily integrate AI with WooCommerce to enhance your online store’s "
+"performance. GeekyBot boosts lead generation and customer interactions, "
+"automating key processes for a more effective and engaging shopping "
+"experience."
+msgstr ""
+"Ενσωματώστε εύκολα το AI με το WooCommerce για να βελτιώσετε την απόδοση του "
+"ηλεκτρονικού σας καταστήματος. Το GeekyBot ενισχύει τη δημιουργία δυνητικών "
+"πελατών και τις αλληλεπιδράσεις με τους πελάτες, αυτοματοποιώντας βασικές "
+"διαδικασίες για μια πιο αποτελεσματική και συναρπαστική εμπειρία αγορών."
+
+msgid ""
+"GeekyBot also streamlines customer inquiries and provides real-time, "
+"intelligent responses. By improving retention and customer satisfaction, it "
+"ensures your store delivers an exceptional experience that keeps shoppers "
+"coming back."
+msgstr ""
+"Το GeekyBot εξορθολογίζει επίσης τα ερωτήματα των πελατών και παρέχει "
+"έξυπνες απαντήσεις σε πραγματικό χρόνο. Βελτιώνοντας τη διατήρηση και την "
+"ικανοποίηση των πελατών, διασφαλίζει ότι το κατάστημά σας προσφέρει μια "
+"εξαιρετική εμπειρία που κρατά τους αγοραστές να επιστρέφουν."
+
+msgid "Watch WooCommerce Video"
+msgstr "Παρακολουθήστε το βίντεο WooCommerce"
+
+msgid "Welcome to GeekyBot !..."
+msgstr "Καλώς ήρθατε στο GeekyBot!..."
+
+msgid ""
+"The ultimate AI chatbot for WooCommerce lead generation, intelligent content "
+"search, and interactive customer engagement on your WordPress website."
+msgstr ""
+"Το απόλυτο chatbot AI για τη δημιουργία δυνητικών πελατών WooCommerce, την "
+"έξυπνη αναζήτηση περιεχομένου και τη διαδραστική δέσμευση πελατών στον "
+"ιστότοπό σας στο WordPress."
+
+msgid ""
+"Personalize interactions by dynamically processing user inputs using slots "
+"and variables."
+msgstr ""
+"Εξατομικεύστε τις αλληλεπιδράσεις επεξεργάζοντας δυναμικά τις εισόδους των "
+"χρηστών χρησιμοποιώντας υποδοχές και μεταβλητές."
+
+msgid ""
+"Enhance shopping by enabling users to find products and add them to their "
+"cart seamlessly."
+msgstr ""
+"Βελτιώστε τις αγορές δίνοντας τη δυνατότητα στους χρήστες να βρίσκουν "
+"προϊόντα και να τα προσθέτουν στο καλάθι τους χωρίς προβλήματα."
+
+msgid "Website Search"
+msgstr "Αναζήτηση ιστότοπου"
+
+msgid ""
+"Streamline discovery by helping users find relevant information on your "
+"WordPress site."
+msgstr ""
+"Βελτιώστε την ανακάλυψη βοηθώντας τους χρήστες να βρουν σχετικές πληροφορίες "
+"στον ιστότοπό σας στο WordPress."
+
+msgid "Please insert activation key to proceed"
+msgstr "Εισαγάγετε το κλειδί ενεργοποίησης για να συνεχίσετε"
+
+msgid "Addon Installation Failed"
+msgstr "Η εγκατάσταση του πρόσθετου απέτυχε"
+
+msgid "Addon installation failed"
+msgstr "Η εγκατάσταση του πρόσθετου απέτυχε"
+
+msgid "Addon Installation Failed, File download error"
+msgstr "Η εγκατάσταση του πρόσθετου απέτυχε, Σφάλμα λήψης αρχείου"
+
+msgid "Activated"
+msgstr "Ενεργοποιήθηκε"
+
+msgid "Deactivate"
+msgstr "Απενεργοποίηση"
+
+msgid "Deactivated"
+msgstr "Απενεργοποιήθηκε"
+
+msgid "Activate"
+msgstr "Δραστηριοποιώ"
+
+msgid "Not Installed"
+msgstr "Δεν έχει εγκατασταθεί"
+
+msgid "Addon Installed Successfully"
+msgstr "Το πρόσθετο εγκαταστάθηκε με επιτυχία"
+
+msgid "Ticket Actions"
+msgstr "Δράσεις εισιτηρίων"
+
+msgid "Agents"
+msgstr "Πράκτορες"
+
+msgid "Ticket Auto Close"
+msgstr "Αυτόματο κλείσιμο εισιτηρίου"
+
+msgid "left image"
+msgstr "αριστερή εικόνα"
+
+msgid "right image"
+msgstr "σωστή εικόνα"
+
+msgid "Add-ons For Majestic Support"
+msgstr "Πρόσθετα για Majestic Support"
+
+msgid ""
+"Get trusted WordPress add-ons. Guaranteed to work fast, safe to use, "
+"beautifully coded, packed with features, and are easy to use."
+msgstr ""
+"Αποκτήστε αξιόπιστα πρόσθετα WordPress. Εγγυημένα για γρήγορη εργασία, "
+"ασφαλή στη χρήση, όμορφα κωδικοποιημένα, γεμάτα με χαρακτηριστικά και είναι "
+"εύχρηστα."
+
+msgid "Save big today with an exclusive membership plan!"
+msgstr "Εξοικονομήστε χρήματα σήμερα με ένα αποκλειστικό πρόγραμμα συνδρομής!"
+
+msgid "Show"
+msgstr "Επίδειξη"
+
+msgid "show bundle pack"
+msgstr "εμφάνιση πακέτου δέσμης"
+
+msgid "Agent"
+msgstr "Μέσο"
+
+msgid ""
+"Add agents and assign roles and permissions to provide assistance and "
+"support for customer support tickets."
+msgstr ""
+"Προσθέστε αντιπροσώπους και εκχωρήστε ρόλους και δικαιώματα για την παροχή "
+"βοήθειας και υποστήριξης για εισιτήρια υποστήριξης πελατών."
+
+msgid "buy now"
+msgstr "αγοράστε τώρα"
+
+msgid "Installed"
+msgstr "Εγκατεστημένο"
+
+msgid "multiform"
+msgstr "πολύμορφος"
+
+msgid "Multi Forms"
+msgstr "Πολλαπλές Μορφές"
+
+msgid ""
+"Create multiple custom ticket forms with different custom fields for each "
+"request type that you support."
+msgstr ""
+"Δημιουργήστε πολλές προσαρμοσμένες φόρμες εισιτηρίων με διαφορετικά "
+"προσαρμοσμένα πεδία για κάθε τύπο αιτήματος που υποστηρίζετε."
+
+msgid "Email Piping"
+msgstr "Σωληνώσεις email"
+
+msgid ""
+"Email piping is the process of automatically turning incoming emails into "
+"support tickets without manual data entry."
+msgstr ""
+"Η διοχέτευση email είναι η διαδικασία αυτόματης μετατροπής των εισερχόμενων "
+"email σε εισιτήρια υποστήριξης χωρίς μη αυτόματη εισαγωγή δεδομένων."
+
+msgid "agent auto assign"
+msgstr "αυτόματη εκχώρηση πράκτορα"
+
+msgid "Agent Auto Assign"
+msgstr "Agent Auto Assign"
+
+msgid ""
+"Make the ticket assignment process automatic and assign the most qualified "
+"agent to your tickets with conditions."
+msgstr ""
+"Κάντε τη διαδικασία εκχώρησης εισιτηρίων αυτόματη και αναθέστε τον πιο "
+"εξειδικευμένο πράκτορα στα εισιτήριά σας με προϋποθέσεις."
+
+msgid "private note"
+msgstr "ιδιωτική σημείωση"
+
+msgid "Private Note"
+msgstr "Ιδιωτικό Σημείωμα"
+
+msgid ""
+"Add private notes to a ticket and share crucial information internally with "
+"your agents, this private note is not visible to the customer."
+msgstr ""
+"Προσθέστε ιδιωτικές σημειώσεις σε ένα εισιτήριο και μοιραστείτε κρίσιμες "
+"πληροφορίες εσωτερικά με τους αντιπροσώπους σας, αυτή η ιδιωτική σημείωση "
+"δεν είναι ορατή στον πελάτη."
+
+msgid "merge tickets"
+msgstr "εισιτήρια συγχώνευσης"
+
+msgid "Merge Tickets"
+msgstr "Συγχώνευση εισιτηρίων"
+
+msgid ""
+"Merge one or more tickets into another if you receive two support requests "
+"from the same end user about the same issue."
+msgstr ""
+"Συγχωνεύστε ένα ή περισσότερα εισιτήρια με ένα άλλο, εάν λάβετε δύο αιτήματα "
+"υποστήριξης από τον ίδιο τελικό χρήστη για το ίδιο ζήτημα."
+
+msgid "helptopic"
+msgstr "θέμα βοήθειας"
+
+msgid "Help Topics"
+msgstr "Θέματα βοήθειας"
+
+msgid ""
+"The user can search for and choose the topic for which they need help using "
+"help topics"
+msgstr ""
+"Ο χρήστης μπορεί να αναζητήσει και να επιλέξει το θέμα για το οποίο "
+"χρειάζεται βοήθεια χρησιμοποιώντας θέματα βοήθειας"
+
+msgid "Auto Close Ticket"
+msgstr "Αυτόματο κλείσιμο εισιτηρίου"
+
+msgid ""
+"Manage abandoned tickets, and set rules for tickets over time, and those "
+"tickets will be closed automatically after a certain period."
+msgstr ""
+"Διαχειριστείτε τα εγκαταλειμμένα εισιτήρια και ορίστε κανόνες για τα "
+"εισιτήρια με την πάροδο του χρόνου και αυτά τα εισιτήρια θα κλείσουν "
+"αυτόματα μετά από μια ορισμένη περίοδο."
+
+msgid "Knowledgebase"
+msgstr "Γνωσιακή βάση"
+
+msgid ""
+"Stop wasting time on repetitive inquiries, build your knowledge base, and "
+"organize your solutions into categories for users."
+msgstr ""
+"Σταματήστε να χάνετε χρόνο σε επαναλαμβανόμενες ερωτήσεις, δημιουργήστε τη "
+"βάση γνώσεών σας και οργανώστε τις λύσεις σας σε κατηγορίες για χρήστες."
+
+msgid "Ticket Overdue"
+msgstr "Λήξη εισιτηρίου"
+
+msgid ""
+"Define rules or set a specific time interval for making tickets "
+"automatically overdue."
+msgstr ""
+"Καθορίστε κανόνες ή ορίστε ένα συγκεκριμένο χρονικό διάστημα για την "
+"αυτόματη καθυστέρηση των εισιτηρίων."
+
+msgid "time tracking"
+msgstr "παρακολούθηση χρόνου"
+
+msgid "Time Tracking"
+msgstr "Παρακολούθηση χρόνου"
+
+msgid ""
+"Track the amount of time spent on each customer support ticket without "
+"losing focus and enhance team productivity."
+msgstr ""
+"Παρακολουθήστε τον χρόνο που αφιερώνεται σε κάθε εισιτήριο υποστήριξης "
+"πελατών χωρίς να χάσετε την εστίαση και βελτιώστε την παραγωγικότητα της "
+"ομάδας."
+
+msgid "Ticket History"
+msgstr "Ιστορικό εισιτηρίων"
+
+msgid ""
+"Show the whole history of the ticket, including its status and any action "
+"taken in response to it."
+msgstr ""
+"Εμφάνιση ολόκληρου του ιστορικού του εισιτηρίου, συμπεριλαμβανομένης της "
+"κατάστασής του και οποιασδήποτε ενέργειας που πραγματοποιήθηκε ως απάντηση "
+"σε αυτό."
+
+msgid "Paid Support"
+msgstr "Υποστήριξη επί πληρωμή"
+
+msgid ""
+"The simplest approach to effectively manage payments for premium help is "
+"through paid support."
+msgstr ""
+"Η απλούστερη προσέγγιση για την αποτελεσματική διαχείριση πληρωμών για "
+"βοήθεια premium είναι μέσω της πληρωμένης υποστήριξης."
+
+msgid "Private Credentials"
+msgstr "Ιδιωτικά Διαπιστευτήρια"
+
+msgid ""
+"Customers will enter sensitive information on tickets, and this add-on is "
+"designed to help you keep that information secure."
+msgstr ""
+"Οι πελάτες θα εισάγουν ευαίσθητες πληροφορίες στα εισιτήρια και αυτό το "
+"πρόσθετο έχει σχεδιαστεί για να σας βοηθήσει να διατηρήσετε αυτές τις "
+"πληροφορίες ασφαλείς."
+
+msgid "Ticket close reason"
+msgstr "Λόγος κλεισίματος εισιτηρίου"
+
+msgid "Ticket Closed Reason"
+msgstr "Λόγος κλειστού εισιτηρίου"
+
+msgid ""
+"Empowers users to provide clear and concise explanations for why customer "
+"service tickets are being closed."
+msgstr ""
+"Εξουσιοδοτεί τους χρήστες να παρέχουν σαφείς και συνοπτικές εξηγήσεις για "
+"τους λόγους για τους οποίους κλείνουν τα εισιτήρια εξυπηρέτησης πελατών."
+
+msgid "Premade Responses"
+msgstr "Προκατασκευασμένες απαντήσεις"
+
+msgid ""
+"Make ready-made responses to the most common questions in the tickets to "
+"swiftly address client issues."
+msgstr ""
+"Κάντε έτοιμες απαντήσεις στις πιο συνηθισμένες ερωτήσεις στα εισιτήρια για "
+"να αντιμετωπίσετε γρήγορα προβλήματα πελατών."
+
+msgid "max ticket"
+msgstr "μέγιστο εισιτήριο"
+
+msgid "Max Tickets"
+msgstr "Max Εισιτήρια"
+
+msgid ""
+"Admins can limit the number of tickets that users can create as well as the "
+"number of tickets that agents can open individually."
+msgstr ""
+"Οι διαχειριστές μπορούν να περιορίσουν τον αριθμό των εισιτηρίων που μπορούν "
+"να δημιουργήσουν οι χρήστες καθώς και τον αριθμό των εισιτηρίων που μπορούν "
+"να ανοίξουν μεμονωμένα οι πράκτορες."
+
+msgid "Feedback"
+msgstr "Ανατροφοδότηση"
+
+msgid ""
+"To enhance the quality of your services, ask your customers to complete a "
+"survey when a ticket is closed."
+msgstr ""
+"Για να βελτιώσετε την ποιότητα των υπηρεσιών σας, ζητήστε από τους πελάτες "
+"σας να συμπληρώσουν μια έρευνα όταν ένα εισιτήριο είναι κλειστό."
+
+msgid "ticket actions"
+msgstr "ενέργειες εισιτηρίων"
+
+msgid ""
+"Ticket action options allow you to execute additional actions on tickets."
+msgstr ""
+"Οι επιλογές ενεργειών εισιτηρίων σάς επιτρέπουν να εκτελέσετε πρόσθετες "
+"ενέργειες στα εισιτήρια."
+
+msgid "Export"
+msgstr "Εξαγωγή"
+
+msgid ""
+"Easily export ticket data and performance report data from your majestic "
+"support to an Excel spreadsheet with our efficient and user-friendly "
+"solution."
+msgstr ""
+"Εξάγετε εύκολα δεδομένα εισιτηρίων και δεδομένα αναφοράς απόδοσης από τη "
+"μεγαλειώδη υποστήριξή σας σε υπολογιστικό φύλλο Excel με την αποτελεσματική "
+"και φιλική προς το χρήστη λύση μας."
+
+msgid "email cc"
+msgstr "email cc"
+
+msgid "Email CC"
+msgstr "Email CC"
+
+msgid ""
+"Send the exact copy of the email to the provided email address with Email CC "
+"or BCC."
+msgstr ""
+"Στείλτε το ακριβές αντίγραφο του email στην παρεχόμενη διεύθυνση email με "
+"Email CC ή BCC."
+
+msgid "user options"
+msgstr "επιλογές χρήστη"
+
+msgid "User Options"
+msgstr "Επιλογές χρήστη"
+
+msgid ""
+"User options enable you to define roles for new users when they are "
+"registered."
+msgstr ""
+"Οι επιλογές χρήστη σάς δίνουν τη δυνατότητα να ορίσετε ρόλους για νέους "
+"χρήστες κατά την εγγραφή τους."
+
+msgid "SMTP"
+msgstr "SMTP"
+
+msgid ""
+"SMTP enables you to add  custom mail protocols to send and receive emails "
+"with the support ticket system."
+msgstr ""
+"Το SMTP σάς δίνει τη δυνατότητα να προσθέσετε προσαρμοσμένα πρωτόκολλα "
+"αλληλογραφίας για αποστολή και λήψη email με το σύστημα εισιτηρίων "
+"υποστήριξης."
+
+msgid "Multi Language Email Templates"
+msgstr "Πρότυπα email πολλαπλών γλωσσών"
+
+msgid ""
+"Create multi-language email templates for all default email templates to "
+"send customers emails in the language that they prefer."
+msgstr ""
+"Δημιουργήστε πρότυπα email πολλών γλωσσών για όλα τα προεπιλεγμένα πρότυπα "
+"email για να στείλετε email στους πελάτες στη γλώσσα που προτιμούν."
+
+msgid "Downloads"
+msgstr "Λήψεις"
+
+msgid ""
+"Downloads can be very helpful for users who are looking to obtain the "
+"necessary information to resolve issues."
+msgstr ""
+"Οι λήψεις μπορεί να είναι πολύ χρήσιμες για χρήστες που αναζητούν τις "
+"απαραίτητες πληροφορίες για την επίλυση προβλημάτων."
+
+msgid "Announcements"
+msgstr "Ανακοινώσεις"
+
+msgid ""
+"Make an unlimited number of announcements related to the support system to "
+"encourage customer interaction."
+msgstr ""
+"Κάντε απεριόριστο αριθμό ανακοινώσεων που σχετίζονται με το σύστημα "
+"υποστήριξης για να ενθαρρύνετε την αλληλεπίδραση με τους πελάτες."
+
+msgid "Ban Email"
+msgstr "Απαγόρευση ηλεκτρονικού ταχυδρομείου"
+
+msgid ""
+"With Ban Email, you can limit a users ability to create new tickets by "
+"blocking their email address."
+msgstr ""
+"Με το Ban Email, μπορείτε να περιορίσετε τη δυνατότητα των χρηστών να "
+"δημιουργούν νέα εισιτήρια αποκλείοντας τη διεύθυνση email τους."
+
+msgid "FAQ"
+msgstr "FAQ"
+
+msgid ""
+"Provide answers to common user questions with the FAQ extension before they "
+"become tickets."
+msgstr ""
+"Δώστε απαντήσεις σε κοινές ερωτήσεις χρηστών με την επέκταση FAQ προτού "
+"γίνουν εισιτήρια."
+
+msgid "admin widgets"
+msgstr "γραφικά στοιχεία διαχειριστή"
+
+msgid "Admin Widgets"
+msgstr "Γραφικά στοιχεία διαχειριστή"
+
+msgid ""
+"Get immediate data on your support operations as soon as you log into your "
+"WordPress administration area."
+msgstr ""
+"Λάβετε άμεσα δεδομένα για τις λειτουργίες υποστήριξής σας αμέσως μόλις "
+"συνδεθείτε στην περιοχή διαχείρισης του WordPress."
+
+msgid "desktop notifications"
+msgstr "ειδοποιήσεις επιφάνειας εργασίας"
+
+msgid "Desktop Notifications"
+msgstr "Ειδοποιήσεις επιφάνειας εργασίας"
+
+msgid ""
+"You will be informed of anything that occurs on your support system by the "
+"desktop notifications."
+msgstr ""
+"Θα ενημερωθείτε για οτιδήποτε συμβεί στο σύστημα υποστήριξής σας από τις "
+"ειδοποιήσεις επιφάνειας εργασίας."
+
+msgid "woocommerce"
+msgstr "woocommerce"
+
+msgid ""
+"The integration of the support ticket system for WooCommerce with your e-"
+"shop makes your support better and more professional."
+msgstr ""
+"Η ενσωμάτωση του συστήματος εισιτηρίων υποστήριξης για το WooCommerce με το "
+"ηλεκτρονικό σας κατάστημα κάνει την υποστήριξή σας καλύτερη και πιο "
+"επαγγελματική."
+
+msgid "mail chimp"
+msgstr "mailchimp"
+
+msgid "Mail Chimp"
+msgstr "Mailchimp"
+
+msgid ""
+"Manage your email marketing campaigns directly from your majestic support by "
+"adding new user accounts to your Mailchimp email list."
+msgstr ""
+"Διαχειριστείτε τις καμπάνιες μάρκετινγκ μέσω email απευθείας από τη "
+"μαγευτική υποστήριξή σας, προσθέτοντας νέους λογαριασμούς χρηστών στη λίστα "
+"email του Mailchimp."
+
+msgid "internal mail"
+msgstr "εσωτερική αλληλογραφία"
+
+msgid "Internal Mail"
+msgstr "Εσωτερική αλληλογραφία"
+
+msgid ""
+"Send messages internally about support tickets and other issues between "
+"agents with internal mail."
+msgstr ""
+"Στείλτε εσωτερικά μηνύματα σχετικά με εισιτήρια υποστήριξης και άλλα "
+"ζητήματα μεταξύ πρακτόρων με εσωτερική αλληλογραφία."
+
+msgid "frontend widget"
+msgstr "widget frontend"
+
+msgid "Front-End Widgets"
+msgstr "Γραφικά στοιχεία διεπαφής"
+
+msgid ""
+"Frontend Widgets include several widgets that can be used to enhance the "
+"plugin's functionality in various areas of the website."
+msgstr ""
+"Τα γραφικά στοιχεία Frontend περιλαμβάνουν πολλά γραφικά στοιχεία που "
+"μπορούν να χρησιμοποιηθούν για τη βελτίωση της λειτουργικότητας της "
+"προσθήκης σε διάφορες περιοχές του ιστότοπου."
+
+msgid "envato"
+msgstr "envato"
+
+msgid "Envato"
+msgstr "Envato"
+
+msgid ""
+"Clients won't be able to open a new ticket using the Envato Validation "
+"plugin if they don't have a valid Envato license."
+msgstr ""
+"Οι πελάτες δεν θα μπορούν να ανοίξουν ένα νέο εισιτήριο χρησιμοποιώντας την "
+"προσθήκη Envato Validation εάν δεν διαθέτουν έγκυρη άδεια Envato."
+
+msgid "easy digital download"
+msgstr "εύκολη ψηφιακή λήψη"
+
+msgid "Easy Digital Download"
+msgstr "Εύκολη ψηφιακή λήψη"
+
+msgid ""
+"Learn about a customer's purchase directly from the support dashboard by "
+"integrating Majestic Support with your EDD store."
+msgstr ""
+"Μάθετε για την αγορά ενός πελάτη απευθείας από τον πίνακα ελέγχου "
+"υποστήριξης, ενσωματώνοντας το Majestic Support με το κατάστημά σας EDD."
+
+msgid "Majestic Support Add-ons Bundle Pack"
+msgstr "Πακέτο πρόσθετων Majestic Support"
+
+msgid "Basic"
+msgstr "Βασικός"
+
+msgid "Unlimited Agents"
+msgstr "Απεριόριστοι πράκτορες"
+
+msgid "Helptopic"
+msgstr "Βοηθητικό θέμα"
+
+msgid "Show all"
+msgstr "Εμφάνιση όλων"
+
+msgid "Standard"
+msgstr "Πρότυπο"
+
+msgid "Everything in basic included and "
+msgstr "Τα πάντα στα βασικά περιλαμβάνονται και"
+
+msgid "Premade Response"
+msgstr "Προκατασκευασμένη απόκριση"
+
+msgid "Professional"
+msgstr "Επαγγελματίας"
+
+msgid "Everything in standard included and"
+msgstr "Όλα στο στάνταρ περιλαμβάνονται και"
+
+msgid "All Future Addons"
+msgstr "Όλα τα μελλοντικά πρόσθετα"
+
+msgid "spinning wheel"
+msgstr "ανέμη"
+
+msgid "New Update Version"
+msgstr "Νέα έκδοση ενημέρωσης"
+
+msgid "is Available"
+msgstr "είναι διαθέσιμο"
+
+msgid "Status: "
+msgstr "Κατάσταση:"
+
+msgid "Version"
+msgstr "Εκδοχή"
+
+msgid "addon in no longer active"
+msgstr "το πρόσθετο δεν είναι πλέον ενεργό"
+
+msgid "Please Insert Your Activation Key"
+msgstr "Εισαγάγετε το κλειδί ενεργοποίησής σας"
+
+msgid "XXXX-XXXX-XXXXX-XXXXX"
+msgstr "ΧΧΧΧ-ΧΧΧ-ΧΧΧΧΧ-ΧΧΧΧ"
+
+msgid "Proceed"
+msgstr "Προχωρώ"
+
+msgid "GeekyBot Addon Installer"
+msgstr "Πρόγραμμα εγκατάστασης πρόσθετων GeekyBot"
+
+msgid "Select All Addons"
+msgstr "Επιλέξτε Όλα τα πρόσθετα"
+
+msgid "All allowed add ons are already installed"
+msgstr "Όλα τα επιτρεπόμενα πρόσθετα έχουν ήδη εγκατασταθεί"
+
+msgid "You are not allowed to install any add on"
+msgstr "Δεν επιτρέπεται να εγκαταστήσετε κανένα πρόσθετο"
+
+msgid "Something went wrong"
+msgstr "Κάτι πήγε στραβά"
+
+msgid "Addons Installed Successfully"
+msgstr "Τα πρόσθετα εγκαταστάθηκαν με επιτυχία"
+
+msgid "Open Dashboard"
+msgstr "Ανοίξτε τον πίνακα ελέγχου"
+
+msgid "Open Plugins Page"
+msgstr "Ανοίξτε τη σελίδα προσθηκών"
+
+msgid "PersonName"
+msgstr "Όνομα Προσώπου"
+
+msgid "Facility"
+msgstr "Ευκολία"
+
+msgid "Organization"
+msgstr "Οργάνωση"
+
+msgid "Location"
+msgstr "Τοποθεσία"
+
+msgid "Location_NON_GPE"
+msgstr "Τοποθεσία_NON_GPE"
+
+msgid "Product"
+msgstr "Προϊόν"
+
+msgid "Event"
+msgstr "Συμβάν"
+
+msgid "ArtWork"
+msgstr "Εργασία Τέχνης"
+
+msgid "LawDocument"
+msgstr "Νομικό Έγγραφο"
+
+msgid "Language"
+msgstr "Γλώσσα"
+
+msgid "Date"
+msgstr "Ημερομηνία"
+
+msgid "Time"
+msgstr "Φορά"
+
+msgid "Percentage"
+msgstr "Ποσοστό"
+
+msgid "Money"
+msgstr "Χρήματα"
+
+msgid "Quantity"
+msgstr "Ποσότητα"
+
+msgid "Ordinal"
+msgstr "Τακτικός"
+
+msgid "Cardinal"
+msgstr "Καρδινάλιος"
+
+msgid "Select Variable For"
+msgstr "Επιλέξτε Μεταβλητή για"
+
+msgid "Attribute"
+msgstr "Ιδιότης"
+
+msgid "Name"
+msgstr "Ονομα"
+
+msgid "Varibale Name"
+msgstr "Όνομα μεταβλητής"
+
+msgid "Type"
+msgstr "Τύπος"
+
+msgid "Possible Field Values"
+msgstr "Πιθανές τιμές πεδίου"
+
+msgid "Add Comma Seprated Values"
+msgstr "Προσθήκη τιμών διαχωρισμένων με κόμματα"
+
+msgid "Variable For"
+msgstr "Μεταβλητή Για"
+
+msgid "Select Variable For in case of Woocommerce Variable"
+msgstr "Επιλέξτε Μεταβλητή για σε περίπτωση μεταβλητής Woocommerce"
+
+msgid "cancel"
+msgstr "ματαίωση"
+
+msgid "Cancel"
+msgstr "Ματαίωση"
+
+msgid "Save Changes"
+msgstr "Αποθήκευση αλλαγών"
+
+msgid "Save Variable"
+msgstr "Αποθήκευση μεταβλητής"
+
+msgid "Reset"
+msgstr "Επαναφορά"
+
+msgid "Are you sure to delete it?"
+msgstr "Είστε σίγουροι ότι θα το διαγράψετε;"
+
+msgid "Delete Variable"
+msgstr "Διαγραφή μεταβλητής"
+
+msgid "Add Variable"
+msgstr "Προσθήκη μεταβλητής"
+
+msgid "name"
+msgstr "όνομα"
+
+msgid "type"
+msgstr "τύπος"
+
+msgid "Possible Values Here"
+msgstr "Πιθανές τιμές εδώ"
+
+msgid "Edit Variable"
+msgstr "Επεξεργασία μεταβλητής"
+
+msgid "Are you sure to delete it"
+msgstr "Είστε σίγουροι ότι θα το διαγράψετε"
+
+msgid "Add New"
+msgstr "Προσθήκη νέου"
+
+msgid "User Input"
+msgstr "Εισαγωγή χρήστη"
+
+msgid "Close"
+msgstr "Κοντά"
+
+msgid "Add"
+msgstr "Προσθέτω"
+
+msgid "Add More"
+msgstr "Προσθήκη περισσότερων"
+
+msgid "Available Variables"
+msgstr "Διαθέσιμες μεταβλητές"
+
+msgid "Enter bot response here..."
+msgstr "Εισαγάγετε την απάντηση του bot εδώ..."
+
+msgid "Button text here"
+msgstr "Κείμενο κουμπιού εδώ"
+
+msgid "URL"
+msgstr "URL"
+
+msgid "Button value here"
+msgstr "Τιμή κουμπιού εδώ"
+
+msgid "Enter URL here"
+msgstr "Εισαγάγετε τη διεύθυνση URL εδώ"
+
+msgid "Add New Button"
+msgstr "Προσθήκη νέου κουμπιού"
+
+msgid "Select Predefined Function"
+msgstr "Επιλέξτε Προκαθορισμένη Συνάρτηση"
+
+msgid "Select Action"
+msgstr "Επιλέξτε Ενέργεια"
+
+msgid "Add New Action"
+msgstr "Προσθήκη νέας ενέργειας"
+
+msgid "Add New Form"
+msgstr "Προσθήκη νέας φόρμας"
+
+msgid "Enter default fallback here..."
+msgstr "Εισαγάγετε την προεπιλεγμένη εναλλακτική λύση εδώ..."
+
+msgid "Enter default fallback for intent here..."
+msgstr "Εισαγάγετε την προεπιλεγμένη εναλλακτική λύση για πρόθεση εδώ..."
+
+msgid "Start Point"
+msgstr "Σημείο εκκίνησης"
+
+msgid "Error: The template file does not exist."
+msgstr "Σφάλμα: Το αρχείο προτύπου δεν υπάρχει."
+
+msgid "Text"
+msgstr "Κείμενο"
+
+msgid "Function"
+msgstr "Λειτουργία"
+
+msgid "Error: The"
+msgstr "Σφάλμα: Το"
+
+msgid "tag in"
+msgstr "ετικέτα μέσα"
+
+msgid "at position"
+msgstr "στη θέση"
+
+msgid "is missing."
+msgstr "λείπει."
+
+msgid "is empty."
+msgstr "είναι άδειο."
+
+msgid "tag associated with the user input"
+msgstr "ετικέτα που σχετίζεται με την είσοδο χρήστη"
+
+msgid "in"
+msgstr "σε"
+
+msgid "tag of the"
+msgstr "ετικέτα του"
+
+msgid "block associated with the user input"
+msgstr "μπλοκ που σχετίζεται με την είσοδο χρήστη"
+
+msgid "or"
+msgstr "ή"
+
+msgid "Error: The function name"
+msgstr "Σφάλμα: Το όνομα της συνάρτησης"
+
+msgid "in the"
+msgstr "στο"
+
+msgid "is invalid."
+msgstr "είναι άκυρη."
+
+msgid "Error: The type name"
+msgstr "Σφάλμα: Το όνομα του τύπου"
+
+msgid "is invalid. This should be"
+msgstr "είναι άκυρη. Αυτό πρέπει να είναι"
+
+msgid "You might like these products."
+msgstr "Μπορεί να σας αρέσουν αυτά τα προϊόντα."
+
+msgid "No exact match was found. Explore these similar products."
+msgstr ""
+"Δεν βρέθηκε ακριβής αντιστοίχιση. Εξερευνήστε αυτά τα παρόμοια προϊόντα."
+
+msgid "Here are some suggestions."
+msgstr "Εδώ είναι μερικές προτάσεις."
+
+msgid "Showing"
+msgstr "Επίδειξη"
+
+msgid "of"
+msgstr "του"
+
+msgid "Add to cart"
+msgstr "Προσθήκη στο καλάθι"
+
+msgid "Empty Story"
+msgstr "Κενή ιστορία"
+
+msgid "Show All Products"
+msgstr "Εμφάνιση όλων των προϊόντων"
+
+msgid "Search Product"
+msgstr "Αναζήτηση προϊόντος"
+
+msgid "Get Products Under Price"
+msgstr "Λάβετε προϊόντα κάτω από την τιμή"
+
+msgid "Get Products Above Price"
+msgstr "Λάβετε προϊόντα πάνω από την τιμή"
+
+msgid "View Cart/Remove Items"
+msgstr "Προβολή καλαθιού/Κατάργηση αντικειμένων"
+
+msgid "Checkout"
+msgstr "Αποχώρηση"
+
+msgid "Reset Password"
+msgstr "Επαναφορά κωδικού πρόσβασης"
+
+msgid "Send Chat To Admin"
+msgstr "Αποστολή συνομιλίας στον διαχειριστή"
+
+msgid "Integer"
+msgstr "Ακέραιος αριθμός"
+
+msgid "Float"
+msgstr "Φλοτέρ"
+
+msgid "Boolean"
+msgstr "Boolean"
+
+msgid "String"
+msgstr "Σειρά"
+
+msgid "Default Fallback"
+msgstr "Προεπιλεγμένη εναλλακτική"
+
+msgid "Are you sure to reset it?"
+msgstr "Είστε σίγουροι ότι θα το επαναφέρετε;"
+
+msgid "Parameter Name *"
+msgstr "Όνομα παραμέτρου *"
+
+msgid "Varibale Name *"
+msgstr "Όνομα μεταβλητής *"
+
+msgid "User input has been successfully saved."
+msgstr "Η εισαγωγή χρήστη αποθηκεύτηκε με επιτυχία."
+
+msgid "An empty user input field."
+msgstr "Ένα κενό πεδίο εισαγωγής χρήστη."
+
+msgid "An empty bot response."
+msgstr "Μια κενή απάντηση bot."
+
+msgid "Response Successfully Saved!"
+msgstr "Η απόκριση αποθηκεύτηκε με επιτυχία!"
+
+msgid "Action Successfully Saved!"
+msgstr "Η ενέργεια αποθηκεύτηκε με επιτυχία!"
+
+msgid "Form Successfully Saved!"
+msgstr "Η φόρμα αποθηκεύτηκε με επιτυχία!"
+
+msgid "Default Fallback Successfully Saved!"
+msgstr "Η προεπιλεγμένη εναλλακτική λύση αποθηκεύτηκε με επιτυχία!"
+
+msgid "Store relevant user input first, then fallback."
+msgstr "Αποθηκεύστε πρώτα τα σχετικά στοιχεία χρήστη και μετά εναλλακτικά."
+
+msgid "An empty default fallback."
+msgstr "Ένα κενό προεπιλεγμένο εναλλακτικό."
+
+msgid "Default Intent Fallback Successfully Saved!"
+msgstr "Η προεπιλεγμένη εναλλακτική πρόθεση αποθηκεύτηκε με επιτυχία!"
+
+msgid "Discard"
+msgstr "Απορρίπτω"
+
+msgid "Temporary discard"
+msgstr "Προσωρινή απόρριψη"
+
+msgid "Automate"
+msgstr "Αυτοματοποίηση"
+
+msgid "User input"
+msgstr "Εισαγωγή χρήστη"
+
+msgid "Form"
+msgstr "Μορφή"
+
+msgid "Fallback"
+msgstr "Εναλλακτικός"
+
+msgid "Chat "
+msgstr "Κουβέντα"
+
+msgid "Available Variable"
+msgstr "Διαθέσιμη μεταβλητή"
+
+msgid "Product Name"
+msgstr "Όνομα προϊόντος"
+
+msgid "Minimum Price"
+msgstr "Κατώτατη τιμή"
+
+msgid "Maximum Price"
+msgstr "Μέγιστη Τιμή"
+
+msgid "User Login"
+msgstr "Είσοδος Χρήστη"
+
+msgid "Action Icon"
+msgstr "Εικονίδιο δράσης"
+
+msgid "User Icon"
+msgstr "Εικονίδιο χρήστη"
+
+msgid "User"
+msgstr "Μεταχειριζόμενος"
+
+msgid "Bot Response"
+msgstr "Απόκριση Bot"
+
+msgid "User Text Icon"
+msgstr "Εικονίδιο κειμένου χρήστη"
+
+msgid "Bot Function Icon"
+msgstr "Εικονίδιο λειτουργίας bot"
+
+msgid "Bot Function"
+msgstr "Λειτουργία Bot"
+
+msgid "Predefined Function"
+msgstr "Προκαθορισμένη συνάρτηση"
+
+msgid "Bot Action Icon"
+msgstr "Εικονίδιο δράσης bot"
+
+msgid "Bot Action"
+msgstr "Bot Action"
+
+msgid "Bot Form Icon"
+msgstr "Εικονίδιο φόρμας bot"
+
+msgid "Bot Form"
+msgstr "Φόρμα Bot"
+
+msgid "Fallback Icon"
+msgstr "Εναλλακτικό εικονίδιο"
+
+msgid "Fallback Massege"
+msgstr "Εναλλακτικό Μήνυμα"
+
+msgid "Save & Close"
+msgstr "Αποθήκευση & Κλείσιμο"
+
+msgid "Info Icon"
+msgstr "Εικονίδιο πληροφοριών"
+
+msgid "How to add parameters"
+msgstr "Πώς να προσθέσετε παραμέτρους"
+
+msgid "User form Icon"
+msgstr "Εικονίδιο φόρμας χρήστη"
+
+msgid "Form Name *"
+msgstr "Όνομα φόρμας *"
+
+msgid "Add New Variable"
+msgstr "Προσθήκη νέας μεταβλητής"
+
+msgid "Function Form"
+msgstr "Φόρμα συνάρτησης"
+
+msgid "Action Form"
+msgstr "Φόρμα Δράσης"
+
+msgid "Custom Action"
+msgstr "Προσαρμοσμένη ενέργεια"
+
+msgid "Add New Custom Action"
+msgstr "Προσθήκη νέας προσαρμοσμένης ενέργειας"
+
+msgid "Add New Parameter"
+msgstr "Προσθήκη νέας παραμέτρου"
+
+msgid "Intent Fallback"
+msgstr "Επιστροφή πρόθεσης"
+
+msgid "Save Story"
+msgstr "Αποθήκευση ιστορίας"
+
+msgid "Reset Story"
+msgstr "Επαναφορά ιστορίας"
+
+msgid "Story has been successfully saved."
+msgstr "Η ιστορία αποθηκεύτηκε με επιτυχία."
+
+msgid "WooCommerce is not active!"
+msgstr "Το WooCommerce δεν είναι ενεργό!"
+
+msgid "Error encountered in template."
+msgstr "Παρουσιάστηκε σφάλμα στο πρότυπο."
+
+msgid "An empty story name."
+msgstr "Ένα κενό όνομα ιστορίας."
+
+msgid "An empty story template."
+msgstr "Ένα κενό πρότυπο ιστορίας."
+
+msgid "title"
+msgstr "τίτλος"
+
+msgid "Active"
+msgstr "Ενεργός"
+
+msgid "Disable"
+msgstr "Καθιστώ ανίκανο"
+
+msgid "Edit Story"
+msgstr "Επεξεργασία ιστορίας"
+
+msgid "Are you sure to delete"
+msgstr "Είστε σίγουροι ότι θα διαγράψετε"
+
+msgid "Delete Story"
+msgstr "Διαγραφή ιστορίας"
+
+msgid "Built Story"
+msgstr "Χτισμένη ιστορία"
+
+msgid "Built"
+msgstr "Χτίστηκε το"
+
+msgid "WooCommerce Story"
+msgstr "WooCommerce Story"
+
+msgid "Story Name *"
+msgstr "Όνομα ιστορίας *"
+
+msgid "Edit Story Name"
+msgstr "Επεξεργασία ονόματος ιστορίας"
+
+msgid "Invalid username or email."
+msgstr "Μη έγκυρο όνομα χρήστη ή email."
+
+msgid "Looks like there was a problem resetting your password:"
+msgstr ""
+"Φαίνεται ότι παρουσιάστηκε πρόβλημα με την επαναφορά του κωδικού πρόσβασής "
+"σας:"
+
+msgid "User not found!"
+msgstr "Ο χρήστης δεν βρέθηκε!"
+
+msgid "Okay, I have sent the recovery email. Thank you for your patience."
+msgstr ""
+"Εντάξει, έστειλα το email ανάκτησης. Σας ευχαριστούμε για την υπομονή σας."
+
+msgid "Your query is sent to the admin."
+msgstr "Το ερώτημά σας αποστέλλεται στον διαχειριστή."
+
+msgid "Enable"
+msgstr "Καθιστώ ικανό"
+
+msgid "Smart Popup"
+msgstr "Έξυπνο αναδυόμενο παράθυρο"
+
+msgid "Standard Popup"
+msgstr "Τυπικό αναδυόμενο παράθυρο"
+
+msgid "Appearance"
+msgstr "Εμφάνιση"
+
+msgid "Choose File"
+msgstr "Επιλέξτε Αρχείο"
+
+msgid "User Default Image"
+msgstr "Προεπιλεγμένη εικόνα χρήστη"
+
+msgid "Primary Color"
+msgstr "Πρωτεύον χρώμα"
+
+msgid "Choose Color"
+msgstr "Επιλέξτε Χρώμα"
+
+msgid "User Text Background"
+msgstr "Φόντο κειμένου χρήστη"
+
+msgid "User Text Color"
+msgstr "Χρώμα κειμένου χρήστη"
+
+msgid "Bot Link Color"
+msgstr "Χρώμα συνδέσμου ρομπότ"
+
+msgid "Presets"
+msgstr "Προεπιλογές"
+
+msgid "Preset"
+msgstr "Προκαθορισμένη"
+
+msgid "online"
+msgstr "online"
+
+msgid "User Image"
+msgstr "Εικόνα χρήστη"
+
+msgid "Hi I am John"
+msgstr "Γεια, είμαι ο Γιάννης"
+
+msgid "Hi John! How can I help you?"
+msgstr "Γεια σου Γιάννη! Πώς μπορώ να σας βοηθήσω;"
+
+msgid "Can you help me find a new backpack?"
+msgstr "Μπορείτε να με βοηθήσετε να βρω ένα νέο σακίδιο;"
+
+msgid "Product Icon"
+msgstr "Εικονίδιο προϊόντος"
+
+msgid "Fusion Backpack"
+msgstr "Σακίδιο πλάτης Fusion"
+
+msgid "$"
+msgstr "$"
+
+msgid "59"
+msgstr "59"
+
+msgid "Send message"
+msgstr "Αποστολή μηνύματος"
+
+msgid "Welcome Message"
+msgstr "Μήνυμα καλωσορίσματος"
+
+msgid "Welcome Image"
+msgstr "Εικόνα καλωσορίσματος"
+
+msgid "Chat Auto-Popup"
+msgstr "Αυτόματο αναδυόμενο παράθυρο συνομιλίας"
+
+msgid "Controls whether the chat popup appears automatically on your site."
+msgstr ""
+"Ελέγχει εάν το αναδυόμενο παράθυρο συνομιλίας εμφανίζεται αυτόματα στον "
+"ιστότοπό σας."
+
+msgid "Chat Pop-up Style"
+msgstr "Στυλ αναδυόμενων συνομιλιών"
+
+msgid "Choose how the chat will appear: Smart or Standard pop-up."
+msgstr ""
+"Επιλέξτε πώς θα εμφανίζεται η συνομιλία: Έξυπνο ή Τυπικό αναδυόμενο παράθυρο."
+
+msgid "Chat Auto-Popup Timing"
+msgstr "Χρονισμός αυτόματης αναδυόμενης συνομιλίας"
+
+msgid ""
+"Define the delay time in seconds for the chatbot to auto-appear on the site."
+msgstr ""
+"Καθορίστε τον χρόνο καθυστέρησης σε δευτερόλεπτα για την αυτόματη εμφάνιση "
+"του chatbot στον ιστότοπο."
+
+msgid "Note"
+msgstr "Σημείωμα"
+
+msgid ""
+"If the colors have been saved but the user-side colors are still the same, "
+"it is advised to clear the cache."
+msgstr ""
+"Εάν τα χρώματα έχουν αποθηκευτεί αλλά τα χρώματα της πλευράς του χρήστη "
+"εξακολουθούν να είναι τα ίδια, συνιστάται να διαγράψετε την προσωρινή μνήμη."
+
+msgid "Also"
+msgstr "Επίσης"
+
+msgid "Found"
+msgstr "Θεμελιώ"
+
+msgid "Here are some"
+msgstr "Εδώ είναι μερικά"
+
+msgid "Help"
+msgstr "Βοήθεια"
+
+msgid "Have any problem?"
+msgstr "Έχετε κάποιο πρόβλημα;"
+
+msgid ""
+"If you experience any difficulties, we're here to help! Simply click the"
+msgstr ""
+"Εάν αντιμετωπίζετε οποιεσδήποτε δυσκολίες, είμαστε εδώ για να σας "
+"βοηθήσουμε! Απλώς κάντε κλικ στο"
+
+msgid "Create A Ticket"
+msgstr "Δημιουργήστε ένα εισιτήριο"
+
+msgid ""
+"button to report your issue, and our dedicated support team will assist you "
+"promptly."
+msgstr ""
+"κουμπί για να αναφέρετε το πρόβλημά σας και η ειδική ομάδα υποστήριξης θα "
+"σας βοηθήσει άμεσα."
+
+msgid "Create Ticket"
+msgstr "Δημιουργία εισιτηρίου"
+
+msgid "Post Type"
+msgstr "Τύπος ανάρτησης"
+
+msgid "post type"
+msgstr "τύπος ανάρτησης"
+
+msgid "Post Label"
+msgstr "Post Label"
+
+msgid "Associated Plugin"
+msgstr "Συσχετισμένο πρόσθετο"
+
+msgid "Add associated plugin's name"
+msgstr "Προσθήκη ονόματος συσχετισμένης προσθήκης"
+
+msgid "For better data consistency, please provide a associated plugin's name."
+msgstr ""
+"Για καλύτερη συνέπεια δεδομένων, δώστε το όνομα μιας συσχετισμένης προσθήκης."
+
+msgid "Status"
+msgstr "Κατάσταση"
+
+msgid "For status changes, please use the options available in the listing."
+msgstr ""
+"Για αλλαγές κατάστασης, χρησιμοποιήστε τις διαθέσιμες επιλογές στην "
+"καταχώριση."
+
+msgid "Template Section"
+msgstr "Ενότητα προτύπου"
+
+msgid ""
+"Fields are currently auto-filled for preview purposes only. Please save your "
+"changes to apply them."
+msgstr ""
+"Τα πεδία συμπληρώνονται αυτόματα μόνο για σκοπούς προεπισκόπησης. "
+"Αποθηκεύστε τις αλλαγές σας για να τις εφαρμόσετε."
+
+msgid "Choose one template style from the given below"
+msgstr "Επιλέξτε ένα στυλ προτύπου από τα παρακάτω"
+
+msgid "Add Button /Link"
+msgstr "Κουμπί Προσθήκη /Σύνδεσμος"
+
+msgid "Add New Button /Link"
+msgstr "Προσθήκη νέου κουμπιού /Σύνδεσμος"
+
+msgid "Show on Listing"
+msgstr "Εμφάνιση στην καταχώριση"
+
+msgid "View Details"
+msgstr "Προβολή λεπτομερειών"
+
+msgid "detail page link"
+msgstr "σύνδεσμος σελίδας λεπτομερειών"
+
+msgid "Save Template"
+msgstr "Αποθήκευση προτύπου"
+
+msgid "Create a Post"
+msgstr "Δημιουργήστε μια ανάρτηση"
+
+msgid "Please first create a sample post to use template section."
+msgstr ""
+"Δημιουργήστε πρώτα ένα δείγμα ανάρτησης για να χρησιμοποιήσετε την ενότητα "
+"προτύπου."
+
+msgid "AI web search enabled successfully."
+msgstr "Η αναζήτηση ιστού AI ενεργοποιήθηκε με επιτυχία."
+
+msgid "AI web search already enabled."
+msgstr "Η αναζήτηση ιστού AI είναι ήδη ενεργοποιημένη."
+
+msgid "Something went wrong."
+msgstr "Κάτι πήγε στραβά."
+
+msgid "AI web search disabled successfully."
+msgstr "Η αναζήτηση ιστού AI απενεργοποιήθηκε με επιτυχία."
+
+msgid "New post type search enabled successfully."
+msgstr "Η αναζήτηση νέου τύπου ανάρτησης ενεργοποιήθηκε με επιτυχία."
+
+msgid "New post type search disabled successfully."
+msgstr "Η αναζήτηση νέου τύπου ανάρτησης απενεργοποιήθηκε με επιτυχία."
+
+msgid "Data Synchronization Needed"
+msgstr "Απαιτείται συγχρονισμός δεδομένων"
+
+msgid ""
+"Your data is not updated. To ensure accurate results, please synchronize "
+"your AI web search data."
+msgstr ""
+"Τα δεδομένα σας δεν ενημερώνονται. Για να διασφαλίσετε ακριβή αποτελέσματα, "
+"συγχρονίστε τα δεδομένα αναζήτησης ιστού AI."
+
+msgid "Enable AI web Search"
+msgstr "Ενεργοποιήστε την αναζήτηση ιστού AI"
+
+msgid ""
+"Enable this feature to provide users with direct AI web search results in "
+"the chat, offering them a broader context for their queries."
+msgstr ""
+"Ενεργοποιήστε αυτήν τη λειτουργία για να παρέχει στους χρήστες άμεσα "
+"αποτελέσματα αναζήτησης ιστού AI στη συνομιλία, προσφέροντάς τους ένα "
+"ευρύτερο πλαίσιο για τα ερωτήματά τους."
+
+msgid "Enable New Post Type Search"
+msgstr "Ενεργοποιήστε την Αναζήτηση τύπου νέας ανάρτησης"
+
+msgid "Lable"
+msgstr "Lable"
+
+msgid "Post lable"
+msgstr "Ετικέτα ανάρτησης"
+
+msgid "WooCommerce is currently inactive."
+msgstr "Το WooCommerce είναι προς το παρόν ανενεργό."
+
+msgid "No product was found."
+msgstr "Δεν βρέθηκε κανένα προϊόν."
+
+msgid "Please enter a valid product or category name."
+msgstr "Εισαγάγετε ένα έγκυρο όνομα προϊόντος ή κατηγορίας."
+
+msgid "Please enter a valid price."
+msgstr "Εισαγάγετε μια έγκυρη τιμή."
+
+msgid "Please enter a valid price range."
+msgstr "Εισαγάγετε ένα έγκυρο εύρος τιμών."
+
+msgid "Your cart is currently empty."
+msgstr "Το καλάθι σας είναι άδειο."
+
+msgid "Cart Details"
+msgstr "Στοιχεία Καλαθιού"
+
+msgid "Price"
+msgstr "Τιμή"
+
+msgid "Change"
+msgstr "Αλλαγή"
+
+msgid "Total Price"
+msgstr "Συνολική Τιμή"
+
+msgid "Remove Item"
+msgstr "Αφαίρεση αντικειμένου"
+
+msgid "Subtotal"
+msgstr "Υποσύνολο"
+
+msgid "Total"
+msgstr "Σύνολο"
+
+msgid "Proceed to Checkout"
+msgstr "Προχωρήστε στο Checkout"
+
+msgid "is out of stock."
+msgstr "είναι εκτός αποθέματος."
+
+msgid "You cannot add another “"
+msgstr "Δεν μπορείτε να προσθέσετε άλλο \""
+
+msgid "” to your cart."
+msgstr "” στο καλάθι σας."
+
+msgid "You cannot add more than"
+msgstr "Δεν μπορείτε να προσθέσετε περισσότερα από"
+
+msgid "of this product to your cart."
+msgstr "αυτού του προϊόντος στο καλάθι σας."
+
+msgid "has been added to your cart."
+msgstr "έχει προστεθεί στο καλάθι σας."
+
+msgid "has not been added to your cart. Please try again."
+msgstr "δεν έχει προστεθεί στο καλάθι σας. Δοκιμάστε ξανά."
+
+msgid "View Cart"
+msgstr "Προβολή καλαθιού"
+
+msgid "Please select a product!"
+msgstr "Επιλέξτε ένα προϊόν!"
+
+msgid "There are no variations available."
+msgstr "Δεν υπάρχουν διαθέσιμες παραλλαγές."
+
+msgid "Product not found or not a variable product."
+msgstr "Το προϊόν δεν βρέθηκε ή δεν είναι μεταβλητό προϊόν."
+
+msgid "You can't add another “"
+msgstr "Δεν μπορείτε να προσθέσετε άλλο \""
+
+msgid "There was an error while adding the product to the cart."
+msgstr "Παρουσιάστηκε σφάλμα κατά την προσθήκη του προϊόντος στο καλάθι."
+
+msgid ""
+"The requested variation with the specified attributes could not be found."
+msgstr ""
+"Δεν ήταν δυνατή η εύρεση της ζητούμενης παραλλαγής με τα καθορισμένα "
+"χαρακτηριστικά."
+
+msgid "Change Quantity"
+msgstr "Αλλαγή Ποσότητας"
+
+msgid "Update"
+msgstr "Εκσυγχρονίζω"
+
+msgid "The cart is empty."
+msgstr "Το καλάθι είναι άδειο."
+
+msgid "Cart item is not found."
+msgstr "Το προϊόν στο καλάθι δεν βρέθηκε."
+
+msgid "The item was not found in the cart."
+msgstr "Το προϊόν δεν βρέθηκε στο καλάθι."
+
+msgid "Quantity updated successfully!"
+msgstr "Η ποσότητα ενημερώθηκε με επιτυχία!"
+
+msgid "Change quantity"
+msgstr "Αλλαγή ποσότητας"
+
+msgid "Edit Post Type"
+msgstr "Επεξεργασία τύπου ανάρτησης"
+
+msgid "Parameter"
+msgstr "Παράμετρος"
+
+msgid "delete"
+msgstr "διαγράφω"
+
+msgid "add intent"
+msgstr "προσθέστε πρόθεση"
+
+msgid "plus icon"
+msgstr "εικονίδιο συν"
+
+msgid "Add Intents"
+msgstr "Προσθήκη προθέσεων"
+
+msgid ""
+"On the responses listing page, all the responses are listed here; you can "
+"check them out."
+msgstr ""
+"Στη σελίδα λίστας απαντήσεων, όλες οι απαντήσεις παρατίθενται εδώ. μπορείτε "
+"να τα ελέγξετε."
+
+msgid "Add Intent"
+msgstr "Προσθήκη Πρόθεσης"
+
+msgid ""
+"On the form listing page, all the forms are listed here; you can check them "
+"out."
+msgstr ""
+"Στη σελίδα καταχώρισης φορμών, όλες οι φόρμες παρατίθενται εδώ. μπορείτε να "
+"τα ελέγξετε."
+
+msgid "Add Forms"
+msgstr "Προσθήκη φορμών"
+
+msgid "On the add form page, you can add a new form."
+msgstr "Στη σελίδα προσθήκης φόρμας, μπορείτε να προσθέσετε μια νέα φόρμα."
+
+msgid "Responses"
+msgstr "Απαντήσεις"
+
+msgid "Add Response"
+msgstr "Προσθήκη απάντησης"
+
+msgid "On the add Response page, you can add a new Response."
+msgstr ""
+"Στη σελίδα προσθήκης απάντησης, μπορείτε να προσθέσετε μια νέα απάντηση."
+
+msgid ""
+"On the actions listing page, all the actions are listed here; you can check "
+"them out."
+msgstr ""
+"Στη σελίδα λίστας ενεργειών, όλες οι ενέργειες παρατίθενται εδώ. μπορείτε να "
+"τα ελέγξετε."
+
+msgid "Add  Action"
+msgstr "Προσθήκη δράσης"
+
+msgid "On the add action page, you can add a new action."
+msgstr ""
+"Στη σελίδα προσθήκης ενέργειας, μπορείτε να προσθέσετε μια νέα ενέργεια."
+
+msgid "Add Intent Group"
+msgstr "Προσθήκη ομάδας προθέσεων"
+
+msgid "Import"
+msgstr "Εισαγωγή"
+
+msgid "Menu"
+msgstr "Μενού"
+
+msgid "End Chat"
+msgstr "Τερματισμός συνομιλίας"
+
+msgid "Restart Chat"
+msgstr "Επανεκκινήστε τη συνομιλία"
+
+msgid "Image"
+msgstr "Εικών"
+
+msgid "Send Icon"
+msgstr "Εικονίδιο αποστολής"
+
+msgid "Welcome to GeekyBot! Let me know how I can assist you today."
+msgstr "Καλώς ήρθατε στο GeekyBot! Πείτε μου πώς μπορώ να σας βοηθήσω σήμερα."
+
+msgid "admin."
+msgstr "διαχειριστής."
+
+msgid "Account Assistance"
+msgstr "Βοήθεια λογαριασμού"
+
+msgid "Diet Plan Assistant"
+msgstr "Βοηθός Διατροφικού Σχεδίου"
+
+msgid "Job Application"
+msgstr "Αίτηση Εργασίας"
+
+msgid "Offline Form"
+msgstr "Φόρμα εκτός σύνδεσης"
+
+msgid "Real Estate"
+msgstr "Ακίνητα"
+
+msgid "Sales Support"
+msgstr "Υποστήριξη Πωλήσεων"
+
+msgid "University"
+msgstr "Πανεπιστήμιο"
+
+msgid "Vacation Planner"
+msgstr "Σχεδιαστής διακοπών"

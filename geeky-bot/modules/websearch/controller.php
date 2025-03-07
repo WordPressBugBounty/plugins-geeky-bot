@@ -46,8 +46,12 @@ class GEEKYBOTwebsearchController {
     }
 
     function savewebsearch() {
+        if (!current_user_can('manage_options')){
+            die('Only Administrators can perform this action.');
+        }
+        $id = GEEKYBOTrequest::GEEKYBOT_getVar('id');
         $nonce = GEEKYBOTrequest::GEEKYBOT_getVar('_wpnonce');
-        if (! wp_verify_nonce( $nonce, 'save-websearch') ) {
+        if (! wp_verify_nonce( $nonce, 'save-websearch-'.$id) ) {
             die( 'Security check Failed' );
         }
         $data = GEEKYBOTrequest::GEEKYBOT_get('post');
@@ -60,8 +64,12 @@ class GEEKYBOTwebsearchController {
     }
 
     function savecustomlisting() {
+        if (!current_user_can('manage_options')){
+            die('Only Administrators can perform this action.');
+        }
+        $nonce_id = GEEKYBOTrequest::GEEKYBOT_getVar('post_type');
         $nonce = GEEKYBOTrequest::GEEKYBOT_getVar('_wpnonce');
-        if (! wp_verify_nonce( $nonce, 'save-custom-listing') ) {
+        if (! wp_verify_nonce( $nonce, 'save-custom-listing-'.$nonce_id) ) {
             die( 'Security check Failed' );
         }
         $data = GEEKYBOTrequest::GEEKYBOT_get('post');
@@ -74,12 +82,15 @@ class GEEKYBOTwebsearchController {
     }
 
     function changeStatus() {
+        if (!current_user_can('manage_options')){
+            die('Only Administrators can perform this action.');
+        }
+        $id = GEEKYBOTrequest::GEEKYBOT_getVar('id');
         $nonce = GEEKYBOTrequest::GEEKYBOT_getVar('_wpnonce');
-        if (! wp_verify_nonce( $nonce, 'change-status') ) {
+        if (! wp_verify_nonce( $nonce, 'change-status-'.$id) ) {
             die( 'Security check Failed' );
         }
         $status = GEEKYBOTrequest::GEEKYBOT_getVar('status');
-        $id = GEEKYBOTrequest::GEEKYBOT_getVar('id');
         $result = GEEKYBOTincluder::GEEKYBOT_getModel('websearch')->changeStatus($status, $id);
         $msg = GEEKYBOTMessages::GEEKYBOT_getMessage($result, 'posttype');
         GEEKYBOTMessages::GEEKYBOT_setLayoutMessage($msg['message'], $msg['status'],$this->_msgkey);
@@ -89,6 +100,9 @@ class GEEKYBOTwebsearchController {
     }
 
     function synchronizeWebSearchData() {
+        if (!current_user_can('manage_options')){
+            die('Only Administrators can perform this action.');
+        }
         $nonce = GEEKYBOTrequest::GEEKYBOT_getVar('_wpnonce');
         if (! wp_verify_nonce( $nonce, 'synchronize-data') ) {
             die( 'Security check Failed' );

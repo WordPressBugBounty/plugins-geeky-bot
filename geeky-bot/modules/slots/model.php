@@ -178,7 +178,7 @@ class GEEKYBOTslotsModel {
 
     function saveVariableFromButtonIntent(){
         $nonce = GEEKYBOTrequest::GEEKYBOT_getVar('_wpnonce');
-        if (! wp_verify_nonce( $nonce, 'button-intent') ) {
+        if (! wp_verify_nonce( $nonce, 'variable-from-button-intent') ) {
             die( 'Security check Failed' );
         }
         $buttonIntent = GEEKYBOTrequest::GEEKYBOT_getVar('message');

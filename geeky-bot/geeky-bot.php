@@ -3,14 +3,14 @@
 /**
  * @package Geeky Bot
  * @author Geeky Bot
- * @version 1.0.9
+ * @version 1.1.0
  */
 /*
   * Plugin Name: Geeky Bot
   * Plugin URI: https://geekybot.com/
   * Description: The ultimate AI chatbot for WooCommerce lead generation, intelligent web search, and interactive customer engagement on your WordPress website.
   * Author: Geeky Bot
-  * Version: 1.0.9
+  * Version: 1.1.0
   * Text Domain: geeky-bot
   * Domain Path: /languages
   * Author URI: https://geekybot.com/
@@ -87,7 +87,7 @@ class geekybot {
         self::$_data = array();
         self::$_error_flag = null;
         self::$_error_flag_message = null;
-        self::$_currentversion = '109';
+        self::$_currentversion = '110';
         self::$_addon_query = array('select'=>'','join'=>'','where'=>'');
         self::$_config = GEEKYBOTincluder::GEEKYBOT_getModel('configuration');
         self::$_isgeekybotplugin = true;
@@ -153,6 +153,15 @@ class geekybot {
         }
         // for maintaing the post data in the custome post table
         add_action( 'wp_insert_post', array($this , 'geekyboot_update_or_create_geekybot_post'), 10, 3 );
+        // check if sql update is available
+        if (is_plugin_active('geeky-bot/geeky-bot.php')) {
+            include_once GEEKYBOT_PLUGIN_PATH . 'includes/updates/updates.php';
+            $installedversion = GEEKYBOTupdates::geekybot_getInstalledVersion();
+            $cversion = '110';
+            if ($installedversion != $cversion) {
+                add_action( 'admin_notices', array($this, 'geekybot_sql_update_available_notice') );
+            }
+        }
     }
 
     function geekybot_activation_redirect(){
@@ -219,7 +228,7 @@ class geekybot {
                     // restore colors data end
                     update_option('geekybot_currentversion', self::$_currentversion);
                     include_once GEEKYBOT_PLUGIN_PATH . 'includes/updates/updates.php';
-                    GEEKYBOTupdates::GEEKYBOT_checkUpdates('109');
+                    GEEKYBOTupdates::GEEKYBOT_checkUpdates('110');
                     GEEKYBOTincluder::GEEKYBOT_getModel('geekybot')->updateColorFile();
                 }
             }
@@ -459,6 +468,54 @@ class geekybot {
                 </div>
             </div>
         </div>
+        <?php
+    }
+
+    public function geekybot_sql_update_available_notice() {
+        ?>
+        <div class="notice geekybot-synchronize-section-mainwrp is-dismissible">
+             <div class="geekybot-synchronize-section geekybot-sql-update-available-section">
+                <div class="geekybot-synchronize-imgwrp">
+                    <img src="<?php echo esc_url(GEEKYBOT_PLUGIN_URL); ?>includes/images/sql_update.png" title="<?php echo esc_attr(__('Update', 'geeky-bot')); ?>" alt="<?php echo esc_attr(__('Update', 'geeky-bot')); ?>" class="geekybot-synchronize-img">
+                </div>
+                <div class="geekybot-synchronize-content-wrp">
+                    <span class="geekybot-synchronize-content-title"><?php echo esc_html(__('Database Update Needed', 'geeky-bot'));?></span>
+                    <span class="geekybot-synchronize-content-disc"><?php echo esc_html(__("A critical update for GeekyBot is required to maintain performance and prevent issues. Please update now.", 'geeky-bot'));?></span>
+                </div>
+                <div class="geekybot-synchronize-button-wrp">
+                    <a id="geekybotCheckUpdates" class="geekybot_synchronize_data" title="<?php echo esc_attr(__('Update Now', 'geeky-bot')); ?>">
+                        <?php echo esc_html(__('Update Now', 'geeky-bot')); ?>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <script>
+            jQuery(document).ready(function () {
+                jQuery('#geekybotCheckUpdates').click(function () {
+                    // get values using ajax
+                    var ajaxurl = '<?php echo esc_url(admin_url("admin-ajax.php")); ?>';
+                    jQuery.post(ajaxurl, {
+                        action: 'geekybot_ajax',
+                        geekybotme: 'premiumplugin',
+                        task: 'geekybotCheckUpdates',
+                        '_wpnonce':'<?php echo esc_attr(wp_create_nonce("check-updates")); ?>'
+                    }, function(data) {
+                        jQuery('div#geekybotadmin_black_wrapper_built_loading').hide();
+                        jQuery('div#geekybotadmin_built_loading').hide();
+                        if (data) {
+                            jQuery('.geekybot-sql-update-available-section').addClass('geekybot-sql-updated-successfully');
+                            jQuery('span.geekybot-synchronize-content-title').html('<?php echo __("Database successfully updated!", 'geeky-bot'); ?>');
+                            jQuery('.geekybot-synchronize-content-disc').hide();
+                            jQuery('#geekybotCheckUpdates').hide();
+                        } else {
+                            jQuery('.geekybot-sql-update-available-section').addClass('geekybot-sql-update-error');
+                            jQuery('.geekybot-synchronize-content-disc').hide();
+                            jQuery('span.geekybot-synchronize-content-title').html('Something went wrong try again later!');
+                        }
+                    });
+                });
+            });
+        </script>
         <?php
     }
 

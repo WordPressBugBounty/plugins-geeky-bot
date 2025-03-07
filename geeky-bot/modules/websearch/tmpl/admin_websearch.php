@@ -32,6 +32,7 @@
                     var msg = "'. __('AI web search already enabled.', 'geeky-bot') .'";
                     alert(msg);
                 } else {
+                    jQuery("#is_posts_enable").prop("checked", false);
                     var msg = "'. __('Something went wrong.', 'geeky-bot') .'";
                     alert(msg);
                 }
@@ -263,7 +264,7 @@
                                             </a>
                                             <?php
                                             if ($row->status == 1) {  ?>
-                                                <a onclick = "geekybotShowLoading()" id="geekybot-websearch-action-btn" class="geekybot-table-act-btn geekybot-delete" href="<?php echo esc_url(wp_nonce_url(admin_url('admin.php?page=geekybot_websearch&task=changeStatus&action=geekybottask&status=0&id='.esc_attr($row->id)),'change-status')); ?>" title="<?php echo esc_attr(__('Disable', 'geeky-bot')); ?>">
+                                                <a onclick = "geekybotShowLoading()" id="geekybot-websearch-action-btn" class="geekybot-table-act-btn geekybot-delete" href="<?php echo esc_url(wp_nonce_url(admin_url('admin.php?page=geekybot_websearch&task=changeStatus&action=geekybottask&status=0&id='.esc_attr($row->id)),'change-status-'.$row->id)); ?>" title="<?php echo esc_attr(__('Disable', 'geeky-bot')); ?>">
                                                     <img src="<?php echo esc_url(GEEKYBOT_PLUGIN_URL); ?>includes/images/disable.png" alt="<?php echo esc_attr(__('Disable', 'geeky-bot')); ?>" class="geekybot-action-img">
                                                     <?php echo esc_html(__('Disable', 'geeky-bot')); ?>
                                                 </a>
@@ -273,7 +274,7 @@
                                                 </span>
                                                 <?php 
                                             } else {?>
-                                                <a onclick = "geekybotShowLoading()" id="geekybot-websearch-action-btn" class="geekybot-table-act-btn geekybot-delete" href="<?php echo esc_url(wp_nonce_url(admin_url('admin.php?page=geekybot_websearch&task=changeStatus&action=geekybottask&status=1&id='.esc_attr($row->id)),'change-status')); ?>" title="<?php echo esc_attr(__('Active', 'geeky-bot')); ?>">
+                                                <a onclick = "geekybotShowLoading()" id="geekybot-websearch-action-btn" class="geekybot-table-act-btn geekybot-delete" href="<?php echo esc_url(wp_nonce_url(admin_url('admin.php?page=geekybot_websearch&task=changeStatus&action=geekybottask&status=1&id='.esc_attr($row->id)),'change-status-'.$row->id)); ?>" title="<?php echo esc_attr(__('Active', 'geeky-bot')); ?>">
                                                     <img src="<?php echo esc_url(GEEKYBOT_PLUGIN_URL); ?>includes/images/active.png" alt="<?php echo esc_attr(__('Active', 'geeky-bot')); ?>" class="geekybot-action-img">
                                                     <?php echo esc_html(__('Active', 'geeky-bot')); ?>
                                                 </a>
@@ -303,13 +304,6 @@
                     echo wp_kses(GEEKYBOTlayout::GEEKYBOT_getNoRecordFound($msg), GEEKYBOT_ALLOWED_TAGS);
                 }
                 ?>
-            </div>
-        </div>
-        <div id="geekybotadmin_black_wrapper_built_loading" style="display: none;" ></div>
-        <div class="geekybotadmin-built-story-loading" id="geekybotadmin_built_loading" style="display: none;" >
-            <img src="<?php echo esc_url(GEEKYBOT_PLUGIN_URL); ?>includes/images/spinning-wheel.gif" />
-            <div class="geekybotadmin-built-story-loading-text">
-                <?php echo esc_html(__('Please wait a moment; this may take some time.','geeky-bot')); ?>
             </div>
         </div>
     </div>

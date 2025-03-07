@@ -679,26 +679,32 @@ $geekybot_js ="
     });
 
     function deleteBotCustomImage(){
+        geekybotShowLoading();
         jQuery.post(ajaxurl, {action: 'geekybot_ajax', geekybotme: 'themes', task: 'deleteBotCustomImage', '_wpnonce':'".esc_attr(wp_create_nonce('delete-bot-custom-image'))."'}, function (data) {
             if(data){
+                geekybotHideLoading();
                 jQuery('.geeky-bot-theme-img-bot').css('display','none');
             }
         });
     }
 
     function deleteWelcomeMessageImg(){
+        geekybotShowLoading();
         jQuery.post(ajaxurl, {action: 'geekybot_ajax', geekybotme: 'themes', task: 'deleteWelcomeMessageImg', '_wpnonce':'".esc_attr(wp_create_nonce('delete-message-image'))."'}, function (data) {
             if(data){
+                geekybotHideLoading();
                 jQuery('.geeky-bot-theme-img-message').css('display','none');
                 jQuery('.chat-open-outer-popup-dialog-image').css('display','none');
             }
         });
-    } 
+    }
+
     function deleteSupportUserImage(){
+        geekybotShowLoading();
         jQuery.post(ajaxurl, {action: 'geekybot_ajax', geekybotme: 'themes', task: 'deleteSupportUserImage', '_wpnonce':'". esc_attr(wp_create_nonce("delete-support-user-image"))."'}, function (data) {
             if(data){
-
-              jQuery('.geeky-bot-theme-img-user').css('display','none');
+                geekybotHideLoading();
+                jQuery('.geeky-bot-theme-img-user').css('display','none');
             }
         });
     } 

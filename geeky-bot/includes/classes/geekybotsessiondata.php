@@ -100,8 +100,12 @@ class GEEKYBOTgeekybotsessiondata {
         }
         // call the predefined function by using filter
         $function_name = GEEKYBOTincluder::GEEKYBOT_getModel('stories')->getFunctionNameById($function_id);
-        $data = apply_filters('wp_ajax_'.$function_name,$msg,$params);
-        return $data;
+        if (has_filter('wp_ajax_'.$function_name)) {
+            $data = apply_filters('wp_ajax_'.$function_name,$msg,$params);
+            return $data;
+        } else {
+            return;
+        }
     }
 
     public function geekybot_addChatHistoryToSession($msg, $type, $search = ''){

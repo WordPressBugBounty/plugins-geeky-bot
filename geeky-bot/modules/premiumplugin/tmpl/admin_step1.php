@@ -19,13 +19,6 @@ if(isset($_SESSION['geekybot_addon_install_data'])){
                 </div>
                 <!-- page content -->
                 <div id="geekybot-admin-wrapper">
-                    <div id="geekybotadmin_black_wrapper_built_loading" style="display: none;" ></div>
-                    <div class="geekybotadmin-built-story-loading" id="geekybotadmin_built_loading" style="display: none;" >
-                        <img src="<?php echo esc_url(GEEKYBOT_PLUGIN_URL); ?>includes/images/spinning-wheel.gif" />
-                        <div class="geekybotadmin-built-story-loading-text">
-                            <?php echo esc_html(__('Please wait a moment; this may take some time.','geeky-bot')); ?>
-                        </div>
-                    </div>
                     <div id="geekybot-lower-wrapper">
                         <div class="geekybot-addon-installer-wrapper geekybot-addon-installer-firststep-wrapper" >
                             <form id="mjsupportfrom" action="<?php echo esc_url(wp_nonce_url(admin_url('admin.php?page=geekybot_premiumplugin&task=verifytransactionkey&action=geekybottask'),"verify-transaction-key")); ?>" method="post">

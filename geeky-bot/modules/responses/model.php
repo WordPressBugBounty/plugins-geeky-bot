@@ -8,6 +8,9 @@ class GEEKYBOTresponsesModel {
     }
 
     function saveResponsesAjax() {
+        if (!current_user_can('manage_options')){
+            die('Only Administrators can perform this action.');
+        }
         $nonce = GEEKYBOTrequest::GEEKYBOT_getVar('_wpnonce');
         if (! wp_verify_nonce( $nonce, 'save-responses') ) {
             die( 'Security check Failed' ); 
@@ -70,7 +73,7 @@ class GEEKYBOTresponsesModel {
         if (!$row->store()) {
             return false;
         }
-        return $row->id;
+        return wp_json_encode($row->id);
     }
     function saveAutoBuildResponses($data) {
         if (empty($data))

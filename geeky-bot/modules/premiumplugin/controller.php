@@ -48,6 +48,9 @@ class GEEKYBOTPremiumpluginController {
     }
 
     function verifytransactionkey(){
+        if (!current_user_can('manage_options')){
+            die('Only Administrators can perform this action.');
+        }
         $nonce = GEEKYBOTrequest::GEEKYBOT_getVar('_wpnonce');
         if (! wp_verify_nonce( $nonce, 'verify-transaction-key') ) {
             die( 'Security check Failed' );
@@ -109,6 +112,9 @@ class GEEKYBOTPremiumpluginController {
     }
 
     function downloadandinstalladdons(){
+        if (!current_user_can('manage_options')){
+            die('Only Administrators can perform this action.');
+        }
         $nonce = GEEKYBOTrequest::GEEKYBOT_getVar('_wpnonce');
         if (! wp_verify_nonce( $nonce, 'download-and-install-addons') ) {
             die( 'Security check Failed' );

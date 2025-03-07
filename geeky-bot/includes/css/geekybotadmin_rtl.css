@@ -1,3 +1,4 @@
+div#geekybotadmin-wrapper {padding-left: 15px;padding-right: 0;}
 div#geekybotadmin-wrapper-right div.geekybotadmin-navbar-right div.geekybot-navbar-img-right{float: left;}
 div.geekybot-dashboard-cards-wrp .geekybot-dashboard-card .geekybot-dashboard-card-center-counts-wrp{padding-left: 0;padding-right: 10px;}
 div.geekybot-dashboard-cards-wrp .geekybot-dashboard-card .geekybot-dashboard-card-right-img-wrp img{transform: scaleX(-1);}
@@ -44,7 +45,7 @@ div#geekybotadmin-wrapper div#geekybotadmin-data div#geekybot-admin-wrapper div.
 div#geekybotadmin-wrapper div#geekybotadmin-data div#geekybot-admin-wrapper div.chatHistory div.chatHistory.chatcontent div.header div.actionTitle{float: right;}
 div#geekybotadmin-wrapper div#geekybotadmin-data div#geekybot-admin-wrapper div.chatHistory div.chatHistory.rightContent div.user{float: right;}
 div#geekybotadmin-wrapper div#geekybotadmin-data div#geekybot-admin-wrapper div.chatHistory div.chatHistory.rightContent div.user div.user-info{float: right;padding-left: 0;padding-right: 10px;}
-div#geekybotadmin-wrapper div.geekybotadmin-body-main{padding-right: 0;padding-left: 20px;}
+div#geekybotadmin-wrapper div.geekybotadmin-body-main{padding-right: 0;/*padding-left: 20px;*/}
 .body-content-message-value .geekybot_wc_cart_checkout{float: right;}
 .body-content-message-value .geekybot_wc_cart_item .geekybot_wc_cart_item_left{float: right;}
 .body-content-message-value .geekybot_wc_cart_item .geekybot_wc_cart_item_right{padding-left: 0;padding-right: 5px;}
@@ -275,6 +276,11 @@ div.geekybot-admin-addons-list-data .geekybot-admin-addons-list-wrp .geekybot-ad
 #geekybot-addon-installer-addon-checkall-checkbox[type="checkbox"]:checked::before, #geekybot-addon-installer-addon-checkall-checkbox[type="radio"]:checked::before{margin: -10px;}
 div.geekybot-addon-installer-wrapper div.geekybot-addon-installer-section-wrap div.geekybot-addon-installer-addon-wrapper div.geekybot-addon-installer-addon-section div.geekybot-addon-installer-addon-single{float: right;}
 .geekybot-addon-installer-addon-name input[type="checkbox"]:checked::before, .geekybot-addon-installer-addon-name input[type="radio"]:checked::before{margin: -10px;}
+/* fallback config */
+div#geekybotadmin-wrapper div#geekybotadmin-data div#geekybot-admin-wrapper.geekybot-admin-config-wrapper form.geekybot-configurations .geekybot-fallback-config-description{float: right;}
+div#geekybotadmin-wrapper div#geekybotadmin-data div#geekybot-admin-wrapper.geekybot-admin-config-wrapper form.geekybot-configurations .geekybot-fallback-configlft-titl{padding-right: 0;padding-left: 20px;}
+div#geekybotadmin-wrapper div#geekybotadmin-data div#geekybot-admin-wrapper.geekybot-admin-config-wrapper form.geekybot-configurations .geeky-add-new-fallback-intentbtn a img{margin-right: 0;margin-left: 8px;}
+div#geekybotadmin-wrapper div#geekybotadmin-data div#geekybot-admin-wrapper.geekybot-admin-config-wrapper form.geekybot-configurations .geekybot-admin-fallback-config-title{float: right;}
 /* story pagination */
 .geekybot_story_pagination_wrp{flex-direction: row-reverse;}
 

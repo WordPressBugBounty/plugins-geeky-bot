@@ -68,6 +68,7 @@ if (isset(geekybot::$_data[0]['story'])) {
                 searchType: searchType,
                 '_wpnonce': '" . esc_attr(wp_create_nonce("story-search-results-".$story_id)) . "'
             }, function(response) {
+                geekybotHideLoading();
                 jQuery('#geekybotSearchResultsWrp').show();
                 if (response) {
                     let data = JSON.parse(response);
@@ -412,6 +413,7 @@ if (isset(geekybot::$_data[0]['story'])) {
                 event.preventDefault(); // Prevent default action if not confirmed
             } else {
                 var storyid = jQuery('input#storyid').val();
+                geekybotShowLoading();
                 jQuery.post(ajaxurl, {
                     action: 'geekybot_ajax',
                     geekybotme: 'stories',
@@ -419,6 +421,7 @@ if (isset(geekybot::$_data[0]['story'])) {
                     storyid: storyid,
                     '_wpnonce':'". esc_attr(wp_create_nonce('reset-story')) ."'
                 }, function(data) {
+                    geekybotHideLoading();
                     if (data) {
                         idCounter = 2;
                         // start point position
@@ -445,6 +448,7 @@ if (isset(geekybot::$_data[0]['story'])) {
                 jQuery('.suggestions-for-autocomplete').remove();
                 jQuery(this).autocomplete({
                     source: function(request, response) {
+                        geekybotShowLoading();
                         jQuery.post(ajaxurl, {
                             action: 'geekybot_ajax',
                             geekybotme: 'slots',
@@ -453,6 +457,7 @@ if (isset(geekybot::$_data[0]['story'])) {
                             term: request.term,
                             '_wpnonce':'". esc_attr(wp_create_nonce("get-variables")) ."'
                         }, function(data) {
+                            geekybotHideLoading();
                             if (data) {
                                 var decoded_data = JSON.parse(data);
                                 var data = jQuery(decoded_data);
@@ -527,6 +532,7 @@ if (isset(geekybot::$_data[0]['story'])) {
     function bindValuesOnSelect(id){
         // get values using ajax
         var ajaxurl = '". esc_url(admin_url("admin-ajax.php")) ."';
+        geekybotShowLoading();
         jQuery.post(ajaxurl, {
             action: 'geekybot_ajax',
             geekybotme: 'slots',
@@ -534,6 +540,7 @@ if (isset(geekybot::$_data[0]['story'])) {
             id: id,
             '_wpnonce':'". esc_attr(wp_create_nonce("get-variable-attributes")) ."'
         }, function(data) {
+            geekybotHideLoading();
             if (data) {
                 var decoded_data = jQuery.parseJSON(data);
                 jQuery('.selectedVariableName').val(decoded_data.name);
@@ -553,9 +560,9 @@ if (isset(geekybot::$_data[0]['story'])) {
             task: 'deleteIntentFallback',
             group_id: group_id,
             story_id: story_id,
-            '_wpnonce':'". esc_attr(wp_create_nonce("delete-intent-fallback")) ."'
+            '_wpnonce':'". esc_attr(wp_create_nonce("delete-intent-fallback-".$story_id)) ."'
         }, function(data) {
-
+            
         });
     }
     function deleteDefaultFallback(){
@@ -566,7 +573,7 @@ if (isset(geekybot::$_data[0]['story'])) {
             geekybotme: 'stories',
             task: 'deleteDefaultFallback',
             story_id: story_id,
-            '_wpnonce':'". esc_attr(wp_create_nonce("delete-default-fallback")) ."'
+            '_wpnonce':'". esc_attr(wp_create_nonce("delete-default-fallback-".$story_id)) ."'
         }, function(data) {
             
         });
@@ -596,7 +603,7 @@ if (isset(geekybot::$_data[0]['story'])) {
         }
         // console.log(userInputDivId);
         var container = jQuery('#response-popup-text');
-        container.append('<div class=\"geeky-popup-dynamic-field\" id=\"div_'+responseButtonDivId+'\"><input name = \"response_btn_text[]\" type=\"text\" value = \"\" class=\"inputbox geeky-popup-dynamic-field-input\" autocomplete=\"off\" placeholder=\"". esc_attr(__('Button text here','geeky-bot'))."\" /><select name=\"response_btn_type[]\" id=\"response_btn_type[]\" class=\"response-btn-type inputbox geeky-popup-dynamic-field-input geeky-popup-dynamic-field-select\" data-validation=\"required\"><option value=\"1\">". esc_attr(__('User Input','geeky-bot'))."</option><option value=\"2\">". esc_attr(__('URL','geeky-bot'))."</option></select><input name = \"response_btn_value[]\" type=\"text\" value = \"\" class=\"response-btn-value inputbox geeky-popup-dynamic-field-input\" autocomplete=\"off\" placeholder=\"". esc_attr(__('Button value here','geeky-bot'))."\" /><input name = \"response_btn_url[]\" type=\"text\" value = \"\" class=\"response-btn-url inputbox geeky-popup-dynamic-field-input\" autocomplete=\"off\" placeholder=\"". esc_attr(__('Enter URL here','geeky-bot'))."\" style=\"display: none\"  /><span class=\"geeky-popup-dynamic-remov-image remove-btn\" title=\"". esc_attr(__('Delete','geeky-bot'))."\" onClick=\"deleteResponseTextBotton(div_'+responseButtonDivId+')\">". esc_html(__('Delete','geeky-bot')) ."</span></div>');
+        container.append('<div class=\"geeky-popup-dynamic-field\" id=\"div_'+responseButtonDivId+'\"><select name=\"response_btn_type[]\" id=\"response_btn_type[]\" class=\"response-btn-type inputbox geeky-popup-dynamic-field-input geeky-popup-dynamic-field-select\" data-validation=\"required\"><option value=\"1\">". esc_attr(__('User Input','geeky-bot'))."</option><option value=\"2\">". esc_attr(__('URL','geeky-bot'))."</option></select><input name = \"response_btn_text[]\" type=\"text\" value = \"\" class=\"inputbox geeky-popup-dynamic-field-input\" autocomplete=\"off\" placeholder=\"". esc_attr(__('Button text here','geeky-bot'))."\" /><input name = \"response_btn_value[]\" type=\"text\" value = \"\" class=\"response-btn-value inputbox geeky-popup-dynamic-field-input\" autocomplete=\"off\" placeholder=\"". esc_attr(__('Button value here','geeky-bot'))."\" /><input name = \"response_btn_url[]\" type=\"text\" value = \"\" class=\"response-btn-url inputbox geeky-popup-dynamic-field-input\" autocomplete=\"off\" placeholder=\"". esc_attr(__('Enter URL here','geeky-bot'))."\" style=\"display: none\"  /><span class=\"geeky-popup-dynamic-remov-image remove-btn\" title=\"". esc_attr(__('Delete','geeky-bot'))."\" onClick=\"deleteResponseTextBotton(div_'+responseButtonDivId+')\">". esc_html(__('Delete','geeky-bot')) ."</span></div>');
         responseButtonDivId++;
     }
     function deleteResponseTextBotton(responseButtonId){
@@ -686,6 +693,7 @@ if (isset(geekybot::$_data[0]['story'])) {
         }
 
         function updateStory(){
+            geekybotShowLoading();
             var formData = jQuery('form#stories_form').serializeArray();
             var storyid = jQuery('input#storyid').val();
             var ids = [];
@@ -704,6 +712,7 @@ if (isset(geekybot::$_data[0]['story'])) {
                 positionsarray: JSON.stringify(positions), // Explicitly serialize the positions array
                 '_wpnonce':'". esc_attr(wp_create_nonce("save-story")) ."'
             }, function(data) {
+                geekybotHideLoading();
                 if (data) {
                     jQuery('#user-input-msg').html('<div class=\"geeky-bot-popop-save-success-msg\"><div class=\"geeky-infoicon-image-text-wraper\"><img alt=\"". esc_html(__('Info','geeky-bot')) ."\" title=\"". esc_html(__('Info','geeky-bot')) ."\" class=\"userpopup-plus-icon\" src=\"". esc_url(GEEKYBOT_PLUGIN_URL)."includes/images/story/info-green.png\" />". esc_attr(__("User input has been successfully saved.", 'geeky-bot'))."</div></div>');
                 } else {
@@ -735,6 +744,7 @@ if (isset(geekybot::$_data[0]['story'])) {
             if (error == 1) {
                 jQuery('#user-input-msg').html('<div class=\"geeky-bot-popop-save-success-msg geeky-error-msg\"><div class=\"geeky-infoicon-image-text-wraper\"><img alt=\"". esc_html(__('Info','geeky-bot'))."\" title=\"". esc_html(__('Info','geeky-bot')) ."\" class=\"userpopup-plus-icon\" src=\"". esc_url(GEEKYBOT_PLUGIN_URL)."includes/images/story/info-red.png\" />". esc_attr(__("An empty user input field.", 'geeky-bot')) ."</div></div>');
             } else {
+                geekybotShowLoading();
                 var ajaxurl =
                     '". esc_url(admin_url("admin-ajax.php"))."';
                 jQuery.post(ajaxurl, {
@@ -745,7 +755,9 @@ if (isset(geekybot::$_data[0]['story'])) {
                     user_messages: userMessages,
                     '_wpnonce':'". esc_attr(wp_create_nonce("save-intent")) ."'
                 }, function(data) {
+                    geekybotHideLoading();
                     if (data) {
+                        data = jQuery.parseJSON(data);
                         jQuery('input#group_id').val(data);
                         storeActiveNodeValue(data);
                         jQuery('#user-input-msg').html('<div class=\"geeky-bot-popop-save-success-msg\"><div class=\"geeky-infoicon-image-text-wraper\"><img alt=\"". esc_html(__('Info','geeky-bot')) ."\" title=\"". esc_html(__('Info','geeky-bot')) ."\" class=\"userpopup-plus-icon\" src=\"". esc_url(GEEKYBOT_PLUGIN_URL) ."includes/images/story/info-green.png\" />". esc_attr(__("User input has been successfully saved.", 'geeky-bot')) ."</div></div>');
@@ -787,6 +799,7 @@ if (isset(geekybot::$_data[0]['story'])) {
             } else {
                 var ajaxurl =
                     '". esc_url(admin_url("admin-ajax.php")) ."';
+                geekybotShowLoading();
                 jQuery.post(ajaxurl, {
                     action: 'geekybot_ajax',
                     geekybotme: 'responses',
@@ -800,7 +813,9 @@ if (isset(geekybot::$_data[0]['story'])) {
                     btn_url: responseBtnUrl,
                     '_wpnonce':'". esc_attr(wp_create_nonce("save-responses")) ."'
                 }, function(data) {
+                    geekybotHideLoading();
                     if (data) {
+                        data = jQuery.parseJSON(data);
                         jQuery('div#responseTextFormBody input#id').val(data);
                         storeActiveNodeValue(data);
                         jQuery('#response-text-msg').html('<div class=\"geeky-bot-popop-save-success-msg\"><div class=\"geeky-infoicon-image-text-wraper\"><img alt=\"". esc_html(__('Info','geeky-bot')) ."\" title=\"". esc_html(__('Info','geeky-bot')) ."\" class=\"userpopup-plus-icon\" src=\"". esc_url(GEEKYBOT_PLUGIN_URL) ."includes/images/story/info-green.png\" />". esc_attr(__('Response Successfully Saved!', 'geeky-bot')) ."</div></div>');
@@ -814,6 +829,7 @@ if (isset(geekybot::$_data[0]['story'])) {
         // save function response
         jQuery('form#responseFunctionForm').submit(function (e) {
             e.preventDefault();
+            geekybotShowLoading();
             var id = jQuery('input#id').val();
             var response_type_function = jQuery('input#response_type_function').val();
             var function_id = jQuery('select#function_id').val();
@@ -828,7 +844,9 @@ if (isset(geekybot::$_data[0]['story'])) {
                 function_id: function_id,
                 '_wpnonce':'". esc_attr(wp_create_nonce("save-responses")) ."'
             }, function(data) {
+                geekybotHideLoading();
                 if (data) {
+                    data = jQuery.parseJSON(data);
                     storeActiveNodeValue(data);
                     jQuery('#response-function-msg').html('<div class=\"geeky-bot-popop-save-success-msg\"><div class=\"geeky-infoicon-image-text-wraper\"><img alt=\"". esc_html(__('Info','geeky-bot')) ."\" title=\"". esc_html(__('Info','geeky-bot')) ."\" class=\"userpopup-plus-icon\" src=\"". esc_url(GEEKYBOT_PLUGIN_URL) ."includes/images/story/info-green.png\" />". esc_attr(__('Response Successfully Saved!', 'geeky-bot'))."</div></div>');
                 } else {
@@ -841,6 +859,7 @@ if (isset(geekybot::$_data[0]['story'])) {
         // save action response
         jQuery('form#responseActionForm').submit(function (e) {
             e.preventDefault();
+            geekybotShowLoading();
             var id = jQuery('input#id').val();
             var response_type_action = jQuery('input#response_type_action').val();
             var action_id = jQuery('select#action_id').val();
@@ -855,7 +874,9 @@ if (isset(geekybot::$_data[0]['story'])) {
                 action_id: action_id,
                 '_wpnonce':'". esc_attr(wp_create_nonce("save-responses")) ."'
             }, function(data) {
+                geekybotHideLoading();
                 if (data) {
+                    data = jQuery.parseJSON(data);
                     storeActiveNodeValue(data);
                     jQuery('#response-action-msg').html('<div class=\"geeky-bot-popop-save-success-msg geeky-error-msg\"><div class=\"geeky-infoicon-image-text-wraper\"><img alt=\"". esc_html(__('Info','geeky-bot')) ."\" title=\"". esc_html(__('Info','geeky-bot')) ."\" class=\"userpopup-plus-icon\" src=\"". esc_url(GEEKYBOT_PLUGIN_URL) ."includes/images/story/info-red.png\" />". esc_attr(__('Response Successfully Saved!', 'geeky-bot'))."</div></div>');
                 } else {
@@ -867,6 +888,7 @@ if (isset(geekybot::$_data[0]['story'])) {
         // add new custom action
         jQuery('form#responseAddActionForm').submit(function (e) {
             e.preventDefault();
+            geekybotShowLoading();
             var functionName = jQuery('input#function_name').val();
             var paramName = [];
             jQuery(\"input[name='paramname[]']\").each(function() {
@@ -889,6 +911,7 @@ if (isset(geekybot::$_data[0]['story'])) {
                 paramname: paramName,
                 '_wpnonce':'". esc_attr(wp_create_nonce("save-action")) ."'
             }, function(data) {
+                geekybotHideLoading();
                 if (data) {
                     jQuery('#response-add-action-msg').html('<div class=\"geeky-bot-popop-save-success-msg\"><div class=\"geeky-infoicon-image-text-wraper\"><img alt=\"". esc_html(__('Info','geeky-bot')) ."\" title=\"". esc_html(__('Info','geeky-bot')) ."\" class=\"userpopup-plus-icon\" src=\"". esc_url(GEEKYBOT_PLUGIN_URL) ."includes/images/story/info-green.png\" />". esc_attr(__('Action Successfully Saved!', 'geeky-bot')) ."</div></div>');
                     updateActionValueOnPopup();
@@ -901,6 +924,7 @@ if (isset(geekybot::$_data[0]['story'])) {
         // save form response
         jQuery('form#responseFormForm').submit(function (e) {
             e.preventDefault();
+            geekybotShowLoading();
             var id = jQuery('input#id').val();
             var response_type_form = jQuery('input#response_type_form').val();
             var form_id = jQuery('select#form_id').val();
@@ -915,7 +939,9 @@ if (isset(geekybot::$_data[0]['story'])) {
                 form_id: form_id,
                 '_wpnonce':'". esc_attr(wp_create_nonce("save-responses")) ."'
             }, function(data) {
+                geekybotHideLoading();
                 if (data) {
+                    data = jQuery.parseJSON(data);
                     storeActiveNodeValue(data);
                     jQuery('#response-form-msg').html('<div class=\"geeky-bot-popop-save-success-msg\"><div class=\"geeky-infoicon-image-text-wraper\"><img alt=\"". esc_html(__('Info','geeky-bot')) ."\" title=\"". esc_html(__('Info','geeky-bot')) ."\" class=\"userpopup-plus-icon\" src=\"". esc_url(GEEKYBOT_PLUGIN_URL) ."includes/images/story/info-green.png\" />". esc_attr(__('Form Successfully Saved!', 'geeky-bot')) ."</div></div>');
                 } else {
@@ -927,6 +953,7 @@ if (isset(geekybot::$_data[0]['story'])) {
         // add new custom form
         jQuery('form#responseAddForm').submit(function (e) {
             e.preventDefault();
+            geekybotShowLoading();
             var custome_form_id = jQuery('input#custome_form_id').val();
             var form_name = jQuery('input#form_name').val();
             var variables = jQuery('input#variables').val();
@@ -959,6 +986,7 @@ if (isset(geekybot::$_data[0]['story'])) {
                 variable_possible_values: variablePossibleValues,
                 '_wpnonce':'". esc_attr(wp_create_nonce("save-form")) ."'
             }, function(data) {
+                geekybotHideLoading();
                 if (data) {
                     jQuery('#custome_form_id').val(data);
                     jQuery('#response-add-form-msg').html('<div class=\"geeky-bot-popop-save-success-msg\"><div class=\"geeky-infoicon-image-text-wraper\"><img alt=\"".  esc_html(__('Info','geeky-bot')) ."\" title=\"". esc_html(__('Info','geeky-bot')) ."\" class=\"userpopup-plus-icon\" src=\"". esc_url(GEEKYBOT_PLUGIN_URL) ."includes/images/story/info-green.png\" />". esc_attr(__('Form Successfully Saved!', 'geeky-bot')) ."</div></div>');
@@ -972,6 +1000,7 @@ if (isset(geekybot::$_data[0]['story'])) {
         // save default fallback form
         jQuery('form#defaultFallbackForm').submit(function (e) {
             e.preventDefault();
+            geekybotShowLoading();
             var story_id = ". $story_id .";
             var default_fallback_text = jQuery('textarea#default_fallback_text').val();
             var fallbackBtnText = [];
@@ -1009,6 +1038,7 @@ if (isset(geekybot::$_data[0]['story'])) {
                 btn_url: fallbackBtnUrl,
                 '_wpnonce':'". esc_attr(wp_create_nonce("save-default-fallback")) ."'
             }, function(data) {
+                geekybotHideLoading();
                 if (data == 1) {
                     jQuery('#default-fallback-msg').html('<div class=\"geeky-bot-popop-save-success-msg\"><div class=\"geeky-infoicon-image-text-wraper\"><img alt=\"".  esc_html(__('Info','geeky-bot')) ."\" title=\"". esc_html(__('Info','geeky-bot')) ."\" class=\"userpopup-plus-icon\" src=\"". esc_url(GEEKYBOT_PLUGIN_URL) ."includes/images/story/info-green.png\" />". esc_attr(__('Default Fallback Successfully Saved!', 'geeky-bot')) ."</div></div>');
                 } else {
@@ -1020,6 +1050,7 @@ if (isset(geekybot::$_data[0]['story'])) {
         // save default intent fallback form
         jQuery('form#defaultIntentFallbackForm').submit(function (e) {
             e.preventDefault();
+            geekybotShowLoading();
             var id = jQuery('#id').val();
             var group_id = jQuery('#group_id').val();
             var story_id = ". $story_id .";
@@ -1060,6 +1091,7 @@ if (isset(geekybot::$_data[0]['story'])) {
                 btn_url: fallbackBtnUrl,
                 '_wpnonce':'". esc_attr(wp_create_nonce("save-default-intent-fallback")) ."'
             }, function(data) {
+                geekybotHideLoading();
                 if (data == -1) {
                     jQuery('#default-intent-fallback-msg').html('<div class=\"geeky-bot-popop-save-success-msg geeky-error-msg\"><div class=\"geeky-infoicon-image-text-wraper\"><img alt=\"". esc_html(__('Info','geeky-bot')) ."\" title=\"". esc_html(__('Info','geeky-bot')) ."\" class=\"userpopup-plus-icon\" src=\"". esc_url(GEEKYBOT_PLUGIN_URL) ."includes/images/story/info-red.png\" />". esc_attr(__('Store relevant user input first, then fallback.', 'geeky-bot')) ."</div></div>');
                 } else if (data == -2) {
@@ -1077,6 +1109,7 @@ if (isset(geekybot::$_data[0]['story'])) {
         function updateFormsValue() {
             var ajaxurl =
                 '". esc_url(admin_url("admin-ajax.php")) ."';
+            geekybotShowLoading();
             jQuery.post(ajaxurl, {
                 action: 'geekybot_ajax',
                 geekybotme: 'forms',
@@ -1084,6 +1117,7 @@ if (isset(geekybot::$_data[0]['story'])) {
                 form_ids: '". geekybot::$_data[0]['story']->form_ids ."',
                 '_wpnonce':'". esc_attr(wp_create_nonce("update-forms-value")) ."'
             }, function(data) {
+                geekybotHideLoading();
                 if (data) {
                     jQuery('div.geekybot_story_form_wrp').html(geekybot_DecodeHTML(data));
                 }else{
@@ -1095,11 +1129,13 @@ if (isset(geekybot::$_data[0]['story'])) {
         function updateActionValueOnPopup() {
             var ajaxurl =
                 '". esc_url(admin_url("admin-ajax.php")) ."';
+            geekybotShowLoading();
             jQuery.post(ajaxurl, {
                 action: 'geekybot_ajax',
                 geekybotme: 'action',
                 task: 'updateActionValueOnPopupFormAjax'
             }, function(data) {
+                geekybotHideLoading();
                 if (data) {
                     jQuery('#visibleAction').html(geekybot_DecodeHTML(data));
                 }else{

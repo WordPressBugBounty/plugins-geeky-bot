@@ -310,8 +310,45 @@ class GEEKYBOTgeekybotModel {
             $result->created = $this->geekybotTimeAgo($result->created);
         }
         geekybot::$_data['chat_history'] = $results;
+
+        // update available alert
+        geekybot::$_data['update_avaliable_for_addons'] = $this->showUpdateAvaliableAlert();
         // Returning the prepared data
         return geekybot::$_data;
+    }
+
+    function showUpdateAvaliableAlert(){
+        require_once GEEKYBOT_PLUGIN_PATH .'includes/addon-updater/geekybotupdater.php';
+        $GEEKYBOT_Updater = new GEEKYBOT_Updater();
+        $cdnversiondata = $GEEKYBOT_Updater->GEEKYBOT_getPluginVersionDataFromCDN();
+        $not_installed = array();
+
+        $geekybot_addons = GEEKYBOTincluder::GEEKYBOT_getModel('premiumplugin')->geekybotGetAddonsArray();
+        $installed_plugins = get_plugins();
+        $count = 0;
+        foreach ($geekybot_addons as $key1 => $value1) {
+            $matched = 0;
+            $version = "";
+            foreach ($installed_plugins as $name => $value) {
+                $install_plugin_name = str_replace(".php","",basename($name));
+                if($key1 == $install_plugin_name){
+                    $matched = 1;
+                    $version = $value["Version"];
+                    $install_plugin_matched_name = $install_plugin_name;
+                }
+            }
+            if($matched == 1){ //installed
+                foreach ($cdnversiondata as $cdnname => $cdnversion) {
+                    $install_plugin_name_simple = str_replace("-", "", $install_plugin_matched_name);
+                    if($cdnname == str_replace("-", "", $install_plugin_matched_name)){
+                        if($cdnversion > $version){ // new version available
+                            $count++;
+                        }
+                    }    
+                }
+            }
+        }
+        return $count;
     }
 
     function checkProductExpiry() {
@@ -374,16 +411,32 @@ class GEEKYBOTgeekybotModel {
         return GEEKYBOTincluder::GEEKYBOT_getModel('premiumplugin')->verifyAddonSqlFile($addon_name,$addon_version);
     }
 
-    function getUserImagePath() {//
-        if (geekybot::$_configuration['user_custom_img'] == '0') {
-            $imgPath = esc_url(GEEKYBOT_PLUGIN_URL).'includes/images/users.png';
-        } else {
-            $maindir = wp_upload_dir();
-            $baseurl = $maindir['baseurl'];
-            $datadirectory = geekybot::$_configuration['data_directory'];
-            $imgPath = $baseurl . '/' . $datadirectory.'/users/'.geekybot::$_configuration['user_custom_img'];
+    function getUserImagePath() {
+        $uid = get_current_user_id();
+        // Ensure the UID is valid and numeric
+        if (!is_numeric($uid) || !$uid) {
+            return $this->getUserCustomOrDefaultImage();
         }
-        return $imgPath;
+
+        // Get the avatar URL
+        $avatar_url = get_avatar_url($uid, array('size' => 96));
+
+        // Check if the avatar URL is valid
+        if (!empty($avatar_url) && @getimagesize($avatar_url)) {
+            // Use WordPress's get_avatar function to generate the avatar HTML
+            return $avatar_url;
+        } else {
+            // Fallback to the default image if the avatar URL is invalid
+            return $this->getUserCustomOrDefaultImage();
+        }
+    }
+
+    function getUserCustomOrDefaultImage() {
+        if (!empty(geekybot::$_configuration['user_custom_img'])) {
+            $maindir = wp_upload_dir();
+            return trailingslashit($maindir['baseurl']) . '/' . geekybot::$_configuration['data_directory'] . '/users/'.geekybot::$_configuration['user_custom_img'];
+        }
+        return esc_url(GEEKYBOT_PLUGIN_URL).'includes/images/users.png';
     }
 
     function getWelcomeMessageImagePath() {
@@ -409,7 +462,8 @@ class GEEKYBOTgeekybotModel {
     function geekybotLoadMoreProducts(){
         $nonce = GEEKYBOTrequest::GEEKYBOT_getVar('_wpnonce');
         if (! wp_verify_nonce( $nonce, 'load-more') ) {
-            die( 'Security check Failed' ); 
+            // disable nonce
+            // die( 'Security check Failed' ); 
         }
         $msg = GEEKYBOTrequest::GEEKYBOT_getVar('msg');
         $data = GEEKYBOTrequest::GEEKYBOT_getVar('data');
@@ -429,7 +483,8 @@ class GEEKYBOTgeekybotModel {
     function geekybotLoadMoreCustomPosts(){
         $nonce = GEEKYBOTrequest::GEEKYBOT_getVar('_wpnonce');
         if (! wp_verify_nonce( $nonce, 'load-more') ) {
-            die( 'Security check Failed' ); 
+            // disable nonce
+            // die( 'Security check Failed' ); 
         }
         $msg = GEEKYBOTrequest::GEEKYBOT_getVar('msg');
         $data = GEEKYBOTrequest::GEEKYBOT_getVar('data_array');
@@ -444,6 +499,9 @@ class GEEKYBOTgeekybotModel {
     }
 
     function hideVideoPopupFromAdmin(){
+        if (!current_user_can('manage_options')){
+            die('Only Administrators can perform this action.');
+        }
         $nonce = GEEKYBOTrequest::GEEKYBOT_getVar('_wpnonce');
         if (! wp_verify_nonce( $nonce, 'hide-popup-from-admin') ) {
             die( 'Security check Failed' );

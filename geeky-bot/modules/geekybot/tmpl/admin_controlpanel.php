@@ -44,6 +44,24 @@ if ( $dashboard_message == '1') {//isset($dashboard_message) &&
             <?php  geekybotincluder::GEEKYBOT_getClassesInclude('geekybotadminsidemenu'); ?>
         </div>
         <div id="geekybotadmin-data" >
+        <?php if (geekybot::$_data['update_avaliable_for_addons'] != 0) {?>
+            <div class="geekybot-synchronize-section-mainwrp">
+                <div class="geekybot-synchronize-section geekybot-addon-update-available-section">
+                    <div class="geekybot-synchronize-imgwrp">
+                        <img src="<?php echo esc_url(GEEKYBOT_PLUGIN_URL); ?>includes/images/addon_update.png"title="<?php echo esc_attr(__('Synchronize', 'geeky-bot')); ?>" alt="<?php echo esc_attr(__('Synchronize', 'geeky-bot')); ?>" class="geekybot-synchronize-img">
+                    </div>
+                    <div class="geekybot-synchronize-content-wrp">
+                        <span class="geekybot-synchronize-content-title"><?php echo esc_html(__('GeekyBot Add-ons Update Available!', 'geeky-bot'));?></span>
+                        <span class="geekybot-synchronize-content-disc"><?php echo esc_html(__("We have recently launched a fresh update for the add-ons. Don't forget to update the add-ons to enjoy the greatest features!", 'geeky-bot'));?></span>
+                    </div>
+                    <div class="geekybot-synchronize-button-wrp">
+                        <a class="geekybot_synchronize_data" title="<?php echo esc_attr(__('Synchronize Data', 'geeky-bot')); ?>" href="<?php echo esc_url(wp_nonce_url('admin.php?page=geekybot_premiumplugin&geekybotlt=addonstatus','addonstatus'))?>">
+                            <?php echo esc_html(__('View Add-ons Status', 'geeky-bot')); ?>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        <?php } ?>
         <!-- top head -->
         <div class="geekybot-dashboard-cards-wrp">
             <div class="geekybot-dashboard-card">
@@ -102,21 +120,21 @@ if ( $dashboard_message == '1') {//isset($dashboard_message) &&
                             <img src="<?php echo esc_url(GEEKYBOT_PLUGIN_URL); ?>includes/images/control_panel/youtube-icon.png" alt="<?php echo esc_html(__('Youtube Icon', 'geeky-bot')); ?>" srcset="">
                             <?php echo esc_html(__('How to add Story', 'geeky-bot')); ?> 
                         </a>
-                        <a href="" title="<?php echo esc_html(__('Play', 'geeky-bot')); ?>" class="geekybot-dashboard-installation-guide-video-btn">
+                        <a href="https://youtu.be/kbaA_l5j_9w?si=76FlfYmp5iQfKg20&t=199" target="_blank" title="<?php echo esc_html(__('Play', 'geeky-bot')); ?>" class="geekybot-dashboard-installation-guide-video-btn">
                             <img src="<?php echo esc_url(GEEKYBOT_PLUGIN_URL); ?>includes/images/control_panel/youtube-icon.png" alt="<?php echo esc_html(__('Youtube Icon', 'geeky-bot')); ?>" srcset="">
                             <?php echo esc_html(__('How to add Variable', 'geeky-bot')); ?> 
                         </a>
-                        <a href="" title="<?php echo esc_html(__('Play', 'geeky-bot')); ?>" class="geekybot-dashboard-installation-guide-video-btn">
+                        <a href="https://www.youtube.com/watch?v=q6gMOVlfxIE" target="_blank" title="<?php echo esc_html(__('Play', 'geeky-bot')); ?>" class="geekybot-dashboard-installation-guide-video-btn">
                             <img src="<?php echo esc_url(GEEKYBOT_PLUGIN_URL); ?>includes/images/control_panel/youtube-icon.png" alt="<?php echo esc_html(__('Youtube Icon', 'geeky-bot')); ?>" srcset="">
-                            <?php echo esc_html(__('Change Settings', 'geeky-bot')); ?> 
+                            <?php echo esc_html(__('How to translate', 'geeky-bot')); ?> 
                         </a>
-                        <a href="" title="<?php echo esc_html(__('Play', 'geeky-bot')); ?>" class="geekybot-dashboard-installation-guide-video-btn">
+                        <a href="https://www.youtube.com/watch?v=Z3g4fRpoZlc" target="_blank" title="<?php echo esc_html(__('Play', 'geeky-bot')); ?>" class="geekybot-dashboard-installation-guide-video-btn">
                             <img src="<?php echo esc_url(GEEKYBOT_PLUGIN_URL); ?>includes/images/control_panel/youtube-icon.png" alt="<?php echo esc_html(__('Youtube Icon', 'geeky-bot')); ?>" srcset="">
-                            <?php echo esc_html(__('Change Color', 'geeky-bot')); ?> 
+                            <?php echo esc_html(__('How to use AI Web Search', 'geeky-bot')); ?> 
                         </a>
-                        <a href="" title="<?php echo esc_html(__('Play', 'geeky-bot')); ?>" class="geekybot-dashboard-installation-guide-video-btn">
+                        <a href="https://www.youtube.com/watch?v=48emHU4_VUE" target="_blank" title="<?php echo esc_html(__('Play', 'geeky-bot')); ?>" class="geekybot-dashboard-installation-guide-video-btn">
                             <img src="<?php echo esc_url(GEEKYBOT_PLUGIN_URL); ?>includes/images/control_panel/youtube-icon.png" alt="<?php echo esc_html(__('Youtube Icon', 'geeky-bot')); ?>" srcset="">
-                            <?php echo esc_html(__('How to add Story', 'geeky-bot')); ?> 
+                            <?php echo esc_html(__('How to install addons', 'geeky-bot')); ?> 
                         </a> 
                     </div>
                 </div>

@@ -18,7 +18,27 @@ jQuery(document).ready(function() {
             jQuery('.geeky-popup-dynamic-field-active .response-btn-url').css('display', 'block');
         }
     });
-});";
+    jQuery(document).on('click', '.geekybot-config-save-btn', function() {
+        geekybotShowLoading();
+    });
+});
+// Function to create fallback buttons
+var fallbackButtonDivId = 1;
+function addFallBackButton(param) {
+    if (fallbackButtonDivId != param && fallbackButtonDivId < param) {
+        fallbackButtonDivId = param;
+    }
+    var container = jQuery('.geekybot-fallback-config-mainwrp');
+    container.append('<div id=\"div_'+fallbackButtonDivId+'\" class=\"geekybot-fallback-config\"><span class=\"geekybot-fallback-configlft-titl\">". esc_attr(__('Default Fallback Action','geeky-bot')) ."</span><div class=\"geekybot-fallback-configlft-wrp\"><div class=\"geekybot-fallback-config-fields-wrp\"><select name=\"fallback_btn_type[]\" class=\"response-btn-type inputbox geeky-popup-dynamic-field-input geeky-popup-dynamic-field-select\" data-validation=\"required\"><option value=\"1\">". esc_attr(__('User Input','geeky-bot')) ."</option><option value=\"2\">". esc_attr(__('URL','geeky-bot')) ."</option></select><input name = \"fallback_btn_text[]\" type=\"text\" value = \"\" class=\"inputbox geeky-popup-dynamic-field-input\" autocomplete=\"off\" placeholder=\"". esc_attr(__('Button text here','geeky-bot')) ."\" /><input name = \"fallback_btn_value[]\" type=\"text\" value = \"\" class=\"response-btn-value inputbox geeky-popup-dynamic-field-input\" autocomplete=\"off\" placeholder=\"". esc_attr(__('Button value here','geeky-bot')) ."\" /><input name = \"fallback_btn_url[]\" type =\"text\" value = \"\" class=\"response-btn-url inputbox geeky-popup-dynamic-field-input\" autocomplete=\"off\" placeholder=\"". esc_attr(__('Enter URL here','geeky-bot')) ."\" style=\"display: none\" /></div><a onClick=\"deleteFallBackTextBotton(div_'+fallbackButtonDivId+')\" class=\"geekybot-fallback-configright-wrp\"><img src=\"". esc_url(GEEKYBOT_PLUGIN_URL) ."includes/images/control_panel/delete.png\" alt=\"". esc_attr(__('Delete', 'geeky-bot')) ."\" /></a></div></div>');
+    fallbackButtonDivId++;
+}
+function deleteFallBackTextBotton(fallbackButtonId){
+    jQuery(fallbackButtonId).slideUp(500, function() {
+        // Remove the button after it slides up
+        jQuery(fallbackButtonId).remove();
+    });
+}
+";
 wp_add_inline_script('geekybot-main-js',$geekybot_js);
 ?>
 <!-- main wrapper -->
@@ -37,7 +57,7 @@ wp_add_inline_script('geekybot-main-js',$geekybot_js);
                 </h1>
             </div>
             <!-- page content -->
-            <div id="geekybot-admin-wrapper">
+            <div id="geekybot-admin-wrapper" class="geekybot-admin-config-wrapper">
                 <form id="geekybot-form" class="geekybot-configurations" method="post" action="<?php echo esc_url(wp_nonce_url(admin_url("admin.php?page=geekybot_configuration&task=saveconfiguration"),"save-configuration")); ?>">
                     <div class="geekybot-config-row-wrp">
                         <div class="geekybot-config-row">
@@ -50,57 +70,6 @@ wp_add_inline_script('geekybot-main-js',$geekybot_js);
                             <div class="geekybot-config-description">
                                 <?php
                                 echo esc_html(__("The title of your chatbot or the primary title displayed on your chat interface.", "geeky-bot"));
-                                ?>
-                            </div>
-                        </div>
-                        <div class="geekybot-config-row">
-                            <div class="geekybot-config-title">
-                                <?php echo esc_html(__('Default Fallback Message', 'geeky-bot')); ?>
-                            </div>
-                            <div class="geekybot-config-value-text">
-                                <?php echo wp_kses(GEEKYBOTformfield::GEEKYBOT_textarea('default_message', isset(geekybot::$_data[0]['default_message']) ? geekybot::GEEKYBOT_getVarValue(geekybot::$_data[0]['default_message']) : '', array('class' => 'inputbox js-textarea', 'data-validation' => 'required')), GEEKYBOT_ALLOWED_TAGS) ?>
-                            </div>
-                            <div class="geekybot-config-description">
-                                <?php
-                                echo esc_html(__("The message displayed when the chatbot cannot understand.", 'geeky-bot'));
-                                ?>
-                            </div>
-                        </div>
-                        <div class="geekybot-config-row">
-                            <div class="geekybot-config-title">
-                                <?php echo esc_html(__('Default Fallback Action Button', 'geeky-bot')); ?>
-                            </div>
-                            <?php
-                                if (!empty(geekybot::$_data[0]['default_message_buttons']) && geekybot::$_data[0]['default_message_buttons'] != '[]') {
-                                    $default_message_buttons = json_decode(geekybot::$_data[0]['default_message_buttons']);
-                                    $buttons = $default_message_buttons[0];
-                                }
-                                if (isset($buttons->type) && $buttons->type == 2) {
-                                    $optionOneSelected = '';
-                                    $optionTwoSelected = 'selected="selected"';
-                                    $optionOneStyle = 'style="display:none"';
-                                    $optionTwoStyle = 'style="display:block"';
-                                } else {
-                                    $optionOneSelected = 'selected="selected"';
-                                    $optionTwoSelected = '';
-                                    $optionOneStyle = 'style="display:block"';
-                                    $optionTwoStyle = 'style="display:none"';
-                                }
-                            ?>
-                            <div class="geekybot-config-value">
-                                <div class="geeky-popup-dynamic-field" id="div_1">
-                                    <input name = "fallback_btn_text[]" type="text" value = "<?php echo isset($buttons->text) ? $buttons->text : ''; ?>" class="inputbox geeky-popup-dynamic-field-input" autocomplete="off" placeholder="<?php echo esc_attr(__('Button text here','geeky-bot')) ?>" />
-                                    <select name="fallback_btn_type[]" class="response-btn-type inputbox geeky-popup-dynamic-field-input geeky-popup-dynamic-field-select" data-validation="required">
-                                        <option value="1" <?php echo $optionOneSelected ?> ><?php echo esc_attr(__('User Input','geeky-bot')) ?></option>
-                                        <option value="2" <?php echo $optionTwoSelected ?> ><?php echo esc_attr(__('URL','geeky-bot')) ?></option>
-                                    </select>
-                                    <input name = "fallback_btn_value[]" type="text" value = "<?php echo isset($buttons->value) ? $buttons->value : ''; ?>" class="response-btn-value inputbox geeky-popup-dynamic-field-input" autocomplete="off" placeholder="<?php echo esc_attr(__('Button value here','geeky-bot')) ?>" <?php echo $optionOneStyle ?> />
-                                    <input name = "fallback_btn_url[]" type="text" value = "<?php echo isset($buttons->value) ? $buttons->value : ''; ?>" class="response-btn-url inputbox geeky-popup-dynamic-field-input" autocomplete="off" placeholder="<?php echo esc_attr(__('Enter URL here','geeky-bot')) ?>" <?php echo $optionTwoStyle ?>  />
-                                </div>
-                            </div>
-                            <div class="geekybot-config-description">
-                                <?php
-                                echo esc_html(__("Customizes the action button displayed with the fallback message when the chatbot doesn't understand user input.", 'geeky-bot'));
                                 ?>
                             </div>
                         </div>
@@ -152,6 +121,85 @@ wp_add_inline_script('geekybot-main-js',$geekybot_js);
                                 <?php echo esc_html(__("The number of items displayed in a paginated list on the user side.", 'geeky-bot')); ?>
                             </div>
                         </div>
+                    </div>
+                    <div class="geekybot-fallback-config-wrp">
+                        <span class="geekybot-admin-fallback-config-title"><?php echo esc_html(__('Default Fallback Intent', 'geeky-bot')); ?></span>
+                        <div class="geekybot-config-row-wrp">
+                            <div class="geekybot-config-row">
+                                <div class="geekybot-config-title">
+                                    <?php echo esc_html(__('Default Fallback Message', 'geeky-bot')); ?>
+                                </div>
+                                <div class="geekybot-config-value-text">
+                                    <?php echo wp_kses(GEEKYBOTformfield::GEEKYBOT_textarea('default_message', isset(geekybot::$_data[0]['default_message']) ? geekybot::GEEKYBOT_getVarValue(geekybot::$_data[0]['default_message']) : '', array('class' => 'inputbox js-textarea', 'data-validation' => 'required')), GEEKYBOT_ALLOWED_TAGS) ?>
+                                </div>
+                                <div class="geekybot-config-description">
+                                    <?php
+                                    echo esc_html(__("The message displayed when the chatbot cannot understand.", 'geeky-bot'));
+                                    ?>
+                                </div>
+                            </div>
+                            <div class="geekybot-config-row">
+                                <div class="geekybot-config-title">
+                                    <?php echo esc_html(__('Default Fallback Action Button', 'geeky-bot')); ?>
+                                </div>
+                                <?php $fallbackButtonDivId = !empty(geekybot::$_data[0]['default_message_buttons']) ? count(json_decode(geekybot::$_data[0]['default_message_buttons'])) + 1 : 1; ?>
+                                <div class="geekybot-config-value">
+                                    <div class="geeky-popup-dynamic-field">
+                                        <div class="geeky-add-new-fallback-intentbtn">
+                                            <a onclick="addFallBackButton('<?php echo $fallbackButtonDivId ?>');" href="#" title="<?php echo esc_attr(__('Add New Intent','geeky-bot')) ?>">
+                                                <img src="<?php echo esc_url(GEEKYBOT_PLUGIN_URL); ?>includes/images/plus-white.png" alt="<?php echo esc_attr(__('Add', 'geeky-bot')); ?>" />
+                                                <?php echo esc_attr(__('Add New Fallback Intent','geeky-bot')) ?>
+                                            </a>
+                                        </div>
+                                        <div class="geekybot-fallback-config-description">
+                                            <?php
+                                            echo esc_html(__("Customizes the action button displayed with the fallback message when the chatbot doesn't understand user input.", 'geeky-bot'));
+                                            ?>
+                                        </div>
+                                        <div class="geekybot-fallback-config-mainwrp">
+                                            <?php
+                                            if (!empty(geekybot::$_data[0]['default_message_buttons']) && geekybot::$_data[0]['default_message_buttons'] != '[]') {
+                                                $buttons = json_decode(geekybot::$_data[0]['default_message_buttons']);
+                                                foreach ($buttons as $fallback_button){
+                                                    if (isset($fallback_button->type) && $fallback_button->type == 2) {
+                                                        $optionOneSelected = '';
+                                                        $optionTwoSelected = 'selected="selected"';
+                                                        $optionOneStyle = 'style="display:none"';
+                                                        $optionTwoStyle = 'style="display:block"';
+                                                    } else {
+                                                        $optionOneSelected = 'selected="selected"';
+                                                        $optionTwoSelected = '';
+                                                        $optionOneStyle = 'style="display:block"';
+                                                        $optionTwoStyle = 'style="display:none"';
+                                                    }
+                                                    ?>
+                                                    <div id="div_<?php echo $fallbackButtonDivId; ?>" class="geekybot-fallback-config">
+                                                        <span class="geekybot-fallback-configlft-titl"><?php echo esc_attr(__('Default Fallback Action','geeky-bot')) ?></span>
+                                                        <div class="geekybot-fallback-configlft-wrp">
+                                                            <div class="geekybot-fallback-config-fields-wrp">
+                                                                <select name="fallback_btn_type[]" class="response-btn-type inputbox geeky-popup-dynamic-field-input geeky-popup-dynamic-field-select" data-validation="required">
+                                                                    <option value="1" <?php echo $optionOneSelected ?> ><?php echo esc_attr(__('User Input','geeky-bot')) ?></option>
+                                                                    <option value="2" <?php echo $optionTwoSelected ?> ><?php echo esc_attr(__('URL','geeky-bot')) ?></option>
+                                                                </select>
+                                                                <input name = "fallback_btn_text[]" type="text" value = "<?php echo isset($fallback_button->text) ? $fallback_button->text : ''; ?>" class="inputbox geeky-popup-dynamic-field-input" autocomplete="off" placeholder="<?php echo esc_attr(__('Button text here','geeky-bot')) ?>" />
+                                                                <input name = "fallback_btn_value[]" type="text" value = "<?php echo isset($fallback_button->value) ? $fallback_button->value : ''; ?>" class="response-btn-value inputbox geeky-popup-dynamic-field-input" autocomplete="off" placeholder="<?php echo esc_attr(__('Button value here','geeky-bot')) ?>" <?php echo $optionOneStyle ?> />
+                                                                <input name = "fallback_btn_url[]" type="text" value = "<?php echo isset($fallback_button->value) ? $fallback_button->value : ''; ?>" class="response-btn-url inputbox geeky-popup-dynamic-field-input" autocomplete="off" placeholder="<?php echo esc_attr(__('Enter URL here','geeky-bot')) ?>" <?php echo $optionTwoStyle ?>  />
+                                                            </div>
+                                                            <a onClick="deleteFallBackTextBotton(div_<?php echo $fallbackButtonDivId; ?>)" class="geekybot-fallback-configright-wrp">
+                                                                <img src="<?php echo esc_url(GEEKYBOT_PLUGIN_URL); ?>includes/images/control_panel/delete.png" alt="<?php echo esc_attr(__('Delete', 'geeky-bot')); ?>" />
+                                                            </a>
+                                                        </div>
+                                                    </div>
+                                                    <?php
+                                                    $fallbackButtonDivId++;
+                                                }
+                                            } ?>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div>
                     </div>
                     <?php echo wp_kses(GEEKYBOTformfield::GEEKYBOT_hidden('isgeneralbuttonsubmit', 1), GEEKYBOT_ALLOWED_TAGS); ?>
                     <?php echo wp_kses(GEEKYBOTformfield::GEEKYBOT_hidden('geekybotlt', 'configurations'), GEEKYBOT_ALLOWED_TAGS); ?>

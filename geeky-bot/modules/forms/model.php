@@ -133,6 +133,9 @@ class GEEKYBOTformsModel {
     }
     // new
     function saveCustomeFormAjax() {
+        if (!current_user_can('manage_options')){
+            die('Only Administrators can perform this action.');
+        }
         $nonce = GEEKYBOTrequest::GEEKYBOT_getVar('_wpnonce');
         if (! wp_verify_nonce( $nonce, 'save-form') ) {
             die( 'Security check Failed' ); 
@@ -176,6 +179,9 @@ class GEEKYBOTformsModel {
     }
 
     function updateFormsValueFormAjax(){
+        if (!current_user_can('manage_options')){
+            die('Only Administrators can perform this action.');
+        }
         $nonce = GEEKYBOTrequest::GEEKYBOT_getVar('_wpnonce');
         if (! wp_verify_nonce( $nonce, 'update-forms-value') ) {
             die( 'Security check Failed' ); 

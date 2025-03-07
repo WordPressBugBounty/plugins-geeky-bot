@@ -229,6 +229,9 @@ class GEEKYBOTthemesModel {
     }
 
     function deleteBotCustomImage(){
+        if (!current_user_can('manage_options')){
+            die('Only Administrators can perform this action.');
+        }
         $nonce = GEEKYBOTrequest::GEEKYBOT_getVar('_wpnonce');
         if (! wp_verify_nonce( $nonce, 'delete-bot-custom-image') ) {
             die( 'Security check Failed' );
@@ -251,6 +254,9 @@ class GEEKYBOTthemesModel {
     }
 
     function deleteWelcomeMessageImg(){
+        if (!current_user_can('manage_options')){
+            die('Only Administrators can perform this action.');
+        }
         $nonce = GEEKYBOTrequest::GEEKYBOT_getVar('_wpnonce');
         if (! wp_verify_nonce( $nonce, 'delete-message-image') ) {
             die( 'Security check Failed' );
@@ -273,6 +279,9 @@ class GEEKYBOTthemesModel {
     }
 
     function deleteSupportUserImage(){
+        if (!current_user_can('manage_options')){
+            die('Only Administrators can perform this action.');
+        }
         $nonce = GEEKYBOTrequest::GEEKYBOT_getVar('_wpnonce');
         if (! wp_verify_nonce( $nonce, 'delete-support-user-image') ) {
             die( 'Security check Failed' );

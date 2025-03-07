@@ -16,12 +16,13 @@ class GEEKYBOTchatserverModel {
 
         // Verify nonce for security
         if (!wp_verify_nonce($nonce, 'get-message-response')) {
-            $errorMessage = new stdClass();
+            // disable nonce
+            /*$errorMessage = new stdClass();
             $errorMessage->bot_response = esc_html(
                 __("Security verification Failed, Please refresh your chat to continue.", "geeky-bot")
             );
             $retVal[] = ["recipient_id" => $chat_id, "text" => $errorMessage];
-            return wp_json_encode($retVal);
+            return wp_json_encode($retVal);*/
         }
 
         // Check if the chat session has expired
@@ -723,7 +724,8 @@ class GEEKYBOTchatserverModel {
     function getDefaultFallBackFormAjax(){
         $nonce = GEEKYBOTrequest::GEEKYBOT_getVar('_wpnonce');
         if (! wp_verify_nonce( $nonce, 'get-fallback') ) {
-            die( 'Security check Failed' );
+            // disable nonce
+            // die( 'Security check Failed' );
         }
         // get last 2 stories from the stack
         $chat_id = GEEKYBOTrequest::GEEKYBOT_getVar('chat_id');

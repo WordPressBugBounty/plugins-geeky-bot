@@ -184,6 +184,7 @@ $geekybot_js ="
         // jQuery('.chatHistory.leftmenu div:first').addClass('active'); by hamza ali
     });
     function makeMeActive(userName, userId, chatHistoryId, htmlDiv, datet, pagenum, pagination) {
+        geekybotShowLoading();
         if(pagination == 0) {
             var clickedDiv = jQuery(htmlDiv);
             var allusers = jQuery('.leftmenuuser').removeClass('active');
@@ -191,6 +192,7 @@ $geekybot_js ="
         }
         var ajaxurl = '". esc_url(admin_url('admin-ajax.php')) ."';
         jQuery.post(ajaxurl, {action: 'geekybot_ajax', geekybotme: 'chathistory', task: 'getUserChatHistoryMessages', username:userName, userid:userId, chatlimit:pagenum, chatHistoryId: chatHistoryId, datet: datet, '_wpnonce':'". esc_attr(wp_create_nonce("get-user-chat-history"))."'}, function (data) {
+            geekybotHideLoading();
             if (data) {
                 jQuery('.userid').text(' '+userId);
                 jQuery('.user-info .username').text(userName);
@@ -251,6 +253,7 @@ $geekybot_js ="
         } else {
             var ajaxurl =
                 '". esc_url(admin_url("admin-ajax.php")) ."';
+            geekybotHideLoading();
             jQuery.post(ajaxurl, {
                 action: 'geekybot_ajax',
                 geekybotme: 'stories',
@@ -259,6 +262,7 @@ $geekybot_js ="
                 missing_intent: missing_intent,
                 '_wpnonce':'". esc_attr(wp_create_nonce("add-intent")) ."'
             }, function(data) {
+                geekybotHideLoading();
                 if (data) {
                     window.location.href = data;
                 } else {

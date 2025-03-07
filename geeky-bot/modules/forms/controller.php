@@ -46,6 +46,9 @@ class GEEKYBOTformsController {
     }
 
     function remove() {
+        if (!current_user_can('manage_options')){
+            die('Only Administrators can perform this action.');
+        }
         $nonce = GEEKYBOTrequest::GEEKYBOT_getVar('_wpnonce');
         if (! wp_verify_nonce( $nonce, 'delete-forms') ) {
             die( 'Security check Failed' ); 
@@ -61,6 +64,9 @@ class GEEKYBOTformsController {
     }
 
     function saveforms() {
+        if (!current_user_can('manage_options')){
+            die('Only Administrators can perform this action.');
+        }
         $nonce = GEEKYBOTrequest::GEEKYBOT_getVar('_wpnonce');
         if (! wp_verify_nonce( $nonce, 'save-forms') ) {
             die( 'Security check Failed' );

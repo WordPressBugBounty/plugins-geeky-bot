@@ -120,7 +120,7 @@
                             <div class="geekybot-installation-bodyright-section">
                                 <img class="geeky-installation-Botimage" title="<?php echo esc_html(__('Bot Image', 'geeky-bot')); ?>" alt="<?php echo esc_html(__('image', 'geeky-bot')); ?>" src="<?php echo esc_url(GEEKYBOT_PLUGIN_URL) . 'includes/images/postinstallation/web-image.png'; ?>" />
                                 <div class="geeky-installation-plybtnwrp geeky-installation-websrch-plybtn">
-                                    <a href="#" title="<?php echo esc_html(__('Play', 'geeky-bot')); ?>">
+                                    <a target="_blank" href="https://www.youtube.com/watch?v=Z3g4fRpoZlc" title="<?php echo esc_html(__('Play', 'geeky-bot')); ?>">
                                         <img class="geeky-installation-plyimg" title="<?php echo esc_html(__('Play', 'geeky-bot')); ?>" alt="<?php echo esc_html(__('Play', 'geeky-bot')); ?>" src="<?php echo esc_url(GEEKYBOT_PLUGIN_URL) . 'includes/images/postinstallation/play-icon.png'; ?>" />
                                         <?php echo esc_html(__('Watch AI Web Search Video', 'geeky-bot')); ?>
                                     </a>

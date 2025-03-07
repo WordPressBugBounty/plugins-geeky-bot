@@ -267,6 +267,9 @@ class GEEKYBOTpremiumpluginModel {
     }
 
     function downloadandinstalladdonfromAjax(){
+        if (!current_user_can('manage_options')){
+            die('Only Administrators can perform this action.');
+        }
         $nonce = GEEKYBOTrequest::GEEKYBOT_getVar('_wpnonce');
         if (! wp_verify_nonce( $nonce, 'download-and-install-addon') ) {
             die( 'Security check Failed' );
@@ -439,6 +442,12 @@ class GEEKYBOTpremiumpluginModel {
             'geeky-bot-customlistingstyle' => array('title' => esc_html(__('Custom Listing Style','geeky-bot')), 'price' => 0, 'status' => 1),
             'geeky-bot-woocommercepropack' => array('title' => esc_html(__('WooCommerce Pro Pack','geeky-bot')), 'price' => 0, 'status' => 1),
         );
+    }
+
+    function geekybotCheckUpdates(){
+        include_once GEEKYBOT_PLUGIN_PATH . 'includes/updates/updates.php';
+        GEEKYBOTupdates::GEEKYBOT_checkUpdates(110);
+        return 1;
     }
 
 }

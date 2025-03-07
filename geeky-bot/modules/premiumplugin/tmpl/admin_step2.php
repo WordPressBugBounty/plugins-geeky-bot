@@ -23,13 +23,6 @@ foreach ($allPlugins as $key => $value) {
                 </div>
                 <!-- page content -->
                 <div id="geekybot-admin-wrapper">
-                    <div id="geekybotadmin_black_wrapper_built_loading" style="display: none;" ></div>
-                    <div class="geekybotadmin-built-story-loading" id="geekybotadmin_built_loading" style="display: none;" >
-                        <img src="<?php echo esc_url(GEEKYBOT_PLUGIN_URL); ?>includes/images/spinning-wheel.gif" />
-                        <div class="geekybotadmin-built-story-loading-text">
-                            <?php echo esc_html(__('Please wait a moment; this may take some time.','geeky-bot')); ?>
-                        </div>
-                    </div>
                     <?php
                     if(isset($_COOKIE['geekybot_addon_install_data'])){
                         $geekybot_addon_install_data = geekybotphplib::GEEKYBOT_safe_decoding(geekybot::GEEKYBOT_sanitizeData($_COOKIE['geekybot_addon_install_data']));// GEEKYBOT_sanitizeData() function uses wordpress santize functions

@@ -37,6 +37,23 @@ jQuery(document).ready(function() {
         jQuery('form#editStoryNameForm #id').val(id);
         jQuery('form#editStoryNameForm #name').val(name);
     });
+
+    jQuery(document).on('click', '.geekybot-delete-btn', function(event) {
+        // Call the confirmation function and store the result
+        var isConfirmed = confirmdelete('". esc_attr(__('Are you sure to delete', 'geeky-bot')).' ?'."');
+        
+        if (!isConfirmed) {
+            event.preventDefault(); // Prevents the default anchor action
+            return false; // Stops the function execution
+        }
+
+        // Only run this function if the user clicks 'OK'
+        geekybotShowLoading();
+    });
+
+    jQuery(document).on('click', '.geekybot-status-btn', function() {
+        geekybotShowLoading();
+    });
     
     jQuery('form#userStoryForm').submit(function (e) {
         e.preventDefault();
@@ -220,19 +237,19 @@ if (!GEEKYBOTincluder::GEEKYBOT_getTemplate('templates/admin/header',array('modu
                                                 </a>
                                                 <?php
                                                 if (isset(geekybot::$_data[0]['ai_story']->status) && geekybot::$_data[0]['ai_story']->status == 1) {  ?>
-                                                    <a class="geekybot-table-act-btn geekybot-delete" href="<?php echo esc_url(wp_nonce_url(admin_url('admin.php?page=geekybot_stories&task=changeStatus&action=geekybottask&status=0&storyid='.esc_attr(geekybot::$_data[0]['ai_story']->id)),'change-status')); ?>" title="<?php echo esc_attr(__('Disable', 'geeky-bot')); ?>">
+                                                    <a class="geekybot-table-act-btn geekybot-delete geekybot-status-btn" href="<?php echo esc_url(wp_nonce_url(admin_url('admin.php?page=geekybot_stories&task=changeStatus&action=geekybottask&status=0&storyid='.esc_attr(geekybot::$_data[0]['ai_story']->id)),'change-status-'.geekybot::$_data[0]['ai_story']->id)); ?>" title="<?php echo esc_attr(__('Disable', 'geeky-bot')); ?>">
                                                         <img src="<?php echo esc_url(GEEKYBOT_PLUGIN_URL); ?>includes/images/disable.png" alt="<?php echo esc_attr(__('Disable', 'geeky-bot')); ?>" class="geekybot-action-img">
                                                         <?php echo esc_html(__('Disable', 'geeky-bot')); ?>
                                                     </a>
                                                     <?php 
                                                 } else {?>
-                                                    <a class="geekybot-table-act-btn geekybot-delete" href="<?php echo esc_url(wp_nonce_url(admin_url('admin.php?page=geekybot_stories&task=changeStatus&action=geekybottask&status=1&storyid='.esc_attr(geekybot::$_data[0]['ai_story']->id)),'change-status')); ?>" title="<?php echo esc_attr(__('Active', 'geeky-bot')); ?>">
+                                                    <a class="geekybot-table-act-btn geekybot-delete geekybot-status-btn" href="<?php echo esc_url(wp_nonce_url(admin_url('admin.php?page=geekybot_stories&task=changeStatus&action=geekybottask&status=1&storyid='.esc_attr(geekybot::$_data[0]['ai_story']->id)),'change-status-'.geekybot::$_data[0]['ai_story']->id)); ?>" title="<?php echo esc_attr(__('Active', 'geeky-bot')); ?>">
                                                         <img src="<?php echo esc_url(GEEKYBOT_PLUGIN_URL); ?>includes/images/active.png" alt="<?php echo esc_attr(__('Active', 'geeky-bot')); ?>" class="geekybot-action-img">
                                                         <?php echo esc_html(__('Active', 'geeky-bot')); ?>
                                                     </a>
                                                     <?php 
                                                 } ?>
-                                                <a class="geekybot-table-act-btn geekybot-delete" href="<?php echo esc_url(wp_nonce_url(admin_url('admin.php?page=geekybot_stories&task=removeStory&action=geekybottask&geekybot-cb='.esc_attr(geekybot::$_data[0]['ai_story']->id)),'delete-story')); ?>" onclick="return confirmdelete('<?php echo esc_attr(__('Are you sure to delete', 'geeky-bot')).' ?'; ?>');" title="<?php echo esc_attr(__('Delete Story', 'geeky-bot')); ?>">
+                                                <a class="geekybot-table-act-btn geekybot-delete geekybot-delete-btn" href="<?php echo esc_url(wp_nonce_url(admin_url('admin.php?page=geekybot_stories&task=removeStory&action=geekybottask&geekybot-cb='.esc_attr(geekybot::$_data[0]['ai_story']->id)),'delete-story-'.geekybot::$_data[0]['ai_story']->id)); ?>" title="<?php echo esc_attr(__('Delete Story', 'geeky-bot')); ?>">
                                                     <img src="<?php echo esc_url(GEEKYBOT_PLUGIN_URL); ?>includes/images/control_panel/delete.png" alt="<?php echo esc_attr(__('Delete', 'geeky-bot')); ?>" class="geekybot-action-img">
                                                     <?php echo esc_html(__('Delete Story', 'geeky-bot')); ?>
                                                 </a>
@@ -296,19 +313,19 @@ if (!GEEKYBOTincluder::GEEKYBOT_getTemplate('templates/admin/header',array('modu
                                                 </a>
                                                 <?php
                                                 if (isset(geekybot::$_data[0]['woo_story']->status) && geekybot::$_data[0]['woo_story']->status == 1) { ?>
-                                                    <a class="geekybot-table-act-btn geekybot-delete" href="<?php echo esc_url(wp_nonce_url(admin_url('admin.php?page=geekybot_stories&task=changeStatus&action=geekybottask&status=0&storyid='.esc_attr(geekybot::$_data[0]['woo_story']->id)),'change-status')); ?>" title="<?php echo esc_attr(__('Disable', 'geeky-bot')); ?>">
+                                                    <a class="geekybot-table-act-btn geekybot-delete geekybot-status-btn" href="<?php echo esc_url(wp_nonce_url(admin_url('admin.php?page=geekybot_stories&task=changeStatus&action=geekybottask&status=0&storyid='.esc_attr(geekybot::$_data[0]['woo_story']->id)),'change-status-'.geekybot::$_data[0]['woo_story']->id)); ?>" title="<?php echo esc_attr(__('Disable', 'geeky-bot')); ?>">
                                                         <img src="<?php echo esc_url(GEEKYBOT_PLUGIN_URL); ?>includes/images/disable.png" alt="<?php echo esc_attr(__('Disable', 'geeky-bot')); ?>" class="geekybot-action-img">
                                                         <?php echo esc_html(__('Disable', 'geeky-bot')); ?>
                                                     </a>
                                                     <?php 
                                                 } else { ?>
-                                                    <a class="geekybot-table-act-btn geekybot-delete" href="<?php echo esc_url(wp_nonce_url(admin_url('admin.php?page=geekybot_stories&task=changeStatus&action=geekybottask&status=1&storyid='.esc_attr(geekybot::$_data[0]['woo_story']->id)),'change-status')); ?>" title="<?php echo esc_attr(__('Active', 'geeky-bot')); ?>">
+                                                    <a class="geekybot-table-act-btn geekybot-delete geekybot-status-btn" href="<?php echo esc_url(wp_nonce_url(admin_url('admin.php?page=geekybot_stories&task=changeStatus&action=geekybottask&status=1&storyid='.esc_attr(geekybot::$_data[0]['woo_story']->id)),'change-status-'.geekybot::$_data[0]['woo_story']->id)); ?>" title="<?php echo esc_attr(__('Active', 'geeky-bot')); ?>">
                                                         <img src="<?php echo esc_url(GEEKYBOT_PLUGIN_URL); ?>includes/images/active.png" alt="<?php echo esc_attr(__('Active', 'geeky-bot')); ?>" class="geekybot-action-img">
                                                         <?php echo esc_html(__('Active', 'geeky-bot')); ?>
                                                     </a>
                                                     <?php 
                                                 } ?>
-                                                <a class="geekybot-table-act-btn geekybot-delete" href="<?php echo esc_url(wp_nonce_url(admin_url('admin.php?page=geekybot_stories&task=removeStory&action=geekybottask&geekybot-cb='.esc_attr(geekybot::$_data[0]['woo_story']->id)),'delete-story')); ?>" onclick="return confirmdelete('<?php echo esc_attr(__('Are you sure to delete', 'geeky-bot')).' ?'; ?>');" title="<?php echo esc_attr(__('Delete Story', 'geeky-bot')); ?>">
+                                                <a class="geekybot-table-act-btn geekybot-delete geekybot-delete-btn" href="<?php echo esc_url(wp_nonce_url(admin_url('admin.php?page=geekybot_stories&task=removeStory&action=geekybottask&geekybot-cb='.esc_attr(geekybot::$_data[0]['woo_story']->id)),'delete-story-'.geekybot::$_data[0]['woo_story']->id)); ?>" title="<?php echo esc_attr(__('Delete Story', 'geeky-bot')); ?>">
                                                     <img src="<?php echo esc_url(GEEKYBOT_PLUGIN_URL); ?>includes/images/control_panel/delete.png" alt="<?php echo esc_attr(__('Delete', 'geeky-bot')); ?>" class="geekybot-action-img">
                                                     <?php echo esc_html(__('Delete Story', 'geeky-bot')); ?>
                                                 </a>
@@ -370,13 +387,6 @@ if (!GEEKYBOTincluder::GEEKYBOT_getTemplate('templates/admin/header',array('modu
                         echo wp_kses(GEEKYBOTlayout::GEEKYBOT_getNoRecordFound($msg,$link), GEEKYBOT_ALLOWED_TAGS);
                     }
                     ?>
-                </div>
-            </div>
-            <div id="geekybotadmin_black_wrapper_built_loading" style="display: none;" ></div>
-            <div class="geekybotadmin-built-story-loading" id="geekybotadmin_built_loading" style="display: none;" >
-                <img src="<?php echo esc_url(GEEKYBOT_PLUGIN_URL); ?>includes/images/spinning-wheel.gif" />
-                <div class="geekybotadmin-built-story-loading-text">
-                    <?php echo esc_html(__('Please wait a moment; this may take some time.','geeky-bot')); ?>
                 </div>
             </div>
         </div>

@@ -19,7 +19,10 @@ $geekybot_js ="
             <?php  wp_kses(GEEKYBOTincluder::GEEKYBOT_getTemplate('templates/admin/pagetitle',array('module' => 'websearch','layouts' => 'formwebsearch')), GEEKYBOT_ALLOWED_TAGS); ?>
          	<!-- page content -->
             <div id="geekybot-admin-wrapper">
-    		    <form id="geekybot-form" class="geekybot-form" method="post" action="<?php echo esc_url(wp_nonce_url(admin_url("admin.php?page=geekybot_websearch&task=savewebsearch"),"save-websearch")); ?>">
+                <?php
+                $nonce_id = isset(geekybot::$_data[0]->id) ? geekybot::$_data[0]->id : '';
+                ?>
+    		    <form id="geekybot-form" class="geekybot-form" method="post" action="<?php echo esc_url(wp_nonce_url(admin_url("admin.php?page=geekybot_websearch&task=savewebsearch"),"save-websearch-".$nonce_id)); ?>">
                     <div class="geekybot-websearch-support-section">
                         <div class="geekybot-websearch-support-imgwrp">
                             <img src="<?php echo esc_url(GEEKYBOT_PLUGIN_URL); ?>includes/images/problem.png" title="<?php echo esc_attr(__('Help', 'geeky-bot')); ?>" alt="<?php echo esc_attr(__('Help', 'geeky-bot')); ?>" class="geekybot-websearch-support-img">
@@ -120,7 +123,10 @@ $geekybot_js ="
                 <div class="geekybot-template-section">
                     <?php
                     if (!empty($all_meta_keys)) { ?>
-                        <form id="geekybot-custom-listing" class="geekybot-form" method="post" action="<?php echo esc_url(wp_nonce_url(admin_url("admin.php?page=geekybot_websearch&task=savecustomlisting"), "save-custom-listing")); ?>">
+                        <?php
+                        $nonce_id = isset(geekybot::$_data[0]->post_type) ? geekybot::$_data[0]->post_type : '';
+                        ?>
+                        <form id="geekybot-custom-listing" class="geekybot-form" method="post" action="<?php echo esc_url(wp_nonce_url(admin_url("admin.php?page=geekybot_websearch&task=savecustomlisting"), "save-custom-listing-".$nonce_id)); ?>">
                             <?php
                             if (empty(geekybot::$_data[0]->style_id) && empty(geekybot::$_data[0]->text_id)) { ?>
                                 <div class="geekybot-custom-listing-tmplate-infowrp">
