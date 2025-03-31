@@ -30,7 +30,7 @@ class GEEKYBOTpremiumpluginModel {
             throw new Exception( 'License could not activate. Please contact support.' );
         } catch ( Exception $e ) {
             $data = '<div class="notice notice-error is-dismissible">
-                    <p>'.wp_kses_post($e->GEEKYBOT_getMessage()).'.</p>
+                    <p>'.wp_kses_post($e->getMessage()).'.</p>
                 </div>';
             echo wp_kses($data, GEEKYBOT_ALLOWED_TAGS);
             return false;
@@ -446,7 +446,7 @@ class GEEKYBOTpremiumpluginModel {
 
     function geekybotCheckUpdates(){
         include_once GEEKYBOT_PLUGIN_PATH . 'includes/updates/updates.php';
-        GEEKYBOTupdates::GEEKYBOT_checkUpdates(110);
+        GEEKYBOTupdates::GEEKYBOT_checkUpdates(111);
         return 1;
     }
 

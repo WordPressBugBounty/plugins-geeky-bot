@@ -245,12 +245,12 @@ div#geekybotadmin-wrapper div#geekybotadmin-data div#geekybot-admin-wrapper div.
 div#geekybotadmin-wrapper div.geekybotadmin-action-data form.geekybot-filter-form div.geekybot-head-btn.geekybot-action-head-btn div#geekybot-page-quick-actions-add a.geekybot-Intents-btn:hover {background-color: #fff;border:1px solid #5e4ae3;color: #5e4ae3;}
 div.geekybot-head-btn{float: right; width: 40%;padding-left:20px;}
 div.geekybot-search-btn{float: left;width: 60%;}
-div.geekybot-search-btn div.window-two-btm-inner {float: left;width: 100%;padding: 8px;}
-div.geekybot-search-btn div.window-two-btm-inner button.geekybot-form-search-btn {float: left;width: 25px;border: unset;padding: unset;}
-div.geekybot-search-btn div.window-two-btm-inner button.geekybot-form-search-btn:focus {outline: none;box-shadow: unset;}
-div.geekybot-search-btn div.window-two-btm-inner button.geekybot-form-search-btn i {font-size: 22px;color: #bebcbc;}
-div.geekybot-search-btn div.window-two-btm-inner input#searchtitle {background: transparent;border: unset;width: calc(100% - 25px);float: left;margin: unset;}
-div.geekybot-search-btn div.window-two-btm-inner input#searchtitle:focus {outline: none;box-shadow: unset;}
+div.geekybot-search-btn div.geekybot-window-bottom-inner {float: left;width: 100%;padding: 8px;}
+div.geekybot-search-btn div.geekybot-window-bottom-inner button.geekybot-form-search-btn {float: left;width: 25px;border: unset;padding: unset;}
+div.geekybot-search-btn div.geekybot-window-bottom-inner button.geekybot-form-search-btn:focus {outline: none;box-shadow: unset;}
+div.geekybot-search-btn div.geekybot-window-bottom-inner button.geekybot-form-search-btn i {font-size: 22px;color: #bebcbc;}
+div.geekybot-search-btn div.geekybot-window-bottom-inner input#searchtitle {background: transparent;border: unset;width: calc(100% - 25px);float: left;margin: unset;}
+div.geekybot-search-btn div.geekybot-window-bottom-inner input#searchtitle:focus {outline: none;box-shadow: unset;}
 div#geekybot-reset-btn-main{float: left;margin-left: 5px;padding: 9px;position: relative;width: 50px;min-height: 50px;cursor: pointer;}
 div#geekybot-reset-btn-main img {position: absolute;top: 0;bottom: 0;left: 0;right: 0;margin: auto;max-width: 100%;max-height: 100%;width: 55%;}
 div#geekybotadmin-data div.geekybot-error-messages-wrp {text-align: center;}
@@ -359,12 +359,12 @@ div#geekybotadmin-wrapper div#geekybotadmin-data div#geekybot-admin-wrapper form
 div#geekybotadmin-wrapper div.geekybotadmin-cahthistory-data form.geekybot-filter-form,
 div#geekybotadmin-wrapper div#geekybotadmin-data form.geekybot-filter-form {float: left;width: 100%;padding-bottom: 15px;}
 div#geekybotadmin-wrapper div#geekybotadmin-data div#geekybot-admin-wrapper form.geekybot-filter-form div.geekybot-searchbar-btn{float: left;width: 60%;}
-div#geekybotadmin-wrapper div#geekybotadmin-data div#geekybot-admin-wrapper form.geekybot-filter-form div.geekybot-searchbar-btn div.window-two-btm-inner.geekybot-story-inner{float: left;width: 60%;}
-div#geekybotadmin-wrapper div#geekybotadmin-data div#geekybot-admin-wrapper form.geekybot-filter-form div.geekybot-searchbar-btn div.window-two-btm-inner.geekybot-story-inner input.inputbox.geekybot-form-input-field{background: #fff;border-radius: unset;margin-right: 5px; width: calc(100% - 50px);float: left;margin: unset;padding: 9px 8px;border-radius: 4px;}
-div#geekybotadmin-wrapper div#geekybotadmin-data div#geekybot-admin-wrapper form.geekybot-filter-form div.geekybot-searchbar-btn div.window-two-btm-inner.geekybot-story-inner button.button.geekybot-form-search-btn{float:right;width:45px;padding:8px 9px;border-radius: unset;border: unset; background-color: #5e4ae3;}
-div#geekybotadmin-wrapper div#geekybotadmin-data div#geekybot-admin-wrapper form.geekybot-filter-form div.geekybot-searchbar-btn div.window-two-btm-inner.geekybot-story-inner button.button.geekybot-form-search-btn:focus,
+div#geekybotadmin-wrapper div#geekybotadmin-data div#geekybot-admin-wrapper form.geekybot-filter-form div.geekybot-searchbar-btn div.geekybot-window-bottom-inner.geekybot-story-inner{float: left;width: 60%;}
+div#geekybotadmin-wrapper div#geekybotadmin-data div#geekybot-admin-wrapper form.geekybot-filter-form div.geekybot-searchbar-btn div.geekybot-window-bottom-inner.geekybot-story-inner input.inputbox.geekybot-form-input-field{background: #fff;border-radius: unset;margin-right: 5px; width: calc(100% - 50px);float: left;margin: unset;padding: 9px 8px;border-radius: 4px;}
+div#geekybotadmin-wrapper div#geekybotadmin-data div#geekybot-admin-wrapper form.geekybot-filter-form div.geekybot-searchbar-btn div.geekybot-window-bottom-inner.geekybot-story-inner button.button.geekybot-form-search-btn{float:right;width:45px;padding:8px 9px;border-radius: unset;border: unset; background-color: #5e4ae3;}
+div#geekybotadmin-wrapper div#geekybotadmin-data div#geekybot-admin-wrapper form.geekybot-filter-form div.geekybot-searchbar-btn div.geekybot-window-bottom-inner.geekybot-story-inner button.button.geekybot-form-search-btn:focus,
 div#geekybotadmin-wrapper div.geekybotadmin-cahthistory-data form.geekybot-filter-form div.geekybot-searchbar-btn div.geekybot-story-inner button.button.geekybot-form-search-btn:focus {box-shadow: unset;border:unset;}
-div#geekybotadmin-wrapper div#geekybotadmin-data div#geekybot-admin-wrapper form.geekybot-filter-form div.geekybot-searchbar-btn div.window-two-btm-inner.geekybot-story-inner button.button.geekybot-form-search-btn i.fa.fa-search,
+div#geekybotadmin-wrapper div#geekybotadmin-data div#geekybot-admin-wrapper form.geekybot-filter-form div.geekybot-searchbar-btn div.geekybot-window-bottom-inner.geekybot-story-inner button.button.geekybot-form-search-btn i.fa.fa-search,
 div#geekybotadmin-wrapper div.geekybotadmin-cahthistory-data form.geekybot-filter-form div.geekybot-searchbar-btn div.geekybot-story-inner button.button.geekybot-form-search-btn i.fa.fa-search,
 div#geekybotadmin-wrapper div#geekybotadmin-data div#geekybot-admin-wrapper form.geekybot-filter-form div.geekybot-head-btn {text-align: right;}
 div#geekybotadmin-wrapper div#geekybotadmin-data div#geekybot-admin-wrapper button.button.geekybot-form-save-btn {background-color: #5e4ae3;border: 1px solid transparent;font-weight: bold;border-radius: 7px;line-height: initial;color: #fff;box-shadow: 0 1px 1px rgb(0 0 0 / 4%);font-size: 16px;padding: 17px 20px;width: 100%;margin-bottom: 15px;min-width: 360px;}
@@ -457,10 +457,10 @@ div#geekybotadmin-wrapper div#geekybotadmin-data .geekybot_story_search_section_
 div#geekybotadmin-wrapper div#geekybotadmin-data .geekybot_story_search_section_mainwrp #geekybotSearchResultsWrp .response-search-result{width: auto;display: inline-block;border: 1px solid #523e0a;padding:14px 10px;margin: 0 3px;background: #f7f4c375;color: #523e0a;cursor:pointer;font-size: 16px;}
 div#geekybotadmin-wrapper div#geekybotadmin-data .geekybot_story_search_section_mainwrp #geekybotSearchResultsWrp .user-input-search-result{width: auto;display: inline-block;border: 1px solid #2b526c;padding:14px 10px;margin: 0 3px;background: #cde9f675;color: #2b526c;cursor:pointer;font-size: 16px;}
 div#geekybotadmin-wrapper div#geekybotadmin-data .geekybot_story_main_search_wrp div#geekybot-searchbar {width: 475px; display: flex;align-items: center;}
-div#geekybotadmin-wrapper div#geekybotadmin-data .geekybot_story_main_search_wrp div.window-two-btm-inner.geekybot-story-inner {width: 420px;}
+div#geekybotadmin-wrapper div#geekybotadmin-data .geekybot_story_main_search_wrp div.geekybot-window-bottom-inner.geekybot-story-inner {width: 420px;}
 div#geekybotadmin-wrapper div#geekybotadmin-data .geekybot_story_main_search_wrp .inputbox.geekybot-form-input-field {width: calc(100% - 152px)}
 div#geekybotadmin-wrapper div#geekybotadmin-data .geekybot_story_main_search_wrp select.inputbox.geekybot-form-input-field {width: 90px;height: 50px;}
-div#geekybotadmin-wrapper div#geekybotadmin-data div.window-two-btm-inner.geekybot-story-inner button{margin-bottom: 0;}
+div#geekybotadmin-wrapper div#geekybotadmin-data div.geekybot-window-bottom-inner.geekybot-story-inner button{margin-bottom: 0;}
 
 /*node remove*/
 div#geekybotadmin-wrapper div#geekybotadmin-data div#geekybot-admin-wrapper div.geekybot_story form.geekybot-form div.geekybot_story_left.story_wrp div.geekybot_story_wrp div.geekybot_story_leftaction_wrp .geekybot_node_remove{position: absolute;top: -10px;right: 0px;width: 27px;display: none;}
@@ -557,7 +557,7 @@ span.help-block.form-error{width: 100%;float: right; display: inline-block;margi
 .midnode.node .box {border:  1px solid #3b327d;}
 .drop_zone_grand_paraent_wrp.drop_zone_grand_paraent_visible{display: inline-block;}
 .midnode .drop_zone_grand_paraent_wrp{top: -31px;right: -32px;}
-.drop_zone_grand_paraent_wrp{display: none;float: left;width: 80px;height: 80px;text-align: center;padding: 22px;background-color: #cbc4f6;border-radius: 50%;position: absolute;z-index: 999;top: -20px;right: -60px;opacity: 0.8;}
+.drop_zone_grand_paraent_wrp{display: none;float: left;width: 80px;height: 80px;text-align: center;padding: 22px;background-color: #cbc4f6;border-radius: 50%;position: absolute;z-index: 999;top: -17px;right: -40px;opacity: 0.8;}
 .drop_zone_paraent_wrp{border: 2px solid #604de3;color: #604de3;float: left;width: 35px;height: 35px;text-align: center;padding-top: 3px;background-color: #FFF;border-radius: 50%;display: flex;align-items: center;justify-content: center;}
 /*  scrool  */
 div#geekybot_container{float: left;}
@@ -692,10 +692,10 @@ div#geekybotadmin-wrapper div#geekybotadmin-data div#geekybot-admin-wrapper div.
 div#geekybotadmin-wrapper div#geekybotadmin-data div#geekybot-admin-wrapper div.chatHistory div.chatHistory.chatcontent div.body div.body-content div.body-content-message span {font-size: 16px;display: inline-block;padding: 3px 0;line-height: 23px;text-decoration: underline;color: #5e4ae3;}
 div#geekybotadmin-wrapper div#geekybotadmin-data div#geekybot-admin-wrapper div.chatHistory div.chatHistory.chatcontent div.body div.body-content div.body-content-message span.geekybot-history-page-subheading{text-decoration: unset;}
 div#geekybotadmin-wrapper div#geekybotadmin-data div#geekybot-admin-wrapper div.chatHistory div.chatHistory.chatcontent div.body div.body-content div.body-content-message span.body-content-message-value {float: left;width: 100%;}
-div#geekybotadmin-wrapper div#geekybotadmin-data div#geekybot-admin-wrapper div.chatHistory div.chatHistory.chatcontent div.body div.body-content div.body-content-message div.actual_msg_btn {float: left;width: 100%;margin-top: 10px;}
-div#geekybotadmin-wrapper div#geekybotadmin-data div#geekybot-admin-wrapper div.chatHistory div.chatHistory.chatcontent div.body div.body-content div.body-content-message div.actual_msg_btn li.actual_msg.actual_msg_btn {text-align: left;float: left;list-style: none;width: auto;margin: unset;padding: 0px 0 10px 5px;}
-div#geekybotadmin-wrapper div#geekybotadmin-data div#geekybot-admin-wrapper div.chatHistory div.chatHistory.chatcontent div.body div.body-content div.body-content-message div.actual_msg_btn li.actual_msg.actual_msg_btn .wp-chat-btn {background-color: transparent;padding: 0.3em 1.4em;text-align: center;font-size: 16px;transition: 0.3s;display: inline-block;text-decoration: none;cursor: pointer;border-radius: 30px;outline: none;color: #e92e4d;border: 1px solid #e92e4d;}
-div#geekybotadmin-wrapper div#geekybotadmin-data div#geekybot-admin-wrapper div.chatHistory div.chatHistory.chatcontent div.body div.body-content div.body-content-message div.actual_msg_btn li.actual_msg.actual_msg_btn .wp-chat-btn span {padding: 0;text-decoration: unset;}
+div#geekybotadmin-wrapper div#geekybotadmin-data div#geekybot-admin-wrapper div.chatHistory div.chatHistory.chatcontent div.body div.body-content div.body-content-message div.geekybot-message-button {float: left;width: 100%;margin-top: 10px;}
+div#geekybotadmin-wrapper div#geekybotadmin-data div#geekybot-admin-wrapper div.chatHistory div.chatHistory.chatcontent div.body div.body-content div.body-content-message div.geekybot-message-button li.geekybot-message.geekybot-message-button {text-align: left;float: left;list-style: none;width: auto;margin: unset;padding: 0px 0 10px 5px;}
+div#geekybotadmin-wrapper div#geekybotadmin-data div#geekybot-admin-wrapper div.chatHistory div.chatHistory.chatcontent div.body div.body-content div.body-content-message div.geekybot-message-button li.geekybot-message.geekybot-message-button .wp-chat-btn {background-color: transparent;padding: 0.3em 1.4em;text-align: center;font-size: 16px;transition: 0.3s;display: inline-block;text-decoration: none;cursor: pointer;border-radius: 30px;outline: none;color: #e92e4d;border: 1px solid #e92e4d;}
+div#geekybotadmin-wrapper div#geekybotadmin-data div#geekybot-admin-wrapper div.chatHistory div.chatHistory.chatcontent div.body div.body-content div.body-content-message div.geekybot-message-button li.geekybot-message.geekybot-message-button .wp-chat-btn span {padding: 0;text-decoration: unset;}
 div#geekybotadmin-wrapper div#geekybotadmin-data div#geekybot-admin-wrapper div.chatHistory div.chatHistory.chatcontent div.body div.body-content.right-bot-message div.body-content-message span{color: #373435;}
 div#geekybotadmin-wrapper div#geekybotadmin-data div#geekybot-admin-wrapper div.chatHistory div.chatHistory.chatcontent div.body div.body-content.right-bot-message div.body-content-message span a{color: #373435;}
 div#geekybotadmin-wrapper div#geekybotadmin-data div#geekybot-admin-wrapper div.chatHistory div.chatHistory.chatcontent div.body div.body-content.right-bot-message div.body-content-message span img{max-width: 100%;}
@@ -755,7 +755,7 @@ span.geekybot-dasdhboard-history-shot-heading{display: none;}
 .body-content-message-value .geekybot_wc_cart_total .geekybot_wc_cart_total_value span{padding: 0 !important;}
 .body-content-message-value .geekybot_wc_cart_checkout {float: left;width: 80%;min-width: 200px;margin: 12px 10% 15px;text-align: center;text-decoration: underline;padding: 5px;font-weight: 500;color: #373435;background-color: #FFF;border: 2px solid #e3e3e3}
 .body-content-message-value .geekybot_article_message_wrp {float: left;width: 100%;margin: 10px 0;font-weight: 500;}
-.body-content-message-value .actual_msg_text_wrp {float: left;width: 100%;}
+.body-content-message-value .geekybot-message-text_wrp {float: left;width: 100%;}
 .body-content-message-value .geekybot_article_bnt_wrp {float: left;width: 100%;}
 .body-content-message-value .geekybot_article_bnt_wrp .geekybot_article_bnt {border: unset;border-bottom: 1px solid #e6e6e6;padding: 5px !important;margin: 5px 0px 10px;display: inline-block;cursor: pointer;background: #FFF;color: #373435;float: left;text-align: left;min-width: 200px;border-radius: unset;}
 .body-content-message-value .geekybot_article_bnt_wrp .geekybot_article_bnt img {float: right;padding-top: 8px;}
@@ -793,135 +793,135 @@ div#geekybotadmin-data div#geekybot-admin-wrapper div.chatHistory div.geekybot-e
 .geekybot-jsst_userpages{display: flex;flex-wrap: wrap;float: right;margin-top: 30px;justify-content: end;}
 /* appearance chatbot */
 .geekybot_wc_product_heading {float: left;width: 100%;margin: 10px 0px 5px;font-size: 17px;color: #373435;}
-div.geekybot-appearance-right-section div#main-messages .chat-content .actual_msg_text.geekybot_wc_product_wrp .geekybot_wc_product_heading{margin:10px 2px 15px;margin-top: 0;}
-div.geekybot-appearance-right-section div.chat-open-dialog-img img.wp-chat-image {position: absolute;top: 0;bottom: 0;left: 0;right: 0;margin: auto;width:100%;height: auto;}
-div.geekybot-appearance-right-section .chat-button-destroy:focus, .chat-open-dialog:focus {outline: none;}
-div.geekybot-appearance-right-section .chat-button-destroy span.fa-close:before {font-size: 24px;color: white;text-align: center;margin: 0px 15px 2px;display: block;}
-div.geekybot-appearance-right-section .chat-button-destroy span.fa-close {float: right;margin-right: -23px;}
-div.geekybot-appearance-right-section .chat-open-dialog span.fa-question {float: right;margin-right: -15px;}
-div.geekybot-appearance-right-section div.chat-open-dialog-main {position: absolute; z-index: 9999;bottom: 5px;right: 32px;border-radius: 50%;overflow: hidden;box-shadow: 0 1px 6px rgb(0 0 0 / 6%), 0 2px 32px rgb(0 0 0 / 16%);-webkit-transition: all ease .5s;-moz-transition: all ease .5s;-ms-transition: all ease .5s;-o-transition: all ease .5s;transition: all ease .5s;cursor: pointer;padding: 7px;background-color: transparent;}
-div.geekybot-appearance-right-section div.chat-open-dialog-main-inner {width: 60px;height: 60px;border-radius: 50%;position: relative;overflow: hidden;}
-div.geekybot-appearance-right-section button.chat-open-dialog {border: none;width: 60px;height: 60px;border-radius: 50%;overflow: hidden;box-shadow: 0 1px 6px rgb(0 0 0 / 6%), 0 2px 32px rgb(0 0 0 / 16%);}
-div.geekybot-appearance-right-section img.wp-chat-image{max-width: none; }
-div.geekybot-appearance-right-section div.chat-open-dialog-img{float: left;width: 100%;}
-div.geekybot-appearance-right-section button.chat-open-dialog,button.chat-button-destroy,.chat-button-destroy.active,.chat-open-dialog.active {bottom: 30px;right: 50px;height: 50px;background-image: unset;background: unset !important;border: unset;box-shadow: unset;}
-div.geekybot-appearance-right-section button.chat-open-dialog:hover,button.chat-button-destroy:hover,.chat-button-destroy.active:hover,.chat-open-dialog.active:hover{background: unset !important;border: unset;box-shadow: unset;}
-div.geekybot-appearance-right-section button.chat-open-dialog.active {-webkit-transition: all ease .5s;-moz-transition: all ease .5s;-ms-transition: all ease .5s;-o-transition: all ease .5s;transition: all ease .5s;}
-div.geekybot-appearance-right-section div.chat-open-dialog-main-inner{position: relative;}
-div.geekybot-appearance-right-section div.chat-open-dialog-main-inner::before{position: absolute;bottom: 0;right: 0; width: 95%;height: 90%; content: ""; background-image: url("../../includes/images/chat-img/transparent-color.png") !important;background-position: center;background-repeat: no-repeat;background-size: cover;}
-div.geekybot-appearance-right-section div.chat-popup .chat-windows .chat-window-two .window-two-top .window-two-top-inner .window-two-top-inner-left .window-two-profile::before{position: absolute;bottom: 0;right: 0; width: 95%;height: 90%; content: ""; background-image: url("../../includes/images/chat-img/transparent-color.png") !important;background-position: center;background-repeat: no-repeat;background-size: cover;}
-div.geekybot-appearance-right-section button.chat-button-destroy {position: absolute; opacity: 0;z-index: -5;bottom: 20px;right: 40px;width: 60px;height: 60px;border-radius: 50%;border: none;}
-div.geekybot-appearance-right-section button.chat-button-destroy.active::after {position: absolute;content: '';width: 0;height: 0;right: 12px;border-left: 15px solid transparent;border-right: 15px solid transparent;bottom: 70px;border-top: 20px solid #ededef;}
-div.geekybot-appearance-right-section button.chat-button-destroy.active-inner.active::after {border-top: 20px solid #ededef;}
-div.geekybot-appearance-right-section button.chat-button-destroy.active {opacity: 1;z-index: 9999;cursor: pointer;}
-div.geekybot-appearance-right-section .chat-popup {bottom: 120px;right: 40px;width: 370px;max-width: 100%; max-height: 590px;height: 0;opacity: 0;-webkit-transition: all ease .5s;-moz-transition: all ease .5s;-ms-transition: all ease .5s;-o-transition: all ease .5s;transition: all ease .5s;background: white;overflow: hidden;text-align: center;color: #fff;}
-div.geekybot-appearance-right-section .chat-popup.active {float: inline-end; opacity: 1;height: 600px;-webkit-box-shadow: 0 5px 40px rgba(0, 0, 0, 0.16);-moz-box-shadow: 0 5px 40px rgba(0, 0, 0, 0.16);box-shadow: 0 5px 40px rgba(0, 0, 0, 0.16);border-radius: 8px;-webkit-transition: all ease .5s;-moz-transition: all ease .5s;-ms-transition: all ease .5s;-o-transition: all ease .5s;transition: all ease .5s;z-index: 999999;}
-div.geekybot-appearance-right-section .chat-popup.chat-init .chat-windows {transform: translateX(-370px);-webkit-transition: all ease .5s;-moz-transition: all ease .5s;-ms-transition: all ease .5s;-o-transition: all ease .5s;transition: all ease .5s;}
-div.geekybot-appearance-right-section .chat-popup .chat-windows {width: 200%;}
-div.geekybot-appearance-right-section .chat-popup .chat-windows .chat-window-one {background-image: url(../../includes/images/chat-img/start-screen-bg.png);float: left;width: 50%;height: 600px;background-position: center;background-repeat: no-repeat;background-size: 100% 100%;}
-div.geekybot-appearance-right-section .chat-popup .chat-windows .chat-window-two {width: 50%;height: 600px;position: relative;overflow-y: auto;overflow-x: hidden;}
-div.geekybot-appearance-right-section .chat-window-two ~ button.chat-button-destroy.active::after{background-color: green !important;}
-div.geekybot-appearance-right-section div#main-messages div.geekybot-title-main-overlay div.geekybot-title-overlay {position: absolute;background-color: #000 !important;border-bottom-left-radius: 6px;border-bottom-right-radius: 6px; opacity: .2;top: 84px;width: 100%;height: 10px;left: 0;right: 0;z-index: 9998;bottom: 0;top: auto;}
-div.geekybot-appearance-right-section div#main-messages div.geekybot-title-main-overlay {position: relative;width: 100%;}
-div.geekybot-appearance-right-section .chat-popup .chat-windows .chat-window-two div.chat-content {float: left;width: 100%;}
-div.geekybot-appearance-right-section .chat-popup .chat-windows .chat-window-two div.chat-content li.actual_msg {text-align: right;float: right;list-style: none;padding: 15px;width:calc(100% - 5px);}
-div.geekybot-appearance-right-section .chat-popup .chat-windows .chat-window-two div.chat-content li.actual_msg.actual_msg_user section.actual_msg_text {padding: 5px 10px;border-radius: 5px;float: right;max-width: calc(100% - 53px);margin-top: 5px;}
-div.geekybot-appearance-right-section .chat-popup .chat-windows .chat-window-two div.chat-content li.actual_msg.actual_msg_user section.actual_msg_user-img {margin-left: 8px;float: right;background-color:#e6e7e8;border-radius: 50%;}
-div.geekybot-appearance-right-section .chat-popup .chat-windows .chat-window-two div.chat-content li.actual_msg.actual_msg_user:first-child {margin-top: 100px;}
-div.geekybot-appearance-right-section .chat-popup .chat-windows .chat-window-two div.chat-content li.actual_msg.actual_msg_adm {text-align: left;float: left;}
-div.geekybot-appearance-right-section .chat-popup .chat-windows .chat-window-two div.chat-content li.actual_msg.actual_msg_adm section.actual_msg_adm-img {margin-right: 8px;float: left;} 
-div.geekybot-appearance-right-section .chat-popup .chat-windows .chat-window-two div.chat-content li.actual_msg.actual_msg_adm section.actual_msg_adm-img::before{position: absolute;bottom: 0;right: 0; width: 95%;height: 90%; content: ""; background-image: url("../../includes/images/chat-img/transparent-color.png") !important;background-position: center;background-repeat: no-repeat;background-size: cover;} 
-div.geekybot-appearance-right-section .chat-popup .chat-windows .chat-window-two div.chat-content li.actual_msg.actual_msg_adm section.actual_msg_adm-img,
-div.geekybot-appearance-right-section .chat-popup .chat-windows .chat-window-two div.chat-content li.actual_msg.actual_msg_user section.actual_msg_user-img {position: relative;width: 45px;height: 45px;border-radius: 50%;overflow: hidden;}
-div.geekybot-appearance-right-section .chat-popup .chat-windows .chat-window-two div.chat-content li.actual_msg.actual_msg_adm section.actual_msg_adm-img img,
-div.geekybot-appearance-right-section .chat-popup .chat-windows .chat-window-two div.chat-content li.actual_msg.actual_msg_user section.actual_msg_user-img img {position: absolute;top: 0;bottom: 0;left: 0; right: 0;margin: auto;width:100%;height: auto;}
-div.geekybot-appearance-right-section .chat-popup .chat-windows .chat-window-two div.chat-content li.actual_msg.actual_msg_adm section.actual_msg_text {background-color: #ededef;padding: 5px 10px;border-radius: 5px;color: #373435;float: left;max-width: calc(100% - 53px);box-sizing: border-box;}
-div.geekybot-appearance-right-section .chat-popup .chat-windows .chat-window-two div.chat-content li.actual_msg.actual_msg_btn {text-align:left;float:left;list-style: none;width: auto;margin: unset;padding: 10px 0 10px 5px;}
-div.geekybot-appearance-right-section .chat-popup .chat-windows .chat-window-two div.chat-content li.actual_msg.actual_msg_btn section {background-color: unset;color: unset;padding: unset;border-radius: unset;}
-div.geekybot-appearance-right-section .chat-popup .chat-windows .chat-window-two div.chat-content li.actual_msg.actual_msg_btn .wp-chat-btn {background-color: transparent;padding: 0.3em 1.4em;text-align: center;font-size: 14px;transition: 0.3s;display: inline-block;text-decoration: none;cursor: pointer;border-radius: 30px;outline: none;}
-div.geekybot-appearance-right-section .chat-popup .chat-windows .chat-window-two div.chat-content div.actual_msg_btn {float: left;width: 100%;padding-left: 58px;}
-div.geekybot-appearance-right-section .chat-popup .chat-windows .chat-window-two div.chat-content div.actual_msg_btn:last-child {margin-bottom: 80px;}
-div.geekybot-appearance-right-section .chat-popup .chat-windows .chat-window-two .window-two-top .window-two-top-inner {float: left;width: 100%;}
-div.geekybot-appearance-right-section .chat-popup .chat-windows .chat-window-two .window-two-top .window-two-top-inner .window-two-top-inner-left {float: left;width: calc(100% - 74px);}
-div.geekybot-appearance-right-section .chat-popup .chat-windows .chat-window-two .window-two-top .window-two-top-inner .window-two-top-inner-left .window-two-profile {box-sizing: border-box; float: left;width: 80px;height: 80px;border:5px solid #fff;border-radius: 50%;position: absolute;left: 15px; top: 20px;overflow: hidden;z-index: 9999;}
-div.geekybot-appearance-right-section .chat-popup .chat-windows .chat-window-two .window-two-top .window-two-top-inner .window-two-top-inner-left i.fa.fa-circle {position: absolute;top: 78px;z-index: 9999;left: 75px;color: #0caa0c;font: normal normal normal 14px/1 FontAwesome !important;}
-div.geekybot-appearance-right-section .chat-popup .chat-windows .chat-window-two .window-two-top .window-two-top-inner .window-two-top-inner-left .window-two-profile .window-two-profile-img {position: relative;width: 100%;height: 100%;box-sizing: border-box;}
-div.geekybot-appearance-right-section .chat-popup .chat-windows .chat-window-two .window-two-top .window-two-top-inner .window-two-top-inner-left .window-two-profile .window-two-profile-img img {position: absolute;top: 0;bottom: 0;left: 0;right: 0;margin: auto;width: 100%;height: auto;}
-div.geekybot-appearance-right-section .chat-popup .chat-windows .chat-window-two .window-two-top .window-two-top-inner .window-two-top-inner-left .window-two-profile .window-two-profile-img i.fa.fa-circle {color: #03bb03;position: absolute;bottom: 8px;right: 0px;}
-div.geekybot-appearance-right-section .chat-popup .chat-windows .chat-window-two .window-two-top .window-two-top-inner .window-two-top-inner-left .window-two-profile-text {float: right;width: calc(100% - 90px);text-align: left;}
-div.geekybot-appearance-right-section .chat-popup .chat-windows .chat-window-two .window-two-top .window-two-top-inner .window-two-top-inner-left .window-two-profile-text .window-two-text {line-height: 1.6;}
-div.geekybot-appearance-right-section .chat-popup .chat-windows .chat-window-two .window-two-top .window-two-top-inner .window-two-top-inner-left .window-two-profile-text .window-two-text span {display: block;margin: 0 0 0 15px;max-width: 100%;overflow: hidden;text-overflow: ellipsis;white-space: nowrap;box-sizing: border-box;}
-div.geekybot-appearance-right-section .chat-popup .chat-windows .chat-window-two .window-two-top .window-two-top-inner .window-two-top-inner-left .window-two-profile-text .window-two-text span:first-child {font-size: 22px;font-weight: 600;}
-div.geekybot-appearance-right-section .chat-popup .chat-windows .chat-window-two .window-two-top .window-two-top-inner .window-two-top-inner-right {float: left;width: 74px;}
-div.geekybot-appearance-right-section .chat-popup .chat-windows .chat-window-two .window-two-top .window-two-top-inner .window-two-top-inner-right .window-two-top-dot-img {height: 55px;position: relative;width: 100%;}
-div.geekybot-appearance-right-section .chat-popup .chat-windows .chat-window-two .window-two-top .window-two-top-inner .window-two-top-inner-right .window-two-top-dot-img img {position: absolute;top: 5px;right: 15px;bottom: 0;max-width: 100%;max-height: 100%;margin: auto;}
-div.geekybot-appearance-right-section #send-message{position:fixed;top: 522px;padding: 10px 0 !important;background-color: #ededef;width:50%;border-top-left-radius: 30px;border-top-right-radius: 30px;}
-div.geekybot-appearance-right-section #send-message .window-two-btm-inner {float: left;width:calc(100% - 20px);margin: 0 10px; border: 1px solid #dbdbdb;border-radius: 30px;background-color: #fff;display: flex;align-items: center;flex-wrap: wrap;}
-div.geekybot-appearance-right-section #send-message .window-two-btm-inner .window-two-btm-inner-left {float: left;width: 84%;display: flex;align-items: center;}
-div.geekybot-appearance-right-section #send-message .window-two-btm-inner .window-two-btm-inner-left .fa-microphone {float: left;color: #bdbfc1;font-size: 24px;padding: 6px 10px;margin-top: 4px;border-right: 1px solid #bdbfc1;}
-div.geekybot-appearance-right-section #send-message .window-two-btm-inner .window-two-btm-inner-left a.chat_attachment{width: 36px;}
-div.geekybot-appearance-right-section #send-message .window-two-btm-inner .window-two-btm-inner-left a.chat_attachment i.fa.fa-circle {float: left;margin-left: 10px;}
-div.geekybot-appearance-right-section #send-message .border-0 {float: left;width:calc(100% - 10px);margin: unset;border: unset;border-radius: 30px;font-size: 19px;padding:12px 6px 12px 20px;outline: unset;color: initial;line-height: initial;height: auto;}
-div.geekybot-appearance-right-section #send-message .border-0:focus{box-shadow: unset !important;}
-div.geekybot-appearance-right-section #send-message .window-two-btm-inner .window-two-btm-inner-right {float: left;width:calc(16% - 15px);height: 35px;margin: 6px;}
-div.geekybot-appearance-right-section #send-message .window-two-btm-inner .window-two-btm-inner-right .window-two-btm-send-img {width: 100%;height: 100%;position: relative;border-radius: 50%;}
-div.geekybot-appearance-right-section #send-message .window-two-btm-inner .window-two-btm-inner-right .window-two-btm-send-img img {position: absolute;top: 0;bottom: 0;left: 0;right: 0;max-width: 60%;max-height: 60%;margin: auto;padding-top: 3px;}
-div.geekybot-appearance-right-section #msg_box:focus {border: none !important;}
-div.geekybot-appearance-right-section .chat-window-two li:last-child {margin-bottom: 70px;}
-div.geekybot-appearance-right-section .chat-popup .chat-header {border-radius: 8px 8px 0 0;padding: 35px 0;-webkit-transition: all ease .5s;-moz-transition: all ease .5s;-ms-transition: all ease .5s;-o-transition: all ease .5s;transition: all ease .5s;}
-div.geekybot-appearance-right-section .chat-popup .chat-header h4 {font-size: 24px;}
-div.geekybot-appearance-right-section .chat-popup .chat-header h4,
-div.geekybot-appearance-right-section .chat-popup .chat-windows .chat-middle h5 {color: #fff; font-weight:bold;line-height: 1.3;letter-spacing: normal;font-weight: 600;margin: 0;padding: 0 0 10px;}
-div.geekybot-appearance-right-section .chat-popup .chat-windows .chat-middle .chat-middle-inner-border {width: 130px;height: 130px;border: 3px dashed;border-radius: 50%;margin: auto;position: absolute;top: 0;right: 0;bottom: 0;left: 0;}
-div.geekybot-appearance-right-section .chat-popup .chat-windows .chat-middle .chat-middle-inner {width: 160px;height: 160px;border-radius: 50%;margin: auto;box-sizing: border-box;position: relative;}
-div.geekybot-appearance-right-section .chat-popup .chat-windows .chat-middle .chat-middle-inner-img {width: 110px;height: 110px;border-radius: 50%;position:absolute;margin: auto;top: 0;left: 0;bottom: 0;right: 0; overflow: hidden;}
-div.geekybot-appearance-right-section div.chat-popup .chat-windows .chat-middle .chat-middle-inner{border: 3px dashed #ef5e76 !important;}
-div.geekybot-appearance-right-section .chat-popup .chat-windows .chat-middle h5 {font-size: 22px;padding: 10px 92px;}
-div.geekybot-appearance-right-section .chat-popup .chat-windows .chat-middle .chat-middle-inner-img img {position: absolute;top: 0;bottom: 0;left: 0;right: 0;margin: auto;width:100%;height:auto;}
-div.geekybot-appearance-right-section .chat-popup .chat-windows .chat-start {width: 100%;margin: auto;}
-div.geekybot-appearance-right-section .chat-popup .chat-windows .chat-start .chat-start-inner {width:fit-content;display: flex;align-items: center;justify-content: center;flex-wrap: wrap; min-width: 120px; max-width: 80%;margin-left: auto;margin-right: auto;background-color: #fff;color: #3b3839;border-radius: 30px;padding:6px 11px 5px 20px;box-shadow: 1px 2px 4px 0px rgb(59 56 57 / 75%);margin-top: 50px;}
-div.geekybot-appearance-right-section .chat-popup .chat-windows .chat-start .chat-start-inner span {display: inline-block;}
-div.geekybot-appearance-right-section .chat-popup .chat-windows .chat-start .chat-start-inner span.chat-start-title {font-size: 16px;font-weight: 600;float: left;cursor: pointer;}
-div.geekybot-appearance-right-section .chat-popup .chat-windows .chat-start .chat-start-inner span.chat-start-img {background-color: #eb415d;float: right;position: relative;width: 35px;height: 35px; border-radius: 50%;margin-left: 15px;}
-div.geekybot-appearance-right-section .chat-popup .chat-windows .chat-start .chat-start-inner span.chat-start-img img {max-width: 80%;max-height: 80%;top: 0;bottom: 0;left: 0;right: 0;margin: auto;position: absolute;padding: 0 3px;}
-div.geekybot-appearance-right-section .chat-popup .chat-windows .chat-powered-by {float: left;width: 100%;position: absolute;bottom: 12px;}
-div.geekybot-appearance-right-section .chat-popup .chat-windows .chat-powered-by .chat-powered-by-inner {font-size: 14px;font-weight: 500;width: 60%;margin: auto;}
-div.geekybot-appearance-right-section .chat-popup .chat-windows .chat-powered-by .chat-powered-by-inner .chat-powered-by-inner-img,
-div.geekybot-appearance-right-section .chat-popup .chat-windows .chat-powered-by .chat-powered-by-inner .chat-powered-by-inner-cnt {float: left;}
-div.geekybot-appearance-right-section .chat-popup .chat-windows .chat-powered-by .chat-powered-by-inner .chat-powered-by-inner-cnt {padding-top: 3px;}
-div.geekybot-appearance-right-section .chat-popup .chat-windows .chat-powered-by .chat-powered-by-inner .chat-powered-by-inner-img {width: 30px;height: 30px;position: relative;overflow: hidden; margin: 0 6px;border-radius: 50%;border: 1px solid #fff;overflow: hidden;}
-div.geekybot-appearance-right-section .chat-popup .chat-windows .chat-powered-by .chat-powered-by-inner .chat-powered-by-inner-img img {position: absolute;top: 0;bottom: 0;left: 0;right: 0;width: auto;margin: auto;width: 100%;height: auto;}
-div.geekybot-appearance-right-section .chat-popup .chat-windows .chat-powered-by .chat-powered-by-inner .chat-start-title {color: #fff;text-decoration: underline;}
-div.geekybot-appearance-right-section .chat-popup .chat-windows .chat-powered-by .chat-powered-by-inner .chat-start-title:hover {text-decoration: unset;}
-div.geekybot-appearance-right-section .chat-popup .chat-phone-number {text-align: center;font-size: 18px;letter-spacing: 1px;padding: 15px 0;background: #27AAC2;color: white;}
-div.geekybot-appearance-right-section img#snd-btn { cursor: pointer; }
-div.geekybot-appearance-right-section .chat-popup .chat-phone-number small {text-align: center;display: block;font-size: 13px;opacity: .7;letter-spacing: normal;line-height: normal;padding: 0 0 10px;}
-div.geekybot-appearance-right-section .chat-popup div#chatContainer {height: 100%;min-height: 400px;}
-div.geekybot-appearance-right-section .chat-popup form {margin: 15px 0 5px;}
-div.geekybot-appearance-right-section .chat-popup form table.webchat-config {width: 100%;}
-div.geekybot-appearance-right-section .chat-popup form table.webchat-config input {margin: 0 auto 10px;padding: 8px 10px;display: block;width: 70%;border-radius: 50px;text-align: center;font-size: 14px;border: none;}
+div.geekybot-appearance-right-section div#geekybot-main-messages .geekybot-chat-content .geekybot-message-text.geekybot_wc_product_wrp .geekybot_wc_product_heading{margin:10px 2px 15px;margin-top: 0;}
+div.geekybot-appearance-right-section div.geekybot-chat-open-dialog-img img.geekybot-chat-image {position: absolute;top: 0;bottom: 0;left: 0;right: 0;margin: auto;width:100%;height: auto;}
+div.geekybot-appearance-right-section .geekybot-chat-close-button:focus, .geekybot-chat-open-dialog:focus {outline: none;}
+div.geekybot-appearance-right-section .geekybot-chat-close-button span.fa-close:before {font-size: 24px;color: white;text-align: center;margin: 0px 15px 2px;display: block;}
+div.geekybot-appearance-right-section .geekybot-chat-close-button span.fa-close {float: right;margin-right: -23px;}
+div.geekybot-appearance-right-section .geekybot-chat-open-dialog span.fa-question {float: right;margin-right: -15px;}
+div.geekybot-appearance-right-section div.geekybot-chat-open-dialog-main {position: absolute; z-index: 9999;bottom: 5px;right: 32px;border-radius: 50%;overflow: hidden;box-shadow: 0 1px 6px rgb(0 0 0 / 6%), 0 2px 32px rgb(0 0 0 / 16%);-webkit-transition: all ease .5s;-moz-transition: all ease .5s;-ms-transition: all ease .5s;-o-transition: all ease .5s;transition: all ease .5s;cursor: pointer;padding: 7px;background-color: transparent;}
+div.geekybot-appearance-right-section div.geekybot-chat-open-dialog-main-inner {width: 60px;height: 60px;border-radius: 50%;position: relative;overflow: hidden;}
+div.geekybot-appearance-right-section button.geekybot-chat-open-dialog {border: none;width: 60px;height: 60px;border-radius: 50%;overflow: hidden;box-shadow: 0 1px 6px rgb(0 0 0 / 6%), 0 2px 32px rgb(0 0 0 / 16%);}
+div.geekybot-appearance-right-section img.geekybot-chat-image{max-width: none; }
+div.geekybot-appearance-right-section div.geekybot-chat-open-dialog-img{float: left;width: 100%;}
+div.geekybot-appearance-right-section button.geekybot-chat-open-dialog,button.geekybot-chat-close-button,.geekybot-chat-close-button.active,.geekybot-chat-open-dialog.active {bottom: 30px;right: 50px;height: 50px;background-image: unset;background: unset !important;border: unset;box-shadow: unset;}
+div.geekybot-appearance-right-section button.geekybot-chat-open-dialog:hover,button.geekybot-chat-close-button:hover,.geekybot-chat-close-button.active:hover,.geekybot-chat-open-dialog.active:hover{background: unset !important;border: unset;box-shadow: unset;}
+div.geekybot-appearance-right-section button.geekybot-chat-open-dialog.active {-webkit-transition: all ease .5s;-moz-transition: all ease .5s;-ms-transition: all ease .5s;-o-transition: all ease .5s;transition: all ease .5s;}
+div.geekybot-appearance-right-section div.geekybot-chat-open-dialog-main-inner{position: relative;}
+div.geekybot-appearance-right-section div.geekybot-chat-open-dialog-main-inner::before{position: absolute;bottom: 0;right: 0; width: 95%;height: 90%; content: ""; background-image: url("../../includes/images/chat-img/transparent-color.png") !important;background-position: center;background-repeat: no-repeat;background-size: cover;}
+div.geekybot-appearance-right-section div.geekybot-chat-popup .geekybot-chat-windows .geekybot-chat-window .geekybot-window-top .geekybot-window-top-inner .geekybot-window-top-inner-left .geekybot-window-profile::before{position: absolute;bottom: 0;right: 0; width: 95%;height: 90%; content: ""; background-image: url("../../includes/images/chat-img/transparent-color.png") !important;background-position: center;background-repeat: no-repeat;background-size: cover;}
+div.geekybot-appearance-right-section button.geekybot-chat-close-button {position: absolute; opacity: 0;z-index: -5;bottom: 20px;right: 40px;width: 60px;height: 60px;border-radius: 50%;border: none;}
+div.geekybot-appearance-right-section button.geekybot-chat-close-button.active::after {position: absolute;content: '';width: 0;height: 0;right: 12px;border-left: 15px solid transparent;border-right: 15px solid transparent;bottom: 70px;border-top: 20px solid #ededef;}
+div.geekybot-appearance-right-section button.geekybot-chat-close-button.active-inner.active::after {border-top: 20px solid #ededef;}
+div.geekybot-appearance-right-section button.geekybot-chat-close-button.active {opacity: 1;z-index: 9999;cursor: pointer;}
+div.geekybot-appearance-right-section .geekybot-chat-popup {bottom: 120px;right: 40px;width: 370px;max-width: 100%; max-height: 590px;height: 0;opacity: 0;-webkit-transition: all ease .5s;-moz-transition: all ease .5s;-ms-transition: all ease .5s;-o-transition: all ease .5s;transition: all ease .5s;background: white;overflow: hidden;text-align: center;color: #fff;}
+div.geekybot-appearance-right-section .geekybot-chat-popup.active {float: inline-end; opacity: 1;height: 600px;-webkit-box-shadow: 0 5px 40px rgba(0, 0, 0, 0.16);-moz-box-shadow: 0 5px 40px rgba(0, 0, 0, 0.16);box-shadow: 0 5px 40px rgba(0, 0, 0, 0.16);border-radius: 8px;-webkit-transition: all ease .5s;-moz-transition: all ease .5s;-ms-transition: all ease .5s;-o-transition: all ease .5s;transition: all ease .5s;z-index: 999999;}
+div.geekybot-appearance-right-section .geekybot-chat-popup.geekybot-chat-init .geekybot-chat-windows {transform: translateX(-370px);-webkit-transition: all ease .5s;-moz-transition: all ease .5s;-ms-transition: all ease .5s;-o-transition: all ease .5s;transition: all ease .5s;}
+div.geekybot-appearance-right-section .geekybot-chat-popup .geekybot-chat-windows {width: 200%;}
+div.geekybot-appearance-right-section .geekybot-chat-popup .geekybot-chat-windows .chat-window-one {background-image: url(../../includes/images/chat-img/start-screen-bg.png);float: left;width: 50%;height: 600px;background-position: center;background-repeat: no-repeat;background-size: 100% 100%;}
+div.geekybot-appearance-right-section .geekybot-chat-popup .geekybot-chat-windows .geekybot-chat-window {width: 50%;height: 600px;position: relative;overflow-y: auto;overflow-x: hidden;}
+div.geekybot-appearance-right-section .geekybot-chat-window ~ button.geekybot-chat-close-button.active::after{background-color: green !important;}
+div.geekybot-appearance-right-section div#geekybot-main-messages div.geekybot-title-main-overlay div.geekybot-title-overlay {position: absolute;background-color: #000 !important;border-bottom-left-radius: 6px;border-bottom-right-radius: 6px; opacity: .2;top: 84px;width: 100%;height: 10px;left: 0;right: 0;z-index: 9998;bottom: 0;top: auto;}
+div.geekybot-appearance-right-section div#geekybot-main-messages div.geekybot-title-main-overlay {position: relative;width: 100%;}
+div.geekybot-appearance-right-section .geekybot-chat-popup .geekybot-chat-windows .geekybot-chat-window div.geekybot-chat-content {float: left;width: 100%;}
+div.geekybot-appearance-right-section .geekybot-chat-popup .geekybot-chat-windows .geekybot-chat-window div.geekybot-chat-content li.geekybot-message {text-align: right;float: right;list-style: none;padding: 15px;width:calc(100% - 5px);}
+div.geekybot-appearance-right-section .geekybot-chat-popup .geekybot-chat-windows .geekybot-chat-window div.geekybot-chat-content li.geekybot-message.geekybot-message-user section.geekybot-message-text {padding: 5px 10px;border-radius: 5px;float: right;max-width: calc(100% - 53px);margin-top: 5px;}
+div.geekybot-appearance-right-section .geekybot-chat-popup .geekybot-chat-windows .geekybot-chat-window div.geekybot-chat-content li.geekybot-message.geekybot-message-user section.geekybot-message-user-img {margin-left: 8px;float: right;background-color:#e6e7e8;border-radius: 50%;}
+div.geekybot-appearance-right-section .geekybot-chat-popup .geekybot-chat-windows .geekybot-chat-window div.geekybot-chat-content li.geekybot-message.geekybot-message-user:first-child {margin-top: 100px;}
+div.geekybot-appearance-right-section .geekybot-chat-popup .geekybot-chat-windows .geekybot-chat-window div.geekybot-chat-content li.geekybot-message.geekybot-message-bot {text-align: left;float: left;}
+div.geekybot-appearance-right-section .geekybot-chat-popup .geekybot-chat-windows .geekybot-chat-window div.geekybot-chat-content li.geekybot-message.geekybot-message-bot section.geekybot-message-bot-img {margin-right: 8px;float: left;} 
+div.geekybot-appearance-right-section .geekybot-chat-popup .geekybot-chat-windows .geekybot-chat-window div.geekybot-chat-content li.geekybot-message.geekybot-message-bot section.geekybot-message-bot-img::before{position: absolute;bottom: 0;right: 0; width: 95%;height: 90%; content: ""; background-image: url("../../includes/images/chat-img/transparent-color.png") !important;background-position: center;background-repeat: no-repeat;background-size: cover;} 
+div.geekybot-appearance-right-section .geekybot-chat-popup .geekybot-chat-windows .geekybot-chat-window div.geekybot-chat-content li.geekybot-message.geekybot-message-bot section.geekybot-message-bot-img,
+div.geekybot-appearance-right-section .geekybot-chat-popup .geekybot-chat-windows .geekybot-chat-window div.geekybot-chat-content li.geekybot-message.geekybot-message-user section.geekybot-message-user-img {position: relative;width: 45px;height: 45px;border-radius: 50%;overflow: hidden;}
+div.geekybot-appearance-right-section .geekybot-chat-popup .geekybot-chat-windows .geekybot-chat-window div.geekybot-chat-content li.geekybot-message.geekybot-message-bot section.geekybot-message-bot-img img,
+div.geekybot-appearance-right-section .geekybot-chat-popup .geekybot-chat-windows .geekybot-chat-window div.geekybot-chat-content li.geekybot-message.geekybot-message-user section.geekybot-message-user-img img {position: absolute;top: 0;bottom: 0;left: 0; right: 0;margin: auto;width:100%;height: auto;}
+div.geekybot-appearance-right-section .geekybot-chat-popup .geekybot-chat-windows .geekybot-chat-window div.geekybot-chat-content li.geekybot-message.geekybot-message-bot section.geekybot-message-text {background-color: #ededef;padding: 5px 10px;border-radius: 5px;color: #373435;float: left;max-width: calc(100% - 53px);box-sizing: border-box;}
+div.geekybot-appearance-right-section .geekybot-chat-popup .geekybot-chat-windows .geekybot-chat-window div.geekybot-chat-content li.geekybot-message.geekybot-message-button {text-align:left;float:left;list-style: none;width: auto;margin: unset;padding: 10px 0 10px 5px;}
+div.geekybot-appearance-right-section .geekybot-chat-popup .geekybot-chat-windows .geekybot-chat-window div.geekybot-chat-content li.geekybot-message.geekybot-message-button section {background-color: unset;color: unset;padding: unset;border-radius: unset;}
+div.geekybot-appearance-right-section .geekybot-chat-popup .geekybot-chat-windows .geekybot-chat-window div.geekybot-chat-content li.geekybot-message.geekybot-message-button .wp-chat-btn {background-color: transparent;padding: 0.3em 1.4em;text-align: center;font-size: 14px;transition: 0.3s;display: inline-block;text-decoration: none;cursor: pointer;border-radius: 30px;outline: none;}
+div.geekybot-appearance-right-section .geekybot-chat-popup .geekybot-chat-windows .geekybot-chat-window div.geekybot-chat-content div.geekybot-message-button {float: left;width: 100%;padding-left: 58px;}
+div.geekybot-appearance-right-section .geekybot-chat-popup .geekybot-chat-windows .geekybot-chat-window div.geekybot-chat-content div.geekybot-message-button:last-child {margin-bottom: 80px;}
+div.geekybot-appearance-right-section .geekybot-chat-popup .geekybot-chat-windows .geekybot-chat-window .geekybot-window-top .geekybot-window-top-inner {float: left;width: 100%;}
+div.geekybot-appearance-right-section .geekybot-chat-popup .geekybot-chat-windows .geekybot-chat-window .geekybot-window-top .geekybot-window-top-inner .geekybot-window-top-inner-left {float: left;width: calc(100% - 74px);}
+div.geekybot-appearance-right-section .geekybot-chat-popup .geekybot-chat-windows .geekybot-chat-window .geekybot-window-top .geekybot-window-top-inner .geekybot-window-top-inner-left .geekybot-window-profile {box-sizing: border-box; float: left;width: 80px;height: 80px;border:5px solid #fff;border-radius: 50%;position: absolute;left: 15px; top: 20px;overflow: hidden;z-index: 9999;}
+div.geekybot-appearance-right-section .geekybot-chat-popup .geekybot-chat-windows .geekybot-chat-window .geekybot-window-top .geekybot-window-top-inner .geekybot-window-top-inner-left i.fa.fa-circle {position: absolute;top: 78px;z-index: 9999;left: 75px;color: #0caa0c;font: normal normal normal 14px/1 FontAwesome !important;}
+div.geekybot-appearance-right-section .geekybot-chat-popup .geekybot-chat-windows .geekybot-chat-window .geekybot-window-top .geekybot-window-top-inner .geekybot-window-top-inner-left .geekybot-window-profile .geekybot-window-profile-img {position: relative;width: 100%;height: 100%;box-sizing: border-box;}
+div.geekybot-appearance-right-section .geekybot-chat-popup .geekybot-chat-windows .geekybot-chat-window .geekybot-window-top .geekybot-window-top-inner .geekybot-window-top-inner-left .geekybot-window-profile .geekybot-window-profile-img img {position: absolute;top: 0;bottom: 0;left: 0;right: 0;margin: auto;width: 100%;height: auto;}
+div.geekybot-appearance-right-section .geekybot-chat-popup .geekybot-chat-windows .geekybot-chat-window .geekybot-window-top .geekybot-window-top-inner .geekybot-window-top-inner-left .geekybot-window-profile .geekybot-window-profile-img i.fa.fa-circle {color: #03bb03;position: absolute;bottom: 8px;right: 0px;}
+div.geekybot-appearance-right-section .geekybot-chat-popup .geekybot-chat-windows .geekybot-chat-window .geekybot-window-top .geekybot-window-top-inner .geekybot-window-top-inner-left .geekybot-window-profile-text {float: right;width: calc(100% - 90px);text-align: left;}
+div.geekybot-appearance-right-section .geekybot-chat-popup .geekybot-chat-windows .geekybot-chat-window .geekybot-window-top .geekybot-window-top-inner .geekybot-window-top-inner-left .geekybot-window-profile-text .geekybot-window-text {line-height: 1.6;}
+div.geekybot-appearance-right-section .geekybot-chat-popup .geekybot-chat-windows .geekybot-chat-window .geekybot-window-top .geekybot-window-top-inner .geekybot-window-top-inner-left .geekybot-window-profile-text .geekybot-window-text span {display: block;margin: 0 0 0 15px;max-width: 100%;overflow: hidden;text-overflow: ellipsis;white-space: nowrap;box-sizing: border-box;}
+div.geekybot-appearance-right-section .geekybot-chat-popup .geekybot-chat-windows .geekybot-chat-window .geekybot-window-top .geekybot-window-top-inner .geekybot-window-top-inner-left .geekybot-window-profile-text .geekybot-window-text span:first-child {font-size: 22px;font-weight: 600;}
+div.geekybot-appearance-right-section .geekybot-chat-popup .geekybot-chat-windows .geekybot-chat-window .geekybot-window-top .geekybot-window-top-inner .geekybot-window-top-inner-right {float: left;width: 74px;}
+div.geekybot-appearance-right-section .geekybot-chat-popup .geekybot-chat-windows .geekybot-chat-window .geekybot-window-top .geekybot-window-top-inner .geekybot-window-top-inner-right .geekybot-window-top-dot-img {height: 55px;position: relative;width: 100%;}
+div.geekybot-appearance-right-section .geekybot-chat-popup .geekybot-chat-windows .geekybot-chat-window .geekybot-window-top .geekybot-window-top-inner .geekybot-window-top-inner-right .geekybot-window-top-dot-img img {position: absolute;top: 5px;right: 15px;bottom: 0;max-width: 100%;max-height: 100%;margin: auto;}
+div.geekybot-appearance-right-section #geekybot-send-message{position:fixed;top: 522px;padding: 10px 0 !important;background-color: #ededef;width:50%;border-top-left-radius: 30px;border-top-right-radius: 30px;}
+div.geekybot-appearance-right-section #geekybot-send-message .geekybot-window-bottom-inner {float: left;width:calc(100% - 20px);margin: 0 10px; border: 1px solid #dbdbdb;border-radius: 30px;background-color: #fff;display: flex;align-items: center;flex-wrap: wrap;}
+div.geekybot-appearance-right-section #geekybot-send-message .geekybot-window-bottom-inner .geekybot-window-bottom-inner-left {float: left;width: 84%;display: flex;align-items: center;}
+div.geekybot-appearance-right-section #geekybot-send-message .geekybot-window-bottom-inner .geekybot-window-bottom-inner-left .fa-microphone {float: left;color: #bdbfc1;font-size: 24px;padding: 6px 10px;margin-top: 4px;border-right: 1px solid #bdbfc1;}
+div.geekybot-appearance-right-section #geekybot-send-message .geekybot-window-bottom-inner .geekybot-window-bottom-inner-left a.chat_attachment{width: 36px;}
+div.geekybot-appearance-right-section #geekybot-send-message .geekybot-window-bottom-inner .geekybot-window-bottom-inner-left a.chat_attachment i.fa.fa-circle {float: left;margin-left: 10px;}
+div.geekybot-appearance-right-section #geekybot-send-message .border-0 {float: left;width:calc(100% - 10px);margin: unset;border: unset;border-radius: 30px;font-size: 19px;padding:12px 6px 12px 20px;outline: unset;color: initial;line-height: initial;height: auto;}
+div.geekybot-appearance-right-section #geekybot-send-message .border-0:focus{box-shadow: unset !important;}
+div.geekybot-appearance-right-section #geekybot-send-message .geekybot-window-bottom-inner .geekybot-window-bottom-inner-right {float: left;width:calc(16% - 15px);height: 35px;margin: 6px;}
+div.geekybot-appearance-right-section #geekybot-send-message .geekybot-window-bottom-inner .geekybot-window-bottom-inner-right .geekybot-window-bottom-send-img {width: 100%;height: 100%;position: relative;border-radius: 50%;}
+div.geekybot-appearance-right-section #geekybot-send-message .geekybot-window-bottom-inner .geekybot-window-bottom-inner-right .geekybot-window-bottom-send-img img {position: absolute;top: 0;bottom: 0;left: 0;right: 0;max-width: 60%;max-height: 60%;margin: auto;padding-top: 3px;}
+div.geekybot-appearance-right-section #geekybot-message-box:focus {border: none !important;}
+div.geekybot-appearance-right-section .geekybot-chat-window li:last-child {margin-bottom: 70px;}
+div.geekybot-appearance-right-section .geekybot-chat-popup .chat-header {border-radius: 8px 8px 0 0;padding: 35px 0;-webkit-transition: all ease .5s;-moz-transition: all ease .5s;-ms-transition: all ease .5s;-o-transition: all ease .5s;transition: all ease .5s;}
+div.geekybot-appearance-right-section .geekybot-chat-popup .chat-header h4 {font-size: 24px;}
+div.geekybot-appearance-right-section .geekybot-chat-popup .chat-header h4,
+div.geekybot-appearance-right-section .geekybot-chat-popup .geekybot-chat-windows .chat-middle h5 {color: #fff; font-weight:bold;line-height: 1.3;letter-spacing: normal;font-weight: 600;margin: 0;padding: 0 0 10px;}
+div.geekybot-appearance-right-section .geekybot-chat-popup .geekybot-chat-windows .chat-middle .chat-middle-inner-border {width: 130px;height: 130px;border: 3px dashed;border-radius: 50%;margin: auto;position: absolute;top: 0;right: 0;bottom: 0;left: 0;}
+div.geekybot-appearance-right-section .geekybot-chat-popup .geekybot-chat-windows .chat-middle .chat-middle-inner {width: 160px;height: 160px;border-radius: 50%;margin: auto;box-sizing: border-box;position: relative;}
+div.geekybot-appearance-right-section .geekybot-chat-popup .geekybot-chat-windows .chat-middle .chat-middle-inner-img {width: 110px;height: 110px;border-radius: 50%;position:absolute;margin: auto;top: 0;left: 0;bottom: 0;right: 0; overflow: hidden;}
+div.geekybot-appearance-right-section .geekybot-chat-popup .geekybot-chat-windows .chat-middle .chat-middle-inner{border: 3px dashed #ef5e76 !important;}
+div.geekybot-appearance-right-section .geekybot-chat-popup .geekybot-chat-windows .chat-middle h5 {font-size: 22px;padding: 10px 92px;}
+div.geekybot-appearance-right-section .geekybot-chat-popup .geekybot-chat-windows .chat-middle .chat-middle-inner-img img {position: absolute;top: 0;bottom: 0;left: 0;right: 0;margin: auto;width:100%;height:auto;}
+div.geekybot-appearance-right-section .geekybot-chat-popup .geekybot-chat-windows .chat-start {width: 100%;margin: auto;}
+div.geekybot-appearance-right-section .geekybot-chat-popup .geekybot-chat-windows .chat-start .chat-start-inner {width:fit-content;display: flex;align-items: center;justify-content: center;flex-wrap: wrap; min-width: 120px; max-width: 80%;margin-left: auto;margin-right: auto;background-color: #fff;color: #3b3839;border-radius: 30px;padding:6px 11px 5px 20px;box-shadow: 1px 2px 4px 0px rgb(59 56 57 / 75%);margin-top: 50px;}
+div.geekybot-appearance-right-section .geekybot-chat-popup .geekybot-chat-windows .chat-start .chat-start-inner span {display: inline-block;}
+div.geekybot-appearance-right-section .geekybot-chat-popup .geekybot-chat-windows .chat-start .chat-start-inner span.chat-start-title {font-size: 16px;font-weight: 600;float: left;cursor: pointer;}
+div.geekybot-appearance-right-section .geekybot-chat-popup .geekybot-chat-windows .chat-start .chat-start-inner span.chat-start-img {background-color: #eb415d;float: right;position: relative;width: 35px;height: 35px; border-radius: 50%;margin-left: 15px;}
+div.geekybot-appearance-right-section .geekybot-chat-popup .geekybot-chat-windows .chat-start .chat-start-inner span.chat-start-img img {max-width: 80%;max-height: 80%;top: 0;bottom: 0;left: 0;right: 0;margin: auto;position: absolute;padding: 0 3px;}
+div.geekybot-appearance-right-section .geekybot-chat-popup .geekybot-chat-windows .chat-powered-by {float: left;width: 100%;position: absolute;bottom: 12px;}
+div.geekybot-appearance-right-section .geekybot-chat-popup .geekybot-chat-windows .chat-powered-by .chat-powered-by-inner {font-size: 14px;font-weight: 500;width: 60%;margin: auto;}
+div.geekybot-appearance-right-section .geekybot-chat-popup .geekybot-chat-windows .chat-powered-by .chat-powered-by-inner .chat-powered-by-inner-img,
+div.geekybot-appearance-right-section .geekybot-chat-popup .geekybot-chat-windows .chat-powered-by .chat-powered-by-inner .chat-powered-by-inner-cnt {float: left;}
+div.geekybot-appearance-right-section .geekybot-chat-popup .geekybot-chat-windows .chat-powered-by .chat-powered-by-inner .chat-powered-by-inner-cnt {padding-top: 3px;}
+div.geekybot-appearance-right-section .geekybot-chat-popup .geekybot-chat-windows .chat-powered-by .chat-powered-by-inner .chat-powered-by-inner-img {width: 30px;height: 30px;position: relative;overflow: hidden; margin: 0 6px;border-radius: 50%;border: 1px solid #fff;overflow: hidden;}
+div.geekybot-appearance-right-section .geekybot-chat-popup .geekybot-chat-windows .chat-powered-by .chat-powered-by-inner .chat-powered-by-inner-img img {position: absolute;top: 0;bottom: 0;left: 0;right: 0;width: auto;margin: auto;width: 100%;height: auto;}
+div.geekybot-appearance-right-section .geekybot-chat-popup .geekybot-chat-windows .chat-powered-by .chat-powered-by-inner .chat-start-title {color: #fff;text-decoration: underline;}
+div.geekybot-appearance-right-section .geekybot-chat-popup .geekybot-chat-windows .chat-powered-by .chat-powered-by-inner .chat-start-title:hover {text-decoration: unset;}
+div.geekybot-appearance-right-section .geekybot-chat-popup .chat-phone-number {text-align: center;font-size: 18px;letter-spacing: 1px;padding: 15px 0;background: #27AAC2;color: white;}
+div.geekybot-appearance-right-section img#geekybot-send-button { cursor: pointer; }
+div.geekybot-appearance-right-section .geekybot-chat-popup .chat-phone-number small {text-align: center;display: block;font-size: 13px;opacity: .7;letter-spacing: normal;line-height: normal;padding: 0 0 10px;}
+div.geekybot-appearance-right-section .geekybot-chat-popup div#chatContainer {height: 100%;min-height: 400px;}
+div.geekybot-appearance-right-section .geekybot-chat-popup form {margin: 15px 0 5px;}
+div.geekybot-appearance-right-section .geekybot-chat-popup form table.webchat-config {width: 100%;}
+div.geekybot-appearance-right-section .geekybot-chat-popup form table.webchat-config input {margin: 0 auto 10px;padding: 8px 10px;display: block;width: 70%;border-radius: 50px;text-align: center;font-size: 14px;border: none;}
 div.geekybot-appearance-right-section form#customerdata button.chat-button.inactive-chat.active, form#customerdata button.chat-button {-webkit-transition: all ease .5s;-moz-transition: all ease .5s;-ms-transition: all ease .5s;-o-transition: all ease .5s;transition: all ease .5s;}
 div.geekybot-appearance-right-section form#customerdata td{border: none;}
 div.geekybot-appearance-right-section form#customerdata button.chat-button.inactive-chat.active {transform: rotate(90deg);background-size: 0;}
-div.geekybot-appearance-right-section div#window-two-title {font-size: 16px;padding: 15px 0 18px 0;box-shadow: 0px 3px 10px 0 rgb(0 0 0 / 25%);z-index: 999;border-bottom-left-radius: 6px;border-bottom-right-radius: 6px;position: fixed;max-width: 370px;}
-div.geekybot-appearance-right-section div#main-messages .chat-content .actual_msg section {font-size: 17px;line-height: 25px;}
+div.geekybot-appearance-right-section div#geekybot-window-title {font-size: 16px;padding: 15px 0 18px 0;box-shadow: 0px 3px 10px 0 rgb(0 0 0 / 25%);z-index: 999;border-bottom-left-radius: 6px;border-bottom-right-radius: 6px;position: fixed;max-width: 370px;}
+div.geekybot-appearance-right-section div#geekybot-main-messages .geekybot-chat-content .geekybot-message section {font-size: 17px;line-height: 25px;}
 div.geekybot-appearance-right-section .geekybot_wc_product_wrp .geekybot_wc_product_right_wrp .geekybot_wc_product_name a{padding: 10px 0 5px 0;display: block;}
 div.geekybot-appearance-right-section .geekybot_wc_product_wrp .geekybot_wc_product_right_wrp .geekybot_wc_product_price span{padding: 2px 0 7px 0;display: inline-block;font-weight:bold;}
 div.geekybot-appearance-right-section .geekybot_wc_product_wrp .geekybot_wc_product_right_wrp .geekybot_wc_product_action_btn{margin-bottom: 20px; background-color: #373435;font-weight: 500;padding: 7px 0;width: 100%;color: #fff;text-align: center;}
 div.geekybot-appearance-right-section .geekybot_wc_product_wrp .geekybot_wc_product_right_wrp .geekybot_wc_product_action_btn:hover{text-decoration: underline;}
 div.geekybot-appearance-right-section .geekybot_wc_product_load_more {padding: 10px 15px;margin-bottom: 5px; border-radius: 4px;display:inline-block;cursor: pointer;background: #FFF;}
-div.geekybot-appearance-right-section div#main-messages .chat-content .geekybot-suggested-question-wrp {float: left;margin-left: 45px;padding: 14px;color: #373435;padding-right: 0;}
-div.geekybot-appearance-right-section div#main-messages .chat-content .geekybot-suggested-question-wrp .geekybot-suggested-question{float: left;padding: 7px 15px;border: 1px solid red;border-radius: 50px;margin:0 5px 10px 0;}
-div.geekybot-appearance-right-section #window-two-title {color: #fff;position: absolute;width:100%;}
-div.geekybot-appearance-right-section .dropdown-content{display: none;position: absolute;min-width: 225px;overflow: auto;box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);z-index: 1;right: 0px;top: 90px;}
-div.geekybot-appearance-right-section #jsendchat{margin-top: 4px;border-bottom: 1px solid rgba(9, 9, 9, 0.23);}
-div.geekybot-appearance-right-section .dropdown-content.show div.geekybot-main-overlay:hover .dropdown-content{visibility: visible;}
-div.geekybot-appearance-right-section .dropdown-content.show div.geekybot-main-overlay {position: relative;width: 100%;padding: unset;cursor: pointer;overflow: hidden;}
-div.geekybot-appearance-right-section .dropdown-content.show div.geekybot-main-overlay div.geekybot-overlay {position: absolute;width: auto;top: 0;height: 47px;min-width: 225px;background-color: #000 !important;opacity: .2;visibility: hidden;}
-div.geekybot-appearance-right-section .dropdown-content.show div.geekybot-main-overlay:hover div.geekybot-overlay {visibility: visible;}
-div.geekybot-appearance-right-section .dropdown-content a{color: black;padding: 12px 16px;text-decoration: none;display: block;}
-div.geekybot-appearance-right-section .dropdown-content div {background: no-repeat;border: none;font-weight: 500;text-transform: capitalize;font-size: 15px;width: 100%;padding: 10px;text-align: left;color: #fff !important;}
-div.geekybot-appearance-right-section .dropdown-content a:hover {color: #38CBD3;}
+div.geekybot-appearance-right-section div#geekybot-main-messages .geekybot-chat-content .geekybot-suggested-question-wrp {float: left;margin-left: 45px;padding: 14px;color: #373435;padding-right: 0;}
+div.geekybot-appearance-right-section div#geekybot-main-messages .geekybot-chat-content .geekybot-suggested-question-wrp .geekybot-suggested-question{float: left;padding: 7px 15px;border: 1px solid red;border-radius: 50px;margin:0 5px 10px 0;}
+div.geekybot-appearance-right-section #geekybot-window-title {color: #fff;position: absolute;width:100%;}
+div.geekybot-appearance-right-section .geekybot-dropdown-content{display: none;position: absolute;min-width: 225px;overflow: auto;box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);z-index: 1;right: 0px;top: 90px;}
+div.geekybot-appearance-right-section #geekybotEndChat{margin-top: 4px;border-bottom: 1px solid rgba(9, 9, 9, 0.23);}
+div.geekybot-appearance-right-section .geekybot-dropdown-content.show div.geekybot-main-overlay:hover .geekybot-dropdown-content{visibility: visible;}
+div.geekybot-appearance-right-section .geekybot-dropdown-content.show div.geekybot-main-overlay {position: relative;width: 100%;padding: unset;cursor: pointer;overflow: hidden;}
+div.geekybot-appearance-right-section .geekybot-dropdown-content.show div.geekybot-main-overlay div.geekybot-overlay {position: absolute;width: auto;top: 0;height: 47px;min-width: 225px;background-color: #000 !important;opacity: .2;visibility: hidden;}
+div.geekybot-appearance-right-section .geekybot-dropdown-content.show div.geekybot-main-overlay:hover div.geekybot-overlay {visibility: visible;}
+div.geekybot-appearance-right-section .geekybot-dropdown-content a{color: black;padding: 12px 16px;text-decoration: none;display: block;}
+div.geekybot-appearance-right-section .geekybot-dropdown-content div {background: no-repeat;border: none;font-weight: 500;text-transform: capitalize;font-size: 15px;width: 100%;padding: 10px;text-align: left;color: #fff !important;}
+div.geekybot-appearance-right-section .geekybot-dropdown-content a:hover {color: #38CBD3;}
 div.geekybot-appearance-right-section .dropdown a:hover {background-color: #ddd;}
 div.geekybot-appearance-right-section .show {display: block;}
 div.geekybot-appearance-right-section .geekybot_wc_product_wrp{float: left;width: 100%;border: 2px solid #e6e6e6;margin: 5px 0px;background: #FFFFFF;padding: 15px;}
@@ -929,7 +929,7 @@ div.geekybot-jsst_userpages .geekybot-jsst_userlink{display: flex;align-items: c
 div.geekybot-jsst_userpages .geekybot-jsst_userlink.selected{background-color: #5e4ae3;color: #fff;border: 1px solid #5e4ae3;}
 div.geekybot-jsst_userpages .geekybot-jsst_userlink.selected:hover{border: 1px solid #e9dfff;}
 div.geekybot-jsst_userpages .geekybot-jsst_userlink:hover{border: 1px solid #5e4ae3;}
-div.geekybot-appearance-right-section div#previouschatbox {margin-top: 30px;display:block;position: absolute;z-index: 999;top: 100px;}
+div.geekybot-appearance-right-section div#geekybotPreviousChatBox {margin-top: 30px;display:block;position: absolute;z-index: 999;top: 100px;}
 div.geekybot-appearance-right-section a.attachment{width: 10%;display: inline-block;float: left;text-align: center;padding: 10px 0;height: 30px}
 div.geekybot-appearance-right-section a.attachment:hover {cursor: pointer;background-color: #d4cfcf;}
 .geekybot_wc_product_left_wrp{float: left;text-align: center;width: 100%;}
@@ -962,13 +962,13 @@ div#geekybotadmin-wrapper div#geekybotadmin-data div#geekybot-admin-wrapper.geek
 div.geekybot-chatbot-popup-config-value a.geekybot-popup-selection{display: inline-block;min-height: 48px;margin-left: 10px;border: 2px solid #5e4ae3;color: #5e4ae3;min-width: 45px;width: 50px;font-size: 22px;font-weight: bold;padding: 12px 0px;background-color: #fff;cursor: pointer;text-align: center;}
 div#geekybotadmin-wrapper div#geekybotadmin-data div#geekybot-admin-wrapper.geekybot-admin-appearance-wrapper div.geekybot-chatbot-popup-config div.geekybot-chatbot-popup-config-value input{color: #7e7f81;border: 1px solid #e7e8eb;background: #eaedf2;float: left;width: 650px;max-width: 100%;margin: unset;box-shadow: unset;outline: unset;padding: 6px 10px;border-radius: 1px;font-size: 17px;}
 /* smart popup */
-div.chat-open-outer-popup-dialog .chat-open-outer-popup-dialog-text-mainwrp{padding: 10px 10px;color: #373435;display: flex;align-items: center;}
-div.chat-open-outer-popup-dialog .chat-open-outer-popup-dialog-text-mainwrp p{margin-bottom: 0px;font-size: 18px;font-weight: bold;margin-top: 0;line-height: 1.8;}
-div.chat-open-outer-popup-dialog{float: right; z-index: 214748;border-radius: 15px;cursor: pointer;background-color: white;width:400px;max-width: 100%;}
-div.chat-open-outer-popup-dialog:hover .chat-open-outer-popup-dialog-top-cross-button{display: flex;align-items: center;justify-content: center;box-shadow: unset;overflow: hidden;}
-div.chat-open-outer-popup-dialog .chat-open-outer-popup-dialog-top-cross-button{padding: 7px 8px;border-width: 0px;border-radius: 50%;width: fit-content;position: absolute;top: -15px;right: 10px;}
-div.chat-open-outer-popup-dialog div.chat-open-outer-popup-dialog-image{position: relative;width: 80px;min-width: 80px; height: 80px;border-radius: 50px;margin-right: 20px;}
-div.chat-open-outer-popup-dialog div.chat-open-outer-popup-dialog-image img{position: absolute;top: 0;left: 0;right: 0;bottom: 0; margin: auto;max-width: 100%;height: auto;text-align: center;border-radius: 50px;padding: 4px;}
+div.geekybot-chat-open-outer-popup-dialog .geekybot-chat-open-outer-popup-dialog-text-mainwrp{padding: 10px 10px;color: #373435;display: flex;align-items: center;}
+div.geekybot-chat-open-outer-popup-dialog .geekybot-chat-open-outer-popup-dialog-text-mainwrp p{margin-bottom: 0px;font-size: 18px;font-weight: bold;margin-top: 0;line-height: 1.8;}
+div.geekybot-chat-open-outer-popup-dialog{float: right; z-index: 214748;border-radius: 15px;cursor: pointer;background-color: white;width:400px;max-width: 100%;}
+div.geekybot-chat-open-outer-popup-dialog:hover .geekybot-chat-open-outer-popup-dialog-top-cross-button{display: flex;align-items: center;justify-content: center;box-shadow: unset;overflow: hidden;}
+div.geekybot-chat-open-outer-popup-dialog .geekybot-chat-open-outer-popup-dialog-top-cross-button{padding: 7px 8px;border-width: 0px;border-radius: 50%;width: fit-content;position: absolute;top: -15px;right: 10px;}
+div.geekybot-chat-open-outer-popup-dialog div.geekybot-chat-open-outer-popup-dialog-image{position: relative;width: 80px;min-width: 80px; height: 80px;border-radius: 50px;margin-right: 20px;}
+div.geekybot-chat-open-outer-popup-dialog div.geekybot-chat-open-outer-popup-dialog-image img{position: absolute;top: 0;left: 0;right: 0;bottom: 0; margin: auto;max-width: 100%;height: auto;text-align: center;border-radius: 50px;padding: 4px;}
 div#geekybotadmin-wrapper div#geekybotadmin-data div#geekybot-admin-wrapper form.geekybot-themess .geekybot-tabInner.geekybot-chatbot-popup-config-mainwrp .geekybot-chatbot-popup-config-value{width: 100%;}
 div#geekybotadmin-wrapper div#geekybotadmin-data div#geekybot-admin-wrapper form.geekybot-themess .geekybot-tabInner.geekybot-chatbot-popup-config-mainwrp .geekybot-chatbot-popup-config-value select{width: 100%;}
 div#geekybotadmin-wrapper div#geekybotadmin-data div#geekybot-admin-wrapper form.geekybot-themess .geekybot-tabInner.geekybot-chatbot-popup-config-mainwrp .geekybot-chatbot-popup-config-value input{width: 100%;}
@@ -976,9 +976,9 @@ div#geekybotadmin-wrapper div#geekybotadmin-data div#geekybot-admin-wrapper.geek
 div#geekybotadmin-wrapper div#geekybotadmin-data div#geekybot-admin-wrapper.geekybot-admin-appearance-wrapper .geekybot-tabInner.geekybot-chatbot-popup-config-mainwrp div.geekybot-chatbot-popup-config div.geekybot-chatbot-popup-config-value{width:75%;padding: 7px 0;}
 div#geekybotadmin-wrapper div#geekybotadmin-data div#geekybot-admin-wrapper.geekybot-admin-appearance-wrapper .geekybot-tabInner.geekybot-chatbot-popup-config-mainwrp div.geekybot-chatbot-popup-config div.geekybot-chatbot-popup-config-description{width:75%;}
 div#geekybotadmin-wrapper div#geekybotadmin-data div#geekybot-admin-wrapper .geekybot-appearance-right-section.geekybot-opendialog-btm-mainwrp{padding-bottom: 150px;}
-div.geekybot-appearance-right-section.geekybot-opendialog-btm-mainwrp button.chat-button-destroy.active::after{bottom:110px;}
-div.geekybot-appearance-right-section.geekybot-opendialog-btm-mainwrp  div.chat-open-dialog-main{right: 23px;bottom:26px;}
-div#geekybotadmin-wrapper div#geekybotadmin-data div#geekybot-admin-wrapper form.geekybot-themess div.geekybot-appearance-right-section.geekybot-opendialog-btm-mainwrp div.chat-open-dialog-main-inner{width: 80px;height: 80px;}
+div.geekybot-appearance-right-section.geekybot-opendialog-btm-mainwrp button.geekybot-chat-close-button.active::after{bottom:110px;}
+div.geekybot-appearance-right-section.geekybot-opendialog-btm-mainwrp  div.geekybot-chat-open-dialog-main{right: 23px;bottom:26px;}
+div#geekybotadmin-wrapper div#geekybotadmin-data div#geekybot-admin-wrapper form.geekybot-themess div.geekybot-appearance-right-section.geekybot-opendialog-btm-mainwrp div.geekybot-chat-open-dialog-main-inner{width: 80px;height: 80px;}
 div#geekybotadmin-wrapper div#geekybotadmin-data div#geekybot-admin-wrapper form.geekybot-themess div.geekybot-theme-row div.geekybot-theme-row-left span.geeky-bot-theme-img-message{float:right;width:calc(100% - 25%);margin: 10px 0 0;}
 div#geekybotadmin-wrapper div#geekybotadmin-data div#geekybot-admin-wrapper form.geekybot-themess div.geekybot-theme-row div.geekybot-theme-row-left span.geeky-bot-theme-img-message span.geeky-bot-theme-img-left{float: left;width: 45px;height: 45px;position: relative;border: 1px solid #cac9cc;}
 div#geekybotadmin-wrapper div#geekybotadmin-data div#geekybot-admin-wrapper form.geekybot-themess div.geekybot-theme-row div.geekybot-theme-row-left span.geeky-bot-theme-img-message span.geeky-bot-theme-img-right{float: left;padding: 13px 5px;}
@@ -1191,15 +1191,15 @@ div.geekybot-listing-section .geekybot-listing-button-wrp{padding:20px 35px;back
 div.geekybot-listing-section.geekybot-post-listing-section .geekybot-post-listing-header{float: left;width: 100%;margin-bottom: 10px;line-height: 30px;font-size: 16px;color: #373435;font-weight: 500;}
 div.geekybot-listing-section.geekybot-post-listing-section .geekybot-listing-button-wrp{margin-top: 0px;}
 div.geekybot-listing-section.geekybot-post-listing-section .geekybot-listing-button-wrp a{background-color:#b23437;color:#FFF;}
-div.window-two-btm-inner.geekybot-story-inner{float: left;width:50%;}
+div.geekybot-window-bottom-inner.geekybot-story-inner{float: left;width:50%;}
 div#geekybot-searchbar{float: left;width: 60%;}
 .inputbox.geekybot-form-input-field{float: left;padding-left: 15px; margin-right: 5px;border-radius: unset;border: unset;min-height: 50px;width: calc(100% - 56px);font-size: 16px;}
 .inputbox.geekybot-form-input-field::placeholder{color:#646465;font-size: 16px;}
-div.window-two-btm-inner.geekybot-story-inner button{padding: 8px 9px;width: 50px;min-height: 50px;border: unset;background:#5e4ae3;color: #fff;line-height:unset;border-radius: 4px;}
-div.window-two-btm-inner.geekybot-story-inner button:active,
-div.window-two-btm-inner.geekybot-story-inner button:focus{background:#5e4ae3;color: #fff;}
-div.window-two-btm-inner.geekybot-story-inner button:hover{background-color: #373435;background: #373435 !important;}
-div.window-two-btm-inner.geekybot-story-inner button i{font-size: 22px;}
+div.geekybot-window-bottom-inner.geekybot-story-inner button{padding: 8px 9px;width: 50px;min-height: 50px;border: unset;background:#5e4ae3;color: #fff;line-height:unset;border-radius: 4px;}
+div.geekybot-window-bottom-inner.geekybot-story-inner button:active,
+div.geekybot-window-bottom-inner.geekybot-story-inner button:focus{background:#5e4ae3;color: #fff;}
+div.geekybot-window-bottom-inner.geekybot-story-inner button:hover{background-color: #373435;background: #373435 !important;}
+div.geekybot-window-bottom-inner.geekybot-story-inner button i{font-size: 22px;}
 div.geekybot-text-left span.geekybot-text-disc{padding: 10px;border: 1px solid #dfdfdf;margin-right: 5px;}
 /* add variables */
 div#geekybotadmin-wrapper div.geekybotadmin-addVariable-data div#geekybot-admin-wrapper form.geekybot-form.has-validation-callback {float: left;width: 100%;padding-top: 30px;} 
@@ -1908,7 +1908,7 @@ div#templateSetValuesblack{background: rgba(0,0,0,0.5);position: fixed;width: 10
   div.geekybot-dashboard-cards-wrp .geekybot-dashboard-card:nth-child(3n){margin-right: 0;}
   a.geekybot-Intents-btn.multioperation{margin-bottom: 5px;}
   a.geekybot-Intents-btn{margin-top: 2px;margin-bottom: 2px;}
-  div.window-two-btm-inner.geekybot-story-inner{width: 60%;}
+  div.geekybot-window-bottom-inner.geekybot-story-inner{width: 60%;}
   div#geekybotadmin-wrapper-right div.geekybotadmin-navbar-right{padding-right:0;}
   div.geekybot-installation-bodysection .geekybot-installation-bodyleft-section .geekybot-installation-scndpage-info-section{width: calc(100% - 50px);}
   div.geekybot-installation-bodysection .geekybot-installation-bodyleft-section p.geekybot-installation-bodydisc{width: 100%;}
@@ -1970,7 +1970,7 @@ div.geekybot-addon-installer-wrapper div.geekybot-addon-installer-section-wrap d
   div#geekybot-head div.geekybot-config-btn button.geekybot-config-reset-btn{margin: 5px 0;}
   div#geekybot-head div.geekybot-config-btn button.geekybot-config-save-btn{margin-top: 5px;margin-bottom: 5px;}
   div#geekybot-searchbar{width: 50%;margin-top: 5px;}
-  div.window-two-btm-inner.geekybot-story-inner{width: 80%;}
+  div.geekybot-window-bottom-inner.geekybot-story-inner{width: 80%;}
   div.geekybot-head-btn{width: 50%;}
   div#geekybotadmin-wrapper div#geekybotadmin-data div#geekybot-admin-wrapper form.geekybot-themess div.geekybot-theme-row{padding-right: 10px;}
   div#geekybotadmin-wrapper div#geekybotadmin-data div#geekybot-admin-wrapper .geekybot-appearance-right-section{width: 100%;padding-right: 10px;}
@@ -2121,7 +2121,7 @@ div.geekybot-addon-installer-wrapper div.geekybot-addon-installer-section-wrap d
   div#geekybotadmin-wrapper div#geekybotadmin-data div#geekybot-admin-wrapper form.geekybot-configurations div.geekybot-config-row-wrp div.geekybot-config-row div.geekybot-config-value-text textarea{max-width: 400px; width: 100%;}
   div#geekybotadmin-wrapper div#geekybotadmin-data div#geekybot-admin-wrapper form.geekybot-configurations div.geekybot-config-row-wrp div.geekybot-config-row div.geekybot-config-value span.geekybot-form-radio-field, div#geekybotadmin-wrapper div#geekybotadmin-data div#geekybot-admin-wrapper form.geekybot-configurations div.geekybot-config-row-wrp div.geekybot-config-row div.geekybot-config-value span.geekybot-form-radio-field{width: 100%;max-width:400px;}
   div#geekybotadmin-wrapper div#geekybotadmin-data div#geekybot-admin-wrapper form.geekybot-configurations div.geekybot-config-row-wrp div.geekybot-config-row div.geekybot-config-value span.geekybot-form-radio-field{margin-top: 10px;}
-  div.window-two-btm-inner.geekybot-story-inner{width: 80%;}
+  div.geekybot-window-bottom-inner.geekybot-story-inner{width: 80%;}
   div#geekybotadmin-wrapper div.geekybotadmin-addVariable-data div#geekybot-admin-wrapper form.geekybot-form.has-validation-callback div.geekybot-form-value input.inputbox.geekybot-form-input-field{width: 100%;max-width: 600px;}
   div#geekybotadmin-wrapper div.geekybotadmin-addVariable-data div#geekybot-admin-wrapper form.geekybot-form.has-validation-callback div.geekybot-form-value select.inputbox.geekybot-form-select-field{width: 100%;max-width: 600px;}
   div#geekybotadmin-wrapper div.geekybotadmin-addVariable-data div#geekybot-admin-wrapper form.geekybot-form.has-validation-callback div.geekybot-form-value{float: left;width:calc(75% - 10px);margin-right: 10px;}
@@ -2159,7 +2159,7 @@ div.geekybot-addon-installer-wrapper div.geekybot-addon-installer-section-wrap d
   div.geekybot-dasdhboard-history-head .geekybot-dasdhboard-history-sendermessage{padding-left: 10px;}
   a.geekybot-Intents-btn.multioperation{margin-bottom: 15px;}
   div#geekybot-searchbar{width: 100%;}
-  div.window-two-btm-inner.geekybot-story-inner{width: 70%;}
+  div.geekybot-window-bottom-inner.geekybot-story-inner{width: 70%;}
   div.geekybot-head-btn{float: left;width: 100%;margin-top: 15px;}
   input[type=checkbox]{width: 17px;height: 18px;}
   input[type=checkbox]:checked:before{margin: -7px -9px;}
@@ -2266,7 +2266,7 @@ div.geekybot-addon-installer-wrapper div.geekybot-addon-installer-section-wrap d
   div#geekybotadmin-wrapper div#geekybotadmin-data .geekybot_story_search_section_mainwrp .geekybot_story_search_section_searchwrp{margin-right: 0;}
   div#geekybotadmin-wrapper div#geekybotadmin-data .geekybot_story_main_search_wrp {width: 100%;}
   div#geekybotadmin-wrapper div#geekybotadmin-data .geekybot_story_main_search_wrp div#geekybot-searchbar{width: 100%;}
-  div#geekybotadmin-wrapper div#geekybotadmin-data .geekybot_story_main_search_wrp div.window-two-btm-inner.geekybot-story-inner{width:100%;}
+  div#geekybotadmin-wrapper div#geekybotadmin-data .geekybot_story_main_search_wrp div.geekybot-window-bottom-inner.geekybot-story-inner{width:100%;}
 
 }
 @media (max-width:600px){
@@ -2360,7 +2360,7 @@ div.geekybot-addon-installer-wrapper div.geekybot-addon-installer-section-wrap d
 @media (max-width:479px){
   div#geekybotadmin-wrapper div#geekybotadmin-data div#geekybot-admin-wrapper form.geekybot-configurations div.geekybot-config-row-wrp div.geekybot-config-row div.geekybot-config-value-text{width: 100%;padding-left: 0;}
   ul.geekybotadmin-sidebar-menu li{width:calc(100% / 4);}
-  div.window-two-btm-inner.geekybot-story-inner{width: 80%;}
+  div.geekybot-window-bottom-inner.geekybot-story-inner{width: 80%;}
   ul.geekybotadmin-sidebar-menu{justify-content:unset;}
   div.geekybot-chat-nav-toogle{display:block;}
   div#geekybotadmin-leftmenu-main ul{display:none;border-radius: unset;}
@@ -2375,10 +2375,10 @@ div.geekybot-addon-installer-wrapper div.geekybot-addon-installer-section-wrap d
   div#geekybotadmin-wrapper div#geekybotadmin-data div#geekybot-admin-wrapper form.geekybot-themess div.geekybot-theme-row input{font-size: 16px;}
   div#geekybotadmin-wrapper-right div.geekybotadmin-navbar-right div.geekybot-navbar-img-right{float: left;margin-top: 10px;}
   div#geekybotadmin-wrapper div#geekybotadmin-data div#geekybot-admin-wrapper form.geekybot-themess div.geekybot-theme-btn button{margin-top: 10px;}
-  div.geekybot-appearance-right-section .chat-popup .chat-windows .chat-window-two{width: 100%;}
-  div.geekybot-appearance-right-section .chat-popup .chat-windows{width: 100%;}
-  div.geekybot-appearance-right-section .chat-popup.chat-init .chat-windows{transform:translateX(0px);}
-  div.geekybot-appearance-right-section #send-message{width: 100%;}
+  div.geekybot-appearance-right-section .geekybot-chat-popup .geekybot-chat-windows .geekybot-chat-window{width: 100%;}
+  div.geekybot-appearance-right-section .geekybot-chat-popup .geekybot-chat-windows{width: 100%;}
+  div.geekybot-appearance-right-section .geekybot-chat-popup.geekybot-chat-init .geekybot-chat-windows{transform:translateX(0px);}
+  div.geekybot-appearance-right-section #geekybot-send-message{width: 100%;}
   div#geekybotadmin-wrapper-right{width: 100%;}
   div#geekybotadmin-wrapper div#geekybotadmin-data div#geekybot-admin-wrapper form.geekybot-themess div.geekybot-theme-row div.geekybot-theme-row-left span.geeky-bot-theme-img-bot, div#geekybotadmin-wrapper div#geekybotadmin-data div#geekybot-admin-wrapper form.geekybot-themess div.geekybot-theme-row div.geekybot-theme-row-right span.geeky-bot-theme-img-user{width: 100%;}
   div#geekybotadmin-wrapper div#geekybotadmin-data div#geekybot-admin-wrapper form.geekybot-themess div.geekybot-theme-row div.geekybot-theme-row-left span.geeky-bot-theme-img-bot span.geeky-bot-theme-img-right, div#geekybotadmin-wrapper div#geekybotadmin-data div#geekybot-admin-wrapper form.geekybot-themess div.geekybot-theme-row div.geekybot-theme-row-right span.geeky-bot-theme-img-user span.geeky-bot-theme-img-right{padding: 0 13px;}

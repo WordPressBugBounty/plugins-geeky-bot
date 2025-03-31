@@ -873,9 +873,10 @@ class GEEKYBOTstoriesModel {
             die( 'Security check Failed' ); 
         }
         $groupId = GEEKYBOTrequest::GEEKYBOT_getVar('groupId');
+        $storyId = GEEKYBOTrequest::GEEKYBOT_getVar('storyId');
         $html = '';
         if (!empty($groupId) && is_numeric($groupId)) {
-            $query = "SELECT id, default_fallback, default_fallback_buttons FROM `" . geekybot::$_db->prefix . "geekybot_intents_fallback` where group_id = ".esc_sql($groupId);
+            $query = "SELECT id, default_fallback, default_fallback_buttons FROM `" . geekybot::$_db->prefix . "geekybot_intents_fallback` where group_id = ".esc_sql($groupId) ." AND story_id = ".esc_sql($storyId);
             $fallback = geekybotdb::GEEKYBOT_get_row($query);
             // fallback buttons
             $fallback_buttons = [];
@@ -1294,6 +1295,9 @@ class GEEKYBOTstoriesModel {
             $intents_ordering = $tampData['intents_ordering'];
             if (isset($tampData['default_fallback'])) {
                 $default_fallback = $tampData['default_fallback'];
+                if (isset($tampData['default_fallback_buttons'])) {
+                    $default_fallback_buttons = $tampData['default_fallback_buttons'];
+                }
             }
 
         }
@@ -1307,6 +1311,9 @@ class GEEKYBOTstoriesModel {
         $story['intents_ordering'] = $intents_ordering;
         if (isset($default_fallback) && $default_fallback != '') {
             $story['default_fallback'] = $default_fallback;
+            if (isset($default_fallback_buttons) && $default_fallback_buttons != '') {
+                $story['default_fallback_buttons'] = $default_fallback_buttons;
+            }
         }
         $story['story_type'] = 1;
         $this->saveAutoBuildStory($story);
@@ -1528,6 +1535,9 @@ class GEEKYBOTstoriesModel {
         $intents_ordering = $tampData['intents_ordering'];
         if (isset($tampData['default_fallback'])) {
             $default_fallback = $tampData['default_fallback'];
+            if (isset($tampData['default_fallback_buttons'])) {
+                $default_fallback_buttons = $tampData['default_fallback_buttons'];
+            }
         }
         //////////////////////////////
         // save story
@@ -1538,6 +1548,9 @@ class GEEKYBOTstoriesModel {
         $story['intents_ordering'] = $intents_ordering;
         if (isset($default_fallback) && $default_fallback != '') {
             $story['default_fallback'] = $default_fallback;
+            if (isset($default_fallback_buttons) && $default_fallback_buttons != '') {
+                $story['default_fallback_buttons'] = $default_fallback_buttons;
+            }
         }
         $story['story_type'] = 2;
         $this->saveAutoBuildStory($story);
@@ -1546,8 +1559,10 @@ class GEEKYBOTstoriesModel {
 
     function geekybotReadTemplate($xml, $positionsarray, $intent_ids, $intents_ordering) {
         $slot_no = 1;
+        $userInputMsg = __('User input', 'geeky-bot');
         $textMsg = __('Text', 'geeky-bot');
         $functionMsg = __('Function', 'geeky-bot');
+        $intentFallbackMsg = __('Fallback', 'geeky-bot');
         if (isset($xml->slots->slot)) {
             foreach ($xml->slots->slot as $slot) {
                 // Validate the presence 'name' tags
@@ -1690,11 +1705,36 @@ class GEEKYBOTstoriesModel {
         $left_position = 0;
         $default_fallback = '';
         // get the fallback
-        if (isset($xml->fallback)) {    
+        if (isset($xml->fallback->text)) {
             // Validate that 'fallback' is not empty
-            if (!empty((string)$xml->fallback)) {
-                $default_fallback = (string)$xml->fallback;
+            if (!empty((string)$xml->fallback->text)) {
+                $default_fallback = (string)$xml->fallback->text;
             }
+        }
+        // get the fallback buttons
+        if (isset($xml->fallback->buttons)) {
+            // Validate that 'fallback' is not empty
+            if (!empty((string)$xml->fallback->buttons)) {
+                $buttons = [];
+                if (isset($xml->fallback->buttons->button)) {
+                    foreach ($xml->fallback->buttons->button as $button) {
+                        $buttonType = '';
+                        if ($button->type == 'intent') {
+                            $buttonType = 1;
+                        } elseif ($button->type == 'url') {
+                            $buttonType = 2;
+                        }
+                        $buttons[] = array("text" => (string)$button->text, "type" => $buttonType, "value" => (string)$button->value);
+                    }
+                }
+                if (!empty($buttons)) {
+                    $fallback_button = json_encode($buttons);
+                } else {
+                    $fallback_button = '';
+                }
+                $default_fallback_buttons = $fallback_button;
+            }
+
         }
         // draw default fallback
         $node_id += 2;
@@ -1733,13 +1773,52 @@ class GEEKYBOTstoriesModel {
                 $top_position_direction = $this->geekybotGetTopPosition($top_position, $direction);
                 $top_position = $top_position_direction['position'];
                 $direction = $top_position_direction['direction'];
-                $left_position = $this->geekybotGetLeftPosition($left_position);
+                $left_position = $this->geekybotGetLeftPosition($left_position, 'user_input');
                 $node_id += 2;
                 $parent_node_id += 2;
-                $positionsarray .= ',{"id":"node'.$node_id.'","top":"'.$top_position.'","left":"'.$left_position.'","parentId":"node'.$parent_node_id.'","type":"user_input","text":"User input","image":"user-icon","class":"node_action_user_input","category":"intent","value":"intentid_'.$group_id.'"}';
+                $positionsarray .= ',{"id":"node'.$node_id.'","top":"'.$top_position.'","left":"'.$left_position.'","parentId":"node'.$parent_node_id.'","type":"user_input","text":"'.$userInputMsg.'","image":"user-icon","class":"node_action_user_input","category":"intent","value":"intentid_'.$group_id.'"}';
                 // save the intent ordering
                 $intents_ordering[$intents_ordering_index]['id'] = $group_id;
                 $intents_ordering[$intents_ordering_index]['index'] = $intents_ordering_index_value;
+
+                // save intent fallback
+                $isIntentFallbackSet = 0;
+                if (!empty($intent_group->intent->fallback->text)) {
+                    $intentFallbackData['_wpnonce'] = wp_create_nonce("save-intent-fallback");
+                    $intentFallbackData['group_id'] = $group_id;
+                    $intentFallbackData['default_fallback'] = (string)$intent_group->intent->fallback->text;
+
+                    $buttons = [];
+                    if (isset($intent_group->intent->fallback->buttons->button)) {
+                        foreach ($intent_group->intent->fallback->buttons->button as $button) {
+                            $buttonType = '';
+                            if ($button->type == 'intent') {
+                                $buttonType = 1;
+                            } elseif ($button->type == 'url') {
+                                $buttonType = 2;
+                            }
+                            $buttons[] = array("text" => (string)$button->text, "type" => $buttonType, "value" => (string)$button->value);
+                        }
+                    }
+                    if (!empty($buttons)) {
+                        $intent_fallback_button = json_encode($buttons);
+                    } else {
+                        $intent_fallback_button = '';
+                    }
+                    $intentFallbackData['default_fallback_buttons'] = $intent_fallback_button;
+                    $intent_fallback_id = GEEKYBOTincluder::GEEKYBOT_getModel('intent')->saveAutoBuildUserInputFallBack($intentFallbackData);
+                    // draw the new response
+                    $parent_node_id_fb = $node_id;
+                    $node_id = $node_id + 2;
+                    $isIntentFallbackSet = 1;
+                    if (isset($intent_group->intent->fallback->text)) {
+                        $top_position_direction_fb = $this->geekybotGetTopPositionForFallBack($top_position, $direction);
+                        $top_position_fb = $top_position_direction_fb['position'];
+                        $direction_fb = $top_position_direction_fb['direction'];
+                        $left_position_fb = $this->geekybotGetLeftPosition($left_position, 'response_text');
+                        $positionsarray .= ',{"id":"node'.$node_id.'","top":"'.$top_position_fb.'","left":"'.$left_position_fb.'","parentId":"node'.$parent_node_id_fb.'","parentType":"user_input","type":"fallback","text":"'.$intentFallbackMsg.'","image":"fallback","class":"node_action_intent_fallback","category":"fallback","value":""}';
+                    }
+                }
 
                 // ----------------
                 // save response
@@ -1747,7 +1826,6 @@ class GEEKYBOTstoriesModel {
                     $top_position_direction = $this->geekybotGetTopPosition($top_position, $direction);
                     $top_position = $top_position_direction['position'];
                     $direction = $top_position_direction['direction'];
-                    $left_position = $this->geekybotGetLeftPosition($left_position);
                     if (isset($response->text)) {
                         $responseData['response_type'] = 1;
                         $responseData['bot_response'] = (string)$response->text;
@@ -1778,12 +1856,24 @@ class GEEKYBOTstoriesModel {
                     $responseData['response_button'] = $response_button;
                     $response_id = GEEKYBOTincluder::GEEKYBOT_getModel('responses')->saveAutoBuildResponses($responseData);
                     // draw the new response
-                    $parent_node_id = $node_id;
+                    if (!empty($isIntentFallbackSet)) {
+                        $parent_node_id = $node_id - 2;
+                        $isIntentFallbackSet = 0;
+                        $intentFallbackUnset = 1;
+                    } else {
+                        $parent_node_id = $node_id;
+                    }
                     $node_id = $node_id + 2;
                     if (isset($response->text)) {
+                        $left_position = $this->geekybotGetLeftPosition($left_position, 'response_text');
                         $positionsarray .= ',{"id":"node'.$node_id.'","top":"'.$top_position.'","left":"'.$left_position.'","parentId":"node'.$parent_node_id.'","type":"response_text","text":"'.$textMsg.'","image":"bot-text","class":"node_action_text","category":"response","value":"responseid_'.$response_id.'"}';
                     } elseif (isset($response->function)) {
+                        $left_position = $this->geekybotGetLeftPosition($left_position, 'response_function');
                         $positionsarray .= ',{"id":"node'.$node_id.'","top":"'.$top_position.'","left":"'.$left_position.'","parentId":"node'.$parent_node_id.'","type":"response_function","text":"'.$functionMsg.'","image":"bot-function","class":"node_action_function","category":"response","value":"responseid_'.$response_id.'"}';
+                    }
+                    if (!empty($intentFallbackUnset)) {
+                        $intentFallbackUnset = 0;
+                        $parent_node_id = $parent_node_id + 2;
                     }
                     $intent_ids_index++;
                     $intent_ids['responseid_'.$intent_ids_index.'id'] = $response_id;
@@ -1799,6 +1889,9 @@ class GEEKYBOTstoriesModel {
         $data['intents_ordering'] = $intents_ordering;
         if (isset($default_fallback) && $default_fallback != '') {
             $data['default_fallback'] = $default_fallback;
+            if (isset($default_fallback_buttons) && $default_fallback_buttons != '') {
+                $data['default_fallback_buttons'] = $default_fallback_buttons;
+            }
         }
         return $data;
     }
@@ -1821,6 +1914,9 @@ class GEEKYBOTstoriesModel {
         $cols['story_type'] = $story['story_type'];
         if (isset($story['default_fallback']) && $story['default_fallback'] != '') {
             $cols['default_fallback'] = $story['default_fallback'];
+            if (isset($story['default_fallback_buttons']) && $story['default_fallback_buttons'] != '') {
+                $cols['default_fallback_buttons'] = $story['default_fallback_buttons'];
+            }
         }
         $cols['status'] = 1;
 
@@ -1841,6 +1937,9 @@ class GEEKYBOTstoriesModel {
                 if (isset($intentid) && is_numeric($intentid) ) {
                     if (strpos($key, 'intentid_') !== false) {
                         $query = "UPDATE `" . geekybot::$_db->prefix . "geekybot_intents` SET `story_id` = ".esc_sql($story_id)."  WHERE `group_id`= " . esc_sql($intentid);
+                        geekybotdb::query($query);
+                        // check for intent base fallback
+                        $query = "UPDATE `" . geekybot::$_db->prefix . "geekybot_intents_fallback` SET `story_id` = ".esc_sql($story_id)."  WHERE `group_id`= " . esc_sql($intentid)." AND `story_id`= 0";
                         geekybotdb::query($query);
                     } else if (strpos($key, 'responseid_') !== false) {
                         $query = "UPDATE `" . geekybot::$_db->prefix . "geekybot_responses` SET `story_id` = ".esc_sql($story_id)."  WHERE `id`= " . esc_sql($intentid);
@@ -2205,16 +2304,16 @@ class GEEKYBOTstoriesModel {
         $next_position = $previous_position;
         $next_direction = $previous_direction;
         if ($previous_direction == 'up') {
-            $next_position = $previous_position - 148;
+            $next_position = $previous_position - 138;
             if ($next_position < 50) {
                 $next_direction = 'down';
-                $next_position = $previous_position + 148;
+                $next_position = $previous_position + 138;
             }
         } elseif ($previous_direction == 'down') {
-            $next_position = $previous_position + 148;
+            $next_position = $previous_position + 138;
             if ($next_position > 760) {
                 $next_direction = 'up';
-                $next_position = $previous_position - 148;
+                $next_position = $previous_position - 138;
             }
         }
         $data['position'] = $next_position;
@@ -2222,8 +2321,35 @@ class GEEKYBOTstoriesModel {
         return $data;
     }
 
-    function geekybotGetLeftPosition($previous_position){
-        $next_position = $previous_position + 241;
+    function geekybotGetTopPositionForFallBack($previous_position, $previous_direction){
+        $next_position = $previous_position;
+        $next_direction = $previous_direction;
+        if ($previous_direction == 'up') {
+            $next_position = $previous_position + 138;
+            if ($next_position < 50) {
+                $next_direction = 'down';
+                $next_position = $previous_position - 138;
+            }
+        } elseif ($previous_direction == 'down') {
+            $next_position = $previous_position - 138;
+            if ($next_position > 760) {
+                $next_direction = 'up';
+                $next_position = $previous_position + 138;
+            }
+        }
+        $data['position'] = $next_position;
+        $data['direction'] = $next_direction;
+        return $data;
+    }
+
+    function geekybotGetLeftPosition($previous_position, $type){
+        if($type == 'response_function') {
+            $next_position = $previous_position + 200;
+        } else if($type != 'user_input') {
+            $next_position = $previous_position + 210;
+        } else {
+            $next_position = $previous_position + 240;
+        }
         return $next_position;
     }
 
@@ -2427,6 +2553,282 @@ class GEEKYBOTstoriesModel {
         ];
 
         return wp_json_encode($results);
+    }
+
+    function geekybotExportStoryToXML($story_id) {
+        // Fetch story details
+        $story_table = geekybot::$_db->prefix . "geekybot_stories";
+        $intents_table = geekybot::$_db->prefix . "geekybot_intents";
+        $responses_table = geekybot::$_db->prefix . "geekybot_responses";
+        $fallback_table = geekybot::$_db->prefix . "geekybot_intents_fallback"; // Fallback table
+
+        $query = "SELECT * FROM `" . $story_table . "` WHERE id = " . intval($story_id);
+        $story = geekybotdb::GEEKYBOT_get_row($query);
+        if (!$story) {
+            return __("Error: Story not found.", 'geeky-bot');
+        }
+
+        // Decode the intent_ids JSON data
+        $intent_data = json_decode($story->intent_ids, true);
+        if (!$intent_data) {
+            return __("Error: Invalid intent data.", 'geeky-bot');
+        }
+
+        // Start output buffering to prevent accidental whitespace
+        ob_clean();
+
+        // Initialize XML structure with DOMDocument
+        $dom = new DOMDocument('1.0', 'UTF-8');
+        $dom->formatOutput = true; // Enables indentation
+        $dom->preserveWhiteSpace = false;
+
+        $storyNode = $dom->createElement('story');
+        $dom->appendChild($storyNode);
+
+        // Create slots node
+        $slotsNode = $dom->createElement('slots');
+        $storyNode->appendChild($slotsNode);
+
+        $slotValues = []; // Store extracted slot values
+
+        if (!empty($intent_data)) {
+            $intentsNode = $dom->createElement('intents');
+            $storyNode->appendChild($intentsNode);
+        }
+
+        $group_id = null;
+        $responses = [];
+
+        foreach ($intent_data as $key => $value) {
+            if (strpos($key, 'intentid_') !== false) {
+                if ($group_id !== null) {
+                    // Create intent group
+                    $intentGroupNode = $dom->createElement('intent_group');
+                    $intentsNode->appendChild($intentGroupNode);
+
+                    // Create intent node
+                    $intentNode = $dom->createElement('intent');
+                    $intentGroupNode->appendChild($intentNode);
+
+                    // Get user messages
+                    $query = "SELECT user_messages FROM `" . $intents_table . "` WHERE group_id = " . esc_sql($group_id);
+                    $user_messages = geekybotdb::GEEKYBOT_get_results($query);
+                    if (!empty($user_messages)) {
+                        $userInputsNode = $dom->createElement('user_inputs');
+                        $intentNode->appendChild($userInputsNode);
+                        foreach ($user_messages as $user_message_value) {
+                            $userInputsNode->appendChild($dom->createElement('user_input', htmlspecialchars($user_message_value->user_messages)));
+                        }
+                    }
+
+                    // **Check and add fallback for this group_id**
+                    $query = "SELECT * FROM `" . $fallback_table . "` WHERE group_id = " . esc_sql($group_id) ." AND story_id = " . esc_sql($story_id);
+                    $fallback = geekybotdb::GEEKYBOT_get_row($query);
+
+                    if ($fallback) {
+                        $fallbackNode = $dom->createElement('fallback');
+                        $intentNode->appendChild($fallbackNode);
+                        $fallbackTextNode = $dom->createElement('text', htmlspecialchars($fallback->default_fallback));
+                        $fallbackNode->appendChild($fallbackTextNode);
+
+                        // Add fallback buttons if available
+                        if (!empty($fallback->default_fallback_buttons)) {
+                            $fallbackButtons = json_decode($fallback->default_fallback_buttons, true);
+                            if (!empty($fallbackButtons)) {
+                                $fallbackButtonsNode = $dom->createElement('buttons');
+                                $fallbackNode->appendChild($fallbackButtonsNode);
+                                foreach ($fallbackButtons as $button) {
+                                    $buttonNode = $dom->createElement('button');
+                                    $fallbackButtonsNode->appendChild($buttonNode);
+                                    $buttonNode->appendChild($dom->createElement('text', htmlspecialchars($button['text'])));
+                                    $buttonNode->appendChild($dom->createElement('type', htmlspecialchars($button['type'] == 1 ? 'intent' : 'url')));
+                                    $buttonNode->appendChild($dom->createElement('value', htmlspecialchars($button['value'])));
+                                }
+                            }
+                        }
+                    }
+
+                    // Process responses
+                    if (!empty($responses)) {
+                        $responsesNode = $dom->createElement('responses');
+                        $intentGroupNode->appendChild($responsesNode);
+                        foreach ($responses as $response_id) {
+                            $query = "SELECT * FROM `" . $responses_table . "` WHERE id = " . esc_sql($response_id);
+                            $response = geekybotdb::GEEKYBOT_get_row($query);
+                            if ($response) {
+                                $responseNode = $dom->createElement('response');
+                                $responsesNode->appendChild($responseNode);
+
+                                if (!empty($response->bot_response)) {
+                                    $text = $response->bot_response;
+                                    $responseNode->appendChild($dom->createElement('text', htmlspecialchars($text)));
+
+                                    // Extract slot values from text
+                                    if (preg_match_all('/\[(.*?)\]\((.*?)\)/', $text, $matches, PREG_SET_ORDER)) {
+                                        foreach ($matches as $match) {
+                                            $slotName = $match[2]; // e.g., "geekybot_user_name"
+                                            $possibleValue = $match[1]; // e.g., "John"
+                                            if (!isset($slotValues[$slotName])) {
+                                                $slotValues[$slotName] = $possibleValue;
+                                            }
+                                        }
+                                    }
+                                }
+                                if (!empty($response->function_id)) {
+                                    $function_name = $this->getFunctionNameById($response->function_id);
+                                    $responseNode->appendChild($dom->createElement('function', htmlspecialchars($function_name)));
+                                }
+                                
+                                // Handle buttons
+                                if (!empty($response->response_button)) {
+                                    $buttons = json_decode($response->response_button, true);
+                                    if (!empty($buttons)) {
+                                        $buttonsNode = $dom->createElement('buttons');
+                                        $responseNode->appendChild($buttonsNode);
+                                        foreach ($buttons as $button) {
+                                            $buttonNode = $dom->createElement('button');
+                                            $buttonsNode->appendChild($buttonNode);
+                                            $buttonNode->appendChild($dom->createElement('text', htmlspecialchars($button['text'])));
+                                            $buttonNode->appendChild($dom->createElement('type', htmlspecialchars($button['type'] == 1 ? 'intent' : 'url')));
+                                            $buttonNode->appendChild($dom->createElement('value', htmlspecialchars($button['value'])));
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+
+                // Set new group ID and reset responses
+                $group_id = intval($value);
+                $responses = [];
+            } elseif (strpos($key, 'responseid_') !== false) {
+                $responses[] = intval($value);
+            }
+        }
+
+        // Process the last group
+        if ($group_id !== null) {
+            $intentGroupNode = $dom->createElement('intent_group');
+            $intentsNode->appendChild($intentGroupNode);
+
+            $intentNode = $dom->createElement('intent');
+            $intentGroupNode->appendChild($intentNode);
+
+            $query = "SELECT user_messages FROM `" . $intents_table . "` WHERE group_id = " . esc_sql($group_id);
+            $user_messages = geekybotdb::GEEKYBOT_get_results($query);
+            if (!empty($user_messages)) {
+                $userInputsNode = $dom->createElement('user_inputs');
+                $intentNode->appendChild($userInputsNode);
+                foreach ($user_messages as $user_message_value) {
+                    $userInputsNode->appendChild($dom->createElement('user_input', htmlspecialchars($user_message_value->user_messages)));
+                }
+            }
+
+            // **Check and add fallback for last group**
+            $query = "SELECT * FROM `" . $fallback_table . "` WHERE group_id = " . esc_sql($group_id) ." AND story_id = " . esc_sql($story_id);
+            $fallback = geekybotdb::GEEKYBOT_get_row($query);
+            if ($fallback) {
+                $fallbackNode = $dom->createElement('fallback');
+                $intentNode->appendChild($fallbackNode);
+                $fallbackTextNode = $dom->createElement('text', htmlspecialchars($story->default_fallback));
+                $fallbackNode->appendChild($fallbackTextNode);
+
+                // Add fallback buttons
+                if (!empty($fallback->default_fallback_buttons)) {
+                    $fallbackButtons = json_decode($fallback->default_fallback_buttons, true);
+                    if (!empty($fallbackButtons)) {
+                        $fallbackButtonsNode = $dom->createElement('buttons');
+                        $fallbackNode->appendChild($fallbackButtonsNode);
+                        foreach ($fallbackButtons as $button) {
+                            $buttonNode = $dom->createElement('button');
+                            $fallbackButtonsNode->appendChild($buttonNode);
+                            $buttonNode->appendChild($dom->createElement('text', htmlspecialchars($button['text'])));
+                            $buttonNode->appendChild($dom->createElement('type', htmlspecialchars($button['type'] == 1 ? 'intent' : 'url')));
+                            $buttonNode->appendChild($dom->createElement('value', htmlspecialchars($button['value'])));
+                        }
+                    }
+                }
+            }
+
+            if (!empty($responses)) {
+                $responsesNode = $dom->createElement('responses');
+                $intentGroupNode->appendChild($responsesNode);
+                foreach ($responses as $response_id) {
+                    $query = "SELECT * FROM `" . $responses_table . "` WHERE id = " . esc_sql($response_id);
+                    $response = geekybotdb::GEEKYBOT_get_row($query);
+                    if ($response) {
+                        $responseNode = $dom->createElement('response');
+                        $responsesNode->appendChild($responseNode);
+
+                        if (!empty($response->bot_response)) {
+                            $responseNode->appendChild($dom->createElement('text', htmlspecialchars($response->bot_response)));
+                        }
+                        if (!empty($response->function_id)) {
+                            $function_name = $this->getFunctionNameById($response->function_id);
+                            $responseNode->appendChild($dom->createElement('function', htmlspecialchars($function_name)));
+                        }
+
+                        // Handle buttons
+                        if (!empty($response->response_button)) {
+                            $buttons = json_decode($response->response_button, true);
+                            if (!empty($buttons)) {
+                                $buttonsNode = $dom->createElement('buttons');
+                                $responseNode->appendChild($buttonsNode);
+                                foreach ($buttons as $button) {
+                                    $buttonNode = $dom->createElement('button');
+                                    $buttonsNode->appendChild($buttonNode);
+                                    $buttonNode->appendChild($dom->createElement('text', htmlspecialchars($button['text'])));
+                                    $buttonNode->appendChild($dom->createElement('type', htmlspecialchars($button['type'] == 1 ? 'intent' : 'url')));
+                                    $buttonNode->appendChild($dom->createElement('value', htmlspecialchars($button['value'])));
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        // Add extracted slot values to XML
+        foreach ($slotValues as $slotName => $possibleValue) {
+            $slotNode = $dom->createElement('slot');
+            $slotsNode->appendChild($slotNode);
+            $slotNode->appendChild($dom->createElement('name', htmlspecialchars($slotName)));
+            $slotNode->appendChild($dom->createElement('type', htmlspecialchars('PersonName'))); 
+            $slotNode->appendChild($dom->createElement('possible_values', htmlspecialchars($possibleValue)));
+        }
+
+        // Add fallback message
+        $fallbackNode = $dom->createElement('fallback');
+        $storyNode->appendChild($fallbackNode);
+        $fallbackTextNode = $dom->createElement('text', htmlspecialchars($story->default_fallback));
+        $fallbackNode->appendChild($fallbackTextNode);
+
+        // Handle fallback buttons
+        if (!empty($story->default_fallback_buttons)) {
+            $fallbackButtons = json_decode($story->default_fallback_buttons, true);
+            if (!empty($fallbackButtons)) {
+                $fallbackButtonsNode = $dom->createElement('buttons');
+                $fallbackNode->appendChild($fallbackButtonsNode);
+                foreach ($fallbackButtons as $button) {
+                    $buttonNode = $dom->createElement('button');
+                    $fallbackButtonsNode->appendChild($buttonNode);
+                    $buttonNode->appendChild($dom->createElement('text', htmlspecialchars($button['text'])));
+                    $buttonNode->appendChild($dom->createElement('type', htmlspecialchars($button['type'] == 1 ? 'intent' : 'url')));
+                    $buttonNode->appendChild($dom->createElement('value', htmlspecialchars($button['value'])));
+                }
+            }
+        }
+
+        // Generate XML with indentation
+        $xml_content = $dom->saveXML();
+
+        // Export XML
+        $filename = "story_{$story_id}.xml";
+        header('Content-Type: application/xml');
+        header('Content-Disposition: attachment; filename="' . $filename . '"');
+        echo $xml_content;
+        exit;
     }
 }
 ?>

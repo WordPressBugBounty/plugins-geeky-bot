@@ -12,7 +12,7 @@ if (!defined('ABSPATH'))
         jQuery.post(ajaxurl, { action: "geekybot_frontendajax", geekybotme: "woocommerce", task: "geekybotAddToCart", productid: pid, "_wpnonce":"'.esc_attr(wp_create_nonce("add-to-cart")) .'"}, function (data) {
             if (data) {
                 geekybot_scrollToTop(120);
-                jQuery(\'#chatbox\').append(\'<li class="actual_msg actual_msg_adm"><section class="actual_msg_adm-img"><img src="'.esc_url($botImgScr).'" alt="" /></section><section class="actual_msg_text">\'+data+\'</section></li>\');
+                jQuery(\'#geekybotChatBox\').append(\'<li class="geekybot-message geekybot-message-bot"><section class="geekybot-message-bot-img"><img src="'.esc_url($botImgScr).'" alt="" /></section><section class="geekybot-message-text">\'+data+\'</section></li>\');
             }
         });
     }
@@ -24,7 +24,7 @@ if (!defined('ABSPATH'))
         jQuery.post(ajaxurl, { action: "geekybot_frontendajax", geekybotme: "woocommerce", task: "getProductAttributes", productid: pid, isnew: isnew, attr: attributes, "_wpnonce":"'.esc_attr(wp_create_nonce("product-attributes")) .'"}, function (data) {
             if (data) {
                 geekybot_scrollToTop(100);
-                jQuery(\'#chatbox\').append(\'<li class="actual_msg actual_msg_adm"><section class="actual_msg_adm-img"><img src="'.esc_url($botImgScr).'" alt="" /></section><section class="actual_msg_text">\'+data+\'</section></li>\');
+                jQuery(\'#geekybotChatBox\').append(\'<li class="geekybot-message geekybot-message-bot"><section class="geekybot-message-bot-img"><img src="'.esc_url($botImgScr).'" alt="" /></section><section class="geekybot-message-text">\'+data+\'</section></li>\');
             }
         });
     }
@@ -34,7 +34,7 @@ if (!defined('ABSPATH'))
         jQuery.post(ajaxurl, { action: "geekybot_frontendajax", geekybotme: "woocommerce", task: "saveProductAttributeToSession", productid: productid, attributekey: attributekey, attributevalue: attributevalue, userattributes: userattributes, "_wpnonce":"'.esc_attr(wp_create_nonce("save-product-attribute")) .'"}, function (data) {
             if (data) {
                 geekybot_scrollToTop(100);
-                jQuery(\'#chatbox\').append(\'<li class="actual_msg actual_msg_adm"><section class="actual_msg_adm-img"><img src="'.esc_url($botImgScr).'" alt="" /></section><section class="actual_msg_text">\'+data+\'</section></li>\');
+                jQuery(\'#geekybotChatBox\').append(\'<li class="geekybot-message geekybot-message-bot"><section class="geekybot-message-bot-img"><img src="'.esc_url($botImgScr).'" alt="" /></section><section class="geekybot-message-text">\'+data+\'</section></li>\');
             }
         });
     }
@@ -48,7 +48,7 @@ if (!defined('ABSPATH'))
                 geekybot_scrollToTop(340);
                 var message = geekybot_DecodeHTML(data);
                 jQuery(\'.geekybot_wc_product_load_more\').css(\'display\', \'none\');
-                jQuery(\'#chatbox\').append(\'<li class="actual_msg actual_msg_adm"><section class="actual_msg_adm-img"><img src="'.esc_url($botImgScr).'" alt="" /></section><section class="actual_msg_text">\'+message+\'</section></li>\');
+                jQuery(\'#geekybotChatBox\').append(\'<li class="geekybot-message geekybot-message-bot"><section class="geekybot-message-bot-img"><img src="'.esc_url($botImgScr).'" alt="" /></section><section class="geekybot-message-text">\'+message+\'</section></li>\');
             }
         });
     }
@@ -62,7 +62,7 @@ if (!defined('ABSPATH'))
                 geekybot_scrollToTop(350);
                 var message = geekybot_DecodeHTML(data)
                 jQuery(\'div.geekybot_wc_product_load_more_wrp\').css(\'display\', \'none\');
-                jQuery(\'#chatbox\').append(\'<li class="actual_msg actual_msg_adm"><section class="actual_msg_adm-img"><img src="'.esc_url($botImgScr).'" alt="" /></section><section class="actual_msg_text">\'+message+\'</section></li>\');
+                jQuery(\'#geekybotChatBox\').append(\'<li class="geekybot-message geekybot-message-bot"><section class="geekybot-message-bot-img"><img src="'.esc_url($botImgScr).'" alt="" /></section><section class="geekybot-message-text">\'+message+\'</section></li>\');
                 
             }
         });
@@ -76,7 +76,7 @@ if (!defined('ABSPATH'))
             if (data) {
                 geekybot_scrollToTop(100);
                 var message = geekybot_DecodeHTML(data)
-                jQuery(\'#chatbox\').append(\'<li class="actual_msg actual_msg_adm"><section class="actual_msg_adm-img"><img src="'.esc_url($botImgScr).'" alt="" /></section><section class="actual_msg_text">\'+message+\'</section></li>\');
+                jQuery(\'#geekybotChatBox\').append(\'<li class="geekybot-message geekybot-message-bot"><section class="geekybot-message-bot-img"><img src="'.esc_url($botImgScr).'" alt="" /></section><section class="geekybot-message-text">\'+message+\'</section></li>\');
                 
             }
         });
@@ -90,7 +90,7 @@ if (!defined('ABSPATH'))
             if (data) {
                 geekybot_scrollToTop(100);
                 var message = geekybot_DecodeHTML(data)
-                jQuery(\'#chatbox\').append(\'<li class="actual_msg actual_msg_adm"><section class="actual_msg_adm-img"><img src="'.esc_url($botImgScr).'" alt="" /></section><section class="actual_msg_text">\'+message+\'</section></li>\');
+                jQuery(\'#geekybotChatBox\').append(\'<li class="geekybot-message geekybot-message-bot"><section class="geekybot-message-bot-img"><img src="'.esc_url($botImgScr).'" alt="" /></section><section class="geekybot-message-text">\'+message+\'</section></li>\');
                 
             }
         });
@@ -104,7 +104,7 @@ if (!defined('ABSPATH'))
             if (data) {
                 geekybot_scrollToTop(100);
                 var message = geekybot_DecodeHTML(data)
-                jQuery(\'#chatbox\').append(\'<li class="actual_msg actual_msg_adm"><section class="actual_msg_adm-img"><img src="'.esc_url($botImgScr).'" alt="" /></section><section class="actual_msg_text">\'+message+\'</section></li>\');
+                jQuery(\'#geekybotChatBox\').append(\'<li class="geekybot-message geekybot-message-bot"><section class="geekybot-message-bot-img"><img src="'.esc_url($botImgScr).'" alt="" /></section><section class="geekybot-message-text">\'+message+\'</section></li>\');
                 
             }
         });
@@ -118,7 +118,7 @@ if (!defined('ABSPATH'))
             if (data) {
                 geekybot_scrollToTop(100);
                 var message = geekybot_DecodeHTML(data)
-                jQuery(\'#chatbox\').append(\'<li class="actual_msg actual_msg_adm"><section class="actual_msg_adm-img"><img src="'.esc_url($botImgScr).'" alt="" /></section><section class="actual_msg_text">\'+message+\'</section></li>\');
+                jQuery(\'#geekybotChatBox\').append(\'<li class="geekybot-message geekybot-message-bot"><section class="geekybot-message-bot-img"><img src="'.esc_url($botImgScr).'" alt="" /></section><section class="geekybot-message-text">\'+message+\'</section></li>\');
             }
         });
     }';

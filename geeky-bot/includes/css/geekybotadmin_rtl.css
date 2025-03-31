@@ -86,7 +86,7 @@ div.geekybot-config-selection-popup-closebtn{right: auto;left: 10px;}
 div#geekybot-searchbar{float: right;}
 .inputbox.geekybot-form-input-field{float: right;margin-right: 0;margin-left: 5px;padding-left: 5px;padding-right: 15px;}
 div#geekybot-reset-btn-main{float: right;margin-left: 0;margin-right: 5px;}
-div.window-two-btm-inner.geekybot-story-inner{float: right;}
+div.geekybot-window-bottom-inner.geekybot-story-inner{float: right;}
 div.geekybot-head-btn{float: left;padding-left: 0;padding-right: 20px;}
 a.geekybot-Intents-btn{float: left;margin-left: 0;margin-right: 8px;}
 a.geekybot-Intents-btn.multioperation img{margin-right: 0;margin-left: 7px;}
@@ -122,18 +122,18 @@ div#geekybotadmin-wrapper div#geekybotadmin-data div#geekybot-admin-wrapper form
 div#geekybotadmin-wrapper div#geekybotadmin-data div#geekybot-admin-wrapper form.geekybot-themess div.geekybot-theme-btn .geekybot-theme-reset-btn{margin-left: 0;margin-right: 5px;}
 div#geekybotadmin-wrapper div#geekybotadmin-data div#geekybot-admin-wrapper form.geekybot-themess div.geekybot-theme-btn .geekybot-theme-reset-btn img{margin-right: 0;margin-left: 7px;}
 div#geekybotadmin-wrapper div#geekybotadmin-data div#geekybot-admin-wrapper form.geekybot-themess .geekybot-tabInner{float: right;}
-div.geekybot-appearance-right-section .chat-popup.chat-init .chat-windows{float: left;}
+div.geekybot-appearance-right-section .geekybot-chat-popup.geekybot-chat-init .geekybot-chat-windows{float: left;}
 div#geekybotadmin-wrapper div#geekybotadmin-data div#geekybot-admin-wrapper .geekybot-appearance-right-section{float:right;}
-div.geekybot-appearance-right-section #send-message .window-two-btm-inner{display: inline-block;}
-div.geekybot-appearance-right-section #send-message .window-two-btm-inner .window-two-btm-inner-left{display: inline-block;}
+div.geekybot-appearance-right-section #geekybot-send-message .geekybot-window-bottom-inner{display: inline-block;}
+div.geekybot-appearance-right-section #geekybot-send-message .geekybot-window-bottom-inner .geekybot-window-bottom-inner-left{display: inline-block;}
 div#geekybotadmin-wrapper div#geekybotadmin-data div#geekybot-admin-wrapper form.geekybot-themess div.geekybot-theme-row div.geekybot-theme-row-left div.geekybot-theme-title, div#geekybotadmin-wrapper div#geekybotadmin-data div#geekybot-admin-wrapper form.geekybot-themess div.geekybot-theme-row div.geekybot-theme-row-right div.geekybot-theme-title{float: right;text-align: left;padding-right: 0;padding-left: 20px;}
 div#geekybotadmin-wrapper div#geekybotadmin-data div#geekybot-admin-wrapper form.geekybot-themess div.geekybot-theme-row div.geekybot-theme-row-left div.geekybot-theme-value, div#geekybotadmin-wrapper div#geekybotadmin-data div#geekybot-admin-wrapper form.geekybot-themess div.geekybot-theme-row div.geekybot-theme-row-right div.geekybot-theme-value{float: right;}
 div#geekybotadmin-wrapper div#geekybotadmin-data div#geekybot-admin-wrapper form.geekybot-themess div.geekybot-theme-row input[type="file"]::before{float: left;}
 div#geekybotadmin-wrapper div#geekybotadmin-data div#geekybot-admin-wrapper form.geekybot-themess div.geekybot-theme-row input[type="file"]{padding-left: 0;padding-right: 10px;}
 div#geekybotadmin-wrapper div#geekybotadmin-data div#geekybot-admin-wrapper form.geekybot-themess div.geekybot-theme-row div.geekybot-theme-row-left.geekybot-clr-picker label.geekybot-dynamic-color{right:auto;left: 0;}
-div.geekybot-appearance-right-section #send-message .border-0{text-align: left;}
-div.geekybot-appearance-right-section div.chat-open-dialog-main{right: auto;left: 27px;}
-div.geekybot-appearance-right-section button.chat-button-destroy{right: auto;left: 40px;}
+div.geekybot-appearance-right-section #geekybot-send-message .border-0{text-align: left;}
+div.geekybot-appearance-right-section div.geekybot-chat-open-dialog-main{right: auto;left: 27px;}
+div.geekybot-appearance-right-section button.geekybot-chat-close-button{right: auto;left: 40px;}
 div#geekybotadmin-wrapper div#geekybotadmin-data div#geekybot-admin-wrapper form.geekybot-themess div.geekybot-theme-row .geekybot-custom-file-upload{right: auto;left:0;}
 div#geekybotadmin-wrapper div#geekybotadmin-data div#geekybot-admin-wrapper form.geekybot-themess div.geekybot-theme-row div.geekybot-theme-row-left span.geeky-bot-theme-img-bot, div#geekybotadmin-wrapper div#geekybotadmin-data div#geekybot-admin-wrapper form.geekybot-themess div.geekybot-theme-row div.geekybot-theme-row-right span.geeky-bot-theme-img-user{float: left;}
 div#geekybotadmin-wrapper div#geekybotadmin-data div#geekybot-admin-wrapper form.geekybot-themess div.geekybot-theme-row div.geekybot-theme-row-left span.geeky-bot-theme-img-bot span.geeky-bot-theme-img-right, div#geekybotadmin-wrapper div#geekybotadmin-data div#geekybot-admin-wrapper form.geekybot-themess div.geekybot-theme-row div.geekybot-theme-row-right span.geeky-bot-theme-img-user span.geeky-bot-theme-img-right{float: right;}
@@ -195,7 +195,7 @@ div#geekybotadmin-wrapper div#geekybotadmin-data .geekybot_story_search_section_
 
 /* woocommerce story */
 div#geekybotadmin-wrapper div#geekybotadmin-data div#geekybot-admin-wrapper div.chatHistory div.chatHistory.chatcontent div.body div.body-inner div.body-content div.body-content-message, div#geekybotadmin-wrapper div#geekybotadmin-data div#geekybot-admin-wrapper div.chatHistory div.chatHistory.chatcontent div.body div.body-content div.body-content-message{padding-left: 0;padding-right: 20px;}
-div#geekybotadmin-wrapper div#geekybotadmin-data div#geekybot-admin-wrapper div.chatHistory div.chatHistory.chatcontent div.body div.body-content div.body-content-message div.actual_msg_btn li.actual_msg.actual_msg_btn{float:right;}
+div#geekybotadmin-wrapper div#geekybotadmin-data div#geekybot-admin-wrapper div.chatHistory div.chatHistory.chatcontent div.body div.body-content div.body-content-message div.geekybot-message-button li.geekybot-message.geekybot-message-button{float:right;}
 .body-content-message-value .geekybot_wc_product_wrp.geekybot_wc_product_options_wrp{float: right;}
 div#geekybotadmin-wrapper div#geekybotadmin-data div#geekybot-admin-wrapper div.chatHistory div.chatHistory.chatcontent div.body div.body-content.right-bot-message div.body-content-sender{border-right: 0px;border-left:1px solid #eaeaea;}
 .body-content-message-value .geekybot_wc_success_action_wrp{float: right;}
@@ -241,11 +241,11 @@ div.geekybot-websearch-support-section .geekybot-websearch-support-button-wrp a{
 div.geekybot-synchronize-section .geekybot-synchronize-button-wrp a{float: left;}
 div.geekybot-synchronize-section .geekybot-synchronize-button-wrp a img{margin-right: 0;margin-left: 5px;}
 /* appearance new section */
-div.chat-open-outer-popup-dialog div.chat-open-outer-popup-dialog-image{margin-right: 0;margin-left: 20px;}
-div.geekybot-appearance-right-section.geekybot-opendialog-btm-mainwrp div.chat-open-dialog-main{right: auto;left: 18px;}
+div.geekybot-chat-open-outer-popup-dialog div.geekybot-chat-open-outer-popup-dialog-image{margin-right: 0;margin-left: 20px;}
+div.geekybot-appearance-right-section.geekybot-opendialog-btm-mainwrp div.geekybot-chat-open-dialog-main{right: auto;left: 18px;}
 div#geekybotadmin-wrapper div#geekybotadmin-data div#geekybot-admin-wrapper.geekybot-admin-appearance-wrapper div.geekybot-chatbot-popup-config div.geekybot-chatbot-popup-config-title{float: right;text-align: left;padding-right: 0;padding-left: 30px;}
 div.geekybot-chatbot-popup-config-value a.geekybot-popup-selection{margin-left: 0;margin-right: 10px;}
-div.chat-open-outer-popup-dialog{float: left;}
+div.geekybot-chat-open-outer-popup-dialog{float: left;}
 div#geekybotadmin-wrapper div#geekybotadmin-data div#geekybot-admin-wrapper.geekybot-admin-appearance-wrapper div.geekybot-chatbot-popup-config div.geekybot-chatbot-popup-config-description{margin-left: 0;margin-right: 30%;padding-right: 10px;}
 div#geekybotadmin-wrapper div#geekybotadmin-data div#geekybot-admin-wrapper.geekybot-admin-appearance-wrapper .geekybot-themess .geekybot-admin-appearance-subtitle{float: right;}
 div.geekybot-websearch-info-section div.geekybot-synchronize-button-wrp a img.geekybot-synchronize-img{margin-right: 0;margin-left: 5px;}

@@ -104,7 +104,7 @@ foreach ($allPlugins as $key => $value) {
                                                 </div>
                                                 <?php if($error_message == ''){ ?>
                                                     <div class="geekybot-addon-installer-button" >
-                                                        <button type="submit" class="geekybot_btn" role="submit" onclick="jsShowLoading();"><?php echo esc_html(__("Proceed",'geeky-bot')); ?></button>
+                                                        <button type="submit" class="geekybot_btn" role="submit" onclick="jsShowLoading();"><?php echo esc_html(__("Install Add-ons",'geeky-bot')); ?></button>
                                                     </div>
                                                     <?php
                                                 }

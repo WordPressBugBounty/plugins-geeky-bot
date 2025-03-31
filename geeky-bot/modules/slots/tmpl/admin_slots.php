@@ -27,7 +27,7 @@
             <!-- filter form -->
             <form class="geekybot-filter-form" name="geekybotform" id="geekybotform" method="post" action="<?php echo esc_url(wp_nonce_url(admin_url("admin.php?page=geekybot_slots"),"slots")); ?>">
                 <div id="geekybot-searchbar" class="geekybot-searchbar-btn">
-                    <div class="window-two-btm-inner geekybot-story-inner">
+                    <div class="geekybot-window-bottom-inner geekybot-story-inner">
                         <button title="<?php echo esc_html(__('Search', 'geeky-bot')); ?>" type="submit" name="btnsubmit" id="btnsubmit" value="Search" class="button geekybot-form-search-btn"><img src="<?php echo esc_url(GEEKYBOT_PLUGIN_URL); ?>includes/images/control_panel/loupe.png" alt="<?php echo esc_attr(__('Search', 'geeky-bot')); ?>" class="geekybot-action-img"></button>
                         <?php echo wp_kses(GEEKYBOTformfield::GEEKYBOT_text('slotsname', geekybot::$_data['filter']['slotsname'], array('class' => 'inputbox geekybot-form-input-field', 'placeholder' => esc_attr(__('Search', 'geeky-bot')))), GEEKYBOT_ALLOWED_TAGS); ?>
                         <?php echo wp_kses(GEEKYBOTformfield::GEEKYBOT_hidden('GEEKYBOT_form_search', 'GEEKYBOT_SEARCH'), GEEKYBOT_ALLOWED_TAGS); ?>

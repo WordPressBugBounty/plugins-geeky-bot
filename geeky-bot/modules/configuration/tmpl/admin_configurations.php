@@ -199,7 +199,38 @@ wp_add_inline_script('geekybot-main-js',$geekybot_js);
                                 </div>
                             </div>
                         </div>
-                        <div>
+                        <!-- <div> -->
+                    </div>
+                    <div class="geekybot-fallback-config-wrp">
+                        <span class="geekybot-admin-fallback-config-title"><?php echo esc_html(__('Support Link', 'geeky-bot')); ?></span>
+                        <div class="geekybot-config-row-wrp">
+                            <div class="geekybot-config-row">
+                                <div class="geekybot-config-title">
+                                    <?php echo esc_html(__('Show Support Link', 'geeky-bot')); ?>
+                                </div>
+                                <div class="geekybot-config-value">
+                                    <?php echo wp_kses(GEEKYBOTformfield::GEEKYBOT_select('show_support_link', array((object) array('id' => '1', 'text' => esc_html(__('Show', 'geeky-bot'))), (object) array('id' => '2', 'text' => esc_html(__('Hide', 'geeky-bot')))), isset(geekybot::$_data[0]['show_support_link']) ? geekybot::$_data[0]['show_support_link'] : '', '', array('class' => 'inputbox geekybot-form-select-field', 'data-validation' => 'required')), GEEKYBOT_ALLOWED_TAGS); ?>
+                                </div>
+                                <div class="geekybot-config-description">
+                                    <?php
+                                    echo esc_html(__("Toggle to show or hide the support link for users.", 'geeky-bot'));
+                                    ?>
+                                </div>
+                            </div>
+                            <div class="geekybot-config-row">
+                                <div class="geekybot-config-title">
+                                    <?php echo esc_html(__('Support Link URL', 'geeky-bot')); ?>
+                                </div>
+                                <div class="geekybot-config-value">
+                                    <?php echo wp_kses(GEEKYBOTformfield::GEEKYBOT_text('support_link_url', geekybot::$_data[0]['support_link_url'], array('class' => 'inputbox')),GEEKYBOT_ALLOWED_TAGS); ?>
+                                </div>
+                                <div class="geekybot-config-description">
+                                    <?php
+                                    echo esc_html(__("Set the URL where users will be redirected when they click the support link.", 'geeky-bot'));
+                                    ?>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                     <?php echo wp_kses(GEEKYBOTformfield::GEEKYBOT_hidden('isgeneralbuttonsubmit', 1), GEEKYBOT_ALLOWED_TAGS); ?>
                     <?php echo wp_kses(GEEKYBOTformfield::GEEKYBOT_hidden('geekybotlt', 'configurations'), GEEKYBOT_ALLOWED_TAGS); ?>

@@ -144,7 +144,7 @@ class GEEKYBOTactivation {
             ('title',   'GeekyBot',   'default',  NULL),
             ('pagination_default_page_size',    '10',   'default',  NULL),
             ('pagination_product_page_size',    '3',   'default',  NULL),
-            ('versioncode', '1.1.0',    'default',  NULL),
+            ('versioncode', '1.1.1',    'default',  NULL),
             ('last_version',    '101',  'default',  NULL),
             ('image_file_type', 'png,jpeg,gif,jpg', 'default', NULL),
             ('bot_custom_img',  '0',    'default',  NULL),
@@ -165,6 +165,8 @@ class GEEKYBOTactivation {
             ('auto_chat_type', '1', 'default',  NULL),
             ('auto_chat_start_time', '60', 'default',  NULL),
             ('welcome_message', 'Welcome to GeekyBot! Let me know how I can assist you today.', 'default',  NULL),
+            ('show_support_link', '2', 'default',  NULL),
+            ('support_link_url', '', 'default',  NULL),
             ('default_pageid',  '5',    'default',  NULL);";
             geekybot::$_db->query($query);
 

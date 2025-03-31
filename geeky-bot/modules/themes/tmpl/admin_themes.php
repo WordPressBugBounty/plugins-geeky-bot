@@ -255,11 +255,11 @@ $popup_type = array(
                                 </div>
                             </div>
                             <div class="geekybot-appearance-right-section">
-                                <div class="chat-open-dialog-main">
-                                    <div class="chat-open-dialog-main-inner">
-                                        <button class="chat-open-dialog active">
-                                            <div class="chat-open-dialog-img">
-                                                <img class="wp-chat-image" alt="screen tag"
+                                <div class="geekybot-chat-open-dialog-main">
+                                    <div class="geekybot-chat-open-dialog-main-inner">
+                                        <button class="geekybot-chat-open-dialog active">
+                                            <div class="geekybot-chat-open-dialog-img">
+                                                <img class="geekybot-chat-image" alt="screen tag"
                                                     src="<?php echo esc_url($botImgPath); ?>"
                                                     alt="<?php echo esc_html(__('Bot Icon', 'geeky-bot')); ?>"
                                                     title="<?php echo esc_html(__('Bot Icon', 'geeky-bot')); ?>">
@@ -267,28 +267,28 @@ $popup_type = array(
                                         </button>
                                     </div>
                                 </div>
-                                <div class="chat-button-destroy-main">
-                                    <div class="chat-button-destroy-main-inner">
-                                        <button class="chat-button-destroy active"></button>
+                                <div class="geekybot-chat-close-button-wrp">
+                                    <div class="geekybot-chat-close-button-inner">
+                                        <button class="geekybot-chat-close-button active"></button>
                                     </div>
                                 </div>
-                                <div class="chat-popup active chat-init">
-                                    <div class="chat-windows chat-main">
-                                        <div id="main-messages" class="chat-window-two" style="float: right;">
+                                <div class="geekybot-chat-popup active geekybot-chat-init">
+                                    <div class="geekybot-chat-windows geekybot-chat-main">
+                                        <div id="geekybot-main-messages" class="geekybot-chat-window" style="float: right;">
                                             <div class="geekybot-title-main-overlay">
-                                                <div id="window-two-title" class="window-two-top">
-                                                    <div class="window-two-top-inner">
-                                                        <div class="window-two-top-inner-left">
-                                                            <div class="window-two-profile">
-                                                                <div class="window-two-profile-img">
+                                                <div id="geekybot-window-title" class="geekybot-window-top">
+                                                    <div class="geekybot-window-top-inner">
+                                                        <div class="geekybot-window-top-inner-left">
+                                                            <div class="geekybot-window-profile">
+                                                                <div class="geekybot-window-profile-img">
                                                                     <img src="<?php echo esc_url($botImgPath); ?>"
                                                                         alt="<?php echo esc_html(__('Bot Icon', 'geeky-bot')); ?>"
                                                                         title="<?php echo esc_html(__('Bot Icon', 'geeky-bot')); ?>">
                                                                 </div>
                                                             </div>
                                                             <i class="fa fa-circle"></i>
-                                                            <div class="window-two-profile-text">
-                                                                <div class="window-two-text">
+                                                            <div class="geekybot-window-profile-text">
+                                                                <div class="geekybot-window-text">
                                                                     <?php
                                                                     if (geekybot::$_configuration['title'] != '') {
                                                                         $title = geekybot::$_configuration['title'];
@@ -301,8 +301,8 @@ $popup_type = array(
                                                             </div>
                                                             <div class="geekybot-title-overlay"></div>
                                                         </div>
-                                                        <div class="window-two-top-inner-right">
-                                                            <div class="window-two-top-dot-img" id="dna">
+                                                        <div class="geekybot-window-top-inner-right">
+                                                            <div class="geekybot-window-top-dot-img" id="dna">
                                                                 <img src="<?php echo esc_url(GEEKYBOT_PLUGIN_URL); ?>/includes/images/chat-img/menu.png"
                                                                     alt="<?php echo esc_html(__('Action Icon', 'geeky-bot')); ?>"
                                                                     title="<?php echo esc_html(__('Action', 'geeky-bot')); ?>">
@@ -311,38 +311,38 @@ $popup_type = array(
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div id="previouschatbox" class="chat-content"></div>
-                                            <div id="chatbox" class="chat-content">
-                                                <li class="actual_msg actual_msg_user">
-                                                    <section class="actual_msg_user-img"><img
+                                            <div id="geekybotPreviousChatBox" class="geekybot-chat-content"></div>
+                                            <div id="geekybotChatBox" class="geekybot-chat-content">
+                                                <li class="geekybot-message geekybot-message-user">
+                                                    <section class="geekybot-message-user-img"><img
                                                             src="<?php echo esc_url($userImgPath); ?>"
                                                             alt="<?php echo esc_html(__('User Icon', 'geeky-bot')); ?>"
                                                             title="<?php echo esc_html(__('User Image', 'geeky-bot')); ?>">
                                                     </section>
-                                                    <section class="actual_msg_text"><?php echo esc_html(__('Hi I am John', 'geeky-bot')); ?></section>
+                                                    <section class="geekybot-message-text"><?php echo esc_html(__('Hi I am John', 'geeky-bot')); ?></section>
                                                 </li>
-                                                <li class="actual_msg actual_msg_adm">
-                                                    <section class="actual_msg_adm-img">
+                                                <li class="geekybot-message geekybot-message-bot">
+                                                    <section class="geekybot-message-bot-img">
                                                         <img src="<?php echo esc_url($botImgPath); ?>" alt="<?php echo esc_html(__('Bot Icon', 'geeky-bot')); ?>" title="<?php echo esc_html(__('Bot Icon', 'geeky-bot')); ?>">
                                                     </section>
-                                                    <section class="actual_msg_text">
+                                                    <section class="geekybot-message-text">
                                                         <div class="geekybot_wc_product_heading"><?php echo esc_html(__('Hi John! How can I help you?', 'geeky-bot')); ?></div>
                                                     </section>
                                                 </li>
-                                                <li class="actual_msg actual_msg_user">
-                                                    <section class="actual_msg_user-img">
+                                                <li class="geekybot-message geekybot-message-user">
+                                                    <section class="geekybot-message-user-img">
                                                         <img src="<?php echo esc_url($userImgPath); ?>"
                                                             alt="<?php echo esc_html(__('User Icon', 'geeky-bot')); ?>"
                                                             title="<?php echo esc_html(__('User Image', 'geeky-bot')); ?>">
                                                     </section>
-                                                    <section class="actual_msg_text"><?php echo esc_html(__('Can you help me find a new backpack?', 'geeky-bot')); ?></section>
+                                                    <section class="geekybot-message-text"><?php echo esc_html(__('Can you help me find a new backpack?', 'geeky-bot')); ?></section>
                                                 </li>
-                                                <li class="actual_msg actual_msg_adm">
-                                                    <section class="actual_msg_adm-img"><img
+                                                <li class="geekybot-message geekybot-message-bot">
+                                                    <section class="geekybot-message-bot-img"><img
                                                             src="<?php echo esc_url($botImgPath); ?>"
                                                             alt="<?php echo esc_html(__('Bot Icon', 'geeky-bot')); ?>"
                                                             title="<?php echo esc_html(__('Bot Icon', 'geeky-bot')); ?>"></section>
-                                                    <section class="actual_msg_text geekybot_wc_product_wrp">
+                                                    <section class="geekybot-message-text geekybot_wc_product_wrp">
                                                         <div class="geekybot_wc_product_heading"><?php echo esc_html(__('Here are some suggestions.', 'geeky-bot')); ?></div>
                                                         <div class="geekybot_wc_product_wrp">
                                                             <div class="geekybot_wc_product_left_wrp">
@@ -371,15 +371,15 @@ $popup_type = array(
                                                     </section>
                                                 </li>
                                             </div>
-                                            <div id="send-message" class="col-md-12 p-2 msg-box window-two-btm">
-                                                <div class="window-two-btm-inner">
-                                                    <div class="window-two-btm-inner-left">
-                                                        <input id="msg_box" type="text" class="border-0 msg_box" placeholder="<?php echo esc_attr(__('Send message', 'geeky-bot')); ?>"
+                                            <div id="geekybot-send-message" class="geekybot-window-bottom">
+                                                <div class="geekybot-window-bottom-inner">
+                                                    <div class="geekybot-window-bottom-inner-left">
+                                                        <input id="geekybot-message-box" type="text" class="border-0 geekybot-message-box" placeholder="<?php echo esc_attr(__('Send message', 'geeky-bot')); ?>"
                                                             autocomplete="off">
                                                     </div>
-                                                    <div class="window-two-btm-inner-right">
-                                                        <div class="window-two-btm-send-img">
-                                                            <img id="snd-btn"
+                                                    <div class="geekybot-window-bottom-inner-right">
+                                                        <div class="geekybot-window-bottom-send-img">
+                                                            <img id="geekybot-send-button"
                                                                 src="<?php echo esc_url(GEEKYBOT_PLUGIN_URL); ?>includes/images/chat-img/send-icon.png"
                                                                 alt="<?php echo esc_html(__('Action Icon', 'geeky-bot')); ?>"
                                                                 title="<?php echo esc_html(__('Action', 'geeky-bot')); ?>">
@@ -428,11 +428,11 @@ $popup_type = array(
                                 </div>
                             </div>
                             <div class="geekybot-appearance-right-section geekybot-opendialog-btm-mainwrp">
-                                <div class="chat-open-dialog-main">
-                                    <div class="chat-open-dialog-main-inner">
-                                        <button class="chat-open-dialog active">
-                                            <div class="chat-open-dialog-img">
-                                                <img class="wp-chat-image" alt="screen tag"
+                                <div class="geekybot-chat-open-dialog-main">
+                                    <div class="geekybot-chat-open-dialog-main-inner">
+                                        <button class="geekybot-chat-open-dialog active">
+                                            <div class="geekybot-chat-open-dialog-img">
+                                                <img class="geekybot-chat-image" alt="screen tag"
                                                     src="<?php echo esc_url($botImgPath); ?>"
                                                     alt="<?php echo esc_html(__('Bot Icon', 'geeky-bot')); ?>"
                                                     title="<?php echo esc_html(__('Bot Icon', 'geeky-bot')); ?>">
@@ -440,24 +440,24 @@ $popup_type = array(
                                         </button>
                                     </div>
                                 </div>
-                                <div class="chat-button-destroy-main">
-                                    <div class="chat-button-destroy-main-inner">
-                                        <button class="chat-button-destroy chat-smart-popup-destroy active"></button>
+                                <div class="geekybot-chat-close-button-wrp">
+                                    <div class="geekybot-chat-close-button-inner">
+                                        <button class="geekybot-chat-close-button chat-smart-popup-destroy active"></button>
                                     </div>
                                 </div>
                                 <div class="chatbot-popup-wellcome-message">
-                                    <div class="chat-open-outer-popup-dialog">
-                                        <div class="chat-open-outer-popup-dialog-text-mainwrp">
+                                    <div class="geekybot-chat-open-outer-popup-dialog">
+                                        <div class="geekybot-chat-open-outer-popup-dialog-text-mainwrp">
                                             <?php
                                             if(geekybot::$_configuration['welcome_message_img'] != '0'){
                                                 $msgImgPath =GEEKYBOTincluder::GEEKYBOT_getModel('geekybot')->getWelcomeMessageImagePath(); ?>
-                                                <div class="chat-open-outer-popup-dialog-image">
+                                                <div class="geekybot-chat-open-outer-popup-dialog-image">
                                                     <img src="<?php echo esc_url($msgImgPath); ?>" alt="<?php echo esc_html(__('Logo', 'geeky-bot')); ?> "title="<?php echo esc_html(__('Logo', 'geeky-bot')); ?>">
                                                 </div>
                                                 <?php
                                             } ?>
-                                            <div class="chat-open-outer-popup-dialog-text">
-                                                <p class="chat-open-outer-popup-dialog-btmtext"><?php echo esc_html(geekybot::GEEKYBOT_getVarValue(geekybot::$_data[0]['welcome_message'])); ?></p>
+                                            <div class="geekybot-chat-open-outer-popup-dialog-text">
+                                                <p class="geekybot-chat-open-outer-popup-dialog-btmtext"><?php echo esc_html(geekybot::GEEKYBOT_getVarValue(geekybot::$_data[0]['welcome_message'])); ?></p>
                                             </div>
                                         </div>
                                     </div>
@@ -557,14 +557,14 @@ $geekybot_js ="
             },
             change: function (c_event, ui) {
                 hex = ui.color.toString();
-                jQuery('div#send-message .window-two-btm-inner .window-two-btm-inner-right .window-two-btm-send-img,div#window-two-title,div.chat-popup .chat-windows .chat-window-two .window-two-top .window-two-top-inner .window-two-top-inner-left .window-two-profile').css( 'background-color', hex);
-                jQuery('.chat-open-dialog-main').css( 'border-color', hex);
-                jQuery('.actual_msg_adm-img, .chat-open-dialog-main-inner').css( 'background', hex);
-                jQuery('.chat-button-destroy.active::after').css( 'border-top', hex);
+                jQuery('div#geekybot-send-message .geekybot-window-bottom-inner .geekybot-window-bottom-inner-right .geekybot-window-bottom-send-img,div#geekybot-window-title,div.geekybot-chat-popup .geekybot-chat-windows .geekybot-chat-window .geekybot-window-top .geekybot-window-top-inner .geekybot-window-top-inner-left .geekybot-window-profile').css( 'background-color', hex);
+                jQuery('.geekybot-chat-open-dialog-main').css( 'border-color', hex);
+                jQuery('.geekybot-message-bot-img, .geekybot-chat-open-dialog-main-inner').css( 'background', hex);
+                jQuery('.geekybot-chat-close-button.active::after').css( 'border-top', hex);
                 jQuery('.primary-selected-color').css( 'background', hex);
-                jQuery('div.chat-open-outer-popup-dialog').css( 'border-color', hex);
-                jQuery('div.chat-open-outer-popup-dialog div.chat-open-outer-popup-dialog-image').css( 'border-color', hex);
-                jQuery('div.geekybot-appearance-right-section button.chat-button-destroy.chat-smart-popup-destroy.active').css( 'border-color', hex);
+                jQuery('div.geekybot-chat-open-outer-popup-dialog').css( 'border-color', hex);
+                jQuery('div.geekybot-chat-open-outer-popup-dialog div.geekybot-chat-open-outer-popup-dialog-image').css( 'border-color', hex);
+                jQuery('div.geekybot-appearance-right-section button.geekybot-chat-close-button.chat-smart-popup-destroy.active').css( 'border-color', hex);
             }
         });
         jQuery('input#color2').iris({
@@ -580,7 +580,7 @@ $geekybot_js ="
             },
             change: function (c_event, ui) {
                 hex = ui.color.toString();
-                jQuery('li.actual_msg.actual_msg_user section.actual_msg_text').css( 'background-color', hex);
+                jQuery('li.geekybot-message.geekybot-message-user section.geekybot-message-text').css( 'background-color', hex);
                 jQuery('.user-textbg-selected-color').css( 'background', hex);
             }
         });
@@ -597,7 +597,7 @@ $geekybot_js ="
             },
             change: function (c_event, ui) {
                 hex = ui.color.toString();
-                jQuery('li.actual_msg.actual_msg_user section.actual_msg_text').css( 'color', hex);
+                jQuery('li.geekybot-message.geekybot-message-user section.geekybot-message-text').css( 'color', hex);
                 jQuery('.user-text-selected-color').css( 'background', hex);
             }
         });
@@ -694,7 +694,7 @@ $geekybot_js ="
             if(data){
                 geekybotHideLoading();
                 jQuery('.geeky-bot-theme-img-message').css('display','none');
-                jQuery('.chat-open-outer-popup-dialog-image').css('display','none');
+                jQuery('.geekybot-chat-open-outer-popup-dialog-image').css('display','none');
             }
         });
     }
@@ -715,19 +715,19 @@ $geekybot_js ="
         jQuery('input#color3').val(color3);
         jQuery('input#color4').val(color4);
         <!-- color1 -->
-        jQuery('div#send-message .window-two-btm-inner .window-two-btm-inner-right .window-two-btm-send-img,div#window-two-title,div.chat-popup .chat-windows .chat-window-two .window-two-top .window-two-top-inner .window-two-top-inner-left .window-two-profile').css( 'background-color', color1);
-        jQuery('.chat-open-dialog-main').css( 'border-color', color1);
-        jQuery('.actual_msg_adm-img, .chat-open-dialog-main-inner').css( 'background', color1);
-        jQuery('.chat-button-destroy.active::after').css( 'border-top', color1);
+        jQuery('div#geekybot-send-message .geekybot-window-bottom-inner .geekybot-window-bottom-inner-right .geekybot-window-bottom-send-img,div#geekybot-window-title,div.geekybot-chat-popup .geekybot-chat-windows .geekybot-chat-window .geekybot-window-top .geekybot-window-top-inner .geekybot-window-top-inner-left .geekybot-window-profile').css( 'background-color', color1);
+        jQuery('.geekybot-chat-open-dialog-main').css( 'border-color', color1);
+        jQuery('.geekybot-message-bot-img, .geekybot-chat-open-dialog-main-inner').css( 'background', color1);
+        jQuery('.geekybot-chat-close-button.active::after').css( 'border-top', color1);
         jQuery('.primary-selected-color').css( 'background', color1);
-        jQuery('div.chat-open-outer-popup-dialog').css( 'border-color', color1);
-        jQuery('div.chat-open-outer-popup-dialog div.chat-open-outer-popup-dialog-image').css( 'border-color', color1);
-        jQuery('div.geekybot-appearance-right-section button.chat-button-destroy.chat-smart-popup-destroy.active').css( 'border-color', color1);
+        jQuery('div.geekybot-chat-open-outer-popup-dialog').css( 'border-color', color1);
+        jQuery('div.geekybot-chat-open-outer-popup-dialog div.geekybot-chat-open-outer-popup-dialog-image').css( 'border-color', color1);
+        jQuery('div.geekybot-appearance-right-section button.geekybot-chat-close-button.chat-smart-popup-destroy.active').css( 'border-color', color1);
         <!-- color2 -->
-        jQuery('li.actual_msg.actual_msg_user section.actual_msg_text').css( 'background-color', color2);
+        jQuery('li.geekybot-message.geekybot-message-user section.geekybot-message-text').css( 'background-color', color2);
         jQuery('.user-textbg-selected-color').css( 'background', color2);
         <!-- color3 -->
-        jQuery('li.actual_msg.actual_msg_user section.actual_msg_text').css( 'color', color3);
+        jQuery('li.geekybot-message.geekybot-message-user section.geekybot-message-text').css( 'color', color3);
         jQuery('.user-text-selected-color').css( 'background', color3);
         <!-- color4 -->
         jQuery('.geekybot_wc_product_name a').css( 'color', color4);

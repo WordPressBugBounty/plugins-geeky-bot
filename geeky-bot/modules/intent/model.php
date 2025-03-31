@@ -117,6 +117,23 @@ class GEEKYBOTintentModel {
         return $data['group_id'];
     }
 
+    function saveAutoBuildUserInputFallBack($data){
+        if (!current_user_can('manage_options')){
+            die('Only Administrators can perform this action.');
+        }
+        $nonce = $data['_wpnonce'];
+        if (! wp_verify_nonce( $nonce, 'save-intent-fallback') ) {
+            // die( 'Security check Failed' ); 
+        }
+        $row = GEEKYBOTincluder::GEEKYBOT_getTable('intents_fallback');
+        $data = geekybot::GEEKYBOT_sanitizeData($data);// GEEKYBOT_sanitizeData() function uses wordpress santize functions
+        $data = $this->stripslashesFull($data);// remove slashes with quotes.
+        if ($row->bind($data) && $row->store()) {
+            return $row->id;
+        }
+        return;
+    }
+
     function storeUserInput($data){
         if (empty($data))
             return false;

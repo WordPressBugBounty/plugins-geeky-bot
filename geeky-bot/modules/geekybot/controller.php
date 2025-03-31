@@ -14,7 +14,7 @@ class GEEKYBOTgeekybotController {
             switch ($layout) {
                 case 'admin_controlpanel':
                     include_once GEEKYBOT_PLUGIN_PATH . 'includes/updates/updates.php';
-                    GEEKYBOTupdates::GEEKYBOT_checkUpdates(110);
+                    GEEKYBOTupdates::GEEKYBOT_checkUpdates(111);
                     GEEKYBOTincluder::GEEKYBOT_getModel('geekybot')->getAdminControlPanelData();
                     break;
                 default:

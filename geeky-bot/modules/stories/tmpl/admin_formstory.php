@@ -1383,6 +1383,7 @@ if (isset(geekybot::$_data[0]['story'])) {
                                                 geekybotme: 'stories',
                                                 task: 'getDefaultIntentFallbackFormBodyHTMLAjax',
                                                 groupId: groupId,
+                                                storyId: ". $story_id .",
                                                 '_wpnonce':'". esc_attr(wp_create_nonce("get-form-html")) ."'
                                             }, function(data) {
                                                 jQuery('div#defaultIntentFallbackFormBody').find('img#geekybot-loading-icon').remove();
@@ -1452,7 +1453,11 @@ if (isset(geekybot::$_data[0]['story'])) {
                     positions[nodeIndex].top = droppedAtRelative.top;
                     // to limit the min distance from the left
                     var parentNodeId = positions.find(n => n.id === positions[nodeIndex].parentId);
-                    var minLeftDistance = parentNodeId.left + 200;
+                    if(parentNodeId.type == 'user_input'){
+                        var minLeftDistance = parentNodeId.left + 110;
+                    } else {
+                        var minLeftDistance = parentNodeId.left + 200;
+                    }
                     if (droppedAtRelative.left <= minLeftDistance) {
                         positions[nodeIndex].left = minLeftDistance;
                     } else {
@@ -1756,7 +1761,11 @@ if (isset(geekybot::$_data[0]['story'])) {
             if (second_node_data.type == 'fallback') {
                 var x2 = second_node_data.left + 50 / 2;
             } else {
-                var x2 = second_node_data.left + rect2.width / 2;
+                if (second_node_data.type == 'user_input') {
+                    var x2 = second_node_data.left + rect2.width / 2 + 25;
+                } else {
+                    var x2 = second_node_data.left + rect2.width / 2;
+                }
             }
             var y1 = first_node_data.top + rect1.height / 2;
             var y2 = second_node_data.top + rect2.height / 2;
@@ -1871,6 +1880,8 @@ if (isset(geekybot::$_data[0]['story'])) {
         $startPointMsg = __('Start Point', 'geeky-bot');
         $fallbackMsg = __('Default Fallback', 'geeky-bot');
         $geekybot_js ="
+        // Get max canvas size dynamically based on the user's browser
+        let maxCanvasSize = getMaxCanvasSize();
         var idCounter = 2;
         var add_missing_node = 0;
         // start point's position
@@ -1903,6 +1914,8 @@ if (isset(geekybot::$_data[0]['story'])) {
         ";
     } else {
         $geekybot_js ="
+            // Get max canvas size dynamically based on the user's browser
+            let maxCanvasSize = getMaxCanvasSize();
             // var idCounter = 2;
             var idCounter_no = ". geekybot::$_data[0]['story']->number_of_objects.";
             var idCounter = (idCounter_no * 2) - 2;
@@ -1923,7 +1936,7 @@ if (isset(geekybot::$_data[0]['story'])) {
                 var missing= '".$missing_intent."'
                 // add the node to the array
                 var maxParentTopDistance = 20;
-                expectedParentTop = parseInt(parentTop, 10) - 148;
+                expectedParentTop = parseInt(parentTop, 10) - 138;
                 if (expectedParentTop < maxParentTopDistance) {
                     parentTop = parseInt(parentTop, 10) - 6;
                 } else {
@@ -2027,6 +2040,9 @@ if (isset(geekybot::$_data[0]['story'])) {
     $geekybot_js .="
     var dragid = '';
     var intentCount = 0;
+    var currentDirection = 'up';
+    var maxParentTopDistance = 20;
+    var maxParentBottomDistance = 720;
     
     function drag(key) {
         dragid = key;
@@ -2078,11 +2094,11 @@ if (isset(geekybot::$_data[0]['story'])) {
         if(dragid == 'geekybot_fallback'){
             // to limit the max distance from the top
             var maxBottomDistance = 760;
-            var next_position = parseInt(parentTop, 10) + 148;
+            var next_position = parseInt(parentTop, 10) + 138;
             if (next_position > maxBottomDistance) {
-                parentTop = parseInt(parentTop, 10) - 148;
+                parentTop = parseInt(parentTop, 10) - 138;
             } else {
-                parentTop = parseInt(parentTop, 10) + 148;
+                parentTop = parseInt(parentTop, 10) + 138;
             }
             if(positions.length > 1) {
                 parentLeft = parseInt(parentLeft, 10) + 100;
@@ -2091,18 +2107,34 @@ if (isset(geekybot::$_data[0]['story'])) {
             }
         } else {
             // to limit the max distance from the top
-            var maxParentTopDistance = 20;
-            expectedParentTop = parseInt(parentTop, 10) - 148;
-            if (expectedParentTop < maxParentTopDistance) {
-                if(block_type != 'user_input'){
-                    parentTop = parseInt(parentTop, 10) + 0;
+            expectedParentTopUp = parseInt(parentTop, 10) - 138;
+            expectedParentTopDown = parseInt(parentTop, 10) + 138;
+            if (currentDirection === 'up') {
+                if (expectedParentTopUp >= maxParentTopDistance) {
+                    // Move up if within limits
+                    parentTop = expectedParentTopUp;
                 } else {
-                    parentTop = parseInt(parentTop, 10) - 6;
+                    // Reached top limit, switch to downward movement
+                    currentDirection = 'down';
+                    parentTop = expectedParentTopDown;
                 }
-            } else {
-                parentTop = expectedParentTop;
+            } else if (currentDirection === 'down') {
+                if (expectedParentTopDown <= maxParentBottomDistance) {
+                    // Move down if within limits
+                    parentTop = expectedParentTopDown;
+                } else {
+                    // Reached bottom limit, switch to upward movement
+                    currentDirection = 'up';
+                    parentTop = expectedParentTopUp;
+                }
             }
-            parentLeft = parseInt(parentLeft, 10) + 241;
+            if(block_type == 'response_function') {
+                parentLeft = parseInt(parentLeft, 10) + 200;
+            } else if(block_type != 'user_input') {
+                parentLeft = parseInt(parentLeft, 10) + 210;
+            } else {
+                parentLeft = parseInt(parentLeft, 10) + 240;
+            }
         }
         // get the next unique id
         var maxIdNumber = 0;
@@ -2185,11 +2217,11 @@ if (isset(geekybot::$_data[0]['story'])) {
         if(dragid == 'geekybot_fallback'){
             // to limit the max distance from the top
             var maxBottomDistance = 760;
-            var next_position = parseInt(fallBackTop, 10) + 148;
+            var next_position = parseInt(fallBackTop, 10) + 138;
             if (next_position > maxBottomDistance) {
-                parentTop = parseInt(fallBackTop, 10) - 148;
+                parentTop = parseInt(fallBackTop, 10) - 138;
             } else {
-                parentTop = parseInt(fallBackTop, 10) + 148;
+                parentTop = parseInt(fallBackTop, 10) + 138;
             }
             parentLeft = parseInt(fallBackLeft, 10) + 100;
         } else {
@@ -2322,17 +2354,63 @@ if (isset(geekybot::$_data[0]['story'])) {
         return [block_type, block_img, block_text, block_class, block_category];
     }
 
-    function setCanvasWidthHeight(){
-        var filtered_positions = positions.filter(obj => obj.type != 'fallback');
-        if(filtered_positions.length > 4) {
-            var multiplier = filtered_positions.length - 4;
-            var newWidth = 240;
-            var newHeight = 180;
-            canvas.width = 1200 + (newWidth * multiplier) + 100; // new width
-            // canvas.height = 800 + (newHeight * multiplier); // new height
+    function getMaxCanvasSize() {
+        let testCanvas = document.createElement('canvas');
+        let ctx = testCanvas.getContext('2d');
+
+        // Default safe values (lower than max limits for all browsers)
+        let maxSize = { width: 16384, height: 8192 };
+
+        try {
+            // Function to check max width
+            function detectMaxDimension(axis) {
+                let size = 4096; // Start from a reasonable size
+                let step = 4096; // Increment step
+
+                while (size + step <= 65536) { // Chrome max is 65535, Firefox lower
+                    if (axis === 'width') testCanvas.width = size + step;
+                    else testCanvas.height = size + step;
+
+                    // Check when `getImageData` starts failing  
+                    try {
+                        ctx.getImageData(0, 0, 1, 1);
+                    } catch (e) {
+                        break; // Stop increasing size when Firefox silently fails
+                    }
+                    size += step;
+                }
+                return size;
+            }
+
+            // Detect browser-specific max width and height
+            maxSize.width = detectMaxDimension('width');
+            maxSize.height = detectMaxDimension('height');
+
+            // Ensure we do not exceed known max values for browsers
+            maxSize.width = Math.min(maxSize.width, 65535);  // Chrome max
+            maxSize.height = Math.min(maxSize.height, 16384); // Chrome max
+        } catch (e) {
+            console.warn('Canvas size detection failed, using safe defaults.');
+        }
+
+        return maxSize;
+    }
+
+
+    function setCanvasWidthHeight() {
+        var filtered_positions = positions.filter(obj => obj.type !== 'fallback');
+
+        if (filtered_positions.length > 0) {
+            var lastElementLeft = filtered_positions[filtered_positions.length - 1].left;
+            var canvasWidth = lastElementLeft + 200;
+            console.log(canvasWidth);
+            // Prevent exceeding browser limits
+            canvas.width = Math.min(canvasWidth, maxCanvasSize.width);
+            canvas.height = 800;
         } else {
-            canvas.width = 1200; // Initial width
-            canvas.height = 800; // Initial height
+            // Default canvas size
+            canvas.width = 1200;
+            canvas.height = 800;
         }
     }
 
@@ -2496,7 +2574,7 @@ $search_type_list = array(
                     <!-- filter form -->
                     <div class="geekybot_story_main_search_wrp">
                         <div id="geekybot-searchbar" class="geekybot-searchbar-btn">
-                            <div class="window-two-btm-inner geekybot-story-inner">
+                            <div class="geekybot-window-bottom-inner geekybot-story-inner">
                                 <button title="<?php echo esc_html(__('Search', 'geeky-bot')); ?>" type="submit" name="searchBtn" id="searchBtn" value="Search" class="button geekybot-form-search-btn">
                                     <img src="<?php echo esc_url(GEEKYBOT_PLUGIN_URL); ?>includes/images/control_panel/loupe.png" alt="<?php echo esc_attr(__('Search', 'geeky-bot')); ?>" class="geekybot-action-img">
                                 </button>

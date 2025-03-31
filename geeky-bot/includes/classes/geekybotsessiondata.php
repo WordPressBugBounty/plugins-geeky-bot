@@ -115,13 +115,13 @@ class GEEKYBOTgeekybotsessiondata {
         $chatId = GEEKYBOTincluder::GEEKYBOT_getModel('chathistory')->geekybot_getchatid();
         if ($type == 'user') {
             $img_scr = GEEKYBOTincluder::GEEKYBOT_getModel('geekybot')->getUserImagePath();
-            $message = "<li class='actual_msg actual_msg_user'><section class='actual_msg_user-img'><img src='".esc_url($img_scr)."' alt='' /></section><section class='actual_msg_text'>".$msg."</section></li>";
+            $message = "<li class='geekybot-message geekybot-message-user'><section class='geekybot-message-user-img'><img src='".esc_url($img_scr)."' alt='' /></section><section class='geekybot-message-text'>".$msg."</section></li>";
         } else if($type == 'bot') {
             $img_scr = GEEKYBOTincluder::GEEKYBOT_getModel('geekybot')->getBotImagePath();
             if (!empty($search)) {
-                $message = "<li class='actual_msg actual_msg_adm'><section class='actual_msg_adm-img'><img src='".esc_url($img_scr)."' alt='' /></section><section class='actual_msg_text_wrp'>".$msg."</section></li>";
+                $message = "<li class='geekybot-message geekybot-message-bot'><section class='geekybot-message-bot-img'><img src='".esc_url($img_scr)."' alt='' /></section><section class='geekybot-message-text_wrp'>".$msg."</section></li>";
             } else {
-                $message = "<li class='actual_msg actual_msg_adm'><section class='actual_msg_adm-img'><img src='".esc_url($img_scr)."' alt='' /></section><section class='actual_msg_text_wrp'><section class='actual_msg_text'>".$msg."</section></section></li>";
+                $message = "<li class='geekybot-message geekybot-message-bot'><section class='geekybot-message-bot-img'><img src='".esc_url($img_scr)."' alt='' /></section><section class='geekybot-message-text_wrp'><section class='geekybot-message-text'>".$msg."</section></section></li>";
             }
         }
         if(isset($chatId) && $chatId != ''){

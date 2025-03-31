@@ -216,12 +216,12 @@ class GEEKYBOTchathistoryModel {
                     $str .='</div>';
                     $str .= '<div class=\"body-content-message\"><span class="geekybot-history-page-subheading"> '. esc_attr(__('Message', 'geeky-bot')).':</span>';
                     if ($value->sender == 'bot') {
-                        $str .= '<span class=\"body-content-message-value \"><section class=\"actual_msg_text_wrp\"> '. $value->message .' </section></span>';
+                        $str .= '<span class=\"body-content-message-value \"><section class=\"geekybot-message-text_wrp\"> '. $value->message .' </section></span>';
                         if ($value->buttons != '[]' && $value->buttons != '') {
                             $responseButtons = json_decode($value->buttons);
-                            $str .= "<div class='actual_msg_btn'>";
+                            $str .= "<div class='geekybot-message-button'>";
                             foreach ($responseButtons as $responseButton) {
-                                $str .=  "<li class='actual_msg actual_msg_btn' style=''><section><button class='wp-chat-btn'><span>".$responseButton->text."</span></button></section></li>";
+                                $str .=  "<li class='geekybot-message geekybot-message-button' style=''><section><button class='wp-chat-btn'><span>".$responseButton->text."</span></button></section></li>";
                             };
                             $str .= "</div>";
                         }

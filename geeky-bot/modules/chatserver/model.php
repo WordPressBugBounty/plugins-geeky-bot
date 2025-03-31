@@ -214,7 +214,7 @@ class GEEKYBOTchatserverModel {
 
             // Construct the bot response
             foreach ($retVal as $retValue) {
-                $botResponse .= '<section class="actual_msg_text">';
+                $botResponse .= '<section class="geekybot-message-text">';
                 $botResponse .= html_entity_decode($retValue['text']->bot_response);
                 $botResponse .= '</section>';
 
@@ -229,14 +229,14 @@ class GEEKYBOTchatserverModel {
                     $botButtons = array_map(function($item) {
                         return (object) $item;
                     }, $retValue['buttons']);
-                    $botResponse .= "<div class='actual_msg_btn'>";
+                    $botResponse .= "<div class='geekybot-message-button'>";
                     foreach ($botButtons as $responseButton) {
                         if ($responseButton->type == 1) {
-                            $botResponse .= "<li class='actual_msg actual_msg_btn'>";
+                            $botResponse .= "<li class='geekybot-message geekybot-message-button'>";
                             $botResponse .= "<section><button class='wp-chat-btn' onclick='sendbtnrsponse(this);' value='".$responseButton->value."'>";
                             $botResponse .= "<span>" . esc_html($responseButton->text) . "</span></button></section></li>";
                         } elseif ($responseButton->type == 2) {
-                            $botResponse .= "<li class='actual_msg actual_msg_btn'>";
+                            $botResponse .= "<li class='geekybot-message geekybot-message-button'>";
                             $botResponse .= "<section><button class='wp-chat-btn'><span><a class='wp-chat-btn-link' href='".$responseButton->value."'>";
                             $botResponse .= esc_html($responseButton->text) . "</a></span></button></section></li>";
                         }
@@ -750,7 +750,7 @@ class GEEKYBOTchatserverModel {
                 }
                 $retVal = ["text" => $fallbackMessage->default_fallback, "buttons" => $buttons];
                 
-                $botFallBack = '<section class="actual_msg_text">';
+                $botFallBack = '<section class="geekybot-message-text">';
                 $botFallBack .= $fallbackMessage->default_fallback;
                 $botFallBack .= '</section>';
 
@@ -760,14 +760,14 @@ class GEEKYBOTchatserverModel {
                     $botButtons = array_map(function($item) {
                         return (object) $item;
                     }, $buttons);
-                    $botFallBack .= "<div class='actual_msg_btn'>";
+                    $botFallBack .= "<div class='geekybot-message-button'>";
                     foreach ($botButtons as $fbButton) {
                         if ($fbButton->type == 1) {
-                            $botFallBack .= "<li class='actual_msg actual_msg_btn'>";
+                            $botFallBack .= "<li class='geekybot-message geekybot-message-button'>";
                             $botFallBack .= "<section><button class='wp-chat-btn' onclick='sendbtnrsponse(this);' value='".$fbButton->value."'>";
                             $botFallBack .= "<span>" . esc_html($fbButton->text) . "</span></button></section></li>";
                         } elseif ($fbButton->type == 2) {
-                            $botFallBack .= "<li class='actual_msg actual_msg_btn'>";
+                            $botFallBack .= "<li class='geekybot-message geekybot-message-button'>";
                             $botFallBack .= "<section><button class='wp-chat-btn'><span><a class='wp-chat-btn-link' href='".$fbButton->value."'>";
                             $botFallBack .= esc_html($fbButton->text) . "</a></span></button></section></li>";
                         }
@@ -801,7 +801,7 @@ class GEEKYBOTchatserverModel {
         }
         $retVal = ["text" => $fallbackMessage, "buttons" => $buttons];
 
-        $botFallBack = '<section class="actual_msg_text">';
+        $botFallBack = '<section class="geekybot-message-text">';
         $botFallBack .= $fallbackMessage;
         $botFallBack .= '</section>';
         // Add buttons to the response
@@ -810,14 +810,14 @@ class GEEKYBOTchatserverModel {
             $botButtons = array_map(function($item) {
                 return (object) $item;
             }, $buttons);
-            $botFallBack .= "<div class='actual_msg_btn'>";
+            $botFallBack .= "<div class='geekybot-message-button'>";
             foreach ($botButtons as $fbButton) {
                 if ($fbButton->type == 1) {
-                    $botFallBack .= "<li class='actual_msg actual_msg_btn'>";
+                    $botFallBack .= "<li class='geekybot-message geekybot-message-button'>";
                     $botFallBack .= "<section><button class='wp-chat-btn' onclick='sendbtnrsponse(this);' value='".$fbButton->value."'>";
                     $botFallBack .= "<span>" . esc_html($fbButton->text) . "</span></button></section></li>";
                 } elseif ($fbButton->type == 2) {
-                    $botFallBack .= "<li class='actual_msg actual_msg_btn'>";
+                    $botFallBack .= "<li class='geekybot-message geekybot-message-button'>";
                     $botFallBack .= "<section><button class='wp-chat-btn'><span><a class='wp-chat-btn-link' href='".$fbButton->value."'>";
                     $botFallBack .= esc_html($fbButton->text) . "</a></span></button></section></li>";
                 }
