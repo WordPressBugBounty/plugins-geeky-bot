@@ -7,7 +7,7 @@ class GEEKYBOTpremiumpluginModel {
     private static $server_url = 'https://geekybot.com/setup/index.php';
 
     function verfifyAddonActivation($addon_name){
-        $option_name = 'transaction_key_for_geeky-bot-'.esc_attr($addon_name);
+        $option_name = 'env_signature_geeky-bot-'.esc_attr($addon_name);
         $transaction_key = GEEKYBOTincluder::GEEKYBOT_getModel('geekybot')->geekybotGetAddonTransationKey($option_name);
         try {
             if (! $transaction_key ) {
@@ -38,7 +38,7 @@ class GEEKYBOTpremiumpluginModel {
     }
 
     function logAddonDeactivation($addon_name){
-        $option_name = 'transaction_key_for_geeky-bot-'.esc_attr($addon_name);
+        $option_name = 'env_signature_geeky-bot-'.esc_attr($addon_name);
         $transaction_key = GEEKYBOTincluder::GEEKYBOT_getModel('geekybot')->geekybotGetAddonTransationKey($option_name);
 
         $activate_results = $this->deactivate( array(
@@ -48,7 +48,7 @@ class GEEKYBOTpremiumpluginModel {
     }
 
     function logAddonDeletion($addon_name){
-        $option_name = 'transaction_key_for_geeky-bot-'.esc_attr($addon_name);
+        $option_name = 'env_signature_geeky-bot-'.esc_attr($addon_name);
         $transaction_key = GEEKYBOTincluder::GEEKYBOT_getModel('geekybot')->geekybotGetAddonTransationKey($option_name);
         $activate_results = $this->delete( array(
             'token'    => $transaction_key,
@@ -117,7 +117,7 @@ class GEEKYBOTpremiumpluginModel {
     }
 
     function verifyAddonSqlFile($addon_name,$addon_version){
-        $option_name = 'transaction_key_for_geeky-bot-'.esc_attr($addon_name);
+        $option_name = 'env_signature_geeky-bot-'.esc_attr($addon_name);
         $transaction_key = GEEKYBOTincluder::GEEKYBOT_getModel('geekybot')->geekybotGetAddonTransationKey($option_name);
         $network_site_url = GEEKYBOTincluder::GEEKYBOT_getModel('geekybot')->getNetworkSiteUrl();
         $site_url = GEEKYBOTincluder::GEEKYBOT_getModel('geekybot')->getSiteUrl();
@@ -144,7 +144,7 @@ class GEEKYBOTpremiumpluginModel {
     }
 
     function getAddonSqlForUpdation($plugin_slug,$installed_version,$new_version){
-        $option_name = 'transaction_key_for_geeky-bot-'.esc_attr($plugin_slug);
+        $option_name = 'env_signature_geeky-bot-'.esc_attr($plugin_slug);
         $transaction_key = GEEKYBOTincluder::GEEKYBOT_getModel('geekybot')->geekybotGetAddonTransationKey($option_name);
         $network_site_url = GEEKYBOTincluder::GEEKYBOT_getModel('geekybot')->getNetworkSiteUrl();
         $site_url = GEEKYBOTincluder::GEEKYBOT_getModel('geekybot')->getSiteUrl();
@@ -284,7 +284,7 @@ class GEEKYBOTpremiumpluginModel {
             $addon_json_array[] = geekybotphplib::GEEKYBOT_str_replace('geeky-bot-', '', $key);
             $plugin_slug = geekybotphplib::GEEKYBOT_str_replace('geeky-bot-', '', $key);
         }
-        $token = get_option('transaction_key_for_'.esc_attr($key));
+        $token = get_option('env_signature_'.esc_attr($key));
         $result = array();
         $result['error'] = false;
         if($token == ''){
@@ -310,8 +310,14 @@ class GEEKYBOTpremiumpluginModel {
         $installed = $this->install_plugin($url);
         if ( !is_wp_error( $installed ) && $installed ) {
             // had to run two seprate loops to save token for all the addons even if some error is triggered by activation.
+            update_option('env_signature_geeky-bot',$token);
+            update_option('env_signature_geeky-bot_date',time());
+            update_option('unique_grace_period_active_date', false);
+            update_option('unique_features_disabled', false);
+            update_option('unique_admin_process_value', false);
+            update_option('gb_admin_unique_job_run',time());
             if(geekybotphplib::GEEKYBOT_strstr($key, 'geeky-bot-')){
-                update_option('transaction_key_for_'.$key,$token);
+                update_option('env_signature_'.$key,$token);
             }
 
             if(geekybotphplib::GEEKYBOT_strstr($key, 'geeky-bot-')){
@@ -446,7 +452,7 @@ class GEEKYBOTpremiumpluginModel {
 
     function geekybotCheckUpdates(){
         include_once GEEKYBOT_PLUGIN_PATH . 'includes/updates/updates.php';
-        GEEKYBOTupdates::GEEKYBOT_checkUpdates(111);
+        GEEKYBOTupdates::GEEKYBOT_checkUpdates(112);
         return 1;
     }
 

@@ -124,6 +124,24 @@ class GEEKYBOTStoriesController {
         wp_redirect($url);
         die();
     }
+
+    function geekybotImportStory() {
+        if (!current_user_can('manage_options')){
+            die('Only Administrators can perform this action.');
+        }
+        $nonce = GEEKYBOTrequest::GEEKYBOT_getVar('_wpnonce');
+        if (! wp_verify_nonce( $nonce, 'upload-xml-story') ) {
+            die( 'Security check Failed' );
+        }
+
+        $data = GEEKYBOTrequest::GEEKYBOT_get('post');
+        $result = GEEKYBOTincluder::GEEKYBOT_getModel('stories')->geekybotImportStory($data);
+        $message = geekybotphplib::GEEKYBOT_preg_replace( '/<[^>]*>/', ' ', $result['message'] );
+        GEEKYBOTMessages::GEEKYBOT_setLayoutMessage($message, $result['status'],$this->_msgkey);
+        $url = admin_url("admin.php?page=geekybot_stories&geekybotlt=stories");
+        wp_redirect($url);
+        exit;
+    }
 }
 
 $GEEKYBOTStoriesController = new GEEKYBOTStoriesController();

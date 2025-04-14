@@ -29,6 +29,13 @@ jQuery(document).ready(function() {
         jQuery('form#userStoryForm #type').val(type);
     });
 
+    jQuery(document).on('click', '.importStoryBtn', function() {
+        var type = jQuery(this).attr('data-type');
+        jQuery('div#importStoryPopup').slideDown('slow');
+        jQuery('div#userpopupblack').show();
+        jQuery('form#importStoryForm #type').val(type);
+    });
+
     jQuery(document).on('click', '.geekybotEditName', function() {
         var id = jQuery(this).attr('data-id');
         var name = jQuery(this).attr('data-name');
@@ -157,6 +164,11 @@ jQuery(document).ready(function() {
         jQuery('div#editStoryName').slideUp('slow');
         jQuery('div#userpopupblack').hide();
     });
+
+    jQuery('img#importStoryPopupCloseBtn').click(function (e) {
+        jQuery('div#importStoryPopup').slideUp('slow');
+        jQuery('div#userpopupblack').hide();
+    });
     
     jQuery('.geekybot-synchronize-products').on('click', function(e) {
         geekybotShowLoading();
@@ -254,7 +266,7 @@ if (!GEEKYBOTincluder::GEEKYBOT_getTemplate('templates/admin/header',array('modu
                                                     <?php echo esc_html(__('Delete Story', 'geeky-bot')); ?>
                                                 </a>
                                                 <a class="geekybot-table-act-btn geekybot-delete" href="<?php echo esc_url(wp_nonce_url(admin_url('admin.php?page=geekybot_stories&task=geekybotExportStoryToXML&action=geekybottask&geekybot-storyid='.esc_attr(geekybot::$_data[0]['ai_story']->id)),'export-story-'.geekybot::$_data[0]['ai_story']->id)); ?>">
-                                                    <img src="<?php echo esc_url(GEEKYBOT_PLUGIN_URL); ?>includes/images/next.png" alt="<?php echo esc_attr(__('Export Story', 'geeky-bot')); ?>" class="geekybot-synchronize-img">
+                                                    <img src="<?php echo esc_url(GEEKYBOT_PLUGIN_URL); ?>includes/images/export.png" alt="<?php echo esc_attr(__('Export Story', 'geeky-bot')); ?>" class="geekybot-synchronize-img">
                                                     <?php echo esc_html(__('Export Story', 'geeky-bot')); ?>
                                                 </a>
                                             </div>
@@ -271,6 +283,10 @@ if (!GEEKYBOTincluder::GEEKYBOT_getTemplate('templates/admin/header',array('modu
                                                 <a class="geekybot-table-act-btn addStory geekybot-ai-story" data-type = "1" href="#" title="<?php echo esc_attr(__('Built Story', 'geeky-bot')); ?>">
                                                     <img src="<?php echo esc_url(GEEKYBOT_PLUGIN_URL); ?>includes/images/plus-white.png" alt="<?php echo esc_attr(__('Built', 'geeky-bot')); ?>" class="geekybot-action-img">
                                                     <?php echo esc_html(__('Built Story','geeky-bot')); ?>
+                                                </a>
+                                                <a class="geekybot-table-act-btn importStoryBtn geekybot-ai-story" data-type = "1" href="#" title="<?php echo esc_attr(__('Import Story', 'geeky-bot')); ?>">
+                                                    <img src="<?php echo esc_url(GEEKYBOT_PLUGIN_URL); ?>includes/images/import.png" alt="<?php echo esc_attr(__('Built', 'geeky-bot')); ?>" class="geekybot-action-img">
+                                                    <?php echo esc_html(__('Import Story','geeky-bot')); ?>
                                                 </a>
                                             </div>
                                         </div>
@@ -369,6 +385,10 @@ if (!GEEKYBOTincluder::GEEKYBOT_getTemplate('templates/admin/header',array('modu
                                                         <img src="<?php echo esc_url(GEEKYBOT_PLUGIN_URL); ?>includes/images/plus-white.png" alt="<?php echo esc_attr(__('Built', 'geeky-bot')); ?>" class="geekybot-action-img">
                                                         <?php echo esc_html(__('Built Story','geeky-bot')); ?>
                                                     </a>
+                                                    <a class="geekybot-table-act-btn importStoryBtn geekybot-woocommerce-story" data-type = "2" href="#" title="<?php echo esc_attr(__('Import Story', 'geeky-bot')); ?>">
+                                                        <img src="<?php echo esc_url(GEEKYBOT_PLUGIN_URL); ?>includes/images/import.png" alt="<?php echo esc_attr(__('Built', 'geeky-bot')); ?>" class="geekybot-action-img">
+                                                        <?php echo esc_html(__('Import Story','geeky-bot')); ?>
+                                                    </a>
                                                     <?php
                                                 }  ?>
                                             </div>
@@ -424,6 +444,41 @@ if (!GEEKYBOTincluder::GEEKYBOT_getTemplate('templates/admin/header',array('modu
                         ?>
                     </div>
                     <div id="user-input-msg"></div>
+                </form>
+            </div>
+        </div>
+        <!-- import Story Popup -->
+        <div id="importStoryPopup" class="geekybot-popup-wrapper geekybot-add-storypge-main-wrapper" style="display: none;">
+            <div class="userpopup-top">
+                <div class="userpopup-heading">
+                    <?php echo esc_html(__('Import Story','geeky-bot')); ?>
+                </div>
+                <img title="<?php echo esc_html(__('Close','geeky-bot')); ?>" alt="<?php echo esc_html(__('Close','geeky-bot')); ?>" id="importStoryPopupCloseBtn" title="<?php echo esc_attr(__('Close', 'geeky-bot')); ?>" class="userpopup-close" src="<?php echo esc_url(GEEKYBOT_PLUGIN_URL); ?>includes/images/close.png" />
+            </div>
+            <div class="geekybot-admin-popup-cnt">
+                <form enctype="multipart/form-data" id="importStoryForm" class="geekybot-popup-form geekybot-story-import" method="post" action="<?php echo esc_url(wp_nonce_url(admin_url("admin.php?page=geekybot_stories&task=geekybotImportStory"),"upload-xml-story")); ?>">
+                    <div class="geekybot-form-wrapper">
+                        <div class="geekybot-form-value">
+                            <?php echo wp_kses(GEEKYBOTformfield::GEEKYBOT_text('name', '', array('class' => 'inputbox geekybot-form-input-field', 'required' => 'required', 'placeholder' => __('Story Name *', 'geeky-bot'))), GEEKYBOT_ALLOWED_TAGS) ?>
+                            <?php echo wp_kses(GEEKYBOTformfield::GEEKYBOT_hidden('type', 'ai_story'), GEEKYBOT_ALLOWED_TAGS); ?>
+                        </div>
+                    </div>
+                    <div class="geekybot-form-wrapper">
+                        <div class="geekybot-form-value">
+                            <label for="xml_file" class="geekybot-custom-file-upload">
+                                <?php echo esc_html(__('Choose File','geeky-bot')); ?>
+                            </label>
+                            <input type="file" name="xml_file" id="xml_file" accept=".xml" class="inputbox geekybot-form-input-field" required>
+                        </div>
+                    </div>
+                    <?php echo wp_kses(GEEKYBOTformfield::GEEKYBOT_hidden('action', 'stories_geekybotImportStory'), GEEKYBOT_ALLOWED_TAGS); ?>
+                    <?php echo wp_kses(GEEKYBOTformfield::GEEKYBOT_hidden('task', ''), GEEKYBOT_ALLOWED_TAGS); ?>
+                    <?php echo wp_kses(GEEKYBOTformfield::GEEKYBOT_hidden('form_request', 'geekybot'), GEEKYBOT_ALLOWED_TAGS); ?>
+                    <div class="geekybot-form-button">
+                        <?php
+                        echo wp_kses(GEEKYBOTformfield::GEEKYBOT_submitbutton('save', __('Import Story','geeky-bot'), array('class' => 'button  geekybot-admin-pop-btn-block')),GEEKYBOT_ALLOWED_TAGS);
+                        ?>
+                    </div>
                 </form>
             </div>
         </div>

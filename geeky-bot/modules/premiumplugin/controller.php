@@ -160,9 +160,15 @@ class GEEKYBOTPremiumpluginController {
         $installed = $this->install_plugin($url);
         if ( !is_wp_error( $installed ) && $installed ) {
             // had to run two seprate loops to save token for all the addons even if some error is triggered by activation.
+            update_option('env_signature_geeky-bot',$token);
+            update_option('env_signature_geeky-bot_date',time());
+            update_option('unique_grace_period_active_date', false);
+            update_option('unique_features_disabled', false);
+            update_option('unique_admin_process_value', false);
+            update_option('gb_admin_unique_job_run',time());
             foreach ($post_data as $key => $value) {
                 if(geekybotphplib::GEEKYBOT_strstr($key, 'geeky-bot-')){
-                    update_option('transaction_key_for_'.$key,$token);
+                    update_option('env_signature_'.$key,$token);
                 }
             }
 

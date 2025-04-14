@@ -411,6 +411,10 @@ class GEEKYBOTgeekybotModel {
         return GEEKYBOTincluder::GEEKYBOT_getModel('premiumplugin')->verifyAddonSqlFile($addon_name,$addon_version);
     }
 
+    function geekybotSendGracePeriodNotification($errorno) {
+        update_option('unique_admin_process_value', $errorno);
+    }
+
     function getUserImagePath() {
         $uid = get_current_user_id();
         // Ensure the UID is valid and numeric

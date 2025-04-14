@@ -533,7 +533,7 @@ class GEEKYBOTwebsearchModel {
             $from_post = $offset + 1;
             $text = "<div class='geekybot_wc_post_heading geekybot_wc_post_title'>".__('Here are some', 'geeky-bot')." ".$label."."." <span class='geekybot_wc_post_heading_nums'>".__('Showing', 'geeky-bot')." ".$from_post." - ".$to_post." ".__('of', 'geeky-bot')." ".$total_posts."</span></div>";
             foreach ($posts as $post) {
-                if (!empty($geekybot_custom_listing->template_id)) {
+                if (!empty($geekybot_custom_listing->template_id) && !get_option('unique_features_disabled')) {
                     if (in_array($geekybot_custom_listing->template_id, [1, 2, 3])) {
                         // Check if template_id is 1, 2, or 3
                         $text .= apply_filters('geekybot_custom_listing_style_html', $geekybot_custom_listing, $post);
@@ -541,9 +541,9 @@ class GEEKYBOTwebsearchModel {
                         // Check if template_id is 3, 4, 5, or 6
                         $text .= apply_filters('geekybot_custom_listing_text_html', $geekybot_custom_listing, $post, $msg);
                     }
-                } elseif(in_array('customlistingstyle', geekybot::$_active_addons)) {
+                } elseif(in_array('customlistingstyle', geekybot::$_active_addons)  && !get_option('unique_features_disabled')) {
                     $text .= apply_filters('geekybot_custom_listing_style_default_html', $post);
-                } elseif(in_array('customtextstyle', geekybot::$_active_addons)) {
+                } elseif(in_array('customtextstyle', geekybot::$_active_addons) && !get_option('unique_features_disabled')) {
                     $text .= apply_filters('geekybot_custom_listing_text_default_html', $post, $msg);
                 } else {
                     $permalink = get_permalink( $post->post_id );

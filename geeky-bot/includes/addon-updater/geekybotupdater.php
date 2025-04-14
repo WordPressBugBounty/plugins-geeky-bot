@@ -17,7 +17,7 @@ class GEEKYBOT_Updater {
 		$addon_installed_array = array();
 		foreach (geekybot::$_active_addons AS $addon) {
 			$addon_installed_array[] = 'geeky-bot-'.$addon;
-			$option_name = 'transaction_key_for_geeky-bot-'.$addon;
+			$option_name = 'env_signature_geeky-bot-'.$addon;
 			$transaction_key = GEEKYBOTincluder::GEEKYBOT_getModel('geekybot')->geekybotGetAddonTransationKey($option_name);
 			if(!in_array($transaction_key, $transaction_key_array)){
 				$transaction_key_array[] = $transaction_key;
@@ -51,7 +51,7 @@ class GEEKYBOT_Updater {
 		if(geekybotphplib::GEEKYBOT_strstr($addon_slug, 'geeky-bot-')){
 			$addon_name = geekybotphplib::GEEKYBOT_str_replace('geeky-bot-', '', $addon_slug);
 			if(isset($this->addon_update_data[$file]) || !in_array($addon_name, geekybot::$_active_addons)){ // Only checking which addon have update version
-				$option_name = 'transaction_key_for_geeky-bot-'.$addon_name;
+				$option_name = 'env_signature_geeky-bot-'.$addon_name;
 				$transaction_key = GEEKYBOTincluder::GEEKYBOT_getModel('geekybot')->geekybotGetAddonTransationKey($option_name);
 				$verify_results = GEEKYBOTincluder::GEEKYBOT_getModel('premiumplugin')->activate( array(
 		            'token'    => $transaction_key,
@@ -167,7 +167,7 @@ class GEEKYBOT_Updater {
 										if($newversion){
 											if(version_compare( $newversion, $value, '>' )){
 
-												$option_name = 'transaction_key_for_'.$c_key;
+												$option_name = 'env_signature_'.$c_key;
 												$transaction_key = GEEKYBOTincluder::GEEKYBOT_getModel('geekybot')->geekybotGetAddonTransationKey($option_name);
 												$addon_json_array = array();
 												$addon_json_array[] = geekybotphplib::GEEKYBOT_str_replace('geeky-bot-', '', $c_key);
@@ -228,7 +228,7 @@ class GEEKYBOT_Updater {
 
 	public function GEEKYBOT_getPluginInfo($addon_slug) {
 
-		$option_name = 'transaction_key_for_'.$addon_slug;
+		$option_name = 'env_signature_'.$addon_slug;
 		$transaction_key = GEEKYBOTincluder::GEEKYBOT_getModel('geekybot')->geekybotGetAddonTransationKey($option_name);
 
 		if(!$transaction_key){
@@ -277,8 +277,14 @@ class GEEKYBOT_Updater {
 			if($transaction_key != ''){
 				$token = $this->GEEKYBOT_getTokenFromTransactionKey( $transaction_key,$addon_name);
 				if($token){
+					update_option('env_signature_geeky-bot',$token);
+					update_option('env_signature_geeky-bot_date',time());
+					update_option('unique_grace_period_active_date', false);
+					update_option('unique_features_disabled', false);
+					update_option('unique_admin_process_value', false);
+					update_option('gb_admin_unique_job_run',time());
 					foreach ($_POST['geekybot_addon_array_for_token'] as $key => $value) {
-						update_option('transaction_key_for_'.$value,$token);
+						update_option('env_signature_'.$value,$token);
 					}
 				}else{
 					update_option( 'geekybot-addon-key-error-message','Something went wrong');

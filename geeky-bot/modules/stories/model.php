@@ -2116,7 +2116,7 @@ class GEEKYBOTstoriesModel {
                         <div class='geekybot_wc_product_price'>
                             ".$product->get_price_html()."
                         </div>";
-                        if(in_array('woocommercepropack', geekybot::$_active_addons)) {
+                        if(in_array('woocommercepropack', geekybot::$_active_addons) && !get_option('unique_features_disabled')) {
                             $text .= apply_filters('geekybot_woocommercepropack_reviews_html', $product);
                         }
                         $text .= "
@@ -2731,7 +2731,7 @@ class GEEKYBOTstoriesModel {
             if ($fallback) {
                 $fallbackNode = $dom->createElement('fallback');
                 $intentNode->appendChild($fallbackNode);
-                $fallbackTextNode = $dom->createElement('text', htmlspecialchars($story->default_fallback));
+                $fallbackTextNode = $dom->createElement('text', htmlspecialchars($fallback->default_fallback));
                 $fallbackNode->appendChild($fallbackTextNode);
 
                 // Add fallback buttons
@@ -2829,6 +2829,153 @@ class GEEKYBOTstoriesModel {
         header('Content-Disposition: attachment; filename="' . $filename . '"');
         echo $xml_content;
         exit;
+    }
+
+    function geekybotImportStory($data) {
+        if (!isset($_FILES['xml_file']) || $_FILES['xml_file']['error'] !== UPLOAD_ERR_OK) {
+            $result['message'] = __("Upload failed.", 'geeky-bot');
+            $result['status'] = 'error';
+            return $result;
+        }
+        $uploaded_file = $_FILES['xml_file'];
+        $file_ext = pathinfo($uploaded_file['name'], PATHINFO_EXTENSION);
+        
+        if ($file_ext !== 'xml') {
+            $result['message'] = __("Invalid file type. Please upload an XML file.", 'geeky-bot');
+            $result['status'] = 'error';
+            return $result;
+        }
+        if (!function_exists('wp_handle_upload')) {
+            do_action('geekyboot_load_wp_file');
+        }
+        $maindir = wp_upload_dir();
+        $basedir = $maindir['basedir'];
+        $datadirectory = GEEKYBOTincluder::GEEKYBOT_getModel('configuration')->getConfigValue('data_directory');
+        
+        $path = $basedir . '/' . $datadirectory;
+        if (!file_exists($path)) { // create user directory
+            GEEKYBOTincluder::GEEKYBOT_getModel('geekybot')->makeDir($path);
+        }
+        $isupload = false;
+        $path = $path . '/geekybot-temp/';
+        if (!file_exists($path)) { // create user directory
+            GEEKYBOTincluder::GEEKYBOT_getModel('geekybot')->makeDir($path);
+        }
+
+        if ($_FILES['xml_file']['size'] > 0 ) {
+            $file_name = geekybotphplib::GEEKYBOT_str_replace(' ', '_', sanitize_file_name($_FILES['xml_file']['name']));
+            $file_tmp = geekybot::GEEKYBOT_sanitizeData($_FILES['xml_file']['tmp_name']);// GEEKYBOT_sanitizeData() function uses wordpress santize functions
+            // actual location
+            $userpath = $path;
+            $isupload = true;
+        }
+        /*/To UPload XML file/*/
+        if ($isupload) {
+            $this->uploadfor = 'importstory';
+            // Register our path override.
+            add_filter( 'upload_dir', array($this,'GEEKYBOT_import_story'));
+            // Do our thing. WordPress will move the file to 'uploads/mycustomdir'.
+            $result = array();
+            $file = array(
+                'name' => sanitize_file_name($_FILES['xml_file']['name']),
+                'type' => geekybot::GEEKYBOT_sanitizeData($_FILES['xml_file']['type']),
+                'tmp_name' => geekybot::GEEKYBOT_sanitizeData($_FILES['xml_file']['tmp_name']),
+                'error' => geekybot::GEEKYBOT_sanitizeData($_FILES['xml_file']['error']),
+                'size' => geekybot::GEEKYBOT_sanitizeData($_FILES['xml_file']['size']),
+            ); // GEEKYBOT_sanitizeData() function uses wordpress santize functions
+            $result = wp_handle_upload($file, array('test_form' => false));
+            if ( $result && ! isset( $result['error'] ) ) {
+                $intent_ids = [];
+                $intents_ordering = [];
+                $startPointMsg = __('Start Point', 'geeky-bot');
+                $positionsarray = '{"id":"node1","top":"500","left":"0","parentId":"","type":"start_point","text":"'.$startPointMsg.'","image":"home","class":"node_start_point","category":"start"}';
+                $filePath = $result['file'];
+                if (file_exists($filePath)) {
+                    // Suppress the warning for simplexml_load_file but still capture the errors
+                    libxml_use_internal_errors(true);
+                    $xml = simplexml_load_file($filePath);
+                    if ($xml === false) {
+                        // Capture XML parsing errors
+                        $errors = libxml_get_errors();
+                        $error_message = '';
+                        
+                        // Iterate through all errors and format them
+                        foreach ($errors as $error) {
+                            $error_message .= 'XML Error: ' . $error->message . ' on line ' . $error->line . ' ';
+                        }
+
+                        // Clear the libxml error buffer
+                        libxml_clear_errors();
+
+                        // Return a user-friendly error message
+                        if ($error_message == '') {
+                            $result['message'] = __("Error importing this file: The XML file seems to have an issue. Please check the file's structure.", 'geeky-bot');
+                        } else {
+                            $result['message'] = $error_message;
+                        }
+                        $result['status'] = 'error';
+                        return $result;
+                    }
+                    unlink($filePath);
+                } else {
+                    $result['message'] = __("Error: The template file does not exist.", 'geeky-bot');
+                    $result['status'] = 'error';
+                    return $result;
+                }
+                $tampData = $this->geekybotReadTemplate($xml, $positionsarray, $intent_ids, $intents_ordering);
+                if (isset($tampData['error'])) {
+                    $result['message'] = $tampData['error'];
+                    $result['status'] = 'error';
+                    return $result;
+                }
+                $positionsarray = $tampData['positionsarray'];
+                $intent_ids = $tampData['intent_ids'];
+                $intents_ordering = $tampData['intents_ordering'];
+                if (isset($tampData['default_fallback'])) {
+                    $default_fallback = $tampData['default_fallback'];
+                    if (isset($tampData['default_fallback_buttons'])) {
+                        $default_fallback_buttons = $tampData['default_fallback_buttons'];
+                    }
+                }
+                $story['name'] = $data['name'];
+                $story['story_mode'] = 1;
+                $story['intent_ids'] = $intent_ids;
+                $story['positionsarray'] = $positionsarray;
+                $story['intents_ordering'] = $intents_ordering;
+                if (isset($default_fallback) && $default_fallback != '') {
+                    $story['default_fallback'] = $default_fallback;
+                    if (isset($default_fallback_buttons) && $default_fallback_buttons != '') {
+                        $story['default_fallback_buttons'] = $default_fallback_buttons;
+                    }
+                }
+                $story['story_type'] = $data['type'];;
+                $this->saveAutoBuildStory($story);
+
+            }
+            // Set everything back to normal.
+            remove_filter( 'upload_dir', array($this,'GEEKYBOT_import_story'));
+            $result['message'] = __('The story has been imported successfully!', 'geeky-bot');
+            $result['status'] = 'updated';
+            return $result;
+        }
+        $result['message'] = __('Error while importing this file.', 'geeky-bot');
+        $result['status'] = 'error';
+        return $result;
+    }
+
+    function GEEKYBOT_import_story( $dir ) {
+        $datadirectory = GEEKYBOTincluder::GEEKYBOT_getModel('configuration')->getConfigValue('data_directory');
+        if($this->uploadfor == 'importstory'){
+            $path = $datadirectory . '/geekybot-temp/';
+            $array = array(
+                'path'   => $dir['basedir'] . '/' . $path,
+                'url'    => $dir['baseurl'] . '/' . $path,
+                'subdir' => '/'. $path,
+            ) + $dir;
+            return $array;
+        }else{
+            return $dir;
+        }
     }
 }
 ?>

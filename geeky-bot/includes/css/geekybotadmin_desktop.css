@@ -471,6 +471,7 @@ div#geekybotadmin-wrapper div#geekybotadmin-data div#geekybot-admin-wrapper div.
 /* popup */
 #userinput-popup.geekybot-add-storypge-main-wrapper{position: fixed;top: 50%;left: 50%;width: 40%;max-height: 70%;z-index: 99999;transform: translate(-50%, -50%);background: #fff;box-sizing: border-box;overflow-y: unset;overflow-x: unset;}
 #editStoryName.geekybot-add-storypge-main-wrapper{position: fixed;top: 50%;left: 50%;width: 40%;max-height: 70%;z-index: 99999;transform: translate(-50%, -50%);background: #fff;box-sizing: border-box;overflow-y: auto;overflow-x: hidden;}
+#importStoryPopup.geekybot-add-storypge-main-wrapper{position: fixed;top: 50%;left: 50%;width: 40%;max-height: 70%;z-index: 99999;transform: translate(-50%, -50%);background: #fff;box-sizing: border-box;overflow-y: auto;overflow-x: hidden;}
 div#userpopupblack {background: rgba(0,0,0,0.5);position: fixed;width: 100%;height: 100%;top: 0px;left: 0px;z-index: 9999;}
 .geekybot-admin-popup-cnt .geekybot-popup-form .geekybot-form-wrapper .geekybot-form-value input{border: 1px solid #dfd9d9;}
 /* general class makes problem with other plugins */
@@ -489,9 +490,11 @@ div.geekybot_story_right_menu h5{font-size: 21px;color: #373435;margin: 30px 0 1
 div.geekybot_story_right_popup_nav{display: flex;align-items: center;background-color:#3d3b79;font-size: 17px;padding:15px;border-radius: 6px;}
 div.geekybot_story_right_popup_nav .geekybot_story_right_navlogo{background-color: white;padding: 10px 15px;border-radius: 6px;color: #6451e4;display: flex;align-items: center;}
 div.geekybot_story_right_popup_nav .geekybot_story_right_navlogo img{margin-right: 5px;max-width: 100%;max-width: 100%;width: 25px;height: auto;}
-form#userStoryForm{float: left;width: 100%;}
+form#userStoryForm, form#importStoryForm{float: left;width: 100%;}
 .geekybot-admin-popup-cnt form#userStoryForm.geekybot-popup-form .geekybot-form-wrapper{float: left;width: 100%;}
 .geekybot-admin-popup-cnt form#userStoryForm .geekybot-form-button .button.geekybot-admin-pop-btn-block {width: 100%;margin-left: 0;margin-right: 0;}
+.geekybot-admin-popup-cnt form#importStoryForm.geekybot-popup-form .geekybot-form-wrapper{float: left;width: 100%;}
+.geekybot-admin-popup-cnt form#importStoryForm .geekybot-form-button .button.geekybot-admin-pop-btn-block {width: 100%;margin-left: 0;margin-right: 0;}
 form#editStoryNameForm{float: left;width: 100%;}
 .geekybot-admin-popup-cnt form#editStoryNameForm.geekybot-popup-form .geekybot-form-wrapper{float: left;width: 100%;}
 .geekybot-admin-popup-cnt form#editStoryNameForm .geekybot-form-button .button.geekybot-admin-pop-btn-block {width: 100%;}
@@ -584,6 +587,10 @@ div.geekybot_story_wrp #canvas_container #canvas {position: absolute;top: 0;left
 .geekybot-popup-wrapper .userpopup-top img{ cursor: pointer;}
 .userpopup-heading .userpopup-heading-mainwrp{float: left;}
 img.userpopup-close{width: 23px;height: 22px;}
+.geekybot-admin-popup-cnt .geekybot-popup-form .geekybot-form-wrapper .geekybot-form-value {position: relative;}
+.geekybot-admin-popup-cnt .geekybot-popup-form .geekybot-form-wrapper .geekybot-form-value .geekybot-custom-file-upload{position: absolute;right: 0;content: 'Choose File';display: inline-block;outline: none;white-space: nowrap;-webkit-user-select: none;cursor: pointer;float: right;background-color: #5e4ae3;width: 150px;text-align: center;padding: 15px 25px;color: #fff;height: 50px;margin-right: 0px;min-width: fit-content;font-size: 17px;}
+.geekybot-admin-popup-cnt .geekybot-popup-form .geekybot-form-wrapper .geekybot-form-value input[type="file"]::-webkit-file-upload-button {display: none; text-align: left;}
+.geekybot-admin-popup-cnt .geekybot-popup-form .geekybot-form-wrapper .geekybot-form-value input[type="file"]::file-selector-button{visibility: hidden;display: none; }
 .geekybot-admin-popup-cnt .geekybot-popup-form .geekybot-form-wrapper .geekybot-form-value input{background-color: #fefefe; width: 100%;padding:10px;border: unset;border-radius: 2px;}
 .geekybot-admin-popup-cnt .geekybot-popup-form .geekybot-form-wrapper .geekybot-form-value input.geeky_mb_20{margin-bottom: 20px;}
 .geekybot-admin-popup-cnt .geekybot-popup-form .geekybot-form-wrapper .geekybot-form-value .geekybot-form-value-popup-select-dropdown{max-width: 100%;font-size: 16px;}
@@ -1184,7 +1191,9 @@ div.geekybot-listing-section .geekybot-listing-button-wrp a.geekybot-delete{colo
 div.geekybot-listing-section .geekybot-listing-button-wrp a.geekybot-delete:hover{border-color: #5e4ae3;}
 div.geekybot-listing-section .geekybot-listing-button-wrp a:hover{text-decoration: underline;}
 div.geekybot-listing-section .geekybot-listing-button-wrp a img{width: 17px;margin: -5px 5px 0 0;}
+div.geekybot-listing-section .geekybot-listing-button-wrp a.geekybot-ai-story.importStoryBtn{background-color: #5e4ae3;}
 div.geekybot-listing-section .geekybot-listing-button-wrp a.geekybot-ai-story{background-color: #3a8476;color: #fff;}
+div.geekybot-listing-section .geekybot-listing-button-wrp a.geekybot-woocommerce-story.importStoryBtn{background-color: #5e4ae3;}
 div.geekybot-listing-section .geekybot-listing-button-wrp a.geekybot-woocommerce-story{background-color: #7f54b3;color: #fff;}
 div.geekybot-listing-section .geekybot-listing-button-wrp a.geekybot-password-story{background-color: #0055ca;color: #fff;}
 div.geekybot-listing-section .geekybot-listing-button-wrp{padding:20px 35px;background-color:#eaedf2;margin-top: 20px;}
@@ -1732,6 +1741,7 @@ div.geekybot-synchronize-section.geekybot-sql-update-available-section{border: 1
 div.geekybot-synchronize-section.geekybot-sql-update-available-section.geekybot-sql-updated-successfully{border: 1px solid #60b864;background-color: #f2fff2;}
 div.geekybot-synchronize-section.geekybot-sql-update-available-section.geekybot-sql-update-error{border: 1px solid #915503;background-color: #fff5ec;}
 div.geekybot-synchronize-section.geekybot-addon-update-available-section{border: 1px solid #e47fb7;background-color: #fff2f9;margin-bottom: 40px;padding: 15px;}
+div.geekybot-synchronize-section.geekybot-admin-notification-section{border: 1px solid #f84f4f;background-color: #ffb2b2;}
 div.geekybot-synchronize-section{box-sizing: border-box; display: flex;flex-wrap: wrap; align-items: center;width: 100%;padding:10px 20px;border: 1px solid #f8c04f;background-color: #ffe5b2;}
 div.geekybot-synchronize-section .geekybot-synchronize-imgwrp{width: 60px;}
 div.geekybot-synchronize-section.geekybot-addon-update-available-section .geekybot-synchronize-imgwrp {width: 120px;}
@@ -2166,7 +2176,7 @@ div.geekybot-addon-installer-wrapper div.geekybot-addon-installer-section-wrap d
   input[type=radio]{width: 20px;height: 20px;min-width: 20px;min-height: 20px;max-width: 20px;max-height: 20px; display: flex;align-items: center;justify-content: center;}
   input[type=radio]:checked:before{margin: 0;}
   div#geekybot-head .geekybot-config-btn{width: 100%;}
-  #userinput-popup, #editStoryName{width: 70%;}
+  #userinput-popup, #editStoryName, #importStoryPopup{width: 70%;}
   div#geekybot-head div.geekybot-config-btn button.geekybot-config-save-btn{float: left;margin-bottom: 20px;}
   div#geekybot-head div.geekybot-config-btn button.geekybot-config-reset-btn{float:left;margin-right: 8px;margin-bottom: 20px;}
   div.geekybot-dasdhboard-history-head{display: none;}

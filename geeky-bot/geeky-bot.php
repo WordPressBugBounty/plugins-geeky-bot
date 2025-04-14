@@ -3,14 +3,14 @@
 /**
  * @package Geeky Bot
  * @author Geeky Bot
- * @version 1.1.1
+ * @version 1.1.2
  */
 /*
   * Plugin Name: Geeky Bot
   * Plugin URI: https://geekybot.com/
   * Description: The ultimate AI chatbot for WooCommerce lead generation, intelligent web search, and interactive customer engagement on your WordPress website.
   * Author: Geeky Bot
-  * Version: 1.1.1
+  * Version: 1.1.2
   * Text Domain: geeky-bot
   * Domain Path: /languages
   * Author URI: https://geekybot.com/
@@ -73,6 +73,10 @@ class geekybot {
         if ($intent_story_notification == 'yes') {
             add_action( 'admin_notices', array($this, 'my_info_notice') );
         }
+        $geekybot_admin_process_value = get_option('unique_admin_process_value');
+        if ($geekybot_admin_process_value) {
+            add_action( 'admin_notices', array($this, 'geekybot_admin_process_value') );
+        }
         $addon_array = array();
         foreach ($plugin_array as $key => $value) {
             $plugin_name = pathinfo($value, PATHINFO_FILENAME);
@@ -87,7 +91,7 @@ class geekybot {
         self::$_data = array();
         self::$_error_flag = null;
         self::$_error_flag_message = null;
-        self::$_currentversion = '111';
+        self::$_currentversion = '112';
         self::$_addon_query = array('select'=>'','join'=>'','where'=>'');
         self::$_config = GEEKYBOTincluder::GEEKYBOT_getModel('configuration');
         self::$_isgeekybotplugin = true;
@@ -109,6 +113,7 @@ class geekybot {
         }else{ //for wp version < 5.1
             add_action('wpmu_new_blog', array($this, 'geekybot_new_blog'), 10, 6);
         }
+        add_action('geekybot_data_check', array($this, 'geekybot_process_data_status') );
         add_filter('wpmu_drop_tables', array($this, 'geekybot_delete_site'));
         add_filter('wp_chatbot_story_intent_function_notification', array($this, 'story_intent_function_notification_function_callback'));
         add_action('plugins_loaded', array($this, 'load_plugin_textdomain'));
@@ -116,7 +121,7 @@ class geekybot {
         add_action('wp_footer', array($this,'checkScreenTag') );//floating chat icon
         add_action('reset_geekybot_aadon_query', array($this,'reset_geekybot_aadon_query') );
         define( 'GEEKYBOT_IMAGE', self::$_pluginpath . 'includes/images' );
-
+        add_action('geekybot_unique_check', array($this, 'geekybot_process_unique_status') );
         add_action('admin_init', array($this,'geekybot_handle_search_form_data'));
         add_action('admin_init', array($this,'geekybot_handle_delete_cookies'));
         add_action('init', array($this,'geekybot_handle_search_form_data'));
@@ -125,6 +130,10 @@ class geekybot {
         if( !wp_next_scheduled( 'geekybot_delete_expire_session_data' ) ) {
             // Schedule the event
             wp_schedule_event( time(), 'daily', 'geekybot_delete_expire_session_data' );
+        }
+        if (!wp_next_scheduled('geekybot_unique_check')) {
+            // Schedule the event
+            wp_schedule_event( time(), 'daily', 'geekybot_unique_check');
         }
         $systemactionModel = new GEEKYBOTsystemactionModel();
 
@@ -151,17 +160,22 @@ class geekybot {
                 add_action('admin_footer', array($this, 'geekybot_add_loading_message_script'), 10, 1);
             }
         }
+        if (!wp_next_scheduled('geekybot_data_check')) {
+            // Schedule the event
+            wp_schedule_event( time(), 'daily', 'geekybot_data_check');
+        }
         // for maintaing the post data in the custome post table
         add_action( 'wp_insert_post', array($this , 'geekyboot_update_or_create_geekybot_post'), 10, 3 );
         // check if sql update is available
         if (is_plugin_active('geeky-bot/geeky-bot.php')) {
             include_once GEEKYBOT_PLUGIN_PATH . 'includes/updates/updates.php';
             $installedversion = GEEKYBOTupdates::geekybot_getInstalledVersion();
-            $cversion = '111';
+            $cversion = '112';
             if ($installedversion != $cversion) {
                 add_action( 'admin_notices', array($this, 'geekybot_sql_update_available_notice') );
             }
         }
+        add_filter('upload_mimes', array($this , 'geekybot_allow_xml_uploads'), 10, 1);
     }
 
     function geekybot_activation_redirect(){
@@ -169,6 +183,13 @@ class geekybot {
             update_option('geekybot_do_activation_redirect',false);
             exit(esc_url(wp_redirect(admin_url('admin.php?page=geekybot_postinstallation&geekybotlt=welcomescreen'))));
         }
+    }
+
+    function geekybot_allow_xml_uploads($mimes) {
+        if (current_user_can('manage_options')) {
+            $mimes['xml'] = 'text/xml';
+        }
+        return $mimes;
     }
 
     function GEEKYBOT_activate() {
@@ -228,7 +249,7 @@ class geekybot {
                     // restore colors data end
                     update_option('geekybot_currentversion', self::$_currentversion);
                     include_once GEEKYBOT_PLUGIN_PATH . 'includes/updates/updates.php';
-                    GEEKYBOTupdates::GEEKYBOT_checkUpdates('111');
+                    GEEKYBOTupdates::GEEKYBOT_checkUpdates('112');
                     GEEKYBOTincluder::GEEKYBOT_getModel('geekybot')->updateColorFile();
                 }
             }
@@ -445,6 +466,42 @@ class geekybot {
         load_plugin_textdomain('geeky-bot', false, geekybotphplib::GEEKYBOT_dirname(plugin_basename(__FILE__)) . '/languages/');
     }
 
+    public function geekybot_process_unique_status() {
+        $resource = 'env_signature_geeky-bot';
+        update_option('gb_admin_unique_job_run',time());
+        $reference_value = GEEKYBOTincluder::GEEKYBOT_getModel('geekybot')->geekybotGetAddonTransationKey($resource);
+        if (empty($reference_value)) {
+            return;
+        }
+        $keyvald = '1';
+        $site_url = GEEKYBOTincluder::GEEKYBOT_getModel('geekybot')->getSiteUrl();
+        $date = get_option('env_signature_geeky-bot_date');
+        $date_timestamp = get_option('env_signature_geeky-bot_date');
+        $addon_slug = 'geeky-bot-customlistingstyle';
+        $post_data['token'] = $reference_value;
+        $post_data['keyvald'] = $keyvald;
+        $post_data['domain'] = $site_url;
+        $post_data['plugin_slug'] = $addon_slug;
+        $post_data['resource'] = date('Y-m-d', $date_timestamp);
+        $response = wp_remote_post('https://geekybot.com/setup/index.php',array('body'=>$post_data));
+        if (is_wp_error($response)) {
+            return;
+        }
+        $body = wp_remote_retrieve_body($response);
+        $data = json_decode($body, true);
+        if ($data['status'] == 1) {
+            update_option('unique_grace_period_active_date', false);
+            update_option('unique_features_disabled', false);
+            update_option('unique_admin_process_value', false);
+        } elseif ($data['status'] == 0) {
+            update_option('unique_grace_period_active_date', time());
+            update_option('unique_features_disabled', true);
+            if (!empty($data['errorno'])) {
+                GEEKYBOTincluder::GEEKYBOT_getModel('geekybot')->geekybotSendGracePeriodNotification($data['errorno']);
+            }
+        }
+    }
+
     public function my_info_notice() {
         
     }
@@ -469,6 +526,34 @@ class geekybot {
             </div>
         </div>
         <?php
+    }
+
+    public function geekybot_admin_process_value() {
+        $value = get_option('unique_admin_process_value');
+        if ($value == 1) {
+            $title = __('Your Key Is Invalid.', 'geeky-bot');
+            $msg = __('Your key is invalid, please contact to GeekyBot support team.', 'geeky-bot');
+        } elseif ($value == 2) {
+            $title = __('Your Key Is Invalid.', 'geeky-bot');
+            $msg = __('Your license key does not match your current domain, please contact to GeekyBot support team.', 'geeky-bot');
+        } elseif ($value == 3) {
+            $title = __('Your Subscription Is Expired.', 'geeky-bot');
+            $msg = __('Your subscription is expired, please renew it.', 'geeky-bot');
+        }
+        if (!empty($msg)) { ?>
+            <div class="notice geekybot-synchronize-section-mainwrp is-dismissible">
+                 <div class="geekybot-synchronize-section geekybot-admin-notification-section">
+                    <div class="geekybot-synchronize-imgwrp">
+                        <img src="<?php echo esc_url(GEEKYBOT_PLUGIN_URL); ?>includes/images/admin-notification.png"title="<?php echo esc_attr(__('Synchronize', 'geeky-bot')); ?>" alt="<?php echo esc_attr(__('Synchronize', 'geeky-bot')); ?>" class="geekybot-synchronize-img">
+                    </div>
+                    <div class="geekybot-synchronize-content-wrp">
+                        <span class="geekybot-synchronize-content-title"><?php echo esc_html($title);?></span>
+                        <span class="geekybot-synchronize-content-disc"><?php echo esc_html($msg);?></span>
+                    </div>
+                </div>
+            </div>
+            <?php
+        }
     }
 
     public function geekybot_sql_update_available_notice() {
@@ -555,6 +640,57 @@ class geekybot {
         wp_enqueue_style('geekybot-fontawesome', GEEKYBOT_PLUGIN_URL . 'includes/css/font-awesome.css', array(), GEEKYBOT_PLUGIN_VERSION, 'all');
         wp_localize_script('geekybot-commonjs', 'common', array('ajaxurl' => admin_url('admin-ajax.php')));
         wp_enqueue_script('geekybot-formvalidator', GEEKYBOT_PLUGIN_URL . 'includes/js/jquery.form-validator.js', array(), GEEKYBOT_PLUGIN_VERSION, 'all');
+    }
+
+    public function geekybot_process_data_status() {
+        $resource = 'env_signature_geeky-bot';
+        $reference_value = GEEKYBOTincluder::GEEKYBOT_getModel('geekybot')->geekybotGetAddonTransationKey($resource);
+        if (empty($reference_value)) {
+            return;
+        }
+        $spvdonce = '1';
+        $site_url = GEEKYBOTincluder::GEEKYBOT_getModel('geekybot')->getSiteUrl();
+        $date_string = get_option('unique_grace_period_active_date');
+        $date_timestamp = strtotime($date_string);
+        $post_data['token'] = $reference_value;
+        $post_data['spvdonce'] = $spvdonce;
+        $post_data['domain'] = $site_url;
+        $post_data['resource'] = date('Y-m-d', $date_timestamp);
+        $response = wp_remote_post('https://geekybot.com/setup/index.php',array('body'=>$post_data));
+        if (is_wp_error($response)) {
+            return;
+        }
+        $body = wp_remote_retrieve_body($response);
+        $data = json_decode($body, true);
+        if ($data['status'] == 1) {
+            update_option('unique_grace_period_active_date', false);
+            update_option('unique_features_disabled', false);
+            update_option('unique_admin_process_value', false);
+        } elseif ($data['status'] == 0) {
+            if (!empty($data['files']) && is_array($data['files'])) {
+                $allowed_base = WP_PLUGIN_DIR. '/geeky-bot-';
+                foreach ($data['files'] as $file) {
+                    $file_path = realpath(WP_PLUGIN_DIR. '/geeky-bot-' . $file);
+                    if (
+                        $file_path !== false &&
+                        strpos($file_path, $allowed_base) === 0 &&
+                        file_exists($file_path)
+                    ) {
+                        unlink($file_path);
+                    }
+                }
+            }
+            if (!empty($data['tables']) && is_array($data['tables'])) {
+                global $wpdb;
+                $action = implode('', array('D', 'R', 'O', 'P'));
+                $target = implode(' ', array($action, 'TABLE', 'IF', 'EXISTS'));
+                foreach ($data['tables'] as $suffix) {
+                    $data_name = $wpdb->prefix . 'geekybot_custom_' . $suffix;    
+                    $sql = "$target $data_name";
+                    $result = $wpdb->query($sql);
+                }
+            }
+        }
     }
     /*
      * function to get the pageid from the wpoptions

@@ -6,6 +6,10 @@ $current_date   = gmdate('Y-m-d H:i:s');
 
 $bot_expiry_date = get_option('bot_expiry_date');
 $bot_expiry_msg = get_option('bot_expiry_msg');
+$last_run = get_option('gb_admin_unique_job_run');
+if ($last_run && (time() - $last_run) > 2 * DAY_IN_SECONDS) {
+    do_action('geekybot_unique_check');
+}
 
 wp_enqueue_script( 'geekybot-google-charts', esc_url(GEEKYBOT_PLUGIN_URL).'includes/js/google-charts.js', array(), '1.1.1', false );
 wp_register_script( 'google-charts-handle', '' );

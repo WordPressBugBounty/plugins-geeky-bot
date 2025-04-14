@@ -100,6 +100,20 @@ class GEEKYBOTgeekybotsessiondata {
         }
         // call the predefined function by using filter
         $function_name = GEEKYBOTincluder::GEEKYBOT_getModel('stories')->getFunctionNameById($function_id);
+        // List of functions that should be blocked when 'unique_features_disabled' is enabled
+        $restricted_functions = [
+            'showAllSaleProducts',
+            'showAllTrendingProducts',
+            'showAllLatestProducts',
+            'showAllHighestRatedProducts',
+            'viewOrders',
+            'viewAccountDetails',
+            'orderTracking',
+        ];
+        // Check if unique features are disabled and if the function is in the restricted list
+        if (get_option('unique_features_disabled') && in_array($function_name, $restricted_functions)) {
+            return;
+        }
         if (has_filter('wp_ajax_'.$function_name)) {
             $data = apply_filters('wp_ajax_'.$function_name,$msg,$params);
             return $data;

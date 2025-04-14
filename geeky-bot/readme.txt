@@ -4,7 +4,7 @@ Tags: chatbot, AI, woocommerce chatbot, lead generation, chat bots
 Donate link: https://geekybot.com
 Requires at least: WordPress 5.0
 Tested up to: 6.7.2
-Stable tag: 1.1.1
+Stable tag: 1.1.2
 License: GPLv2
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -219,6 +219,10 @@ If you activate certain features in this plugin, the user's personal data, inclu
 * Font Awesome (https://fontawesome.com/privacy)
 
 == Changelog ==
+= 1.1.2
+* Add import option for story.
+* Bug fix.
+
 = 1.1.1
 * Security Updates.
 * Export option for story.

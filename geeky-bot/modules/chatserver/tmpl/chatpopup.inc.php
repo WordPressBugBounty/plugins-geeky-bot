@@ -108,23 +108,24 @@ if (!defined('ABSPATH'))
             date.setTime(date.getTime());
             var ajaxurl = "'.esc_url(admin_url('admin-ajax.php')).'";
             jQuery.post(ajaxurl, { action: "geekybot_frontendajax", geekybotme: "chathistory", task: "endUserChat", cmessage: message,sender:sender ,chat_id:chat_id, "_wpnonce":"'. esc_attr(wp_create_nonce("end-user-chat")) .'"}, function (data) {
-            if (data) {
-                jQuery("#geekybotChatBox").empty();
-                var path = window.location.href;
-                jQuery(".geekybot-chat-popup").toggleClass("geekybot-chat-init");';
-                if (geekybot::$_configuration['welcome_screen'] == '2') {
-                    $geekybot_js.='jQuery(".geekybot-chat-popup").toggleClass("geekybot-chat-init");';
+                if (data) {
+                    jQuery("#geekybotChatBox").empty();
+                    var path = window.location.href;
+                    jQuery(".geekybot-chat-popup").toggleClass("geekybot-chat-init");';
+                    if (geekybot::$_configuration['welcome_screen'] == '2') {
+                        $geekybot_js.='jQuery(".geekybot-chat-popup").toggleClass("geekybot-chat-init");';
+                    }
+                    $geekybot_js.='
+                    jQuery(".geekybot-chat-open-dialog").removeClass("active");
+                    jQuery(".geekybot-chat-close-button").removeClass("active");
+                    document.cookie = "geekybot_collapse_chat_popup=0; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
+                    jQuery(".geekybot-chat-popup").removeClass("active");
+                    jQuery(".geekybot-dropdown-content").removeClass("show");
+                    // set empty value for session on end chat
+                    jQuery("#chatsession").val("");
+                } else {
                 }
-                $geekybot_js.='
-                jQuery(".geekybot-chat-open-dialog").removeClass("active");
-                jQuery(".geekybot-chat-close-button").removeClass("active");
-                document.cookie = "geekybot_collapse_chat_popup=0; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
-                jQuery(".geekybot-chat-popup").removeClass("active");
-                jQuery(".geekybot-dropdown-content").removeClass("show");
-                // set empty value for session on end chat
-                jQuery("#chatsession").val("");
-            } else {
-            }
+            });
         });
 
         jQuery(\'div#geekybotRestartChat\').on("click",function(){
@@ -223,15 +224,14 @@ if (!defined('ABSPATH'))
         $geekybot_js .= '
         var ajaxurl = "'.esc_url(admin_url('admin-ajax.php')).'";
         jQuery.post(ajaxurl, { action: "geekybot_frontendajax", geekybotme: "chathistory", task: "getRandomChatId", datetime: dt, "_wpnonce":"'. esc_attr(wp_create_nonce("get-random-chat-id")).'" }, function (data) {
-                if (data) {
-                    var chat_id = data;
-                    jQuery("#chatsession").val(data);
-                    // closechat(); recheck
-                    // it close the chat after some time even if the user is typing message - hamza
-                }
-            });
-        }
-    });
+            if (data) {
+                var chat_id = data;
+                jQuery("#chatsession").val(data);
+                // closechat(); recheck
+                // it close the chat after some time even if the user is typing message - hamza
+            }
+        });
+    }
 
     /* When the user clicks on the button,
     toggle between hiding and showing the dropdown content */
@@ -286,7 +286,7 @@ if (!defined('ABSPATH'))
         if(chat_id!=""){
             setTimeout(function(){';
                 $geekybot_js.='
-                var message = \''.__('session time out', 'geeky-bot').'\';
+                var message = "'.__('session time out', 'geeky-bot').'";
                 var sender  = "user";
                 var ajaxurl = "'.esc_url(admin_url('admin-ajax.php')).'";
                 jQuery.post(ajaxurl, { action: "geekybot_frontendajax", geekybotme: "chathistory", task: "endUserChat", cmessage: message,sender:sender ,chat_id:chat_id, "_wpnonce":"'. esc_attr(wp_create_nonce("end-user-chat")) .'"}, function (data) {
