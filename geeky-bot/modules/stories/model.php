@@ -2091,14 +2091,9 @@ class GEEKYBOTstoriesModel {
                 $text .= "<div class='geekybot_wc_product_heading'>".__('You might like these products.', 'geeky-bot')."</div>";
             } elseif ($type == 'fallbacktwo') {
                 $text .= "<div class='geekybot_wc_product_heading'>".__("No exact match was found. Explore these similar products.", 'geeky-bot')."</div>";
-            } elseif ($type == 'saleProducts') {
-                $text .= "<div class='geekybot_wc_product_heading'>".__("Discounted Items: Shop the Best Deals Today!", 'geeky-bot')."</div>";
-            } elseif ($type == 'trendingProducts') {
-                $text .= "<div class='geekybot_wc_product_heading'>".__("Trending Now: Top Picks Just for You!", 'geeky-bot')."</div>";
-            } elseif ($type == 'latestProducts') {
-                $text .= "<div class='geekybot_wc_product_heading'>".__("Latest Items: Discover Our Newest Additions!", 'geeky-bot')."</div>";
-            } elseif ($type == 'highestRatedProducts') {
-                $text .= "<div class='geekybot_wc_product_heading'>".__("Loved by Many: Here Are Our Best-Reviewed Products!", 'geeky-bot')."</div>";
+            } elseif (in_array($type, ['showAllProducts', 'searchProduct', 'showAllSaleProducts', 'showAllTrendingProducts', 'showAllLatestProducts', 'showAllHighestRatedProducts', 'getProductsUnderPrice', 'getProductsBetweenPrice', 'getProductsAbovePrice', 'orderTracking'])) {
+                $heading = $this->getCustomHeadingFromTable($type);
+                $text .= "<div class='geekybot_wc_product_heading'>". geekybot::GEEKYBOT_getVarValue($heading) ."</div>";
             } else {
                 $text .= "<div class='geekybot_wc_product_heading'>".__('Here are some suggestions.', 'geeky-bot')."</div>";
             }
@@ -2168,6 +2163,32 @@ class GEEKYBOTstoriesModel {
         return $text;
     }
 
+    function getCustomHeadingFromTable($name) {
+        // Query the database for the row matching the given name
+        $query = "SELECT custom_heading, heading FROM `" . geekybot::$_db->prefix . "geekybot_functions` where name = '".esc_sql($name)."'";
+        $result = geekybotdb::GEEKYBOT_get_row($query);
+
+        // Check if the query returned a result
+        if ($result) {
+            // If custom_heading is not empty, return it
+            if (!empty($result->custom_heading)) {
+                return $result->custom_heading;
+            }
+            // If custom_heading is empty, return heading
+            elseif (!empty($result->heading)) {
+                return $result->heading;
+            }
+            // If both are empty, return a fallback message
+            else {
+                return 'Here are some suggestions.';
+            }
+        }
+        // If no result found for the given name, return a fallback message
+        else {
+            return 'Here are some suggestions.';
+        }
+    }
+
     function getBotResponseForPopup($response_id) {
         $query = "SELECT id, bot_response, response_button FROM `" . geekybot::$_db->prefix . "geekybot_responses` where id = ".esc_sql($response_id);
         $response = geekybotdb::GEEKYBOT_get_row($query);
@@ -2223,78 +2244,18 @@ class GEEKYBOTstoriesModel {
     }
 
     function getFunctionNameById($function_id){
-        if ($function_id == 1) {
-            $function_name = 'showAllProducts';
-        } else if ($function_id == 2) {
-            $function_name = 'searchProduct';
-        } else if ($function_id == 3) {
-            $function_name = 'viewCart';
-        } else if ($function_id == 4) {
-            $function_name = 'checkOut';
-        } else if ($function_id == 5) {
-            $function_name = 'resetPassword';
-        } else if ($function_id == 6) {
-            $function_name = 'SendChatToAdmin';
-        } else if ($function_id == 7) {
-            $function_name = 'showAllSaleProducts';
-        } else if ($function_id == 8) {
-            $function_name = 'showAllTrendingProducts';
-        } else if ($function_id == 9) {
-            $function_name = 'showAllLatestProducts';
-        } else if ($function_id == 10) {
-            $function_name = 'showAllHighestRatedProducts';
-        } else if ($function_id == 11) {
-            $function_name = 'viewOrders';
-        } else if ($function_id == 12) {
-            $function_name = 'viewAccountDetails';
-        } else if ($function_id == 13) {
-            $function_name = 'getProductsUnderPrice';
-        } else if ($function_id == 14) {
-            $function_name = 'getProductsBetweenPrice';
-        } else if ($function_id == 15) {
-            $function_name = 'getProductsAbovePrice';
-        } else if ($function_id == 16) {
-            $function_name = 'orderTracking';
-        } else {
+        $query = "SELECT name FROM `" . geekybot::$_db->prefix . "geekybot_functions` where id =  ".$function_id;
+        $function_name = geekybotdb::GEEKYBOT_get_var($query);
+        if (empty($function_name)) {
             $function_name = 'showAllProducts';
         }
         return $function_name;
     }
 
     function getFunctionIdByName($function_name){
-        if ($function_name == 'showAllProducts') {
-            $function_id = 1;
-        } else if ($function_name == 'searchProduct') {
-            $function_id = 2;
-        } else if ($function_name == 'viewCart') {
-            $function_id = 3;
-        } else if ($function_name == 'checkOut') {
-            $function_id = 4;
-        } else if ($function_name == 'resetPassword') {
-            $function_id = 5;
-        } else if ($function_name == 'SendChatToAdmin') {
-            $function_id = 6;
-        } else if ($function_name == 'showAllSaleProducts') {
-            $function_id = 7;
-        } else if ($function_name == 'showAllTrendingProducts') {
-            $function_id = 8;
-        } else if ($function_name == 'showAllLatestProducts') {
-            $function_id = 9;
-        } else if ($function_name == 'showAllHighestRatedProducts') {
-            $function_id = 10;
-        } else if ($function_name == 'viewOrders') {
-            $function_id = 11;
-        } else if ($function_name == 'viewAccountDetails') {
-            $function_id = 12;
-        } else if ($function_name == 'getProductsUnderPrice') {
-            $function_id = 13;
-        } else if ($function_name == 'getProductsBetweenPrice') {
-            $function_id = 14;
-        } else if ($function_name == 'getProductsAbovePrice') {
-            $function_id = 15;
-        } else if ($function_name == 'orderTracking') {
-            $function_id = 16;
-        } else {
+        $query = "SELECT id FROM `" . geekybot::$_db->prefix . "geekybot_functions` where name =  '".$function_name."'";
+        $function_id = geekybotdb::GEEKYBOT_get_var($query);
+        if (empty($function_id)) {
             $function_id = 1;
         }
         return $function_id;
@@ -2445,7 +2406,13 @@ class GEEKYBOTstoriesModel {
     }
 
     function getPredefinedFunctionsName(){
-        $predefinedFunctions = ['showAllProducts', 'searchProduct', 'getProductsUnderPrice', 'getProductsBetweenPrice', 'getProductsAbovePrice', 'viewCart', 'checkOut', 'resetPassword', 'SendChatToAdmin', 'showAllSaleProducts', 'showAllTrendingProducts', 'showAllLatestProducts', 'showAllHighestRatedProducts', 'viewOrders', 'viewAccountDetails', 'orderTracking'];
+        $query = "SELECT name FROM `" . geekybot::$_db->prefix . "geekybot_functions` where type =  1";
+        $predefinedFunctions = geekybotdb::GEEKYBOT_get_results($query);
+
+        $predefinedFunctions = array_map(function($obj) {
+            return $obj->name;
+        }, $predefinedFunctions);
+
         return $predefinedFunctions;
     }
 

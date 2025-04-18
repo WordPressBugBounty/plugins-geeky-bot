@@ -117,12 +117,9 @@ msgid "Link"
 msgstr "关联"
 
 msgid ""
-"It is a long established fact that a reader will be distracted by the "
-"readable content of a page when looking at its layout Content here, content "
-"here..."
-msgstr ""
-"长期以来的事实是，读者在查看页面布局时会被页面的可读内容分散注意力。这里的内"
-"容，这里的内容......"
+"It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout Content here, "
+"content here..."
+msgstr "长期以来的事实是，读者在查看页面布局时会被页面的可读内容分散注意力。这里的内容，这里的内容......"
 
 msgid "Description"
 msgstr "描述"
@@ -160,9 +157,7 @@ msgstr "同步"
 msgid "Data Synchronization Uncomplete"
 msgstr "数据同步不完整"
 
-msgid ""
-"Your GeekyBot data is not updated. To ensure accurate results, please "
-"synchronize your AI web search data."
+msgid "Your GeekyBot data is not updated. To ensure accurate results, please synchronize your AI web search data."
 msgstr "您的 GeekyBot 数据未更新。为确保结果准确，请同步您的AI网页搜索数据。"
 
 msgid "Synchronize Data"
@@ -267,9 +262,7 @@ msgstr "没有找到记录！..."
 msgid "system offline"
 msgstr "系统离线"
 
-msgid ""
-"Unfortunately sytem is offline for a bit of maintenance right now. But soon "
-"we will be up."
+msgid "Unfortunately sytem is offline for a bit of maintenance right now. But soon we will be up."
 msgstr "不幸的是，系统现在处于离线状态以进行一些维护。但很快我们就会起来。"
 
 msgid "user ban"
@@ -557,9 +550,7 @@ msgstr "管理分页未保存。"
 msgid "User pagination not saved."
 msgstr "用户分页未保存。"
 
-msgid ""
-"The title of your chatbot or the primary title displayed on your chat "
-"interface."
+msgid "The title of your chatbot or the primary title displayed on your chat interface."
 msgstr "您的聊天机器人的标题或聊天界面上显示的主标题。"
 
 msgid "Default Fallback Message"
@@ -803,13 +794,10 @@ msgid "Lead Generation"
 msgstr "潜在客户开发"
 
 msgid ""
-"GeekyBot simplifies the WooCommerce experience with intelligent product "
-"discovery and purchasing. It seamlessly integrates with WooCommerce for "
-"efficient product searches, detailed listings, and a smooth shopping "
-"experience."
+"GeekyBot simplifies the WooCommerce experience with intelligent product discovery and purchasing. It seamlessly integrates with "
+"WooCommerce for efficient product searches, detailed listings, and a smooth shopping experience."
 msgstr ""
-"GeekyBot 通过智能产品发现和购买简化了 WooCommerce 体验。它与 WooCommerce 无缝"
-"集成，可实现高效的产品搜索、详细的列表和流畅的购物体验。"
+"GeekyBot 通过智能产品发现和购买简化了 WooCommerce 体验。它与 WooCommerce 无缝集成，可实现高效的产品搜索、详细的列表和流畅的购物体验。"
 
 msgid "Find Product"
 msgstr "查找产品"
@@ -854,12 +842,9 @@ msgid "Conversation Handling"
 msgstr "会话处理"
 
 msgid ""
-"AI Chat Conversation provides intelligent and context-aware interactions to "
-"enhance user engagement. Define key conversation elements to capture "
-"specific user inputs dynamically and adapt responses based on the context."
-msgstr ""
-"AI 聊天对话提供智能和上下文感知交互，以增强用户参与度。定义关键对话元素以动态"
-"捕获特定的用户输入并根据上下文调整响应。"
+"AI Chat Conversation provides intelligent and context-aware interactions to enhance user engagement. Define key conversation elements to "
+"capture specific user inputs dynamically and adapt responses based on the context."
+msgstr "AI 聊天对话提供智能和上下文感知交互，以增强用户参与度。定义关键对话元素以动态捕获特定的用户输入并根据上下文调整响应。"
 
 msgid "Capture and process inputs dynamically for personalized responses."
 msgstr "动态捕获和处理输入以获得个性化响应。"
@@ -880,13 +865,11 @@ msgid "Bot"
 msgstr "机器人"
 
 msgid ""
-"AI Web Search improves user experience by delivering advanced, intuitive "
-"content discovery on your WordPress site. With powerful searches, users can "
-"quickly find relevant information, enhancing overall interest and "
-"accessibility."
+"AI Web Search improves user experience by delivering advanced, intuitive content discovery on your WordPress site. With powerful searches, "
+"users can quickly find relevant information, enhancing overall interest and accessibility."
 msgstr ""
-"AI Web 搜索通过在 WordPress 网站上提供先进、直观的内容发现来改善用户体验。通"
-"过强大的搜索，用户可以快速找到相关信息，从而提高整体兴趣和可访问性。"
+"AI Web 搜索通过在 WordPress 网站上提供先进、直观的内容发现来改善用户体验。通过强大的搜索，用户可以快速找到相关信息，从而提高整体兴趣和可访"
+"问性。"
 
 msgid "GeekyBot swiftly retrieves posts and pages based on user queries."
 msgstr "GeekyBot 根据用户查询快速检索帖子和页面。"
@@ -961,24 +944,18 @@ msgid "Select Template"
 msgstr "选择模板"
 
 msgid ""
-"AI Chat in GeekyBot provides instant, personalized responses to user "
-"queries, ensuring seamless support around the clock. With its ability to "
-"engage users at any time, GeekyBot enhances the reliability of your service, "
-"making sure that your customers' needs are always met."
+"AI Chat in GeekyBot provides instant, personalized responses to user queries, ensuring seamless support around the clock. With its ability "
+"to engage users at any time, GeekyBot enhances the reliability of your service, making sure that your customers' needs are always met."
 msgstr ""
-"GeekyBot 中的 AI 聊天可为用户查询提供即时、个性化的响应，确保全天候无缝支"
-"持。 GeekyBot 能够随时吸引用户，从而增强了服务的可靠性，确保始终满足客户的需"
-"求。"
+"GeekyBot 中的 AI 聊天可为用户查询提供即时、个性化的响应，确保全天候无缝支持。 GeekyBot 能够随时吸引用户，从而增强了服务的可靠性，确保始终满"
+"足客户的需求。"
 
 msgid ""
-"By training GeekyBot with your specific data, you can create dynamic, "
-"tailored interactions that reflect your business's unique voice and "
-"services. This customization allows for more relevant, effective "
-"conversations that build stronger connections with your users."
+"By training GeekyBot with your specific data, you can create dynamic, tailored interactions that reflect your business's unique voice and "
+"services. This customization allows for more relevant, effective conversations that build stronger connections with your users."
 msgstr ""
-"通过使用您的特定数据训练 GeekyBot，您可以创建动态、定制的交互，以反映您企业独"
-"特的声音和服务。这种定制可以实现更相关、更有效的对话，从而与用户建立更牢固的"
-"联系。"
+"通过使用您的特定数据训练 GeekyBot，您可以创建动态、定制的交互，以反映您企业独特的声音和服务。这种定制可以实现更相关、更有效的对话，从而与用"
+"户建立更牢固的联系。"
 
 msgid "Bot Image"
 msgstr "机器人图像"
@@ -993,27 +970,19 @@ msgid "AI Web Search Bot"
 msgstr "人工智能网络搜索机器人"
 
 msgid ""
-"Effortlessly search for specific posts and content across your entire site "
-"using our powerful AI web search tool. GeekyBot goes beyond standard "
-"searches, delivering results from all types of data on your site. Whether "
-"you're looking for posts, pages, custom post types, or other information, "
-"GeekyBot ensures you find what you need quickly and efficiently by "
-"displaying relevant articles, posts, and more in a single, streamlined "
-"search experience."
+"Effortlessly search for specific posts and content across your entire site using our powerful AI web search tool. GeekyBot goes beyond "
+"standard searches, delivering results from all types of data on your site. Whether you're looking for posts, pages, custom post types, or "
+"other information, GeekyBot ensures you find what you need quickly and efficiently by displaying relevant articles, posts, and more in a "
+"single, streamlined search experience."
 msgstr ""
-"使用我们强大的人工智能网络搜索工具，轻松搜索整个网站上的特定帖子和内容。 "
-"GeekyBot 超越了标准搜索，可提供网站上所有类型数据的结果。无论您是在寻找帖子、"
-"页面、自定义帖子类型还是其他信息，GeekyBot 通过在单一、简化的搜索体验中显示相"
-"关文章、帖子等内容，确保您快速高效地找到所需内容。"
+"使用我们强大的人工智能网络搜索工具，轻松搜索整个网站上的特定帖子和内容。 GeekyBot 超越了标准搜索，可提供网站上所有类型数据的结果。无论您是"
+"在寻找帖子、页面、自定义帖子类型还是其他信息，GeekyBot 通过在单一、简化的搜索体验中显示相关文章、帖子等内容，确保您快速高效地找到所需内容。"
 
 msgid "New Post Type Search"
 msgstr "新帖子类型搜索"
 
-msgid ""
-"Enable this option to directly include new post types in search results, "
-"enhancing user access to all content."
-msgstr ""
-"启用此选项可直接在搜索结果中包含新的帖子类型，从而增强用户对所有内容的访问。"
+msgid "Enable this option to directly include new post types in search results, enhancing user access to all content."
+msgstr "启用此选项可直接在搜索结果中包含新的帖子类型，从而增强用户对所有内容的访问。"
 
 msgid "Watch AI Web Search Video"
 msgstr "观看 AI 网络搜索视频"
@@ -1027,29 +996,20 @@ msgstr "结束"
 msgid "WooCommerce is not installed"
 msgstr "未安装 WooCommerce"
 
-msgid ""
-"WooCommerce plugin is not installed on your site, you won't be able to "
-"integrate GeekyBot with WooCommerce."
-msgstr ""
-"您的网站上未安装 WooCommerce 插件，您将无法将 GeekyBot 与 WooCommerce 集成。"
+msgid "WooCommerce plugin is not installed on your site, you won't be able to integrate GeekyBot with WooCommerce."
+msgstr "您的网站上未安装 WooCommerce 插件，您将无法将 GeekyBot 与 WooCommerce 集成。"
 
 msgid ""
-"Easily integrate AI with WooCommerce to enhance your online store’s "
-"performance. GeekyBot boosts lead generation and customer interactions, "
-"automating key processes for a more effective and engaging shopping "
-"experience."
+"Easily integrate AI with WooCommerce to enhance your online store’s performance. GeekyBot boosts lead generation and customer "
+"interactions, automating key processes for a more effective and engaging shopping experience."
 msgstr ""
-"轻松将 AI 与 WooCommerce 集成，以提高在线商店的绩效。 GeekyBot 可促进潜在客户"
-"开发和客户互动，实现关键流程自动化，从而提供更有效、更有吸引力的购物体验。"
+"轻松将 AI 与 WooCommerce 集成，以提高在线商店的绩效。 GeekyBot 可促进潜在客户开发和客户互动，实现关键流程自动化，从而提供更有效、更有吸引力"
+"的购物体验。"
 
 msgid ""
-"GeekyBot also streamlines customer inquiries and provides real-time, "
-"intelligent responses. By improving retention and customer satisfaction, it "
-"ensures your store delivers an exceptional experience that keeps shoppers "
-"coming back."
-msgstr ""
-"GeekyBot 还简化了客户询问并提供实时、智能的响应。通过提高保留率和客户满意度，"
-"它可以确保您的商店提供卓越的体验，让购物者成为回头客。"
+"GeekyBot also streamlines customer inquiries and provides real-time, intelligent responses. By improving retention and customer "
+"satisfaction, it ensures your store delivers an exceptional experience that keeps shoppers coming back."
+msgstr "GeekyBot 还简化了客户询问并提供实时、智能的响应。通过提高保留率和客户满意度，它可以确保您的商店提供卓越的体验，让购物者成为回头客。"
 
 msgid "Watch WooCommerce Video"
 msgstr "观看 WooCommerce 视频"
@@ -1058,28 +1018,20 @@ msgid "Welcome to GeekyBot !..."
 msgstr "欢迎来到 GeekyBot！..."
 
 msgid ""
-"The ultimate AI chatbot for WooCommerce lead generation, intelligent content "
-"search, and interactive customer engagement on your WordPress website."
-msgstr ""
-"终极 AI 聊天机器人，用于 WooCommerce 潜在客户开发、智能内容搜索和 WordPress "
-"网站上的交互式客户参与。"
+"The ultimate AI chatbot for WooCommerce lead generation, intelligent content search, and interactive customer engagement on your WordPress "
+"website."
+msgstr "终极 AI 聊天机器人，用于 WooCommerce 潜在客户开发、智能内容搜索和 WordPress 网站上的交互式客户参与。"
 
-msgid ""
-"Personalize interactions by dynamically processing user inputs using slots "
-"and variables."
+msgid "Personalize interactions by dynamically processing user inputs using slots and variables."
 msgstr "通过使用槽和变量动态处理用户输入来个性化交互。"
 
-msgid ""
-"Enhance shopping by enabling users to find products and add them to their "
-"cart seamlessly."
+msgid "Enhance shopping by enabling users to find products and add them to their cart seamlessly."
 msgstr "让用户能够找到产品并将其无缝添加到购物车，从而增强购物体验。"
 
 msgid "Website Search"
 msgstr "网站搜索"
 
-msgid ""
-"Streamline discovery by helping users find relevant information on your "
-"WordPress site."
+msgid "Streamline discovery by helping users find relevant information on your WordPress site."
 msgstr "通过帮助用户在您的 WordPress 网站上查找相关信息来简化发现过程。"
 
 msgid "Please insert activation key to proceed"
@@ -1130,12 +1082,8 @@ msgstr "右图"
 msgid "Add-ons For Majestic Support"
 msgstr "Majestic 支持的附加组件"
 
-msgid ""
-"Get trusted WordPress add-ons. Guaranteed to work fast, safe to use, "
-"beautifully coded, packed with features, and are easy to use."
-msgstr ""
-"获取值得信赖的 WordPress 插件。保证快速工作、使用安全、编码精美、功能丰富且易"
-"于使用。"
+msgid "Get trusted WordPress add-ons. Guaranteed to work fast, safe to use, beautifully coded, packed with features, and are easy to use."
+msgstr "获取值得信赖的 WordPress 插件。保证快速工作、使用安全、编码精美、功能丰富且易于使用。"
 
 msgid "Save big today with an exclusive membership plan!"
 msgstr "今天就通过独家会员计划节省大笔钱！"
@@ -1149,9 +1097,7 @@ msgstr "显示捆绑包"
 msgid "Agent"
 msgstr "代理人"
 
-msgid ""
-"Add agents and assign roles and permissions to provide assistance and "
-"support for customer support tickets."
+msgid "Add agents and assign roles and permissions to provide assistance and support for customer support tickets."
 msgstr "添加代理并分配角色和权限，以便为客户支持票证提供帮助和支持。"
 
 msgid "buy now"
@@ -1166,19 +1112,14 @@ msgstr "多种形式"
 msgid "Multi Forms"
 msgstr "多种形式"
 
-msgid ""
-"Create multiple custom ticket forms with different custom fields for each "
-"request type that you support."
+msgid "Create multiple custom ticket forms with different custom fields for each request type that you support."
 msgstr "为您支持的每种请求类型创建具有不同自定义字段的多个自定义票证表单。"
 
 msgid "Email Piping"
 msgstr "电子邮件管道"
 
-msgid ""
-"Email piping is the process of automatically turning incoming emails into "
-"support tickets without manual data entry."
-msgstr ""
-"电子邮件管道是自动将传入电子邮件转换为支持票证的过程，无需手动输入数据。"
+msgid "Email piping is the process of automatically turning incoming emails into support tickets without manual data entry."
+msgstr "电子邮件管道是自动将传入电子邮件转换为支持票证的过程，无需手动输入数据。"
 
 msgid "agent auto assign"
 msgstr "代理自动分配"
@@ -1186,9 +1127,7 @@ msgstr "代理自动分配"
 msgid "Agent Auto Assign"
 msgstr "代理自动分配"
 
-msgid ""
-"Make the ticket assignment process automatic and assign the most qualified "
-"agent to your tickets with conditions."
+msgid "Make the ticket assignment process automatic and assign the most qualified agent to your tickets with conditions."
 msgstr "使票证分配过程自动化，并有条件地为您的票证分配最合格的代理。"
 
 msgid "private note"
@@ -1198,10 +1137,8 @@ msgid "Private Note"
 msgstr "私人笔记"
 
 msgid ""
-"Add private notes to a ticket and share crucial information internally with "
-"your agents, this private note is not visible to the customer."
-msgstr ""
-"将私人注释添加到工单并与您的代理在内部共享重要信息，此私人注释对客户不可见。"
+"Add private notes to a ticket and share crucial information internally with your agents, this private note is not visible to the customer."
+msgstr "将私人注释添加到工单并与您的代理在内部共享重要信息，此私人注释对客户不可见。"
 
 msgid "merge tickets"
 msgstr "合并票证"
@@ -1209,12 +1146,8 @@ msgstr "合并票证"
 msgid "Merge Tickets"
 msgstr "合并门票"
 
-msgid ""
-"Merge one or more tickets into another if you receive two support requests "
-"from the same end user about the same issue."
-msgstr ""
-"如果您收到来自同一最终用户的关于同一问题的两个支持请求，请将一张或多张票证合"
-"并到另一张票证中。"
+msgid "Merge one or more tickets into another if you receive two support requests from the same end user about the same issue."
+msgstr "如果您收到来自同一最终用户的关于同一问题的两个支持请求，请将一张或多张票证合并到另一张票证中。"
 
 msgid "helptopic"
 msgstr "帮助主题"
@@ -1222,35 +1155,25 @@ msgstr "帮助主题"
 msgid "Help Topics"
 msgstr "帮助主题"
 
-msgid ""
-"The user can search for and choose the topic for which they need help using "
-"help topics"
+msgid "The user can search for and choose the topic for which they need help using help topics"
 msgstr "用户可以使用帮助主题搜索并选择需要帮助的主题"
 
 msgid "Auto Close Ticket"
 msgstr "自动关闭票证"
 
-msgid ""
-"Manage abandoned tickets, and set rules for tickets over time, and those "
-"tickets will be closed automatically after a certain period."
-msgstr ""
-"管理废弃的工单，并设置工单随时间变化的规则，这些工单将在一定时间后自动关闭。"
+msgid "Manage abandoned tickets, and set rules for tickets over time, and those tickets will be closed automatically after a certain period."
+msgstr "管理废弃的工单，并设置工单随时间变化的规则，这些工单将在一定时间后自动关闭。"
 
 msgid "Knowledgebase"
 msgstr "知识库"
 
-msgid ""
-"Stop wasting time on repetitive inquiries, build your knowledge base, and "
-"organize your solutions into categories for users."
-msgstr ""
-"停止在重复查询上浪费时间，建立您的知识库，并将您的解决方案组织为用户的类别。"
+msgid "Stop wasting time on repetitive inquiries, build your knowledge base, and organize your solutions into categories for users."
+msgstr "停止在重复查询上浪费时间，建立您的知识库，并将您的解决方案组织为用户的类别。"
 
 msgid "Ticket Overdue"
 msgstr "机票逾期"
 
-msgid ""
-"Define rules or set a specific time interval for making tickets "
-"automatically overdue."
+msgid "Define rules or set a specific time interval for making tickets automatically overdue."
 msgstr "定义规则或设置特定的时间间隔，使工单自动过期。"
 
 msgid "time tracking"
@@ -1259,33 +1182,25 @@ msgstr "时间追踪"
 msgid "Time Tracking"
 msgstr "时间追踪"
 
-msgid ""
-"Track the amount of time spent on each customer support ticket without "
-"losing focus and enhance team productivity."
+msgid "Track the amount of time spent on each customer support ticket without losing focus and enhance team productivity."
 msgstr "跟踪花在每张客户支持票上的时间，而不会失去焦点并提高团队生产力。"
 
 msgid "Ticket History"
 msgstr "门票历史记录"
 
-msgid ""
-"Show the whole history of the ticket, including its status and any action "
-"taken in response to it."
+msgid "Show the whole history of the ticket, including its status and any action taken in response to it."
 msgstr "显示故障单的完整历史记录，包括其状态以及针对该故障采取的任何操作。"
 
 msgid "Paid Support"
 msgstr "付费支持"
 
-msgid ""
-"The simplest approach to effectively manage payments for premium help is "
-"through paid support."
+msgid "The simplest approach to effectively manage payments for premium help is through paid support."
 msgstr "有效管理高级帮助付款的最简单方法是通过付费支持。"
 
 msgid "Private Credentials"
 msgstr "私人凭证"
 
-msgid ""
-"Customers will enter sensitive information on tickets, and this add-on is "
-"designed to help you keep that information secure."
+msgid "Customers will enter sensitive information on tickets, and this add-on is designed to help you keep that information secure."
 msgstr "客户将在门票上输入敏感信息，此附加组件旨在帮助您确保该信息的安全。"
 
 msgid "Ticket close reason"
@@ -1294,17 +1209,13 @@ msgstr "票务关闭原因"
 msgid "Ticket Closed Reason"
 msgstr "票证关闭原因"
 
-msgid ""
-"Empowers users to provide clear and concise explanations for why customer "
-"service tickets are being closed."
+msgid "Empowers users to provide clear and concise explanations for why customer service tickets are being closed."
 msgstr "使用户能够清晰、简洁地解释客户服务票证被关闭的原因。"
 
 msgid "Premade Responses"
 msgstr "预制响应"
 
-msgid ""
-"Make ready-made responses to the most common questions in the tickets to "
-"swiftly address client issues."
+msgid "Make ready-made responses to the most common questions in the tickets to swiftly address client issues."
 msgstr "对工单中最常见的问题做出现成的答复，以快速解决客户问题。"
 
 msgid "max ticket"
@@ -1313,36 +1224,28 @@ msgstr "最高票数"
 msgid "Max Tickets"
 msgstr "最大门票数"
 
-msgid ""
-"Admins can limit the number of tickets that users can create as well as the "
-"number of tickets that agents can open individually."
+msgid "Admins can limit the number of tickets that users can create as well as the number of tickets that agents can open individually."
 msgstr "管理员可以限制用户可以创建的票证数量以及代理可以单独打开的票证数量。"
 
 msgid "Feedback"
 msgstr "反馈"
 
-msgid ""
-"To enhance the quality of your services, ask your customers to complete a "
-"survey when a ticket is closed."
+msgid "To enhance the quality of your services, ask your customers to complete a survey when a ticket is closed."
 msgstr "为了提高服务质量，请要求客户在票证关闭时完成调查。"
 
 msgid "ticket actions"
 msgstr "票务行动"
 
-msgid ""
-"Ticket action options allow you to execute additional actions on tickets."
+msgid "Ticket action options allow you to execute additional actions on tickets."
 msgstr "工单操作选项允许您对工单执行其他操作。"
 
 msgid "Export"
 msgstr "出口"
 
 msgid ""
-"Easily export ticket data and performance report data from your majestic "
-"support to an Excel spreadsheet with our efficient and user-friendly "
-"solution."
-msgstr ""
-"借助我们高效且用户友好的解决方案，可以轻松地将工单数据和绩效报告数据从您的强"
-"大支持导出到 Excel 电子表格。"
+"Easily export ticket data and performance report data from your majestic support to an Excel spreadsheet with our efficient and user-"
+"friendly solution."
+msgstr "借助我们高效且用户友好的解决方案，可以轻松地将工单数据和绩效报告数据从您的强大支持导出到 Excel 电子表格。"
 
 msgid "email cc"
 msgstr "电子邮件抄送"
@@ -1350,11 +1253,8 @@ msgstr "电子邮件抄送"
 msgid "Email CC"
 msgstr "电子邮件抄送"
 
-msgid ""
-"Send the exact copy of the email to the provided email address with Email CC "
-"or BCC."
-msgstr ""
-"使用电子邮件抄送或密件抄送将电子邮件的准确副本发送到提供的电子邮件地址。"
+msgid "Send the exact copy of the email to the provided email address with Email CC or BCC."
+msgstr "使用电子邮件抄送或密件抄送将电子邮件的准确副本发送到提供的电子邮件地址。"
 
 msgid "user options"
 msgstr "用户选项"
@@ -1362,62 +1262,43 @@ msgstr "用户选项"
 msgid "User Options"
 msgstr "用户选项"
 
-msgid ""
-"User options enable you to define roles for new users when they are "
-"registered."
+msgid "User options enable you to define roles for new users when they are registered."
 msgstr "用户选项使您能够在新用户注册时为其定义角色。"
 
 msgid "SMTP"
 msgstr "邮件传输协议"
 
-msgid ""
-"SMTP enables you to add  custom mail protocols to send and receive emails "
-"with the support ticket system."
-msgstr ""
-"SMTP 使您能够添加自定义邮件协议，以便通过支持票证系统发送和接收电子邮件。"
+msgid "SMTP enables you to add  custom mail protocols to send and receive emails with the support ticket system."
+msgstr "SMTP 使您能够添加自定义邮件协议，以便通过支持票证系统发送和接收电子邮件。"
 
 msgid "Multi Language Email Templates"
 msgstr "多语言电子邮件模板"
 
-msgid ""
-"Create multi-language email templates for all default email templates to "
-"send customers emails in the language that they prefer."
-msgstr ""
-"为所有默认电子邮件模板创建多语言电子邮件模板，以客户喜欢的语言向他们发送电子"
-"邮件。"
+msgid "Create multi-language email templates for all default email templates to send customers emails in the language that they prefer."
+msgstr "为所有默认电子邮件模板创建多语言电子邮件模板，以客户喜欢的语言向他们发送电子邮件。"
 
 msgid "Downloads"
 msgstr "下载"
 
-msgid ""
-"Downloads can be very helpful for users who are looking to obtain the "
-"necessary information to resolve issues."
+msgid "Downloads can be very helpful for users who are looking to obtain the necessary information to resolve issues."
 msgstr "对于希望获取必要信息来解决问题的用户来说，下载非常有帮助。"
 
 msgid "Announcements"
 msgstr "公告"
 
-msgid ""
-"Make an unlimited number of announcements related to the support system to "
-"encourage customer interaction."
+msgid "Make an unlimited number of announcements related to the support system to encourage customer interaction."
 msgstr "发布无限数量的与支持系统相关的公告，以鼓励客户互动。"
 
 msgid "Ban Email"
 msgstr "禁止电子邮件"
 
-msgid ""
-"With Ban Email, you can limit a users ability to create new tickets by "
-"blocking their email address."
-msgstr ""
-"通过禁止电子邮件，您可以通过阻止用户的电子邮件地址来限制用户创建新票证的能"
-"力。"
+msgid "With Ban Email, you can limit a users ability to create new tickets by blocking their email address."
+msgstr "通过禁止电子邮件，您可以通过阻止用户的电子邮件地址来限制用户创建新票证的能力。"
 
 msgid "FAQ"
 msgstr "常问问题"
 
-msgid ""
-"Provide answers to common user questions with the FAQ extension before they "
-"become tickets."
+msgid "Provide answers to common user questions with the FAQ extension before they become tickets."
 msgstr "在常见用户问题成为票证之前，通过常见问题解答扩展提供答案。"
 
 msgid "admin widgets"
@@ -1426,9 +1307,7 @@ msgstr "管理小部件"
 msgid "Admin Widgets"
 msgstr "管理小工具"
 
-msgid ""
-"Get immediate data on your support operations as soon as you log into your "
-"WordPress administration area."
+msgid "Get immediate data on your support operations as soon as you log into your WordPress administration area."
 msgstr "登录 WordPress 管理区域后，即可立即获取有关支持操作的数据。"
 
 msgid "desktop notifications"
@@ -1437,17 +1316,13 @@ msgstr "桌面通知"
 msgid "Desktop Notifications"
 msgstr "桌面通知"
 
-msgid ""
-"You will be informed of anything that occurs on your support system by the "
-"desktop notifications."
+msgid "You will be informed of anything that occurs on your support system by the desktop notifications."
 msgstr "您将通过桌面通知得知支持系统上发生的任何情况。"
 
 msgid "woocommerce"
 msgstr "吴商务"
 
-msgid ""
-"The integration of the support ticket system for WooCommerce with your e-"
-"shop makes your support better and more professional."
+msgid "The integration of the support ticket system for WooCommerce with your e-shop makes your support better and more professional."
 msgstr "WooCommerce 支持票证系统与您的电子商店的集成使您的支持更好、更专业。"
 
 msgid "mail chimp"
@@ -1456,12 +1331,8 @@ msgstr "邮件黑猩猩"
 msgid "Mail Chimp"
 msgstr "邮件黑猩猩"
 
-msgid ""
-"Manage your email marketing campaigns directly from your majestic support by "
-"adding new user accounts to your Mailchimp email list."
-msgstr ""
-"通过将新用户帐户添加到您的 Mailchimp 电子邮件列表，直接在您的大力支持下管理您"
-"的电子邮件营销活动。"
+msgid "Manage your email marketing campaigns directly from your majestic support by adding new user accounts to your Mailchimp email list."
+msgstr "通过将新用户帐户添加到您的 Mailchimp 电子邮件列表，直接在您的大力支持下管理您的电子邮件营销活动。"
 
 msgid "internal mail"
 msgstr "内部邮件"
@@ -1469,9 +1340,7 @@ msgstr "内部邮件"
 msgid "Internal Mail"
 msgstr "内部邮件"
 
-msgid ""
-"Send messages internally about support tickets and other issues between "
-"agents with internal mail."
+msgid "Send messages internally about support tickets and other issues between agents with internal mail."
 msgstr "通过内部邮件在代理之间发送有关支持票证和其他问题的内部消息。"
 
 msgid "frontend widget"
@@ -1480,9 +1349,7 @@ msgstr "前端小部件"
 msgid "Front-End Widgets"
 msgstr "前端小部件"
 
-msgid ""
-"Frontend Widgets include several widgets that can be used to enhance the "
-"plugin's functionality in various areas of the website."
+msgid "Frontend Widgets include several widgets that can be used to enhance the plugin's functionality in various areas of the website."
 msgstr "前端小部件包括多个小部件，可用于增强插件在网站各个区域的功能。"
 
 msgid "envato"
@@ -1491,11 +1358,8 @@ msgstr "恩瓦托"
 msgid "Envato"
 msgstr "恩瓦托"
 
-msgid ""
-"Clients won't be able to open a new ticket using the Envato Validation "
-"plugin if they don't have a valid Envato license."
-msgstr ""
-"如果客户没有有效的 Envato 许可证，他们将无法使用 Envato 验证插件开立新票证。"
+msgid "Clients won't be able to open a new ticket using the Envato Validation plugin if they don't have a valid Envato license."
+msgstr "如果客户没有有效的 Envato 许可证，他们将无法使用 Envato 验证插件开立新票证。"
 
 msgid "easy digital download"
 msgstr "轻松数字下载"
@@ -1503,12 +1367,8 @@ msgstr "轻松数字下载"
 msgid "Easy Digital Download"
 msgstr "轻松数字下载"
 
-msgid ""
-"Learn about a customer's purchase directly from the support dashboard by "
-"integrating Majestic Support with your EDD store."
-msgstr ""
-"通过将 Majestic Support 与您的 EDD 商店集成，直接从支持仪表板了解客户的购买情"
-"况。"
+msgid "Learn about a customer's purchase directly from the support dashboard by integrating Majestic Support with your EDD store."
+msgstr "通过将 Majestic Support 与您的 EDD 商店集成，直接从支持仪表板了解客户的购买情况。"
 
 msgid "Majestic Support Add-ons Bundle Pack"
 msgstr "Majestic 支持附加捆绑包"
@@ -2194,16 +2054,13 @@ msgstr "选择聊天的显示方式：智能或标准弹出窗口。"
 msgid "Chat Auto-Popup Timing"
 msgstr "聊天自动弹出时间"
 
-msgid ""
-"Define the delay time in seconds for the chatbot to auto-appear on the site."
+msgid "Define the delay time in seconds for the chatbot to auto-appear on the site."
 msgstr "定义聊天机器人自动出现在网站上的延迟时间（以秒为单位）。"
 
 msgid "Note"
 msgstr "笔记"
 
-msgid ""
-"If the colors have been saved but the user-side colors are still the same, "
-"it is advised to clear the cache."
+msgid "If the colors have been saved but the user-side colors are still the same, it is advised to clear the cache."
 msgstr "如果颜色已保存，但用户端颜色仍相同，建议清除缓存。"
 
 msgid "Also"
@@ -2221,16 +2078,13 @@ msgstr "帮助"
 msgid "Have any problem?"
 msgstr "有什么问题吗？"
 
-msgid ""
-"If you experience any difficulties, we're here to help! Simply click the"
+msgid "If you experience any difficulties, we're here to help! Simply click the"
 msgstr "如果您遇到任何困难，我们随时为您提供帮助！只需单击"
 
 msgid "Create A Ticket"
 msgstr "创建票证"
 
-msgid ""
-"button to report your issue, and our dedicated support team will assist you "
-"promptly."
+msgid "button to report your issue, and our dedicated support team will assist you promptly."
 msgstr "按钮报告您的问题，我们的专业支持团队将立即为您提供帮助。"
 
 msgid "Create Ticket"
@@ -2263,9 +2117,7 @@ msgstr "对于状态更改，请使用列表中的可用选项。"
 msgid "Template Section"
 msgstr "模板部分"
 
-msgid ""
-"Fields are currently auto-filled for preview purposes only. Please save your "
-"changes to apply them."
+msgid "Fields are currently auto-filled for preview purposes only. Please save your changes to apply them."
 msgstr "当前自动填充字段仅用于预览目的。请保存您的更改以应用它们。"
 
 msgid "Choose one template style from the given below"
@@ -2316,20 +2168,15 @@ msgstr "新帖子类型搜索已成功禁用。"
 msgid "Data Synchronization Needed"
 msgstr "需要数据同步"
 
-msgid ""
-"Your data is not updated. To ensure accurate results, please synchronize "
-"your AI web search data."
+msgid "Your data is not updated. To ensure accurate results, please synchronize your AI web search data."
 msgstr "您的数据未更新。为确保结果准确，请同步您的AI网页搜索数据。"
 
 msgid "Enable AI web Search"
 msgstr "启用人工智能网络搜索"
 
 msgid ""
-"Enable this feature to provide users with direct AI web search results in "
-"the chat, offering them a broader context for their queries."
-msgstr ""
-"启用此功能可以在聊天中为用户提供直接的 AI 网络搜索结果，为他们的查询提供更广"
-"泛的上下文。"
+"Enable this feature to provide users with direct AI web search results in the chat, offering them a broader context for their queries."
+msgstr "启用此功能可以在聊天中为用户提供直接的 AI 网络搜索结果，为他们的查询提供更广泛的上下文。"
 
 msgid "Enable New Post Type Search"
 msgstr "启用新帖子类型搜索"
@@ -2421,8 +2268,7 @@ msgstr "您无法添加另一个“"
 msgid "There was an error while adding the product to the cart."
 msgstr "将产品添加到购物车时出错。"
 
-msgid ""
-"The requested variation with the specified attributes could not be found."
+msgid "The requested variation with the specified attributes could not be found."
 msgstr "找不到具有指定属性的请求变体。"
 
 msgid "Change Quantity"
@@ -2464,17 +2310,13 @@ msgstr "加号图标"
 msgid "Add Intents"
 msgstr "添加意图"
 
-msgid ""
-"On the responses listing page, all the responses are listed here; you can "
-"check them out."
+msgid "On the responses listing page, all the responses are listed here; you can check them out."
 msgstr "在回复列表页面，这里列出了所有的回复；你可以检查一下。"
 
 msgid "Add Intent"
 msgstr "添加意图"
 
-msgid ""
-"On the form listing page, all the forms are listed here; you can check them "
-"out."
+msgid "On the form listing page, all the forms are listed here; you can check them out."
 msgstr "在表单列表页面，这里列出了所有的表单；你可以检查一下。"
 
 msgid "Add Forms"
@@ -2492,9 +2334,7 @@ msgstr "添加回复"
 msgid "On the add Response page, you can add a new Response."
 msgstr "在添加响应页面上，您可以添加新的响应。"
 
-msgid ""
-"On the actions listing page, all the actions are listed here; you can check "
-"them out."
+msgid "On the actions listing page, all the actions are listed here; you can check them out."
 msgstr "在动作列表页面，这里列出了所有的动作；你可以检查一下。"
 
 msgid "Add  Action"
@@ -2553,3 +2393,276 @@ msgstr "大学"
 
 msgid "Vacation Planner"
 msgstr "假期规划师"
+
+msgid "Support"
+msgstr "支持"
+
+msgid "Add-ons Status"
+msgstr "附加状态"
+
+msgid "Woocommerce"
+msgstr "WooCommerce"
+
+msgid "Hide notice"
+msgstr "隐藏注意"
+
+msgid "Transaction Key"
+msgstr "交易密钥"
+
+msgid "Please select )"
+msgstr "请选择）"
+
+msgid " and Enter your license key and hit to authenticate. A valid key is required for updates."
+msgstr "并输入您的许可证密钥并点击以进行身份​​验证。更新需要有效的键。"
+
+msgid "Custom Text Style"
+msgstr "自定义文本样式"
+
+msgid "WooCommerce Pro Pack"
+msgstr "WooCommerce Pro Pack"
+
+msgid "GeekyBot Add-ons Update Available!"
+msgstr "可用的Geekybot附加组件更新！"
+
+msgid "We have recently launched a fresh update for the add-ons. Don't forget to update the add-ons to enjoy the greatest features!"
+msgstr "我们最近为附加组件启动了新的更新。不要忘记更新附加组件以享受最大的功能！"
+
+msgid "View Add-ons Status"
+msgstr "查看附加组件状态"
+
+msgid "How to translate"
+msgstr "如何翻译"
+
+msgid "How to use AI Web Search"
+msgstr "如何使用AI Web搜索"
+
+msgid "How to install addons"
+msgstr "如何安装插件"
+
+msgid "Your Bot Is Going To Expire Soon Please Renew Your subscription!! "
+msgstr "您的机器人即将到期，请续订您的订阅！！"
+
+msgid "Your Bot Is  Expired !! "
+msgstr "您的机器人已过期！！"
+
+msgid "Additionally, here are other top matches for your search."
+msgstr "此外，这是您搜索的其他顶级比赛。"
+
+msgid "Here are the best matches for your search."
+msgstr "这是您搜索的最佳匹配。"
+
+msgid "Products"
+msgstr "产品"
+
+msgid "Show Products"
+msgstr "显示产品"
+
+msgid "."
+msgstr "。"
+
+msgid "Email To Admin With Chat Conversation"
+msgstr "通过电子邮件进行聊天对话"
+
+msgid "Get Products Between Price"
+msgstr "在价格之间获取产品"
+
+msgid "Show All Sale Products"
+msgstr "显示所有销售产品"
+
+msgid "Show All Trending Products"
+msgstr "显示所有趋势产品"
+
+msgid "Show All Latest Products"
+msgstr "显示所有最新产品"
+
+msgid "Show All Highest Rated Products"
+msgstr "显示所有最高评分的产品"
+
+msgid "View Orders"
+msgstr "查看订单"
+
+msgid "view Account Details"
+msgstr "查看帐户详细信息"
+
+msgid "Show All Sale Products {add-on base}"
+msgstr "显示所有销售产品{附加基础}"
+
+msgid "Show All Trending Products {add-on base}"
+msgstr "显示所有趋势产品{附加基础}"
+
+msgid "Show All Latest Products {add-on base}"
+msgstr "显示所有最新产品{附加基础}"
+
+msgid "Show All Highest Rated Products {add-on base}"
+msgstr "显示所有最高评级产品{附加基础}"
+
+msgid "View Orders {add-on base}"
+msgstr "查看订单{附加基础}"
+
+msgid "view Account Details {add-on base}"
+msgstr "查看帐户详细信息{附加基础}"
+
+msgid "Track Order"
+msgstr "轨道顺序"
+
+msgid "Error: Story not found."
+msgstr "错误：找不到故事。"
+
+msgid "Error: Invalid intent data."
+msgstr "错误：无效的意图数据。"
+
+msgid "Upload failed."
+msgstr "上传失败。"
+
+msgid "Invalid file type. Please upload an XML file."
+msgstr "无效的文件类型。请上传XML文件。"
+
+msgid "Error importing this file: The XML file seems to have an issue. Please check the file's structure."
+msgstr "导入此文件的错误：XML文件似乎有问题。请检查文件的结构。"
+
+msgid "The story has been imported successfully!"
+msgstr "这个故事已成功进口！"
+
+msgid "Error while importing this file."
+msgstr "导入此文件时错误。"
+
+msgid "Please enter a search term."
+msgstr "请输入搜索词。"
+
+msgid "No matching results found."
+msgstr "找不到匹配结果。"
+
+msgid "Results:"
+msgstr "结果："
+
+msgid "NLP"
+msgstr "NLP"
+
+msgid "Simple"
+msgstr "简单的"
+
+msgid "Move To Start"
+msgstr "移动开始"
+
+msgid "Move To Left"
+msgstr "向左移动"
+
+msgid "Move To Right"
+msgstr "向右移动"
+
+msgid "Move To End"
+msgstr "移至结束"
+
+msgid "Export Story"
+msgstr "出口故事"
+
+msgid "Import Story"
+msgstr "导入故事"
+
+msgid "Synchronize Products"
+msgstr "同步产品"
+
+msgid "Default Fallback Action"
+msgstr "默认的后备操作"
+
+msgid "Default Fallback Intent"
+msgstr "默认的后备意图"
+
+msgid "Default Fallback Action Button"
+msgstr "默认后备操作按钮"
+
+msgid "Add New Intent"
+msgstr "添加新意图"
+
+msgid "Add New Fallback Intent"
+msgstr "添加新的后备意图"
+
+msgid "Customizes the action button displayed with the fallback message when the chatbot doesn't understand user input."
+msgstr "当聊天机器人不了解用户输入时，自定义带有后备消息的动作按钮。"
+
+msgid "Custom Headings"
+msgstr "自定义标题"
+
+msgid "Predefined Functions"
+msgstr "预定义的功能"
+
+msgid "Select a predefined function to customize the heading. The corresponding heading will appear below and can be edited."
+msgstr "选择一个预定义的功能以自定义标题。相应的标题将显示在下面，可以进行编辑。"
+
+msgid "Custom Heading"
+msgstr "自定义标题"
+
+msgid "Edit the message that appears when the selected function is called. The chat popup on the right shows a live preview of this message."
+msgstr "编辑调用所选函数时出现的消息。右侧的聊天弹出窗口显示了此消息的实时预览。"
+
+msgid "Custom heading preview"
+msgstr "自定义标题预览"
+
+msgid "Support Link"
+msgstr "支持链接"
+
+msgid "Show Support Link"
+msgstr "显示支持链接"
+
+msgid "Hide"
+msgstr "隐藏"
+
+msgid "Toggle to show or hide the support link for users."
+msgstr "切换以显示或隐藏用户的支持链接。"
+
+msgid "Support Link URL"
+msgstr "支持链接URL"
+
+msgid "Set the URL where users will be redirected when they click the support link."
+msgstr "设置用户单击“支持链接”时将重定向的URL。"
+
+msgid "Add New Button / Link"
+msgstr "添加新按钮 /链接"
+
+msgid "Please create a"
+msgstr "请创建一个"
+
+msgid "to use template section."
+msgstr "使用模板部分。"
+
+msgid "Please create a post to use template section."
+msgstr "请创建一个帖子以使用模板部分。"
+
+msgid "Abandonment Item Message"
+msgstr "放弃项目消息"
+
+msgid "Abandonment Message"
+msgstr "放弃消息"
+
+msgid "Security verification Failed, Please refresh your chat to continue."
+msgstr "安全验证失败，请刷新您的聊天以继续。"
+
+msgid "Your Key Is Invalid."
+msgstr "您的钥匙无效。"
+
+msgid "Your key is invalid, please contact to GeekyBot support team."
+msgstr "您的钥匙无效，请与Geekybot支持团队联系。"
+
+msgid "Your license key does not match your current domain, please contact to GeekyBot support team."
+msgstr "您的许可证密钥与您当前的域不符，请与Geekybot支持团队联系。"
+
+msgid "Your Subscription Is Expired."
+msgstr "您的订阅过期。"
+
+msgid "Your subscription is expired, please renew it."
+msgstr "您的订阅过期，请续订。"
+
+msgid "Database Update Needed"
+msgstr "数据库更新需要"
+
+msgid "A critical update for GeekyBot is required to maintain performance and prevent issues. Please update now."
+msgstr "需要对Geekybot进行关键更新，以保持性能并防止问题。请立即更新。"
+
+msgid "Update Now"
+msgstr "立即更新"
+
+msgid "Database successfully updated!"
+msgstr "数据库成功更新了！"
+
+msgid "Your GeekyBot data is not updated. To ensure accurate results, please synchronize your Woocommerce products data."
+msgstr "您的Geekybot数据未更新。为了确保准确的结果，请同步您的WooCommerce产品数据。"

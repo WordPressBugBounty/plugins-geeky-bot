@@ -44,7 +44,9 @@ class GEEKYBOTconfigurationModel {
             if ($key == 'fallback_btn_text' || 
                 $key == 'fallback_btn_type' || 
                 $key == 'fallback_btn_value' || 
-                $key == 'fallback_btn_url') {
+                $key == 'fallback_btn_url' || 
+                $key == 'predefined_fnction' || 
+                $key == 'function_custom_heading') {
                 continue;
             }
             if ($key == 'data_directory') {
@@ -99,6 +101,14 @@ class GEEKYBOTconfigurationModel {
                 $error = true;
             }
         }
+        // 
+        if (!empty($data['predefined_fnction'])) {
+            $query = 'UPDATE `' . geekybot::$_db->prefix . 'geekybot_functions` SET `custom_heading` = "'.esc_sql($data['function_custom_heading']).'" WHERE `name`= "'.esc_sql($data['predefined_fnction']).'"';
+            if (false === geekybotdb::query($query)) {
+                $error = true;
+            }
+        }
+        // 
         $fallback_btn = [];
         if (!empty($data['fallback_btn_text']) && is_array($data['fallback_btn_text']) && is_array($data['fallback_btn_type'])) {
             foreach ($data['fallback_btn_text'] as $index => $text) {
@@ -159,8 +169,19 @@ class GEEKYBOTconfigurationModel {
         $key = 'configuration';if(is_admin()){$key = 'admin_'.$key;}return $key;
     }
 
-
-
+    function getCustomHeadingForFunction() {
+        if (!current_user_can('manage_options')){
+            die('Only Administrators can perform this action.');
+        }
+        $nonce = GEEKYBOTrequest::GEEKYBOT_getVar('_wpnonce');
+        if (! wp_verify_nonce( $nonce, 'custom-heading-for-function') ) {
+            die( 'Security check Failed' ); 
+        }
+        $name = GEEKYBOTrequest::GEEKYBOT_getVar('val');
+        $query = "SELECT custom_heading FROM `" . geekybot::$_db->prefix . "geekybot_functions` WHERE name = '".esc_sql($name)."'";
+        $heading = geekybotdb::GEEKYBOT_get_var($query);
+        return $heading;
+    }
 }
 
 ?>

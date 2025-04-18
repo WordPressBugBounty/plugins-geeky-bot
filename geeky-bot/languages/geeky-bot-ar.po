@@ -117,12 +117,9 @@ msgid "Link"
 msgstr "وصلة"
 
 msgid ""
-"It is a long established fact that a reader will be distracted by the "
-"readable content of a page when looking at its layout Content here, content "
-"here..."
-msgstr ""
-"إنها حقيقة مثبتة منذ زمن طويل أن المحتوى المقروء للصفحة سوف يلهي القارئ عند "
-"النظر إلى محتوى تخطيطها هنا، والمحتوى هنا..."
+"It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout Content here, "
+"content here..."
+msgstr "إنها حقيقة مثبتة منذ زمن طويل أن المحتوى المقروء للصفحة سوف يلهي القارئ عند النظر إلى محتوى تخطيطها هنا، والمحتوى هنا..."
 
 msgid "Description"
 msgstr "وصف"
@@ -160,12 +157,8 @@ msgstr "تزامن"
 msgid "Data Synchronization Uncomplete"
 msgstr "مزامنة البيانات غير مكتملة"
 
-msgid ""
-"Your GeekyBot data is not updated. To ensure accurate results, please "
-"synchronize your AI web search data."
-msgstr ""
-"لم يتم تحديث بيانات GeekyBot الخاصة بك. لضمان الحصول على نتائج دقيقة، يرجى "
-"مزامنة بيانات بحث الويب الخاصة بالذكاء الاصطناعي."
+msgid "Your GeekyBot data is not updated. To ensure accurate results, please synchronize your AI web search data."
+msgstr "لم يتم تحديث بيانات GeekyBot الخاصة بك. لضمان الحصول على نتائج دقيقة، يرجى مزامنة بيانات بحث الويب الخاصة بالذكاء الاصطناعي."
 
 msgid "Synchronize Data"
 msgstr "مزامنة البيانات"
@@ -269,12 +262,8 @@ msgstr "لم يتم العثور على أي سجل!..."
 msgid "system offline"
 msgstr "النظام حاليا"
 
-msgid ""
-"Unfortunately sytem is offline for a bit of maintenance right now. But soon "
-"we will be up."
-msgstr ""
-"لسوء الحظ، النظام غير متصل ببعض الصيانة في الوقت الحالي. ولكن قريبا سوف "
-"نستيقظ."
+msgid "Unfortunately sytem is offline for a bit of maintenance right now. But soon we will be up."
+msgstr "لسوء الحظ، النظام غير متصل ببعض الصيانة في الوقت الحالي. ولكن قريبا سوف نستيقظ."
 
 msgid "user ban"
 msgstr "حظر المستخدم"
@@ -561,11 +550,8 @@ msgstr "لم يتم حفظ صفحات المسؤول."
 msgid "User pagination not saved."
 msgstr "لم يتم حفظ ترقيم الصفحات للمستخدم."
 
-msgid ""
-"The title of your chatbot or the primary title displayed on your chat "
-"interface."
-msgstr ""
-"عنوان chatbot الخاص بك أو العنوان الأساسي المعروض على واجهة الدردشة الخاصة بك."
+msgid "The title of your chatbot or the primary title displayed on your chat interface."
+msgstr "عنوان chatbot الخاص بك أو العنوان الأساسي المعروض على واجهة الدردشة الخاصة بك."
 
 msgid "Default Fallback Message"
 msgstr "الرسالة الاحتياطية الافتراضية"
@@ -808,14 +794,11 @@ msgid "Lead Generation"
 msgstr "جيل الرصاص"
 
 msgid ""
-"GeekyBot simplifies the WooCommerce experience with intelligent product "
-"discovery and purchasing. It seamlessly integrates with WooCommerce for "
-"efficient product searches, detailed listings, and a smooth shopping "
-"experience."
+"GeekyBot simplifies the WooCommerce experience with intelligent product discovery and purchasing. It seamlessly integrates with "
+"WooCommerce for efficient product searches, detailed listings, and a smooth shopping experience."
 msgstr ""
-"يعمل GeekyBot على تبسيط تجربة WooCommerce من خلال اكتشاف المنتجات وشرائها "
-"بشكل ذكي. إنه يتكامل بسلاسة مع WooCommerce لإجراء عمليات بحث فعالة عن "
-"المنتجات والقوائم التفصيلية وتجربة تسوق سلسة."
+"يعمل GeekyBot على تبسيط تجربة WooCommerce من خلال اكتشاف المنتجات وشرائها بشكل ذكي. إنه يتكامل بسلاسة مع WooCommerce لإجراء عمليات بحث "
+"فعالة عن المنتجات والقوائم التفصيلية وتجربة تسوق سلسة."
 
 msgid "Find Product"
 msgstr "ابحث عن المنتج"
@@ -860,13 +843,11 @@ msgid "Conversation Handling"
 msgstr "التعامل مع المحادثة"
 
 msgid ""
-"AI Chat Conversation provides intelligent and context-aware interactions to "
-"enhance user engagement. Define key conversation elements to capture specific "
-"user inputs dynamically and adapt responses based on the context."
+"AI Chat Conversation provides intelligent and context-aware interactions to enhance user engagement. Define key conversation elements to "
+"capture specific user inputs dynamically and adapt responses based on the context."
 msgstr ""
-"توفر محادثة الدردشة المدعمة بالذكاء الاصطناعي تفاعلات ذكية واعية بالسياق "
-"لتعزيز مشاركة المستخدم. حدد عناصر المحادثة الرئيسية لالتقاط مدخلات مستخدم "
-"محددة ديناميكيًا وتكييف الاستجابات بناءً على السياق."
+"توفر محادثة الدردشة المدعمة بالذكاء الاصطناعي تفاعلات ذكية واعية بالسياق لتعزيز مشاركة المستخدم. حدد عناصر المحادثة الرئيسية لالتقاط "
+"مدخلات مستخدم محددة ديناميكيًا وتكييف الاستجابات بناءً على السياق."
 
 msgid "Capture and process inputs dynamically for personalized responses."
 msgstr "قم بالتقاط المدخلات ومعالجتها ديناميكيًا للحصول على استجابات مخصصة."
@@ -887,19 +868,14 @@ msgid "Bot"
 msgstr "بوت"
 
 msgid ""
-"AI Web Search improves user experience by delivering advanced, intuitive "
-"content discovery on your WordPress site. With powerful searches, users can "
-"quickly find relevant information, enhancing overall interest and "
-"accessibility."
+"AI Web Search improves user experience by delivering advanced, intuitive content discovery on your WordPress site. With powerful searches, "
+"users can quickly find relevant information, enhancing overall interest and accessibility."
 msgstr ""
-"يعمل AI Web Search على تحسين تجربة المستخدم من خلال تقديم اكتشاف متقدم وبديهي "
-"للمحتوى على موقع WordPress الخاص بك. ومن خلال عمليات البحث القوية، يمكن "
-"للمستخدمين العثور بسرعة على المعلومات ذات الصلة، مما يعزز الاهتمام العام "
-"وإمكانية الوصول."
+"يعمل AI Web Search على تحسين تجربة المستخدم من خلال تقديم اكتشاف متقدم وبديهي للمحتوى على موقع WordPress الخاص بك. ومن خلال عمليات البحث "
+"القوية، يمكن للمستخدمين العثور بسرعة على المعلومات ذات الصلة، مما يعزز الاهتمام العام وإمكانية الوصول."
 
 msgid "GeekyBot swiftly retrieves posts and pages based on user queries."
-msgstr ""
-"يقوم GeekyBot باسترداد المنشورات والصفحات بسرعة بناءً على استعلامات المستخدم."
+msgstr "يقوم GeekyBot باسترداد المنشورات والصفحات بسرعة بناءً على استعلامات المستخدم."
 
 msgid "Displays full content or excerpts that match search terms."
 msgstr "يعرض المحتوى الكامل أو المقتطفات التي تطابق مصطلحات البحث."
@@ -971,25 +947,18 @@ msgid "Select Template"
 msgstr "حدد القالب"
 
 msgid ""
-"AI Chat in GeekyBot provides instant, personalized responses to user queries, "
-"ensuring seamless support around the clock. With its ability to engage users "
-"at any time, GeekyBot enhances the reliability of your service, making sure "
-"that your customers' needs are always met."
+"AI Chat in GeekyBot provides instant, personalized responses to user queries, ensuring seamless support around the clock. With its ability "
+"to engage users at any time, GeekyBot enhances the reliability of your service, making sure that your customers' needs are always met."
 msgstr ""
-"توفر ميزة AI Chat في GeekyBot استجابات فورية وشخصية لاستفسارات المستخدم، مما "
-"يضمن دعمًا سلسًا على مدار الساعة. بفضل قدرته على إشراك المستخدمين في أي وقت، "
-"يعمل GeekyBot على تعزيز موثوقية الخدمة التي تقدمها، والتأكد من تلبية احتياجات "
-"عملائك دائمًا."
+"توفر ميزة AI Chat في GeekyBot استجابات فورية وشخصية لاستفسارات المستخدم، مما يضمن دعمًا سلسًا على مدار الساعة. بفضل قدرته على إشراك "
+"المستخدمين في أي وقت، يعمل GeekyBot على تعزيز موثوقية الخدمة التي تقدمها، والتأكد من تلبية احتياجات عملائك دائمًا."
 
 msgid ""
-"By training GeekyBot with your specific data, you can create dynamic, "
-"tailored interactions that reflect your business's unique voice and services. "
-"This customization allows for more relevant, effective conversations that "
-"build stronger connections with your users."
+"By training GeekyBot with your specific data, you can create dynamic, tailored interactions that reflect your business's unique voice and "
+"services. This customization allows for more relevant, effective conversations that build stronger connections with your users."
 msgstr ""
-"من خلال تدريب GeekyBot على بياناتك المحددة، يمكنك إنشاء تفاعلات ديناميكية "
-"ومصممة خصيصًا تعكس الصوت والخدمات الفريدة لشركتك. يسمح هذا التخصيص بإجراء "
-"محادثات أكثر صلة وفعالية والتي تعمل على بناء اتصالات أقوى مع المستخدمين."
+"من خلال تدريب GeekyBot على بياناتك المحددة، يمكنك إنشاء تفاعلات ديناميكية ومصممة خصيصًا تعكس الصوت والخدمات الفريدة لشركتك. يسمح هذا "
+"التخصيص بإجراء محادثات أكثر صلة وفعالية والتي تعمل على بناء اتصالات أقوى مع المستخدمين."
 
 msgid "Bot Image"
 msgstr "صورة بوت"
@@ -1004,29 +973,21 @@ msgid "AI Web Search Bot"
 msgstr "روبوت بحث الويب بالذكاء الاصطناعي"
 
 msgid ""
-"Effortlessly search for specific posts and content across your entire site "
-"using our powerful AI web search tool. GeekyBot goes beyond standard "
-"searches, delivering results from all types of data on your site. Whether "
-"you're looking for posts, pages, custom post types, or other information, "
-"GeekyBot ensures you find what you need quickly and efficiently by displaying "
-"relevant articles, posts, and more in a single, streamlined search experience."
+"Effortlessly search for specific posts and content across your entire site using our powerful AI web search tool. GeekyBot goes beyond "
+"standard searches, delivering results from all types of data on your site. Whether you're looking for posts, pages, custom post types, or "
+"other information, GeekyBot ensures you find what you need quickly and efficiently by displaying relevant articles, posts, and more in a "
+"single, streamlined search experience."
 msgstr ""
-"ابحث بسهولة عن منشورات ومحتوى محدد عبر موقعك بالكامل باستخدام أداة بحث الويب "
-"القوية التي تعمل بتقنية الذكاء الاصطناعي. يتجاوز GeekyBot عمليات البحث "
-"القياسية، حيث يقدم نتائج من جميع أنواع البيانات الموجودة على موقعك. سواء كنت "
-"تبحث عن منشورات أو صفحات أو أنواع منشورات مخصصة أو معلومات أخرى، يضمن لك "
-"GeekyBot العثور على ما تحتاجه بسرعة وكفاءة من خلال عرض المقالات والمشاركات "
-"ذات الصلة والمزيد في تجربة بحث واحدة مبسطة."
+"ابحث بسهولة عن منشورات ومحتوى محدد عبر موقعك بالكامل باستخدام أداة بحث الويب القوية التي تعمل بتقنية الذكاء الاصطناعي. يتجاوز GeekyBot "
+"عمليات البحث القياسية، حيث يقدم نتائج من جميع أنواع البيانات الموجودة على موقعك. سواء كنت تبحث عن منشورات أو صفحات أو أنواع منشورات مخصصة "
+"أو معلومات أخرى، يضمن لك GeekyBot العثور على ما تحتاجه بسرعة وكفاءة من خلال عرض المقالات والمشاركات ذات الصلة والمزيد في تجربة بحث واحدة "
+"مبسطة."
 
 msgid "New Post Type Search"
 msgstr "بحث جديد عن نوع المشاركة"
 
-msgid ""
-"Enable this option to directly include new post types in search results, "
-"enhancing user access to all content."
-msgstr ""
-"قم بتمكين هذا الخيار لتضمين أنواع المنشورات الجديدة مباشرة في نتائج البحث، "
-"مما يعزز وصول المستخدم إلى كل المحتوى."
+msgid "Enable this option to directly include new post types in search results, enhancing user access to all content."
+msgstr "قم بتمكين هذا الخيار لتضمين أنواع المنشورات الجديدة مباشرة في نتائج البحث، مما يعزز وصول المستخدم إلى كل المحتوى."
 
 msgid "Watch AI Web Search Video"
 msgstr "شاهد فيديو بحث الويب بالذكاء الاصطناعي"
@@ -1040,32 +1001,22 @@ msgstr "ينهي"
 msgid "WooCommerce is not installed"
 msgstr "لم يتم تثبيت WooCommerce"
 
-msgid ""
-"WooCommerce plugin is not installed on your site, you won't be able to "
-"integrate GeekyBot with WooCommerce."
-msgstr ""
-"لم يتم تثبيت البرنامج الإضافي WooCommerce على موقعك، ولن تتمكن من دمج "
-"GeekyBot مع WooCommerce."
+msgid "WooCommerce plugin is not installed on your site, you won't be able to integrate GeekyBot with WooCommerce."
+msgstr "لم يتم تثبيت البرنامج الإضافي WooCommerce على موقعك، ولن تتمكن من دمج GeekyBot مع WooCommerce."
 
 msgid ""
-"Easily integrate AI with WooCommerce to enhance your online store’s "
-"performance. GeekyBot boosts lead generation and customer interactions, "
-"automating key processes for a more effective and engaging shopping "
-"experience."
+"Easily integrate AI with WooCommerce to enhance your online store’s performance. GeekyBot boosts lead generation and customer "
+"interactions, automating key processes for a more effective and engaging shopping experience."
 msgstr ""
-"يمكنك دمج الذكاء الاصطناعي بسهولة مع WooCommerce لتحسين أداء متجرك عبر "
-"الإنترنت. يعمل GeekyBot على تعزيز جذب العملاء المحتملين وتفاعلات العملاء، مما "
-"يؤدي إلى أتمتة العمليات الرئيسية للحصول على تجربة تسوق أكثر فعالية وجاذبية."
+"يمكنك دمج الذكاء الاصطناعي بسهولة مع WooCommerce لتحسين أداء متجرك عبر الإنترنت. يعمل GeekyBot على تعزيز جذب العملاء المحتملين وتفاعلات "
+"العملاء، مما يؤدي إلى أتمتة العمليات الرئيسية للحصول على تجربة تسوق أكثر فعالية وجاذبية."
 
 msgid ""
-"GeekyBot also streamlines customer inquiries and provides real-time, "
-"intelligent responses. By improving retention and customer satisfaction, it "
-"ensures your store delivers an exceptional experience that keeps shoppers "
-"coming back."
+"GeekyBot also streamlines customer inquiries and provides real-time, intelligent responses. By improving retention and customer "
+"satisfaction, it ensures your store delivers an exceptional experience that keeps shoppers coming back."
 msgstr ""
-"يعمل GeekyBot أيضًا على تبسيط استفسارات العملاء وتوفير استجابات ذكية في الوقت "
-"الفعلي. ومن خلال تحسين معدل الاحتفاظ بالعملاء ورضاهم، فإنه يضمن أن يقدم متجرك "
-"تجربة استثنائية تحافظ على عودة المتسوقين."
+"يعمل GeekyBot أيضًا على تبسيط استفسارات العملاء وتوفير استجابات ذكية في الوقت الفعلي. ومن خلال تحسين معدل الاحتفاظ بالعملاء ورضاهم، فإنه "
+"يضمن أن يقدم متجرك تجربة استثنائية تحافظ على عودة المتسوقين."
 
 msgid "Watch WooCommerce Video"
 msgstr "شاهد فيديو ووكومرس"
@@ -1074,36 +1025,23 @@ msgid "Welcome to GeekyBot !..."
 msgstr "مرحبا بكم في GeekyBot!..."
 
 msgid ""
-"The ultimate AI chatbot for WooCommerce lead generation, intelligent content "
-"search, and interactive customer engagement on your WordPress website."
+"The ultimate AI chatbot for WooCommerce lead generation, intelligent content search, and interactive customer engagement on your WordPress "
+"website."
 msgstr ""
-"أفضل برنامج دردشة آلي يعتمد على الذكاء الاصطناعي لإنشاء عملاء محتملين في "
-"WooCommerce، والبحث الذكي عن المحتوى، ومشاركة العملاء التفاعلية على موقع "
-"WordPress الإلكتروني الخاص بك."
+"أفضل برنامج دردشة آلي يعتمد على الذكاء الاصطناعي لإنشاء عملاء محتملين في WooCommerce، والبحث الذكي عن المحتوى، ومشاركة العملاء التفاعلية "
+"على موقع WordPress الإلكتروني الخاص بك."
 
-msgid ""
-"Personalize interactions by dynamically processing user inputs using slots "
-"and variables."
-msgstr ""
-"قم بتخصيص التفاعلات من خلال معالجة مدخلات المستخدم ديناميكيًا باستخدام الفتحات "
-"والمتغيرات."
+msgid "Personalize interactions by dynamically processing user inputs using slots and variables."
+msgstr "قم بتخصيص التفاعلات من خلال معالجة مدخلات المستخدم ديناميكيًا باستخدام الفتحات والمتغيرات."
 
-msgid ""
-"Enhance shopping by enabling users to find products and add them to their "
-"cart seamlessly."
-msgstr ""
-"تعزيز التسوق من خلال تمكين المستخدمين من العثور على المنتجات وإضافتها إلى سلة "
-"التسوق الخاصة بهم بسلاسة."
+msgid "Enhance shopping by enabling users to find products and add them to their cart seamlessly."
+msgstr "تعزيز التسوق من خلال تمكين المستخدمين من العثور على المنتجات وإضافتها إلى سلة التسوق الخاصة بهم بسلاسة."
 
 msgid "Website Search"
 msgstr "بحث الموقع"
 
-msgid ""
-"Streamline discovery by helping users find relevant information on your "
-"WordPress site."
-msgstr ""
-"تبسيط الاكتشاف من خلال مساعدة المستخدمين في العثور على المعلومات ذات الصلة "
-"على موقع WordPress الخاص بك."
+msgid "Streamline discovery by helping users find relevant information on your WordPress site."
+msgstr "تبسيط الاكتشاف من خلال مساعدة المستخدمين في العثور على المعلومات ذات الصلة على موقع WordPress الخاص بك."
 
 msgid "Please insert activation key to proceed"
 msgstr "الرجاء إدخال مفتاح التنشيط للمتابعة"
@@ -1153,12 +1091,8 @@ msgstr "الصورة الصحيحة"
 msgid "Add-ons For Majestic Support"
 msgstr "إضافات للحصول على الدعم المهيب"
 
-msgid ""
-"Get trusted WordPress add-ons. Guaranteed to work fast, safe to use, "
-"beautifully coded, packed with features, and are easy to use."
-msgstr ""
-"احصل على إضافات WordPress الموثوقة. مضمون للعمل بسرعة، وآمن للاستخدام، ومشفر "
-"بشكل جميل، ومليء بالميزات، وسهل الاستخدام."
+msgid "Get trusted WordPress add-ons. Guaranteed to work fast, safe to use, beautifully coded, packed with features, and are easy to use."
+msgstr "احصل على إضافات WordPress الموثوقة. مضمون للعمل بسرعة، وآمن للاستخدام، ومشفر بشكل جميل، ومليء بالميزات، وسهل الاستخدام."
 
 msgid "Save big today with an exclusive membership plan!"
 msgstr "وفر الكثير اليوم مع خطة العضوية الحصرية!"
@@ -1172,12 +1106,8 @@ msgstr "عرض حزمة الحزمة"
 msgid "Agent"
 msgstr "عامل"
 
-msgid ""
-"Add agents and assign roles and permissions to provide assistance and support "
-"for customer support tickets."
-msgstr ""
-"أضف وكلاء وقم بتعيين الأدوار والأذونات لتقديم المساعدة والدعم لتذاكر دعم "
-"العملاء."
+msgid "Add agents and assign roles and permissions to provide assistance and support for customer support tickets."
+msgstr "أضف وكلاء وقم بتعيين الأدوار والأذونات لتقديم المساعدة والدعم لتذاكر دعم العملاء."
 
 msgid "buy now"
 msgstr "اشتري الآن"
@@ -1191,21 +1121,14 @@ msgstr "متعدد الأشكال"
 msgid "Multi Forms"
 msgstr "أشكال متعددة"
 
-msgid ""
-"Create multiple custom ticket forms with different custom fields for each "
-"request type that you support."
-msgstr ""
-"أنشئ نماذج تذاكر مخصصة متعددة تحتوي على حقول مخصصة مختلفة لكل نوع طلب تدعمه."
+msgid "Create multiple custom ticket forms with different custom fields for each request type that you support."
+msgstr "أنشئ نماذج تذاكر مخصصة متعددة تحتوي على حقول مخصصة مختلفة لكل نوع طلب تدعمه."
 
 msgid "Email Piping"
 msgstr "أنابيب البريد الإلكتروني"
 
-msgid ""
-"Email piping is the process of automatically turning incoming emails into "
-"support tickets without manual data entry."
-msgstr ""
-"إرسال البريد الإلكتروني هو عملية تحويل رسائل البريد الإلكتروني الواردة "
-"تلقائيًا إلى تذاكر دعم دون إدخال البيانات يدويًا."
+msgid "Email piping is the process of automatically turning incoming emails into support tickets without manual data entry."
+msgstr "إرسال البريد الإلكتروني هو عملية تحويل رسائل البريد الإلكتروني الواردة تلقائيًا إلى تذاكر دعم دون إدخال البيانات يدويًا."
 
 msgid "agent auto assign"
 msgstr "تعيين الوكيل تلقائيًا"
@@ -1213,12 +1136,8 @@ msgstr "تعيين الوكيل تلقائيًا"
 msgid "Agent Auto Assign"
 msgstr "تعيين الوكيل تلقائيًا"
 
-msgid ""
-"Make the ticket assignment process automatic and assign the most qualified "
-"agent to your tickets with conditions."
-msgstr ""
-"اجعل عملية تخصيص التذاكر تلقائية وقم بتعيين الوكيل الأكثر تأهيلاً لتذاكرك "
-"بشروط."
+msgid "Make the ticket assignment process automatic and assign the most qualified agent to your tickets with conditions."
+msgstr "اجعل عملية تخصيص التذاكر تلقائية وقم بتعيين الوكيل الأكثر تأهيلاً لتذاكرك بشروط."
 
 msgid "private note"
 msgstr "ملاحظة خاصة"
@@ -1227,11 +1146,8 @@ msgid "Private Note"
 msgstr "ملاحظة خاصة"
 
 msgid ""
-"Add private notes to a ticket and share crucial information internally with "
-"your agents, this private note is not visible to the customer."
-msgstr ""
-"أضف ملاحظات خاصة إلى التذكرة وشارك المعلومات المهمة داخليًا مع وكلائك، وهذه "
-"الملاحظة الخاصة غير مرئية للعميل."
+"Add private notes to a ticket and share crucial information internally with your agents, this private note is not visible to the customer."
+msgstr "أضف ملاحظات خاصة إلى التذكرة وشارك المعلومات المهمة داخليًا مع وكلائك، وهذه الملاحظة الخاصة غير مرئية للعميل."
 
 msgid "merge tickets"
 msgstr "دمج التذاكر"
@@ -1239,12 +1155,8 @@ msgstr "دمج التذاكر"
 msgid "Merge Tickets"
 msgstr "دمج التذاكر"
 
-msgid ""
-"Merge one or more tickets into another if you receive two support requests "
-"from the same end user about the same issue."
-msgstr ""
-"قم بدمج تذكرة واحدة أو أكثر في أخرى إذا تلقيت طلبي دعم من نفس المستخدم "
-"النهائي بشأن نفس المشكلة."
+msgid "Merge one or more tickets into another if you receive two support requests from the same end user about the same issue."
+msgstr "قم بدمج تذكرة واحدة أو أكثر في أخرى إذا تلقيت طلبي دعم من نفس المستخدم النهائي بشأن نفس المشكلة."
 
 msgid "helptopic"
 msgstr "موضوع مساعدة"
@@ -1252,39 +1164,25 @@ msgstr "موضوع مساعدة"
 msgid "Help Topics"
 msgstr "مواضيع المساعدة"
 
-msgid ""
-"The user can search for and choose the topic for which they need help using "
-"help topics"
-msgstr ""
-"يمكن للمستخدم البحث عن الموضوع الذي يحتاج إلى مساعدة فيه واختياره باستخدام "
-"موضوعات المساعدة"
+msgid "The user can search for and choose the topic for which they need help using help topics"
+msgstr "يمكن للمستخدم البحث عن الموضوع الذي يحتاج إلى مساعدة فيه واختياره باستخدام موضوعات المساعدة"
 
 msgid "Auto Close Ticket"
 msgstr "تذكرة الإغلاق التلقائي"
 
-msgid ""
-"Manage abandoned tickets, and set rules for tickets over time, and those "
-"tickets will be closed automatically after a certain period."
-msgstr ""
-"إدارة التذاكر المهجورة، ووضع قواعد للتذاكر مع مرور الوقت، وسيتم إغلاق تلك "
-"التذاكر تلقائيا بعد فترة معينة."
+msgid "Manage abandoned tickets, and set rules for tickets over time, and those tickets will be closed automatically after a certain period."
+msgstr "إدارة التذاكر المهجورة، ووضع قواعد للتذاكر مع مرور الوقت، وسيتم إغلاق تلك التذاكر تلقائيا بعد فترة معينة."
 
 msgid "Knowledgebase"
 msgstr "قاعدة المعرفة"
 
-msgid ""
-"Stop wasting time on repetitive inquiries, build your knowledge base, and "
-"organize your solutions into categories for users."
-msgstr ""
-"توقف عن إضاعة الوقت في الاستفسارات المتكررة، وقم ببناء قاعدة معرفتك، وقم "
-"بتنظيم حلولك في فئات للمستخدمين."
+msgid "Stop wasting time on repetitive inquiries, build your knowledge base, and organize your solutions into categories for users."
+msgstr "توقف عن إضاعة الوقت في الاستفسارات المتكررة، وقم ببناء قاعدة معرفتك، وقم بتنظيم حلولك في فئات للمستخدمين."
 
 msgid "Ticket Overdue"
 msgstr "التذكرة متأخرة"
 
-msgid ""
-"Define rules or set a specific time interval for making tickets automatically "
-"overdue."
+msgid "Define rules or set a specific time interval for making tickets automatically overdue."
 msgstr "تحديد القواعد أو تعيين فترة زمنية محددة لتأخر التذاكر تلقائيًا."
 
 msgid "time tracking"
@@ -1293,41 +1191,26 @@ msgstr "تتبع الوقت"
 msgid "Time Tracking"
 msgstr "تتبع الوقت"
 
-msgid ""
-"Track the amount of time spent on each customer support ticket without losing "
-"focus and enhance team productivity."
-msgstr ""
-"تتبع مقدار الوقت المستغرق في كل تذكرة دعم للعملاء دون فقدان التركيز وتعزيز "
-"إنتاجية الفريق."
+msgid "Track the amount of time spent on each customer support ticket without losing focus and enhance team productivity."
+msgstr "تتبع مقدار الوقت المستغرق في كل تذكرة دعم للعملاء دون فقدان التركيز وتعزيز إنتاجية الفريق."
 
 msgid "Ticket History"
 msgstr "تاريخ التذاكر"
 
-msgid ""
-"Show the whole history of the ticket, including its status and any action "
-"taken in response to it."
-msgstr ""
-"عرض تاريخ التذكرة بالكامل، بما في ذلك حالتها وأي إجراء تم اتخاذه ردًا عليها."
+msgid "Show the whole history of the ticket, including its status and any action taken in response to it."
+msgstr "عرض تاريخ التذكرة بالكامل، بما في ذلك حالتها وأي إجراء تم اتخاذه ردًا عليها."
 
 msgid "Paid Support"
 msgstr "الدعم المدفوع"
 
-msgid ""
-"The simplest approach to effectively manage payments for premium help is "
-"through paid support."
-msgstr ""
-"إن أبسط أسلوب لإدارة المدفوعات للحصول على المساعدة المميزة بشكل فعال هو من "
-"خلال الدعم المدفوع."
+msgid "The simplest approach to effectively manage payments for premium help is through paid support."
+msgstr "إن أبسط أسلوب لإدارة المدفوعات للحصول على المساعدة المميزة بشكل فعال هو من خلال الدعم المدفوع."
 
 msgid "Private Credentials"
 msgstr "أوراق الاعتماد الخاصة"
 
-msgid ""
-"Customers will enter sensitive information on tickets, and this add-on is "
-"designed to help you keep that information secure."
-msgstr ""
-"سيقوم العملاء بإدخال معلومات حساسة على التذاكر، وقد تم تصميم هذه الوظيفة "
-"الإضافية لمساعدتك في الحفاظ على أمان هذه المعلومات."
+msgid "Customers will enter sensitive information on tickets, and this add-on is designed to help you keep that information secure."
+msgstr "سيقوم العملاء بإدخال معلومات حساسة على التذاكر، وقد تم تصميم هذه الوظيفة الإضافية لمساعدتك في الحفاظ على أمان هذه المعلومات."
 
 msgid "Ticket close reason"
 msgstr "سبب إغلاق التذكرة"
@@ -1335,21 +1218,14 @@ msgstr "سبب إغلاق التذكرة"
 msgid "Ticket Closed Reason"
 msgstr "سبب إغلاق التذكرة"
 
-msgid ""
-"Empowers users to provide clear and concise explanations for why customer "
-"service tickets are being closed."
-msgstr ""
-"تمكن المستخدمين من تقديم تفسيرات واضحة وموجزة لسبب إغلاق تذاكر خدمة العملاء."
+msgid "Empowers users to provide clear and concise explanations for why customer service tickets are being closed."
+msgstr "تمكن المستخدمين من تقديم تفسيرات واضحة وموجزة لسبب إغلاق تذاكر خدمة العملاء."
 
 msgid "Premade Responses"
 msgstr "ردود مسبقة الصنع"
 
-msgid ""
-"Make ready-made responses to the most common questions in the tickets to "
-"swiftly address client issues."
-msgstr ""
-"قم بإعداد إجابات جاهزة على الأسئلة الأكثر شيوعًا في التذاكر لمعالجة مشكلات "
-"العملاء بسرعة."
+msgid "Make ready-made responses to the most common questions in the tickets to swiftly address client issues."
+msgstr "قم بإعداد إجابات جاهزة على الأسئلة الأكثر شيوعًا في التذاكر لمعالجة مشكلات العملاء بسرعة."
 
 msgid "max ticket"
 msgstr "الحد الأقصى للتذكرة"
@@ -1357,37 +1233,28 @@ msgstr "الحد الأقصى للتذكرة"
 msgid "Max Tickets"
 msgstr "تذاكر ماكس"
 
-msgid ""
-"Admins can limit the number of tickets that users can create as well as the "
-"number of tickets that agents can open individually."
-msgstr ""
-"يمكن للمسؤولين تحديد عدد التذاكر التي يمكن للمستخدمين إنشاؤها بالإضافة إلى "
-"عدد التذاكر التي يمكن للوكلاء فتحها بشكل فردي."
+msgid "Admins can limit the number of tickets that users can create as well as the number of tickets that agents can open individually."
+msgstr "يمكن للمسؤولين تحديد عدد التذاكر التي يمكن للمستخدمين إنشاؤها بالإضافة إلى عدد التذاكر التي يمكن للوكلاء فتحها بشكل فردي."
 
 msgid "Feedback"
 msgstr "تعليق"
 
-msgid ""
-"To enhance the quality of your services, ask your customers to complete a "
-"survey when a ticket is closed."
+msgid "To enhance the quality of your services, ask your customers to complete a survey when a ticket is closed."
 msgstr "لتحسين جودة خدماتك، اطلب من عملائك إكمال الاستبيان عند إغلاق التذكرة."
 
 msgid "ticket actions"
 msgstr "إجراءات التذاكر"
 
-msgid ""
-"Ticket action options allow you to execute additional actions on tickets."
+msgid "Ticket action options allow you to execute additional actions on tickets."
 msgstr "تتيح لك خيارات إجراءات التذاكر تنفيذ إجراءات إضافية على التذاكر."
 
 msgid "Export"
 msgstr "يصدّر"
 
 msgid ""
-"Easily export ticket data and performance report data from your majestic "
-"support to an Excel spreadsheet with our efficient and user-friendly solution."
-msgstr ""
-"قم بتصدير بيانات التذاكر وبيانات تقارير الأداء بسهولة من دعمك المهيب إلى جدول "
-"بيانات Excel من خلال حلنا الفعال وسهل الاستخدام."
+"Easily export ticket data and performance report data from your majestic support to an Excel spreadsheet with our efficient and user-"
+"friendly solution."
+msgstr "قم بتصدير بيانات التذاكر وبيانات تقارير الأداء بسهولة من دعمك المهيب إلى جدول بيانات Excel من خلال حلنا الفعال وسهل الاستخدام."
 
 msgid "email cc"
 msgstr "البريد الإلكتروني نسخة"
@@ -1395,12 +1262,8 @@ msgstr "البريد الإلكتروني نسخة"
 msgid "Email CC"
 msgstr "البريد الإلكتروني CC"
 
-msgid ""
-"Send the exact copy of the email to the provided email address with Email CC "
-"or BCC."
-msgstr ""
-"أرسل النسخة الدقيقة من البريد الإلكتروني إلى عنوان البريد الإلكتروني المقدم "
-"مع Email CC أو BCC."
+msgid "Send the exact copy of the email to the provided email address with Email CC or BCC."
+msgstr "أرسل النسخة الدقيقة من البريد الإلكتروني إلى عنوان البريد الإلكتروني المقدم مع Email CC أو BCC."
 
 msgid "user options"
 msgstr "خيارات المستخدم"
@@ -1408,69 +1271,46 @@ msgstr "خيارات المستخدم"
 msgid "User Options"
 msgstr "خيارات المستخدم"
 
-msgid ""
-"User options enable you to define roles for new users when they are "
-"registered."
+msgid "User options enable you to define roles for new users when they are registered."
 msgstr "تتيح لك خيارات المستخدم تحديد الأدوار للمستخدمين الجدد عند تسجيلهم."
 
 msgid "SMTP"
 msgstr "SMTP"
 
-msgid ""
-"SMTP enables you to add  custom mail protocols to send and receive emails "
-"with the support ticket system."
-msgstr ""
-"يمكّنك SMTP من إضافة بروتوكولات بريد مخصصة لإرسال واستقبال رسائل البريد "
-"الإلكتروني باستخدام نظام تذاكر الدعم."
+msgid "SMTP enables you to add  custom mail protocols to send and receive emails with the support ticket system."
+msgstr "يمكّنك SMTP من إضافة بروتوكولات بريد مخصصة لإرسال واستقبال رسائل البريد الإلكتروني باستخدام نظام تذاكر الدعم."
 
 msgid "Multi Language Email Templates"
 msgstr "قوالب البريد الإلكتروني متعددة اللغات"
 
-msgid ""
-"Create multi-language email templates for all default email templates to send "
-"customers emails in the language that they prefer."
+msgid "Create multi-language email templates for all default email templates to send customers emails in the language that they prefer."
 msgstr ""
-"قم بإنشاء قوالب بريد إلكتروني متعددة اللغات لجميع قوالب البريد الإلكتروني "
-"الافتراضية لإرسال رسائل البريد الإلكتروني للعملاء باللغة التي يفضلونها."
+"قم بإنشاء قوالب بريد إلكتروني متعددة اللغات لجميع قوالب البريد الإلكتروني الافتراضية لإرسال رسائل البريد الإلكتروني للعملاء باللغة التي "
+"يفضلونها."
 
 msgid "Downloads"
 msgstr "التنزيلات"
 
-msgid ""
-"Downloads can be very helpful for users who are looking to obtain the "
-"necessary information to resolve issues."
-msgstr ""
-"يمكن أن تكون التنزيلات مفيدة جدًا للمستخدمين الذين يتطلعون إلى الحصول على "
-"المعلومات الضرورية لحل المشكلات."
+msgid "Downloads can be very helpful for users who are looking to obtain the necessary information to resolve issues."
+msgstr "يمكن أن تكون التنزيلات مفيدة جدًا للمستخدمين الذين يتطلعون إلى الحصول على المعلومات الضرورية لحل المشكلات."
 
 msgid "Announcements"
 msgstr "إعلانات"
 
-msgid ""
-"Make an unlimited number of announcements related to the support system to "
-"encourage customer interaction."
-msgstr ""
-"عمل عدد غير محدود من الإعلانات المتعلقة بنظام الدعم لتشجيع تفاعل العملاء."
+msgid "Make an unlimited number of announcements related to the support system to encourage customer interaction."
+msgstr "عمل عدد غير محدود من الإعلانات المتعلقة بنظام الدعم لتشجيع تفاعل العملاء."
 
 msgid "Ban Email"
 msgstr "حظر البريد الإلكتروني"
 
-msgid ""
-"With Ban Email, you can limit a users ability to create new tickets by "
-"blocking their email address."
-msgstr ""
-"باستخدام حظر البريد الإلكتروني، يمكنك تقييد قدرة المستخدمين على إنشاء تذاكر "
-"جديدة عن طريق حظر عنوان بريدهم الإلكتروني."
+msgid "With Ban Email, you can limit a users ability to create new tickets by blocking their email address."
+msgstr "باستخدام حظر البريد الإلكتروني، يمكنك تقييد قدرة المستخدمين على إنشاء تذاكر جديدة عن طريق حظر عنوان بريدهم الإلكتروني."
 
 msgid "FAQ"
 msgstr "التعليمات"
 
-msgid ""
-"Provide answers to common user questions with the FAQ extension before they "
-"become tickets."
-msgstr ""
-"قم بتقديم إجابات لأسئلة المستخدم الشائعة باستخدام ملحق الأسئلة الشائعة قبل أن "
-"تصبح تذاكر."
+msgid "Provide answers to common user questions with the FAQ extension before they become tickets."
+msgstr "قم بتقديم إجابات لأسئلة المستخدم الشائعة باستخدام ملحق الأسئلة الشائعة قبل أن تصبح تذاكر."
 
 msgid "admin widgets"
 msgstr "الحاجيات المشرف"
@@ -1478,12 +1318,8 @@ msgstr "الحاجيات المشرف"
 msgid "Admin Widgets"
 msgstr "الحاجيات المشرف"
 
-msgid ""
-"Get immediate data on your support operations as soon as you log into your "
-"WordPress administration area."
-msgstr ""
-"احصل على بيانات فورية حول عمليات الدعم الخاصة بك بمجرد تسجيل الدخول إلى منطقة "
-"إدارة WordPress الخاصة بك."
+msgid "Get immediate data on your support operations as soon as you log into your WordPress administration area."
+msgstr "احصل على بيانات فورية حول عمليات الدعم الخاصة بك بمجرد تسجيل الدخول إلى منطقة إدارة WordPress الخاصة بك."
 
 msgid "desktop notifications"
 msgstr "إشعارات سطح المكتب"
@@ -1491,21 +1327,14 @@ msgstr "إشعارات سطح المكتب"
 msgid "Desktop Notifications"
 msgstr "إشعارات سطح المكتب"
 
-msgid ""
-"You will be informed of anything that occurs on your support system by the "
-"desktop notifications."
-msgstr ""
-"سيتم إعلامك بأي شيء يحدث على نظام الدعم الخاص بك عن طريق إشعارات سطح المكتب."
+msgid "You will be informed of anything that occurs on your support system by the desktop notifications."
+msgstr "سيتم إعلامك بأي شيء يحدث على نظام الدعم الخاص بك عن طريق إشعارات سطح المكتب."
 
 msgid "woocommerce"
 msgstr "com.woocommerce"
 
-msgid ""
-"The integration of the support ticket system for WooCommerce with your e-shop "
-"makes your support better and more professional."
-msgstr ""
-"إن دمج نظام تذاكر الدعم لـ WooCommerce مع متجرك الإلكتروني يجعل دعمك أفضل "
-"وأكثر احترافية."
+msgid "The integration of the support ticket system for WooCommerce with your e-shop makes your support better and more professional."
+msgstr "إن دمج نظام تذاكر الدعم لـ WooCommerce مع متجرك الإلكتروني يجعل دعمك أفضل وأكثر احترافية."
 
 msgid "mail chimp"
 msgstr "mailchimp"
@@ -1513,12 +1342,10 @@ msgstr "mailchimp"
 msgid "Mail Chimp"
 msgstr "ميلشيمب"
 
-msgid ""
-"Manage your email marketing campaigns directly from your majestic support by "
-"adding new user accounts to your Mailchimp email list."
+msgid "Manage your email marketing campaigns directly from your majestic support by adding new user accounts to your Mailchimp email list."
 msgstr ""
-"قم بإدارة حملات التسويق عبر البريد الإلكتروني مباشرة من دعمك الرائع عن طريق "
-"إضافة حسابات مستخدمين جديدة إلى قائمة بريدك الإلكتروني في Mailchimp."
+"قم بإدارة حملات التسويق عبر البريد الإلكتروني مباشرة من دعمك الرائع عن طريق إضافة حسابات مستخدمين جديدة إلى قائمة بريدك الإلكتروني في "
+"Mailchimp."
 
 msgid "internal mail"
 msgstr "بريد داخلي"
@@ -1526,12 +1353,8 @@ msgstr "بريد داخلي"
 msgid "Internal Mail"
 msgstr "البريد الداخلي"
 
-msgid ""
-"Send messages internally about support tickets and other issues between "
-"agents with internal mail."
-msgstr ""
-"أرسل رسائل داخليًا حول تذاكر الدعم والمشكلات الأخرى بين الوكلاء الذين لديهم "
-"بريد داخلي."
+msgid "Send messages internally about support tickets and other issues between agents with internal mail."
+msgstr "أرسل رسائل داخليًا حول تذاكر الدعم والمشكلات الأخرى بين الوكلاء الذين لديهم بريد داخلي."
 
 msgid "frontend widget"
 msgstr "القطعة الواجهة الأمامية"
@@ -1539,12 +1362,8 @@ msgstr "القطعة الواجهة الأمامية"
 msgid "Front-End Widgets"
 msgstr "الحاجيات الأمامية"
 
-msgid ""
-"Frontend Widgets include several widgets that can be used to enhance the "
-"plugin's functionality in various areas of the website."
-msgstr ""
-"تتضمن أدوات الواجهة الأمامية العديد من الأدوات التي يمكن استخدامها لتحسين "
-"وظائف البرنامج الإضافي في مناطق مختلفة من موقع الويب."
+msgid "Frontend Widgets include several widgets that can be used to enhance the plugin's functionality in various areas of the website."
+msgstr "تتضمن أدوات الواجهة الأمامية العديد من الأدوات التي يمكن استخدامها لتحسين وظائف البرنامج الإضافي في مناطق مختلفة من موقع الويب."
 
 msgid "envato"
 msgstr "com.envato"
@@ -1552,12 +1371,8 @@ msgstr "com.envato"
 msgid "Envato"
 msgstr "إنفاتو"
 
-msgid ""
-"Clients won't be able to open a new ticket using the Envato Validation plugin "
-"if they don't have a valid Envato license."
-msgstr ""
-"لن يتمكن العملاء من فتح تذكرة جديدة باستخدام مكون Envato Validation الإضافي "
-"إذا لم يكن لديهم ترخيص Envato صالح."
+msgid "Clients won't be able to open a new ticket using the Envato Validation plugin if they don't have a valid Envato license."
+msgstr "لن يتمكن العملاء من فتح تذكرة جديدة باستخدام مكون Envato Validation الإضافي إذا لم يكن لديهم ترخيص Envato صالح."
 
 msgid "easy digital download"
 msgstr "تحميل رقمي سهل"
@@ -1565,12 +1380,8 @@ msgstr "تحميل رقمي سهل"
 msgid "Easy Digital Download"
 msgstr "تحميل رقمي سهل"
 
-msgid ""
-"Learn about a customer's purchase directly from the support dashboard by "
-"integrating Majestic Support with your EDD store."
-msgstr ""
-"تعرف على عملية شراء العميل مباشرة من لوحة معلومات الدعم من خلال دمج Majestic "
-"Support مع متجر EDD الخاص بك."
+msgid "Learn about a customer's purchase directly from the support dashboard by integrating Majestic Support with your EDD store."
+msgstr "تعرف على عملية شراء العميل مباشرة من لوحة معلومات الدعم من خلال دمج Majestic Support مع متجر EDD الخاص بك."
 
 msgid "Majestic Support Add-ons Bundle Pack"
 msgstr "حزمة حزمة الوظائف الإضافية لدعم Majestic"
@@ -2161,8 +1972,7 @@ msgid "User not found!"
 msgstr "لم يتم العثور على المستخدم!"
 
 msgid "Okay, I have sent the recovery email. Thank you for your patience."
-msgstr ""
-"حسنًا، لقد أرسلت رسالة الاسترداد عبر البريد الإلكتروني. شكرا لك على صبركم."
+msgstr "حسنًا، لقد أرسلت رسالة الاسترداد عبر البريد الإلكتروني. شكرا لك على صبركم."
 
 msgid "Your query is sent to the admin."
 msgstr "يتم إرسال استفسارك إلى المشرف."
@@ -2257,19 +2067,14 @@ msgstr "اختر كيفية ظهور الدردشة: نافذة منبثقة ذ�
 msgid "Chat Auto-Popup Timing"
 msgstr "توقيت النوافذ المنبثقة التلقائية للدردشة"
 
-msgid ""
-"Define the delay time in seconds for the chatbot to auto-appear on the site."
+msgid "Define the delay time in seconds for the chatbot to auto-appear on the site."
 msgstr "حدد وقت التأخير بالثواني حتى يظهر برنامج الدردشة تلقائيًا على الموقع."
 
 msgid "Note"
 msgstr "ملحوظة"
 
-msgid ""
-"If the colors have been saved but the user-side colors are still the same, it "
-"is advised to clear the cache."
-msgstr ""
-"إذا تم حفظ الألوان ولكن الألوان من جانب المستخدم لا تزال كما هي، فمن المستحسن "
-"مسح ذاكرة التخزين المؤقت."
+msgid "If the colors have been saved but the user-side colors are still the same, it is advised to clear the cache."
+msgstr "إذا تم حفظ الألوان ولكن الألوان من جانب المستخدم لا تزال كما هي، فمن المستحسن مسح ذاكرة التخزين المؤقت."
 
 msgid "Also"
 msgstr "أيضًا"
@@ -2292,9 +2097,7 @@ msgstr "إذا واجهت أي صعوبات، نحن هنا للمساعدة! ب
 msgid "Create A Ticket"
 msgstr "إنشاء تذكرة"
 
-msgid ""
-"button to report your issue, and our dedicated support team will assist you "
-"promptly."
+msgid "button to report your issue, and our dedicated support team will assist you promptly."
 msgstr "للإبلاغ عن مشكلتك، وسيقوم فريق الدعم المخصص لدينا بمساعدتك على الفور."
 
 msgid "Create Ticket"
@@ -2316,8 +2119,7 @@ msgid "Add associated plugin's name"
 msgstr "أضف اسم البرنامج المساعد المرتبط"
 
 msgid "For better data consistency, please provide a associated plugin's name."
-msgstr ""
-"للحصول على تناسق أفضل للبيانات، يرجى تقديم اسم البرنامج المساعد المرتبط."
+msgstr "للحصول على تناسق أفضل للبيانات، يرجى تقديم اسم البرنامج المساعد المرتبط."
 
 msgid "Status"
 msgstr "حالة"
@@ -2328,12 +2130,8 @@ msgstr "لتغييرات الحالة، يرجى استخدام الخيارات
 msgid "Template Section"
 msgstr "قسم القالب"
 
-msgid ""
-"Fields are currently auto-filled for preview purposes only. Please save your "
-"changes to apply them."
-msgstr ""
-"يتم حاليًا ملء الحقول تلقائيًا لأغراض المعاينة فقط. الرجاء حفظ التغييرات "
-"لتطبيقها."
+msgid "Fields are currently auto-filled for preview purposes only. Please save your changes to apply them."
+msgstr "يتم حاليًا ملء الحقول تلقائيًا لأغراض المعاينة فقط. الرجاء حفظ التغييرات لتطبيقها."
 
 msgid "Choose one template style from the given below"
 msgstr "اختر نمط قالب واحد مما هو موضح أدناه"
@@ -2383,22 +2181,16 @@ msgstr "تم تعطيل البحث عن نوع المنشور الجديد بن�
 msgid "Data Synchronization Needed"
 msgstr "مطلوب مزامنة البيانات"
 
-msgid ""
-"Your data is not updated. To ensure accurate results, please synchronize your "
-"AI web search data."
-msgstr ""
-"لا يتم تحديث البيانات الخاصة بك. لضمان الحصول على نتائج دقيقة، يرجى مزامنة "
-"بيانات بحث الويب الخاصة بالذكاء الاصطناعي."
+msgid "Your data is not updated. To ensure accurate results, please synchronize your AI web search data."
+msgstr "لا يتم تحديث البيانات الخاصة بك. لضمان الحصول على نتائج دقيقة، يرجى مزامنة بيانات بحث الويب الخاصة بالذكاء الاصطناعي."
 
 msgid "Enable AI web Search"
 msgstr "تمكين بحث الويب بالذكاء الاصطناعي"
 
 msgid ""
-"Enable this feature to provide users with direct AI web search results in the "
-"chat, offering them a broader context for their queries."
+"Enable this feature to provide users with direct AI web search results in the chat, offering them a broader context for their queries."
 msgstr ""
-"قم بتمكين هذه الميزة لتزويد المستخدمين بنتائج بحث ويب مباشرة مدعمة بالذكاء "
-"الاصطناعي في الدردشة، مما يوفر لهم سياقًا أوسع لاستفساراتهم."
+"قم بتمكين هذه الميزة لتزويد المستخدمين بنتائج بحث ويب مباشرة مدعمة بالذكاء الاصطناعي في الدردشة، مما يوفر لهم سياقًا أوسع لاستفساراتهم."
 
 msgid "Enable New Post Type Search"
 msgstr "تمكين البحث عن نوع منشور جديد"
@@ -2490,8 +2282,7 @@ msgstr "لا يمكنك إضافة آخر \""
 msgid "There was an error while adding the product to the cart."
 msgstr "حدث خطأ أثناء إضافة المنتج إلى سلة التسوق."
 
-msgid ""
-"The requested variation with the specified attributes could not be found."
+msgid "The requested variation with the specified attributes could not be found."
 msgstr "تعذر العثور على الاختلاف المطلوب بالسمات المحددة."
 
 msgid "Change Quantity"
@@ -2533,17 +2324,13 @@ msgstr "أيقونة زائد"
 msgid "Add Intents"
 msgstr "إضافة النوايا"
 
-msgid ""
-"On the responses listing page, all the responses are listed here; you can "
-"check them out."
+msgid "On the responses listing page, all the responses are listed here; you can check them out."
 msgstr "في صفحة قائمة الردود، يتم إدراج كافة الردود هنا؛ يمكنك التحقق منها."
 
 msgid "Add Intent"
 msgstr "أضف نية"
 
-msgid ""
-"On the form listing page, all the forms are listed here; you can check them "
-"out."
+msgid "On the form listing page, all the forms are listed here; you can check them out."
 msgstr "في صفحة قائمة النماذج، يتم إدراج جميع النماذج هنا؛ يمكنك التحقق منها."
 
 msgid "Add Forms"
@@ -2561,11 +2348,8 @@ msgstr "أضف الرد"
 msgid "On the add Response page, you can add a new Response."
 msgstr "في صفحة إضافة استجابة، يمكنك إضافة استجابة جديدة."
 
-msgid ""
-"On the actions listing page, all the actions are listed here; you can check "
-"them out."
-msgstr ""
-"في صفحة قائمة الإجراءات، يتم إدراج كافة الإجراءات هنا؛ يمكنك التحقق منها."
+msgid "On the actions listing page, all the actions are listed here; you can check them out."
+msgstr "في صفحة قائمة الإجراءات، يتم إدراج كافة الإجراءات هنا؛ يمكنك التحقق منها."
 
 msgid "Add  Action"
 msgstr "أضف الإجراء"
@@ -2623,3 +2407,276 @@ msgstr "جامعة"
 
 msgid "Vacation Planner"
 msgstr "مخطط العطلة"
+
+msgid "Support"
+msgstr "يدعم"
+
+msgid "Add-ons Status"
+msgstr "حالة الوظائف الإضافية"
+
+msgid "Woocommerce"
+msgstr "WooCommerce"
+
+msgid "Hide notice"
+msgstr "إخفاء الإشعار"
+
+msgid "Transaction Key"
+msgstr "مفتاح المعاملة"
+
+msgid "Please select )"
+msgstr "الرجاء الاختيار)"
+
+msgid " and Enter your license key and hit to authenticate. A valid key is required for updates."
+msgstr "وأدخل مفتاح الترخيص الخاص بك وضرب للمصادقة. مفتاح صالح مطلوب للتحديثات."
+
+msgid "Custom Text Style"
+msgstr "نمط نص مخصص"
+
+msgid "WooCommerce Pro Pack"
+msgstr "WooCommerce Pro Pack"
+
+msgid "GeekyBot Add-ons Update Available!"
+msgstr "تحديث الوظائف الإضافية GEEKYBOT المتاحة!"
+
+msgid "We have recently launched a fresh update for the add-ons. Don't forget to update the add-ons to enjoy the greatest features!"
+msgstr "لقد أطلقنا مؤخرًا تحديثًا جديدًا للإضافات. لا تنس تحديث الوظائف الإضافية للاستمتاع بأكبر الميزات!"
+
+msgid "View Add-ons Status"
+msgstr "عرض الحالة الإضافية"
+
+msgid "How to translate"
+msgstr "كيفية الترجمة"
+
+msgid "How to use AI Web Search"
+msgstr "كيفية استخدام AI Web Search"
+
+msgid "How to install addons"
+msgstr "كيفية تثبيت الإضافات"
+
+msgid "Your Bot Is Going To Expire Soon Please Renew Your subscription!! "
+msgstr "سوف تنتهي صلاحية الروبوت الخاص بك قريبًا ، يرجى تجديد اشتراكك !!"
+
+msgid "Your Bot Is  Expired !! "
+msgstr "انتهت صلاحية روبوتك !!"
+
+msgid "Additionally, here are other top matches for your search."
+msgstr "بالإضافة إلى ذلك ، إليك مباريات أخرى أفضل لبحثك."
+
+msgid "Here are the best matches for your search."
+msgstr "فيما يلي أفضل المباريات لبحثك."
+
+msgid "Products"
+msgstr "منتجات"
+
+msgid "Show Products"
+msgstr "عرض المنتجات"
+
+msgid "."
+msgstr "."
+
+msgid "Email To Admin With Chat Conversation"
+msgstr "البريد الإلكتروني إلى المسؤول مع محادثة الدردشة"
+
+msgid "Get Products Between Price"
+msgstr "احصل على منتجات بين السعر"
+
+msgid "Show All Sale Products"
+msgstr "عرض جميع منتجات البيع"
+
+msgid "Show All Trending Products"
+msgstr "إظهار جميع المنتجات المتجهة"
+
+msgid "Show All Latest Products"
+msgstr "عرض جميع المنتجات الأخيرة"
+
+msgid "Show All Highest Rated Products"
+msgstr "إظهار جميع المنتجات ذات التصنيف الأعلى"
+
+msgid "View Orders"
+msgstr "عرض الأوامر"
+
+msgid "view Account Details"
+msgstr "عرض تفاصيل الحساب"
+
+msgid "Show All Sale Products {add-on base}"
+msgstr "عرض جميع منتجات البيع {add-on base}"
+
+msgid "Show All Trending Products {add-on base}"
+msgstr "إظهار جميع المنتجات المتجهة {add-on base}"
+
+msgid "Show All Latest Products {add-on base}"
+msgstr "عرض جميع المنتجات الأخيرة {add-on base}"
+
+msgid "Show All Highest Rated Products {add-on base}"
+msgstr "إظهار جميع المنتجات ذات التصنيف الأعلى {add-on base}"
+
+msgid "View Orders {add-on base}"
+msgstr "عرض الأوامر {add-on base}"
+
+msgid "view Account Details {add-on base}"
+msgstr "عرض تفاصيل الحساب {add-on base}"
+
+msgid "Track Order"
+msgstr "ترتيب المسار"
+
+msgid "Error: Story not found."
+msgstr "خطأ: القصة لم يتم العثور عليها."
+
+msgid "Error: Invalid intent data."
+msgstr "خطأ: بيانات نية غير صالحة."
+
+msgid "Upload failed."
+msgstr "فشل التحميل."
+
+msgid "Invalid file type. Please upload an XML file."
+msgstr "نوع الملف غير صالح. يرجى تحميل ملف XML."
+
+msgid "Error importing this file: The XML file seems to have an issue. Please check the file's structure."
+msgstr "خطأ في استيراد هذا الملف: يبدو أن ملف XML لديه مشكلة. يرجى التحقق من بنية الملف."
+
+msgid "The story has been imported successfully!"
+msgstr "تم استيراد القصة بنجاح!"
+
+msgid "Error while importing this file."
+msgstr "خطأ أثناء استيراد هذا الملف."
+
+msgid "Please enter a search term."
+msgstr "الرجاء إدخال مصطلح البحث."
+
+msgid "No matching results found."
+msgstr "لم يتم العثور على نتائج مطابقة."
+
+msgid "Results:"
+msgstr "نتائج:"
+
+msgid "NLP"
+msgstr "NLP"
+
+msgid "Simple"
+msgstr "بسيط"
+
+msgid "Move To Start"
+msgstr "تحرك للبدء"
+
+msgid "Move To Left"
+msgstr "انتقل إلى اليسار"
+
+msgid "Move To Right"
+msgstr "انتقل إلى اليمين"
+
+msgid "Move To End"
+msgstr "انتقل إلى النهاية"
+
+msgid "Export Story"
+msgstr "قصة التصدير"
+
+msgid "Import Story"
+msgstr "قصة الاستيراد"
+
+msgid "Synchronize Products"
+msgstr "مزامنة المنتجات"
+
+msgid "Default Fallback Action"
+msgstr "عمل احتياطي افتراضي"
+
+msgid "Default Fallback Intent"
+msgstr "نية العودة الافتراضية"
+
+msgid "Default Fallback Action Button"
+msgstr "زر الإجراء الافتراضي"
+
+msgid "Add New Intent"
+msgstr "أضف نية جديدة"
+
+msgid "Add New Fallback Intent"
+msgstr "أضف نية احتياطية جديدة"
+
+msgid "Customizes the action button displayed with the fallback message when the chatbot doesn't understand user input."
+msgstr "قم بتخصيص زر الإجراء المعروض مع رسالة التراجع عندما لا يفهم chatbot إدخال المستخدم."
+
+msgid "Custom Headings"
+msgstr "عناوين مخصصة"
+
+msgid "Predefined Functions"
+msgstr "وظائف محددة مسبقا"
+
+msgid "Select a predefined function to customize the heading. The corresponding heading will appear below and can be edited."
+msgstr "حدد وظيفة محددة مسبقًا لتخصيص العنوان. سيظهر العنوان المقابل أدناه ويمكن تحريره."
+
+msgid "Custom Heading"
+msgstr "عنوان مخصص"
+
+msgid "Edit the message that appears when the selected function is called. The chat popup on the right shows a live preview of this message."
+msgstr "قم بتحرير الرسالة التي تظهر عند استدعاء الوظيفة المحددة. يظهر المنبثقة على الدردشة على اليمين معاينة حية لهذه الرسالة."
+
+msgid "Custom heading preview"
+msgstr "معاينة عنوان مخصص"
+
+msgid "Support Link"
+msgstr "رابط الدعم"
+
+msgid "Show Support Link"
+msgstr "إظهار رابط الدعم"
+
+msgid "Hide"
+msgstr "يخفي"
+
+msgid "Toggle to show or hide the support link for users."
+msgstr "تبديل لإظهار أو إخفاء رابط الدعم للمستخدمين."
+
+msgid "Support Link URL"
+msgstr "دعم رابط عنوان URL"
+
+msgid "Set the URL where users will be redirected when they click the support link."
+msgstr "اضبط عنوان URL حيث سيتم إعادة توجيه المستخدمين عند النقر فوق رابط الدعم."
+
+msgid "Add New Button / Link"
+msgstr "أضف زر / رابط جديد"
+
+msgid "Please create a"
+msgstr "الرجاء إنشاء أ"
+
+msgid "to use template section."
+msgstr "لاستخدام قسم القالب."
+
+msgid "Please create a post to use template section."
+msgstr "يرجى إنشاء منشور لاستخدام قسم القالب."
+
+msgid "Abandonment Item Message"
+msgstr "رسالة البند التخلي"
+
+msgid "Abandonment Message"
+msgstr "رسالة التخلي"
+
+msgid "Security verification Failed, Please refresh your chat to continue."
+msgstr "فشل التحقق من الأمان ، يرجى تحديث الدردشة الخاصة بك للمتابعة."
+
+msgid "Your Key Is Invalid."
+msgstr "مفتاحك غير صالح."
+
+msgid "Your key is invalid, please contact to GeekyBot support team."
+msgstr "مفتاحك غير صالح ، يرجى الاتصال بفريق دعم GeekyBot."
+
+msgid "Your license key does not match your current domain, please contact to GeekyBot support team."
+msgstr "مفتاح الترخيص الخاص بك لا يتطابق مع مجالك الحالي ، يرجى الاتصال بفريق دعم GeekyBot."
+
+msgid "Your Subscription Is Expired."
+msgstr "انتهت صلاحية اشتراكك."
+
+msgid "Your subscription is expired, please renew it."
+msgstr "انتهت صلاحية اشتراكك ، يرجى تجديده."
+
+msgid "Database Update Needed"
+msgstr "تحديث قاعدة البيانات المطلوبة"
+
+msgid "A critical update for GeekyBot is required to maintain performance and prevent issues. Please update now."
+msgstr "مطلوب تحديث حاسم لـ GEEKYBOT للحفاظ على الأداء ومنع المشكلات. الرجاء التحديث الآن."
+
+msgid "Update Now"
+msgstr "تحديث الآن"
+
+msgid "Database successfully updated!"
+msgstr "قاعدة البيانات التي تم تحديثها بنجاح!"
+
+msgid "Your GeekyBot data is not updated. To ensure accurate results, please synchronize your Woocommerce products data."
+msgstr "لم يتم تحديث بيانات GEEKYBOT الخاصة بك. لضمان نتائج دقيقة ، يرجى مزامنة بيانات منتجات WooCommerce الخاصة بك."

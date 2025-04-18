@@ -117,8 +117,8 @@ msgid "Link"
 msgstr "ลิงค์"
 
 msgid ""
-"It is a long established fact that a reader will be distracted by the readable content of a page when looking at its "
-"layout Content here, content here..."
+"It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout Content here, content "
+"here..."
 msgstr "เป็นข้อเท็จจริงที่มีมายาวนานแล้วว่า ผู้อ่านจะเสียสมาธิกับเนื้อหาที่อ่านได้ของเพจเมื่อดูเลย์เอาต์ของหน้า เนื้อหาที่นี่ เนื้อหาที่นี่..."
 
 msgid "Description"
@@ -794,11 +794,11 @@ msgid "Lead Generation"
 msgstr "การสร้างลูกค้าเป้าหมาย"
 
 msgid ""
-"GeekyBot simplifies the WooCommerce experience with intelligent product discovery and purchasing. It seamlessly integrates "
-"with WooCommerce for efficient product searches, detailed listings, and a smooth shopping experience."
+"GeekyBot simplifies the WooCommerce experience with intelligent product discovery and purchasing. It seamlessly integrates with WooCommerce for "
+"efficient product searches, detailed listings, and a smooth shopping experience."
 msgstr ""
-"GeekyBot ลดความซับซ้อนของประสบการณ์ WooCommerce ด้วยการค้นหาและการจัดซื้อผลิตภัณฑ์อัจฉริยะ มันทำงานร่วมกับ WooCommerce "
-"ได้อย่างราบรื่นเพื่อการค้นหาผลิตภัณฑ์ที่มีประสิทธิภาพ รายการโดยละเอียด และประสบการณ์การช็อปปิ้งที่ราบรื่น"
+"GeekyBot ลดความซับซ้อนของประสบการณ์ WooCommerce ด้วยการค้นหาและการจัดซื้อผลิตภัณฑ์อัจฉริยะ มันทำงานร่วมกับ WooCommerce ได้อย่างราบรื่นเพื่อการค้นหาผลิตภัณฑ์ที่มีประสิทธิภาพ "
+"รายการโดยละเอียด และประสบการณ์การช็อปปิ้งที่ราบรื่น"
 
 msgid "Find Product"
 msgstr "ค้นหาผลิตภัณฑ์"
@@ -843,11 +843,11 @@ msgid "Conversation Handling"
 msgstr "การจัดการการสนทนา"
 
 msgid ""
-"AI Chat Conversation provides intelligent and context-aware interactions to enhance user engagement. Define key "
-"conversation elements to capture specific user inputs dynamically and adapt responses based on the context."
+"AI Chat Conversation provides intelligent and context-aware interactions to enhance user engagement. Define key conversation elements to capture "
+"specific user inputs dynamically and adapt responses based on the context."
 msgstr ""
-"AI Chat Conversation ให้การโต้ตอบที่ชาญฉลาดและคำนึงถึงบริบทเพื่อปรับปรุงการมีส่วนร่วมของผู้ใช้ "
-"กำหนดองค์ประกอบการสนทนาที่สำคัญเพื่อบันทึกอินพุตของผู้ใช้ที่เฉพาะเจาะจงแบบไดนามิก และปรับการตอบสนองตามบริบท"
+"AI Chat Conversation ให้การโต้ตอบที่ชาญฉลาดและคำนึงถึงบริบทเพื่อปรับปรุงการมีส่วนร่วมของผู้ใช้ กำหนดองค์ประกอบการสนทนาที่สำคัญเพื่อบันทึกอินพุตของผู้ใช้ที่เฉพาะเจาะจงแบบไดนามิก "
+"และปรับการตอบสนองตามบริบท"
 
 msgid "Capture and process inputs dynamically for personalized responses."
 msgstr "บันทึกและประมวลผลอินพุตแบบไดนามิกเพื่อการตอบสนองส่วนบุคคล"
@@ -868,8 +868,8 @@ msgid "Bot"
 msgstr "บอท"
 
 msgid ""
-"AI Web Search improves user experience by delivering advanced, intuitive content discovery on your WordPress site. With "
-"powerful searches, users can quickly find relevant information, enhancing overall interest and accessibility."
+"AI Web Search improves user experience by delivering advanced, intuitive content discovery on your WordPress site. With powerful searches, users can "
+"quickly find relevant information, enhancing overall interest and accessibility."
 msgstr ""
 "AI Web Search ปรับปรุงประสบการณ์ผู้ใช้โดยนำเสนอการค้นพบเนื้อหาขั้นสูงและใช้งานง่ายบนเว็บไซต์ WordPress ของคุณ ด้วยการค้นหาที่มีประสิทธิภาพ "
 "ผู้ใช้สามารถค้นหาข้อมูลที่เกี่ยวข้องได้อย่างรวดเร็ว ช่วยเพิ่มความสนใจและการเข้าถึงโดยรวม"
@@ -947,20 +947,17 @@ msgid "Select Template"
 msgstr "เลือกเทมเพลต"
 
 msgid ""
-"AI Chat in GeekyBot provides instant, personalized responses to user queries, ensuring seamless support around the clock. "
-"With its ability to engage users at any time, GeekyBot enhances the reliability of your service, making sure that your "
-"customers' needs are always met."
+"AI Chat in GeekyBot provides instant, personalized responses to user queries, ensuring seamless support around the clock. With its ability to engage "
+"users at any time, GeekyBot enhances the reliability of your service, making sure that your customers' needs are always met."
 msgstr ""
-"AI Chat ใน GeekyBot มอบการตอบสนองต่อคำถามของผู้ใช้แบบทันทีและเป็นส่วนตัว รับประกันการสนับสนุนที่ราบรื่นตลอดเวลา "
-"ด้วยความสามารถในการดึงดูดผู้ใช้ได้ตลอดเวลา GeekyBot ช่วยเพิ่มความน่าเชื่อถือของบริการของคุณ เพื่อให้แน่ใจว่าลูกค้าของคุณจะได้รับการตอบสนองเสมอ"
+"AI Chat ใน GeekyBot มอบการตอบสนองต่อคำถามของผู้ใช้แบบทันทีและเป็นส่วนตัว รับประกันการสนับสนุนที่ราบรื่นตลอดเวลา ด้วยความสามารถในการดึงดูดผู้ใช้ได้ตลอดเวลา GeekyBot "
+"ช่วยเพิ่มความน่าเชื่อถือของบริการของคุณ เพื่อให้แน่ใจว่าลูกค้าของคุณจะได้รับการตอบสนองเสมอ"
 
 msgid ""
-"By training GeekyBot with your specific data, you can create dynamic, tailored interactions that reflect your business's "
-"unique voice and services. This customization allows for more relevant, effective conversations that build stronger "
-"connections with your users."
+"By training GeekyBot with your specific data, you can create dynamic, tailored interactions that reflect your business's unique voice and services. "
+"This customization allows for more relevant, effective conversations that build stronger connections with your users."
 msgstr ""
-"ด้วยการฝึกอบรม GeekyBot ด้วยข้อมูลเฉพาะของคุณ "
-"คุณสามารถสร้างการโต้ตอบแบบไดนามิกที่ได้รับการปรับแต่งซึ่งสะท้อนถึงเสียงและบริการที่เป็นเอกลักษณ์ของธุรกิจของคุณ "
+"ด้วยการฝึกอบรม GeekyBot ด้วยข้อมูลเฉพาะของคุณ คุณสามารถสร้างการโต้ตอบแบบไดนามิกที่ได้รับการปรับแต่งซึ่งสะท้อนถึงเสียงและบริการที่เป็นเอกลักษณ์ของธุรกิจของคุณ "
 "การปรับแต่งนี้ช่วยให้เกิดการสนทนาที่เกี่ยวข้องและมีประสิทธิภาพมากขึ้น ซึ่งสร้างการเชื่อมต่อที่แน่นแฟ้นยิ่งขึ้นกับผู้ใช้ของคุณ"
 
 msgid "Bot Image"
@@ -976,15 +973,14 @@ msgid "AI Web Search Bot"
 msgstr "บอทค้นหาเว็บ AI"
 
 msgid ""
-"Effortlessly search for specific posts and content across your entire site using our powerful AI web search tool. GeekyBot "
-"goes beyond standard searches, delivering results from all types of data on your site. Whether you're looking for posts, "
-"pages, custom post types, or other information, GeekyBot ensures you find what you need quickly and efficiently by "
-"displaying relevant articles, posts, and more in a single, streamlined search experience."
+"Effortlessly search for specific posts and content across your entire site using our powerful AI web search tool. GeekyBot goes beyond standard "
+"searches, delivering results from all types of data on your site. Whether you're looking for posts, pages, custom post types, or other information, "
+"GeekyBot ensures you find what you need quickly and efficiently by displaying relevant articles, posts, and more in a single, streamlined search "
+"experience."
 msgstr ""
 "ค้นหาโพสต์และเนื้อหาที่เฉพาะเจาะจงทั่วทั้งไซต์ของคุณได้อย่างง่ายดายโดยใช้เครื่องมือค้นหาเว็บ AI อันทรงพลังของเรา GeekyBot เป็นมากกว่าการค้นหามาตรฐาน "
 "โดยให้ผลลัพธ์จากข้อมูลทุกประเภทบนเว็บไซต์ของคุณ ไม่ว่าคุณกำลังมองหาโพสต์ เพจ ประเภทโพสต์ที่กำหนดเอง หรือข้อมูลอื่นๆ GeekyBot "
-"ช่วยให้คุณค้นหาสิ่งที่คุณต้องการได้อย่างรวดเร็วและมีประสิทธิภาพโดยการแสดงบทความ โพสต์ และอื่นๆ "
-"ที่เกี่ยวข้องในประสบการณ์การค้นหาที่มีประสิทธิภาพและเรียบง่ายในที่เดียว"
+"ช่วยให้คุณค้นหาสิ่งที่คุณต้องการได้อย่างรวดเร็วและมีประสิทธิภาพโดยการแสดงบทความ โพสต์ และอื่นๆ ที่เกี่ยวข้องในประสบการณ์การค้นหาที่มีประสิทธิภาพและเรียบง่ายในที่เดียว"
 
 msgid "New Post Type Search"
 msgstr "ค้นหาประเภทโพสต์ใหม่"
@@ -1008,15 +1004,15 @@ msgid "WooCommerce plugin is not installed on your site, you won't be able to in
 msgstr "ไม่ได้ติดตั้งปลั๊กอิน WooCommerce บนเว็บไซต์ของคุณ คุณจะไม่สามารถรวม GeekyBot กับ WooCommerce ได้"
 
 msgid ""
-"Easily integrate AI with WooCommerce to enhance your online store’s performance. GeekyBot boosts lead generation and "
-"customer interactions, automating key processes for a more effective and engaging shopping experience."
+"Easily integrate AI with WooCommerce to enhance your online store’s performance. GeekyBot boosts lead generation and customer interactions, "
+"automating key processes for a more effective and engaging shopping experience."
 msgstr ""
-"ผสานรวม AI เข้ากับ WooCommerce ได้อย่างง่ายดายเพื่อเพิ่มประสิทธิภาพร้านค้าออนไลน์ของคุณ GeekyBot "
-"ช่วยเพิ่มการสร้างลูกค้าเป้าหมายและการโต้ตอบกับลูกค้า ทำให้กระบวนการสำคัญเป็นอัตโนมัติเพื่อประสบการณ์การช็อปปิ้งที่มีประสิทธิภาพและน่าดึงดูดยิ่งขึ้น"
+"ผสานรวม AI เข้ากับ WooCommerce ได้อย่างง่ายดายเพื่อเพิ่มประสิทธิภาพร้านค้าออนไลน์ของคุณ GeekyBot ช่วยเพิ่มการสร้างลูกค้าเป้าหมายและการโต้ตอบกับลูกค้า "
+"ทำให้กระบวนการสำคัญเป็นอัตโนมัติเพื่อประสบการณ์การช็อปปิ้งที่มีประสิทธิภาพและน่าดึงดูดยิ่งขึ้น"
 
 msgid ""
-"GeekyBot also streamlines customer inquiries and provides real-time, intelligent responses. By improving retention and "
-"customer satisfaction, it ensures your store delivers an exceptional experience that keeps shoppers coming back."
+"GeekyBot also streamlines customer inquiries and provides real-time, intelligent responses. By improving retention and customer satisfaction, it "
+"ensures your store delivers an exceptional experience that keeps shoppers coming back."
 msgstr ""
 "GeekyBot ยังเพิ่มความคล่องตัวในการสอบถามข้อมูลของลูกค้าและให้การตอบกลับอัจฉริยะแบบเรียลไทม์ ด้วยการปรับปรุงการรักษาลูกค้าและความพึงพอใจของลูกค้า "
 "ช่วยให้มั่นใจได้ว่าร้านค้าของคุณจะได้รับประสบการณ์พิเศษที่ทำให้นักช้อปกลับมาอีก"
@@ -1028,11 +1024,8 @@ msgid "Welcome to GeekyBot !..."
 msgstr "ยินดีต้อนรับสู่ GeekyBot!..."
 
 msgid ""
-"The ultimate AI chatbot for WooCommerce lead generation, intelligent content search, and interactive customer engagement "
-"on your WordPress website."
-msgstr ""
-"สุดยอดแชทบอท AI สำหรับการสร้างลูกค้าเป้าหมายของ WooCommerce การค้นหาเนื้อหาอัจฉริยะ และการมีส่วนร่วมของลูกค้าเชิงโต้ตอบบนเว็บไซต์ WordPress "
-"ของคุณ"
+"The ultimate AI chatbot for WooCommerce lead generation, intelligent content search, and interactive customer engagement on your WordPress website."
+msgstr "สุดยอดแชทบอท AI สำหรับการสร้างลูกค้าเป้าหมายของ WooCommerce การค้นหาเนื้อหาอัจฉริยะ และการมีส่วนร่วมของลูกค้าเชิงโต้ตอบบนเว็บไซต์ WordPress ของคุณ"
 
 msgid "Personalize interactions by dynamically processing user inputs using slots and variables."
 msgstr "ปรับแต่งการโต้ตอบโดยการประมวลผลอินพุตของผู้ใช้แบบไดนามิกโดยใช้ช่องและตัวแปร"
@@ -1094,9 +1087,7 @@ msgstr "ภาพขวา"
 msgid "Add-ons For Majestic Support"
 msgstr "ส่วนเสริมสำหรับการสนับสนุน Majestic"
 
-msgid ""
-"Get trusted WordPress add-ons. Guaranteed to work fast, safe to use, beautifully coded, packed with features, and are easy "
-"to use."
+msgid "Get trusted WordPress add-ons. Guaranteed to work fast, safe to use, beautifully coded, packed with features, and are easy to use."
 msgstr "รับส่วนเสริม WordPress ที่เชื่อถือได้ รับรองว่าทำงานเร็ว ปลอดภัย โค้ดสวยงาม อัดแน่นด้วยฟีเจอร์และใช้งานง่าย"
 
 msgid "Save big today with an exclusive membership plan!"
@@ -1150,9 +1141,7 @@ msgstr "บันทึกส่วนตัว"
 msgid "Private Note"
 msgstr "หมายเหตุส่วนตัว"
 
-msgid ""
-"Add private notes to a ticket and share crucial information internally with your agents, this private note is not visible "
-"to the customer."
+msgid "Add private notes to a ticket and share crucial information internally with your agents, this private note is not visible to the customer."
 msgstr "เพิ่มบันทึกส่วนตัวลงในตั๋วและแบ่งปันข้อมูลสำคัญภายในกับตัวแทนของคุณ บันทึกส่วนตัวนี้จะไม่ปรากฏให้ลูกค้าเห็น"
 
 msgid "merge tickets"
@@ -1161,8 +1150,7 @@ msgstr "รวมตั๋ว"
 msgid "Merge Tickets"
 msgstr "รวมตั๋ว"
 
-msgid ""
-"Merge one or more tickets into another if you receive two support requests from the same end user about the same issue."
+msgid "Merge one or more tickets into another if you receive two support requests from the same end user about the same issue."
 msgstr "รวมตั๋วหนึ่งรายการขึ้นไปเข้ากับอีกตั๋วหนึ่ง หากคุณได้รับคำขอการสนับสนุนจากผู้ใช้คนเดียวกันเกี่ยวกับปัญหาเดียวกันสองรายการ"
 
 msgid "helptopic"
@@ -1177,17 +1165,13 @@ msgstr "ผู้ใช้สามารถค้นหาและเลือ
 msgid "Auto Close Ticket"
 msgstr "ตั๋วปิดอัตโนมัติ"
 
-msgid ""
-"Manage abandoned tickets, and set rules for tickets over time, and those tickets will be closed automatically after a "
-"certain period."
+msgid "Manage abandoned tickets, and set rules for tickets over time, and those tickets will be closed automatically after a certain period."
 msgstr "จัดการตั๋วที่ถูกละทิ้ง และตั้งกฎสำหรับตั๋วเมื่อเวลาผ่านไป และตั๋วเหล่านั้นจะถูกปิดโดยอัตโนมัติหลังจากช่วงระยะเวลาหนึ่ง"
 
 msgid "Knowledgebase"
 msgstr "ฐานความรู้"
 
-msgid ""
-"Stop wasting time on repetitive inquiries, build your knowledge base, and organize your solutions into categories for "
-"users."
+msgid "Stop wasting time on repetitive inquiries, build your knowledge base, and organize your solutions into categories for users."
 msgstr "หยุดเสียเวลากับการสอบถามซ้ำๆ สร้างฐานความรู้ของคุณ และจัดระเบียบโซลูชันของคุณเป็นหมวดหมู่สำหรับผู้ใช้"
 
 msgid "Ticket Overdue"
@@ -1220,9 +1204,7 @@ msgstr "วิธีที่ง่ายที่สุดในการจั
 msgid "Private Credentials"
 msgstr "ข้อมูลรับรองส่วนตัว"
 
-msgid ""
-"Customers will enter sensitive information on tickets, and this add-on is designed to help you keep that information "
-"secure."
+msgid "Customers will enter sensitive information on tickets, and this add-on is designed to help you keep that information secure."
 msgstr "ลูกค้าจะป้อนข้อมูลที่ละเอียดอ่อนบนตั๋ว และส่วนเสริมนี้ออกแบบมาเพื่อช่วยให้คุณรักษาข้อมูลนั้นให้ปลอดภัย"
 
 msgid "Ticket close reason"
@@ -1246,9 +1228,7 @@ msgstr "ตั๋วสูงสุด"
 msgid "Max Tickets"
 msgstr "ตั๋วแม็กซ์"
 
-msgid ""
-"Admins can limit the number of tickets that users can create as well as the number of tickets that agents can open "
-"individually."
+msgid "Admins can limit the number of tickets that users can create as well as the number of tickets that agents can open individually."
 msgstr "ผู้ดูแลระบบสามารถจำกัดจำนวนตั๋วที่ผู้ใช้สามารถสร้างได้ เช่นเดียวกับจำนวนตั๋วที่ตัวแทนสามารถเปิดเป็นรายบุคคลได้"
 
 msgid "Feedback"
@@ -1267,11 +1247,9 @@ msgid "Export"
 msgstr "ส่งออก"
 
 msgid ""
-"Easily export ticket data and performance report data from your majestic support to an Excel spreadsheet with our "
-"efficient and user-friendly solution."
-msgstr ""
-"ส่งออกข้อมูลตั๋วและข้อมูลรายงานประสิทธิภาพจากการสนับสนุนที่ยอดเยี่ยมของคุณไปยังสเปรดชีต Excel "
-"ได้อย่างง่ายดายด้วยโซลูชันที่มีประสิทธิภาพและใช้งานง่ายของเรา"
+"Easily export ticket data and performance report data from your majestic support to an Excel spreadsheet with our efficient and user-friendly "
+"solution."
+msgstr "ส่งออกข้อมูลตั๋วและข้อมูลรายงานประสิทธิภาพจากการสนับสนุนที่ยอดเยี่ยมของคุณไปยังสเปรดชีต Excel ได้อย่างง่ายดายด้วยโซลูชันที่มีประสิทธิภาพและใช้งานง่ายของเรา"
 
 msgid "email cc"
 msgstr "อีเมลซีซี"
@@ -1300,9 +1278,7 @@ msgstr "SMTP ช่วยให้คุณสามารถเพิ่มโ�
 msgid "Multi Language Email Templates"
 msgstr "เทมเพลตอีเมลหลายภาษา"
 
-msgid ""
-"Create multi-language email templates for all default email templates to send customers emails in the language that they "
-"prefer."
+msgid "Create multi-language email templates for all default email templates to send customers emails in the language that they prefer."
 msgstr "สร้างเทมเพลตอีเมลหลายภาษาสำหรับเทมเพลตอีเมลเริ่มต้นทั้งหมดเพื่อส่งอีเมลถึงลูกค้าในภาษาที่พวกเขาต้องการ"
 
 msgid "Downloads"
@@ -1350,9 +1326,7 @@ msgstr "คุณจะได้รับแจ้งถึงสิ่งใด
 msgid "woocommerce"
 msgstr "วูคอมเมิร์ซ"
 
-msgid ""
-"The integration of the support ticket system for WooCommerce with your e-shop makes your support better and more "
-"professional."
+msgid "The integration of the support ticket system for WooCommerce with your e-shop makes your support better and more professional."
 msgstr "การรวมระบบตั๋วสนับสนุนสำหรับ WooCommerce เข้ากับร้านค้าออนไลน์ของคุณทำให้การสนับสนุนของคุณดีขึ้นและเป็นมืออาชีพมากขึ้น"
 
 msgid "mail chimp"
@@ -1361,9 +1335,7 @@ msgstr "เมลชิมแปนซี"
 msgid "Mail Chimp"
 msgstr "เมลชิมแปนซี"
 
-msgid ""
-"Manage your email marketing campaigns directly from your majestic support by adding new user accounts to your Mailchimp "
-"email list."
+msgid "Manage your email marketing campaigns directly from your majestic support by adding new user accounts to your Mailchimp email list."
 msgstr "จัดการแคมเปญการตลาดผ่านอีเมลของคุณโดยตรงจากฝ่ายสนับสนุนอันทรงเกียรติของคุณโดยการเพิ่มบัญชีผู้ใช้ใหม่ลงในรายการอีเมล Mailchimp ของคุณ"
 
 msgid "internal mail"
@@ -1381,9 +1353,7 @@ msgstr "วิดเจ็ตส่วนหน้า"
 msgid "Front-End Widgets"
 msgstr "วิดเจ็ตส่วนหน้า"
 
-msgid ""
-"Frontend Widgets include several widgets that can be used to enhance the plugin's functionality in various areas of the "
-"website."
+msgid "Frontend Widgets include several widgets that can be used to enhance the plugin's functionality in various areas of the website."
 msgstr "วิดเจ็ตส่วนหน้าประกอบด้วยวิดเจ็ตหลายตัวที่สามารถใช้เพื่อปรับปรุงการทำงานของปลั๊กอินในส่วนต่างๆ ของเว็บไซต์"
 
 msgid "envato"
@@ -1392,8 +1362,7 @@ msgstr "เอนวาโต"
 msgid "Envato"
 msgstr "เอนวาโต"
 
-msgid ""
-"Clients won't be able to open a new ticket using the Envato Validation plugin if they don't have a valid Envato license."
+msgid "Clients won't be able to open a new ticket using the Envato Validation plugin if they don't have a valid Envato license."
 msgstr "ลูกค้าจะไม่สามารถเปิดตั๋วใหม่โดยใช้ปลั๊กอิน Envato Validation ได้ หากพวกเขาไม่มีใบอนุญาต Envato ที่ถูกต้อง"
 
 msgid "easy digital download"
@@ -1402,8 +1371,7 @@ msgstr "ดาวน์โหลดดิจิตอลได้ง่าย"
 msgid "Easy Digital Download"
 msgstr "ดาวน์โหลดดิจิตอลอย่างง่ายดาย"
 
-msgid ""
-"Learn about a customer's purchase directly from the support dashboard by integrating Majestic Support with your EDD store."
+msgid "Learn about a customer's purchase directly from the support dashboard by integrating Majestic Support with your EDD store."
 msgstr "เรียนรู้เกี่ยวกับการซื้อของลูกค้าโดยตรงจากแดชบอร์ดการสนับสนุนโดยการรวม Majestic Support เข้ากับร้านค้า EDD ของคุณ"
 
 msgid "Majestic Support Add-ons Bundle Pack"
@@ -2210,9 +2178,7 @@ msgstr "ข้อมูลของคุณไม่ได้รับการ
 msgid "Enable AI web Search"
 msgstr "เปิดใช้งานการค้นหาเว็บ AI"
 
-msgid ""
-"Enable this feature to provide users with direct AI web search results in the chat, offering them a broader context for "
-"their queries."
+msgid "Enable this feature to provide users with direct AI web search results in the chat, offering them a broader context for their queries."
 msgstr "เปิดใช้งานคุณสมบัตินี้เพื่อให้ผู้ใช้ได้รับผลลัพธ์การค้นหาเว็บ AI โดยตรงในการแชท โดยเสนอบริบทที่กว้างขึ้นสำหรับคำถามของพวกเขา"
 
 msgid "Enable New Post Type Search"
@@ -2430,3 +2396,276 @@ msgstr "มหาวิทยาลัย"
 
 msgid "Vacation Planner"
 msgstr "นักวางแผนวันหยุด"
+
+msgid "Support"
+msgstr "สนับสนุน"
+
+msgid "Add-ons Status"
+msgstr "สถานะส่วนเสริม"
+
+msgid "Woocommerce"
+msgstr "Woocommerce"
+
+msgid "Hide notice"
+msgstr "ซ่อนประกาศ"
+
+msgid "Transaction Key"
+msgstr "คีย์ธุรกรรม"
+
+msgid "Please select )"
+msgstr "โปรดเลือก)"
+
+msgid " and Enter your license key and hit to authenticate. A valid key is required for updates."
+msgstr "และป้อนรหัสใบอนุญาตของคุณและกดเพื่อตรวจสอบสิทธิ์ จำเป็นต้องมีคีย์ที่ถูกต้องสำหรับการอัปเดต"
+
+msgid "Custom Text Style"
+msgstr "สไตล์ข้อความที่กำหนดเอง"
+
+msgid "WooCommerce Pro Pack"
+msgstr "WooCommerce Pro Pack"
+
+msgid "GeekyBot Add-ons Update Available!"
+msgstr "GeekyBot Add-Ons Update!"
+
+msgid "We have recently launched a fresh update for the add-ons. Don't forget to update the add-ons to enjoy the greatest features!"
+msgstr "เราเพิ่งเปิดตัวการอัปเดตใหม่สำหรับส่วนเสริม อย่าลืมอัปเดตส่วนเสริมเพื่อเพลิดเพลินกับคุณสมบัติที่ยิ่งใหญ่ที่สุด!"
+
+msgid "View Add-ons Status"
+msgstr "ดูสถานะส่วนเสริม"
+
+msgid "How to translate"
+msgstr "วิธีการแปล"
+
+msgid "How to use AI Web Search"
+msgstr "วิธีใช้การค้นหาเว็บ AI"
+
+msgid "How to install addons"
+msgstr "วิธีการติดตั้ง addons"
+
+msgid "Your Bot Is Going To Expire Soon Please Renew Your subscription!! "
+msgstr "บอทของคุณกำลังจะหมดอายุเร็ว ๆ นี้โปรดต่ออายุการสมัครของคุณ !!"
+
+msgid "Your Bot Is  Expired !! "
+msgstr "บอทของคุณหมดอายุแล้ว !!"
+
+msgid "Additionally, here are other top matches for your search."
+msgstr "นอกจากนี้นี่คือการแข่งขันชั้นนำอื่น ๆ สำหรับการค้นหาของคุณ"
+
+msgid "Here are the best matches for your search."
+msgstr "นี่คือการจับคู่ที่ดีที่สุดสำหรับการค้นหาของคุณ"
+
+msgid "Products"
+msgstr "สินค้า"
+
+msgid "Show Products"
+msgstr "แสดงผลิตภัณฑ์"
+
+msgid "."
+msgstr "-"
+
+msgid "Email To Admin With Chat Conversation"
+msgstr "อีเมลไปยังผู้ดูแลระบบพร้อมการสนทนาแชท"
+
+msgid "Get Products Between Price"
+msgstr "รับสินค้าระหว่างราคา"
+
+msgid "Show All Sale Products"
+msgstr "แสดงผลิตภัณฑ์ขายทั้งหมด"
+
+msgid "Show All Trending Products"
+msgstr "แสดงผลิตภัณฑ์ที่ได้รับความนิยมทั้งหมด"
+
+msgid "Show All Latest Products"
+msgstr "แสดงผลิตภัณฑ์ล่าสุดทั้งหมด"
+
+msgid "Show All Highest Rated Products"
+msgstr "แสดงผลิตภัณฑ์ที่ได้รับคะแนนสูงสุดทั้งหมด"
+
+msgid "View Orders"
+msgstr "ดูคำสั่งซื้อ"
+
+msgid "view Account Details"
+msgstr "ดูรายละเอียดบัญชี"
+
+msgid "Show All Sale Products {add-on base}"
+msgstr "แสดงผลิตภัณฑ์ขายทั้งหมด {Add-on base}"
+
+msgid "Show All Trending Products {add-on base}"
+msgstr "แสดงผลิตภัณฑ์ที่ได้รับความนิยมทั้งหมด {Add-on base}"
+
+msgid "Show All Latest Products {add-on base}"
+msgstr "แสดงผลิตภัณฑ์ล่าสุดทั้งหมด {add-on base}"
+
+msgid "Show All Highest Rated Products {add-on base}"
+msgstr "แสดงผลิตภัณฑ์ที่ได้รับคะแนนสูงสุดทั้งหมด {Add-on base}"
+
+msgid "View Orders {add-on base}"
+msgstr "ดูคำสั่งซื้อ {add-on base}"
+
+msgid "view Account Details {add-on base}"
+msgstr "ดูรายละเอียดบัญชี {add-on base}"
+
+msgid "Track Order"
+msgstr "คำสั่งติดตาม"
+
+msgid "Error: Story not found."
+msgstr "ข้อผิดพลาด: ไม่พบเรื่องราว"
+
+msgid "Error: Invalid intent data."
+msgstr "ข้อผิดพลาด: ข้อมูลเจตนาไม่ถูกต้อง"
+
+msgid "Upload failed."
+msgstr "อัพโหลดล้มเหลว"
+
+msgid "Invalid file type. Please upload an XML file."
+msgstr "ประเภทไฟล์ที่ไม่ถูกต้อง โปรดอัปโหลดไฟล์ XML"
+
+msgid "Error importing this file: The XML file seems to have an issue. Please check the file's structure."
+msgstr "ข้อผิดพลาดในการนำเข้าไฟล์นี้: ไฟล์ XML ดูเหมือนจะมีปัญหา โปรดตรวจสอบโครงสร้างของไฟล์"
+
+msgid "The story has been imported successfully!"
+msgstr "เรื่องราวได้รับการนำเข้าสำเร็จ!"
+
+msgid "Error while importing this file."
+msgstr "ข้อผิดพลาดขณะที่นำเข้าไฟล์นี้"
+
+msgid "Please enter a search term."
+msgstr "กรุณากรอกคำค้นหา"
+
+msgid "No matching results found."
+msgstr "ไม่พบผลลัพธ์ที่ตรงกัน"
+
+msgid "Results:"
+msgstr "ผลลัพธ์:"
+
+msgid "NLP"
+msgstr "NLP"
+
+msgid "Simple"
+msgstr "เรียบง่าย"
+
+msgid "Move To Start"
+msgstr "ย้ายไปเริ่มต้น"
+
+msgid "Move To Left"
+msgstr "ย้ายไปทางซ้าย"
+
+msgid "Move To Right"
+msgstr "ย้ายไปทางขวา"
+
+msgid "Move To End"
+msgstr "ย้ายไปจบ"
+
+msgid "Export Story"
+msgstr "เรื่องส่งออก"
+
+msgid "Import Story"
+msgstr "นำเข้าเรื่องราว"
+
+msgid "Synchronize Products"
+msgstr "ซิงโครไนซ์ผลิตภัณฑ์"
+
+msgid "Default Fallback Action"
+msgstr "การดำเนินการทางเลือกเริ่มต้น"
+
+msgid "Default Fallback Intent"
+msgstr "เจตนาทางเลือกเริ่มต้น"
+
+msgid "Default Fallback Action Button"
+msgstr "ปุ่มดำเนินการทางเลือกเริ่มต้น"
+
+msgid "Add New Intent"
+msgstr "เพิ่มเจตนาใหม่"
+
+msgid "Add New Fallback Intent"
+msgstr "เพิ่มความตั้งใจทางเลือกใหม่"
+
+msgid "Customizes the action button displayed with the fallback message when the chatbot doesn't understand user input."
+msgstr "ปรับแต่งปุ่มการกระทำที่แสดงด้วยข้อความทางเลือกเมื่อ chatbot ไม่เข้าใจอินพุตของผู้ใช้"
+
+msgid "Custom Headings"
+msgstr "หัวเรื่องที่กำหนดเอง"
+
+msgid "Predefined Functions"
+msgstr "ฟังก์ชั่นที่กำหนดไว้ล่วงหน้า"
+
+msgid "Select a predefined function to customize the heading. The corresponding heading will appear below and can be edited."
+msgstr "เลือกฟังก์ชั่นที่กำหนดไว้ล่วงหน้าเพื่อปรับแต่งส่วนหัว ส่วนหัวที่สอดคล้องกันจะปรากฏด้านล่างและสามารถแก้ไขได้"
+
+msgid "Custom Heading"
+msgstr "หัวเรื่องที่กำหนดเอง"
+
+msgid "Edit the message that appears when the selected function is called. The chat popup on the right shows a live preview of this message."
+msgstr "แก้ไขข้อความที่ปรากฏเมื่อเรียกใช้ฟังก์ชันที่เลือก การแชทป๊อปอัปทางด้านขวาแสดงตัวอย่างสดของข้อความนี้"
+
+msgid "Custom heading preview"
+msgstr "ตัวอย่างหัวเรื่องที่กำหนดเอง"
+
+msgid "Support Link"
+msgstr "ลิงค์สนับสนุน"
+
+msgid "Show Support Link"
+msgstr "แสดงลิงค์สนับสนุน"
+
+msgid "Hide"
+msgstr "ซ่อน"
+
+msgid "Toggle to show or hide the support link for users."
+msgstr "สลับเพื่อแสดงหรือซ่อนลิงค์สนับสนุนสำหรับผู้ใช้"
+
+msgid "Support Link URL"
+msgstr "URL ลิงค์สนับสนุน"
+
+msgid "Set the URL where users will be redirected when they click the support link."
+msgstr "ตั้งค่า URL ที่ผู้ใช้จะถูกเปลี่ยนเส้นทางเมื่อพวกเขาคลิกลิงก์สนับสนุน"
+
+msgid "Add New Button / Link"
+msgstr "เพิ่มปุ่ม / ลิงค์ใหม่"
+
+msgid "Please create a"
+msgstr "โปรดสร้างไฟล์"
+
+msgid "to use template section."
+msgstr "เพื่อใช้ส่วนแม่แบบ"
+
+msgid "Please create a post to use template section."
+msgstr "โปรดสร้างโพสต์เพื่อใช้ส่วนแม่แบบ"
+
+msgid "Abandonment Item Message"
+msgstr "ข้อความที่ถูกทอดทิ้ง"
+
+msgid "Abandonment Message"
+msgstr "ข้อความที่ถูกทอดทิ้ง"
+
+msgid "Security verification Failed, Please refresh your chat to continue."
+msgstr "การตรวจสอบความปลอดภัยล้มเหลวโปรดรีเฟรชการแชทของคุณเพื่อดำเนินการต่อ"
+
+msgid "Your Key Is Invalid."
+msgstr "คีย์ของคุณไม่ถูกต้อง"
+
+msgid "Your key is invalid, please contact to GeekyBot support team."
+msgstr "คีย์ของคุณไม่ถูกต้องโปรดติดต่อทีมสนับสนุน GeekyBot"
+
+msgid "Your license key does not match your current domain, please contact to GeekyBot support team."
+msgstr "คีย์ใบอนุญาตของคุณไม่ตรงกับโดเมนปัจจุบันของคุณโปรดติดต่อทีมสนับสนุน GeekyBot"
+
+msgid "Your Subscription Is Expired."
+msgstr "การสมัครสมาชิกของคุณหมดอายุ"
+
+msgid "Your subscription is expired, please renew it."
+msgstr "การสมัครสมาชิกของคุณหมดอายุโปรดต่ออายุ"
+
+msgid "Database Update Needed"
+msgstr "จำเป็นต้องอัปเดตฐานข้อมูล"
+
+msgid "A critical update for GeekyBot is required to maintain performance and prevent issues. Please update now."
+msgstr "การอัปเดตที่สำคัญสำหรับ GeekyBot จำเป็นต้องมีเพื่อรักษาประสิทธิภาพและป้องกันปัญหา โปรดอัปเดตตอนนี้"
+
+msgid "Update Now"
+msgstr "อัปเดตตอนนี้"
+
+msgid "Database successfully updated!"
+msgstr "ฐานข้อมูลอัปเดตสำเร็จ!"
+
+msgid "Your GeekyBot data is not updated. To ensure accurate results, please synchronize your Woocommerce products data."
+msgstr "ข้อมูล geekybot ของคุณไม่ได้รับการอัปเดต เพื่อให้แน่ใจว่าผลลัพธ์ที่ถูกต้องโปรดซิงโครไนซ์ข้อมูลผลิตภัณฑ์ WooCommerce ของคุณ"

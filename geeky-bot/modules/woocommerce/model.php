@@ -37,7 +37,7 @@ class GEEKYBOTwoocommerceModel {
         $products = wc_get_products($args);
         if($products){
             $allProducts = wp_count_posts('product')->publish;
-            $html = GEEKYBOTincluder::GEEKYBOT_getModel('stories')->getWcProductListingHtml($msg, $products, 'story', $allProducts, $currentPage, 'woocommerce', 'geekybot_showAllProducts', $data);
+            $html = GEEKYBOTincluder::GEEKYBOT_getModel('stories')->getWcProductListingHtml($msg, $products, 'showAllProducts', $allProducts, $currentPage, 'woocommerce', 'geekybot_showAllProducts', $data);
         } else {
             $html = __("No product was found.", "geeky-bot");
         }
@@ -132,7 +132,7 @@ class GEEKYBOTwoocommerceModel {
             );
             $product_ids = wc_get_products($args);
             $allProducts = count($product_ids); // Get the total count of products
-            $html = GEEKYBOTincluder::GEEKYBOT_getModel('stories')->getWcProductListingHtml($msg, $products, 'story', $allProducts, $currentPage, 'woocommerce', 'geekybot_searchProduct', $data);
+            $html = GEEKYBOTincluder::GEEKYBOT_getModel('stories')->getWcProductListingHtml($msg, $products, 'searchProduct', $allProducts, $currentPage, 'woocommerce', 'geekybot_searchProduct', $data);
         }else{
             $args = array(
                 'name' => $search_value, // Search parameter for product title
@@ -154,7 +154,7 @@ class GEEKYBOTwoocommerceModel {
                 );
                 $product_ids = wc_get_products($args);
                 $allProducts = count($product_ids); // Get the total count of products
-                $html = GEEKYBOTincluder::GEEKYBOT_getModel('stories')->getWcProductListingHtml($msg, $products, 'story', $allProducts, $currentPage, 'woocommerce', 'geekybot_searchProduct', $data);
+                $html = GEEKYBOTincluder::GEEKYBOT_getModel('stories')->getWcProductListingHtml($msg, $products, 'searchProduct', $allProducts, $currentPage, 'woocommerce', 'geekybot_searchProduct', $data);
             } else {
                 // call the fallback
                 // [v1.0.7] Change FallBack Logic.
@@ -239,7 +239,7 @@ class GEEKYBOTwoocommerceModel {
 
         $html = '';
         if ($products) {
-            $html = GEEKYBOTincluder::GEEKYBOT_getModel('stories')->getWcProductListingHtml($msg, $products, 'story', $totalProducts, $currentPage, 'woocommerce', 'geekybot_getProductsUnderPrice', $data);
+            $html = GEEKYBOTincluder::GEEKYBOT_getModel('stories')->getWcProductListingHtml($msg, $products, 'getProductsUnderPrice', $totalProducts, $currentPage, 'woocommerce', 'geekybot_getProductsUnderPrice', $data);
         }
 
         return $html;
@@ -322,7 +322,7 @@ class GEEKYBOTwoocommerceModel {
 
         $html = '';
         if ($products) {
-            $html = GEEKYBOTincluder::GEEKYBOT_getModel('stories')->getWcProductListingHtml($msg, $products, 'story', $totalProducts, $currentPage, 'woocommerce', 'geekybot_getProductsAbovePrice', $data);
+            $html = GEEKYBOTincluder::GEEKYBOT_getModel('stories')->getWcProductListingHtml($msg, $products, 'getProductsAbovePrice', $totalProducts, $currentPage, 'woocommerce', 'geekybot_getProductsAbovePrice', $data);
         }
 
         return $html;
@@ -390,7 +390,7 @@ class GEEKYBOTwoocommerceModel {
         $products = array_slice($filteredProducts, $offset, $productsPerPage);
         $html = '';
         if($products){
-            $html = GEEKYBOTincluder::GEEKYBOT_getModel('stories')->getWcProductListingHtml($msg, $products, 'story', $allProducts, $currentPage, 'woocommerce', 'geekybot_getProductsBetweenPrice', $data);
+            $html = GEEKYBOTincluder::GEEKYBOT_getModel('stories')->getWcProductListingHtml($msg, $products, 'getProductsBetweenPrice', $allProducts, $currentPage, 'woocommerce', 'geekybot_getProductsBetweenPrice', $data);
         }
         return $html; 
         wp_die();
@@ -651,13 +651,14 @@ class GEEKYBOTwoocommerceModel {
         $grand_total = $woocommerce->cart->get_total();
         // $grand_total = $woocommerce->cart->total;
         $grand_total = str_replace('"', "'", $grand_total);
+        $heading = GEEKYBOTincluder::GEEKYBOT_getModel('stories')->getCustomHeadingFromTable('viewCart');
 
         
         // Open the popup container (replace with your desired trigger/button)
         $text = "
         <div id='my-cart-popup' class='geekybot-cart-popup'>";
             $text .= "
-            <div class='geekybot_wc_product_heading'>" . __('Cart Details', 'geeky-bot').':' . "</div>";
+            <div class='geekybot_wc_product_heading'>" . geekybot::GEEKYBOT_getVarValue($heading) . "</div>";
             $text .= "
             <div class='geekybot_wc_cart_item_wrp'>";
                 // Loop through cart items and display details

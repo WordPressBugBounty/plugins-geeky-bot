@@ -3,8 +3,22 @@ if (!defined('ABSPATH'))
     die('Restricted Access');
 $msgkey = GEEKYBOTincluder::GEEKYBOT_getModel('configuration')->getMessagekey();
 GEEKYBOTMessages::GEEKYBOT_getLayoutMessage($msgkey);
+wp_enqueue_style('geekybot-color', GEEKYBOT_PLUGIN_URL . 'includes/css/style_color.css', array(), GEEKYBOT_PLUGIN_VERSION, 'all');
+$color1 = geekybot::$_data[0]['color1'];
+$color2 = geekybot::$_data[0]['color2'];
+$color3 = geekybot::$_data[0]['color3'];
+$color4 = geekybot::$_data[0]['color4'];
+
+if(geekybot::$_configuration['bot_custom_img'] != '0'){
+    $botImgPath = GEEKYBOTincluder::GEEKYBOT_getModel('geekybot')->getBotImagePath();
+} else {
+    $botImgPath = GEEKYBOT_PLUGIN_URL."includes/images/bot.png";
+}
 $geekybot_js ="
 jQuery(document).ready(function() {
+    jQuery('#function_custom_heading').on('input', function() {
+        jQuery('#heading_display_box').text(jQuery(this).val());
+    });
     jQuery(document).on('change', 'select.response-btn-type', function() {
         jQuery('.geeky-popup-dynamic-field').removeClass('geeky-popup-dynamic-field-active');
         jQuery(this).closest('.geeky-popup-dynamic-field').addClass('geeky-popup-dynamic-field-active');
@@ -38,8 +52,46 @@ function deleteFallBackTextBotton(fallbackButtonId){
         jQuery(fallbackButtonId).remove();
     });
 }
+function getCustomHeadingForFunction(val) {
+    var ajaxurl = '". admin_url('admin-ajax.php')."';
+    jQuery.post(ajaxurl, {action: 'geekybot_ajax', geekybotme: 'configuration', task: 'getCustomHeadingForFunction', val: val,'_wpnonce':'". esc_attr(wp_create_nonce("custom-heading-for-function")) ."'}, function (data) {
+        if (data) {
+            jQuery('#function_custom_heading').val(data); //retuen value
+            jQuery('#heading_display_box').text(data);
+        }
+    });
+}
 ";
 wp_add_inline_script('geekybot-main-js',$geekybot_js);
+if(in_array('woocommercepropack', geekybot::$_active_addons) && !get_option('unique_features_disabled')) {
+    $predefinedfnctionslist = array(
+        (object) array('id' => '', 'text' => 'Select Function'),
+        (object) array('id' => 'showAllProducts', 'text' => 'showAllProducts'),
+        (object) array('id' => 'searchProduct', 'text' => 'searchProduct'),
+        (object) array('id' => 'viewCart', 'text' => 'viewCart'),
+        (object) array('id' => 'showAllSaleProducts', 'text' => 'showAllSaleProducts'),
+        (object) array('id' => 'showAllTrendingProducts', 'text' => 'showAllTrendingProducts'),
+        (object) array('id' => 'showAllLatestProducts', 'text' => 'showAllLatestProducts'),
+        (object) array('id' => 'showAllHighestRatedProducts', 'text' => 'showAllHighestRatedProducts'),
+        (object) array('id' => 'viewOrders', 'text' => 'viewOrders'),
+        (object) array('id' => 'viewAccountDetails', 'text' => 'viewAccountDetails'),
+        (object) array('id' => 'getProductsUnderPrice', 'text' => 'getProductsUnderPrice'),
+        (object) array('id' => 'getProductsBetweenPrice', 'text' => 'getProductsBetweenPrice'),
+        (object) array('id' => 'getProductsAbovePrice', 'text' => 'getProductsAbovePrice')
+    );
+} else {
+    $predefinedfnctionslist = array(
+        (object) array('id' => '', 'text' => 'Select Function'),
+        (object) array('id' => 'showAllProducts', 'text' => 'showAllProducts'),
+        (object) array('id' => 'searchProduct', 'text' => 'searchProduct'),
+        (object) array('id' => 'viewCart', 'text' => 'viewCart'),
+        (object) array('id' => 'getProductsUnderPrice', 'text' => 'getProductsUnderPrice'),
+        (object) array('id' => 'getProductsBetweenPrice', 'text' => 'getProductsBetweenPrice'),
+        (object) array('id' => 'getProductsAbovePrice', 'text' => 'getProductsAbovePrice')
+    );
+}
+
+
 ?>
 <!-- main wrapper -->
 <div id="geekybotadmin-wrapper" class="geekybot-admin-main-wrapper">
@@ -200,6 +252,128 @@ wp_add_inline_script('geekybot-main-js',$geekybot_js);
                             </div>
                         </div>
                         <!-- <div> -->
+                    </div>
+                    <div class="geekybot-fallback-config-wrp">
+                        <span class="geekybot-admin-fallback-config-title"><?php echo esc_html(__('Custom Headings', 'geeky-bot')); ?></span>
+                        <div class="geekybot-config-row-wrp">
+                            <div class="geekybot-config-custom-heading-left-wrp">
+                                <div class="geekybot-config-row">
+                                    <div class="geekybot-config-title">
+                                        <?php echo esc_html(__('Predefined Functions', 'geeky-bot')); ?>
+                                    </div>
+                                    <div class="geekybot-config-value">
+                                        <?php echo wp_kses(GEEKYBOTformfield::GEEKYBOT_select('predefined_fnction', $predefinedfnctionslist, isset(geekybot::$_data[0]['predefined_fnction']) ? geekybot::$_data[0]['predefined_fnction'] : '', '', array('class' => 'inputbox geekybot-form-select-field', 'onchange' => 'getCustomHeadingForFunction(this.value);', 'data-validation' => 'required')), GEEKYBOT_ALLOWED_TAGS); ?>
+                                    </div>
+                                    <div class="geekybot-config-description">
+                                        <?php
+                                        echo esc_html(__("Select a predefined function to customize the heading. The corresponding heading will appear below and can be edited.", 'geeky-bot'));
+                                        ?>
+                                    </div>
+                                </div>
+                                <div class="geekybot-config-row">
+                                    <div class="geekybot-config-title">
+                                        <?php echo esc_html(__('Custom Heading', 'geeky-bot')); ?>
+                                    </div>
+                                    <div class="geekybot-config-value">
+                                        <?php echo wp_kses(GEEKYBOTformfield::GEEKYBOT_text('function_custom_heading', isset(geekybot::$_data[0]['function_custom_heading']) ? geekybot::GEEKYBOT_getVarValue(geekybot::$_data[0]['function_custom_heading']) : '', array('class' => 'inputbox')),GEEKYBOT_ALLOWED_TAGS); ?>
+                                    </div>
+                                    <div class="geekybot-config-description">
+                                        <?php
+                                        echo esc_html(__("Edit the message that appears when the selected function is called. The chat popup on the right shows a live preview of this message.", 'geeky-bot'));
+                                        ?>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="geekybot-config-custom-heading-right-wrp">
+                                <!-- preview start -->
+                                <div class="geekybot-appearance-right-section">
+                                    <div class="geekybot-chat-popup active geekybot-chat-init">
+                                        <div class="geekybot-chat-windows geekybot-chat-main">
+                                            <div id="geekybot-main-messages" class="geekybot-chat-window" style="float: right;">
+                                                <div class="geekybot-title-main-overlay">
+                                                    <div id="geekybot-window-title" class="geekybot-window-top">
+                                                        <div class="geekybot-window-top-inner">
+                                                            <div class="geekybot-window-top-inner-left">
+                                                                <div class="geekybot-window-profile">
+                                                                    <div class="geekybot-window-profile-img">
+                                                                        <img src="<?php echo esc_url($botImgPath); ?>"
+                                                                            alt="<?php echo esc_html(__('Bot Icon', 'geeky-bot')); ?>"
+                                                                            title="<?php echo esc_html(__('Bot Icon', 'geeky-bot')); ?>">
+                                                                    </div>
+                                                                </div>
+                                                                <i class="fa fa-circle"></i>
+                                                                <div class="geekybot-window-profile-text">
+                                                                    <div class="geekybot-window-text">
+                                                                        <?php
+                                                                        if (geekybot::$_configuration['title'] != '') {
+                                                                            $title = geekybot::$_configuration['title'];
+                                                                        } else {
+                                                                            $title = __('GeekyBot', 'geeky-bot');
+                                                                        } ?>
+                                                                        <span><?php echo esc_html($title); ?></span>
+                                                                        <span><?php echo esc_html(__('online', 'geeky-bot')); ?></span>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="geekybot-title-overlay"></div>
+                                                            </div>
+                                                            <div class="geekybot-window-top-inner-right">
+                                                                <div class="geekybot-window-top-dot-img" id="dna">
+                                                                    <img src="<?php echo esc_url(GEEKYBOT_PLUGIN_URL); ?>/includes/images/chat-img/menu.png"
+                                                                        alt="<?php echo esc_html(__('Action Icon', 'geeky-bot')); ?>"
+                                                                        title="<?php echo esc_html(__('Action', 'geeky-bot')); ?>">
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div id="geekybotPreviousChatBox" class="geekybot-chat-content"></div>
+                                                <div id="geekybotChatBox" class="geekybot-chat-content">
+                                                    <li class="geekybot-message geekybot-message-user">
+                                                    </li>
+                                                    <li class="geekybot-message geekybot-message-bot">
+                                                        <section class="geekybot-message-bot-img"><img
+                                                                src="<?php echo esc_url($botImgPath); ?>"
+                                                                alt="<?php echo esc_html(__('Bot Icon', 'geeky-bot')); ?>"
+                                                                title="<?php echo esc_html(__('Bot Icon', 'geeky-bot')); ?>"></section>
+                                                        <section class="geekybot-message-text geekybot_wc_product_wrp">
+                                                            <div class="geekybot_wc_product_heading">
+                                                                <div id="heading_display_box"><?php echo esc_html(__('Custom heading preview', 'geeky-bot')); ?></div>
+                                                            </div>
+                                                            <div class="geekybot_wc_product_wrp">
+                                                                <div class="geekybot_wc_product_left_wrp">
+                                                                    <img width="170"
+                                                                        alt="<?php echo esc_html(__('Product Icon', 'geeky-bot')); ?>"
+                                                                        title="<?php echo esc_html(__('Fusion Backpack', 'geeky-bot')); ?>"
+                                                                        src="<?php echo esc_url(GEEKYBOT_PLUGIN_URL); ?>includes/images/story/story_load.gif"
+                                                                        class="attachment-thumbnail size-thumbnail" decoding="async" loading="lazy">
+                                                                </div>
+                                                            </div>
+                                                        </section>
+                                                    </li>
+                                                </div>
+                                                <div id="geekybot-send-message" class="geekybot-window-bottom">
+                                                    <div class="geekybot-window-bottom-inner">
+                                                        <div class="geekybot-window-bottom-inner-left">
+                                                            <input id="geekybot-message-box" type="text" class="border-0 geekybot-message-box" placeholder="<?php echo esc_attr(__('Send message', 'geeky-bot')); ?>"
+                                                                autocomplete="off">
+                                                        </div>
+                                                        <div class="geekybot-window-bottom-inner-right">
+                                                            <div class="geekybot-window-bottom-send-img">
+                                                                <img id="geekybot-send-button"
+                                                                    src="<?php echo esc_url(GEEKYBOT_PLUGIN_URL); ?>includes/images/chat-img/send-icon.png"
+                                                                    alt="<?php echo esc_html(__('Action Icon', 'geeky-bot')); ?>"
+                                                                    title="<?php echo esc_html(__('Action', 'geeky-bot')); ?>">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- preview end -->
+                            </div>
+                        </div>
                     </div>
                     <div class="geekybot-fallback-config-wrp">
                         <span class="geekybot-admin-fallback-config-title"><?php echo esc_html(__('Support Link', 'geeky-bot')); ?></span>

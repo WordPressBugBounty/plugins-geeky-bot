@@ -16,6 +16,7 @@ class GEEKYBOTConfigurationController {
         if (self::canaddfile()) {
             switch ($layout) {
                 case 'admin_configurations':
+                    GEEKYBOTincluder::GEEKYBOT_getModel('themes')->getCurrentTheme();
                     GEEKYBOTincluder::GEEKYBOT_getModel('configuration')->getConfigurationsForForm();
                     break;
                 default:
