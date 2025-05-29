@@ -350,7 +350,7 @@ if (!GEEKYBOTincluder::GEEKYBOT_getTemplate('templates/admin/header',array('modu
                                                     <?php echo esc_html(__('Delete Story', 'geeky-bot')); ?>
                                                 </a>
                                                 <a class="geekybot-table-act-btn geekybot-delete" href="<?php echo esc_url(wp_nonce_url(admin_url('admin.php?page=geekybot_stories&task=geekybotExportStoryToXML&action=geekybottask&geekybot-storyid='.esc_attr(geekybot::$_data[0]['woo_story']->id)),'export-story-'.geekybot::$_data[0]['woo_story']->id)); ?>">
-                                                    <img src="<?php echo esc_url(GEEKYBOT_PLUGIN_URL); ?>includes/images/next.png" alt="<?php echo esc_attr(__('Export Story', 'geeky-bot')); ?>" class="geekybot-synchronize-img">
+                                                    <img src="<?php echo esc_url(GEEKYBOT_PLUGIN_URL); ?>includes/images/export.png" alt="<?php echo esc_attr(__('Export Story', 'geeky-bot')); ?>" class="geekybot-synchronize-img">
                                                     <?php echo esc_html(__('Export Story', 'geeky-bot')); ?>
                                                 </a>
                                                 <a class="geekybot-table-act-btn geekybot-delete geekybot-synchronize-products" href="<?php echo esc_url(wp_nonce_url(admin_url('admin.php?page=geekybot_woocommerce&task=synchronizeWooCommerceProducts&action=geekybottask'),'synchronize-data')); ?>">

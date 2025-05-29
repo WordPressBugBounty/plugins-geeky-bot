@@ -452,7 +452,7 @@ class GEEKYBOTpremiumpluginModel {
 
     function geekybotCheckUpdates(){
         include_once GEEKYBOT_PLUGIN_PATH . 'includes/updates/updates.php';
-        GEEKYBOTupdates::GEEKYBOT_checkUpdates(113);
+        GEEKYBOTupdates::GEEKYBOT_checkUpdates(114);
         return 1;
     }
 

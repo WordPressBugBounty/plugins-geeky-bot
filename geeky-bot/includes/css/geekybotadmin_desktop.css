@@ -1049,7 +1049,13 @@ div.geekybot-config-custom-heading-right-wrp #geekybot-send-message{top: 350px;}
 div.geekybot-config-custom-heading-right-wrp .geekybot-chat-popup.active {height: 420px}
 div.geekybot-config-custom-heading-right-wrp .geekybot-chat-popup .geekybot-chat-windows .geekybot-chat-window div.geekybot-chat-content li.geekybot-message.geekybot-message-user{padding: 0;}
 div.geekybot-config-custom-heading-right-wrp .geekybot-chat-popup .geekybot_wc_product_heading {border: 2px dashed #007bff;padding: 6px;background-color: #eef6ff;border-radius: 6px;}
-
+/* Abandonment section */
+div#geekybotadmin-wrapper div#geekybotadmin-data div#geekybot-admin-wrapper .geekybot-appearance-abandonment-section{float: left;width: 40%;position: relative;display: flex;align-items: stretch;justify-content: center;gap: 15px;padding: 0 30px 60px 20px;}
+div#geekybotadmin-wrapper div#geekybotadmin-data div#geekybot-admin-wrapper .geekybot-appearance-abandonment-section .geekybot-appearance-abandonment-image-wrp{display: flex;align-items: center;justify-content: center;padding: 10px;box-shadow: 0px 2px 6px #696969; max-width: calc(65% - 5px);width: fit-content;border-radius: 10px;min-height: 250px;}
+div#geekybotadmin-wrapper div#geekybotadmin-data div#geekybot-admin-wrapper .geekybot-appearance-abandonment-section .geekybot-appearance-abandonment-image-wrp .geekybot-appearance-abandonment-image-inerwrp{display: flex;align-items: center;justify-content: center;width: 100%;height: 100%;padding: 20px;background-color: #eaedf2;border-radius: 10px;}
+div#geekybotadmin-wrapper div#geekybotadmin-data div#geekybot-admin-wrapper .geekybot-appearance-abandonment-section .geekybot-appearance-abandonment-image-wrp img{max-width: 100%;height: auto;}
+div#geekybotadmin-wrapper div#geekybotadmin-data div#geekybot-admin-wrapper.geekybot-admin-appearance-wrapper .geekybot-abandonment-section-mainwrp div.geekybot-chatbot-popup-config div.geekybot-chatbot-popup-config-value select{width: 100%;}
+div#geekybotadmin-wrapper div#geekybotadmin-data div#geekybot-admin-wrapper.geekybot-admin-appearance-wrapper .geekybot-abandonment-section-mainwrp div.geekybot-chatbot-popup-config div.geekybot-chatbot-popup-config-value{padding-left: 0;padding-right: 0;}
 /* configuration */
 div#geekybotadmin-wrapper div#geekybotadmin-data div#geekybot-admin-wrapper form.geekybot-configurations div.geekybot-config-row-wrp {float: left;width: 100%;padding:50px 30px 0 30px;}
 div#geekybotadmin-wrapper div#geekybotadmin-data div#geekybot-admin-wrapper form.geekybot-configurations div.geekybot-config-row-wrp .geekybot-config-custom-heading-left-wrp {float: left;width: 60%;}
@@ -1920,6 +1926,8 @@ div#templateSetValuesblack{background: rgba(0,0,0,0.5);position: fixed;width: 10
   div.geeky-dashboard-supported-plugins-section .geeky-dashboard-supported-plugins-section-title::before{left: 2%;}
   div.geeky-dashboard-supported-plugins-section .geeky-dashboard-supported-plugins-section-title::after{right: 2%;}
   div.geeky-dashboard-supported-plugins-section .geeky-dashboard-supported-plugins-section-title::before, div.geeky-dashboard-supported-plugins-section .geeky-dashboard-supported-plugins-section-title::after{width: 20%;}
+  /* abondamt sect */
+  div#geekybotadmin-wrapper div#geekybotadmin-data div#geekybot-admin-wrapper .geekybot-appearance-abandonment-section{width: 45%;}
 }
 @media (max-width:1379px){
   div.geekybot-dashboard-cards-wrp .geekybot-dashboard-card{width: calc(100% / 3 - 23px);margin-bottom: 33.33px;}
@@ -2071,6 +2079,10 @@ div.geekybot-addon-installer-wrapper div.geekybot-addon-installer-section-wrap d
   /* settings */
   div#geekybotadmin-wrapper div#geekybotadmin-data div#geekybot-admin-wrapper form.geekybot-configurations div.geekybot-config-row-wrp .geekybot-config-custom-heading-left-wrp {width: 100%;}
   div#geekybotadmin-wrapper div#geekybotadmin-data div#geekybot-admin-wrapper form.geekybot-configurations div.geekybot-config-row-wrp .geekybot-config-custom-heading-right-wrp {width: 100%;}
+  /* abndamt sect */
+  div#geekybotadmin-wrapper div#geekybotadmin-data div#geekybot-admin-wrapper .geekybot-appearance-abandonment-section{width: 100%;}
+  div#geekybotadmin-wrapper div#geekybotadmin-data div#geekybot-admin-wrapper .geekybot-appearance-abandonment-section{padding-left: 30px;}
+  div#geekybotadmin-wrapper div#geekybotadmin-data div#geekybot-admin-wrapper.geekybot-admin-appearance-wrapper .geekybot-abandonment-section-mainwrp div.geekybot-chatbot-popup-config div.geekybot-chatbot-popup-config-value{width: 100%;}
 
 }
 @media (max-width:1150px){
@@ -2376,6 +2388,9 @@ div.geekybot-addon-installer-wrapper div.geekybot-addon-installer-section-wrap d
   div.geekybot-synchronize-section.geekybot-addon-update-available-section .geekybot-synchronize-imgwrp{width: 100%;}
   div.geekybot-synchronize-section.geekybot-addon-update-available-section .geekybot-synchronize-content-wrp{width: 100%;}
   div.geekybot-synchronize-section.geekybot-addon-update-available-section .geekybot-synchronize-button-wrp{width: 100%;margin-top: 15px;}
+  /* abndnt sec */
+  div#geekybotadmin-wrapper div#geekybotadmin-data div#geekybot-admin-wrapper .geekybot-appearance-abandonment-section{flex-wrap: wrap;}
+  div#geekybotadmin-wrapper div#geekybotadmin-data div#geekybot-admin-wrapper .geekybot-appearance-abandonment-section .geekybot-appearance-abandonment-image-wrp{max-width: 90%;}
 
 }
 @media (max-width:479px){

@@ -47,6 +47,26 @@ jQuery(document).ready(function(){
             jQuery(".geekybot-config-standard-popup").css("display","block");
             jQuery(".geekybot-config-smart-popup").css("display","none");
         }
+    });
+    jQuery("select#show_abandonment_message_on_smart_popup").change(function(){
+        var show_value = jQuery(this).val();
+        if(show_value == "1") {
+            jQuery(".smart-poup-without-aban").css("display","none");
+            jQuery(".smart-poup-with-aban").css("display","block");
+        } else {
+            jQuery(".smart-poup-without-aban").css("display","block");
+            jQuery(".smart-poup-with-aban").css("display","none");
+        }
+    });
+    jQuery("select#show_abandonment_message_on_standard_popup").change(function(){
+        var show_value = jQuery(this).val();
+        if(show_value == "1") {
+            jQuery(".standard-poup-without-aban").css("display","none");
+            jQuery(".standard-poup-with-aban").css("display","block");
+        } else {
+            jQuery(".standard-poup-without-aban").css("display","block");
+            jQuery(".standard-poup-with-aban").css("display","none");
+        }
     });';
     if(geekybot::$_configuration['auto_chat_start'] == 2) {
         $geekybot_js .= '
@@ -63,6 +83,28 @@ jQuery(document).ready(function(){
         jQuery(".geekybot-config-standard-popup").css("display","none");
         ';
     }
+    if(geekybot::$_configuration['show_abandonment_message_on_smart_popup'] == 2) {
+        $geekybot_js .= '
+        jQuery(".smart-poup-with-aban").css("display","none");
+        jQuery(".smart-poup-without-aban").css("display","block");
+        ';
+    } elseif(geekybot::$_configuration['show_abandonment_message_on_smart_popup'] == 1) {
+        $geekybot_js .= '
+        jQuery(".smart-poup-without-aban").css("display","none");
+        jQuery(".smart-poup-with-aban").css("display","block");
+        ';
+    }
+    if(geekybot::$_configuration['show_abandonment_message_on_standard_popup'] == 2) {
+        $geekybot_js .= '
+        jQuery(".standard-poup-with-aban").css("display","none");
+        jQuery(".standard-poup-without-aban").css("display","block");
+        ';
+    } elseif(geekybot::$_configuration['show_abandonment_message_on_standard_popup'] == 1) {
+        $geekybot_js .= '
+        jQuery(".standard-poup-without-aban").css("display","none");
+        jQuery(".standard-poup-with-aban").css("display","block");
+        ';
+    }
     $geekybot_js .= '
 });
 ';
@@ -70,6 +112,10 @@ wp_add_inline_script('geekybot-main-js',$geekybot_js);
 $enable_disable = array(
     (object) array('id' =>1, 'text' => __('Enable', 'geeky-bot')),
     (object) array('id' => 2, 'text' => __('Disable', 'geeky-bot'))
+);
+$yes_no = array(
+    (object) array('id' =>1, 'text' => __('Yes', 'geeky-bot')),
+    (object) array('id' => 2, 'text' => __('No', 'geeky-bot'))
 );
 $popup_type = array(
     (object) array('id' => 1, 'text' => __('Smart Popup', 'geeky-bot')),
@@ -460,6 +506,47 @@ $popup_type = array(
                                                 <p class="geekybot-chat-open-outer-popup-dialog-btmtext"><?php echo esc_html(geekybot::GEEKYBOT_getVarValue(geekybot::$_data[0]['welcome_message'])); ?></p>
                                             </div>
                                         </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <span class="geekybot-admin-appearance-subtitle"><?php echo esc_html(__('Abandoned Item Message', 'geeky-bot')); ?></span>
+                        <div class="tabs">
+                            <div class="geekybot-tabInner geekybot-abandonment-section-mainwrp">
+                                <div class="geekybot-chatbot-popup-config">
+                                    <div class="geekybot-chatbot-popup-config-title">
+                                        <?php echo esc_html(__('Show With Smart Popup', 'geeky-bot')); ?>
+                                    </div>
+                                    <div class="geekybot-chatbot-popup-config-value">
+                                        <?php echo wp_kses(GEEKYBOTformfield::GEEKYBOT_select('show_abandonment_message_on_smart_popup', $yes_no, isset(geekybot::$_data[0]['show_abandonment_message_on_smart_popup']) ? geekybot::$_data[0]['show_abandonment_message_on_smart_popup'] : '', '', array('class' => 'inputbox geekybot-form-select-field', 'data-validation' => 'required')), GEEKYBOT_ALLOWED_TAGS); ?>
+                                    </div>
+                                    <div class="geekybot-chatbot-popup-config-description">
+                                        <?php echo esc_html(__('Controls whether the abandoned cart message is displayed with the smart popup.', 'geeky-bot')); ?>
+                                    </div>
+                                </div>
+                                <div class="geekybot-chatbot-popup-config">
+                                    <div class="geekybot-chatbot-popup-config-title">
+                                        <?php echo esc_html(__('Show On Standard Popup', 'geeky-bot')); ?>
+                                    </div>
+                                    <div class="geekybot-chatbot-popup-config-value">
+                                        <?php echo wp_kses(GEEKYBOTformfield::GEEKYBOT_select('show_abandonment_message_on_standard_popup', $yes_no, isset(geekybot::$_data[0]['show_abandonment_message_on_standard_popup']) ? geekybot::$_data[0]['show_abandonment_message_on_standard_popup'] : '', '', array('class' => 'inputbox geekybot-form-select-field', 'data-validation' => 'required')), GEEKYBOT_ALLOWED_TAGS); ?>
+                                    </div>
+                                    <div class="geekybot-chatbot-popup-config-description">
+                                        <?php echo esc_html(__('Controls whether the abandoned cart message is displayed on the standard popup.', 'geeky-bot')); ?>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="geekybot-appearance-abandonment-section">
+                                <div class="geekybot-appearance-abandonment-image-wrp">
+                                    <div class="geekybot-appearance-abandonment-image-inerwrp">
+                                        <img style="display: none;" class="standard-poup-without-aban geekybot-appearance-abandonment-standard-image" src="<?php echo esc_url(GEEKYBOT_PLUGIN_URL); ?>includes/images/standard-poup-without-aban.png" alt="<?php echo esc_attr(__('Standard Popup', 'geeky-bot')); ?> "title="<?php echo esc_attr(__('Standard Popup', 'geeky-bot')); ?>">
+                                        <img style="display: none;" class="standard-poup-with-aban geekybot-appearance-abandonment-standard-image" src="<?php echo esc_url(GEEKYBOT_PLUGIN_URL); ?>includes/images/standard-poup-with-aban.png" alt="<?php echo esc_attr(__('Standard Popup', 'geeky-bot')); ?> "title="<?php echo esc_attr(__('Standard Popup', 'geeky-bot')); ?>">
+                                    </div>
+                                </div>
+                                <div class="geekybot-appearance-abandonment-image-wrp">
+                                    <div class="geekybot-appearance-abandonment-image-inerwrp">
+                                        <img style="display: none;" class="smart-poup-without-aban geekybot-appearance-abandonment-smart-image" src="<?php echo esc_url(GEEKYBOT_PLUGIN_URL); ?>includes/images/smart-poup-without-aban.png" alt="<?php echo esc_attr(__('Smart Popup', 'geeky-bot')); ?> "title="<?php echo esc_attr(__('Smart Popup', 'geeky-bot')); ?>">
+                                        <img style="display: none;" class="smart-poup-with-aban geekybot-appearance-abandonment-smart-image" src="<?php echo esc_url(GEEKYBOT_PLUGIN_URL); ?>includes/images/smart-poup-with-aban.png" alt="<?php echo esc_attr(__('Smart Popup', 'geeky-bot')); ?> "title="<?php echo esc_attr(__('Smart Popup', 'geeky-bot')); ?>">
                                     </div>
                                 </div>
                             </div>

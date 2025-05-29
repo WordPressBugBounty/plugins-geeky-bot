@@ -35,7 +35,10 @@ button.geekybot-chat-open-dialog, button.geekybot-chat-close-button, .geekybot-c
 .geekybot-chat-popup .geekybot-chat-windows .geekybot-chat-window div.geekybot-chat-content li.geekybot-message.geekybot-message-bot section.geekybot-message-text{float: right;}
 .geekybot-dropdown-content div{text-align: right;}
 #geekybot-send-message .border-0{padding-right:20px;padding-left: 6px;}
-div.geekybot-chat-open-outer-popup-dialog{right: auto;left: 50px;}
+div.geekybot-chat-open-outer-popup-mainwrp{right: auto;left: 50px;}
+.geekybot-chat-open-outer-popup-dialog-btmborderwrp::after{right: auto;left: 12px;}
+div.geekybot-chat-open-outer-popup-mainwrp .geekybot-chat-open-outer-popup-abandonment .geekybot-chat-open-outer-popup-abandonment-items{padding-left: 0;padding-right: 7px;}
+div.geekybot-chat-open-outer-popup-dialog .geekybot-chat-open-outer-popup-dialog-top-cross-button{right: auto;left: 10px;}
 /* web search */
 .geekybot-chat-popup .geekybot-chat-windows .geekybot-chat-window div.geekybot-chat-content li.geekybot-message.geekybot-message-bot section.geekybot-message-text{float: right;}
 .geekybot-chat-popup .geekybot-chat-windows .geekybot-chat-window div.geekybot-chat-content li.geekybot-message.geekybot-message-bot{float: right;}

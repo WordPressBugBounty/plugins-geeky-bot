@@ -602,6 +602,7 @@ class GEEKYBOTwebsearchModel {
             ) {
                 continue;
             }
+            if($post->custom_score == 0 && $post->score < 1.5) continue;
 
             // Ensure uniqueness by post id, keeping the highest custom_score and then the highest score
             if (

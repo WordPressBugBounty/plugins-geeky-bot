@@ -144,7 +144,7 @@ class GEEKYBOTactivation {
             ('title',   'GeekyBot',   'default',  NULL),
             ('pagination_default_page_size',    '10',   'default',  NULL),
             ('pagination_product_page_size',    '3',   'default',  NULL),
-            ('versioncode', '1.1.3',    'default',  NULL),
+            ('versioncode', '1.1.4',    'default',  NULL),
             ('last_version',    '101',  'default',  NULL),
             ('image_file_type', 'png,jpeg,gif,jpg', 'default', NULL),
             ('bot_custom_img',  '0',    'default',  NULL),
@@ -167,7 +167,9 @@ class GEEKYBOTactivation {
             ('welcome_message', 'Welcome to GeekyBot! Let me know how I can assist you today.', 'default',  NULL),
             ('show_support_link', '2', 'default',  NULL),
             ('support_link_url', '', 'default',  NULL),
-            ('default_pageid',  '5',    'default',  NULL);";
+            ('default_pageid',  '5',    'default',  NULL),
+            ('show_abandonment_message_on_smart_popup',  '1',    'default',  NULL),
+            ('show_abandonment_message_on_standard_popup',  '1',    'default',  NULL);";
             geekybot::$_db->query($query);
 
             $query = "CREATE TABLE IF NOT EXISTS `" . geekybot::$_db->prefix . "geekybot_forms` (

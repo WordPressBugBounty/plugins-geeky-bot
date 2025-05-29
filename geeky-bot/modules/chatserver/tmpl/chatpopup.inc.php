@@ -6,6 +6,19 @@ if (!defined('ABSPATH'))
     $userImgScr = GEEKYBOTincluder::GEEKYBOT_getModel('geekybot')->getUserImagePath();
     $geekybot_js = '
     jQuery(document).ready(function(){
+        var ajaxurl = "'.esc_url(admin_url('admin-ajax.php')).'";
+        jQuery.post(ajaxurl, {
+            action: "geekybot_ajax",
+            geekybotme: "geekybot",
+            task: "geekybotFreshMessages",
+            "_wpnonce": "' . esc_attr(wp_create_nonce("geekybot_fresh_messages")) . '"
+        }, function(response) {
+            if (response) {
+                jQuery(".geekbotMessageWrapper").html(response);
+            } else {
+                jQuery(".geekbotMessageWrapper").html("");
+            }
+        });
         var cookielist = document.cookie.split(";");
         for (var i=0; i<cookielist.length; i++) {
             if (cookielist[i].trim() == "geekybot_collapse_chat_popup=1") {
@@ -16,7 +29,12 @@ if (!defined('ABSPATH'))
             }
         }';
         
-        if(isset($_COOKIE['geekybot_chat_id'])){
+        if(!isset($_COOKIE['geekybot_chat_id'])) {
+            $geekybot_js .= '
+            if (jQuery(".geekybot-chat-popup").hasClass("active")) {
+                enforceRestartUserChat();
+            }';
+        } else {
             // $geekybot_js .= 'jQuery(".geekybot-chat-popup").addClass("active");';
             if (geekybot::$_configuration['welcome_screen'] == '2') {
                 $geekybot_js.='
@@ -32,7 +50,7 @@ if (!defined('ABSPATH'))
         $geekybot_js .= '
     
         jQuery(".geekybot-chat-open-dialog").click(function() {
-            jQuery(".geekybot-chat-open-outer-popup-dialog").hide();
+            jQuery(".geekybot-chat-open-outer-popup-mainwrp").hide();
             jQuery(this).toggleClass("active");
             jQuery(".geekybot-chat-popup").toggleClass("active");
             jQuery(".geekybot-chat-close-button").toggleClass("active");
@@ -159,45 +177,72 @@ if (!defined('ABSPATH'))
                 }
             });
         });
-
-        // Code to open the chat popup
-        document.addEventListener("DOMContentLoaded", function() {';
-            if ( geekybot::$_configuration['auto_chat_start'] == 1 && geekybot::$_configuration['auto_chat_start_time'] != '' ) {
-                $startTime = geekybot::$_configuration['auto_chat_start_time'];
-                // change time from seconds to miliseconds
-                $startTime = $startTime * 1000;
-                $geekybot_js.='
-                setTimeout(function() {
-                    // Code to open the chat popup if not already opened
-                    if (!jQuery(".geekybot-chat-popup").hasClass("active")) { ';
-                        if(!isset($_COOKIE['geekybot_chat_id'])){
-                            if ( geekybot::$_configuration['auto_chat_type'] == 1  ) {
-                                $geekybot_js.='
-                                // 
-                                var hide_smart_popup = 0;
-                                var cookielist = document.cookie.split(";");
-                                for (var i=0; i<cookielist.length; i++) {
-                                    if (cookielist[i].trim() == "geekybot_hide_smart_popup=1") {
-                                        hide_smart_popup = 1;
-                                    }
-                                }
-                                // 
-                                if(hide_smart_popup == 0) {
-                                    jQuery(".geekybot-chat-open-outer-popup-dialog").fadeIn().css("display", "flex");
-                                }
-                                ';
-                            } else {
-                                $geekybot_js.='    
-                                jQuery(".geekybot-chat-open-dialog").click();';
-                            }
-                        }
-                        $geekybot_js.='
-                    }
-                }, '.$startTime.');';
-            }
-            $geekybot_js.='
-        });
     });
+    // Code to open the chat popup
+    document.addEventListener("DOMContentLoaded", function() {';
+        if ( geekybot::$_configuration['auto_chat_start'] == 1 && geekybot::$_configuration['auto_chat_start_time'] != '' ) {
+            $startTime = geekybot::$_configuration['auto_chat_start_time'];
+            // change time from seconds to miliseconds
+            $startTime = $startTime * 1000;
+            $geekybot_js.='
+            setTimeout(function() {
+                // Code to open the chat popup if not already opened
+                if (!jQuery(".geekybot-chat-popup").hasClass("active")) { ';
+                    if(!isset($_COOKIE['geekybot_chat_id'])){
+                        if ( geekybot::$_configuration['auto_chat_type'] == 1  ) {
+                            $geekybot_js.='
+                            // 
+                            var hide_smart_popup = 0;
+                            var cookielist = document.cookie.split(";");
+                            for (var i=0; i<cookielist.length; i++) {
+                                if (cookielist[i].trim() == "geekybot_hide_smart_popup=1") {
+                                    hide_smart_popup = 1;
+                                }
+                            }
+                            // 
+                            if(hide_smart_popup == 0) {
+                                jQuery(".geekybot-chat-open-outer-popup-mainwrp").fadeIn().css("display", "flex");
+                            }
+                            ';
+                        } else {
+                            $geekybot_js.='    
+                            jQuery(".geekybot-chat-open-dialog").click();';
+                        }
+                    }
+                    $geekybot_js.='
+                }
+            }, '.$startTime.');';
+        }
+        $geekybot_js.='
+    });
+
+    function enforceRestartUserChat(callback) {
+        var x = new Date();
+        var hours=x.getHours().toString();
+        hours=hours.length==1 ? 0+hours : hours;
+        var minutes=x.getMinutes().toString();
+        minutes=minutes.length==1 ? 0+minutes : minutes;
+        var seconds=x.getSeconds().toString();
+        seconds=seconds.length==1 ? 0+seconds : seconds;
+        var month=(x.getMonth() +1).toString();
+        month=month.length==1 ? 0+month : month;
+        var dt=x.getDate().toString();
+        dt=dt.length==1 ? 0+dt : dt;
+        var x1=  x.getFullYear() + "-" + month + "-" + dt;
+        x1 = x1 + "  " +  hours + ":" +  minutes + ":" +  seconds ;
+        var dt = x1;
+
+        var ajaxurl = "'.esc_url(admin_url('admin-ajax.php')).'";
+        jQuery.post(ajaxurl, { action: "geekybot_frontendajax", geekybotme: "chathistory", task: "restartUserChat", datetime:dt, "_wpnonce":"'. esc_attr(wp_create_nonce("restart-user-chat")). '"}, function (data) {
+            if (data) {
+                jQuery("#chatsession").val(data);
+                // Wait a moment to ensure cookie is set and browser acknowledges it
+                setTimeout(function () {
+                    if (typeof callback === "function") callback();
+                }, 100); // 100ms delay
+            }
+        });
+    }
 
     function getRandomChatId() {
         var x = new Date();
@@ -331,7 +376,7 @@ if (!defined('ABSPATH'))
     }
 
     function geekybotHideSmartPopup(msg) {
-        jQuery(".geekybot-chat-open-outer-popup-dialog").fadeOut();
+        jQuery(".geekybot-chat-open-outer-popup-mainwrp").fadeOut();
         document.cookie = "geekybot_hide_smart_popup=1; expires=Sat, 01 Jan 2050 00:00:00 UTC; path=/";
     }
 
@@ -354,7 +399,23 @@ if (!defined('ABSPATH'))
     }
 
     function sendRequestToServer(message,text,sender,chat_id){
-        //geekybot_scrollToTop(1);
+        if (!document.cookie.split(";").some(cookie => cookie.trim().startsWith("geekybot_chat_id="))) {
+            if (jQuery(".geekybot-chat-popup").hasClass("active")) {
+                enforceRestartUserChat(function () {
+                    // Now call getMessageResponse only AFTER the cookie is set
+                    sendMessageAjax(message,text,sender,chat_id);
+                });
+                return; // prevent the call from executing immediately
+            }
+        }
+
+        // If cookie is already set, just call it
+        sendMessageAjax(message,text,sender,chat_id);
+
+    }
+
+    function sendMessageAjax(message,text,sender,chat_id){
+            //geekybot_scrollToTop(1);
         jQuery(\'#geekybotChatBox\').append(\'<li class="geekybot-message geekybot-message-bot geekybot_loading"><section class="geekybot-message-bot-img 05"><img src="' . esc_url($botImgScr) . '" alt="" /></section><section class="geekybot-message-text_wrp"></section></li>\');
         var listItem = jQuery(\'#geekybotChatBox\').find(\'li.geekybot-message-bot\').last(); // Get the last inserted <li>
         

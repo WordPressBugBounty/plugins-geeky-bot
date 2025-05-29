@@ -9,19 +9,40 @@
         $closeImgScr = esc_url(GEEKYBOT_PLUGIN_URL).'includes/images/chat_close.png';
         $chatpopupcode = wp_enqueue_style('geekybot-fontawesome', GEEKYBOT_PLUGIN_URL . 'includes/css/font-awesome.css', array(), GEEKYBOT_PLUGIN_VERSION, 'all');
         if (geekybot::$_configuration['welcome_message'] != '') {
+            $wrpclass = '';
             $chatpopupcode .='
-            <div class="geekybot-chat-open-outer-popup-dialog" style="display: none;">';
-                if(geekybot::$_configuration['welcome_message_img'] != '0'){
-                    $msgImgPath =GEEKYBOTincluder::GEEKYBOT_getModel('geekybot')->getWelcomeMessageImagePath();
-                    $chatpopupcode .='
-                    <div class="geekybot-chat-open-outer-popup-dialog-image"><img src="'.esc_url($msgImgPath).'" alt="'.esc_html(__('Logo', 'geeky-bot')).'" title="'.esc_html(__('Logo', 'geeky-bot')).'"/></div>';
+            <div class="geekybot-chat-open-outer-popup-mainwrp" style="display: none;">';
+                if (function_exists( 'WC' ) && WC()->cart && geekybot::$_configuration['show_abandonment_message_on_smart_popup'] == 1) {
+                    $items_in_cart = WC()->cart->get_cart_contents_count();
+                    if ($items_in_cart > 0) {
+                        $wrpclass = 'geekybot-chat-open-outer-popup-dialog-abandonment-cart';
+                        if ($items_in_cart == 1) {
+                            $cartMessage = $items_in_cart.' '. __('item is waiting for you!', 'geeky-bot');
+                        } else {
+                            $cartMessage = $items_in_cart.' '. __('items are waiting for you!', 'geeky-bot');
+                        }
+                        $chatpopupcode .= '
+                        <a class="geekybot-chat-open-outer-popup-abandonment" href="'.wc_get_cart_url().'" title="'.esc_html($cartMessage).'">
+                            <img class="geekybot-chat-open-outer-popup-abandonment-icon" src="'.esc_url(GEEKYBOT_PLUGIN_URL).'/includes/images/cart.png" alt="'.esc_html(__('Abandoned', 'geeky-bot')).'"/>
+                            <img class="geekybot-chat-open-outer-popup-abandonment-icon geeky-abandonment-white-icon" src="'.esc_url(GEEKYBOT_PLUGIN_URL).'/includes/images/cart-white.png" alt="'.esc_html(__('Abandoned', 'geeky-bot')).'"/>
+                            <span class="geekybot-chat-open-outer-popup-abandonment-items">'.$items_in_cart.'</span>
+                        </a>';
+                    }
                 }
                 $chatpopupcode .='
-                <p onclick="geekybotChatOpenDialog();" class="geekybot-chat-open-outer-popup-dialog-text">'.wp_kses(geekybot::$_configuration['welcome_message'], GEEKYBOT_ALLOWED_TAGS).'</p>
-                <span onclick="geekybotHideSmartPopup();" id="geekybotHideSmartPopup" class="geekybot-chat-open-outer-popup-dialog-top-cross-button">
-                    <img src="'.esc_url(GEEKYBOT_PLUGIN_URL).'/includes/images/control_panel/close-icon.png" alt="'.esc_html(__('Close', 'geeky-bot')).'" title="'.esc_html(__('Close', 'geeky-bot')).'"/>
-                </span>
-                <span class="geekybot-chat-open-outer-popup-dialog-btmborderwrp"></apan>
+                <div class="geekybot-chat-open-outer-popup-dialog '.$wrpclass.'">';
+                    if(geekybot::$_configuration['welcome_message_img'] != '0'){
+                        $msgImgPath =GEEKYBOTincluder::GEEKYBOT_getModel('geekybot')->getWelcomeMessageImagePath();
+                        $chatpopupcode .='
+                        <div class="geekybot-chat-open-outer-popup-dialog-image"><img src="'.esc_url($msgImgPath).'" alt="'.esc_html(__('Logo', 'geeky-bot')).'" title="'.esc_html(__('Logo', 'geeky-bot')).'"/></div>';
+                    }
+                    $chatpopupcode .='
+                    <p onclick="geekybotChatOpenDialog();" class="geekybot-chat-open-outer-popup-dialog-text">'.wp_kses(geekybot::$_configuration['welcome_message'], GEEKYBOT_ALLOWED_TAGS).'</p>
+                    <span onclick="geekybotHideSmartPopup();" id="geekybotHideSmartPopup" class="geekybot-chat-open-outer-popup-dialog-top-cross-button">
+                        <img src="'.esc_url(GEEKYBOT_PLUGIN_URL).'/includes/images/control_panel/close-icon.png" alt="'.esc_html(__('Close', 'geeky-bot')).'" title="'.esc_html(__('Close', 'geeky-bot')).'"/>
+                    </span>
+                    <span class="geekybot-chat-open-outer-popup-dialog-btmborderwrp"></apan>
+                </div>
             </div>';
         }
         $chatpopupcode .='
@@ -105,16 +126,42 @@
                                 </li>
                             </div>';
                         }
-                        $chatpopupcode .= '
-                        <div id="geekybotChatBox" class="geekybot-chat-content">';
-                            if(isset($_COOKIE['geekybot_chat_id'])){
-                                $chatId = GEEKYBOTincluder::GEEKYBOT_getModel('chathistory')->geekybot_getchatid();  
-                                $query = "SELECT sessionmsgvalue  FROM `" . geekybot::$_db->prefix . "geekybot_sessiondata` WHERE usersessionid = '".esc_sql($chatId)."' and sessionmsgkey = 'chathistory'";
-                                $conversion = geekybotdb::GEEKYBOT_get_var($query);
-                                if ($conversion != null) {
-                                    $chatpopupcode .= html_entity_decode($conversion);
+                        if (function_exists( 'WC' ) && WC()->cart && geekybot::$_configuration['show_abandonment_message_on_standard_popup'] == 1) {
+                            $items_in_cart = WC()->cart->get_cart_contents_count();
+                            if ($items_in_cart > 0) {
+                                if ($items_in_cart == 1) {
+                                    $cartMessage = __('Just a reminder —', 'geeky-bot') .' '. $items_in_cart.' '. __('item is waiting for you!', 'geeky-bot');
+                                } else {
+                                    $cartMessage = __('Just a reminder —', 'geeky-bot') .' '. $items_in_cart.' '. __('items are waiting for you!', 'geeky-bot');
                                 }
+                                $chatpopupcode .= '
+                                <div class="geekybot-chat-content geekybot-welcome-message">
+                                    <li class="geekybot-message geekybot-message-bot">
+                                        <section class="geekybot-message-bot-img">
+                                            <img src="'.esc_url($botImgScr).'" alt="'.esc_html(__('Image', 'geeky-bot')).'">
+                                        </section>
+                                        <section class="geekybot-message-text">
+                                            '.$cartMessage.'
+                                        </section>
+                                        <div class="geekybot_wc_success_action_wrp">
+                                            <a class="geekybot_wc_cart" onclick="geekybotViewCart()" target="_blank">
+                                                '.__('View Cart', 'geeky-bot').'
+                                            </a>
+                                            <a class="geekybot_wc_checkout wc_checkout" href="'.wc_get_cart_url().'" target="_blank">
+                                                <img src="'. esc_url(GEEKYBOT_PLUGIN_URL) .'includes/images/chat-img/new-tab.png " alt="' . __('View Cart', 'geeky-bot') . '" class="geekybot-cart-item-image">
+                                            </a>
+                                            <a class="geekybot_wc_checkout" href="'.wc_get_checkout_url().'" target="_blank">
+                                                '.__('Checkout', 'geeky-bot').'
+                                            </a>
+                                        </div>
+                                    </li>
+                                </div>
+                                ';
                             }
+                        }
+                        $chatpopupcode .= '
+                        <div id="geekybotChatBox" class="geekybot-chat-content geekbotMessageWrapper">';
+                            // get the user messages dynamicly using ajax
                         $chatpopupcode .='
                         </div>
                     </div>

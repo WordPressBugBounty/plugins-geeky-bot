@@ -60,6 +60,8 @@ li.geeky_bot_wc_msg_btn .geeky_bot_wc_btn{border: 1px solid $color1}
  div.geekybot-appearance-right-section button.geekybot-chat-close-button.chat-smart-popup-destroy.active::after{border-color:inherit;border-left-color: transparent !important;border-right-color:transparent !important;}
  button.geekybot-chat-close-button.active::after{border-left-color: transparent;border-right-color:transparent;}
  .geekybot-chat-open-outer-popup-dialog-btmborderwrp::after{border-color:$color1;border-left-color: transparent;border-right-color:transparent;}
+ div.geekybot-chat-open-outer-popup-mainwrp .geekybot-chat-open-outer-popup-abandonment{border: 2px solid $color1;}
+ div.geekybot-chat-open-outer-popup-mainwrp .geekybot-chat-open-outer-popup-abandonment:hover{background-color:$color1;color:#fff;}
 ";
 $color_string_css = $result;
 if ( ! function_exists( 'WP_Filesystem' ) ) {

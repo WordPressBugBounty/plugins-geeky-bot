@@ -412,8 +412,11 @@ class GEEKYBOTchatserverModel {
                 // distance, OR if a next shortest word has not yet been found
                 if ($lev_distance <= $shortest_distance || $shortest_distance < 0) {
                     // set the closest match, and shortest distance
-                    $closest_intent = $intent;
-                    $shortest_distance = $lev_distance;
+                    $lev_distance_percentage = $this->calculateLevenshteinSimilarity($msg, $intent->user_messages_text, $lev_distance);
+                    if($lev_distance_percentage > 50){
+                        $closest_intent = $intent;
+                        $shortest_distance = $lev_distance;
+                    }
                 }
             }
         // }
@@ -421,7 +424,8 @@ class GEEKYBOTchatserverModel {
         if ($closest_intent) {
             $final_inents = $this->getAllIntentsFromTopSearchStory([$closest_intent]);
         } else {
-            $final_inents = $this->getAllIntentsFromTopSearchStory($intents);
+            // $final_inents = $this->getAllIntentsFromTopSearchStory($intents);
+            $final_inents = [];
         }
         return ['exact_match' => $exact_match, 'intents' => $final_inents];
     }
@@ -503,8 +507,11 @@ class GEEKYBOTchatserverModel {
                 // distance, OR if a next shortest word has not yet been found
                 if ($lev_distance <= $shortest_distance || $shortest_distance < 0) {
                     // set the closest match, and shortest distance
-                    $closest_intent = $intent;
-                    $shortest_distance = $lev_distance;
+                    $lev_distance_percentage = $this->calculateLevenshteinSimilarity($msg, $intent->user_messages_text, $lev_distance);
+                    if($lev_distance_percentage > 70){
+                        $closest_intent = $intent;
+                        $shortest_distance = $lev_distance;
+                    }
                 }
             }
             if($closest_intent){
@@ -529,10 +536,15 @@ class GEEKYBOTchatserverModel {
             $key = $intent->story_id . '-' . $intent->group_id;
             if (!isset($unique_combinations[$key])) {
                 $unique_combinations[$key] = true;
-                $result[] = $intent;
+                $lev_distance_percentage = $this->calculateLevenshteinSimilarity($msg, $intent->user_messages_text, $lev_distance);
+                if($lev_distance_percentage > 30){
+                    $result[] = $intent;
+                }
             }
         }
-        $final_inents = empty($result) && isset($intents[0]) ? [$intents[0]] : $result;
+        // $final_inents = empty($result) && isset($intents[0]) ? [$intents[0]] : $result;
+        // above line set first record, which may inrelevant.        
+        $final_inents = $result;
         return ['exact_match' => $exact_match, 'intents' => $final_inents];
     }
 
@@ -990,6 +1002,27 @@ class GEEKYBOTchatserverModel {
         }
         return __("Invalid username or email. Try again with the correct one.", "geeky-bot");
         wp_die();
+    }
+
+    function calculateLevenshteinSimilarity($msg, $user_messages_text, $lev_distance) {
+
+        // If either message is longer than 255 characters, return 0%
+        if (strlen($msg) > 255 || strlen($user_messages_text) > 255) {
+            return 0.0;
+        }
+
+        $msg_len = strlen($msg);    
+        $user_messages_text_len = strlen($user_messages_text);    
+
+        $larger_len = ($msg_len > $user_messages_text_len) ? $msg_len : $user_messages_text_len;
+
+        if ($larger_len === 0) {
+            return 100.0;
+        }
+
+        $lev_distance_percentage = 100 - (($lev_distance / $larger_len) * 100);
+
+        return round($lev_distance_percentage, 2);
     }
 }
 ?>

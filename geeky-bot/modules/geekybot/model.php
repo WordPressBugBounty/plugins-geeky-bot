@@ -551,6 +551,19 @@ class GEEKYBOTgeekybotModel {
         $key = 'geekybot';if(is_admin()){$key = 'admin_'.$key;}return $key;
     }
 
+    function geekybotFreshMessages(){
+        $chatpopupcode = '';
+        if(isset($_COOKIE['geekybot_chat_id'])){
+            $chatId = GEEKYBOTincluder::GEEKYBOT_getModel('chathistory')->geekybot_getchatid();  
+            $query = "SELECT sessionmsgvalue  FROM `" . geekybot::$_db->prefix . "geekybot_sessiondata` WHERE usersessionid = '".esc_sql($chatId)."' and sessionmsgkey = 'chathistory'";
+            $conversion = geekybotdb::GEEKYBOT_get_var($query);
+            if ($conversion != null) {
+                $chatpopupcode .= html_entity_decode($conversion);
+            }
+        }
+        return $chatpopupcode;
+    }
+
 
 
 }

@@ -84,6 +84,9 @@ div.geekybot-config-value a.geekybot-popup-selection{margin-right: 10px;margin-l
 div.geekybot-config-selection-popup{right:auto;left: 112px;}
 div.geekybot-config-selection-popup .geekybot-config-standard-popup{margin-right: 0;margin-left: 10px;}
 div.geekybot-config-selection-popup-closebtn{right: auto;left: 10px;}
+div.geekybot-appearance-right-section.geekybot-appearance-right-popup-section div.geekybot-config-selection-popup{float: left;}
+/* abndant sect */
+div#geekybotadmin-wrapper div#geekybotadmin-data div#geekybot-admin-wrapper .geekybot-appearance-abandonment-section{padding-right: 20px;}
 
 /* stories */
 div#geekybot-searchbar{float: right;}
