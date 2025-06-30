@@ -447,12 +447,13 @@ class GEEKYBOTpremiumpluginModel {
             'geeky-bot-customtextstyle' => array('title' => esc_html(__('Custom Text Style','geeky-bot')), 'price' => 0, 'status' => 1),
             'geeky-bot-customlistingstyle' => array('title' => esc_html(__('Custom Listing Style','geeky-bot')), 'price' => 0, 'status' => 1),
             'geeky-bot-woocommercepropack' => array('title' => esc_html(__('WooCommerce Pro Pack','geeky-bot')), 'price' => 0, 'status' => 1),
+            'geeky-bot-openaiassistant' => array('title' => esc_html(__('OpenAI Assistant','geeky-bot')), 'price' => 0, 'status' => 1),
         );
     }
 
     function geekybotCheckUpdates(){
         include_once GEEKYBOT_PLUGIN_PATH . 'includes/updates/updates.php';
-        GEEKYBOTupdates::GEEKYBOT_checkUpdates(114);
+        GEEKYBOTupdates::GEEKYBOT_checkUpdates(116);
         return 1;
     }
 

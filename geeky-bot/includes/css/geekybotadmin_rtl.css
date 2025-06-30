@@ -71,7 +71,6 @@ div#geekybotadmin-wrapper div#geekybotadmin-data div#geekybot-admin-wrapper form
 div#geekybotadmin-wrapper div#geekybotadmin-data div#geekybot-admin-wrapper .geekybot-config-custom-heading-right-wrp .geekybot-appearance-right-section {float: left;}
 div#geekybotadmin-wrapper div#geekybotadmin-data div#geekybot-admin-wrapper form.geekybot-configurations div.geekybot-config-row-wrp div.geekybot-config-row div.geekybot-config-title, div#geekybotadmin-wrapper div#geekybotadmin-data div#geekybot-admin-wrapper form.geekybot-configurations div.geekybot-config-row-wrp div.geekybot-config-row div.geekybot-config-title{float: right;padding-right: 0;padding-left: 30px;text-align: left;}
 div#geekybotadmin-wrapper div#geekybotadmin-data div#geekybot-admin-wrapper form.geekybot-configurations div.geekybot-config-row-wrp div.geekybot-config-row div.geekybot-config-value input, div#geekybotadmin-wrapper div#geekybotadmin-data div#geekybot-admin-wrapper form.geekybot-configurations div.geekybot-config-row-wrp div.geekybot-config-row div.geekybot-config-value input{float: right;}
-div#geekybotadmin-wrapper div#geekybotadmin-data div#geekybot-admin-wrapper form.geekybot-configurations div.geekybot-config-row-wrp div.geekybot-config-row div.geekybot-config-description{margin-left: 0;margin-right: 25%;padding-right: 10px;}
 div#geekybotadmin-wrapper div#geekybotadmin-data div#geekybot-admin-wrapper form.geekybot-configurations div.geekybot-config-row-wrp div.geekybot-config-row div.geekybot-config-value, div#geekybotadmin-wrapper div#geekybotadmin-data div#geekybot-admin-wrapper form.geekybot-configurations div.geekybot-config-row-wrp div.geekybot-config-row div.geekybot-config-value{float: right;}
 div#geekybotadmin-wrapper div#geekybotadmin-data div#geekybot-admin-wrapper form.geekybot-configurations div.geekybot-config-row-wrp div.geekybot-config-row div.geekybot-config-value select{float: right;}
 div#geekybotadmin-wrapper div#geekybotadmin-data div#geekybot-admin-wrapper form.geekybot-configurations div.geekybot-config-row-wrp div.geekybot-config-row div.geekybot-config-description{margin-left: 0;margin-right: 25%;padding-right: 10px;}
@@ -289,6 +288,11 @@ div#geekybotadmin-wrapper div#geekybotadmin-data div#geekybot-admin-wrapper.geek
 div#geekybotadmin-wrapper div#geekybotadmin-data div#geekybot-admin-wrapper.geekybot-admin-config-wrapper form.geekybot-configurations .geekybot-admin-fallback-config-title{float: right;}
 /* story pagination */
 .geekybot_story_pagination_wrp{flex-direction: row-reverse;}
+/* ai provider */
+div.geekybot-websearch-support-section.geekybot-aisupport-section{border-left-width: 1px;border-right-width: 4px;}
+div#geekybotadmin-wrapper div#geekybotadmin-data div#geekybot-admin-wrapper.geekybot-admin-config-wrapper form.geekybot-configurations div.geekybot-config-row-wrp .geekybot-config-download{float: right;}
+div#geekybotadmin-wrapper div#geekybotadmin-data div#geekybot-admin-wrapper form.geekybot-configurations div.geekybot-config-row-wrp div.geekybot-config-row div.geekybot-config-description.geekybot-config-description-button{padding-right: 0;}
+div#geekybotadmin-wrapper div#geekybotadmin-data div#geekybot-admin-wrapper.geekybot-admin-config-wrapper form.geekybot-configurations div.geekybot-config-row-wrp .geekybot-config-download-steps-wrp{padding-left: 0;padding-right: 10px;}
 
 @media (max-width:1650px){
   div.geekybot-template-section .geekybot-template-section-field .geekybot-form-title{text-align: start;}
@@ -335,6 +339,9 @@ div#geekybotadmin-wrapper div#geekybotadmin-data div#geekybot-admin-wrapper.geek
   div#geekybotadmin-wrapper div#geekybotadmin-data div#geekybot-admin-wrapper form.geekybot-configurations div.geekybot-config-row-wrp div.geekybot-config-row div.geekybot-config-value-text{padding-left: 0;padding-right: 0;}
   div#geekybotadmin-wrapper div#geekybotadmin-data div#geekybot-admin-wrapper form.geekybot-configurations div.geekybot-config-row-wrp div.geekybot-config-row div.geekybot-config-value, div#geekybotadmin-wrapper div#geekybotadmin-data div#geekybot-admin-wrapper form.geekybot-configurations div.geekybot-config-row-wrp div.geekybot-config-row div.geekybot-config-value{padding-left: 0;padding-right: 0;}
   div.geekybot-dashboard-pages-cards-wrp .geekybot-dashboard-page-card .geekybot-dashboard-page-card-text{padding-right: 10px;}
+  /* ai provider */
+  div.geekybot-websearch-support-section.geekybot-aisupport-section .geekybot-websearch-support-button-wrp{margin-left: 0;margin-right: 90px;}
+  div.geekybot-websearch-support-section.geekybot-aisupport-section .geekybot-websearch-support-button-wrp a{float: right;}
 
 }
 @media (max-width:1079px){
@@ -370,6 +377,7 @@ div#geekybotadmin-wrapper div#geekybotadmin-data div#geekybot-admin-wrapper.geek
   div.geekybot-installation-bodysection .geekybot-installation-bodyleft-section .geekybot-installation-scndpage-info-section .geekybot-installation-inforight-wrp{margin-right: 20px;}
   div#geekybotadmin-wrapper div#geekybotadmin-data{padding-right: 0;}
   div.geekybot-websearch-info-section div.geekybot-synchronize-button-wrp{padding-left: 0;padding-right: 52px;}
+  div#geekybotadmin-wrapper{padding-right: 15px;}
   /* dashboard */
   div#geekybotadmin-wrapper-right div.geekybotadmin-navbar-right div.geekybot-navbar-img-right .geekybot-navebar-right-version img{margin-right: 0;margin-left: 4px;}
   div.geekybot-dashboard-story-section-innerwrp .geekybot-dashboard-story-section-button.search-enable-btn{margin-left: 10px;margin-right: 0;}
@@ -418,7 +426,9 @@ div#geekybotadmin-wrapper div#geekybotadmin-data div#geekybot-admin-wrapper.geek
   div.geekybot-template-section .geekybot-template-section-field.geekybot-tmptform-button-section-fields .geekybot-form-field-value :nth-child(2n){margin-right: 6px;margin-left: 0;}
   /* dashboard */
   div.geekybot-breadcrumbs-wrp{width: 61%;}
-
+  /* ai provider */
+  div.geekybot-websearch-support-section.geekybot-aisupport-section .geekybot-websearch-support-button-wrp{margin-right: 0;}
+  
 }
 @media (max-width:479px){
   div#geekybotadmin-wrapper div.geekybotadmin-addVariable-data div#geekybot-admin-wrapper form.geekybot-form.has-validation-callback div.geekybot-form-button input.button.geekybot-form-save-btn{margin-top: 8px;}

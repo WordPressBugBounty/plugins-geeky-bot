@@ -162,6 +162,7 @@ if (!defined('GEEKYBOT_FILE_TYPE_ERROR')) {
             'cols' => array(),
             'data-validation' => array(),
             'autocomplete' => array(),
+            'placeholder' => array(),
             'style' => array(),
         ),
         'button'      => array(

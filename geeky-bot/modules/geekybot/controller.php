@@ -14,8 +14,14 @@ class GEEKYBOTgeekybotController {
             switch ($layout) {
                 case 'admin_controlpanel':
                     include_once GEEKYBOT_PLUGIN_PATH . 'includes/updates/updates.php';
-                    GEEKYBOTupdates::GEEKYBOT_checkUpdates(114);
+                    GEEKYBOTupdates::GEEKYBOT_checkUpdates(116);
                     GEEKYBOTincluder::GEEKYBOT_getModel('geekybot')->getAdminControlPanelData();
+                    // remove this code in 1.1.7
+                    $uploadDir = wp_upload_dir();
+                    if (geekybot::$_configuration['ai_provider'] == 2 && !file_exists($uploadDir['basedir'] . '/geekybotLibraries/dialogFlow/geekybot_google_client-main/autoload.php')) {
+                        GEEKYBOTincluder::GEEKYBOT_getModel('geekybot')->geekybotDownloadGoogleClientLibrary(0);
+                    }
+                    // remove this code in 1.1.7
                     break;
                 default:
                     exit;

@@ -50,56 +50,88 @@ class GEEKYBOTchatserverModel {
             geekybot::$_geekybotsessiondata->geekybot_addChatHistoryToSession($text, 'user');
             GEEKYBOTincluder::GEEKYBOT_getModel('chathistory')->SaveChathistoryFromchatServer($text, 'user');
         }
+        if (geekybot::$_configuration['ai_provider'] == 1) {
+            // Get session story ID
+            $sessionStoryId = geekybot::$_geekybotsessiondata->geekybot_getStoryIdFromSession();
 
-        // Get session story ID
-        $sessionStoryId = geekybot::$_geekybotsessiondata->geekybot_getStoryIdFromSession();
+            // Determine user intent and retrieve intent details
+            $intentIdAndScore = $this->getIntentIdAndScoreFromUserMessage($message);
+            $intentGroupId = '';
+            if (!empty($intentIdAndScore['id'])) {
+                // get intent data from intent id
+                $query = "SELECT `id`, `user_messages`, `user_messages_text`, `group_id` FROM `" . geekybot::$_db->prefix . "geekybot_intents` WHERE `id` = " . esc_sql($intentIdAndScore['id']);
+    			$logdata .= "\n query: ".$query;
+                $intentData = geekybotdb::GEEKYBOT_get_row($query);
+                $intentGroupId = $intentData->group_id;
 
-        // Determine user intent and retrieve intent details
-        $intentIdAndScore = $this->getIntentIdAndScoreFromUserMessage($message);
-        $intentGroupId = '';
-        if (!empty($intentIdAndScore['id'])) {
-            // get intent data from intent id
-            $query = "SELECT `id`, `user_messages`, `user_messages_text`, `group_id` FROM `" . geekybot::$_db->prefix . "geekybot_intents` WHERE `id` = " . esc_sql($intentIdAndScore['id']);
-			$logdata .= "\n query: ".$query;
-            $intentData = geekybotdb::GEEKYBOT_get_row($query);
-            $intentGroupId = $intentData->group_id;
+                // Save intent variables
+                GEEKYBOTincluder::GEEKYBOT_getModel('slots')->saveVariableFromIntent(
+                    $message, 
+                    $intentData->user_messages, 
+                    $intentIdAndScore['score']
+                );
+            }
 
-            // Save intent variables
-            GEEKYBOTincluder::GEEKYBOT_getModel('slots')->saveVariableFromIntent(
-                $message, 
-                $intentData->user_messages, 
-                $intentIdAndScore['score']
-            );
-        }
-
-        // Get bot responses based on intent
-        $responses = $this->getResponseData($message, $intentGroupId, $sessionStoryId);
-        foreach ($responses as $data) {
-            $session_type = $data->story_type;
-            if ($data->response_type == '1') { // Text response
-                $buttons = [];
-                $data->story_type = 1;
-                // In case of buttons in response
-                if (!empty($data->response_button) && $data->response_button != '[]') {
-                    $responseButtons = json_decode($data->response_button);
-                    foreach ($responseButtons as $responseButton) {
-                        $buttons[] = [
-                            "text" => $responseButton->text,
-                            "type" => $responseButton->type,
-                            "value" => $responseButton->value
-                        ];
+            // Get bot responses based on intent
+            $responses = $this->getResponseData($message, $intentGroupId, $sessionStoryId);
+            foreach ($responses as $data) {
+                $session_type = $data->story_type;
+                if ($data->response_type == '1') { // Text response
+                    $buttons = [];
+                    $data->story_type = 1;
+                    // In case of buttons in response
+                    if (!empty($data->response_button) && $data->response_button != '[]') {
+                        $responseButtons = json_decode($data->response_button);
+                        foreach ($responseButtons as $responseButton) {
+                            $buttons[] = [
+                                "text" => $responseButton->text,
+                                "type" => $responseButton->type,
+                                "value" => $responseButton->value
+                            ];
+                        }
+                        $retVal[] = ["recipient_id" => $chat_id, "text" => $data, "buttons" => $buttons];
+                    } else {
+                        $retVal[] = ["recipient_id" => $chat_id, "text" => $data];
                     }
-                    $retVal[] = ["recipient_id" => $chat_id, "text" => $data, "buttons" => $buttons];
-                } else {
-                    $retVal[] = ["recipient_id" => $chat_id, "text" => $data];
-                }
-            } elseif ($data->response_type == '4') { // Predefined function
-                $functionResult = geekybot::$_geekybotsessiondata->geekybot_readVarFromSessionAndCallPredefinedFunction($message, $data->function_id);
-                if (!empty($functionResult)) {
-                    $data->bot_response = $functionResult;
-                    $retVal[] = ["recipient_id" => $chat_id, "text" => $data];
+                } elseif ($data->response_type == '4') { // Predefined function
+                    $functionResult = geekybot::$_geekybotsessiondata->geekybot_readVarFromSessionAndCallPredefinedFunction($message, $data->function_id);
+                    if (!empty($functionResult)) {
+                        $data->bot_response = $functionResult;
+                        $retVal[] = ["recipient_id" => $chat_id, "text" => $data];
+                    }
                 }
             }
+        } elseif (geekybot::$_configuration['ai_provider'] == 2) {
+            $uploadDir = wp_upload_dir();
+            if (!empty(geekybot::$_configuration['geekybot_dialogflow_project_id']) && !empty(get_option('geekybot_dialogflow_json')) && file_exists($uploadDir['basedir'] . '/geekybotLibraries/dialogFlow/geekybot_google_client-main/autoload.php')) {
+                $res = geekybot::$_geekybotdialogflow->geekybot_dialogflow($text, $chat_id);
+
+                $dialogflowResponse = new stdClass();
+                $dialogflowResponse->bot_response = $res;
+                $retVal[] = ["recipient_id" => $chat_id, "text" => $dialogflowResponse];
+            }
+        } elseif (geekybot::$_configuration['ai_provider'] == 3) {
+            $uploadDir = wp_upload_dir();
+            $isAssistantFound = get_option('geekybot_assistant_id');
+            if (
+                in_array('openaiassistant', geekybot::$_active_addons) &&
+                !empty($isAssistantFound) && 
+                file_exists($uploadDir['basedir'] . '/geekybotLibraries/openAI/geekybot_openai_assistant_client_library-main/autoload.php')
+            ) {
+                $res = geekybot::$_geekybotopenaiassistant->geekybot_queryAssistant($text);
+
+            } else {
+                $res = geekybot::$_geekybotopenai->geekybot_openai($text);
+            }
+            $dialogflowResponse = new stdClass();
+            $dialogflowResponse->bot_response = $res;
+            $retVal[] = ["recipient_id" => $chat_id, "text" => $dialogflowResponse];
+        } elseif (geekybot::$_configuration['ai_provider'] == 4) {
+            $res = geekybot::$_geekybotopenrouter->geekybot_openrouter($text);
+
+            $dialogflowResponse = new stdClass();
+            $dialogflowResponse->bot_response = $res;
+            $retVal[] = ["recipient_id" => $chat_id, "text" => $dialogflowResponse];
         }
 
         // if the indent found and bot response is not empty

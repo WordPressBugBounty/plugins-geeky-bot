@@ -4,7 +4,7 @@ Tags: chatbot, AI, woocommerce chatbot, lead generation, chat bots
 Donate link: https://geekybot.com
 Requires at least: WordPress 5.0
 Tested up to: 6.8.1
-Stable tag: 1.1.4
+Stable tag: 1.1.6
 License: GPLv2
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -12,14 +12,12 @@ License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
 The ultimate and FREE AI chatbot, WooCommerce lead generation, intelligent web search, and interactive customer engagement on your WordPress website.
 
-== ChatBot Free from Third-Party API ==
-GeekyBot is fully independent, with no dependency on **third-party APIs** like **ChatGPT, DialogFlow, or Alexa**, and works freely.
-
 ==Top Features ==
 
 - **WooCommerce Lead Generation:** Streamline shopping experiences by allowing users to find products, explore variations, and add items to their cart directly through GeekyBot.
 - **AI Chatbot:** Customize interactions using slots and variables to dynamically capture and process user inputs.
 - **AI Web Search:** Assist users in discovering relevant information within your blog posts or articles by searching or topics and displaying content as per user requests.
+- **GeekyBot AI Integrations:** Dialogflow (NLP), OpenAI Chat & Assistants (GPT models), OpenRouter (multi-provider AI), with custom client libraries for seamless API connectivity.
 
 https://www.youtube.com/watch?v=iyGUUFhZ9Ag
 
@@ -218,7 +216,54 @@ If you activate certain features in this plugin, the user's personal data, inclu
 
 * Font Awesome (https://fontawesome.com/privacy)
 
+###External Services Used
+
+This plugin makes use of the following third-party services:
+
+**Google Dialogflow API**
+- Used for natural language processing and chatbot responses.
+- Official API: https://cloud.google.com/dialogflow
+- Authentication Scope: https://www.googleapis.com/auth/dialogflow
+- API Documentation: https://cloud.google.com/dialogflow/docs
+
+**OpenAI Chat Completion API**
+- Used to generate AI-based chatbot replies via GPT models.
+- API Documentation: https://platform.openai.com/docs/api-reference/chat
+- Model used: gpt-3.5-turbo (configurable)
+
+**OpenAI Assistants API**
+- Used for creating persistent AI assistants with file search and retrieval capabilities.
+- API Documentation: https://platform.openai.com/docs/assistants
+- Authentication: Bearer token with OpenAI API key
+- Required Scope: assistants=v2 (beta)
+- Default Model: gpt-4-turbo (configurable)
+
+**OpenRouter API**
+- Provides unified access to multiple AI models from different providers.
+- API Documentation: https://openrouter.ai/docs
+- Authentication: Bearer token with OpenRouter API key
+- Supported Models: 100+ including Claude, Gemini, Mistral, and OpenAI models
+- Default Model: anthropic/claude-3-sonnet (configurable)
+
+**Google Client Library Package for GeekyBot (Custom Packaged)**
+- Downloaded from GitHub for simplified Dialogflow integration.
+- Download URL: https://github.com/geekybotai/geekybot_google_client/archive/main.zip
+- Contains a pre-configured version of the Google APIs Client Library.
+
+**OpenAI Assistant PHP Client Library Package for GeekyBot (Custom Packaged)**
+- Downloaded from GitHub for simplified OpenAI Assistant integration.
+- Download URL: https://github.com/geekybotai/geekybot_openai_assistant/blob/main/geekybot_openai_assistant_client_library-main.zip
+- Contains optimized Guzzle HTTP client configuration.
+
 == Changelog ==
+= 1.1.6
+* OpenAI Assistant Integration
+* OpenRouter Integration
+
+= 1.1.5
+* Dialogflow Integration
+* OpenAI Integration
+
 = 1.1.4
 * Add configuration based message for abandoned cart items.
 * Improve user search.

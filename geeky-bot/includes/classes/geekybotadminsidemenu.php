@@ -34,10 +34,16 @@ $layout = GEEKYBOTrequest::GEEKYBOT_getVar('geekybotlt');
             <img class="geekybotadmin-menu-icon geekybotadmin-menu-icon-active" alt="<?php echo esc_attr(__('AI Web Search' , 'geeky-bot')); ?>" src="<?php echo esc_url(GEEKYBOT_PLUGIN_URL).'includes/images/control_panel/admin-left-menu/search-colored.png'; ?>" />
         </a>
     </li>
-    <li class="treeview <?php if($c == 'geekybot_configuration') echo esc_attr('active'); ?>">
-        <a href="<?php echo esc_url(wp_nonce_url('admin.php?page=geekybot_configuration','configuration'))?>" title="<?php echo esc_attr(__('Settings' , 'geeky-bot')); ?>">
+    <li class="treeview <?php if($c == 'geekybot_configuration' && $layout == 'configurations') echo esc_attr('active'); ?>">
+        <a href="<?php echo esc_url(wp_nonce_url('admin.php?page=geekybot_configuration&geekybotlt=configurations','configuration'))?>" title="<?php echo esc_attr(__('Settings' , 'geeky-bot')); ?>">
             <img class="geekybotadmin-menu-icon" alt="<?php echo esc_attr(__('Settings' , 'geeky-bot')); ?>" src="<?php echo esc_url(GEEKYBOT_PLUGIN_URL).'includes/images/control_panel/admin-left-menu/setting.png'; ?>" />
             <img class="geekybotadmin-menu-icon geekybotadmin-menu-icon-active" alt="<?php echo esc_attr(__('Settings' , 'geeky-bot')); ?>" src="<?php echo esc_url(GEEKYBOT_PLUGIN_URL).'includes/images/control_panel/admin-left-menu/setting-colored.png'; ?>" />
+        </a>
+    </li>
+    <li class="treeview <?php if($c == 'geekybot_configuration' && ($layout == 'ai_configurations' || $layout == 'dialogflow_configurations' || $layout == 'openai_configurations')) echo esc_attr('active'); ?>">
+        <a href="<?php echo esc_url(wp_nonce_url('admin.php?page=geekybot_configuration&geekybotlt=ai_configurations','configuration'))?>" title="<?php echo esc_attr(__('AI Settings' , 'geeky-bot')); ?>">
+            <img class="geekybotadmin-menu-icon" alt="<?php echo esc_attr(__('AI' , 'geeky-bot')); ?>" src="<?php echo esc_url(GEEKYBOT_PLUGIN_URL).'includes/images/control_panel/admin-left-menu/ai-setting.png'; ?>" />
+            <img class="geekybotadmin-menu-icon geekybotadmin-menu-icon-active" alt="<?php echo esc_attr(__('Settings' , 'geeky-bot')); ?>" src="<?php echo esc_url(GEEKYBOT_PLUGIN_URL).'includes/images/control_panel/admin-left-menu/ai-setting-colored.png'; ?>" />
         </a>
     </li>
     <li class="treeview <?php if($c == 'geekybot_themes' || ($c == 'geekybot' && $layout == 'themes') ) echo esc_attr('active'); ?>">

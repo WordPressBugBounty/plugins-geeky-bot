@@ -466,9 +466,10 @@ class GEEKYBOTwebsearchModel {
                     $encrypted_post_ids = openssl_encrypt(json_encode($data['post_ids']), 'AES-128-ECB', 'geekybot_websearch');
                     $message = geekybotphplib::GEEKYBOT_htmlentities(geekybotphplib::GEEKYBOT_htmlspecialchars(geekybotphplib::GEEKYBOT_addslashes($msg), ENT_QUOTES, 'UTF-8'));
                     $label = geekybotphplib::GEEKYBOT_htmlentities(geekybotphplib::GEEKYBOT_htmlspecialchars(geekybotphplib::GEEKYBOT_addslashes($data['label']), ENT_QUOTES, 'UTF-8'));
+                    // Avoided 'button' class to prevent design conflicts
                     $btnHtml .= "
                     <div class='geekybot_article_bnt_wrp'>
-                        <span onclick=\"showArticlesList('".$encrypted_post_ids."','".$message."','".$index."','".$label."','".$post_ids_count."', 1);\" class='geekybot_article_bnt button'>" . $data['label'].' ('. $post_ids_count .')' ."<img src='". esc_url(GEEKYBOT_PLUGIN_URL) ."includes/images/chat-img/btn-arrow.png' /></span>
+                        <span onclick=\"showArticlesList('".$encrypted_post_ids."','".$message."','".$index."','".$label."','".$post_ids_count."', 1);\" class='geekybot_article_bnt '>" . $data['label'].' ('. $post_ids_count .')' ."<img src='". esc_url(GEEKYBOT_PLUGIN_URL) ."includes/images/chat-img/btn-arrow.png' /></span>
                     </div>";
                 }
             }

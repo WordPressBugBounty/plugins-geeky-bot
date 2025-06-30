@@ -3,14 +3,14 @@
 /**
  * @package Geeky Bot
  * @author Geeky Bot
- * @version 1.1.4
+ * @version 1.1.6
  */
 /*
   * Plugin Name: Geeky Bot
   * Plugin URI: https://geekybot.com/
   * Description: The ultimate AI chatbot for WooCommerce lead generation, intelligent web search, and interactive customer engagement on your WordPress website.
   * Author: Geeky Bot
-  * Version: 1.1.4
+  * Version: 1.1.6
   * Text Domain: geeky-bot
   * Domain Path: /languages
   * Author URI: https://geekybot.com/
@@ -50,6 +50,10 @@ class geekybot {
     public static $_search;
     public static $_geekybotsession;
     public static $_geekybotsessiondata;
+    public static $_geekybotdialogflow;
+    public static $_geekybotopenai;
+    public static $_geekybotopenaiassistant;
+    public static $_geekybotopenrouter;
     public static $_chatsession;
     public static $_search_style;
     public static $_colors;
@@ -91,12 +95,16 @@ class geekybot {
         self::$_data = array();
         self::$_error_flag = null;
         self::$_error_flag_message = null;
-        self::$_currentversion = '114';
+        self::$_currentversion = '116';
         self::$_addon_query = array('select'=>'','join'=>'','where'=>'');
         self::$_config = GEEKYBOTincluder::GEEKYBOT_getModel('configuration');
         self::$_isgeekybotplugin = true;
         self::$_geekybotsession = GEEKYBOTincluder::GEEKYBOT_getObjectClass('wpcbsession');
         self::$_geekybotsessiondata = GEEKYBOTincluder::GEEKYBOT_getObjectClass('geekybotsessiondata');
+        self::$_geekybotdialogflow = GEEKYBOTincluder::GEEKYBOT_getObjectClass('geekybotdialogflow');
+        self::$_geekybotopenai = GEEKYBOTincluder::GEEKYBOT_getObjectClass('geekybotopenai');
+        self::$_geekybotopenaiassistant = GEEKYBOTincluder::GEEKYBOT_getObjectClass('geekybotopenaiassistant');
+        self::$_geekybotopenrouter = GEEKYBOTincluder::GEEKYBOT_getObjectClass('geekybotopenrouter');
         global $wpdb;
         self::$_db = $wpdb;
         if(is_multisite()) {
@@ -166,11 +174,27 @@ class geekybot {
         }
         // for maintaing the post data in the custome post table
         add_action( 'wp_insert_post', array($this , 'geekyboot_update_or_create_geekybot_post'), 10, 3 );
+        $isAssistantFound = get_option('geekybot_assistant_id');
+        $types = get_option('openai_assistant_upload_types', []);
+        if(in_array('openaiassistant', geekybot::$_active_addons) && !empty($isAssistantFound) && in_array('post', $types)){
+            if(geekybot::$_configuration['geekybot_sync_method'] == 1){
+                add_action( 'wp_insert_post', array($this , 'geekyboot_sync_changed_posts'), 10, 3 );
+            } else {
+                add_action( 'wp_insert_post', array($this , 'geekyboot_detect_post_changes'), 10, 3 );
+                if(geekybot::$_configuration['geekybot_sync_method'] == 2){
+                    add_action( 'geekybot_cron_sync_assistant_data', array($this , 'geekybot_cron_sync_assistant_data') );
+                    if( !wp_next_scheduled( 'geekybot_cron_sync_assistant_data' ) ) {
+                        // Schedule the event
+                        wp_schedule_event( time(), 'hourly', 'geekybot_cron_sync_assistant_data' );
+                    }
+                }
+            }
+        }
         // check if sql update is available
         if (is_plugin_active('geeky-bot/geeky-bot.php')) {
             include_once GEEKYBOT_PLUGIN_PATH . 'includes/updates/updates.php';
             $installedversion = GEEKYBOTupdates::geekybot_getInstalledVersion();
-            $cversion = '114';
+            $cversion = '116';
             if ($installedversion != $cversion) {
                 add_action( 'admin_notices', array($this, 'geekybot_sql_update_available_notice') );
             }
@@ -249,7 +273,7 @@ class geekybot {
                     // restore colors data end
                     update_option('geekybot_currentversion', self::$_currentversion);
                     include_once GEEKYBOT_PLUGIN_PATH . 'includes/updates/updates.php';
-                    GEEKYBOTupdates::GEEKYBOT_checkUpdates('114');
+                    GEEKYBOTupdates::GEEKYBOT_checkUpdates('116');
                     GEEKYBOTincluder::GEEKYBOT_getModel('geekybot')->updateColorFile();
                 }
             }
@@ -1128,6 +1152,56 @@ class geekybot {
                 $insert_query = GEEKYBOTincluder::GEEKYBOT_getModel('websearch')->geekybotPostTypeBuildQuery($batch_data);
                 geekybot::$_db->query($insert_query);
             }
+        }
+    }
+
+    function geekyboot_sync_changed_posts( $post_id, $post, $update ) {
+        // Skip if this is a revision or autosave
+        if ( wp_is_post_revision( $post_id ) || wp_is_post_autosave( $post_id ) ) {
+            return;
+        }
+
+        $res = geekybot::$_geekybotopenaiassistant->geekybot_exportAndPrepareData();
+
+    }
+
+    function geekyboot_detect_post_changes( $post_id, $post, $update ) {
+        // Skip if this is a revision or autosave
+        if ( wp_is_post_revision( $post_id ) || wp_is_post_autosave( $post_id ) ) {
+            return;
+        }
+
+        // You can limit to specific post types if needed
+        // if ( $post->post_type !== 'your_post_type' ) return;
+
+        $option_name = 'geekyboot_changed_posts';
+
+        // Get existing list
+        $changed_posts = get_option( $option_name, [] );
+
+        // Ensure it's an array
+        if ( ! is_array( $changed_posts ) ) {
+            $changed_posts = [];
+        }
+
+        // Add post ID if not already in array
+        if ( ! in_array( $post_id, $changed_posts ) ) {
+            $changed_posts[] = $post_id;
+        }
+
+        // Optionally, you can re-index to keep it clean
+        $changed_posts = array_values( array_unique( $changed_posts ) );
+
+        // Update the option
+        update_option( $option_name, $changed_posts );
+    }
+
+    function geekybot_cron_sync_assistant_data(){
+        $isAssistantFound = get_option('geekybot_assistant_id');
+        $types = get_option('openai_assistant_upload_types', []);
+        $changed_posts = get_option( 'geekyboot_changed_posts', [] );
+        if(in_array('openaiassistant', geekybot::$_active_addons) && !empty($isAssistantFound) && in_array('post', $types) && ! empty( $changed_posts ) && is_array( $changed_posts )){
+            $res = geekybot::$_geekybotopenaiassistant->geekybot_exportAndPrepareData();
         }
     }
 

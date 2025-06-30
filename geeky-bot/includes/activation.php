@@ -144,7 +144,7 @@ class GEEKYBOTactivation {
             ('title',   'GeekyBot',   'default',  NULL),
             ('pagination_default_page_size',    '10',   'default',  NULL),
             ('pagination_product_page_size',    '3',   'default',  NULL),
-            ('versioncode', '1.1.4',    'default',  NULL),
+            ('versioncode', '1.1.6',    'default',  NULL),
             ('last_version',    '101',  'default',  NULL),
             ('image_file_type', 'png,jpeg,gif,jpg', 'default', NULL),
             ('bot_custom_img',  '0',    'default',  NULL),
@@ -169,7 +169,18 @@ class GEEKYBOTactivation {
             ('support_link_url', '', 'default',  NULL),
             ('default_pageid',  '5',    'default',  NULL),
             ('show_abandonment_message_on_smart_popup',  '1',    'default',  NULL),
-            ('show_abandonment_message_on_standard_popup',  '1',    'default',  NULL);";
+            ('show_abandonment_message_on_standard_popup',  '1',    'default',  NULL),
+            ('ai_provider',  '1',    'default',  NULL),
+            ('geekybot_openai_api_key',  '',    'default',  NULL),
+            ('geekybot_dialogflow_project_id',  '',    'default',  NULL),
+            ('geekybot_openai_model',  'gpt-3.5-turbo',    'default',  NULL),
+            ('geekybot_openai_temperature',  '0.7',    'default',  NULL),
+            ('geekybot_openai_max_tokens',  '150',    'default',  NULL),
+            ('geekybot_sync_method',  '3',    'default',  NULL),
+            ('geekybot_openrouter_api_key',  '',    'default',  NULL),
+            ('geekybot_openrouter_model',  'openai/gpt-3.5-turbo',    'default',  NULL),
+            ('geekybot_openrouter_temperature',  '0.7',    'default',  NULL),
+            ('geekybot_openrouter_max_tokens',  '150',    'default',  NULL);";
             geekybot::$_db->query($query);
 
             $query = "CREATE TABLE IF NOT EXISTS `" . geekybot::$_db->prefix . "geekybot_forms` (

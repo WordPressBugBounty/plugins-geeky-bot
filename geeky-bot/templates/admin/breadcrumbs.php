@@ -24,6 +24,46 @@ if ($module) {
         			'. esc_html(__('Settings', 'geeky-bot')) .'
     			</span>';
 			break;
+            case 'ai_configurations':
+				$html.='
+				<a href="'. esc_url(wp_nonce_url('admin.php?page=geekybot','geeky-bot')) .'" title="'. esc_html(__('Dashboard', 'geeky-bot')) .'" class="breadcrumb">
+            		<i class="fa fa-home"></i>
+        		</a>
+        		<span class="geekybot-breadcrumbs-slash">/</span>
+    			<span class="active-breadcrumb">
+        			'. esc_html(__('AI Provider', 'geeky-bot')) .'
+    			</span>';
+			break;
+            case 'dialogflow_configurations':
+				$html.='
+				<a href="'. esc_url(wp_nonce_url('admin.php?page=geekybot','geeky-bot')) .'" title="'. esc_html(__('Dashboard', 'geeky-bot')) .'" class="breadcrumb">
+            		<i class="fa fa-home"></i>
+        		</a>
+        		<span class="geekybot-breadcrumbs-slash">/</span>
+    			<span class="active-breadcrumb">
+        			'. esc_html(__('Dialogflow', 'geeky-bot')) .'
+    			</span>';
+			break;
+            case 'openai_configurations':
+				$html.='
+				<a href="'. esc_url(wp_nonce_url('admin.php?page=geekybot','geeky-bot')) .'" title="'. esc_html(__('Dashboard', 'geeky-bot')) .'" class="breadcrumb">
+            		<i class="fa fa-home"></i>
+        		</a>
+        		<span class="geekybot-breadcrumbs-slash">/</span>
+    			<span class="active-breadcrumb">
+        			'. esc_html(__('OpenAI', 'geeky-bot')) .'
+    			</span>';
+			break;
+            case 'openrouter_configurations':
+				$html.='
+				<a href="'. esc_url(wp_nonce_url('admin.php?page=geekybot','geeky-bot')) .'" title="'. esc_html(__('Dashboard', 'geeky-bot')) .'" class="breadcrumb">
+            		<i class="fa fa-home"></i>
+        		</a>
+        		<span class="geekybot-breadcrumbs-slash">/</span>
+    			<span class="active-breadcrumb">
+        			'. esc_html(__('OpenRouter', 'geeky-bot')) .'
+    			</span>';
+			break;
             case 'themes':
 				$html.='
 				<a href="'. esc_url(wp_nonce_url('admin.php?page=geekybot','geeky-bot')) .'" title="'. esc_html(__('Dashboard', 'geeky-bot')) .'" class="breadcrumb">

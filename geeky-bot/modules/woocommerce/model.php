@@ -433,9 +433,10 @@ class GEEKYBOTwoocommerceModel {
             $btnHtml .= __('Here are the best matches for your search.', 'geeky-bot');
         }
         $btnHtml .= '</span>';
+        // Avoided 'button' class to prevent design conflicts
         $btnHtml .= "
         <span class='geekybot_article_bnt_wrp'>
-            <span onclick=\"showProductsList('".$message."','".$encrypted_data."', 1);\" class='geekybot_article_bnt button'>" 
+            <span onclick=\"showProductsList('".$message."','".$encrypted_data."', 1);\" class='geekybot_article_bnt '>" 
             . __('Products', 'geeky-bot').' ('.$products_count.') ' . "
             <img src='". esc_url(GEEKYBOT_PLUGIN_URL) ."includes/images/chat-img/btn-arrow.png' />
             </span>

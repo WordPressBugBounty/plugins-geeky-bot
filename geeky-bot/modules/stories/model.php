@@ -538,6 +538,14 @@ class GEEKYBOTstoriesModel {
             $query = "DELETE FROM `".geekybot::$_db->prefix . "geekybot_responses` WHERE story_id = ".esc_sql($storyid)." AND id  NOT IN ('".$commaSeparatedResponseIds."')";
             geekybotdb::query($query);
         }
+        // sync story data for assistant
+        if (!empty($data['story']['story_mode']) && $data['story']['story_mode'] == 1) {
+            $types = get_option('openai_assistant_upload_types', []);
+            $isAssistantFound = get_option('geekybot_assistant_id');
+            if(in_array('openaiassistant', geekybot::$_active_addons) && !empty($isAssistantFound) && in_array('story', $types)){
+                $res = geekybot::$_geekybotopenaiassistant->geekybot_exportAndPrepareData();
+            }
+        }
         return GEEKYBOT_SAVED;
     }
 

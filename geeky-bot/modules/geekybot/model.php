@@ -564,7 +564,481 @@ class GEEKYBOTgeekybotModel {
         return $chatpopupcode;
     }
 
+    function geekybotDownloadGoogleClientLibrary($ajaxCall = 1) {
+        if (!current_user_can('manage_options')) {
+            die('Only Administrators can perform this action.');
+        }
 
+        if ($ajaxCall == 1) {
+            $nonce = GEEKYBOTrequest::GEEKYBOT_getVar('_wpnonce');
+            if (!wp_verify_nonce($nonce, 'download_google_client')) {
+                die('Security check failed');
+            }
+        }
+
+        $zipUrl = 'https://github.com/geekybotai/geekybot_google_client/archive/main.zip';
+        $uploadDir = wp_upload_dir();
+
+        $baseDir = $uploadDir['basedir'] . '/geekybotLibraries/dialogFlow/';
+        $tempZipPath = $baseDir . 'google-client.zip';
+        $tempExtractPath = $baseDir . 'temp/';
+        $finalDir = $baseDir . 'geekybot_google_client-main/';
+
+        // Ensure base directory exists
+        if (!file_exists($baseDir)) {
+            wp_mkdir_p($baseDir);
+        }
+
+        // Step 1: Download the outer zip
+        $response = wp_remote_get($zipUrl, ['timeout' => 20]);
+        if (is_wp_error($response)) {
+            wp_send_json_error(['message' => 'Download failed: ' . $response->get_error_message()]);
+        }
+
+        file_put_contents($tempZipPath, wp_remote_retrieve_body($response));
+
+        // Step 2: Extract the outer zip
+        require_once ABSPATH . 'wp-admin/includes/file.php';
+        require_once ABSPATH . 'wp-admin/includes/class-wp-filesystem-base.php';
+        require_once ABSPATH . 'wp-admin/includes/class-wp-filesystem-direct.php';
+        require_once ABSPATH . 'wp-admin/includes/class-wp-upgrader.php';
+
+        WP_Filesystem();
+
+        $unzipResult = unzip_file($tempZipPath, $tempExtractPath);
+        unlink($tempZipPath);
+
+        if (is_wp_error($unzipResult)) {
+            if ($ajaxCall == 1) {
+                wp_send_json_error(['message' => 'Outer zip unzip failed: ' . $unzipResult->get_error_message()]);
+            } else {
+                return;
+            }
+        }
+
+        // Step 3: Locate and extract the inner zip
+        $innerZipPath = $tempExtractPath . 'geekybot_google_client-main/geekybot_google_client-main.zip';
+        $innerExtractPath = $tempExtractPath . 'geekybot_google_client-main/final/';
+
+        if (!file_exists($innerZipPath)) {
+            if ($ajaxCall == 1) {
+                wp_send_json_error(['message' => 'Inner ZIP file not found.']);
+            } else {
+                return;
+            }
+        }
+
+        $innerUnzipResult = unzip_file($innerZipPath, $innerExtractPath);
+        unlink($innerZipPath);
+
+        if (is_wp_error($innerUnzipResult)) {
+            if ($ajaxCall == 1) {
+                wp_send_json_error(['message' => 'Inner zip unzip failed: ' . $innerUnzipResult->get_error_message()]);
+            } else {
+                return;
+            }
+        }
+
+        // Step 4: Move final contents to target folder
+        global $wp_filesystem;
+        if ($wp_filesystem->is_dir($finalDir)) {
+            $wp_filesystem->delete($finalDir, true);
+        }
+
+        $finalSource = $innerExtractPath . 'geekybot_google_client-main';
+        $wp_filesystem->move($finalSource, $finalDir);
+
+        // Clean up temp folder
+        $wp_filesystem->delete($tempExtractPath, true);
+
+        if ($ajaxCall == 1) {
+            wp_send_json_success(['message' => 'Google Client Library downloaded successfully.']);
+        } else {
+            return;
+        }
+    }
+
+    function geekybotCheckOpenRouterStatus() {
+        if (!current_user_can('manage_options')) {
+            die('Only Administrators can perform this action.');
+        }
+
+        $nonce = GEEKYBOTrequest::GEEKYBOT_getVar('_wpnonce');
+        if (!wp_verify_nonce($nonce, 'geekybot_check_openrouter_status')) {
+            die('Security check failed');
+        }
+
+        $openRouterApiKey = geekybot::$_configuration['geekybot_openrouter_api_key'] ?? '';
+    
+        // Check if API key is empty
+        if (empty($openRouterApiKey)) {
+            wp_send_json_error([
+                'status' => 'error',
+                'message' => __('API key is not set', 'geeky-bot'),
+                'valid' => false
+            ]);
+        }
+
+        // Make a lightweight request to check API status
+        $response = wp_remote_get('https://openrouter.ai/api/v1/auth/key', [
+            'headers' => [
+                'Authorization' => 'Bearer ' . $openRouterApiKey,
+                'HTTP-Referer' => home_url(),
+                'X-Title' => get_bloginfo('name'),
+            ],
+            'timeout' => 10,
+        ]);
+
+        if (is_wp_error($response)) {
+            $error_message = $response->get_error_message();
+            if (strpos($error_message, 'cURL error 28') !== false) {
+                $error_message = __('Connection timed out', 'geeky-bot');
+            }
+            wp_send_json_error([
+                'status' => 'error',
+                'message' => __('Connection failed: ', 'geeky-bot') . $error_message,
+                'valid' => false
+            ]);
+        }
+
+        $response_code = wp_remote_retrieve_response_code($response);
+        $body = wp_remote_retrieve_body($response);
+        $data = json_decode($body, true);
+        
+        if (json_last_error() !== JSON_ERROR_NONE) {
+            wp_send_json_error([
+                'status' => 'error',
+                'message' => __('Invalid API response format', 'geeky-bot'),
+                'valid' => false,
+                'details' => json_last_error_msg()
+            ]);
+        }
+
+        // Handle different response codes
+        switch ($response_code) {
+            case 200:
+                $configured_model = geekybot::$_configuration['geekybot_openrouter_model'] ?? 'deepseek/deepseek-r1:free';
+                $model_available = true; // You might need to implement actual model checking
+                
+                wp_send_json_success([
+                    'status' => 'warning',
+                    'message' => __('API is working correctly', 'geeky-bot'),
+                    'valid' => true,
+                    'data' => [
+                        'label' => $data['data']['label'] ?? 'N/A',
+                        'usage' => $data['data']['usage'] ?? 'N/A',
+                        'is_free_tier' => $data['data']['is_free_tier'] ?? 'N/A',
+                        'rate_limit' => $data['data']['rate_limit'] ?? [],
+                        'model_available' => $model_available,
+                        'configured_model' => $configured_model
+                    ]
+                ]);
+                
+            case 401:
+                wp_send_json_error([
+                    'status' => 'error',
+                    'message' => __('API key is invalid or expired', 'geeky-bot'),
+                    'valid' => false
+                ]);
+                
+            case 429:
+                $retry_after = wp_remote_retrieve_header($response, 'retry-after');
+                $message = __('API rate limit exceeded', 'geeky-bot');
+                if ($retry_after && is_numeric($retry_after)) {
+                    $message .= '. ' . sprintf(__('Retry after %s seconds', 'geeky-bot'), $retry_after);
+                }
+                wp_send_json_error([
+                    'status' => 'warning',
+                    'message' => $message,
+                    'valid' => true,
+                    'retry_after' => $retry_after
+                ]);
+
+            case 403:
+                wp_send_json_error([
+                    'status' => 'error',
+                    'message' => __('Access forbidden: Your API key may lack permissions', 'geeky-bot'),
+                    'valid' => false
+                ]);
+                
+            default:
+                wp_send_json_error([
+                    'status' => 'error',
+                    'message' => __('API returned unexpected status: ', 'geeky-bot') . $response_code,
+                    'valid' => false,
+                    'details' => $data['error']['message'] ?? __('No additional details', 'geeky-bot')
+                ]);
+        }
+    }
+
+    function geekybotCheckDialogflowStatus() {
+        if (!current_user_can('manage_options')) {
+            die('Only Administrators can perform this action.');
+        }
+
+        $nonce = GEEKYBOTrequest::GEEKYBOT_getVar('_wpnonce');
+        if (!wp_verify_nonce($nonce, 'geekybot_check_dialogflow_status')) {
+            die('Security check failed');
+        }
+
+        $uploadDir = wp_upload_dir();
+        $jsonFile = $uploadDir['basedir'] . '/geekybotLibraries/dialogFlow/geekybot_google_client-main/autoload.php';
+        
+        // Check if Dialogflow library exists
+        if (!file_exists($jsonFile)) {
+            wp_send_json_error([
+                'status' => 'error',
+                'message' => __('Dialogflow library not installed', 'geeky-bot'),
+                'valid' => false
+            ]);
+        }
+
+        require_once $jsonFile;
+        
+        $jsonContents = get_option('geekybot_dialogflow_json');
+        $projectID = geekybot::$_configuration['geekybot_dialogflow_project_id'] ?? '';
+
+        // Check if JSON credentials are empty
+        if (empty($jsonContents)) {
+            wp_send_json_error([
+                'status' => 'error',
+                'message' => __('Dialogflow JSON credentials not configured', 'geeky-bot'),
+                'valid' => false
+            ]);
+        }
+
+        // Check if Project ID is empty
+        if (empty($projectID)) {
+            wp_send_json_error([
+                'status' => 'error',
+                'message' => __('Dialogflow Project ID not set', 'geeky-bot'),
+                'valid' => false
+            ]);
+        }
+
+        try {
+            $client = new \Google_Client();
+            $client->useApplicationDefaultCredentials();
+            $client->setScopes(['https://www.googleapis.com/auth/dialogflow']);
+            // Validate JSON before using it
+            $authConfig = json_decode($jsonContents, true);
+            if (json_last_error() !== JSON_ERROR_NONE) {
+                wp_send_json_error([
+                    'status' => 'error',
+                    'message' => __('Invalid JSON credentials format', 'geeky-bot'),
+                    'valid' => false,
+                    'details' => json_last_error_msg()
+                ]);
+            }
+            
+            $client->setAuthConfig($authConfig);
+            
+            // Test connection with a simple request
+            $httpClient = $client->authorize();
+            $apiUrl = "https://dialogflow.googleapis.com/v2/projects/{$projectID}/agent/sessions/test-session:detectIntent";
+            
+            $response = $httpClient->request('POST', $apiUrl, [
+                'json' => [
+                    'queryInput' => [
+                        'text' => [
+                            'text' => 'test connection',
+                            'languageCode' => 'en'
+                        ]
+                    ],
+                    'queryParams' => ['timeZone' => '']
+                ],
+                'timeout' => 10
+            ]);
+
+            $contents = $response->getBody()->getContents();
+            $data = json_decode($contents, true);
+
+            wp_send_json_success([
+                'status' => 'success',
+                'message' => __('Dialogflow is connected successfully', 'geeky-bot'),
+                'valid' => true,
+                'data' => [
+                    'project_id' => $projectID,
+                    'api_status' => 'working',
+                    'response_time' => $response->getHeader('date')[0] ?? 'N/A',
+                    'intent_detected' => $data['queryResult']['intent']['displayName'] ?? 'N/A'
+                ]
+            ]);
+
+        } catch (Exception $e) {
+            $errorMessage = $e->getMessage();
+            
+            // Handle common errors
+            if (strpos($errorMessage, 'OpenSSL unable to sign data') !== false) {
+                $status = 'error';
+                $message = __('SSL configuration error - unable to authenticate', 'geeky-bot');
+            } elseif (strpos($errorMessage, '401') !== false) {
+                $status = 'error';
+                $message = __('Authentication failed - invalid credentials', 'geeky-bot');
+            } elseif (strpos($errorMessage, '403') !== false) {
+                $status = 'error';
+                $message = __('Permission denied - check service account permissions', 'geeky-bot');
+            } elseif (strpos($errorMessage, '404') !== false) {
+                $status = 'error';
+                $message = __('Project not found - check Project ID', 'geeky-bot');
+            } elseif (strpos($errorMessage, '429') !== false) {
+                $status = 'warning';
+                $message = __('API rate limit exceeded', 'geeky-bot');
+            } elseif (strpos($errorMessage, 'Invalid JWT signature') !== false) {
+                $status = 'error';
+                $message = __('Invalid authentication signature', 'geeky-bot');
+            } else {
+                $status = 'error';
+                $message = __('Connection error: ', 'geeky-bot') . $errorMessage;
+            }
+
+            wp_send_json_error([
+                'status' => $status,
+                'message' => $message,
+                'valid' => false,
+                'details' => $errorMessage
+            ]);
+        }
+    }
+
+    function geekybotCheckOpenAIStatus() {
+        if (!current_user_can('manage_options')) {
+            die('Only Administrators can perform this action.');
+        }
+
+        $nonce = GEEKYBOTrequest::GEEKYBOT_getVar('_wpnonce');
+        if (!wp_verify_nonce($nonce, 'geekybot_check_openai_status')) {
+            die('Security check failed');
+        }
+
+        $api_key = geekybot::$_configuration['geekybot_openai_api_key'] ?? '';
+        
+        // Check if API key is empty
+        if (empty($api_key)) {
+            wp_send_json_error([
+                'status' => 'error',
+                'message' => __('OpenAI API key not configured', 'geeky-bot'),
+                'valid' => false
+            ]);
+        }
+
+        $uploadDir = wp_upload_dir();
+        $isAssistantFound = get_option('geekybot_assistant_id');
+        $useAssistant = (
+            in_array('openaiassistant', geekybot::$_active_addons) &&
+            !empty($isAssistantFound) && 
+            file_exists($uploadDir['basedir'] . '/geekybotLibraries/openAI/geekybot_openai_assistant_client_library-main/autoload.php')
+        );
+
+        try {
+            if ($useAssistant) {
+                // Check Assistant API
+                require_once $uploadDir['basedir'] . '/geekybotLibraries/openAI/geekybot_openai_assistant_client_library-main/autoload.php';
+                
+                $client = new \GuzzleHttp\Client([
+                    'base_uri' => 'https://api.openai.com/v1/',
+                    'headers' => [
+                        'Authorization' => "Bearer $api_key",
+                        'Content-Type' => 'application/json',
+                        'OpenAI-Beta' => 'assistants=v2'
+                    ],
+                    'timeout' => 10
+                ]);
+
+                // Test connection by listing assistants
+                $response = $client->get('assistants', [
+                    'query' => ['limit' => 1]
+                ]);
+
+                $contents = $response->getBody()->getContents();
+                $data = json_decode($contents, true);
+
+                wp_send_json_success([
+                    'status' => 'success',
+                    'message' => __('OpenAI Assistant API is connected successfully', 'geeky-bot'),
+                    'valid' => true,
+                    'data' => [
+                        'api_type' => 'assistant',
+                        'assistant_id' => $isAssistantFound,
+                        'api_status' => 'working',
+                        'response_time' => $response->getHeader('date')[0] ?? 'N/A',
+                        'assistants_found' => count($data['data'] ?? [])
+                    ]
+                ]);
+            } else {
+                // For regular API check - now using chat/completions like your main code
+                $response = wp_remote_post('https://api.openai.com/v1/chat/completions', [
+                    'headers' => [
+                        'Authorization' => 'Bearer ' . $api_key,
+                        'Content-Type' => 'application/json'
+                    ],
+                    'body' => wp_json_encode([
+                        'model' => 'gpt-3.5-turbo', // Using same default as your code
+                            'messages' => [
+                                ['role' => 'system', 'content' => 'You are a connectivity checker.'],
+                                ['role' => 'user', 'content' => 'Simply respond with "OK"']
+                            ],
+                            'max_tokens' => 5 // Minimal response
+                        ]),
+                    'timeout' => 10
+                ]);
+
+                if (is_wp_error($response)) {
+                    throw new Exception($response->get_error_message());
+                }
+
+                $data = json_decode(wp_remote_retrieve_body($response), true);
+                
+                if (!isset($data['choices'][0]['message']['content'])) {
+                    throw new Exception('Invalid API response structure');
+                }
+
+                wp_send_json_success([
+                    'status' => 'success',
+                    'message' => __('OpenAI API is connected successfully', 'geeky-bot'),
+                    'valid' => true,
+                    'data' => [
+                        'api_type' => 'regular',
+                        'api_status' => 'working',
+                        'response_time' => $response['headers']['date'] ?? 'N/A',
+                        'models_available' => count($data['data'] ?? []),
+                        'model_example' => $data['data'][0]['id'] ?? 'N/A'
+                    ]
+                ]);
+            }
+        } catch (Exception $e) {
+            $errorMessage = $e->getMessage();
+            
+            // Handle common errors
+            if (strpos($errorMessage, '401') !== false) {
+                $status = 'error';
+                $message = __('Authentication failed - invalid API key', 'geeky-bot');
+            } elseif (strpos($errorMessage, '403') !== false) {
+                $status = 'error';
+                $message = __('Permission denied - check API key permissions', 'geeky-bot');
+            } elseif (strpos($errorMessage, '404') !== false && $useAssistant) {
+                $status = 'error';
+                $message = __('Assistant not found - check Assistant ID', 'geeky-bot');
+            } elseif (strpos($errorMessage, '429') !== false) {
+                $status = 'warning';
+                $message = __('API rate limit exceeded', 'geeky-bot');
+            } elseif (strpos($errorMessage, 'cURL error') !== false) {
+                $status = 'error';
+                $message = __('Network connection error', 'geeky-bot');
+            } else {
+                $status = 'error';
+                $message = __('Connection error: ', 'geeky-bot') . $errorMessage;
+            }
+
+            wp_send_json_error([
+                'status' => $status,
+                'message' => $message,
+                'valid' => false,
+                'details' => $errorMessage,
+                'api_type' => $useAssistant ? 'assistant' : 'regular'
+            ]);
+        }
+    }
 
 }
 

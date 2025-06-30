@@ -302,8 +302,11 @@ class GEEKYBOTchathistoryModel {
     }
 
     function SaveChathistoryFromchatServer($message, $sender, $type = '', $buttons = '', $post_type = '') {
-        $session_id = $this->saveChatHistorySession();
-        $this->saveChatHistoryMessage($message, $sender, $session_id, $type, $buttons, $post_type);
+        // only save chat history in the case of geekybot chat
+        if (geekybot::$_configuration['ai_provider'] == 1) {
+            $session_id = $this->saveChatHistorySession();
+            $this->saveChatHistoryMessage($message, $sender, $session_id, $type, $buttons, $post_type);
+        }
     }
 
     function saveChatHistorySession(){
