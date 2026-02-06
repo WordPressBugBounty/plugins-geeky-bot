@@ -21,23 +21,30 @@
                                 <img class="geeky-installation-link-arrow" title="<?php echo esc_html(__('GeekyBot Features', 'geeky-bot')); ?>" alt="<?php echo esc_html(__('GeekyBot Features', 'geeky-bot')); ?>" src="<?php echo esc_url(GEEKYBOT_PLUGIN_URL) . 'includes/images/postinstallation/welcome-arrow.png'; ?>" />
                             </a>
                         </li>
+                        <li class="header-parts third-part">
+                            <a href="<?php echo esc_url(admin_url("admin.php?page=geekybot_postinstallation&geekybotlt=stepzero&geekybot_callfrom=backlink")); ?>" title="<?php echo esc_html(__('Generate Content', 'geeky-bot')); ?>" class="tab_icon">
+                                <span class="header-parts-number">1</span>
+                                <span class="text active"><?php echo esc_html(__('Generate Content', 'geeky-bot')); ?></span>
+                                <img class="geeky-installation-link-arrow" title="<?php echo esc_html(__('Generate Content', 'geeky-bot')); ?>" alt="<?php echo esc_html(__('Generate Content', 'geeky-bot')); ?>" src="<?php echo esc_url(GEEKYBOT_PLUGIN_URL) . 'includes/images/postinstallation/vlue-arrow.png'; ?>" />
+                            </a>
+                        </li>
                         <li class="header-parts first-part">
                             <a href="<?php echo esc_url(admin_url("admin.php?page=geekybot_postinstallation&geekybotlt=stepone&geekybot_callfrom=backlink")); ?>" title="<?php echo esc_html(__('AI ChatBot', 'geeky-bot')); ?>" class="tab_icon">
-                                <span class="header-parts-number">1</span>
+                                <span class="header-parts-number">2</span>
                                 <span class="text active"><?php echo esc_html(__('AI ChatBot', 'geeky-bot')); ?></span>
                                 <img class="geeky-installation-link-arrow" title="<?php echo esc_html(__('AI ChatBot', 'geeky-bot')); ?>" alt="<?php echo esc_html(__('AI ChatBot', 'geeky-bot')); ?>" src="<?php echo esc_url(GEEKYBOT_PLUGIN_URL) . 'includes/images/postinstallation/green-arrow.png'; ?>" />
                             </a>
                         </li>
                         <li class="header-parts second-part">
                             <a href="<?php echo esc_url(admin_url("admin.php?page=geekybot_postinstallation&geekybotlt=steptwo&geekybot_callfrom=backlink")); ?>" title="<?php echo esc_html(__('WooCommerce Integration', 'geeky-bot')); ?>" class="tab_icon">
-                                <span class="header-parts-number geeky-header-parts-number-active">2</span>
+                                <span class="header-parts-number geeky-header-parts-number-active">3</span>
                                 <span class="text"><?php echo esc_html(__('WooCommerce Integration', 'geeky-bot')); ?></span>
                                 <img class="geeky-installation-link-arrow" title="<?php echo esc_html(__('WooCommerce', 'geeky-bot')); ?>" alt="<?php echo esc_html(__('WooCommerce', 'geeky-bot')); ?>" src="<?php echo esc_url(GEEKYBOT_PLUGIN_URL) . 'includes/images/postinstallation/woo-arrow.png'; ?>" />
                             </a>
                         </li>
                         <li class="header-parts third-part active">
                             <a href="<?php echo esc_url(admin_url("admin.php?page=geekybot_postinstallation&geekybotlt=stepthree&geekybot_callfrom=backlink")); ?>" title="<?php echo esc_html(__('AI Web Search', 'geeky-bot')); ?>" class="tab_icon">
-                                <span class="header-parts-number geeky-header-parts-number-active">3</span>
+                                <span class="header-parts-number geeky-header-parts-number-active">4</span>
                                 <span class="text"><?php echo esc_html(__('AI Web Search', 'geeky-bot')); ?></span>
                                 <img class="geeky-installation-link-arrow" title="<?php echo esc_html(__('AI Web Search', 'geeky-bot')); ?>" alt="<?php echo esc_html(__('AI Web Search', 'geeky-bot')); ?>" src="<?php echo esc_url(GEEKYBOT_PLUGIN_URL) . 'includes/images/postinstallation/vlue-arrow.png'; ?>" />
                             </a>

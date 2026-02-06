@@ -27,23 +27,31 @@ GEEKYBOTMessages::GEEKYBOT_getLayoutMessage($msgkey);
                                 <img class="geeky-installation-link-arrow" title="<?php echo esc_html(__('GeekyBot Features', 'geeky-bot')); ?>" alt="<?php echo esc_html(__('GeekyBot Features', 'geeky-bot')); ?>" src="<?php echo esc_url(GEEKYBOT_PLUGIN_URL) . 'includes/images/postinstallation/welcome-arrow.png'; ?>" />
                             </a>
                         </li>
+                        <li class="header-parts third-part">
+                            <a href="<?php echo esc_url(admin_url("admin.php?page=geekybot_postinstallation&geekybotlt=stepzero&geekybot_callfrom=backlink")); ?>" title="<?php echo esc_html(__('Generate Content', 'geeky-bot')); ?>" class="tab_icon">
+                                <span class="header-parts-number">1</span>
+                                <span class="text active"><?php echo esc_html(__('Generate Content', 'geeky-bot')); ?></span>
+                                <img class="geeky-installation-link-arrow" title="<?php echo esc_html(__('Generate Content', 'geeky-bot')); ?>" alt="<?php echo esc_html(__('Generate Content', 'geeky-bot')); ?>" src="<?php echo esc_url(GEEKYBOT_PLUGIN_URL) . 'includes/images/postinstallation/vlue-arrow.png'; ?>" />
+                            </a>
+                        </li>
+
                         <li class="header-parts first-part">
                             <a href="<?php echo esc_url(admin_url("admin.php?page=geekybot_postinstallation&geekybotlt=stepone&geekybot_callfrom=backlink")); ?>" title="<?php echo esc_html(__('AI ChatBot', 'geeky-bot')); ?>" class="tab_icon">
-                                <span class="header-parts-number">1</span>
+                                <span class="header-parts-number">2</span>
                                 <span class="text active"><?php echo esc_html(__('AI ChatBot', 'geeky-bot')); ?></span>
                                 <img class="geeky-installation-link-arrow" title="<?php echo esc_html(__('AI ChatBot', 'geeky-bot')); ?>" alt="<?php echo esc_html(__('AI ChatBot', 'geeky-bot')); ?>" src="<?php echo esc_url(GEEKYBOT_PLUGIN_URL) . 'includes/images/postinstallation/green-arrow.png'; ?>" />
                             </a>
                         </li>
                         <li class="header-parts second-part">
                             <a href="<?php echo esc_url(admin_url("admin.php?page=geekybot_postinstallation&geekybotlt=steptwo&geekybot_callfrom=backlink")); ?>" title="<?php echo esc_html(__('WooCommerce Integration', 'geeky-bot')); ?>" class="tab_icon">
-                                <span class="header-parts-number geeky-header-parts-number-active">2</span>
+                                <span class="header-parts-number geeky-header-parts-number-active">3</span>
                                 <span class="text"><?php echo esc_html(__('WooCommerce Integration', 'geeky-bot')); ?></span>
                                 <img class="geeky-installation-link-arrow" title="<?php echo esc_html(__('WooCommerce', 'geeky-bot')); ?>" alt="<?php echo esc_html(__('WooCommerce', 'geeky-bot')); ?>" src="<?php echo esc_url(GEEKYBOT_PLUGIN_URL) . 'includes/images/postinstallation/woo-arrow.png'; ?>" />
                             </a>
                         </li>
                         <li class="header-parts third-part">
                             <a href="<?php echo esc_url(admin_url("admin.php?page=geekybot_postinstallation&geekybotlt=stepthree&geekybot_callfrom=backlink")); ?>" title="<?php echo esc_html(__('AI Web Search', 'geeky-bot')); ?>" class="tab_icon">
-                                <span class="header-parts-number geeky-header-parts-number-active">3</span>
+                                <span class="header-parts-number geeky-header-parts-number-active">4</span>
                                 <span class="text"><?php echo esc_html(__('AI Web Search', 'geeky-bot')); ?></span>
                                 <img class="geeky-installation-link-arrow" title="<?php echo esc_html(__('AI Web Search', 'geeky-bot')); ?>" alt="<?php echo esc_html(__('AI Web Search', 'geeky-bot')); ?>" src="<?php echo esc_url(GEEKYBOT_PLUGIN_URL) . 'includes/images/postinstallation/vlue-arrow.png'; ?>" />
                             </a>
@@ -61,7 +69,7 @@ GEEKYBOTMessages::GEEKYBOT_getLayoutMessage($msgkey);
                                     <?php echo esc_html(__('The ultimate AI chatbot for WooCommerce lead generation, intelligent content search, and interactive customer engagement on your WordPress website.', 'geeky-bot')); ?>
                                 </p>
                                 <div class="geekybot-installation-next-previous-btnwrp geekybot-wellcome-screen-nextbtn-wrp">
-                                    <a class="geekybot-installation-full-width-btn" href="<?php echo esc_url(admin_url("admin.php?page=geekybot_postinstallation&geekybotlt=stepone")); ?>" onclick="submitPostInstallatinForm(1);">
+                                    <a class="geekybot-installation-full-width-btn" href="<?php echo esc_url(admin_url("admin.php?page=geekybot_postinstallation&geekybotlt=stepzero")); ?>" onclick="submitPostInstallatinForm(1);">
                                         <?php echo esc_html(__('Next', 'geeky-bot')); ?>
                                         <img class="geeky-installation-nextbtn-image" title="<?php echo esc_html(__('Next', 'geeky-bot')); ?>" alt="<?php echo esc_html(__('image', 'geeky-bot')); ?>" src="<?php echo esc_url(GEEKYBOT_PLUGIN_URL) . 'includes/images/postinstallation/next-arrow.png'; ?>" />
                                         <img class="geeky-installation-nextbtn-image backbtn-black-image" title="<?php echo esc_html(__('Next', 'geeky-bot')); ?>" alt="<?php echo esc_html(__('image', 'geeky-bot')); ?>" src="<?php echo esc_url(GEEKYBOT_PLUGIN_URL) . 'includes/images/postinstallation/blue-arrow.png'; ?>" />

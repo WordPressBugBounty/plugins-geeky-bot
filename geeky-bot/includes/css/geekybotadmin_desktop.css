@@ -227,6 +227,186 @@ div#geekybotadmin-wrapper div#geekybotadmin-data div#geekybot-admin-wrapper div.
 /* input field background and border */
 div#geekybot-reset-btn-main{background-color: #373435;border-radius: 4px;}
 div#geekybot-reset-btn-main:hover{background-color:#5e4ae3;}
+/* =========================================
+   AI Generate Text Start
+   ========================================= */
+/* --- LAYOUT STRUCTURE --- */
+div.geekybot-admin-main-wrapper .zywrap-playground-grid {display: grid;grid-template-columns: 350px 1fr;grid-template-rows: 0px 1fr;margin: 0 auto;overflow: hidden;align-items: flex-start;}
+/* --- SIDEBAR (CONFIG) --- */
+div.geekybot-admin-main-wrapper .zywrap-controls-column {grid-row: 2 / -1;background-color: #ffffff;border-right: 1px solid #e2e8f0;padding: 24px;display: flex;flex-direction: column;gap: 24px;border: 1px solid #e2e8f0;border-radius: 16px;}
+div.geekybot-admin-main-wrapper .geekybot-sidebar-section-title {margin-bottom: 12px;color: #373435;font-size: 22px;font-weight: 600;}
+/* --- MAIN WORKSPACE --- */
+div.geekybot-admin-main-wrapper .geekybot-app-main {grid-row: 2 / -1;grid-column: 2;padding-left: 32px;display: flex;gap: 32px;overflow-y: auto;padding-top: 0px;}
+/* --- CARDS & PANELS --- */
+div.geekybot-admin-main-wrapper .geekybot-glass-panel {background: #ffffff;border: 1px solid #e2e8f0;border-radius: 16px;padding: 24px;display: flex;flex-direction: column;transition: border-color 0.3s ease, box-shadow 0.3s ease;box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);width: 100%;max-width: 100%;}
+div.geekybot-admin-main-wrapper .geekybot-geekybot-glass-panel-s, div.geekybot-admin-main-wrapper .geekybot-glass-panel:hover {box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.05), 0 4px 6px -2px rgba(0, 0, 0, 0.025);border-color: #cbd5e1;}
+div.geekybot-admin-main-wrapper .geekybot-geekybot-glass-panel-s {border-radius: 16px;padding: 24px;display: flex;flex-direction: column;transition: border-color 0.3s ease, box-shadow 0.3s ease;box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);background-color: rgb(191 193 253 / 17%);border: 1px dashed rgba(99, 102, 241, 0.3);}
+div.geekybot-admin-main-wrapper .geekybot-geekybot-glass-panel-s:hover {box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.05), 0 4px 6px -2px rgba(0, 0, 0, 0.025);border-color: #cbd5e1;}
+div.geekybot-admin-main-wrapper .geekybot-panel-header {display: flex;flex-wrap: wrap;justify-content: space-between;align-items: center;margin-bottom: 20px;border-bottom: 1px solid transparent;}
+div.geekybot-admin-main-wrapper .geekybot-panel-title {font-weight: 700;display: flex;align-items: center;gap: 10px;color: #373435;font-size: 25px;}
+div.geekybot-admin-main-wrapper .geekybot-special-config-wrapper {background-color: rgb(191 193 253 / 17%);border: 1px dashed rgba(99, 102, 241, 0.3);border-radius: 8px;padding: 16px;display: flex;flex-direction: column;gap: 16px;border-radius: 16px;}
+/* --- FORM ELEMENTS --- */
+div.geekybot-admin-main-wrapper .geekybot-input-group {margin-bottom: 20px;}
+div.geekybot-admin-main-wrapper .input-label {display: block;font-size: 18px;color: #2c3338;margin-bottom: 8px;font-weight: 600;padding-bottom: 10px;}
+div.geekybot-admin-main-wrapper .input-label span {color: #9f9a9a;padding-left: 10px;}
+div.geekybot-admin-main-wrapper .geekybot-input-label-s-case{display: block;font-size: 18px;color: #6366f1;margin-bottom: 8px;font-weight: 600;padding-bottom: 10px;}
+div.geekybot-admin-main-wrapper input.dark-input, div.geekybot-admin-main-wrapper .dark-select, div.geekybot-admin-main-wrapper .dark-textarea {width: 100%;background-color: #fff;border: 1px solid #e2e8f0;border-radius: 8px;padding: 12px 16px;font-family: inherit;color: #1e293b;font-size: 14px;transition: all 0.2s ease;font-size: 16px;}
+div.geekybot-admin-main-wrapper .dark-input:focus, div.geekybot-admin-main-wrapper .dark-select:focus, div.geekybot-admin-main-wrapper .dark-textarea:focus {outline: none;background-color: #ffffff;border-color: #6366f1;box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.1);}
+div.geekybot-admin-main-wrapper .geekybot-glass-panel .geekybot-input-group {border-bottom: 2px dotted ;padding-bottom: 25px;border-color: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);}
+div.geekybot-admin-main-wrapper .geekybot-input-group-scase {border-color: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);margin-bottom: 0;padding-bottom: 15px;}
+div.geekybot-admin-main-wrapper .dark-textarea {resize: vertical;min-height: 200px;line-height: 1.6;}
+/* Custom Select Arrow */
+div#geekybotadmin-wrapper div#geekybotadmin-data .zywrap-playground-grid .select2-container--default .select2-selection--single .select2-selection__rendered {border: 1px solid #e2e8f0;-webkit-appearance: none;background: #fff url(data:image/svg+xml;charset=US-ASCII,%3Csvg%20width%3D%2220%22%20height%3D%2220%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3Cpath%20d%3D%22M5%206l5%205%205-5%202%201-7%207-7-7%202-1z%22%20fill%3D%22%23555%22%2F%3E%3C%2Fsvg%3E) no-repeat right 5px top 55%;background-size: 19px 19px;border-radius: 8px;}
+div.geekybot-admin-main-wrapper .dark-select {appearance: none;background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='%2364748b' stroke-width='2'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' d='M19.5 8.25l-7.5 7.5-7.5-7.5' /%3E%3C/svg%3E");background-repeat: no-repeat;background-position: right 12px center;background-size: 16px;padding-right: 40px;cursor: pointer;}
+/* Toggle/Checkboxes styling */
+div.geekybot-admin-main-wrapper .geekybot-checkbox-group {display: flex;gap: 16px;margin-top: 10px;}
+div.geekybot-admin-main-wrapper .geekybot-checkbox-label {display: flex;align-items: center;gap: 8px;font-size: 13px;color: #1e293b;cursor: pointer;user-select: none;background-color: #fff;border: 1px solid #e2e8f0;border-radius: 8px;padding: 12px 16px;}
+div.geekybot-admin-main-wrapper .geekybot-checkbox-label input {accent-color: #6366f1;width: 16px;height: 16px;margin-top: 2px;}
+/* --- ADVANCED ACCORDION --- */
+div.geekybot-admin-main-wrapper details.modern-details {border: 1px solid #e2e8f0;border-radius: 12px;overflow: hidden;background-color: #f8fafc;}
+div.geekybot-admin-main-wrapper details.modern-details summary {background: transparent;padding: 12px 16px;font-size: 16px;font-weight: 600;color: #1e293b;cursor: pointer;list-style: none;display: flex;justify-content: space-between;align-items: center;}
+div.geekybot-admin-main-wrapper details.modern-details summary::after {content: '+';color: #64748b;font-weight: bold;}
+div.geekybot-admin-main-wrapper details.modern-details[open] summary::after { content: '-'; }
+div.geekybot-admin-main-wrapper .details-content {padding: 16px;background: #ffffff;display: grid;grid-template-columns: 1fr;gap: 16px;border-top: 1px solid #e2e8f0;}
+/* --- BUTTONS --- */
+div.geekybot-admin-main-wrapper .btn {display: inline-flex;align-items: center;justify-content: center;gap: 8px;padding: 12px 24px;border-radius: 8px;font-weight: 600;font-size: 14px;cursor: pointer;border: none;transition: all 0.2s ease;}
+div.geekybot-admin-main-wrapper .btn-primary {background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);color: white;width: 100%;text-transform: capitalize;letter-spacing: 0.05em;box-shadow: 0 4px 6px -1px rgba(99, 102, 241, 0.4);}
+div.geekybot-admin-main-wrapper .btn-primary:hover {transform: translateY(-2px);box-shadow: 0 10px 15px -3px rgba(99, 102, 241, 0.5);}
+div.geekybot-admin-main-wrapper .btn-icon {background: white;color: #64748b;padding: 8px 12px;font-size: 13px;border: 1px solid #e2e8f0;border-radius: 6px;}
+div.geekybot-admin-main-wrapper .btn-icon:hover {background: #f8fafc;color: #6366f1;border-color: #6366f1;}
+/* --- OUTPUT AREA --- */
+div.geekybot-admin-main-wrapper .output-container {background-color:#fff;border-radius: 8px;flex-grow: 1;padding: 24px;font-family: 'Consolas', 'Monaco', monospace;color: #1e293b;font-size: 14px;line-height: 1.7;overflow-y: auto;border: 1px solid #e2e8f0;min-height: 300px;}
+div.geekybot-admin-main-wrapper .zywrap-controls-column .select2-container--default .select2-selection--single {border: 1px solid #e2e8f0;border-radius: 8px;}
+div.geekybot-admin-main-wrapper .zywrap-controls-column .select2-container--default.select2-container--disabled .select2-selection--single {background-color: #fff;}
+div.geekybot-admin-main-wrapper .select2-container .select2-selection--single {height: auto;}
+div.geekybot-admin-main-wrapper .select2-container .select2-selection--single .select2-selection__rendered {padding: 10px;}
+/* Scrollbars */
+::-webkit-scrollbar { width: 8px; height: 8px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 4px; }
+::-webkit-scrollbar-thumb:hover { background: #94a3b8; }
+/* Responsive */
+/* =========================================
+   AI Generate Text End
+   ========================================= */
+#zywrap_overrides_parent div.zywrap_overrides_parent_wrp {display: flex; gap: 10px;flex-wrap: wrap;}
+#zywrap_overrides_parent div.zywrap_overrides_parent_wrp div{width: 100%}
+.zywrap-output-column {display: flex;flex-direction: column;}
+.zywrap-output-pre {background: #fdfdfd;border: 1px solid #e5e5e5;border-radius: 8px;padding: 1em;min-height: 400px;white-space: pre-wrap;word-wrap: break-word;font-family: monospace;flex-grow: 1;box-shadow: inset 0 1px 2px rgba(0,0,0,0.07);color: #333;}
+.zywrap-overrides-grid {display: flex;grid-template-columns: 1fr 1fr;gap: 1em;}
+/* Style for the filter checkboxes */
+.zywrap-filter-options {display: flex;gap: 1.5em;padding-left: 5px;margin-top: 10px;}
+.zywrap-filter-options label {font-weight: normal;display: flex;align-items: center;gap: 5px;font-size: 13px;color: #555;}
+.zywrap-filter-options input {width: auto;}
+/* Updated Styles for Setup Notices */
+.geekybot-setup-notice {background-color: #fff;border-left: 4px solid #ffb900;box-shadow: 0 1px 1px rgba(0,0,0,.04);margin: 20px 0 20px 0;padding: 12px;clear: both;display: block;overflow: hidden; position: relative;}
+.geekybot-setup-notice a {color: #d63638;text-decoration: none;font-weight: bold;font-size: 14px;display: flex;align-items: center;}
+.geekybot-setup-notice a:hover {color: #d63638;text-decoration: underline;}
+/* Select2 Overrides */
+.select2-container--default .select2-selection--single .select2-selection__rendered {color: #333 !important;line-height: 28px;display: block;overflow: hidden;text-overflow: ellipsis;white-space: nowrap;}
+.select2-dropdown,
+.select2-dropdown .select2-search__field,
+.select2-dropdown .select2-results__option {color: #333 !important;}
+.select2-container--default .select2-results__option--highlighted[aria-selected] {color: #333 !important;}
+.select2-dropdown {z-index: 9999999 !important;}
+
+/* =========================================
+   From admin_classic_modal.php
+   ========================================= */
+#zywrap-classic-modal-backdrop {display: none;position: fixed;top: 0; left: 0;width: 100%; height: 100%;background: #000;opacity: 0.7;z-index: 100000;}
+#zywrap-classic-modal-wrap {display: none;position: fixed;top: 50%;left: 50%;transform: translate(-50%, -50%);width: 90%;max-width: 600px;max-height: 90vh;overflow-y: auto;background: #f9f9f9;border-radius: 8px;box-shadow: 0 5px 30px rgba(0,0,0,0.3);z-index: 100001;}
+#zywrap-classic-modal-header {padding: 15px 20px;border-bottom: 1px solid #ddd;display: flex;justify-content: space-between;align-items: center;}
+#zywrap-classic-modal-header h2 {margin: 0;font-size: 20px;}
+#zywrap-classic-modal-close {font-size: 24px;text-decoration: none;color: #666;line-height: 1;}
+#zywrap-classic-modal-content {padding: 20px;display: flex;flex-direction: column;gap: 15px;}
+#zywrap-classic-modal-content label {font-weight: 600;margin-bottom: 5px;display: block;}
+#zywrap-classic-modal-content .select2-container {width: 100% !important;}
+#zywrap-classic-modal-content textarea {width: 100%;border-radius: 4px;border: 1px solid #ddd;}
+#zywrap-classic-modal-overrides {padding: 10px 15px;background: #eee;border-radius: 4px;}
+#zywrap-classic-modal-overrides-grid {display: grid;grid-template-columns: 1fr 1fr;gap: 10px;}
+#zywrap-classic-modal-footer {padding: 15px 20px;border-top: 1px solid #ddd;text-align: right;}
+/* Style for the new checkboxes */
+.zywrap-classic-geekybot-checkbox-group {display: flex; gap: 15px; margin-top: -5px; margin-bottom: 5px; padding-left: 5px;}
+.zywrap-classic-geekybot-checkbox-group label {font-weight: normal; display: flex; align-items: center; gap: 5px;margin-bottom: 0;}
+#geekybot-zywrap-status-result {float: left;width: 100%;}
+#geekybot-zywrap-sync-result {float: left;width: 100%;}
+/* =========================================
+   From admin_logs.php
+   ========================================= */
+/* --- LAYOUT FIX: Summary Grid now 3 columns --- */
+div.geekybot-admin-wrapper div.geekybot-summary-grid {display: grid;grid-template-columns: repeat(1, 1fr);gap: 16px;margin-bottom: 24px;}
+@media (min-width: 768px) {
+  /* Changed from 4 to 3 */
+  div.geekybot-admin-wrapper div.geekybot-summary-grid {grid-template-columns: repeat(3, 1fr); }
+}
+/* --- END LAYOUT FIX --- */
+div.geekybot-admin-wrapper div.geekybot-admin-container {max-width: 100%;margin: 0px 0px 20px 0px;}
+/* TYPOGRAPHY & HEADERS */
+div.geekybot-admin-wrapper div.geekybot-page-header h1 {font-size: 28px;font-weight: 700;color: #1f2937;margin-bottom: 5px;}
+div.geekybot-admin-wrapper div.geekybot-page-header p {color: #6b7280;font-size: 14px;}
+/* SUMMARY CARDS */
+div.geekybot-admin-wrapper div.geekybot-summary-card {background-color: #f9fafb;padding: 20px;border-radius: 12px;box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06);display: flex;flex-direction: column;gap: 5px;transition: transform 0.2s;border: 1px solid #dfdfdf;}
+div.geekybot-admin-wrapper div.geekybot-summary-card:hover {transform: translateY(-2px);}
+div.geekybot-admin-wrapper div.geekybot-summary-label {font-size: 13px;color: #6b7280;font-weight: 500;}
+div.geekybot-admin-wrapper div.geekybot-summary-value {font-size: 24px;font-weight: 700;color: #1f2937;}
+div.geekybot-admin-wrapper div.geekybot-summary-value.geekybot-error {color: #ef4444;}
+div.geekybot-admin-wrapper div.geekybot-summary-value.geekybot-model {font-size: 16px;font-weight: 500;}
+/* FILTER BAR */
+div.geekybot-admin-wrapper div.geekybot-filter-bar {background-color: #f9fafb;padding: 20px;border-radius: 12px;margin-bottom: 20px;box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06);display: flex;flex-wrap: wrap;gap: 15px;align-items: center;border: 1px solid #dfdfdf;}
+div.geekybot-admin-wrapper input.geekybot-filter-input,
+div.geekybot-admin-wrapper select.geekybot-filter-input {padding: 8px 12px;border: 1px solid #d1d5db;border-radius: 6px;font-size: 14px;transition: border-color 0.2s, box-shadow 0.2s;flex-grow: 1;}
+div.geekybot-admin-wrapper input.geekybot-search-input {width: 100%;}
+@media (min-width: 768px) {
+    div.geekybot-admin-wrapper input.geekybot-search-input {width: 33.3333%;}
+    div.geekybot-admin-wrapper select.geekybot-select-input {width: auto;}
+}
+div.geekybot-admin-wrapper input.geekybot-filter-input:focus,
+div.geekybot-admin-wrapper select.geekybot-filter-input:focus {border-color: #2563eb;outline: none;box-shadow: 0 0 0 1px #2563eb;}
+div.geekybot-admin-wrapper button.geekybot-filter-button {background-color: #2563eb;color: white;font-weight: 600;padding: 8px 16px;border-radius: 6px;box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);transition: background-color 0.15s, transform 0.15s;border: none;cursor: pointer;display: flex;align-items: center;line-height: 2;}
+div.geekybot-admin-wrapper button.geekybot-filter-button:hover {background-color: #1d4ed8;}
+/* TABLE STYLES */
+div.geekybot-admin-wrapper .geekybot-admin-container table.geekybot-table {border-collapse: separate;border-spacing: 0;width: 100%;background-color: white;box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.05), 0 4px 6px -2px rgba(0, 0, 0, 0.03);border-radius: 12px;overflow: hidden;border: 1px solid #dfdfdf;}
+div.geekybot-admin-wrapper .geekybot-admin-container table.geekybot-table th,
+div.geekybot-admin-wrapper .geekybot-admin-container table.geekybot-table td {padding: 14px 16px;text-align: left;border-bottom: 1px solid #f3f4f6;vertical-align: top;font-size: 14px;color: #374151;}
+div.geekybot-admin-wrapper .geekybot-admin-container table.geekybot-table th {border-bottom: 1px solid #dfdfdf;background-color: #f9fafb;}
+div.geekybot-admin-wrapper .geekybot-admin-container table.geekybot-table thead th {background-color: #f9fafb;font-weight: 600;color: #4b5563;text-transform: uppercase;font-size: 11px;letter-spacing: 0.05em;}
+div.geekybot-admin-wrapper .geekybot-admin-container table.geekybot-table tbody tr {transition: background-color 0.15s ease;}
+div.geekybot-admin-wrapper .geekybot-admin-container table.geekybot-table tbody tr:hover {background-color: #f0f8ff;cursor: pointer;}
+/* Status Badges */
+div.geekybot-admin-wrapper span.geekybot-status-badge {padding: 4px 8px;border-radius: 6px;font-size: 11px;font-weight: 700;display: inline-block;min-width: 50px;text-align: center;text-transform: uppercase;}
+span.geekybot-status-success { background-color: #d4edda; color: #155724; } /* Custom colors used from template end */
+span.geekybot-status-error { background-color: #f8d7da; color: #721c24; }
+span.geekybot-status-warning { background-color: #fff3cd; color: #856404; }
+span.geekybot-status-ok { background-color: #e0f2fe; color: #0ea5e9; } /* Default OK/Info color */
+/* Performance & Cost */
+div.geekybot-admin-wrapper div.geekybot-performance-stats {font-size: 0.9em;line-height: 1.4;display: flex;flex-direction: column;gap: 4px;}
+/* Error/Details Column */
+div.geekybot-admin-wrapper div.geekybot-text-error-detail {color: #f59e0b;font-weight: 500;font-size: 0.95em;}
+/* Details Button */
+div.geekybot-admin-wrapper button.geekybot-details-btn {background-color: #f3f4f6;border: none;color: #4b5563;padding: 6px;border-radius: 6px;transition: all 0.2s;line-height: 1;cursor: pointer;display: inline-flex;align-items: center;justify-content: center;}
+div.geekybot-admin-wrapper button.geekybot-details-btn:hover {background-color: #e5e7eb;transform: scale(1.05);}
+/* Utility classes (simplified from Tailwind, prefixed) */
+.geekybot-font-bold { font-weight: 700; }
+.geekybot-text-gray-800 { color: #1f2937; }
+.geekybot-text-sm { font-size: 12px; }
+.geekybot-text-gray-500 { color: #6b7280; }
+.geekybot-text-xs { font-size: 10px; }
+.geekybot-font-semibold { font-weight: 600; }
+.geekybot-text-gray-600 { color: #4b5563; }
+.geekybot-text-success { color: #28a745; font-weight: 600; } /* Used custom success color */
+.geekybot-text-error { color: #dc3545; font-weight: 600; } /* Used custom error color */
+.geekybot-text-gray-700 { color: #374151; }
+.geekybot-text-gray-400 { color: #9ca3af; }
+.geekybot-text-center { text-align: center; }
+/* Dashicon Placeholders (using WordPress dashicons which must be loaded by the theme/plugin) */
+.dashicons { vertical-align: middle; }
+/* Custom styles from bottom of original file */
+.geekybot-token-stats { font-size: 0.9em; }
+.geekybot-token-breakdown { font-size: 0.85em; color: #888; margin-top: 2px; }
+div#geekybotadmin-wrapper div#geekybotadmin-data div#geekybot-admin-wrapper.geekybot-admin-error-log-container {background-color: unset !important;}
+/*========*/
+/*AI Generate Text css end*/
+/*========*/
 /* intents */
 div#geekybot-head{float: left;width: 100%;font-size: 20px;}
 div#geekybot-head.geekybot-dashboard-head{padding-bottom: 30px;}
@@ -2245,7 +2425,14 @@ div#templateSetValuesblack{background: rgba(0,0,0,0.5);position: fixed;width: 10
   div.geekybot-synchronize-section.geekybot-addon-update-available-section .geekybot-synchronize-button-wrp{width: calc(100% - 120px);text-align: start;margin-top: 5px;}
   /* ai provider */
   div#geekybotadmin-wrapper div#geekybotadmin-data div#geekybot-admin-wrapper form.geekybot-configurations div.geekybot-config-row-wrp div.geekybot-config-row div.geekybot-config-value-text.geekybot-config-aiprovider-textarea textarea{min-height: 500px;}
-
+  /* content generation */
+  div.geekybot-admin-main-wrapper .zywrap-playground-grid {grid-template-columns: 1fr;grid-template-rows: auto auto 1fr;height: auto;overflow: visible;}
+  div.geekybot-admin-main-wrapper .zywrap-controls-column {grid-row: 2;border-right: none;border-bottom: 1px solid #e2e8f0;height: auto;}
+  div.geekybot-admin-main-wrapper .geekybot-app-main {grid-row: 3;grid-column: 1;grid-template-columns: 1fr;padding: 0;margin-top: 10px;}
+  div.geekybot-admin-main-wrapper .geekybot-panel-title {flex: 0 0 100%;}
+  div.geekybot-admin-main-wrapper .zywrap-toolbar-actions {flex: 0 0 100%;flex-direction: row-reverse;margin-top: 15px;}
+  .geekybot-table-responsive-wrapper {width: 100%;overflow-x: auto;-webkit-overflow-scrolling: touch;margin-bottom: 20px;border: 1px solid #e5e7eb;border-radius: 8px;}
+  .geekybot-table-zywrap-log {min-width: 800px;}
 }
 @media (max-width:782px){
   div#geekybotadmin-leftmenu-main ul{width: 100%;padding: 10px 0;border-radius: 50px;align-items: stretch;justify-content: flex-start;}

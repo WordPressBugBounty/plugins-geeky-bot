@@ -1,19 +1,19 @@
-=== Woo Lead Generation, AI Chatbot and AI Web Search - GeekyBot ===
+=== GeekyBot — Generate AI Content Without Prompt, Chatbot and Lead Generation ===
 Contributors: ahmadgb
-Tags: chatbot, AI, woocommerce chatbot, lead generation, chat bots
+Tags: chatbot, AI, OpenAI, lead generation, GPT
 Donate link: https://geekybot.com
 Requires at least: WordPress 5.0
-Tested up to: 6.8.1
-Stable tag: 1.1.6
+Tested up to: 6.9
+Stable tag: 1.1.9
 License: GPLv2
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
 == Description ==
 
-The ultimate and FREE AI chatbot, WooCommerce lead generation, intelligent web search, and interactive customer engagement on your WordPress website.
+Generate AI content without prompt, AI chatbot, WooCommerce lead generation, intelligent web search, and interactive customer engagement on your WordPress website.
 
 ==Top Features ==
-
+- **AI Content Creator:** The AI Content Engine instantly generates high-quality content without any prompts. In a few clicks, it produces ready-to-use, polished text in multiple languages, powered by advanced AI models—making content creation effortless and efficient.
 - **WooCommerce Lead Generation:** Streamline shopping experiences by allowing users to find products, explore variations, and add items to their cart directly through GeekyBot.
 - **AI Chatbot:** Customize interactions using slots and variables to dynamically capture and process user inputs.
 - **AI Web Search:** Assist users in discovering relevant information within your blog posts or articles by searching or topics and displaying content as per user requests.
@@ -23,6 +23,9 @@ https://www.youtube.com/watch?v=iyGUUFhZ9Ag
 
 
 == Usage ==
+
+### Generate AI Content Without Prompt
+Effortlessly create high-quality content with the AI Content Engine—no prompts required. In just a few clicks, it transforms ideas into polished, ready-to-use text in multiple languages, powered by advanced AI models. Save time, boost productivity, and make content creation faster, smarter, and completely stress-free.
 
 ### AI Chat Conversations
 GeekyBot supports advanced conversation handling through slots and variables. Define slots to capture specific user inputs dynamically and personalize interactions based on collected data.
@@ -256,6 +259,17 @@ This plugin makes use of the following third-party services:
 - Contains optimized Guzzle HTTP client configuration.
 
 == Changelog ==
+= 1.1.9
+* Security Updates.
+
+= 1.1.8
+* Improvement: Optimized the content generation process for lightning-fast results.
+* UX: Added a specialized "Clean View" interface for the content generator to ensure a distraction-free workflow.OpenRouter Integration
+
+= 1.1.7
+* New: Introduced "AI Content Engine" - Instantly generate high-quality, ready-to-use content without manual prompting.
+* New: Added support for multi-language content generation with advanced AI models.
+
 = 1.1.6
 * OpenAI Assistant Integration
 * OpenRouter Integration

@@ -21,6 +21,13 @@ $layout = GEEKYBOTrequest::GEEKYBOT_getVar('geekybotlt');
             <img class="geekybotadmin-menu-icon geekybotadmin-menu-icon-active" alt="<?php echo esc_attr(__('keys' , 'geeky-bot')); ?>" src="<?php echo esc_url(GEEKYBOT_PLUGIN_URL).'includes/images/control_panel/admin-left-menu/key-colored.png'; ?>" />
         </a>
     </li>
+    <!-- zywrap -->
+    <li class="treeview <?php if($c == 'geekybot_zywrap' || $c == 'geekybot_zywraplogs' ) echo esc_attr('active'); ?>">
+        <a href="<?php echo esc_url(wp_nonce_url('admin.php?page=geekybot_zywrap&geekybotlt=playground','Zywrap'))?>" title="<?php echo esc_attr(__('Content Generation' , 'geeky-bot')); ?>">
+            <img class="geekybotadmin-menu-icon" alt="<?php echo esc_attr(__('Content Generation' , 'geeky-bot')); ?>" src="<?php echo esc_url(GEEKYBOT_PLUGIN_URL).'includes/images/control_panel/admin-left-menu/respose.png'; ?>" />
+            <img class="geekybotadmin-menu-icon geekybotadmin-menu-icon-active" alt="<?php echo esc_attr(__('Content Generation' , 'geeky-bot')); ?>" src="<?php echo esc_url(GEEKYBOT_PLUGIN_URL).'includes/images/control_panel/admin-left-menu/respose-colored.png'; ?>" />
+        </a>
+    </li>
     <!-- stories -->
     <li class="treeview <?php if(($c == 'geekybot_stories') ) echo esc_attr('active'); ?>">
         <a href="<?php echo esc_url(wp_nonce_url('admin.php?page=geekybot_stories&geekybotlt=stories','Stories'))?>" title="<?php echo esc_attr(__('Stories' , 'geeky-bot')); ?>">

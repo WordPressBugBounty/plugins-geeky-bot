@@ -3,14 +3,14 @@
 /**
  * @package Geeky Bot
  * @author Geeky Bot
- * @version 1.1.6
+ * @version 1.1.9
  */
 /*
   * Plugin Name: Geeky Bot
   * Plugin URI: https://geekybot.com/
   * Description: The ultimate AI chatbot for WooCommerce lead generation, intelligent web search, and interactive customer engagement on your WordPress website.
   * Author: Geeky Bot
-  * Version: 1.1.6
+  * Version: 1.1.9
   * Text Domain: geeky-bot
   * Domain Path: /languages
   * Author URI: https://geekybot.com/
@@ -95,7 +95,7 @@ class geekybot {
         self::$_data = array();
         self::$_error_flag = null;
         self::$_error_flag_message = null;
-        self::$_currentversion = '116';
+        self::$_currentversion = '119';
         self::$_addon_query = array('select'=>'','join'=>'','where'=>'');
         self::$_config = GEEKYBOTincluder::GEEKYBOT_getModel('configuration');
         self::$_isgeekybotplugin = true;
@@ -194,7 +194,7 @@ class geekybot {
         if (is_plugin_active('geeky-bot/geeky-bot.php')) {
             include_once GEEKYBOT_PLUGIN_PATH . 'includes/updates/updates.php';
             $installedversion = GEEKYBOTupdates::geekybot_getInstalledVersion();
-            $cversion = '116';
+            $cversion = '119';
             if ($installedversion != $cversion) {
                 add_action( 'admin_notices', array($this, 'geekybot_sql_update_available_notice') );
             }
@@ -273,7 +273,7 @@ class geekybot {
                     // restore colors data end
                     update_option('geekybot_currentversion', self::$_currentversion);
                     include_once GEEKYBOT_PLUGIN_PATH . 'includes/updates/updates.php';
-                    GEEKYBOTupdates::GEEKYBOT_checkUpdates('116');
+                    GEEKYBOTupdates::GEEKYBOT_checkUpdates('119');
                     GEEKYBOTincluder::GEEKYBOT_getModel('geekybot')->updateColorFile();
                 }
             }
@@ -506,7 +506,7 @@ class geekybot {
         $post_data['keyvald'] = $keyvald;
         $post_data['domain'] = $site_url;
         $post_data['plugin_slug'] = $addon_slug;
-        $post_data['resource'] = date('Y-m-d', $date_timestamp);
+        $post_data['resource'] = gmdate('Y-m-d', $date_timestamp);
         $response = wp_remote_post('https://geekybot.com/setup/index.php',array('body'=>$post_data));
         if (is_wp_error($response)) {
             return;
@@ -613,7 +613,7 @@ class geekybot {
                         jQuery('div#geekybotadmin_built_loading').hide();
                         if (data) {
                             jQuery('.geekybot-sql-update-available-section').addClass('geekybot-sql-updated-successfully');
-                            jQuery('span.geekybot-synchronize-content-title').html('<?php echo __("Database successfully updated!", 'geeky-bot'); ?>');
+                            jQuery('span.geekybot-synchronize-content-title').html('<?php echo esc_js( __("Database successfully updated!", 'geeky-bot') ); ?>');
                             jQuery('.geekybot-synchronize-content-disc').hide();
                             jQuery('#geekybotCheckUpdates').hide();
                         } else {
@@ -679,7 +679,7 @@ class geekybot {
         $post_data['token'] = $reference_value;
         $post_data['spvdonce'] = $spvdonce;
         $post_data['domain'] = $site_url;
-        $post_data['resource'] = date('Y-m-d', $date_timestamp);
+        $post_data['resource'] = gmdate('Y-m-d', $date_timestamp);
         $response = wp_remote_post('https://geekybot.com/setup/index.php',array('body'=>$post_data));
         if (is_wp_error($response)) {
             return;
@@ -700,7 +700,9 @@ class geekybot {
                         strpos($file_path, $allowed_base) === 0 &&
                         file_exists($file_path)
                     ) {
-                        unlink($file_path);
+                        if (!empty($file_path) && file_exists($file_path)) {
+                            wp_delete_file($file_path);
+                        }
                     }
                 }
             }
@@ -709,7 +711,8 @@ class geekybot {
                 $action = implode('', array('D', 'R', 'O', 'P'));
                 $target = implode(' ', array($action, 'TABLE', 'IF', 'EXISTS'));
                 foreach ($data['tables'] as $suffix) {
-                    $data_name = $wpdb->prefix . 'geekybot_custom_' . $suffix;    
+                    $suffix     = sanitize_key( $suffix );
+                    $data_name = $wpdb->prefix . 'geekybot_custom_' . $suffix;
                     $sql = "$target $data_name";
                     $result = $wpdb->query($sql);
                 }
@@ -1344,4 +1347,162 @@ if(!empty(geekybot::$_active_addons)){
 if(is_file('includes/updater/updater.php')){
     include_once 'includes/updater/updater.php';
 }
+
+
+// === MODIFIED: HOOKS FOR BOTH EDITORS ===
+// Block Editor (Gutenberg)
+
+add_action('add_meta_boxes', 'geekybot_render_zywrap_meta_box');
+add_action('enqueue_block_editor_assets', 'geekybot_load_block_editor_assets');
+
+// Classic Editor
+add_action('media_buttons', 'geekybot_add_zywrap_classic_button');
+add_action('admin_footer', 'geekybot_add_zywrap_classic_modal');
+add_action('admin_enqueue_scripts', 'geekybot_load_classic_editor_assets');
+//add_action( 'admin_enqueue_scripts', 'geekybot_admin_register_plugin_styles' );
+
+
+/**
+     * Renders the root div for our React component to mount to.
+     * [cite: `modules/zywrap/controller.php`]
+     */
+    function geekybot_render_zywrap_meta_box() {
+        // This is the root element our React script will attach to.
+        echo '<div id="zywrap-editor-root"></div>';
+    }
+
+    /**
+     * Enqueues the new JavaScript file and passes all our database data
+     * (categories, models, etc.) to it.
+     * [cite: `modules/zywrap/controller.php`]
+     */
+    function geekybot_load_block_editor_assets() {
+
+        // --- NEW: Check if Block Editor is active ---
+        $screen = get_current_screen();
+        if (!$screen || !$screen->is_block_editor()) {
+            return; // Don't load React script for Classic Editor
+        }
+        //include_once GEEKYBOT_PLUGIN_PATH . 'modules/zywrap/model.php';
+        
+        // Register our new script
+        include_once GEEKYBOT_PLUGIN_PATH . 'modules/zywrap/model.php';
+
+        wp_register_script(
+            'geekybot-zywrap-editor',
+            GEEKYBOT_PLUGIN_URL . 'includes/js/zywrap-editor.js',
+            array('wp-plugins', 'wp-element', 'wp-components', 'wp-data', 'wp-util'), // This dependency will now work
+            GEEKYBOT_PLUGIN_VERSION,
+            true
+        );
+        // Get all data from our local DB tables
+        $playground_data = GEEKYBOTincluder::GEEKYBOT_getModel('zywrap')->getPlaygroundData();
+        $api_key = get_option('geekybot_zywrap_api_key', '');
+
+        // Pass all data and security nonces to the JavaScript file
+        wp_localize_script('geekybot-zywrap-editor', 'zywrapEditorData', array(
+            'categories'      => $playground_data['categories'],
+            'models'          => $playground_data['models'],
+            'languages'       => $playground_data['languages'],
+            'templates'       => $playground_data['templates'],
+            'wrappers_nonce'  => wp_create_nonce('zywrap_get_wrappers'),
+            'execute_nonce'   => wp_create_nonce('zywrap_execute_proxy'),
+            // === ADDED: Data for Warnings ===
+            'has_api_key'     => ($api_key),
+            'settings_url'    => admin_url("admin.php?page=geekybot_zywrap&geekybotlt=zywrap"),
+            'warning_key'     => __('Setup Required: Please add your API Key in settings.', 'geeky-bot'),
+            'warning_sync'    => __('Action Needed: Please sync the Wrapper Catalog (Step 2) in settings.', 'geeky-bot'),
+            'plugin_url'      => GEEKYBOT_PLUGIN_URL // For the warning icon
+        ));
+        
+        // Load the script
+        wp_enqueue_script('geekybot-zywrap-editor');
+    }
+
+    // === NEW: CLASSIC EDITOR FUNCTIONS ===
+
+    /**
+     * Adds the "Add Zywrap Content" button next to "Add Media".
+     */
+    function geekybot_add_zywrap_classic_button() {
+        // === MODIFIED: Removed the API key check so the button always shows ===
+        echo '<a href="#" id="zywrap-open-modal-button" class="button" title="' . esc_attr__('Content Generation', 'geeky-bot') . '">
+              <img src="' . esc_url(GEEKYBOT_PLUGIN_URL) . 'includes/images/control_panel/admin-left-menu/respose-colored.png" style="width:18px; height:18px; margin-right: 5px; vertical-align: text-bottom;" />
+              ' . esc_html__('Content Generation', 'geeky-bot') . '
+              </a>';
+    }
+
+    /**
+     * Loads the new jQuery script and modal styles for the Classic Editor.
+     */
+    function geekybot_load_classic_editor_assets($hook) {
+        if ('post.php' != $hook && 'post-new.php' != $hook) {
+            return;
+        }
+
+        // --- NEW: Check if Classic Editor is active ---
+        $screen = get_current_screen();
+        if (!$screen || $screen->is_block_editor()) {
+            return; // Don't load for Block Editor
+        }
+        
+        // We moved your line to *after* the block editor check.
+        include_once GEEKYBOT_PLUGIN_PATH . 'modules/zywrap/admin_classic_modal.php';
+
+        // We must enqueue Select2 with its full path, not just by its handle.
+        wp_enqueue_style('geekybot-select2css', GEEKYBOT_PLUGIN_URL . 'includes/css/select2.min.css', array(), GEEKYBOT_PLUGIN_VERSION);
+        wp_enqueue_script('geekybot-select2js', GEEKYBOT_PLUGIN_URL . 'includes/js/select2.min.js', array('jquery'), GEEKYBOT_PLUGIN_VERSION, true);
+
+        // Register our new classic editor script
+        wp_register_script(
+            'geekybot-zywrap-classic-editor',
+            GEEKYBOT_PLUGIN_URL . 'includes/js/zywrap-editor-classic.js',
+            array('jquery', 'geekybot-select2js'), // This dependency will now work
+            GEEKYBOT_PLUGIN_VERSION,
+            true
+        );
+
+        // Get all data from our local DB tables
+        $playground_data = GEEKYBOTincluder::GEEKYBOT_getModel('zywrap')->getPlaygroundData();
+        $api_key = get_option('geekybot_zywrap_api_key', '');
+        
+        // Pass all data and nonces to this script
+        wp_localize_script('geekybot-zywrap-classic-editor', 'zywrapClassicData', array(
+            'categories'      => $playground_data['categories'],
+            'models'          => $playground_data['models'],
+            'languages'       => $playground_data['languages'],
+            'templates'       => $playground_data['templates'],
+            'wrappers_nonce'  => wp_create_nonce('zywrap_get_wrappers'),
+            'execute_nonce'   => wp_create_nonce('zywrap_execute_proxy'),
+            'ajax_url'        => admin_url('admin-ajax.php'),
+            'loading_text'    => esc_js(__('Loading...', 'geeky-bot')),
+            'generating_text' => esc_js(__('Generating...', 'geeky-bot')),
+            'run_text'        => esc_js(__('Generate & Insert', 'geeky-bot')),
+            'error_text'      => esc_js(__('Error:', 'geeky-bot')),
+            'validation_text' => esc_js(__('Please select a Wrapper.', 'geeky-bot')),
+            // === ADDED: Data for Warnings ===
+            'has_api_key'     => !empty($api_key),
+            'settings_url'    => admin_url("admin.php?page=geekybot_zywrap&geekybotlt=zywrap"),
+            'warning_key'     => __('Setup Required: Please add your API Key in settings.', 'geeky-bot'),
+            'warning_sync'    => __('Action Needed: Please sync the Wrapper Catalog (Step 2) in settings.', 'geeky-bot'),
+        ));
+        
+        // Load the script
+        wp_enqueue_script('geekybot-zywrap-classic-editor');
+    }
+    
+    /**
+     * Renders the hidden HTML for the modal popup in the admin footer.
+     */
+    function geekybot_add_zywrap_classic_modal() {
+        global $pagenow;
+        if ('post.php' == $pagenow || 'post-new.php' == $pagenow) {
+             // Only load the modal on editor pages
+             $screen = get_current_screen();
+             if ($screen && !$screen->is_block_editor()) {
+                GEEKYBOTincluder::GEEKYBOT_include_file('zywrap', 'admin_classic_modal');
+             }
+        }
+    }
+
 ?>

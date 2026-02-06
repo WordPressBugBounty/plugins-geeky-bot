@@ -9,7 +9,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 3.5\n"
+"X-Generator: Poedit 3.7\n"
 
 msgid "Logo"
 msgstr "标识"
@@ -2666,3 +2666,258 @@ msgstr "数据库成功更新了！"
 
 msgid "Your GeekyBot data is not updated. To ensure accurate results, please synchronize your Woocommerce products data."
 msgstr "您的Geekybot数据未更新。为了确保准确的结果，请同步您的WooCommerce产品数据。"
+
+msgid "(Default)"
+msgstr "（默认）"
+
+msgid "Category"
+msgstr "类别"
+
+msgid "Wrapper"
+msgstr "包装纸"
+
+msgid "AI Model"
+msgstr "人工智能模型"
+
+msgid "Language (Optional)"
+msgstr "语言（可选）"
+
+msgid "Prompt (Optional)"
+msgstr "提示（可选）"
+
+msgid "Overrides (Optional)"
+msgstr "覆盖（可选）"
+
+msgid "Action Needed: Please add your API Key in settings."
+msgstr "所需操作：请在设置中添加您的 API 密钥。"
+
+msgid "Action Needed: Please sync the Wrapper Catalog (Step 2) in settings."
+msgstr "所需操作：请在设置中同步包装器目录（第 2 步）。"
+
+msgid "AI Content Generator"
+msgstr "人工智能内容生成器"
+
+msgid "AI Generate Text"
+msgstr "人工智能生成文本"
+
+msgid "An unknown AJAX error occurred."
+msgstr "发生未知的 AJAX 错误。"
+
+msgid "An unknown error occurred."
+msgstr "发生未知错误。"
+
+msgid "and navigate to your Dashboard / API Keys."
+msgstr "并导航至您的仪表板/API 密钥。"
+
+msgid "API Key is valid and active."
+msgstr "API 密钥有效且有效。"
+
+msgid "API Key is valid but has usage limitations."
+msgstr "API 密钥有效，但有使用限制。"
+
+msgid "Audience"
+msgstr "观众"
+
+msgid "Audience (Default)"
+msgstr "观众（默认）"
+
+msgid "Base Wrappers Only"
+msgstr "仅基础包装"
+
+msgid "Check API Key Status"
+msgstr "检查 API 密钥状态"
+
+msgid "Check Status"
+msgstr "检查状态"
+
+msgid "Checking for updates..."
+msgstr "正在检查更新..."
+
+msgid "Complexity"
+msgstr "复杂"
+
+msgid "Complexity (Default)"
+msgstr "复杂性（默认）"
+
+msgid "Content Generation"
+msgstr "内容生成"
+
+msgid "Copy Output"
+msgstr "复制输出"
+
+msgid "Data import successful! Reloading page..."
+msgstr "数据导入成功！正在重新加载页面..."
+
+msgid "Enter your prompt..."
+msgstr "输入您的提示..."
+
+msgid "Error"
+msgstr "错误"
+
+msgid "Error Loading"
+msgstr "加载错误"
+
+msgid "Featured Wrappers Only"
+msgstr "仅精选包装纸"
+
+msgid "Filter"
+msgstr "筛选"
+
+msgid "Force Full Re-Sync"
+msgstr "强制完全重新同步"
+
+msgid "Format"
+msgstr "格式"
+
+msgid "Format (Default)"
+msgstr "格式（默认）"
+
+msgid "Full data import started..."
+msgstr "完整数据导入开始..."
+
+msgid "Generate & Insert"
+msgstr "生成并插入"
+
+msgid "Generate Content"
+msgstr "生成内容"
+
+msgid "Generating..."
+msgstr "生成..."
+
+msgid "Goal"
+msgstr "目标"
+
+msgid "Goal (Default)"
+msgstr "目标（默认）"
+
+msgid "Invalid API Key."
+msgstr "API 密钥无效。"
+
+msgid "Last Synced:"
+msgstr "最后同步："
+
+msgid "Length"
+msgstr "长度"
+
+msgid "Length (Default)"
+msgstr "长度（默认）"
+
+msgid "Model (Default)"
+msgstr "型号（默认）"
+
+msgid "Next Sync:"
+msgstr "下一次同步："
+
+msgid "Output"
+msgstr "输出"
+
+msgid "Output Type (Default)"
+msgstr "输出类型（默认）"
+
+msgid "Received empty output."
+msgstr "收到空输出。"
+
+msgid "Run Wrapper"
+msgstr "运行包装器"
+
+msgid "Select Category..."
+msgstr "选择类别..."
+
+msgid "Select Wrapper..."
+msgstr "选择包装..."
+
+msgid "Setup Required: Please add your API Key in settings."
+msgstr "需要设置：请在设置中添加您的 API 密钥。"
+
+msgid "Step 1"
+msgstr "步骤1"
+
+msgid "Step 2"
+msgstr "步骤2"
+
+msgid "Style"
+msgstr "风格"
+
+msgid "Style (Default)"
+msgstr "样式（默认）"
+
+msgid "Sync Delta Updates"
+msgstr "同步增量更新"
+
+msgid "To get your API key, log in to"
+msgstr "要获取您的 API 密钥，请登录"
+
+msgid "Tone"
+msgstr "语气"
+
+msgid "Tone (Default)"
+msgstr "音调（默认）"
+
+msgid "Unknown error"
+msgstr "未知错误"
+
+msgid "Wrapper Catalog Sync"
+msgstr "包装器目录同步"
+
+msgid "Zywrap API Key"
+msgstr "Zywrap API 密钥"
+
+msgid "-- Error Loading --"
+msgstr "-- 加载错误 --"
+
+msgid "-- Select Category First --"
+msgstr "-- 首先选择类别 --"
+
+msgid "-- Select Model --"
+msgstr "-- 选择型号 --"
+
+msgid "-- Select Wrapper --"
+msgstr "-- 选择包装 --"
+
+msgid "Controls"
+msgstr "控制"
+
+msgid "Featured Only"
+msgstr "仅精选"
+
+msgid "Base Only"
+msgstr "仅底座"
+
+msgid "Copy"
+msgstr "复制"
+
+msgid "API response will appear here"
+msgstr "API 响应将出现在此处"
+
+msgid "-- Select Language (Optional) --"
+msgstr "-- 选择语言（可选）--"
+
+msgid "-- Select Category --"
+msgstr "-- 选择类别 --"
+
+msgid "AI Model (Optional)"
+msgstr "AI模型（可选）"
+
+msgid "Save Key"
+msgstr "保存密钥"
+
+msgid "Sync Status"
+msgstr "同步状态"
+
+msgid "Not Synced"
+msgstr "未同步"
+
+msgid "Synced"
+msgstr "已同步"
+
+msgid "AI Settings"
+msgstr "人工智能设置"
+
+msgid "AI Logs"
+msgstr "人工智能日志"
+
+msgid "Download & Full Import"
+msgstr "下载并完全导入"
+
+msgid "Force Full Re Sync"
+msgstr "强制完全重新同步"

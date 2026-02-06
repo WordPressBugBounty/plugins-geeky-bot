@@ -9,7 +9,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 3.5\n"
+"X-Generator: Poedit 3.7\n"
 
 msgid "Logo"
 msgstr "Logo"
@@ -2676,3 +2676,258 @@ msgstr "Matagumpay na na -update ang database!"
 
 msgid "Your GeekyBot data is not updated. To ensure accurate results, please synchronize your Woocommerce products data."
 msgstr "Ang iyong data ng geekybot ay hindi na -update. Upang matiyak ang tumpak na mga resulta, mangyaring i -synchronize ang iyong data ng mga produkto ng WooCommerce."
+
+msgid "(Default)"
+msgstr "(Default)"
+
+msgid "Category"
+msgstr "Kategorya"
+
+msgid "Wrapper"
+msgstr "Pambalot"
+
+msgid "AI Model"
+msgstr "Modelong AI"
+
+msgid "Language (Optional)"
+msgstr "Wika (Opsyonal)"
+
+msgid "Prompt (Optional)"
+msgstr "Prompt (Opsyonal)"
+
+msgid "Overrides (Optional)"
+msgstr "Overrides (Opsyonal)"
+
+msgid "Action Needed: Please add your API Key in settings."
+msgstr "Kinakailangan ng Aksyon: Mangyaring idagdag ang iyong key ng API sa mga setting."
+
+msgid "Action Needed: Please sync the Wrapper Catalog (Step 2) in settings."
+msgstr "Kinakailangan ng Aksyon: Mangyaring i -sync ang katalogo ng pambalot (Hakbang 2) sa mga setting."
+
+msgid "AI Content Generator"
+msgstr "AI Nilalaman Generator"
+
+msgid "AI Generate Text"
+msgstr "AI Bumuo ng teksto"
+
+msgid "An unknown AJAX error occurred."
+msgstr "Isang hindi kilalang error sa AJAX ang naganap."
+
+msgid "An unknown error occurred."
+msgstr "Isang hindi kilalang error ang naganap."
+
+msgid "and navigate to your Dashboard / API Keys."
+msgstr "at mag -navigate sa iyong mga key ng dashboard / API."
+
+msgid "API Key is valid and active."
+msgstr "Ang API key ay may bisa at aktibo."
+
+msgid "API Key is valid but has usage limitations."
+msgstr "Ang API Key ay may bisa ngunit may mga limitasyon sa paggamit."
+
+msgid "Audience"
+msgstr "Madla"
+
+msgid "Audience (Default)"
+msgstr "Madla (default)"
+
+msgid "Base Wrappers Only"
+msgstr "Base wrappers lamang"
+
+msgid "Check API Key Status"
+msgstr "Suriin ang katayuan ng key ng API"
+
+msgid "Check Status"
+msgstr "Suriin ang katayuan"
+
+msgid "Checking for updates..."
+msgstr "Sinusuri ang mga update ..."
+
+msgid "Complexity"
+msgstr "Pagiging kumplikado"
+
+msgid "Complexity (Default)"
+msgstr "Pagiging kumplikado (default)"
+
+msgid "Content Generation"
+msgstr "Henerasyon ng nilalaman"
+
+msgid "Copy Output"
+msgstr "Kopyahin ang output"
+
+msgid "Data import successful! Reloading page..."
+msgstr "Matagumpay ang pag -import ng data! Pag -reloading Pahina ..."
+
+msgid "Enter your prompt..."
+msgstr "Ipasok ang iyong prompt ..."
+
+msgid "Error"
+msgstr "Error"
+
+msgid "Error Loading"
+msgstr "Paglo -load ng Error"
+
+msgid "Featured Wrappers Only"
+msgstr "Itinatampok na mga wrappers lamang"
+
+msgid "Filter"
+msgstr "Filter"
+
+msgid "Force Full Re-Sync"
+msgstr "Force buong re-sync"
+
+msgid "Format"
+msgstr "Format"
+
+msgid "Format (Default)"
+msgstr "Format (default)"
+
+msgid "Full data import started..."
+msgstr "Nagsimula ang buong pag -import ng data ..."
+
+msgid "Generate & Insert"
+msgstr "Bumuo at magpasok"
+
+msgid "Generate Content"
+msgstr "Bumuo ng nilalaman"
+
+msgid "Generating..."
+msgstr "Bumubuo ..."
+
+msgid "Goal"
+msgstr "Layunin"
+
+msgid "Goal (Default)"
+msgstr "Layunin (default)"
+
+msgid "Invalid API Key."
+msgstr "Hindi wastong susi ng API."
+
+msgid "Last Synced:"
+msgstr "Huling naka -sync:"
+
+msgid "Length"
+msgstr "Haba"
+
+msgid "Length (Default)"
+msgstr "Haba (default)"
+
+msgid "Model (Default)"
+msgstr "Model (Default)"
+
+msgid "Next Sync:"
+msgstr "Susunod na pag -sync:"
+
+msgid "Output"
+msgstr "Output"
+
+msgid "Output Type (Default)"
+msgstr "Uri ng Output (default)"
+
+msgid "Received empty output."
+msgstr "Nakatanggap ng walang laman na output."
+
+msgid "Run Wrapper"
+msgstr "Patakbuhin ang pambalot"
+
+msgid "Select Category..."
+msgstr "Piliin ang kategorya ..."
+
+msgid "Select Wrapper..."
+msgstr "Piliin ang Wrapper ..."
+
+msgid "Setup Required: Please add your API Key in settings."
+msgstr "Kinakailangan ang pag -setup: Mangyaring idagdag ang iyong API key sa mga setting."
+
+msgid "Step 1"
+msgstr "Hakbang 1"
+
+msgid "Step 2"
+msgstr "Hakbang 2"
+
+msgid "Style"
+msgstr "Istilo"
+
+msgid "Style (Default)"
+msgstr "Estilo (Default)"
+
+msgid "Sync Delta Updates"
+msgstr "I -sync ang mga pag -update ng Delta"
+
+msgid "To get your API key, log in to"
+msgstr "Upang makuha ang iyong API key, mag -log in sa"
+
+msgid "Tone"
+msgstr "Tono"
+
+msgid "Tone (Default)"
+msgstr "Tono (default)"
+
+msgid "Unknown error"
+msgstr "Hindi kilalang error"
+
+msgid "Wrapper Catalog Sync"
+msgstr "Pag -sync ng Catalog ng Wrapper"
+
+msgid "Zywrap API Key"
+msgstr "Zywrap API Key"
+
+msgid "-- Error Loading --"
+msgstr "-Paglo-load ng Error-"
+
+msgid "-- Select Category First --"
+msgstr "-Piliin muna ang kategorya-"
+
+msgid "-- Select Model --"
+msgstr "-Piliin ang Model-"
+
+msgid "-- Select Wrapper --"
+msgstr "-Piliin ang Wrapper-"
+
+msgid "Controls"
+msgstr "Mga kontrol"
+
+msgid "Featured Only"
+msgstr "Itinampok lamang"
+
+msgid "Base Only"
+msgstr "Base lamang"
+
+msgid "Copy"
+msgstr "Kopyahin"
+
+msgid "API response will appear here"
+msgstr "Ang tugon ng API ay lilitaw dito"
+
+msgid "-- Select Language (Optional) --"
+msgstr "-Piliin ang Wika (Opsyonal)-"
+
+msgid "-- Select Category --"
+msgstr "-Piliin ang kategorya-"
+
+msgid "AI Model (Optional)"
+msgstr "AI Model (Opsyonal)"
+
+msgid "Save Key"
+msgstr "I -save ang susi"
+
+msgid "Sync Status"
+msgstr "Katayuan ng pag -sync"
+
+msgid "Not Synced"
+msgstr "Hindi naka -sync"
+
+msgid "Synced"
+msgstr "Naka -sync"
+
+msgid "AI Settings"
+msgstr "Mga Setting ng AI"
+
+msgid "AI Logs"
+msgstr "Mga log ng AI"
+
+msgid "Download & Full Import"
+msgstr "I -download at buong pag -import"
+
+msgid "Force Full Re Sync"
+msgstr "Force buong muling pag -sync"

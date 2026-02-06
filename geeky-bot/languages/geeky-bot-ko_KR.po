@@ -9,7 +9,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 3.5\n"
+"X-Generator: Poedit 3.7\n"
 
 msgid "Logo"
 msgstr "심벌 마크"
@@ -2674,3 +2674,258 @@ msgstr "데이터베이스가 성공적으로 업데이트되었습니다!"
 
 msgid "Your GeekyBot data is not updated. To ensure accurate results, please synchronize your Woocommerce products data."
 msgstr "Geekybot 데이터가 업데이트되지 않았습니다. 정확한 결과를 보장하려면 WooCommerce 제품 데이터를 동기화하십시오."
+
+msgid "(Default)"
+msgstr "(기본)"
+
+msgid "Category"
+msgstr "범주"
+
+msgid "Wrapper"
+msgstr "싸개"
+
+msgid "AI Model"
+msgstr "AI 모델"
+
+msgid "Language (Optional)"
+msgstr "언어(선택사항)"
+
+msgid "Prompt (Optional)"
+msgstr "프롬프트(선택 사항)"
+
+msgid "Overrides (Optional)"
+msgstr "재정의(선택 사항)"
+
+msgid "Action Needed: Please add your API Key in settings."
+msgstr "필요한 조치: 설정에서 API 키를 추가하세요."
+
+msgid "Action Needed: Please sync the Wrapper Catalog (Step 2) in settings."
+msgstr "필요한 조치: 설정에서 래퍼 카탈로그(2단계)를 동기화하세요."
+
+msgid "AI Content Generator"
+msgstr "AI 콘텐츠 생성기"
+
+msgid "AI Generate Text"
+msgstr "AI 텍스트 생성"
+
+msgid "An unknown AJAX error occurred."
+msgstr "알 수 없는 AJAX 오류가 발생했습니다."
+
+msgid "An unknown error occurred."
+msgstr "알 수 없는 오류가 발생했습니다."
+
+msgid "and navigate to your Dashboard / API Keys."
+msgstr "대시보드/API 키로 이동합니다."
+
+msgid "API Key is valid and active."
+msgstr "API 키가 유효하고 활성 상태입니다."
+
+msgid "API Key is valid but has usage limitations."
+msgstr "API 키는 유효하지만 사용 제한이 있습니다."
+
+msgid "Audience"
+msgstr "청중"
+
+msgid "Audience (Default)"
+msgstr "청중(기본값)"
+
+msgid "Base Wrappers Only"
+msgstr "기본 래퍼만"
+
+msgid "Check API Key Status"
+msgstr "API 키 상태 확인"
+
+msgid "Check Status"
+msgstr "상태 확인"
+
+msgid "Checking for updates..."
+msgstr "업데이트 확인 중..."
+
+msgid "Complexity"
+msgstr "복잡성"
+
+msgid "Complexity (Default)"
+msgstr "복잡성(기본값)"
+
+msgid "Content Generation"
+msgstr "콘텐츠 생성"
+
+msgid "Copy Output"
+msgstr "출력물 복사"
+
+msgid "Data import successful! Reloading page..."
+msgstr "데이터 가져오기에 성공했습니다! 페이지를 새로고침하는 중..."
+
+msgid "Enter your prompt..."
+msgstr "프롬프트를 입력하세요..."
+
+msgid "Error"
+msgstr "오류"
+
+msgid "Error Loading"
+msgstr "로드 중 오류가 발생했습니다."
+
+msgid "Featured Wrappers Only"
+msgstr "주요 래퍼만 해당"
+
+msgid "Filter"
+msgstr "필터"
+
+msgid "Force Full Re-Sync"
+msgstr "강제 전체 재동기화"
+
+msgid "Format"
+msgstr "체재"
+
+msgid "Format (Default)"
+msgstr "형식(기본값)"
+
+msgid "Full data import started..."
+msgstr "전체 데이터 가져오기가 시작되었습니다..."
+
+msgid "Generate & Insert"
+msgstr "생성 및 삽입"
+
+msgid "Generate Content"
+msgstr "콘텐츠 생성"
+
+msgid "Generating..."
+msgstr "생성 중..."
+
+msgid "Goal"
+msgstr "목표"
+
+msgid "Goal (Default)"
+msgstr "목표(기본값)"
+
+msgid "Invalid API Key."
+msgstr "API 키가 잘못되었습니다."
+
+msgid "Last Synced:"
+msgstr "마지막 동기화:"
+
+msgid "Length"
+msgstr "길이"
+
+msgid "Length (Default)"
+msgstr "길이(기본값)"
+
+msgid "Model (Default)"
+msgstr "모델(기본값)"
+
+msgid "Next Sync:"
+msgstr "다음 동기화:"
+
+msgid "Output"
+msgstr "산출"
+
+msgid "Output Type (Default)"
+msgstr "출력 유형(기본값)"
+
+msgid "Received empty output."
+msgstr "빈 출력을 받았습니다."
+
+msgid "Run Wrapper"
+msgstr "래퍼 실행"
+
+msgid "Select Category..."
+msgstr "카테고리 선택..."
+
+msgid "Select Wrapper..."
+msgstr "래퍼 선택..."
+
+msgid "Setup Required: Please add your API Key in settings."
+msgstr "설정 필요: 설정에서 API 키를 추가하세요."
+
+msgid "Step 1"
+msgstr "1단계"
+
+msgid "Step 2"
+msgstr "2단계"
+
+msgid "Style"
+msgstr "스타일"
+
+msgid "Style (Default)"
+msgstr "스타일(기본값)"
+
+msgid "Sync Delta Updates"
+msgstr "델타 업데이트 동기화"
+
+msgid "To get your API key, log in to"
+msgstr "API 키를 받으려면 로그인하세요."
+
+msgid "Tone"
+msgstr "음정"
+
+msgid "Tone (Default)"
+msgstr "톤(기본값)"
+
+msgid "Unknown error"
+msgstr "알 수 없는 오류"
+
+msgid "Wrapper Catalog Sync"
+msgstr "래퍼 카탈로그 동기화"
+
+msgid "Zywrap API Key"
+msgstr "Zywrap API 키"
+
+msgid "-- Error Loading --"
+msgstr "-- 로딩 오류 --"
+
+msgid "-- Select Category First --"
+msgstr "-- 카테고리를 먼저 선택하세요 --"
+
+msgid "-- Select Model --"
+msgstr "-- 모델 선택 --"
+
+msgid "-- Select Wrapper --"
+msgstr "-- 래퍼 선택 --"
+
+msgid "Controls"
+msgstr "통제 수단"
+
+msgid "Featured Only"
+msgstr "추천만"
+
+msgid "Base Only"
+msgstr "베이스만"
+
+msgid "Copy"
+msgstr "복사"
+
+msgid "API response will appear here"
+msgstr "API 응답이 여기에 표시됩니다."
+
+msgid "-- Select Language (Optional) --"
+msgstr "-- 언어 선택(선택 사항) --"
+
+msgid "-- Select Category --"
+msgstr "-- 카테고리 선택 --"
+
+msgid "AI Model (Optional)"
+msgstr "AI 모델(선택사항)"
+
+msgid "Save Key"
+msgstr "키 저장"
+
+msgid "Sync Status"
+msgstr "동기화 상태"
+
+msgid "Not Synced"
+msgstr "동기화되지 않음"
+
+msgid "Synced"
+msgstr "동기화됨"
+
+msgid "AI Settings"
+msgstr "AI 설정"
+
+msgid "AI Logs"
+msgstr "AI 로그"
+
+msgid "Download & Full Import"
+msgstr "다운로드 및 전체 가져오기"
+
+msgid "Force Full Re Sync"
+msgstr "강제 전체 재동기화"

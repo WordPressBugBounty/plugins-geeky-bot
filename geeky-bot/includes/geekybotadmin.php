@@ -17,7 +17,30 @@ class geekybotadmin {
             array($this, 'GEEKYBOT_showAdminPage'), // function name
             plugins_url('geeky-bot/includes/images/admin_geekybot1.png'),26
         );
+        add_submenu_page('geekybot', // parent slug
+            __('Content Generation', 'geeky-bot'), // Page title
+            __('Content Generation', 'geeky-bot'), // menu title
+            'geekybot', // capability
+            'geekybot_zywrap', //menu slug (matches our module)
+            array($this, 'GEEKYBOT_showAdminPage') // function name
+        );
 
+        add_submenu_page('geekybot_hide', // parent slug
+            __('AI Settings', 'geeky-bot'), // Page title
+            __('AI Settings', 'geeky-bot'), // menu title
+            'geekybot', // capability
+            'geekybot_zywrap&geekybotlt=zywrap',
+            array($this, 'GEEKYBOT_showAdminPage') // function name
+        );
+
+        add_submenu_page('geekybot_hide', // parent slug
+            __('AI Logs', 'geeky-bot'), // Page title
+            __('AI Logs', 'geeky-bot'), // menu title
+            'geekybot', // capability
+            'geekybot_zywraplogs', //menu slug
+            array($this, 'GEEKYBOT_showAdminPage') // function name
+        );
+        
         add_submenu_page('geekybot', // parent slug
             __('Stories', 'geeky-bot'), // Page title
             __('Stories', 'geeky-bot'), // menu title

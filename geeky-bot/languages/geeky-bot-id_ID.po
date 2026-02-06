@@ -9,7 +9,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 3.5\n"
+"X-Generator: Poedit 3.7\n"
 
 msgid "Logo"
 msgstr "logo"
@@ -2690,3 +2690,258 @@ msgstr "Basis data berhasil diperbarui!"
 
 msgid "Your GeekyBot data is not updated. To ensure accurate results, please synchronize your Woocommerce products data."
 msgstr "Data Geekybot Anda tidak diperbarui. Untuk memastikan hasil yang akurat, harap sinkronisasi data produk WooCommerce Anda."
+
+msgid "(Default)"
+msgstr "(Bawaan)"
+
+msgid "Category"
+msgstr "Kategori"
+
+msgid "Wrapper"
+msgstr "Pembungkus"
+
+msgid "AI Model"
+msgstr "Model AI"
+
+msgid "Language (Optional)"
+msgstr "Bahasa (Opsional)"
+
+msgid "Prompt (Optional)"
+msgstr "Perintah (Opsional)"
+
+msgid "Overrides (Optional)"
+msgstr "Penggantian (Opsional)"
+
+msgid "Action Needed: Please add your API Key in settings."
+msgstr "Diperlukan Tindakan: Silakan tambahkan Kunci API Anda di pengaturan."
+
+msgid "Action Needed: Please sync the Wrapper Catalog (Step 2) in settings."
+msgstr "Diperlukan Tindakan: Harap sinkronkan Katalog Wrapper (Langkah 2) di pengaturan."
+
+msgid "AI Content Generator"
+msgstr "Pembuat Konten AI"
+
+msgid "AI Generate Text"
+msgstr "AI Menghasilkan Teks"
+
+msgid "An unknown AJAX error occurred."
+msgstr "Terjadi kesalahan AJAX yang tidak diketahui."
+
+msgid "An unknown error occurred."
+msgstr "Terjadi kesalahan yang tidak diketahui."
+
+msgid "and navigate to your Dashboard / API Keys."
+msgstr "dan navigasikan ke Dasbor/Kunci API Anda."
+
+msgid "API Key is valid and active."
+msgstr "API Key valid dan aktif."
+
+msgid "API Key is valid but has usage limitations."
+msgstr "Kunci API valid tetapi memiliki batasan penggunaan."
+
+msgid "Audience"
+msgstr "Hadirin"
+
+msgid "Audience (Default)"
+msgstr "Pemirsa (Bawaan)"
+
+msgid "Base Wrappers Only"
+msgstr "Hanya Pembungkus Dasar"
+
+msgid "Check API Key Status"
+msgstr "Periksa Status Kunci API"
+
+msgid "Check Status"
+msgstr "Periksa Status"
+
+msgid "Checking for updates..."
+msgstr "Memeriksa pembaruan..."
+
+msgid "Complexity"
+msgstr "Kompleksitas"
+
+msgid "Complexity (Default)"
+msgstr "Kompleksitas (Bawaan)"
+
+msgid "Content Generation"
+msgstr "Pembuatan Konten"
+
+msgid "Copy Output"
+msgstr "Salin Keluaran"
+
+msgid "Data import successful! Reloading page..."
+msgstr "Impor data berhasil! Memuat ulang halaman..."
+
+msgid "Enter your prompt..."
+msgstr "Masukkan perintah Anda..."
+
+msgid "Error"
+msgstr "Kesalahan"
+
+msgid "Error Loading"
+msgstr "Kesalahan Memuat"
+
+msgid "Featured Wrappers Only"
+msgstr "Hanya Pembungkus Unggulan"
+
+msgid "Filter"
+msgstr "Menyaring"
+
+msgid "Force Full Re-Sync"
+msgstr "Paksa Sinkronisasi Ulang Penuh"
+
+msgid "Format"
+msgstr "Format"
+
+msgid "Format (Default)"
+msgstr "Format (Bawaan)"
+
+msgid "Full data import started..."
+msgstr "Impor data penuh dimulai..."
+
+msgid "Generate & Insert"
+msgstr "Hasilkan dan Sisipkan"
+
+msgid "Generate Content"
+msgstr "Hasilkan Konten"
+
+msgid "Generating..."
+msgstr "Menghasilkan..."
+
+msgid "Goal"
+msgstr "Sasaran"
+
+msgid "Goal (Default)"
+msgstr "Sasaran (Bawaan)"
+
+msgid "Invalid API Key."
+msgstr "Kunci API tidak valid."
+
+msgid "Last Synced:"
+msgstr "Terakhir Disinkronkan:"
+
+msgid "Length"
+msgstr "Panjang"
+
+msgid "Length (Default)"
+msgstr "Panjang (Bawaan)"
+
+msgid "Model (Default)"
+msgstr "Model (Bawaan)"
+
+msgid "Next Sync:"
+msgstr "Sinkronisasi Berikutnya:"
+
+msgid "Output"
+msgstr "Keluaran"
+
+msgid "Output Type (Default)"
+msgstr "Jenis Keluaran (Default)"
+
+msgid "Received empty output."
+msgstr "Menerima keluaran kosong."
+
+msgid "Run Wrapper"
+msgstr "Jalankan Pembungkus"
+
+msgid "Select Category..."
+msgstr "Pilih Kategori..."
+
+msgid "Select Wrapper..."
+msgstr "Pilih Pembungkus..."
+
+msgid "Setup Required: Please add your API Key in settings."
+msgstr "Diperlukan Penyiapan: Silakan tambahkan Kunci API Anda di pengaturan."
+
+msgid "Step 1"
+msgstr "Langkah 1"
+
+msgid "Step 2"
+msgstr "Langkah 2"
+
+msgid "Style"
+msgstr "Gaya"
+
+msgid "Style (Default)"
+msgstr "Gaya (Bawaan)"
+
+msgid "Sync Delta Updates"
+msgstr "Sinkronkan Pembaruan Delta"
+
+msgid "To get your API key, log in to"
+msgstr "Untuk mendapatkan kunci API Anda, masuk ke"
+
+msgid "Tone"
+msgstr "Nada"
+
+msgid "Tone (Default)"
+msgstr "Nada (Bawaan)"
+
+msgid "Unknown error"
+msgstr "Kesalahan tidak diketahui"
+
+msgid "Wrapper Catalog Sync"
+msgstr "Sinkronisasi Katalog Wrapper"
+
+msgid "Zywrap API Key"
+msgstr "Kunci API Zywrap"
+
+msgid "-- Error Loading --"
+msgstr "-- Kesalahan Memuat --"
+
+msgid "-- Select Category First --"
+msgstr "-- Pilih Kategori Terlebih Dahulu --"
+
+msgid "-- Select Model --"
+msgstr "-- Pilih Model --"
+
+msgid "-- Select Wrapper --"
+msgstr "-- Pilih Pembungkus --"
+
+msgid "Controls"
+msgstr "Kontrol"
+
+msgid "Featured Only"
+msgstr "Hanya Unggulan"
+
+msgid "Base Only"
+msgstr "Hanya Basis"
+
+msgid "Copy"
+msgstr "Menyalin"
+
+msgid "API response will appear here"
+msgstr "Respons API akan muncul di sini"
+
+msgid "-- Select Language (Optional) --"
+msgstr "-- Pilih Bahasa (Opsional) --"
+
+msgid "-- Select Category --"
+msgstr "-- Pilih Kategori --"
+
+msgid "AI Model (Optional)"
+msgstr "Model AI (Opsional)"
+
+msgid "Save Key"
+msgstr "Simpan Kunci"
+
+msgid "Sync Status"
+msgstr "Status Sinkronisasi"
+
+msgid "Not Synced"
+msgstr "Tidak Disinkronkan"
+
+msgid "Synced"
+msgstr "Disinkronkan"
+
+msgid "AI Settings"
+msgstr "Pengaturan AI"
+
+msgid "AI Logs"
+msgstr "Log AI"
+
+msgid "Download & Full Import"
+msgstr "Unduh & Impor Penuh"
+
+msgid "Force Full Re Sync"
+msgstr "Paksa Sinkronisasi Ulang Penuh"

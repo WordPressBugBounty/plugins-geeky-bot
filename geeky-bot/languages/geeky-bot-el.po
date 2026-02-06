@@ -9,7 +9,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 3.5\n"
+"X-Generator: Poedit 3.7\n"
 
 msgid "Logo"
 msgstr "Λογότυπο"
@@ -2668,3 +2668,258 @@ msgstr "Η βάση δεδομένων ενημερώθηκε με επιτυχ�
 
 msgid "Your GeekyBot data is not updated. To ensure accurate results, please synchronize your Woocommerce products data."
 msgstr "Τα δεδομένα σας GeekyBot δεν ενημερώνονται. Για να εξασφαλίσετε ακριβή αποτελέσματα, παρακαλούμε να συγχρονίσετε τα δεδομένα προϊόντων WooCommerce."
+
+msgid "(Default)"
+msgstr "(Αθέτηση)"
+
+msgid "Category"
+msgstr "Κατηγορία"
+
+msgid "Wrapper"
+msgstr "Περικάλυμμα"
+
+msgid "AI Model"
+msgstr "Μοντέλο AI"
+
+msgid "Language (Optional)"
+msgstr "Γλώσσα (Προαιρετικό)"
+
+msgid "Prompt (Optional)"
+msgstr "Προτροπή (Προαιρετικό)"
+
+msgid "Overrides (Optional)"
+msgstr "Παρακάμψεις (Προαιρετικό)"
+
+msgid "Action Needed: Please add your API Key in settings."
+msgstr "Απαιτείται ενέργεια: Προσθέστε το κλειδί API στις ρυθμίσεις."
+
+msgid "Action Needed: Please sync the Wrapper Catalog (Step 2) in settings."
+msgstr "Απαιτείται ενέργεια: Συγχρονίστε τον Κατάλογο Wrapper (Βήμα 2) στις ρυθμίσεις."
+
+msgid "AI Content Generator"
+msgstr "Γεννήτρια περιεχομένου AI"
+
+msgid "AI Generate Text"
+msgstr "AI Δημιουργία κειμένου"
+
+msgid "An unknown AJAX error occurred."
+msgstr "Παρουσιάστηκε άγνωστο σφάλμα AJAX."
+
+msgid "An unknown error occurred."
+msgstr "Παρουσιάστηκε άγνωστο σφάλμα."
+
+msgid "and navigate to your Dashboard / API Keys."
+msgstr "και πλοηγηθείτε στα πλήκτρα Πίνακα ελέγχου / API."
+
+msgid "API Key is valid and active."
+msgstr "Το κλειδί API είναι έγκυρο και ενεργό."
+
+msgid "API Key is valid but has usage limitations."
+msgstr "Το κλειδί API είναι έγκυρο αλλά έχει περιορισμούς χρήσης."
+
+msgid "Audience"
+msgstr "Ακροατήριο"
+
+msgid "Audience (Default)"
+msgstr "Κοινό (Προεπιλογή)"
+
+msgid "Base Wrappers Only"
+msgstr "Μόνο περιτυλίγματα βάσης"
+
+msgid "Check API Key Status"
+msgstr "Ελέγξτε την κατάσταση κλειδιού API"
+
+msgid "Check Status"
+msgstr "Ελέγξτε την κατάσταση"
+
+msgid "Checking for updates..."
+msgstr "Έλεγχος για ενημερώσεις..."
+
+msgid "Complexity"
+msgstr "Περίπλοκο"
+
+msgid "Complexity (Default)"
+msgstr "Πολυπλοκότητα (Προεπιλογή)"
+
+msgid "Content Generation"
+msgstr "Δημιουργία Περιεχομένου"
+
+msgid "Copy Output"
+msgstr "Έξοδος αντιγραφής"
+
+msgid "Data import successful! Reloading page..."
+msgstr "Επιτυχής εισαγωγή δεδομένων! Επαναφόρτωση σελίδας..."
+
+msgid "Enter your prompt..."
+msgstr "Εισαγάγετε την προτροπή σας..."
+
+msgid "Error"
+msgstr "Σφάλμα"
+
+msgid "Error Loading"
+msgstr "Σφάλμα κατά τη φόρτωση"
+
+msgid "Featured Wrappers Only"
+msgstr "Μόνο επιλεγμένα περιτυλίγματα"
+
+msgid "Filter"
+msgstr "Φίλτρο"
+
+msgid "Force Full Re-Sync"
+msgstr "Επιβολή πλήρους επανασυγχρονισμού"
+
+msgid "Format"
+msgstr "Σχήμα και διάταξις βιβλίου"
+
+msgid "Format (Default)"
+msgstr "Μορφή (Προεπιλογή)"
+
+msgid "Full data import started..."
+msgstr "Η πλήρης εισαγωγή δεδομένων ξεκίνησε..."
+
+msgid "Generate & Insert"
+msgstr "Δημιουργία και εισαγωγή"
+
+msgid "Generate Content"
+msgstr "Δημιουργία Περιεχομένου"
+
+msgid "Generating..."
+msgstr "Δημιουργία..."
+
+msgid "Goal"
+msgstr "Γκολ"
+
+msgid "Goal (Default)"
+msgstr "Στόχος (Προεπιλογή)"
+
+msgid "Invalid API Key."
+msgstr "Μη έγκυρο κλειδί API."
+
+msgid "Last Synced:"
+msgstr "Τελευταίος συγχρονισμός:"
+
+msgid "Length"
+msgstr "Μήκος"
+
+msgid "Length (Default)"
+msgstr "Μήκος (Προεπιλογή)"
+
+msgid "Model (Default)"
+msgstr "Μοντέλο (Προεπιλογή)"
+
+msgid "Next Sync:"
+msgstr "Επόμενος συγχρονισμός:"
+
+msgid "Output"
+msgstr "Παραγωγή"
+
+msgid "Output Type (Default)"
+msgstr "Τύπος εξόδου (Προεπιλογή)"
+
+msgid "Received empty output."
+msgstr "Λήφθηκε κενή έξοδος."
+
+msgid "Run Wrapper"
+msgstr "Εκτέλεση Wrapper"
+
+msgid "Select Category..."
+msgstr "Επιλέξτε Κατηγορία..."
+
+msgid "Select Wrapper..."
+msgstr "Επιλέξτε Περιτύλιγμα..."
+
+msgid "Setup Required: Please add your API Key in settings."
+msgstr "Απαιτείται ρύθμιση: Προσθέστε το κλειδί API στις ρυθμίσεις."
+
+msgid "Step 1"
+msgstr "Βήμα 1"
+
+msgid "Step 2"
+msgstr "Βήμα 2"
+
+msgid "Style"
+msgstr "Στυλ"
+
+msgid "Style (Default)"
+msgstr "Στυλ (Προεπιλογή)"
+
+msgid "Sync Delta Updates"
+msgstr "Συγχρονισμός ενημερώσεων Delta"
+
+msgid "To get your API key, log in to"
+msgstr "Για να λάβετε το κλειδί API σας, συνδεθείτε στο"
+
+msgid "Tone"
+msgstr "Τόνος"
+
+msgid "Tone (Default)"
+msgstr "Τόνος (Προεπιλογή)"
+
+msgid "Unknown error"
+msgstr "Άγνωστο σφάλμα"
+
+msgid "Wrapper Catalog Sync"
+msgstr "Συγχρονισμός καταλόγου περιτυλίγματος"
+
+msgid "Zywrap API Key"
+msgstr "Κλειδί API Zywrap"
+
+msgid "-- Error Loading --"
+msgstr "-- Σφάλμα φόρτωσης --"
+
+msgid "-- Select Category First --"
+msgstr "-- Επιλέξτε Κατηγορία Πρώτα --"
+
+msgid "-- Select Model --"
+msgstr "-- Επιλέξτε μοντέλο --"
+
+msgid "-- Select Wrapper --"
+msgstr "-- Επιλέξτε Περιτύλιγμα --"
+
+msgid "Controls"
+msgstr "Έλεγχοι"
+
+msgid "Featured Only"
+msgstr "Προτεινόμενα μόνο"
+
+msgid "Base Only"
+msgstr "Μόνο βάση"
+
+msgid "Copy"
+msgstr "Αντίγραφο"
+
+msgid "API response will appear here"
+msgstr "Η απάντηση API θα εμφανιστεί εδώ"
+
+msgid "-- Select Language (Optional) --"
+msgstr "-- Επιλέξτε Γλώσσα (Προαιρετικό) --"
+
+msgid "-- Select Category --"
+msgstr "-- Επιλέξτε κατηγορία --"
+
+msgid "AI Model (Optional)"
+msgstr "Μοντέλο AI (Προαιρετικό)"
+
+msgid "Save Key"
+msgstr "Αποθήκευση κλειδιού"
+
+msgid "Sync Status"
+msgstr "Κατάσταση συγχρονισμού"
+
+msgid "Not Synced"
+msgstr "Μη συγχρονισμένο"
+
+msgid "Synced"
+msgstr "Συγχρονίστηκε"
+
+msgid "AI Settings"
+msgstr "Ρυθμίσεις AI"
+
+msgid "AI Logs"
+msgstr "Καταγραφές AI"
+
+msgid "Download & Full Import"
+msgstr "Λήψη & πλήρης εισαγωγή"
+
+msgid "Force Full Re Sync"
+msgstr "Force Full Re Sync"

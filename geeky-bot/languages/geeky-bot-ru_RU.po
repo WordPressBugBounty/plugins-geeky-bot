@@ -9,7 +9,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 3.5\n"
+"X-Generator: Poedit 3.7\n"
 
 msgid "Logo"
 msgstr "Логотип"
@@ -2673,3 +2673,258 @@ msgstr "База данных успешно обновляется!"
 
 msgid "Your GeekyBot data is not updated. To ensure accurate results, please synchronize your Woocommerce products data."
 msgstr "Ваши данные Geekybot не обновляются. Чтобы обеспечить точные результаты, пожалуйста, синхронизируйте данные о продуктах WooCommerce."
+
+msgid "(Default)"
+msgstr "(По умолчанию)"
+
+msgid "Category"
+msgstr "Категория"
+
+msgid "Wrapper"
+msgstr "обертка"
+
+msgid "AI Model"
+msgstr "Модель ИИ"
+
+msgid "Language (Optional)"
+msgstr "Язык (необязательно)"
+
+msgid "Prompt (Optional)"
+msgstr "Подсказка (необязательно)"
+
+msgid "Overrides (Optional)"
+msgstr "Переопределения (необязательно)"
+
+msgid "Action Needed: Please add your API Key in settings."
+msgstr "Необходимое действие: добавьте свой ключ API в настройки."
+
+msgid "Action Needed: Please sync the Wrapper Catalog (Step 2) in settings."
+msgstr "Необходимое действие: синхронизируйте каталог Wrapper (шаг 2) в настройках."
+
+msgid "AI Content Generator"
+msgstr "Генератор ИИ-контента"
+
+msgid "AI Generate Text"
+msgstr "ИИ генерирует текст"
+
+msgid "An unknown AJAX error occurred."
+msgstr "Произошла неизвестная ошибка AJAX."
+
+msgid "An unknown error occurred."
+msgstr "Произошла неизвестная ошибка."
+
+msgid "and navigate to your Dashboard / API Keys."
+msgstr "и перейдите к своей панели управления/ключам API."
+
+msgid "API Key is valid and active."
+msgstr "Ключ API действителен и активен."
+
+msgid "API Key is valid but has usage limitations."
+msgstr "Ключ API действителен, но имеет ограничения на использование."
+
+msgid "Audience"
+msgstr "Аудитория"
+
+msgid "Audience (Default)"
+msgstr "Аудитория (по умолчанию)"
+
+msgid "Base Wrappers Only"
+msgstr "Только базовые оболочки"
+
+msgid "Check API Key Status"
+msgstr "Проверьте статус ключа API"
+
+msgid "Check Status"
+msgstr "Проверить статус"
+
+msgid "Checking for updates..."
+msgstr "Проверяем наличие обновлений..."
+
+msgid "Complexity"
+msgstr "Сложность"
+
+msgid "Complexity (Default)"
+msgstr "Сложность (по умолчанию)"
+
+msgid "Content Generation"
+msgstr "Генерация контента"
+
+msgid "Copy Output"
+msgstr "Копировать вывод"
+
+msgid "Data import successful! Reloading page..."
+msgstr "Импорт данных успешен! Перезагружаем страницу..."
+
+msgid "Enter your prompt..."
+msgstr "Введите подсказку..."
+
+msgid "Error"
+msgstr "Ошибка"
+
+msgid "Error Loading"
+msgstr "Ошибка загрузки"
+
+msgid "Featured Wrappers Only"
+msgstr "Только избранные обертки"
+
+msgid "Filter"
+msgstr "Фильтр"
+
+msgid "Force Full Re-Sync"
+msgstr "Принудительная полная повторная синхронизация"
+
+msgid "Format"
+msgstr "Формат"
+
+msgid "Format (Default)"
+msgstr "Формат (по умолчанию)"
+
+msgid "Full data import started..."
+msgstr "Полный импорт данных начался..."
+
+msgid "Generate & Insert"
+msgstr "Создать и вставить"
+
+msgid "Generate Content"
+msgstr "Генерировать контент"
+
+msgid "Generating..."
+msgstr "Создание..."
+
+msgid "Goal"
+msgstr "Цель"
+
+msgid "Goal (Default)"
+msgstr "Цель (по умолчанию)"
+
+msgid "Invalid API Key."
+msgstr "Неверный ключ API."
+
+msgid "Last Synced:"
+msgstr "Последняя синхронизация:"
+
+msgid "Length"
+msgstr "Длина"
+
+msgid "Length (Default)"
+msgstr "Длина (по умолчанию)"
+
+msgid "Model (Default)"
+msgstr "Модель (по умолчанию)"
+
+msgid "Next Sync:"
+msgstr "Следующая синхронизация:"
+
+msgid "Output"
+msgstr "Выход"
+
+msgid "Output Type (Default)"
+msgstr "Тип вывода (по умолчанию)"
+
+msgid "Received empty output."
+msgstr "Получен пустой вывод."
+
+msgid "Run Wrapper"
+msgstr "Запустить оболочку"
+
+msgid "Select Category..."
+msgstr "Выберите категорию..."
+
+msgid "Select Wrapper..."
+msgstr "Выберите обертку..."
+
+msgid "Setup Required: Please add your API Key in settings."
+msgstr "Требуется настройка: добавьте свой ключ API в настройки."
+
+msgid "Step 1"
+msgstr "Шаг 1"
+
+msgid "Step 2"
+msgstr "Шаг 2"
+
+msgid "Style"
+msgstr "Стиль"
+
+msgid "Style (Default)"
+msgstr "Стиль (по умолчанию)"
+
+msgid "Sync Delta Updates"
+msgstr "Синхронизировать дельта-обновления"
+
+msgid "To get your API key, log in to"
+msgstr "Чтобы получить ключ API, войдите в систему"
+
+msgid "Tone"
+msgstr "Тон"
+
+msgid "Tone (Default)"
+msgstr "Тон (по умолчанию)"
+
+msgid "Unknown error"
+msgstr "Неизвестная ошибка"
+
+msgid "Wrapper Catalog Sync"
+msgstr "Синхронизация каталога Wrapper"
+
+msgid "Zywrap API Key"
+msgstr "API-ключ Zywrap"
+
+msgid "-- Error Loading --"
+msgstr "-- Ошибка загрузки --"
+
+msgid "-- Select Category First --"
+msgstr "-- Сначала выберите категорию --"
+
+msgid "-- Select Model --"
+msgstr "-- Выберите модель --"
+
+msgid "-- Select Wrapper --"
+msgstr "-- Выберите обертку --"
+
+msgid "Controls"
+msgstr "Элементы управления"
+
+msgid "Featured Only"
+msgstr "Только избранные"
+
+msgid "Base Only"
+msgstr "Только база"
+
+msgid "Copy"
+msgstr "Копировать"
+
+msgid "API response will appear here"
+msgstr "Ответ API появится здесь"
+
+msgid "-- Select Language (Optional) --"
+msgstr "-- Выберите язык (необязательно) --"
+
+msgid "-- Select Category --"
+msgstr "-- Выберите категорию --"
+
+msgid "AI Model (Optional)"
+msgstr "Модель искусственного интеллекта (необязательно)"
+
+msgid "Save Key"
+msgstr "Сохранить ключ"
+
+msgid "Sync Status"
+msgstr "Статус синхронизации"
+
+msgid "Not Synced"
+msgstr "Не синхронизировано"
+
+msgid "Synced"
+msgstr "Синхронизировано"
+
+msgid "AI Settings"
+msgstr "Настройки ИИ"
+
+msgid "AI Logs"
+msgstr "Журналы ИИ"
+
+msgid "Download & Full Import"
+msgstr "Загрузка и полный импорт"
+
+msgid "Force Full Re Sync"
+msgstr "Принудительная полная повторная синхронизация"

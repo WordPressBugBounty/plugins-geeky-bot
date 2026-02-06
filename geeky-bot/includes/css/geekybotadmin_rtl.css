@@ -293,6 +293,8 @@ div.geekybot-websearch-support-section.geekybot-aisupport-section{border-left-wi
 div#geekybotadmin-wrapper div#geekybotadmin-data div#geekybot-admin-wrapper.geekybot-admin-config-wrapper form.geekybot-configurations div.geekybot-config-row-wrp .geekybot-config-download{float: right;}
 div#geekybotadmin-wrapper div#geekybotadmin-data div#geekybot-admin-wrapper form.geekybot-configurations div.geekybot-config-row-wrp div.geekybot-config-row div.geekybot-config-description.geekybot-config-description-button{padding-right: 0;}
 div#geekybotadmin-wrapper div#geekybotadmin-data div#geekybot-admin-wrapper.geekybot-admin-config-wrapper form.geekybot-configurations div.geekybot-config-row-wrp .geekybot-config-download-steps-wrp{padding-left: 0;padding-right: 10px;}
+/* content generation */
+div.geekybot-admin-main-wrapper .geekybot-app-main {padding-left: 0;padding-right: 32px;}
 
 @media (max-width:1650px){
   div.geekybot-template-section .geekybot-template-section-field .geekybot-form-title{text-align: start;}

@@ -9,7 +9,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 3.5\n"
+"X-Generator: Poedit 3.7\n"
 
 msgid "Logo"
 msgstr "ロゴ"
@@ -2689,3 +2689,258 @@ msgstr "データベースは正常に更新されました！"
 
 msgid "Your GeekyBot data is not updated. To ensure accurate results, please synchronize your Woocommerce products data."
 msgstr "GeekyBotデータは更新されません。正確な結果を確保するには、WooCommerce製品データを同期してください。"
+
+msgid "(Default)"
+msgstr "（デフォルト）"
+
+msgid "Category"
+msgstr "カテゴリ"
+
+msgid "Wrapper"
+msgstr "ラッパー"
+
+msgid "AI Model"
+msgstr "AIモデル"
+
+msgid "Language (Optional)"
+msgstr "言語 (オプション)"
+
+msgid "Prompt (Optional)"
+msgstr "プロンプト (オプション)"
+
+msgid "Overrides (Optional)"
+msgstr "オーバーライド (オプション)"
+
+msgid "Action Needed: Please add your API Key in settings."
+msgstr "必要なアクション: 設定に API キーを追加してください。"
+
+msgid "Action Needed: Please sync the Wrapper Catalog (Step 2) in settings."
+msgstr "必要なアクション: 設定で Wrapper カタログ (ステップ 2) を同期してください。"
+
+msgid "AI Content Generator"
+msgstr "AI コンテンツ ジェネレーター"
+
+msgid "AI Generate Text"
+msgstr "AIがテキストを生成"
+
+msgid "An unknown AJAX error occurred."
+msgstr "不明な AJAX エラーが発生しました。"
+
+msgid "An unknown error occurred."
+msgstr "不明なエラーが発生しました。"
+
+msgid "and navigate to your Dashboard / API Keys."
+msgstr "ダッシュボード/API キーに移動します。"
+
+msgid "API Key is valid and active."
+msgstr "API キーは有効でアクティブです。"
+
+msgid "API Key is valid but has usage limitations."
+msgstr "API キーは有効ですが、使用制限があります。"
+
+msgid "Audience"
+msgstr "観客"
+
+msgid "Audience (Default)"
+msgstr "対象者 (デフォルト)"
+
+msgid "Base Wrappers Only"
+msgstr "ベースラッパーのみ"
+
+msgid "Check API Key Status"
+msgstr "API キーのステータスを確認する"
+
+msgid "Check Status"
+msgstr "ステータスの確認"
+
+msgid "Checking for updates..."
+msgstr "アップデートをチェックしています..."
+
+msgid "Complexity"
+msgstr "複雑"
+
+msgid "Complexity (Default)"
+msgstr "複雑さ (デフォルト)"
+
+msgid "Content Generation"
+msgstr "コンテンツの生成"
+
+msgid "Copy Output"
+msgstr "出力のコピー"
+
+msgid "Data import successful! Reloading page..."
+msgstr "データのインポートが成功しました。ページを再読み込み中..."
+
+msgid "Enter your prompt..."
+msgstr "プロンプトを入力してください..."
+
+msgid "Error"
+msgstr "エラー"
+
+msgid "Error Loading"
+msgstr "読み込みエラー"
+
+msgid "Featured Wrappers Only"
+msgstr "注目のラッパーのみ"
+
+msgid "Filter"
+msgstr "フィルター"
+
+msgid "Force Full Re-Sync"
+msgstr "完全再同期を強制する"
+
+msgid "Format"
+msgstr "形式"
+
+msgid "Format (Default)"
+msgstr "フォーマット (デフォルト)"
+
+msgid "Full data import started..."
+msgstr "フルデータのインポートが開始されました..."
+
+msgid "Generate & Insert"
+msgstr "生成して挿入"
+
+msgid "Generate Content"
+msgstr "コンテンツの生成"
+
+msgid "Generating..."
+msgstr "生成中..."
+
+msgid "Goal"
+msgstr "ゴール"
+
+msgid "Goal (Default)"
+msgstr "目標 (デフォルト)"
+
+msgid "Invalid API Key."
+msgstr "API キーが無効です。"
+
+msgid "Last Synced:"
+msgstr "最終同期:"
+
+msgid "Length"
+msgstr "長さ"
+
+msgid "Length (Default)"
+msgstr "長さ (デフォルト)"
+
+msgid "Model (Default)"
+msgstr "モデル (デフォルト)"
+
+msgid "Next Sync:"
+msgstr "次の同期:"
+
+msgid "Output"
+msgstr "出力"
+
+msgid "Output Type (Default)"
+msgstr "出力タイプ (デフォルト)"
+
+msgid "Received empty output."
+msgstr "空の出力を受け取りました。"
+
+msgid "Run Wrapper"
+msgstr "ラッパーの実行"
+
+msgid "Select Category..."
+msgstr "カテゴリを選択..."
+
+msgid "Select Wrapper..."
+msgstr "ラッパーを選択..."
+
+msgid "Setup Required: Please add your API Key in settings."
+msgstr "セットアップが必要です: 設定に API キーを追加してください。"
+
+msgid "Step 1"
+msgstr "ステップ1"
+
+msgid "Step 2"
+msgstr "ステップ2"
+
+msgid "Style"
+msgstr "スタイル"
+
+msgid "Style (Default)"
+msgstr "スタイル (デフォルト)"
+
+msgid "Sync Delta Updates"
+msgstr "デルタ更新の同期"
+
+msgid "To get your API key, log in to"
+msgstr "API キーを取得するには、にログインしてください"
+
+msgid "Tone"
+msgstr "トーン"
+
+msgid "Tone (Default)"
+msgstr "トーン（デフォルト）"
+
+msgid "Unknown error"
+msgstr "不明なエラー"
+
+msgid "Wrapper Catalog Sync"
+msgstr "ラッパーカタログの同期"
+
+msgid "Zywrap API Key"
+msgstr "Zywrap API キー"
+
+msgid "-- Error Loading --"
+msgstr "-- 読み込みエラー --"
+
+msgid "-- Select Category First --"
+msgstr "-- 最初にカテゴリを選択 --"
+
+msgid "-- Select Model --"
+msgstr "-- モデルの選択 --"
+
+msgid "-- Select Wrapper --"
+msgstr "-- ラッパーの選択 --"
+
+msgid "Controls"
+msgstr "コントロール"
+
+msgid "Featured Only"
+msgstr "注目のみ"
+
+msgid "Base Only"
+msgstr "ベースのみ"
+
+msgid "Copy"
+msgstr "コピー"
+
+msgid "API response will appear here"
+msgstr "API レスポンスがここに表示されます"
+
+msgid "-- Select Language (Optional) --"
+msgstr "-- 言語の選択 (オプション) --"
+
+msgid "-- Select Category --"
+msgstr "-- カテゴリを選択 --"
+
+msgid "AI Model (Optional)"
+msgstr "AIモデル（オプション）"
+
+msgid "Save Key"
+msgstr "キーの保存"
+
+msgid "Sync Status"
+msgstr "同期ステータス"
+
+msgid "Not Synced"
+msgstr "同期されていません"
+
+msgid "Synced"
+msgstr "同期済み"
+
+msgid "AI Settings"
+msgstr "AI設定"
+
+msgid "AI Logs"
+msgstr "AIログ"
+
+msgid "Download & Full Import"
+msgstr "ダウンロードと完全インポート"
+
+msgid "Force Full Re Sync"
+msgstr "強制的に完全再同期"

@@ -18,9 +18,8 @@ class GEEKYBOTchatserverModel {
         if (!wp_verify_nonce($nonce, 'get-message-response')) {
             // disable nonce
             /*$errorMessage = new stdClass();
-            $errorMessage->bot_response = esc_html(
-                __("Security verification Failed, Please refresh your chat to continue.", "geeky-bot")
-            );
+            $errorMessage->bot_response = 
+                __("Security verification Failed, Please refresh your chat to continue.", "geeky-bot");
             $retVal[] = ["recipient_id" => $chat_id, "text" => $errorMessage];
             return wp_json_encode($retVal);*/
         }
@@ -28,23 +27,21 @@ class GEEKYBOTchatserverModel {
         // Check if the chat session has expired
         if (empty($chat_id)) {
             $errorMessage = new stdClass();
-            $errorMessage->bot_response = esc_html(
-                __("Your session has expired; please restart your chat.", "geeky-bot")
-            );
+            $errorMessage->bot_response = __("Your session has expired; please restart your chat.", "geeky-bot");
             $retVal[] = ["recipient_id" => $chat_id, "text" => $errorMessage];
             return wp_json_encode($retVal);
         }
 
         // Retrieve user inputs
-        $message = GEEKYBOTrequest::GEEKYBOT_getVar('cmessage');
-        $text = GEEKYBOTrequest::GEEKYBOT_getVar('ctext');
-        $sender = GEEKYBOTrequest::GEEKYBOT_getVar('csender');
+        $message = sanitize_text_field(GEEKYBOTrequest::GEEKYBOT_getVar('cmessage'));
+        $text = sanitize_text_field(GEEKYBOTrequest::GEEKYBOT_getVar('ctext'));
+        $sender = sanitize_text_field(GEEKYBOTrequest::GEEKYBOT_getVar('csender'));
         $response_id = GEEKYBOTrequest::GEEKYBOT_getVar('response_id');
         $btnflag = GEEKYBOTrequest::GEEKYBOT_getVar('btnflag');
         $session_type = '';
 
-		$logdata = "\n chatserver->getMessageResponse";
-		$logdata .= "\n message: ".$message;
+        $logdata = "\n chatserver->getMessageResponse";
+        $logdata .= "\n message: ".$message;
         // Save user message to session and chat history
         if (!empty($text)) {
             geekybot::$_geekybotsessiondata->geekybot_addChatHistoryToSession($text, 'user');
@@ -60,7 +57,7 @@ class GEEKYBOTchatserverModel {
             if (!empty($intentIdAndScore['id'])) {
                 // get intent data from intent id
                 $query = "SELECT `id`, `user_messages`, `user_messages_text`, `group_id` FROM `" . geekybot::$_db->prefix . "geekybot_intents` WHERE `id` = " . esc_sql($intentIdAndScore['id']);
-    			$logdata .= "\n query: ".$query;
+                $logdata .= "\n query: ".$query;
                 $intentData = geekybotdb::GEEKYBOT_get_row($query);
                 $intentGroupId = $intentData->group_id;
 
@@ -266,11 +263,11 @@ class GEEKYBOTchatserverModel {
                         if ($responseButton->type == 1) {
                             $botResponse .= "<li class='geekybot-message geekybot-message-button'>";
                             $botResponse .= "<section><button class='wp-chat-btn' onclick='sendbtnrsponse(this);' value='".$responseButton->value."'>";
-                            $botResponse .= "<span>" . esc_html($responseButton->text) . "</span></button></section></li>";
+                            $botResponse .= "<span>" . $responseButton->text . "</span></button></section></li>";
                         } elseif ($responseButton->type == 2) {
                             $botResponse .= "<li class='geekybot-message geekybot-message-button'>";
                             $botResponse .= "<section><button class='wp-chat-btn'><span><a class='wp-chat-btn-link' href='".$responseButton->value."'>";
-                            $botResponse .= esc_html($responseButton->text) . "</a></span></button></section></li>";
+                            $botResponse .= $responseButton->text . "</a></span></button></section></li>";
                         }
                     }
                     $botResponse .= "</div>";
@@ -809,11 +806,11 @@ class GEEKYBOTchatserverModel {
                         if ($fbButton->type == 1) {
                             $botFallBack .= "<li class='geekybot-message geekybot-message-button'>";
                             $botFallBack .= "<section><button class='wp-chat-btn' onclick='sendbtnrsponse(this);' value='".$fbButton->value."'>";
-                            $botFallBack .= "<span>" . esc_html($fbButton->text) . "</span></button></section></li>";
+                            $botFallBack .= "<span>" . $fbButton->text . "</span></button></section></li>";
                         } elseif ($fbButton->type == 2) {
                             $botFallBack .= "<li class='geekybot-message geekybot-message-button'>";
                             $botFallBack .= "<section><button class='wp-chat-btn'><span><a class='wp-chat-btn-link' href='".$fbButton->value."'>";
-                            $botFallBack .= esc_html($fbButton->text) . "</a></span></button></section></li>";
+                            $botFallBack .= $fbButton->text . "</a></span></button></section></li>";
                         }
                     }
                     $botFallBack .= "</div>";
@@ -859,11 +856,11 @@ class GEEKYBOTchatserverModel {
                 if ($fbButton->type == 1) {
                     $botFallBack .= "<li class='geekybot-message geekybot-message-button'>";
                     $botFallBack .= "<section><button class='wp-chat-btn' onclick='sendbtnrsponse(this);' value='".$fbButton->value."'>";
-                    $botFallBack .= "<span>" . esc_html($fbButton->text) . "</span></button></section></li>";
+                    $botFallBack .= "<span>" . $fbButton->text . "</span></button></section></li>";
                 } elseif ($fbButton->type == 2) {
                     $botFallBack .= "<li class='geekybot-message geekybot-message-button'>";
                     $botFallBack .= "<section><button class='wp-chat-btn'><span><a class='wp-chat-btn-link' href='".$fbButton->value."'>";
-                    $botFallBack .= esc_html($fbButton->text) . "</a></span></button></section></li>";
+                    $botFallBack .= $fbButton->text . "</a></span></button></section></li>";
                 }
             }
             $botFallBack .= "</div>";

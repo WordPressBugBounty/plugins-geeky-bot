@@ -6,12 +6,12 @@ if (!defined('ABSPATH'))
     $userImgScr = GEEKYBOTincluder::GEEKYBOT_getModel('geekybot')->getUserImagePath();
     $geekybot_js = '
     jQuery(document).ready(function(){
-        var ajaxurl = "'.esc_url(admin_url('admin-ajax.php')).'";
+        var ajaxurl = "'.esc_js(admin_url('admin-ajax.php')).'";
         jQuery.post(ajaxurl, {
             action: "geekybot_ajax",
             geekybotme: "geekybot",
             task: "geekybotFreshMessages",
-            "_wpnonce": "' . esc_attr(wp_create_nonce("geekybot_fresh_messages")) . '"
+            "_wpnonce": "' . esc_js(wp_create_nonce("geekybot_fresh_messages")) . '"
         }, function(response) {
             if (response) {
                 jQuery(".geekbotMessageWrapper").html(response);
@@ -38,13 +38,13 @@ if (!defined('ABSPATH'))
             // $geekybot_js .= 'jQuery(".geekybot-chat-popup").addClass("active");';
             if (geekybot::$_configuration['welcome_screen'] == '2') {
                 $geekybot_js.='
-                jQuery(".geekybot-chat-popup").addClass("geekybot-chat-init");
-                
-                ';
+                jQuery(".geekybot-chat-popup").addClass("geekybot-chat-init");';
             }
             $geekybot_js.='
             var scrollableDiv = jQuery("#geekybot-main-messages");
-            scrollableDiv.scrollTop(scrollableDiv[0].scrollHeight);
+            if (scrollableDiv.length > 0) {
+                scrollableDiv.scrollTop(scrollableDiv[0].scrollHeight);
+            }
             ';
         }
         $geekybot_js .= '
@@ -59,8 +59,7 @@ if (!defined('ABSPATH'))
                 getRandomChatId();';
                 if (geekybot::$_configuration['welcome_screen'] == '2') {
                     $geekybot_js.='
-                    jQuery(".geekybot-chat-popup").addClass("geekybot-chat-init");
-                    ';
+                    jQuery(".geekybot-chat-popup").addClass("geekybot-chat-init");';
                 }
                 $geekybot_js.='
             }
@@ -83,18 +82,33 @@ if (!defined('ABSPATH'))
         jQuery("#geekybot-send-button").click(function(event){
             var message = jQuery(".geekybot-message-box").val();
             if (!message) {
-                alert("Please enter a message to before sending");
+                alert("'.esc_js(__("Please enter a message before sending", "geeky-bot")).'");
                 return false;
             } else {
                 var sender = "user";
                 jQuery(".geekybot-message-box").val("");
-                var sender = "user";
                 var btnflag = "false";
                 var chat_id = jQuery("#chatsession").val();
-                jQuery(\'#geekybotChatBox\').append(\'<li class="geekybot-message geekybot-message-user"><section class="geekybot-message-user-img 01"><img src="'.esc_url($userImgScr).'" alt="" /></section><section class="geekybot-message-text">\'+message+\'</section></li>\');
-                var response_id =  jQuery("#response_id").val();
+
+                // 1. Create the LI container object
+                var $msgItem = jQuery(\'<li class="geekybot-message geekybot-message-user"></li>\');
+                
+                // 2. Create the Image section
+                var $imgSection = jQuery(\'<section class="geekybot-message-user-img 01"><img src="'.esc_js($userImgScr).'" alt="" /></section>\');
+                
+                // 3. Create the Text section and safely inject the message
+                // .text() is what kills the XSS attack
+                var $textSection = jQuery(\'<section class="geekybot-message-text"></section>\').text(message);
+
+                // 4. Assemble: Put the Image and Text inside the LI
+                $msgItem.append($imgSection).append($textSection);
+
+                // 5. Final Step: Put the full LI into the Chat Box
+                jQuery(\'#geekybotChatBox\').append($msgItem);
+
+                var response_id = jQuery("#response_id").val();
                 // SaveChathistory(message,sender);
-                sendRequestToServer(message,message,sender,chat_id);
+                sendRequestToServer(message, message, sender, chat_id);
             }
         });
 
@@ -102,18 +116,23 @@ if (!defined('ABSPATH'))
             if ( event.which == 13 ) {
                 var message = jQuery(".geekybot-message-box").val();
                 if (!message) {
-                    alert("Please enter a message to before sending");
+                    alert("'.esc_js(__("Please enter a message before sending", "geeky-bot")).'");
                     return false;
                 } else {
                     var sender = "user";
                     jQuery(".geekybot-message-box").val("");
-                    var sender = "user";
                     var chat_id = jQuery("#chatsession").val();
-                    jQuery(\'#geekybotChatBox\').append(\'<li class="geekybot-message geekybot-message-user"><section class="geekybot-message-user-img 02"><img src="'.esc_url($userImgScr).'" alt="" /></section><section class="geekybot-message-text">\'+message+\'</section></li>\');
-                        var response_id =  jQuery("#response_id").val();
-                        var btnflag = "false";
-                        // SaveChathistory(message,sender);
-                        sendRequestToServer(message,message,sender,chat_id);
+
+                    var $msgItem = jQuery(\'<li class="geekybot-message geekybot-message-user"></li>\');
+                    var $imgSection = jQuery(\'<section class="geekybot-message-user-img 02"><img src="'.esc_js($userImgScr).'" alt="" /></section>\');
+                    var $textSection = jQuery(\'<section class="geekybot-message-text"></section>\').text(message);
+
+                    $msgItem.append($imgSection).append($textSection);
+                    jQuery(\'#geekybotChatBox\').append($msgItem);
+
+                    var response_id = jQuery("#response_id").val();
+                    // SaveChathistory(message,sender);
+                    sendRequestToServer(message, message, sender, chat_id);
                 }
             }
         });
@@ -124,8 +143,8 @@ if (!defined('ABSPATH'))
             var message = "Chat End by user";
             var date = new Date();
             date.setTime(date.getTime());
-            var ajaxurl = "'.esc_url(admin_url('admin-ajax.php')).'";
-            jQuery.post(ajaxurl, { action: "geekybot_frontendajax", geekybotme: "chathistory", task: "endUserChat", cmessage: message,sender:sender ,chat_id:chat_id, "_wpnonce":"'. esc_attr(wp_create_nonce("end-user-chat")) .'"}, function (data) {
+            var ajaxurl = "'.esc_js(admin_url('admin-ajax.php')).'";
+            jQuery.post(ajaxurl, { action: "geekybot_frontendajax", geekybotme: "chathistory", task: "endUserChat", cmessage: message,sender:sender ,chat_id:chat_id, "_wpnonce":"'. esc_js(wp_create_nonce("end-user-chat")) .'"}, function (data) {
                 if (data) {
                     jQuery("#geekybotChatBox").empty();
                     var path = window.location.href;
@@ -166,8 +185,8 @@ if (!defined('ABSPATH'))
             x1 = x1 + "  " +  hours + ":" +  minutes + ":" +  seconds ;
             var dt = x1; ';
             $geekybot_js.='
-            var ajaxurl = "'.esc_url(admin_url('admin-ajax.php')).'";
-            jQuery.post(ajaxurl, { action: "geekybot_frontendajax", geekybotme: "chathistory", task: "restartUserChat", datetime:dt, "_wpnonce":"'. esc_attr(wp_create_nonce("restart-user-chat")). '"}, function (data) {
+            var ajaxurl = "'.esc_js(admin_url('admin-ajax.php')).'";
+            jQuery.post(ajaxurl, { action: "geekybot_frontendajax", geekybotme: "chathistory", task: "restartUserChat", datetime:dt, "_wpnonce":"'. esc_js(wp_create_nonce("restart-user-chat")). '"}, function (data) {
                 if (data) {
                     jQuery("#chatsession").val(data)
                     jQuery("#geekybotChatBox").empty();
@@ -181,7 +200,7 @@ if (!defined('ABSPATH'))
     // Code to open the chat popup
     document.addEventListener("DOMContentLoaded", function() {';
         if ( geekybot::$_configuration['auto_chat_start'] == 1 && geekybot::$_configuration['auto_chat_start_time'] != '' ) {
-            $startTime = geekybot::$_configuration['auto_chat_start_time'];
+            $startTime = (int)geekybot::$_configuration['auto_chat_start_time'];
             // change time from seconds to miliseconds
             $startTime = $startTime * 1000;
             $geekybot_js.='
@@ -202,11 +221,9 @@ if (!defined('ABSPATH'))
                             // 
                             if(hide_smart_popup == 0) {
                                 jQuery(".geekybot-chat-open-outer-popup-mainwrp").fadeIn().css("display", "flex");
-                            }
-                            ';
+                            }';
                         } else {
-                            $geekybot_js.='    
-                            jQuery(".geekybot-chat-open-dialog").click();';
+                            $geekybot_js.='jQuery(".geekybot-chat-open-dialog").click();';
                         }
                     }
                     $geekybot_js.='
@@ -232,8 +249,8 @@ if (!defined('ABSPATH'))
         x1 = x1 + "  " +  hours + ":" +  minutes + ":" +  seconds ;
         var dt = x1;
 
-        var ajaxurl = "'.esc_url(admin_url('admin-ajax.php')).'";
-        jQuery.post(ajaxurl, { action: "geekybot_frontendajax", geekybotme: "chathistory", task: "restartUserChat", datetime:dt, "_wpnonce":"'. esc_attr(wp_create_nonce("restart-user-chat")). '"}, function (data) {
+        var ajaxurl = "'.esc_js(admin_url('admin-ajax.php')).'";
+        jQuery.post(ajaxurl, { action: "geekybot_frontendajax", geekybotme: "chathistory", task: "restartUserChat", datetime:dt, "_wpnonce":"'. esc_js(wp_create_nonce("restart-user-chat")). '"}, function (data) {
             if (data) {
                 jQuery("#chatsession").val(data);
                 // Wait a moment to ensure cookie is set and browser acknowledges it
@@ -267,8 +284,8 @@ if (!defined('ABSPATH'))
         var dt = x1;
         var user = "user";';
         $geekybot_js .= '
-        var ajaxurl = "'.esc_url(admin_url('admin-ajax.php')).'";
-        jQuery.post(ajaxurl, { action: "geekybot_frontendajax", geekybotme: "chathistory", task: "getRandomChatId", datetime: dt, "_wpnonce":"'. esc_attr(wp_create_nonce("get-random-chat-id")).'" }, function (data) {
+        var ajaxurl = "'.esc_js(admin_url('admin-ajax.php')).'";
+        jQuery.post(ajaxurl, { action: "geekybot_frontendajax", geekybotme: "chathistory", task: "getRandomChatId", datetime: dt, "_wpnonce":"'. esc_js(wp_create_nonce("get-random-chat-id")).'" }, function (data) {
             if (data) {
                 var chat_id = data;
                 jQuery("#chatsession").val(data);
@@ -299,29 +316,29 @@ if (!defined('ABSPATH'))
     }
 
     function geekybotLoadMoreCustomPosts(msg, data_array, next_page, function_name) {
-        var message = "'.esc_html(__('Show More', 'geeky-bot')).'";
+        var message = "'.esc_js(__('Show More', 'geeky-bot')).'";
         SaveChathistory(message,"user");
-        var ajaxurl = "'.esc_url(admin_url('admin-ajax.php')).'";
-        jQuery.post(ajaxurl, { action: "geekybot_frontendajax", geekybotme: "geekybot", task: "geekybotLoadMoreCustomPosts", msg : msg, dataArray : data_array, next_page: next_page, functionName : function_name, "_wpnonce":"'.esc_attr(wp_create_nonce("load-more")) .'"}, function (data) {
+        var ajaxurl = "'.esc_js(admin_url('admin-ajax.php')).'";
+        jQuery.post(ajaxurl, { action: "geekybot_frontendajax", geekybotme: "geekybot", task: "geekybotLoadMoreCustomPosts", msg : msg, dataArray : data_array, next_page: next_page, functionName : function_name, "_wpnonce":"'.esc_js(wp_create_nonce("load-more")) .'"}, function (data) {
             if (data) {
                 geekybot_scrollToTop(190);
                 var message = geekybot_DecodeHTML(data);
                 jQuery(\'div.geekybot_wc_product_load_more_wrp\').css(\'display\', \'none\');
-                jQuery(\'#geekybotChatBox\').append(\'<li class="geekybot-message geekybot-message-bot"><section class="geekybot-message-bot-img 07"><img src="'.esc_url($botImgScr).'" alt="" /></section><section class="geekybot-message-text">\'+message+\'</section></li>\');
+                jQuery(\'#geekybotChatBox\').append(\'<li class="geekybot-message geekybot-message-bot"><section class="geekybot-message-bot-img 07"><img src="'.esc_js($botImgScr).'" alt="" /></section><section class="geekybot-message-text">\'+message+\'</section></li>\');
             }
         });
     }
 
     function showArticlesList(post_ids, msg, type, label, total_posts, current_page) {
-        var message = "'.esc_html(__('Show Articles', 'geeky-bot')).'";
+        var message = "'.esc_js(__('Show Articles', 'geeky-bot')).'";
         SaveChathistory(message,"user");
-        var ajaxurl = "'.esc_url(admin_url('admin-ajax.php')).'";
-        jQuery.post(ajaxurl, { action: "geekybot_frontendajax", geekybotme: "websearch", task: "showArticlesList", post_ids: post_ids, msg: msg, type: type, label: label, totalPosts: total_posts, currentPage: current_page, "_wpnonce":"'.esc_attr(wp_create_nonce("articles-list")) .'"}, function (data) {
+        var ajaxurl = "'.esc_js(admin_url('admin-ajax.php')).'";
+        jQuery.post(ajaxurl, { action: "geekybot_frontendajax", geekybotme: "websearch", task: "showArticlesList", post_ids: post_ids, msg: msg, type: type, label: label, totalPosts: total_posts, currentPage: current_page, "_wpnonce":"'.esc_js(wp_create_nonce("articles-list")) .'"}, function (data) {
             if (data) {
                 geekybot_scrollToTop(340);
                 var message = geekybot_DecodeHTML(data);
                 jQuery(\'.geekybot_wc_post_load_more\').css(\'display\', \'none\');
-                jQuery(\'#geekybotChatBox\').append(\'<li class="geekybot-message geekybot-message-bot"><section class="geekybot-message-bot-img 08"><img src="'.esc_url($botImgScr).'" alt="" /></section><section class="geekybot-message-text">\'+message+\'</section></li>\');
+                jQuery(\'#geekybotChatBox\').append(\'<li class="geekybot-message geekybot-message-bot"><section class="geekybot-message-bot-img 08"><img src="'.esc_js($botImgScr).'" alt="" /></section><section class="geekybot-message-text">\'+message+\'</section></li>\');
             }
         });
     }
@@ -331,10 +348,10 @@ if (!defined('ABSPATH'))
         if(chat_id!=""){
             setTimeout(function(){';
                 $geekybot_js.='
-                var message = "'.__('session time out', 'geeky-bot').'";
+                var message = "'.esc_js(__('session time out', 'geeky-bot')).'";
                 var sender  = "user";
-                var ajaxurl = "'.esc_url(admin_url('admin-ajax.php')).'";
-                jQuery.post(ajaxurl, { action: "geekybot_frontendajax", geekybotme: "chathistory", task: "endUserChat", cmessage: message,sender:sender ,chat_id:chat_id, "_wpnonce":"'. esc_attr(wp_create_nonce("end-user-chat")) .'"}, function (data) {
+                var ajaxurl = "'.esc_js(admin_url('admin-ajax.php')).'";
+                jQuery.post(ajaxurl, { action: "geekybot_frontendajax", geekybotme: "chathistory", task: "endUserChat", cmessage: message, sender:sender ,chat_id:chat_id, "_wpnonce":"'. esc_js(wp_create_nonce("end-user-chat")) .'"}, function (data) {
                     if (data) {
                         jQuery("#geekybotChatBox").empty();
                         var path = window.location.href;
@@ -359,15 +376,14 @@ if (!defined('ABSPATH'))
         var chat_id = jQuery("#chatsession").val();
         ';
         $geekybot_js.='
-        jQuery(\'#geekybotChatBox\').append(\'<li class="geekybot-message geekybot-message-user"><section class="geekybot-message-user-img 04"><img src="'.esc_url($userImgScr).'" alt="" /></section><section class="geekybot-message-text">\'+text+\'</section></li>\');
-        var ajaxurl =
-            "'. esc_url(admin_url("admin-ajax.php")) .'";
+        jQuery(\'#geekybotChatBox\').append(\'<li class="geekybot-message geekybot-message-user"><section class="geekybot-message-user-img 04"><img src="'.esc_js($userImgScr).'" alt="" /></section><section class="geekybot-message-text">\'+text+\'</section></li>\');
+        var ajaxurl = "'. esc_js(admin_url("admin-ajax.php")) .'";
         jQuery.post(ajaxurl, {
             action: "geekybot_ajax",
             geekybotme: "slots",
             message: message,
             task: "saveVariableFromButtonIntent",
-            "_wpnonce":"'. esc_attr(wp_create_nonce("variable-from-button-intent")). '"
+            "_wpnonce":"'. esc_js(wp_create_nonce("variable-from-button-intent")). '"
         }, function(data) {
             if (data) {
                 sendRequestToServer(data,text,sender,chat_id);
@@ -386,9 +402,9 @@ if (!defined('ABSPATH'))
 
     function SaveChathistory(message,sender) { ';
         $geekybot_js.='
-        var ajaxurl = "'.esc_url(admin_url('admin-ajax.php')).'";
+        var ajaxurl = "'.esc_js(admin_url('admin-ajax.php')).'";
         var response_id =  jQuery("#response_id").val();
-        jQuery.post(ajaxurl, { action: "geekybot_frontendajax", geekybotme: "chathistory", task: "SaveChathistory", cmessage: message,csender:sender, "_wpnonce":"'.esc_attr(wp_create_nonce("save-chat-history")).'" }, function (data) {
+        jQuery.post(ajaxurl, { action: "geekybot_frontendajax", geekybotme: "chathistory", task: "SaveChathistory", cmessage: message,csender:sender, "_wpnonce":"'.esc_js(wp_create_nonce("save-chat-history")).'" }, function (data) {
                 if (data) {
                     if(sender=="user") {
                         jQuery("#response_id").val(data);
@@ -416,12 +432,12 @@ if (!defined('ABSPATH'))
 
     function sendMessageAjax(message,text,sender,chat_id){
             //geekybot_scrollToTop(1);
-        jQuery(\'#geekybotChatBox\').append(\'<li class="geekybot-message geekybot-message-bot geekybot_loading"><section class="geekybot-message-bot-img 05"><img src="' . esc_url($botImgScr) . '" alt="" /></section><section class="geekybot-message-text_wrp"></section></li>\');
+        jQuery(\'#geekybotChatBox\').append(\'<li class="geekybot-message geekybot-message-bot geekybot_loading"><section class="geekybot-message-bot-img 05"><img src="' . esc_js($botImgScr) . '" alt="" /></section><section class="geekybot-message-text_wrp"></section></li>\');
         var listItem = jQuery(\'#geekybotChatBox\').find(\'li.geekybot-message-bot\').last(); // Get the last inserted <li>
         
-        listItem.find(\'section.geekybot-message-text_wrp\').append(\'<section class="geekybot-message-loading"><img src="'.esc_url(GEEKYBOT_PLUGIN_URL).'includes/images/bot-typing.gif" alt="" /></section>\');
+        listItem.find(\'section.geekybot-message-text_wrp\').append(\'<section class="geekybot-message-loading"><img src="'.esc_js(GEEKYBOT_PLUGIN_URL).'includes/images/bot-typing.gif" alt="" /></section>\');
         jQuery.ajax({
-            url: "'.esc_url(admin_url('admin-ajax.php')).'",
+            url: "'.esc_js(admin_url('admin-ajax.php')).'",
             type: "POST",
             async: true,
             data: {
@@ -432,7 +448,7 @@ if (!defined('ABSPATH'))
                 cmessage: message, 
                 ctext: text, 
                 csender:sender, 
-                "_wpnonce":"'.esc_attr(wp_create_nonce('get-message-response')).'"
+                "_wpnonce":"'.esc_js(wp_create_nonce('get-message-response')).'"
             },
         }).done(function(data) {
             //geekybot_scrollToTop(150);
@@ -478,13 +494,13 @@ if (!defined('ABSPATH'))
                 });
             } else {
                 geekybot_scrollToTop(150);
-                var ajaxurl = "'.esc_url(admin_url('admin-ajax.php')).'";
+                var ajaxurl = "'.esc_js(admin_url('admin-ajax.php')).'";
                 jQuery.post(ajaxurl, {
                     action: "geekybot_frontendajax",
                     geekybotme: "chatserver",
                     task: "getDefaultFallBackFormAjax",
                     chat_id: chat_id,
-                    "_wpnonce": "' . esc_attr(wp_create_nonce('get-fallback')) . '"
+                    "_wpnonce": "' . esc_js(wp_create_nonce('get-fallback')) . '"
                 }, function(fbdata) {
                     if (fbdata) {
                         var fbdata = JSON.parse(fbdata);
@@ -537,9 +553,9 @@ if (!defined('ABSPATH'))
             }
         }).fail(function(data, textStatus, xhr) {
             jQuery(".geekybot-message-loading").remove();
-            var configmsg = "'.esc_attr(geekybot::$_configuration['default_message']).'";
+            var configmsg = "'.esc_js(geekybot::$_configuration['default_message']).'";
 
-            jQuery(\'#geekybotChatBox\').append(\'<li class="geekybot-message geekybot-message-bot"><section class="geekybot-message-bot-img 06"><img src="'.esc_url($botImgScr).'" alt="" /></section><section class="geekybot-message-text">\'+configmsg+\'</section></li>\');
+            jQuery(\'#geekybotChatBox\').append(\'<li class="geekybot-message geekybot-message-bot"><section class="geekybot-message-bot-img 06"><img src="'.esc_js($botImgScr).'" alt="" /></section><section class="geekybot-message-text">\'+configmsg+\'</section></li>\');
         });
         jQuery(".geekybot-message-bot").removeClass("geekybot_loading");
     }
@@ -547,9 +563,6 @@ if (!defined('ABSPATH'))
     ';
     wp_register_script( 'geekybot-frontend-handle', '' , array(), GEEKYBOT_PLUGIN_VERSION, 'all');
     wp_enqueue_script( 'geekybot-frontend-handle' );
-    wp_add_inline_script('geekybot-frontend-handle',$geekybot_js);
+    wp_add_inline_script('geekybot-frontend-handle', $geekybot_js);
 
 ?>
-
-
-

@@ -20,6 +20,8 @@ class GEEKYBOTpostinstallationController {
                     GEEKYBOTincluder::GEEKYBOT_getModel('postinstallation')->updateInstallationStatusConfiguration();
                     $geekybot_callfrom = GEEKYBOTrequest::GEEKYBOT_getVar('geekybot_callfrom');
                     break;  
+                case 'admin_stepzero':
+                    break;
                 case 'admin_stepone':
                     GEEKYBOTincluder::GEEKYBOT_getModel('postinstallation')->updateInstallationStatusConfiguration();
                     $geekybot_callfrom = GEEKYBOTrequest::GEEKYBOT_getVar('geekybot_callfrom');

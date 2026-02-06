@@ -9,7 +9,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 3.5\n"
+"X-Generator: Poedit 3.7\n"
 
 msgid "Logo"
 msgstr "Logo"
@@ -2692,3 +2692,258 @@ msgstr "Baza de date actualizată cu succes!"
 
 msgid "Your GeekyBot data is not updated. To ensure accurate results, please synchronize your Woocommerce products data."
 msgstr "Datele dvs. geekybot nu sunt actualizate. Pentru a asigura rezultate exacte, vă rugăm să sincronizați datele produselor WooCommerce."
+
+msgid "(Default)"
+msgstr "(Implicit)"
+
+msgid "Category"
+msgstr "Categorie"
+
+msgid "Wrapper"
+msgstr "Înveliș"
+
+msgid "AI Model"
+msgstr "Model AI"
+
+msgid "Language (Optional)"
+msgstr "Limba (Opțional)"
+
+msgid "Prompt (Optional)"
+msgstr "Solicitare (Opțional)"
+
+msgid "Overrides (Optional)"
+msgstr "Anulări (opțional)"
+
+msgid "Action Needed: Please add your API Key in settings."
+msgstr "Acțiune necesară: adăugați cheia API în setări."
+
+msgid "Action Needed: Please sync the Wrapper Catalog (Step 2) in settings."
+msgstr "Acțiune necesară: Vă rugăm să sincronizați catalogul Wrapper (pasul 2) în setări."
+
+msgid "AI Content Generator"
+msgstr "Generator de conținut AI"
+
+msgid "AI Generate Text"
+msgstr "AI generează text"
+
+msgid "An unknown AJAX error occurred."
+msgstr "A apărut o eroare AJAX necunoscută."
+
+msgid "An unknown error occurred."
+msgstr "A apărut o eroare necunoscută."
+
+msgid "and navigate to your Dashboard / API Keys."
+msgstr "și navigați la Tabloul de bord / Cheile API."
+
+msgid "API Key is valid and active."
+msgstr "Cheia API este validă și activă."
+
+msgid "API Key is valid but has usage limitations."
+msgstr "Cheia API este validă, dar are limitări de utilizare."
+
+msgid "Audience"
+msgstr "Public"
+
+msgid "Audience (Default)"
+msgstr "Audiență (implicit)"
+
+msgid "Base Wrappers Only"
+msgstr "Doar învelișuri de bază"
+
+msgid "Check API Key Status"
+msgstr "Verificați starea cheii API"
+
+msgid "Check Status"
+msgstr "Verificați starea"
+
+msgid "Checking for updates..."
+msgstr "Se verifică actualizări..."
+
+msgid "Complexity"
+msgstr "Complexitate"
+
+msgid "Complexity (Default)"
+msgstr "Complexitate (implicit)"
+
+msgid "Content Generation"
+msgstr "Generare de conținut"
+
+msgid "Copy Output"
+msgstr "Ieșire de copiere"
+
+msgid "Data import successful! Reloading page..."
+msgstr "Import de date cu succes! Se reîncarcă pagina..."
+
+msgid "Enter your prompt..."
+msgstr "Introduceți solicitarea dvs...."
+
+msgid "Error"
+msgstr "Eroare"
+
+msgid "Error Loading"
+msgstr "Eroare la încărcare"
+
+msgid "Featured Wrappers Only"
+msgstr "Numai Wrapper-uri recomandate"
+
+msgid "Filter"
+msgstr "Filtra"
+
+msgid "Force Full Re-Sync"
+msgstr "Forțați resincronizarea completă"
+
+msgid "Format"
+msgstr "Format"
+
+msgid "Format (Default)"
+msgstr "Format (implicit)"
+
+msgid "Full data import started..."
+msgstr "Importul complet al datelor a început..."
+
+msgid "Generate & Insert"
+msgstr "Generați și inserați"
+
+msgid "Generate Content"
+msgstr "Generați conținut"
+
+msgid "Generating..."
+msgstr "Se generează..."
+
+msgid "Goal"
+msgstr "Scop"
+
+msgid "Goal (Default)"
+msgstr "Obiectiv (implicit)"
+
+msgid "Invalid API Key."
+msgstr "Cheie API nevalidă."
+
+msgid "Last Synced:"
+msgstr "Ultima sincronizare:"
+
+msgid "Length"
+msgstr "Lungime"
+
+msgid "Length (Default)"
+msgstr "Lungime (implicit)"
+
+msgid "Model (Default)"
+msgstr "Model (implicit)"
+
+msgid "Next Sync:"
+msgstr "Următoarea sincronizare:"
+
+msgid "Output"
+msgstr "Ieșire"
+
+msgid "Output Type (Default)"
+msgstr "Tip ieșire (implicit)"
+
+msgid "Received empty output."
+msgstr "Ieșire goală primită."
+
+msgid "Run Wrapper"
+msgstr "Rulați Wrapper"
+
+msgid "Select Category..."
+msgstr "Selectați categoria..."
+
+msgid "Select Wrapper..."
+msgstr "Selectați Wrapper..."
+
+msgid "Setup Required: Please add your API Key in settings."
+msgstr "Configurare necesară: adăugați cheia dvs. API în setări."
+
+msgid "Step 1"
+msgstr "Pasul 1"
+
+msgid "Step 2"
+msgstr "Pasul 2"
+
+msgid "Style"
+msgstr "Stil"
+
+msgid "Style (Default)"
+msgstr "Stil (implicit)"
+
+msgid "Sync Delta Updates"
+msgstr "Sincronizați actualizările Delta"
+
+msgid "To get your API key, log in to"
+msgstr "Pentru a obține cheia API, conectați-vă la"
+
+msgid "Tone"
+msgstr "Ton"
+
+msgid "Tone (Default)"
+msgstr "Ton (implicit)"
+
+msgid "Unknown error"
+msgstr "Eroare necunoscută"
+
+msgid "Wrapper Catalog Sync"
+msgstr "Sincronizare catalog Wrapper"
+
+msgid "Zywrap API Key"
+msgstr "Cheia API Zywrap"
+
+msgid "-- Error Loading --"
+msgstr "-- Eroare la încărcare --"
+
+msgid "-- Select Category First --"
+msgstr "-- Selectați mai întâi categoria --"
+
+msgid "-- Select Model --"
+msgstr "-- Selectați modelul --"
+
+msgid "-- Select Wrapper --"
+msgstr "-- Selectați Wrapper --"
+
+msgid "Controls"
+msgstr "Controale"
+
+msgid "Featured Only"
+msgstr "Numai prezentate"
+
+msgid "Base Only"
+msgstr "Doar baza"
+
+msgid "Copy"
+msgstr "Copie"
+
+msgid "API response will appear here"
+msgstr "Răspunsul API va apărea aici"
+
+msgid "-- Select Language (Optional) --"
+msgstr "-- Selectați limba (opțional) --"
+
+msgid "-- Select Category --"
+msgstr "-- Selectați categoria --"
+
+msgid "AI Model (Optional)"
+msgstr "Model AI (Opțional)"
+
+msgid "Save Key"
+msgstr "Salvare cheie"
+
+msgid "Sync Status"
+msgstr "Stare de sincronizare"
+
+msgid "Not Synced"
+msgstr "Nesincronizat"
+
+msgid "Synced"
+msgstr "Sincronizat"
+
+msgid "AI Settings"
+msgstr "Setări AI"
+
+msgid "AI Logs"
+msgstr "Jurnalele AI"
+
+msgid "Download & Full Import"
+msgstr "Descărcare și import complet"
+
+msgid "Force Full Re Sync"
+msgstr "Forțați sincronizarea completă"

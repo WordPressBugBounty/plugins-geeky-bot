@@ -9,7 +9,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 3.5\n"
+"X-Generator: Poedit 3.7\n"
 
 msgid "Logo"
 msgstr "โลโก้"
@@ -116,9 +116,7 @@ msgstr "ดรอปดาวน์"
 msgid "Link"
 msgstr "ลิงค์"
 
-msgid ""
-"It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout Content here, content "
-"here..."
+msgid "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout Content here, content here..."
 msgstr "เป็นข้อเท็จจริงที่มีมายาวนานแล้วว่า ผู้อ่านจะเสียสมาธิกับเนื้อหาที่อ่านได้ของเพจเมื่อดูเลย์เอาต์ของหน้า เนื้อหาที่นี่ เนื้อหาที่นี่..."
 
 msgid "Description"
@@ -794,11 +792,11 @@ msgid "Lead Generation"
 msgstr "การสร้างลูกค้าเป้าหมาย"
 
 msgid ""
-"GeekyBot simplifies the WooCommerce experience with intelligent product discovery and purchasing. It seamlessly integrates with WooCommerce for "
-"efficient product searches, detailed listings, and a smooth shopping experience."
+"GeekyBot simplifies the WooCommerce experience with intelligent product discovery and purchasing. It seamlessly integrates with WooCommerce for efficient product searches, "
+"detailed listings, and a smooth shopping experience."
 msgstr ""
-"GeekyBot ลดความซับซ้อนของประสบการณ์ WooCommerce ด้วยการค้นหาและการจัดซื้อผลิตภัณฑ์อัจฉริยะ มันทำงานร่วมกับ WooCommerce ได้อย่างราบรื่นเพื่อการค้นหาผลิตภัณฑ์ที่มีประสิทธิภาพ "
-"รายการโดยละเอียด และประสบการณ์การช็อปปิ้งที่ราบรื่น"
+"GeekyBot ลดความซับซ้อนของประสบการณ์ WooCommerce ด้วยการค้นหาและการจัดซื้อผลิตภัณฑ์อัจฉริยะ มันทำงานร่วมกับ WooCommerce ได้อย่างราบรื่นเพื่อการค้นหาผลิตภัณฑ์ที่มีประสิทธิภาพ รายการโดยละเอียด "
+"และประสบการณ์การช็อปปิ้งที่ราบรื่น"
 
 msgid "Find Product"
 msgstr "ค้นหาผลิตภัณฑ์"
@@ -843,11 +841,9 @@ msgid "Conversation Handling"
 msgstr "การจัดการการสนทนา"
 
 msgid ""
-"AI Chat Conversation provides intelligent and context-aware interactions to enhance user engagement. Define key conversation elements to capture "
-"specific user inputs dynamically and adapt responses based on the context."
-msgstr ""
-"AI Chat Conversation ให้การโต้ตอบที่ชาญฉลาดและคำนึงถึงบริบทเพื่อปรับปรุงการมีส่วนร่วมของผู้ใช้ กำหนดองค์ประกอบการสนทนาที่สำคัญเพื่อบันทึกอินพุตของผู้ใช้ที่เฉพาะเจาะจงแบบไดนามิก "
-"และปรับการตอบสนองตามบริบท"
+"AI Chat Conversation provides intelligent and context-aware interactions to enhance user engagement. Define key conversation elements to capture specific user inputs "
+"dynamically and adapt responses based on the context."
+msgstr "AI Chat Conversation ให้การโต้ตอบที่ชาญฉลาดและคำนึงถึงบริบทเพื่อปรับปรุงการมีส่วนร่วมของผู้ใช้ กำหนดองค์ประกอบการสนทนาที่สำคัญเพื่อบันทึกอินพุตของผู้ใช้ที่เฉพาะเจาะจงแบบไดนามิก และปรับการตอบสนองตามบริบท"
 
 msgid "Capture and process inputs dynamically for personalized responses."
 msgstr "บันทึกและประมวลผลอินพุตแบบไดนามิกเพื่อการตอบสนองส่วนบุคคล"
@@ -868,11 +864,11 @@ msgid "Bot"
 msgstr "บอท"
 
 msgid ""
-"AI Web Search improves user experience by delivering advanced, intuitive content discovery on your WordPress site. With powerful searches, users can "
-"quickly find relevant information, enhancing overall interest and accessibility."
+"AI Web Search improves user experience by delivering advanced, intuitive content discovery on your WordPress site. With powerful searches, users can quickly find relevant "
+"information, enhancing overall interest and accessibility."
 msgstr ""
-"AI Web Search ปรับปรุงประสบการณ์ผู้ใช้โดยนำเสนอการค้นพบเนื้อหาขั้นสูงและใช้งานง่ายบนเว็บไซต์ WordPress ของคุณ ด้วยการค้นหาที่มีประสิทธิภาพ "
-"ผู้ใช้สามารถค้นหาข้อมูลที่เกี่ยวข้องได้อย่างรวดเร็ว ช่วยเพิ่มความสนใจและการเข้าถึงโดยรวม"
+"AI Web Search ปรับปรุงประสบการณ์ผู้ใช้โดยนำเสนอการค้นพบเนื้อหาขั้นสูงและใช้งานง่ายบนเว็บไซต์ WordPress ของคุณ ด้วยการค้นหาที่มีประสิทธิภาพ ผู้ใช้สามารถค้นหาข้อมูลที่เกี่ยวข้องได้อย่างรวดเร็ว "
+"ช่วยเพิ่มความสนใจและการเข้าถึงโดยรวม"
 
 msgid "GeekyBot swiftly retrieves posts and pages based on user queries."
 msgstr "GeekyBot ดึงข้อมูลโพสต์และเพจอย่างรวดเร็วตามคำค้นหาของผู้ใช้"
@@ -947,15 +943,15 @@ msgid "Select Template"
 msgstr "เลือกเทมเพลต"
 
 msgid ""
-"AI Chat in GeekyBot provides instant, personalized responses to user queries, ensuring seamless support around the clock. With its ability to engage "
-"users at any time, GeekyBot enhances the reliability of your service, making sure that your customers' needs are always met."
+"AI Chat in GeekyBot provides instant, personalized responses to user queries, ensuring seamless support around the clock. With its ability to engage users at any time, GeekyBot "
+"enhances the reliability of your service, making sure that your customers' needs are always met."
 msgstr ""
-"AI Chat ใน GeekyBot มอบการตอบสนองต่อคำถามของผู้ใช้แบบทันทีและเป็นส่วนตัว รับประกันการสนับสนุนที่ราบรื่นตลอดเวลา ด้วยความสามารถในการดึงดูดผู้ใช้ได้ตลอดเวลา GeekyBot "
-"ช่วยเพิ่มความน่าเชื่อถือของบริการของคุณ เพื่อให้แน่ใจว่าลูกค้าของคุณจะได้รับการตอบสนองเสมอ"
+"AI Chat ใน GeekyBot มอบการตอบสนองต่อคำถามของผู้ใช้แบบทันทีและเป็นส่วนตัว รับประกันการสนับสนุนที่ราบรื่นตลอดเวลา ด้วยความสามารถในการดึงดูดผู้ใช้ได้ตลอดเวลา GeekyBot ช่วยเพิ่มความน่าเชื่อถือของบริการของคุณ "
+"เพื่อให้แน่ใจว่าลูกค้าของคุณจะได้รับการตอบสนองเสมอ"
 
 msgid ""
-"By training GeekyBot with your specific data, you can create dynamic, tailored interactions that reflect your business's unique voice and services. "
-"This customization allows for more relevant, effective conversations that build stronger connections with your users."
+"By training GeekyBot with your specific data, you can create dynamic, tailored interactions that reflect your business's unique voice and services. This customization allows "
+"for more relevant, effective conversations that build stronger connections with your users."
 msgstr ""
 "ด้วยการฝึกอบรม GeekyBot ด้วยข้อมูลเฉพาะของคุณ คุณสามารถสร้างการโต้ตอบแบบไดนามิกที่ได้รับการปรับแต่งซึ่งสะท้อนถึงเสียงและบริการที่เป็นเอกลักษณ์ของธุรกิจของคุณ "
 "การปรับแต่งนี้ช่วยให้เกิดการสนทนาที่เกี่ยวข้องและมีประสิทธิภาพมากขึ้น ซึ่งสร้างการเชื่อมต่อที่แน่นแฟ้นยิ่งขึ้นกับผู้ใช้ของคุณ"
@@ -973,14 +969,13 @@ msgid "AI Web Search Bot"
 msgstr "บอทค้นหาเว็บ AI"
 
 msgid ""
-"Effortlessly search for specific posts and content across your entire site using our powerful AI web search tool. GeekyBot goes beyond standard "
-"searches, delivering results from all types of data on your site. Whether you're looking for posts, pages, custom post types, or other information, "
-"GeekyBot ensures you find what you need quickly and efficiently by displaying relevant articles, posts, and more in a single, streamlined search "
-"experience."
+"Effortlessly search for specific posts and content across your entire site using our powerful AI web search tool. GeekyBot goes beyond standard searches, delivering results "
+"from all types of data on your site. Whether you're looking for posts, pages, custom post types, or other information, GeekyBot ensures you find what you need quickly and "
+"efficiently by displaying relevant articles, posts, and more in a single, streamlined search experience."
 msgstr ""
-"ค้นหาโพสต์และเนื้อหาที่เฉพาะเจาะจงทั่วทั้งไซต์ของคุณได้อย่างง่ายดายโดยใช้เครื่องมือค้นหาเว็บ AI อันทรงพลังของเรา GeekyBot เป็นมากกว่าการค้นหามาตรฐาน "
-"โดยให้ผลลัพธ์จากข้อมูลทุกประเภทบนเว็บไซต์ของคุณ ไม่ว่าคุณกำลังมองหาโพสต์ เพจ ประเภทโพสต์ที่กำหนดเอง หรือข้อมูลอื่นๆ GeekyBot "
-"ช่วยให้คุณค้นหาสิ่งที่คุณต้องการได้อย่างรวดเร็วและมีประสิทธิภาพโดยการแสดงบทความ โพสต์ และอื่นๆ ที่เกี่ยวข้องในประสบการณ์การค้นหาที่มีประสิทธิภาพและเรียบง่ายในที่เดียว"
+"ค้นหาโพสต์และเนื้อหาที่เฉพาะเจาะจงทั่วทั้งไซต์ของคุณได้อย่างง่ายดายโดยใช้เครื่องมือค้นหาเว็บ AI อันทรงพลังของเรา GeekyBot เป็นมากกว่าการค้นหามาตรฐาน โดยให้ผลลัพธ์จากข้อมูลทุกประเภทบนเว็บไซต์ของคุณ "
+"ไม่ว่าคุณกำลังมองหาโพสต์ เพจ ประเภทโพสต์ที่กำหนดเอง หรือข้อมูลอื่นๆ GeekyBot ช่วยให้คุณค้นหาสิ่งที่คุณต้องการได้อย่างรวดเร็วและมีประสิทธิภาพโดยการแสดงบทความ โพสต์ และอื่นๆ "
+"ที่เกี่ยวข้องในประสบการณ์การค้นหาที่มีประสิทธิภาพและเรียบง่ายในที่เดียว"
 
 msgid "New Post Type Search"
 msgstr "ค้นหาประเภทโพสต์ใหม่"
@@ -1004,15 +999,15 @@ msgid "WooCommerce plugin is not installed on your site, you won't be able to in
 msgstr "ไม่ได้ติดตั้งปลั๊กอิน WooCommerce บนเว็บไซต์ของคุณ คุณจะไม่สามารถรวม GeekyBot กับ WooCommerce ได้"
 
 msgid ""
-"Easily integrate AI with WooCommerce to enhance your online store’s performance. GeekyBot boosts lead generation and customer interactions, "
-"automating key processes for a more effective and engaging shopping experience."
+"Easily integrate AI with WooCommerce to enhance your online store’s performance. GeekyBot boosts lead generation and customer interactions, automating key processes for a more "
+"effective and engaging shopping experience."
 msgstr ""
 "ผสานรวม AI เข้ากับ WooCommerce ได้อย่างง่ายดายเพื่อเพิ่มประสิทธิภาพร้านค้าออนไลน์ของคุณ GeekyBot ช่วยเพิ่มการสร้างลูกค้าเป้าหมายและการโต้ตอบกับลูกค้า "
 "ทำให้กระบวนการสำคัญเป็นอัตโนมัติเพื่อประสบการณ์การช็อปปิ้งที่มีประสิทธิภาพและน่าดึงดูดยิ่งขึ้น"
 
 msgid ""
-"GeekyBot also streamlines customer inquiries and provides real-time, intelligent responses. By improving retention and customer satisfaction, it "
-"ensures your store delivers an exceptional experience that keeps shoppers coming back."
+"GeekyBot also streamlines customer inquiries and provides real-time, intelligent responses. By improving retention and customer satisfaction, it ensures your store delivers an "
+"exceptional experience that keeps shoppers coming back."
 msgstr ""
 "GeekyBot ยังเพิ่มความคล่องตัวในการสอบถามข้อมูลของลูกค้าและให้การตอบกลับอัจฉริยะแบบเรียลไทม์ ด้วยการปรับปรุงการรักษาลูกค้าและความพึงพอใจของลูกค้า "
 "ช่วยให้มั่นใจได้ว่าร้านค้าของคุณจะได้รับประสบการณ์พิเศษที่ทำให้นักช้อปกลับมาอีก"
@@ -1023,8 +1018,7 @@ msgstr "ชมวิดีโอ WooCommerce"
 msgid "Welcome to GeekyBot !..."
 msgstr "ยินดีต้อนรับสู่ GeekyBot!..."
 
-msgid ""
-"The ultimate AI chatbot for WooCommerce lead generation, intelligent content search, and interactive customer engagement on your WordPress website."
+msgid "The ultimate AI chatbot for WooCommerce lead generation, intelligent content search, and interactive customer engagement on your WordPress website."
 msgstr "สุดยอดแชทบอท AI สำหรับการสร้างลูกค้าเป้าหมายของ WooCommerce การค้นหาเนื้อหาอัจฉริยะ และการมีส่วนร่วมของลูกค้าเชิงโต้ตอบบนเว็บไซต์ WordPress ของคุณ"
 
 msgid "Personalize interactions by dynamically processing user inputs using slots and variables."
@@ -1246,9 +1240,7 @@ msgstr "ตัวเลือกการดำเนินการกับต
 msgid "Export"
 msgstr "ส่งออก"
 
-msgid ""
-"Easily export ticket data and performance report data from your majestic support to an Excel spreadsheet with our efficient and user-friendly "
-"solution."
+msgid "Easily export ticket data and performance report data from your majestic support to an Excel spreadsheet with our efficient and user-friendly solution."
 msgstr "ส่งออกข้อมูลตั๋วและข้อมูลรายงานประสิทธิภาพจากการสนับสนุนที่ยอดเยี่ยมของคุณไปยังสเปรดชีต Excel ได้อย่างง่ายดายด้วยโซลูชันที่มีประสิทธิภาพและใช้งานง่ายของเรา"
 
 msgid "email cc"
@@ -2669,3 +2661,258 @@ msgstr "ฐานข้อมูลอัปเดตสำเร็จ!"
 
 msgid "Your GeekyBot data is not updated. To ensure accurate results, please synchronize your Woocommerce products data."
 msgstr "ข้อมูล geekybot ของคุณไม่ได้รับการอัปเดต เพื่อให้แน่ใจว่าผลลัพธ์ที่ถูกต้องโปรดซิงโครไนซ์ข้อมูลผลิตภัณฑ์ WooCommerce ของคุณ"
+
+msgid "(Default)"
+msgstr "(ค่าเริ่มต้น)"
+
+msgid "Category"
+msgstr "หมวดหมู่"
+
+msgid "Wrapper"
+msgstr "กระดาษห่อ"
+
+msgid "AI Model"
+msgstr "โมเดลเอไอ"
+
+msgid "Language (Optional)"
+msgstr "ภาษา (ไม่บังคับ)"
+
+msgid "Prompt (Optional)"
+msgstr "พร้อมท์ (ไม่บังคับ)"
+
+msgid "Overrides (Optional)"
+msgstr "แทนที่ (ไม่บังคับ)"
+
+msgid "Action Needed: Please add your API Key in settings."
+msgstr "การดำเนินการที่จำเป็น: โปรดเพิ่มคีย์ API ของคุณในการตั้งค่า"
+
+msgid "Action Needed: Please sync the Wrapper Catalog (Step 2) in settings."
+msgstr "การดำเนินการที่จำเป็น: โปรดซิงค์แคตตาล็อก Wrapper (ขั้นตอนที่ 2) ในการตั้งค่า"
+
+msgid "AI Content Generator"
+msgstr "เครื่องกำเนิดเนื้อหา AI"
+
+msgid "AI Generate Text"
+msgstr "AI สร้างข้อความ"
+
+msgid "An unknown AJAX error occurred."
+msgstr "เกิดข้อผิดพลาด AJAX ที่ไม่รู้จัก"
+
+msgid "An unknown error occurred."
+msgstr "เกิดข้อผิดพลาดที่ไม่ทราบสาเหตุ"
+
+msgid "and navigate to your Dashboard / API Keys."
+msgstr "และนำทางไปยังแดชบอร์ด / คีย์ API ของคุณ"
+
+msgid "API Key is valid and active."
+msgstr "คีย์ API ถูกต้องและใช้งานอยู่"
+
+msgid "API Key is valid but has usage limitations."
+msgstr "คีย์ API ถูกต้องแต่มีข้อจำกัดการใช้งาน"
+
+msgid "Audience"
+msgstr "ผู้ชม"
+
+msgid "Audience (Default)"
+msgstr "ผู้ชม (ค่าเริ่มต้น)"
+
+msgid "Base Wrappers Only"
+msgstr "กระดาษห่อฐานเท่านั้น"
+
+msgid "Check API Key Status"
+msgstr "ตรวจสอบสถานะคีย์ API"
+
+msgid "Check Status"
+msgstr "ตรวจสอบสถานะ"
+
+msgid "Checking for updates..."
+msgstr "กำลังตรวจสอบการอัปเดต..."
+
+msgid "Complexity"
+msgstr "ความซับซ้อน"
+
+msgid "Complexity (Default)"
+msgstr "ความซับซ้อน (ค่าเริ่มต้น)"
+
+msgid "Content Generation"
+msgstr "การสร้างเนื้อหา"
+
+msgid "Copy Output"
+msgstr "คัดลอกเอาต์พุต"
+
+msgid "Data import successful! Reloading page..."
+msgstr "นำเข้าข้อมูลสำเร็จ! กำลังโหลดหน้าซ้ำ..."
+
+msgid "Enter your prompt..."
+msgstr "ป้อนข้อความแจ้งของคุณ..."
+
+msgid "Error"
+msgstr "ข้อผิดพลาด"
+
+msgid "Error Loading"
+msgstr "เกิดข้อผิดพลาดในการโหลด"
+
+msgid "Featured Wrappers Only"
+msgstr "Wrappers ที่โดดเด่นเท่านั้น"
+
+msgid "Filter"
+msgstr "กรอง"
+
+msgid "Force Full Re-Sync"
+msgstr "บังคับให้ซิงค์ใหม่ทั้งหมด"
+
+msgid "Format"
+msgstr "รูปแบบ"
+
+msgid "Format (Default)"
+msgstr "รูปแบบ (ค่าเริ่มต้น)"
+
+msgid "Full data import started..."
+msgstr "เริ่มต้นการนำเข้าข้อมูลแบบเต็มแล้ว..."
+
+msgid "Generate & Insert"
+msgstr "สร้างและแทรก"
+
+msgid "Generate Content"
+msgstr "สร้างเนื้อหา"
+
+msgid "Generating..."
+msgstr "กำลังสร้าง..."
+
+msgid "Goal"
+msgstr "เป้าหมาย"
+
+msgid "Goal (Default)"
+msgstr "เป้าหมาย (ค่าเริ่มต้น)"
+
+msgid "Invalid API Key."
+msgstr "คีย์ API ไม่ถูกต้อง"
+
+msgid "Last Synced:"
+msgstr "ซิงค์ครั้งล่าสุด:"
+
+msgid "Length"
+msgstr "ความยาว"
+
+msgid "Length (Default)"
+msgstr "ความยาว (ค่าเริ่มต้น)"
+
+msgid "Model (Default)"
+msgstr "รุ่น (ค่าเริ่มต้น)"
+
+msgid "Next Sync:"
+msgstr "การซิงค์ครั้งถัดไป:"
+
+msgid "Output"
+msgstr "เอาท์พุต"
+
+msgid "Output Type (Default)"
+msgstr "ประเภทเอาต์พุต (ค่าเริ่มต้น)"
+
+msgid "Received empty output."
+msgstr "ได้รับเอาต์พุตเปล่า"
+
+msgid "Run Wrapper"
+msgstr "เรียกใช้ Wrapper"
+
+msgid "Select Category..."
+msgstr "เลือกหมวดหมู่..."
+
+msgid "Select Wrapper..."
+msgstr "เลือกกระดาษห่อ..."
+
+msgid "Setup Required: Please add your API Key in settings."
+msgstr "จำเป็นต้องตั้งค่า: โปรดเพิ่มคีย์ API ของคุณในการตั้งค่า"
+
+msgid "Step 1"
+msgstr "ขั้นตอนที่ 1"
+
+msgid "Step 2"
+msgstr "ขั้นตอนที่ 2"
+
+msgid "Style"
+msgstr "สไตล์"
+
+msgid "Style (Default)"
+msgstr "สไตล์ (ค่าเริ่มต้น)"
+
+msgid "Sync Delta Updates"
+msgstr "ซิงค์การอัปเดตเดลต้า"
+
+msgid "To get your API key, log in to"
+msgstr "หากต้องการรับคีย์ API ของคุณ โปรดเข้าสู่ระบบ"
+
+msgid "Tone"
+msgstr "โทน"
+
+msgid "Tone (Default)"
+msgstr "โทนเสียง (ค่าเริ่มต้น)"
+
+msgid "Unknown error"
+msgstr "ข้อผิดพลาดที่ไม่รู้จัก"
+
+msgid "Wrapper Catalog Sync"
+msgstr "การซิงค์แคตตาล็อก Wrapper"
+
+msgid "Zywrap API Key"
+msgstr "คีย์ API ของ Zywrap"
+
+msgid "-- Error Loading --"
+msgstr "-- เกิดข้อผิดพลาดในการโหลด --"
+
+msgid "-- Select Category First --"
+msgstr "-- เลือกหมวดหมู่ก่อน --"
+
+msgid "-- Select Model --"
+msgstr "-- เลือกรุ่น --"
+
+msgid "-- Select Wrapper --"
+msgstr "-- เลือกกระดาษห่อ --"
+
+msgid "Controls"
+msgstr "การควบคุม"
+
+msgid "Featured Only"
+msgstr "โดดเด่นเท่านั้น"
+
+msgid "Base Only"
+msgstr "ฐานเท่านั้น"
+
+msgid "Copy"
+msgstr "สำเนา"
+
+msgid "API response will appear here"
+msgstr "การตอบสนองของ API จะปรากฏที่นี่"
+
+msgid "-- Select Language (Optional) --"
+msgstr "-- เลือกภาษา (ไม่บังคับ) --"
+
+msgid "-- Select Category --"
+msgstr "-- เลือกหมวดหมู่ --"
+
+msgid "AI Model (Optional)"
+msgstr "โมเดล AI (ไม่บังคับ)"
+
+msgid "Save Key"
+msgstr "บันทึกคีย์"
+
+msgid "Sync Status"
+msgstr "สถานะการซิงค์"
+
+msgid "Not Synced"
+msgstr "ไม่ซิงค์"
+
+msgid "Synced"
+msgstr "ซิงค์แล้ว"
+
+msgid "AI Settings"
+msgstr "การตั้งค่าเอไอ"
+
+msgid "AI Logs"
+msgstr "บันทึก AI"
+
+msgid "Download & Full Import"
+msgstr "ดาวน์โหลดและนำเข้าแบบเต็ม"
+
+msgid "Force Full Re Sync"
+msgstr "บังคับการซิงค์ซ้ำแบบเต็ม"

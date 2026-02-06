@@ -9,7 +9,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 3.5\n"
+"X-Generator: Poedit 3.7\n"
 
 msgid "Logo"
 msgstr "Logotyp"
@@ -2685,3 +2685,258 @@ msgstr "Databasen uppdaterad framgångsrikt!"
 
 msgid "Your GeekyBot data is not updated. To ensure accurate results, please synchronize your Woocommerce products data."
 msgstr "Dina geekybot -data uppdateras inte. För att säkerställa exakta resultat, vänligen synkronisera dina WooCommerce -produkter."
+
+msgid "(Default)"
+msgstr "(Standard)"
+
+msgid "Category"
+msgstr "Kategori"
+
+msgid "Wrapper"
+msgstr "Omslag"
+
+msgid "AI Model"
+msgstr "AI-modell"
+
+msgid "Language (Optional)"
+msgstr "Språk (valfritt)"
+
+msgid "Prompt (Optional)"
+msgstr "Fråga (valfritt)"
+
+msgid "Overrides (Optional)"
+msgstr "Åsidosättanden (valfritt)"
+
+msgid "Action Needed: Please add your API Key in settings."
+msgstr "Åtgärd behövs: Lägg till din API-nyckel i inställningarna."
+
+msgid "Action Needed: Please sync the Wrapper Catalog (Step 2) in settings."
+msgstr "Åtgärd som behövs: Synkronisera Wrapper-katalogen (steg 2) i inställningarna."
+
+msgid "AI Content Generator"
+msgstr "AI Content Generator"
+
+msgid "AI Generate Text"
+msgstr "AI Generera text"
+
+msgid "An unknown AJAX error occurred."
+msgstr "Ett okänt AJAX-fel inträffade."
+
+msgid "An unknown error occurred."
+msgstr "Ett okänt fel uppstod."
+
+msgid "and navigate to your Dashboard / API Keys."
+msgstr "och navigera till dina Dashboard/API-nycklar."
+
+msgid "API Key is valid and active."
+msgstr "API-nyckeln är giltig och aktiv."
+
+msgid "API Key is valid but has usage limitations."
+msgstr "API-nyckeln är giltig men har användningsbegränsningar."
+
+msgid "Audience"
+msgstr "Publik"
+
+msgid "Audience (Default)"
+msgstr "Målgrupp (standard)"
+
+msgid "Base Wrappers Only"
+msgstr "Endast basomslag"
+
+msgid "Check API Key Status"
+msgstr "Kontrollera API-nyckelstatus"
+
+msgid "Check Status"
+msgstr "Kontrollera status"
+
+msgid "Checking for updates..."
+msgstr "Söker efter uppdateringar..."
+
+msgid "Complexity"
+msgstr "Komplexitet"
+
+msgid "Complexity (Default)"
+msgstr "Komplexitet (standard)"
+
+msgid "Content Generation"
+msgstr "Generering av innehåll"
+
+msgid "Copy Output"
+msgstr "Kopiera utdata"
+
+msgid "Data import successful! Reloading page..."
+msgstr "Dataimporten lyckades! Laddar om sidan..."
+
+msgid "Enter your prompt..."
+msgstr "Ange din prompt..."
+
+msgid "Error"
+msgstr "Fel"
+
+msgid "Error Loading"
+msgstr "Fel vid laddning"
+
+msgid "Featured Wrappers Only"
+msgstr "Endast utvalda omslag"
+
+msgid "Filter"
+msgstr "Filtrera"
+
+msgid "Force Full Re-Sync"
+msgstr "Framtvinga fullständig återsynkronisering"
+
+msgid "Format"
+msgstr "Formatera"
+
+msgid "Format (Default)"
+msgstr "Format (standard)"
+
+msgid "Full data import started..."
+msgstr "Full dataimport startade..."
+
+msgid "Generate & Insert"
+msgstr "Generera och infoga"
+
+msgid "Generate Content"
+msgstr "Generera innehåll"
+
+msgid "Generating..."
+msgstr "Alstrande..."
+
+msgid "Goal"
+msgstr "Mål"
+
+msgid "Goal (Default)"
+msgstr "Mål (standard)"
+
+msgid "Invalid API Key."
+msgstr "Ogiltig API-nyckel."
+
+msgid "Last Synced:"
+msgstr "Senast synkroniserad:"
+
+msgid "Length"
+msgstr "Längd"
+
+msgid "Length (Default)"
+msgstr "Längd (standard)"
+
+msgid "Model (Default)"
+msgstr "Modell (standard)"
+
+msgid "Next Sync:"
+msgstr "Nästa synkronisering:"
+
+msgid "Output"
+msgstr "Produktion"
+
+msgid "Output Type (Default)"
+msgstr "Utdatatyp (standard)"
+
+msgid "Received empty output."
+msgstr "Fick tom utgång."
+
+msgid "Run Wrapper"
+msgstr "Kör Wrapper"
+
+msgid "Select Category..."
+msgstr "Välj kategori..."
+
+msgid "Select Wrapper..."
+msgstr "Välj omslag..."
+
+msgid "Setup Required: Please add your API Key in settings."
+msgstr "Installation krävs: Lägg till din API-nyckel i inställningarna."
+
+msgid "Step 1"
+msgstr "Steg 1"
+
+msgid "Step 2"
+msgstr "Steg 2"
+
+msgid "Style"
+msgstr "Stil"
+
+msgid "Style (Default)"
+msgstr "Stil (standard)"
+
+msgid "Sync Delta Updates"
+msgstr "Synkronisera Delta-uppdateringar"
+
+msgid "To get your API key, log in to"
+msgstr "För att få din API-nyckel, logga in på"
+
+msgid "Tone"
+msgstr "Tona"
+
+msgid "Tone (Default)"
+msgstr "Ton (standard)"
+
+msgid "Unknown error"
+msgstr "Okänt fel"
+
+msgid "Wrapper Catalog Sync"
+msgstr "Wrapper Catalog Sync"
+
+msgid "Zywrap API Key"
+msgstr "Zywrap API-nyckel"
+
+msgid "-- Error Loading --"
+msgstr "-- Fel vid laddning --"
+
+msgid "-- Select Category First --"
+msgstr "-- Välj kategori först --"
+
+msgid "-- Select Model --"
+msgstr "-- Välj modell --"
+
+msgid "-- Select Wrapper --"
+msgstr "-- Välj Wrapper --"
+
+msgid "Controls"
+msgstr "Kontroller"
+
+msgid "Featured Only"
+msgstr "Endast utvalda"
+
+msgid "Base Only"
+msgstr "Endast bas"
+
+msgid "Copy"
+msgstr "Kopiera"
+
+msgid "API response will appear here"
+msgstr "API-svar kommer att visas här"
+
+msgid "-- Select Language (Optional) --"
+msgstr "-- Välj språk (valfritt) --"
+
+msgid "-- Select Category --"
+msgstr "-- Välj kategori --"
+
+msgid "AI Model (Optional)"
+msgstr "AI-modell (valfritt)"
+
+msgid "Save Key"
+msgstr "Spara nyckel"
+
+msgid "Sync Status"
+msgstr "Synkroniseringsstatus"
+
+msgid "Not Synced"
+msgstr "Ej synkroniserad"
+
+msgid "Synced"
+msgstr "Synkroniserad"
+
+msgid "AI Settings"
+msgstr "AI-inställningar"
+
+msgid "AI Logs"
+msgstr "AI-loggar"
+
+msgid "Download & Full Import"
+msgstr "Ladda ner och fullständig import"
+
+msgid "Force Full Re Sync"
+msgstr "Forcera Full Re Sync"

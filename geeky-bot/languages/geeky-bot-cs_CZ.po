@@ -9,7 +9,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 3.5\n"
+"X-Generator: Poedit 3.7\n"
 
 msgid "Logo"
 msgstr "Logo"
@@ -2690,3 +2690,258 @@ msgstr "Databáze úspěšně aktualizována!"
 
 msgid "Your GeekyBot data is not updated. To ensure accurate results, please synchronize your Woocommerce products data."
 msgstr "Vaše data Geekybot nejsou aktualizována. Chcete -li zajistit přesné výsledky, synchronizujte data produktů WooCommerce."
+
+msgid "(Default)"
+msgstr "(Výchozí)"
+
+msgid "Category"
+msgstr "Kategorie"
+
+msgid "Wrapper"
+msgstr "Obal"
+
+msgid "AI Model"
+msgstr "Model AI"
+
+msgid "Language (Optional)"
+msgstr "Jazyk (volitelné)"
+
+msgid "Prompt (Optional)"
+msgstr "Výzva (volitelné)"
+
+msgid "Overrides (Optional)"
+msgstr "Přepsání (volitelné)"
+
+msgid "Action Needed: Please add your API Key in settings."
+msgstr "Potřebná akce: Přidejte svůj klíč API do nastavení."
+
+msgid "Action Needed: Please sync the Wrapper Catalog (Step 2) in settings."
+msgstr "Potřebná akce: Synchronizujte prosím katalog Wrapper (krok 2) v nastavení."
+
+msgid "AI Content Generator"
+msgstr "Generátor obsahu AI"
+
+msgid "AI Generate Text"
+msgstr "AI Generování textu"
+
+msgid "An unknown AJAX error occurred."
+msgstr "Došlo k neznámé chybě AJAX."
+
+msgid "An unknown error occurred."
+msgstr "Došlo k neznámé chybě."
+
+msgid "and navigate to your Dashboard / API Keys."
+msgstr "a přejděte na svůj řídicí panel / klíče API."
+
+msgid "API Key is valid and active."
+msgstr "Klíč API je platný a aktivní."
+
+msgid "API Key is valid but has usage limitations."
+msgstr "Klíč API je platný, ale má omezení použití."
+
+msgid "Audience"
+msgstr "Publikum"
+
+msgid "Audience (Default)"
+msgstr "Publikum (výchozí)"
+
+msgid "Base Wrappers Only"
+msgstr "Pouze základní obaly"
+
+msgid "Check API Key Status"
+msgstr "Zkontrolujte stav klíče API"
+
+msgid "Check Status"
+msgstr "Zkontrolujte stav"
+
+msgid "Checking for updates..."
+msgstr "Kontrola aktualizací..."
+
+msgid "Complexity"
+msgstr "Složitost"
+
+msgid "Complexity (Default)"
+msgstr "Složitost (výchozí)"
+
+msgid "Content Generation"
+msgstr "Generování obsahu"
+
+msgid "Copy Output"
+msgstr "Kopírovat výstup"
+
+msgid "Data import successful! Reloading page..."
+msgstr "Import dat byl úspěšný! Znovu načítání stránky..."
+
+msgid "Enter your prompt..."
+msgstr "Zadejte výzvu..."
+
+msgid "Error"
+msgstr "Chyba"
+
+msgid "Error Loading"
+msgstr "Chyba při načítání"
+
+msgid "Featured Wrappers Only"
+msgstr "Pouze doporučené obaly"
+
+msgid "Filter"
+msgstr "Filtr"
+
+msgid "Force Full Re-Sync"
+msgstr "Vynutit úplnou re-synchronizaci"
+
+msgid "Format"
+msgstr "Formát"
+
+msgid "Format (Default)"
+msgstr "Formát (výchozí)"
+
+msgid "Full data import started..."
+msgstr "Úplný import dat byl zahájen..."
+
+msgid "Generate & Insert"
+msgstr "Generovat a vkládat"
+
+msgid "Generate Content"
+msgstr "Generovat obsah"
+
+msgid "Generating..."
+msgstr "Generování..."
+
+msgid "Goal"
+msgstr "Gól"
+
+msgid "Goal (Default)"
+msgstr "Cíl (výchozí)"
+
+msgid "Invalid API Key."
+msgstr "Neplatný klíč API."
+
+msgid "Last Synced:"
+msgstr "Poslední synchronizace:"
+
+msgid "Length"
+msgstr "Délka"
+
+msgid "Length (Default)"
+msgstr "Délka (výchozí)"
+
+msgid "Model (Default)"
+msgstr "Model (výchozí)"
+
+msgid "Next Sync:"
+msgstr "Další synchronizace:"
+
+msgid "Output"
+msgstr "Výstup"
+
+msgid "Output Type (Default)"
+msgstr "Typ výstupu (výchozí)"
+
+msgid "Received empty output."
+msgstr "Přijatý prázdný výstup."
+
+msgid "Run Wrapper"
+msgstr "Spusťte Wrapper"
+
+msgid "Select Category..."
+msgstr "Vyberte kategorii..."
+
+msgid "Select Wrapper..."
+msgstr "Vyberte obálku..."
+
+msgid "Setup Required: Please add your API Key in settings."
+msgstr "Vyžadováno nastavení: Přidejte svůj API klíč do nastavení."
+
+msgid "Step 1"
+msgstr "Krok 1"
+
+msgid "Step 2"
+msgstr "Krok 2"
+
+msgid "Style"
+msgstr "Styl"
+
+msgid "Style (Default)"
+msgstr "Styl (výchozí)"
+
+msgid "Sync Delta Updates"
+msgstr "Synchronizovat delta aktualizace"
+
+msgid "To get your API key, log in to"
+msgstr "Chcete-li získat klíč API, přihlaste se"
+
+msgid "Tone"
+msgstr "Tón"
+
+msgid "Tone (Default)"
+msgstr "Tón (výchozí)"
+
+msgid "Unknown error"
+msgstr "Neznámá chyba"
+
+msgid "Wrapper Catalog Sync"
+msgstr "Synchronizace katalogu obálky"
+
+msgid "Zywrap API Key"
+msgstr "Klíč API Zywrap"
+
+msgid "-- Error Loading --"
+msgstr "-- Chyba při načítání --"
+
+msgid "-- Select Category First --"
+msgstr "-- Nejprve vyberte kategorii --"
+
+msgid "-- Select Model --"
+msgstr "-- Vyberte model --"
+
+msgid "-- Select Wrapper --"
+msgstr "-- Vyberte obálku --"
+
+msgid "Controls"
+msgstr "Ovládací prvky"
+
+msgid "Featured Only"
+msgstr "Pouze doporučené"
+
+msgid "Base Only"
+msgstr "Pouze základna"
+
+msgid "Copy"
+msgstr "Kopie"
+
+msgid "API response will appear here"
+msgstr "Zde se objeví odpověď API"
+
+msgid "-- Select Language (Optional) --"
+msgstr "-- Vyberte jazyk (volitelné) --"
+
+msgid "-- Select Category --"
+msgstr "-- Vyberte kategorii --"
+
+msgid "AI Model (Optional)"
+msgstr "Model AI (volitelné)"
+
+msgid "Save Key"
+msgstr "Uložit klíč"
+
+msgid "Sync Status"
+msgstr "Stav synchronizace"
+
+msgid "Not Synced"
+msgstr "Nesynchronizováno"
+
+msgid "Synced"
+msgstr "Synchronizováno"
+
+msgid "AI Settings"
+msgstr "Nastavení AI"
+
+msgid "AI Logs"
+msgstr "Protokoly AI"
+
+msgid "Download & Full Import"
+msgstr "Stáhnout a úplný import"
+
+msgid "Force Full Re Sync"
+msgstr "Vynutit plnou znovu synchronizaci"

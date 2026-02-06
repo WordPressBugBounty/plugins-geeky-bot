@@ -9,7 +9,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 3.5\n"
+"X-Generator: Poedit 3.7\n"
 
 msgid "Logo"
 msgstr "Logo"
@@ -2680,3 +2680,258 @@ msgstr "¡Base de datos actualizada con éxito!"
 
 msgid "Your GeekyBot data is not updated. To ensure accurate results, please synchronize your Woocommerce products data."
 msgstr "Sus datos de GeekyBot no se actualizan. Para garantizar resultados precisos, sincronice sus datos de productos de WooCommerce."
+
+msgid "(Default)"
+msgstr "(Por defecto)"
+
+msgid "Category"
+msgstr "Categoría"
+
+msgid "Wrapper"
+msgstr "Envoltura"
+
+msgid "AI Model"
+msgstr "Modelo de IA"
+
+msgid "Language (Optional)"
+msgstr "Idioma (opcional)"
+
+msgid "Prompt (Optional)"
+msgstr "Aviso (opcional)"
+
+msgid "Overrides (Optional)"
+msgstr "Anulaciones (opcional)"
+
+msgid "Action Needed: Please add your API Key in settings."
+msgstr "Acción necesaria: agregue su clave API en la configuración."
+
+msgid "Action Needed: Please sync the Wrapper Catalog (Step 2) in settings."
+msgstr "Acción necesaria: sincronice el catálogo Wrapper (paso 2) en la configuración."
+
+msgid "AI Content Generator"
+msgstr "Generador de contenido de IA"
+
+msgid "AI Generate Text"
+msgstr "Texto generado por IA"
+
+msgid "An unknown AJAX error occurred."
+msgstr "Se produjo un error AJAX desconocido."
+
+msgid "An unknown error occurred."
+msgstr "Se produjo un error desconocido."
+
+msgid "and navigate to your Dashboard / API Keys."
+msgstr "y navegue hasta su Panel de control/Claves API."
+
+msgid "API Key is valid and active."
+msgstr "La clave API es válida y activa."
+
+msgid "API Key is valid but has usage limitations."
+msgstr "La clave API es válida pero tiene limitaciones de uso."
+
+msgid "Audience"
+msgstr "Audiencia"
+
+msgid "Audience (Default)"
+msgstr "Audiencia (predeterminada)"
+
+msgid "Base Wrappers Only"
+msgstr "Solo envoltorios de base"
+
+msgid "Check API Key Status"
+msgstr "Verificar el estado de la clave API"
+
+msgid "Check Status"
+msgstr "Verificar estado"
+
+msgid "Checking for updates..."
+msgstr "Buscando actualizaciones..."
+
+msgid "Complexity"
+msgstr "Complejidad"
+
+msgid "Complexity (Default)"
+msgstr "Complejidad (predeterminada)"
+
+msgid "Content Generation"
+msgstr "Generación de contenido"
+
+msgid "Copy Output"
+msgstr "Copiar salida"
+
+msgid "Data import successful! Reloading page..."
+msgstr "¡Importación de datos exitosa! Recargando página..."
+
+msgid "Enter your prompt..."
+msgstr "Ingrese su mensaje..."
+
+msgid "Error"
+msgstr "Error"
+
+msgid "Error Loading"
+msgstr "Error al cargar"
+
+msgid "Featured Wrappers Only"
+msgstr "Solo envoltorios destacados"
+
+msgid "Filter"
+msgstr "Filtrar"
+
+msgid "Force Full Re-Sync"
+msgstr "Forzar resincronización completa"
+
+msgid "Format"
+msgstr "Formato"
+
+msgid "Format (Default)"
+msgstr "Formato (predeterminado)"
+
+msgid "Full data import started..."
+msgstr "Se inició la importación completa de datos..."
+
+msgid "Generate & Insert"
+msgstr "Generar e insertar"
+
+msgid "Generate Content"
+msgstr "Generar contenido"
+
+msgid "Generating..."
+msgstr "Generando..."
+
+msgid "Goal"
+msgstr "Meta"
+
+msgid "Goal (Default)"
+msgstr "Objetivo (predeterminado)"
+
+msgid "Invalid API Key."
+msgstr "Clave API no válida."
+
+msgid "Last Synced:"
+msgstr "Última sincronización:"
+
+msgid "Length"
+msgstr "Longitud"
+
+msgid "Length (Default)"
+msgstr "Longitud (predeterminada)"
+
+msgid "Model (Default)"
+msgstr "Modelo (predeterminado)"
+
+msgid "Next Sync:"
+msgstr "Próxima sincronización:"
+
+msgid "Output"
+msgstr "Producción"
+
+msgid "Output Type (Default)"
+msgstr "Tipo de salida (predeterminado)"
+
+msgid "Received empty output."
+msgstr "Se recibió una salida vacía."
+
+msgid "Run Wrapper"
+msgstr "Ejecutar contenedor"
+
+msgid "Select Category..."
+msgstr "Seleccione Categoría..."
+
+msgid "Select Wrapper..."
+msgstr "Seleccione Envoltorio..."
+
+msgid "Setup Required: Please add your API Key in settings."
+msgstr "Configuración requerida: agregue su clave API en la configuración."
+
+msgid "Step 1"
+msgstr "Paso 1"
+
+msgid "Step 2"
+msgstr "Paso 2"
+
+msgid "Style"
+msgstr "Estilo"
+
+msgid "Style (Default)"
+msgstr "Estilo (predeterminado)"
+
+msgid "Sync Delta Updates"
+msgstr "Sincronizar actualizaciones delta"
+
+msgid "To get your API key, log in to"
+msgstr "Para obtener su clave API, inicie sesión en"
+
+msgid "Tone"
+msgstr "Tono"
+
+msgid "Tone (Default)"
+msgstr "Tono (predeterminado)"
+
+msgid "Unknown error"
+msgstr "Error desconocido"
+
+msgid "Wrapper Catalog Sync"
+msgstr "Sincronización del catálogo Wrapper"
+
+msgid "Zywrap API Key"
+msgstr "Clave API de Zywrap"
+
+msgid "-- Error Loading --"
+msgstr "-- Error al cargar --"
+
+msgid "-- Select Category First --"
+msgstr "-- Seleccione la categoría primero --"
+
+msgid "-- Select Model --"
+msgstr "-- Seleccionar modelo --"
+
+msgid "-- Select Wrapper --"
+msgstr "-- Seleccione Envoltorio --"
+
+msgid "Controls"
+msgstr "Controles"
+
+msgid "Featured Only"
+msgstr "Sólo destacados"
+
+msgid "Base Only"
+msgstr "Sólo base"
+
+msgid "Copy"
+msgstr "Copiar"
+
+msgid "API response will appear here"
+msgstr "La respuesta API aparecerá aquí"
+
+msgid "-- Select Language (Optional) --"
+msgstr "-- Seleccionar idioma (opcional) --"
+
+msgid "-- Select Category --"
+msgstr "-- Seleccionar Categoría --"
+
+msgid "AI Model (Optional)"
+msgstr "Modelo de IA (opcional)"
+
+msgid "Save Key"
+msgstr "Guardar clave"
+
+msgid "Sync Status"
+msgstr "Estado de sincronización"
+
+msgid "Not Synced"
+msgstr "No sincronizado"
+
+msgid "Synced"
+msgstr "Sincronizado"
+
+msgid "AI Settings"
+msgstr "Configuración de IA"
+
+msgid "AI Logs"
+msgstr "Registros de IA"
+
+msgid "Download & Full Import"
+msgstr "Descarga e importación completa"
+
+msgid "Force Full Re Sync"
+msgstr "Forzar sincronización completa"

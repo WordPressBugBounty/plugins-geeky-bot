@@ -9,7 +9,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 3.5\n"
+"X-Generator: Poedit 3.7\n"
 
 msgid "Logo"
 msgstr "Logo"
@@ -2664,3 +2664,258 @@ msgstr "Datenbank erfolgreich aktualisiert!"
 
 msgid "Your GeekyBot data is not updated. To ensure accurate results, please synchronize your Woocommerce products data."
 msgstr "Ihre Geekybot -Daten werden nicht aktualisiert. Um genaue Ergebnisse zu gewährleisten, synchronisieren Sie bitte Ihre WooCommerce -Produktdaten."
+
+msgid "(Default)"
+msgstr "(Standard)"
+
+msgid "Category"
+msgstr "Kategorie"
+
+msgid "Wrapper"
+msgstr "Verpackung"
+
+msgid "AI Model"
+msgstr "KI-Modell"
+
+msgid "Language (Optional)"
+msgstr "Sprache (optional)"
+
+msgid "Prompt (Optional)"
+msgstr "Eingabeaufforderung (optional)"
+
+msgid "Overrides (Optional)"
+msgstr "Überschreibungen (optional)"
+
+msgid "Action Needed: Please add your API Key in settings."
+msgstr "Aktion erforderlich: Bitte fügen Sie Ihren API-Schlüssel in den Einstellungen hinzu."
+
+msgid "Action Needed: Please sync the Wrapper Catalog (Step 2) in settings."
+msgstr "Aktion erforderlich: Bitte synchronisieren Sie den Wrapper-Katalog (Schritt 2) in den Einstellungen."
+
+msgid "AI Content Generator"
+msgstr "KI-Inhaltsgenerator"
+
+msgid "AI Generate Text"
+msgstr "KI generiert Text"
+
+msgid "An unknown AJAX error occurred."
+msgstr "Es ist ein unbekannter AJAX-Fehler aufgetreten."
+
+msgid "An unknown error occurred."
+msgstr "Es ist ein unbekannter Fehler aufgetreten."
+
+msgid "and navigate to your Dashboard / API Keys."
+msgstr "und navigieren Sie zu Ihrem Dashboard / Ihren API-Schlüsseln."
+
+msgid "API Key is valid and active."
+msgstr "Der API-Schlüssel ist gültig und aktiv."
+
+msgid "API Key is valid but has usage limitations."
+msgstr "Der API-Schlüssel ist gültig, unterliegt jedoch Nutzungsbeschränkungen."
+
+msgid "Audience"
+msgstr "Publikum"
+
+msgid "Audience (Default)"
+msgstr "Zielgruppe (Standard)"
+
+msgid "Base Wrappers Only"
+msgstr "Nur Basisverpackungen"
+
+msgid "Check API Key Status"
+msgstr "Überprüfen Sie den API-Schlüsselstatus"
+
+msgid "Check Status"
+msgstr "Überprüfen Sie den Status"
+
+msgid "Checking for updates..."
+msgstr "Suche nach Updates..."
+
+msgid "Complexity"
+msgstr "Komplexität"
+
+msgid "Complexity (Default)"
+msgstr "Komplexität (Standard)"
+
+msgid "Content Generation"
+msgstr "Content-Generierung"
+
+msgid "Copy Output"
+msgstr "Ausgabe kopieren"
+
+msgid "Data import successful! Reloading page..."
+msgstr "Datenimport erfolgreich! Seite wird neu geladen..."
+
+msgid "Enter your prompt..."
+msgstr "Geben Sie Ihre Eingabeaufforderung ein..."
+
+msgid "Error"
+msgstr "Fehler"
+
+msgid "Error Loading"
+msgstr "Fehler beim Laden"
+
+msgid "Featured Wrappers Only"
+msgstr "Nur empfohlene Wrapper"
+
+msgid "Filter"
+msgstr "Filter"
+
+msgid "Force Full Re-Sync"
+msgstr "Vollständige Neusynchronisierung erzwingen"
+
+msgid "Format"
+msgstr "Format"
+
+msgid "Format (Default)"
+msgstr "Format (Standard)"
+
+msgid "Full data import started..."
+msgstr "Vollständiger Datenimport gestartet..."
+
+msgid "Generate & Insert"
+msgstr "Generieren und einfügen"
+
+msgid "Generate Content"
+msgstr "Inhalte generieren"
+
+msgid "Generating..."
+msgstr "Generieren..."
+
+msgid "Goal"
+msgstr "Ziel"
+
+msgid "Goal (Default)"
+msgstr "Ziel (Standard)"
+
+msgid "Invalid API Key."
+msgstr "Ungültiger API-Schlüssel."
+
+msgid "Last Synced:"
+msgstr "Zuletzt synchronisiert:"
+
+msgid "Length"
+msgstr "Länge"
+
+msgid "Length (Default)"
+msgstr "Länge (Standard)"
+
+msgid "Model (Default)"
+msgstr "Modell (Standard)"
+
+msgid "Next Sync:"
+msgstr "Nächste Synchronisierung:"
+
+msgid "Output"
+msgstr "Ausgabe"
+
+msgid "Output Type (Default)"
+msgstr "Ausgabetyp (Standard)"
+
+msgid "Received empty output."
+msgstr "Leere Ausgabe erhalten."
+
+msgid "Run Wrapper"
+msgstr "Wrapper ausführen"
+
+msgid "Select Category..."
+msgstr "Kategorie auswählen..."
+
+msgid "Select Wrapper..."
+msgstr "Wrapper auswählen..."
+
+msgid "Setup Required: Please add your API Key in settings."
+msgstr "Einrichtung erforderlich: Bitte fügen Sie Ihren API-Schlüssel in den Einstellungen hinzu."
+
+msgid "Step 1"
+msgstr "Schritt 1"
+
+msgid "Step 2"
+msgstr "Schritt 2"
+
+msgid "Style"
+msgstr "Stil"
+
+msgid "Style (Default)"
+msgstr "Stil (Standard)"
+
+msgid "Sync Delta Updates"
+msgstr "Delta-Updates synchronisieren"
+
+msgid "To get your API key, log in to"
+msgstr "Um Ihren API-Schlüssel zu erhalten, melden Sie sich an"
+
+msgid "Tone"
+msgstr "Ton"
+
+msgid "Tone (Default)"
+msgstr "Ton (Standard)"
+
+msgid "Unknown error"
+msgstr "Unbekannter Fehler"
+
+msgid "Wrapper Catalog Sync"
+msgstr "Wrapper-Katalog-Synchronisierung"
+
+msgid "Zywrap API Key"
+msgstr "Zywrap-API-Schlüssel"
+
+msgid "-- Error Loading --"
+msgstr "-- Fehler beim Laden --"
+
+msgid "-- Select Category First --"
+msgstr "-- Wählen Sie zuerst die Kategorie aus --"
+
+msgid "-- Select Model --"
+msgstr "-- Modell auswählen --"
+
+msgid "-- Select Wrapper --"
+msgstr "-- Wrapper auswählen --"
+
+msgid "Controls"
+msgstr "Kontrollen"
+
+msgid "Featured Only"
+msgstr "Nur vorgestellt"
+
+msgid "Base Only"
+msgstr "Nur Basis"
+
+msgid "Copy"
+msgstr "Kopie"
+
+msgid "API response will appear here"
+msgstr "Die API-Antwort wird hier angezeigt"
+
+msgid "-- Select Language (Optional) --"
+msgstr "-- Sprache auswählen (optional) --"
+
+msgid "-- Select Category --"
+msgstr "-- Kategorie auswählen --"
+
+msgid "AI Model (Optional)"
+msgstr "KI-Modell (optional)"
+
+msgid "Save Key"
+msgstr "Schlüssel speichern"
+
+msgid "Sync Status"
+msgstr "Synchronisierungsstatus"
+
+msgid "Not Synced"
+msgstr "Nicht synchronisiert"
+
+msgid "Synced"
+msgstr "Synchronisiert"
+
+msgid "AI Settings"
+msgstr "AI-Einstellungen"
+
+msgid "AI Logs"
+msgstr "KI-Protokolle"
+
+msgid "Download & Full Import"
+msgstr "Herunterladen und vollständiger Import"
+
+msgid "Force Full Re Sync"
+msgstr "Vollständige Neusynchronisierung erzwingen"

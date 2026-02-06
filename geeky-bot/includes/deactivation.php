@@ -36,6 +36,14 @@ class GEEKYBOTdeactivation {
             $wpdb->prefix."geekybot_posts",
             $wpdb->prefix."geekybot_products",
             $wpdb->prefix."geekybot_post_types",
+            $wpdb->prefix."geekybot_functions",
+            
+            $wpdb->prefix."geekybot_zywrap_languages",
+            $wpdb->prefix."geekybot_zywrap_ai_models",
+            $wpdb->prefix."geekybot_zywrap_wrappers",
+            $wpdb->prefix."geekybot_zywrap_block_templates",
+            $wpdb->prefix."geekybot_zywrap_logs",
+            $wpdb->prefix."geekybot_zywrap_categories",
         );
         return $tables;
     }

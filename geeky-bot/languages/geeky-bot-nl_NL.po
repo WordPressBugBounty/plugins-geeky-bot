@@ -9,7 +9,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 3.5\n"
+"X-Generator: Poedit 3.7\n"
 
 msgid "Logo"
 msgstr "Logo"
@@ -2667,3 +2667,258 @@ msgstr "Database met succes bijgewerkt!"
 
 msgid "Your GeekyBot data is not updated. To ensure accurate results, please synchronize your Woocommerce products data."
 msgstr "Uw geekybot -gegevens worden niet bijgewerkt. Synchroniseer uw WooCommerce Products -gegevens om nauwkeurige resultaten te garanderen."
+
+msgid "(Default)"
+msgstr "(Standaard)"
+
+msgid "Category"
+msgstr "Categorie"
+
+msgid "Wrapper"
+msgstr "Wikkel"
+
+msgid "AI Model"
+msgstr "AI-model"
+
+msgid "Language (Optional)"
+msgstr "Taal (optioneel)"
+
+msgid "Prompt (Optional)"
+msgstr "Prompt (optioneel)"
+
+msgid "Overrides (Optional)"
+msgstr "Overschrijvingen (optioneel)"
+
+msgid "Action Needed: Please add your API Key in settings."
+msgstr "Actie vereist: voeg uw API-sleutel toe in de instellingen."
+
+msgid "Action Needed: Please sync the Wrapper Catalog (Step 2) in settings."
+msgstr "Actie vereist: Synchroniseer de Wrapper-catalogus (stap 2) in de instellingen."
+
+msgid "AI Content Generator"
+msgstr "AI-inhoudgenerator"
+
+msgid "AI Generate Text"
+msgstr "AI Genereer tekst"
+
+msgid "An unknown AJAX error occurred."
+msgstr "Er is een onbekende AJAX-fout opgetreden."
+
+msgid "An unknown error occurred."
+msgstr "Er is een onbekende fout opgetreden."
+
+msgid "and navigate to your Dashboard / API Keys."
+msgstr "en navigeer naar uw Dashboard/API-sleutels."
+
+msgid "API Key is valid and active."
+msgstr "API-sleutel is geldig en actief."
+
+msgid "API Key is valid but has usage limitations."
+msgstr "API Key is geldig maar heeft gebruiksbeperkingen."
+
+msgid "Audience"
+msgstr "Publiek"
+
+msgid "Audience (Default)"
+msgstr "Publiek (standaard)"
+
+msgid "Base Wrappers Only"
+msgstr "Alleen basisverpakkingen"
+
+msgid "Check API Key Status"
+msgstr "Controleer de API-sleutelstatus"
+
+msgid "Check Status"
+msgstr "Controleer status"
+
+msgid "Checking for updates..."
+msgstr "Controleren op updates..."
+
+msgid "Complexity"
+msgstr "Complexiteit"
+
+msgid "Complexity (Default)"
+msgstr "Complexiteit (standaard)"
+
+msgid "Content Generation"
+msgstr "Inhoud genereren"
+
+msgid "Copy Output"
+msgstr "Kopieeruitvoer"
+
+msgid "Data import successful! Reloading page..."
+msgstr "Gegevensimport succesvol! Pagina herladen..."
+
+msgid "Enter your prompt..."
+msgstr "Voer uw vraag in..."
+
+msgid "Error"
+msgstr "Fout"
+
+msgid "Error Loading"
+msgstr "Fout bij laden"
+
+msgid "Featured Wrappers Only"
+msgstr "Alleen aanbevolen wikkels"
+
+msgid "Filter"
+msgstr "Filter"
+
+msgid "Force Full Re-Sync"
+msgstr "Forceer volledige hersynchronisatie"
+
+msgid "Format"
+msgstr "Formaat"
+
+msgid "Format (Default)"
+msgstr "Formaat (standaard)"
+
+msgid "Full data import started..."
+msgstr "Volledige gegevensimport gestart..."
+
+msgid "Generate & Insert"
+msgstr "Genereren en invoegen"
+
+msgid "Generate Content"
+msgstr "Genereer inhoud"
+
+msgid "Generating..."
+msgstr "Genereren..."
+
+msgid "Goal"
+msgstr "Doel"
+
+msgid "Goal (Default)"
+msgstr "Doel (standaard)"
+
+msgid "Invalid API Key."
+msgstr "Ongeldige API-sleutel."
+
+msgid "Last Synced:"
+msgstr "Laatst gesynchroniseerd:"
+
+msgid "Length"
+msgstr "Lengte"
+
+msgid "Length (Default)"
+msgstr "Lengte (standaard)"
+
+msgid "Model (Default)"
+msgstr "Model (standaard)"
+
+msgid "Next Sync:"
+msgstr "Volgende synchronisatie:"
+
+msgid "Output"
+msgstr "Uitvoer"
+
+msgid "Output Type (Default)"
+msgstr "Uitvoertype (standaard)"
+
+msgid "Received empty output."
+msgstr "Lege uitvoer ontvangen."
+
+msgid "Run Wrapper"
+msgstr "Voer Wrapper uit"
+
+msgid "Select Category..."
+msgstr "Categorie selecteren..."
+
+msgid "Select Wrapper..."
+msgstr "Selecteer Wikkelaar..."
+
+msgid "Setup Required: Please add your API Key in settings."
+msgstr "Installatie vereist: voeg uw API-sleutel toe in de instellingen."
+
+msgid "Step 1"
+msgstr "Stap 1"
+
+msgid "Step 2"
+msgstr "Stap 2"
+
+msgid "Style"
+msgstr "Stijl"
+
+msgid "Style (Default)"
+msgstr "Stijl (standaard)"
+
+msgid "Sync Delta Updates"
+msgstr "Synchroniseer Delta-updates"
+
+msgid "To get your API key, log in to"
+msgstr "Om uw API-sleutel te verkrijgen, logt u in op"
+
+msgid "Tone"
+msgstr "Toon"
+
+msgid "Tone (Default)"
+msgstr "Toon (standaard)"
+
+msgid "Unknown error"
+msgstr "Onbekende fout"
+
+msgid "Wrapper Catalog Sync"
+msgstr "Wrappercatalogussynchronisatie"
+
+msgid "Zywrap API Key"
+msgstr "Zywrap API-sleutel"
+
+msgid "-- Error Loading --"
+msgstr "-- Fout bij laden --"
+
+msgid "-- Select Category First --"
+msgstr "-- Selecteer eerst categorie --"
+
+msgid "-- Select Model --"
+msgstr "-- Selecteer model --"
+
+msgid "-- Select Wrapper --"
+msgstr "-- Selecteer Wrapper --"
+
+msgid "Controls"
+msgstr "Controles"
+
+msgid "Featured Only"
+msgstr "Alleen aanbevolen"
+
+msgid "Base Only"
+msgstr "Alleen basis"
+
+msgid "Copy"
+msgstr "Kopiëren"
+
+msgid "API response will appear here"
+msgstr "Het API-antwoord verschijnt hier"
+
+msgid "-- Select Language (Optional) --"
+msgstr "-- Selecteer taal (optioneel) --"
+
+msgid "-- Select Category --"
+msgstr "-- Selecteer Categorie --"
+
+msgid "AI Model (Optional)"
+msgstr "AI-model (optioneel)"
+
+msgid "Save Key"
+msgstr "Sleutel opslaan"
+
+msgid "Sync Status"
+msgstr "Synchronisatiestatus"
+
+msgid "Not Synced"
+msgstr "Niet gesynchroniseerd"
+
+msgid "Synced"
+msgstr "Gesynchroniseerd"
+
+msgid "AI Settings"
+msgstr "AI-instellingen"
+
+msgid "AI Logs"
+msgstr "AI-logboeken"
+
+msgid "Download & Full Import"
+msgstr "Downloaden en volledig importeren"
+
+msgid "Force Full Re Sync"
+msgstr "Forceer volledige hersynchronisatie"

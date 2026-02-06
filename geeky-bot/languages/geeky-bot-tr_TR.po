@@ -9,7 +9,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 3.5\n"
+"X-Generator: Poedit 3.7\n"
 
 msgid "Logo"
 msgstr "Logo"
@@ -2690,3 +2690,258 @@ msgstr "Veritabanı başarıyla güncellendi!"
 
 msgid "Your GeekyBot data is not updated. To ensure accurate results, please synchronize your Woocommerce products data."
 msgstr "GeekyBot verileriniz güncellenmez. Doğru sonuçları sağlamak için lütfen WooCommerce ürünleri verilerinizi senkronize edin."
+
+msgid "(Default)"
+msgstr "(Varsayılan)"
+
+msgid "Category"
+msgstr "Kategori"
+
+msgid "Wrapper"
+msgstr "Paketleyici"
+
+msgid "AI Model"
+msgstr "Yapay Zeka Modeli"
+
+msgid "Language (Optional)"
+msgstr "Dil (İsteğe bağlı)"
+
+msgid "Prompt (Optional)"
+msgstr "Bilgi İstemi (İsteğe bağlı)"
+
+msgid "Overrides (Optional)"
+msgstr "Geçersiz Kılmalar (İsteğe bağlı)"
+
+msgid "Action Needed: Please add your API Key in settings."
+msgstr "İşlem Gerekiyor: Lütfen ayarlara API Anahtarınızı ekleyin."
+
+msgid "Action Needed: Please sync the Wrapper Catalog (Step 2) in settings."
+msgstr "İşlem Gerekiyor: Lütfen ayarlarda Sarmalayıcı Kataloğunu (2. Adım) senkronize edin."
+
+msgid "AI Content Generator"
+msgstr "Yapay Zeka İçerik Oluşturucu"
+
+msgid "AI Generate Text"
+msgstr "Yapay Zeka Metin Oluştur"
+
+msgid "An unknown AJAX error occurred."
+msgstr "Bilinmeyen bir AJAX hatası oluştu."
+
+msgid "An unknown error occurred."
+msgstr "Bilinmeyen bir hata oluştu."
+
+msgid "and navigate to your Dashboard / API Keys."
+msgstr "ve Kontrol Panelinize / API Anahtarlarınıza gidin."
+
+msgid "API Key is valid and active."
+msgstr "API Anahtarı geçerli ve etkin."
+
+msgid "API Key is valid but has usage limitations."
+msgstr "API Anahtarı geçerlidir ancak kullanım sınırlamaları vardır."
+
+msgid "Audience"
+msgstr "Kitle"
+
+msgid "Audience (Default)"
+msgstr "Hedef Kitle (Varsayılan)"
+
+msgid "Base Wrappers Only"
+msgstr "Yalnızca Taban Sarmalayıcılar"
+
+msgid "Check API Key Status"
+msgstr "API Anahtar Durumunu Kontrol Edin"
+
+msgid "Check Status"
+msgstr "Durumu Kontrol Et"
+
+msgid "Checking for updates..."
+msgstr "Güncellemeler kontrol ediliyor..."
+
+msgid "Complexity"
+msgstr "Karmaşıklık"
+
+msgid "Complexity (Default)"
+msgstr "Karmaşıklık (Varsayılan)"
+
+msgid "Content Generation"
+msgstr "İçerik Üretimi"
+
+msgid "Copy Output"
+msgstr "Çıktıyı Kopyala"
+
+msgid "Data import successful! Reloading page..."
+msgstr "Veri içe aktarma başarılı! Sayfa yeniden yükleniyor..."
+
+msgid "Enter your prompt..."
+msgstr "İsteminizi girin..."
+
+msgid "Error"
+msgstr "Hata"
+
+msgid "Error Loading"
+msgstr "Yükleme Hatası"
+
+msgid "Featured Wrappers Only"
+msgstr "Yalnızca Öne Çıkan Paketleyiciler"
+
+msgid "Filter"
+msgstr "Filtre"
+
+msgid "Force Full Re-Sync"
+msgstr "Tam Yeniden Senkronizasyonu Zorla"
+
+msgid "Format"
+msgstr "Biçim"
+
+msgid "Format (Default)"
+msgstr "Biçim (Varsayılan)"
+
+msgid "Full data import started..."
+msgstr "Tam veri içe aktarma işlemi başladı..."
+
+msgid "Generate & Insert"
+msgstr "Oluştur ve Ekle"
+
+msgid "Generate Content"
+msgstr "İçerik Oluştur"
+
+msgid "Generating..."
+msgstr "Oluşturuluyor..."
+
+msgid "Goal"
+msgstr "Amaç"
+
+msgid "Goal (Default)"
+msgstr "Hedef (Varsayılan)"
+
+msgid "Invalid API Key."
+msgstr "Geçersiz API Anahtarı."
+
+msgid "Last Synced:"
+msgstr "Son Senkronizasyon:"
+
+msgid "Length"
+msgstr "Uzunluk"
+
+msgid "Length (Default)"
+msgstr "Uzunluk (Varsayılan)"
+
+msgid "Model (Default)"
+msgstr "Modeli (Varsayılan)"
+
+msgid "Next Sync:"
+msgstr "Sonraki Senkronizasyon:"
+
+msgid "Output"
+msgstr "Çıkış"
+
+msgid "Output Type (Default)"
+msgstr "Çıkış Türü (Varsayılan)"
+
+msgid "Received empty output."
+msgstr "Boş çıktı alındı."
+
+msgid "Run Wrapper"
+msgstr "Sarmalayıcıyı Çalıştır"
+
+msgid "Select Category..."
+msgstr "Kategori Seçin..."
+
+msgid "Select Wrapper..."
+msgstr "Sarmalayıcıyı seçin..."
+
+msgid "Setup Required: Please add your API Key in settings."
+msgstr "Kurulum Gerekli: Lütfen API Anahtarınızı ayarlara ekleyin."
+
+msgid "Step 1"
+msgstr "1. Adım"
+
+msgid "Step 2"
+msgstr "2. Adım"
+
+msgid "Style"
+msgstr "Stil"
+
+msgid "Style (Default)"
+msgstr "Stil (Varsayılan)"
+
+msgid "Sync Delta Updates"
+msgstr "Delta Güncellemelerini Senkronize Et"
+
+msgid "To get your API key, log in to"
+msgstr "API anahtarınızı almak için şu adreste oturum açın:"
+
+msgid "Tone"
+msgstr "Ton"
+
+msgid "Tone (Default)"
+msgstr "Ton (Varsayılan)"
+
+msgid "Unknown error"
+msgstr "Bilinmeyen hata"
+
+msgid "Wrapper Catalog Sync"
+msgstr "Sarmalayıcı Katalog Senkronizasyonu"
+
+msgid "Zywrap API Key"
+msgstr "Zywrap API Anahtarı"
+
+msgid "-- Error Loading --"
+msgstr "-- Yükleme Hatası --"
+
+msgid "-- Select Category First --"
+msgstr "-- Önce Kategoriyi Seçin --"
+
+msgid "-- Select Model --"
+msgstr "-- Modeli Seçin --"
+
+msgid "-- Select Wrapper --"
+msgstr "-- Sarmalayıcıyı Seçin --"
+
+msgid "Controls"
+msgstr "Kontroller"
+
+msgid "Featured Only"
+msgstr "Yalnızca Öne Çıkanlar"
+
+msgid "Base Only"
+msgstr "Yalnızca Taban"
+
+msgid "Copy"
+msgstr "Kopyala"
+
+msgid "API response will appear here"
+msgstr "API yanıtı burada görünecek"
+
+msgid "-- Select Language (Optional) --"
+msgstr "-- Dil Seçin (İsteğe Bağlı) --"
+
+msgid "-- Select Category --"
+msgstr "-- Kategori Seçiniz --"
+
+msgid "AI Model (Optional)"
+msgstr "Yapay Zeka Modeli (İsteğe bağlı)"
+
+msgid "Save Key"
+msgstr "Anahtarı Kaydet"
+
+msgid "Sync Status"
+msgstr "Senkronizasyon Durumu"
+
+msgid "Not Synced"
+msgstr "Senkronize Edilmedi"
+
+msgid "Synced"
+msgstr "Senkronize edildi"
+
+msgid "AI Settings"
+msgstr "Yapay Zeka Ayarları"
+
+msgid "AI Logs"
+msgstr "Yapay Zeka Günlükleri"
+
+msgid "Download & Full Import"
+msgstr "İndirme ve Tam İçe Aktarma"
+
+msgid "Force Full Re Sync"
+msgstr "Tam Yeniden Senkronizasyonu Zorla"
