@@ -3,14 +3,14 @@
 /**
  * @package Geeky Bot
  * @author Geeky Bot
- * @version 1.1.9
+ * @version 1.2.0
  */
 /*
   * Plugin Name: Geeky Bot
   * Plugin URI: https://geekybot.com/
   * Description: The ultimate AI chatbot for WooCommerce lead generation, intelligent web search, and interactive customer engagement on your WordPress website.
   * Author: Geeky Bot
-  * Version: 1.1.9
+  * Version: 1.2.0
   * Text Domain: geeky-bot
   * Domain Path: /languages
   * Author URI: https://geekybot.com/
@@ -95,7 +95,7 @@ class geekybot {
         self::$_data = array();
         self::$_error_flag = null;
         self::$_error_flag_message = null;
-        self::$_currentversion = '119';
+        self::$_currentversion = '120';
         self::$_addon_query = array('select'=>'','join'=>'','where'=>'');
         self::$_config = GEEKYBOTincluder::GEEKYBOT_getModel('configuration');
         self::$_isgeekybotplugin = true;
@@ -194,7 +194,7 @@ class geekybot {
         if (is_plugin_active('geeky-bot/geeky-bot.php')) {
             include_once GEEKYBOT_PLUGIN_PATH . 'includes/updates/updates.php';
             $installedversion = GEEKYBOTupdates::geekybot_getInstalledVersion();
-            $cversion = '119';
+            $cversion = '120';
             if ($installedversion != $cversion) {
                 add_action( 'admin_notices', array($this, 'geekybot_sql_update_available_notice') );
             }
@@ -273,7 +273,7 @@ class geekybot {
                     // restore colors data end
                     update_option('geekybot_currentversion', self::$_currentversion);
                     include_once GEEKYBOT_PLUGIN_PATH . 'includes/updates/updates.php';
-                    GEEKYBOTupdates::GEEKYBOT_checkUpdates('119');
+                    GEEKYBOTupdates::GEEKYBOT_checkUpdates('120');
                     GEEKYBOTincluder::GEEKYBOT_getModel('geekybot')->updateColorFile();
                 }
             }

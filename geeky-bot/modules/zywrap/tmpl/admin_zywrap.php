@@ -39,8 +39,8 @@ $geekybot_saved_key = get_option('geekybot_zywrap_api_key', '');
                             </div>
                             <div class="geekybot-config-description">
                                 <?php 
-                                echo esc_html(__("To get your API key, log in to", 'geeky-bot'));
-                                echo ' <a href="https://zywrap.com" target="_blank">'.esc_html('zywrap.com').'</a> ';
+                                echo esc_html(__("To get your API key, sign up at", 'geeky-bot'));
+                                echo ' <a href="https://zywrap.com/register?utm_source=wordpress-plugin&utm_medium=geeky-bot&utm_campaign=onboarding" target="_blank">'.esc_html('zywrap.com').'</a> ';
                                 echo esc_html(__("and navigate to your Dashboard / API Keys.", 'geeky-bot')); ?>
                             </div>
                             <div class="geekybot-config-description geekybot-config-description-button geekybot-api-status">
@@ -68,7 +68,7 @@ $geekybot_saved_key = get_option('geekybot_zywrap_api_key', '');
             <?php
             // Check if the API key is saved. If not, this section will be hidden.
             if (!empty($geekybot_saved_key)) :
-                $geekybot_data_version = get_option('geekybot_zywrap_version', '');
+                $geekybot_data_version = get_option('zywrap_bundle_version', '');
             ?>
                 <div id="geekybot-head">
                     <h1 class="geekybot-head-text">
@@ -87,7 +87,7 @@ $geekybot_saved_key = get_option('geekybot_zywrap_api_key', '');
                                         <p><strong><?php echo esc_html(__('Status', 'geeky-bot')).': '.esc_html(__('Not Synced', 'geeky-bot')); ?></strong></p>
                                     <?php else : ?>
                                         <p><strong><?php echo esc_html(__('Status:', 'geeky-bot')).': '.esc_html(__('Synced', 'geeky-bot')); ?></strong><br>
-                                        <?php echo esc_html(__('Local Data Version:', 'geeky-bot')); ?> <?php echo esc_html($geekybot_data_version); ?></p>
+                                        <?php echo esc_html(__('LAST SYNC:', 'geeky-bot')); ?> <?php echo esc_html($geekybot_data_version); ?></p>
                                     <?php endif; ?>
                                 </div>
                                 <div class="geekybot-config-description">
@@ -100,9 +100,9 @@ $geekybot_saved_key = get_option('geekybot_zywrap_api_key', '');
                                         </button>
                                     <?php else : ?>
                                         <button data-type="2" type="button" class="geekybot-delete geekybot-config-download zywrap-full-import-btn" style="margin-right: 10px;">
-                                            <?php echo esc_html(__("Sync Data Updates", 'geeky-bot')); ?>
+                                            <?php echo esc_html(__(" Download & Sync Wrapper Bundle", 'geeky-bot')); ?>
                                         </button>
-                                        <button data-type="3" type="button" class="geekybot-delete geekybot-config-download zywrap-full-import-btn">
+                                        <button style="display: none;" data-type="3" type="button" class="geekybot-delete geekybot-config-download zywrap-full-import-btn">
                                             <?php echo esc_html(__("Force Full Re Sync", 'geeky-bot')); ?>
                                         </button>
                                     <?php endif; ?>
@@ -233,7 +233,7 @@ jQuery(document).ready(function($) {
             resultDiv.html('<span class=\"spinner is-active\"></span> " . esc_js(__('Downloading and importing... This may take several minutes.', 'geeky-bot')) . "');
         }
         if(type == 2) {
-            resultDiv.html('<span class=\"spinner is-active\"></span> " . esc_js(__('Only new and changed data is being fetched and imported. This should take a few moments...', 'geeky-bot')) . "');
+            resultDiv.html('<span class=\"spinner is-active\"></span> " . esc_js(__('Downloading and importing... This may take several minutes.', 'geeky-bot')) . "');
         }
         if(type == 3) {
             if (!confirm('" . esc_js(__('This will erase all local wrappers and perform a fresh download. This is recommended. Continue?', 'geeky-bot')) . "')) {
@@ -245,10 +245,16 @@ jQuery(document).ready(function($) {
         $(this).prop('disabled', true); // Disable button
 
         var ajaxurl = '" . esc_url(admin_url("admin-ajax.php")) . "';
+        if(type == 1) {
+            var taskName = 'importZywrapData';
+        } else {
+            var taskName = 'syncZywrapData';
+        }
+        
         $.post(ajaxurl, {
             action: 'geekybot_ajax',
             geekybotme: 'zywrap',
-            task: 'importZywrapData',
+            task: taskName,
             actionType: type,
             '_wpnonce': '" . esc_attr(wp_create_nonce("zywrap_full_import")) . "'
         })

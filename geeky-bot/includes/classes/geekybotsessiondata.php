@@ -156,11 +156,30 @@ class GEEKYBOTgeekybotsessiondata {
         return true;
     }
 
-    public function geekybot_getStoryIdFromSession(){
+    public function geekybot_getStoryIdFromSession() {
+
         $chatid = GEEKYBOTincluder::GEEKYBOT_getModel('chathistory')->geekybot_getchatid();
-        $query = "SELECT `sessionmsgvalue` FROM `" . geekybot::$_db->prefix . "geekybot_sessiondata` WHERE `usersessionid` = '" . $chatid . "' AND `sessionmsgkey` = 'story'";
-        $story = geekybotdb::GEEKYBOT_get_var($query);
-        return $story;
+
+        // Defensive checks
+        if ( empty($chatid) || ! is_string($chatid) ) {
+            return '';
+        }
+
+        // Sanitize as plain text (cookie-derived input)
+        $chatid = sanitize_text_field($chatid);
+
+        $table = geekybot::$_db->prefix . 'geekybot_sessiondata';
+
+        $query = geekybot::$_db->prepare(
+            "SELECT sessionmsgvalue
+             FROM {$table}
+             WHERE usersessionid = %s
+               AND sessionmsgkey = %s",
+            $chatid,
+            'story'
+        );
+
+        return geekybotdb::GEEKYBOT_get_var($query);
     }
 
     public function geekybot_getSavedDataFromSession(){

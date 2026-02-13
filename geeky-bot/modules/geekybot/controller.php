@@ -14,7 +14,7 @@ class GEEKYBOTgeekybotController {
             switch ($layout) {
                 case 'admin_controlpanel':
                     include_once GEEKYBOT_PLUGIN_PATH . 'includes/updates/updates.php';
-                    GEEKYBOTupdates::GEEKYBOT_checkUpdates(119);
+                    GEEKYBOTupdates::GEEKYBOT_checkUpdates(120);
                     GEEKYBOTincluder::GEEKYBOT_getModel('geekybot')->getAdminControlPanelData();
                     // remove this code in 1.1.7
                     $uploadDir = wp_upload_dir();
