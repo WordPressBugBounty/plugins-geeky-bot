@@ -21,9 +21,13 @@ class GEEKYBOTgeekybotsessiondata {
         $update = false;
         if(isset($_COOKIE['geekybot_chat_id'])){
             $chatid = GEEKYBOTincluder::GEEKYBOT_getModel('chathistory')->geekybot_getchatid();
+            $chatid = esc_sql( sanitize_text_field($chatid) );
             foreach ($messages as $key => $value) {
                 $value = addslashes($value);
                 if ($key != 'chathistory') {
+                    $key   = esc_sql( sanitize_text_field($key) );
+                    $value = esc_sql( sanitize_text_field($value) );
+
                     $data = $this->geekybot_getVariablesDatabySessionId($chatid, $key);
                     if($data != ""){
                         $update = true;
@@ -31,7 +35,8 @@ class GEEKYBOTgeekybotsessiondata {
                         $update = false;
                     }
                     if(!$update){
-                        $query = "INSERT INTO `" . geekybot::$_db->prefix . "geekybot_sessiondata` (`usersessionid`, `sessionmsgkey`, `sessionmsgvalue`, `sessionexpire`) VALUES ('".$chatid."', '".$key."', '".$value."', '".geekybot::$_geekybotsession->sessionexpire."');";
+                        $sessionexpire = esc_sql( sanitize_text_field(geekybot::$_geekybotsession->sessionexpire) );
+                        $query = "INSERT INTO `" . geekybot::$_db->prefix . "geekybot_sessiondata` (`usersessionid`, `sessionmsgkey`, `sessionmsgvalue`, `sessionexpire`) VALUES ('".$chatid."', '".$key."', '".$value."', '".$sessionexpire."');";
                         geekybot::$_db->query($query);
                     }else{
                         $query = "UPDATE `" . geekybot::$_db->prefix . "geekybot_sessiondata` SET `sessionmsgvalue` = '".$value."' WHERE `usersessionid`= '" . $chatid . "' AND `sessionmsgkey`= '" . $key . "' ";
@@ -44,6 +49,11 @@ class GEEKYBOTgeekybotsessiondata {
     }
 
     public function geekybot_addSessionAttributeDataToTable($productid, $attributekey, $attributevalue){
+
+        if (!is_numeric($productid)) {
+            return false;
+        }
+
         if(empty($productid) || empty($attributekey) || empty($attributevalue)){
             return false;
         }
@@ -52,7 +62,13 @@ class GEEKYBOTgeekybotsessiondata {
         if(isset($_COOKIE['geekybot_chat_id'])){
             $chatid = GEEKYBOTincluder::GEEKYBOT_getModel('chathistory')->geekybot_getchatid();
 
-            $query = "INSERT INTO `" . geekybot::$_db->prefix . "geekybot_sessiondata` (`usersessionid`, `sessionmsgkey`, `sessionmsgvalue`, `productid`, `sessionexpire`) VALUES ('".$chatid."', '".$attributekey."', '".$attributevalue."', '".$productid."', '".geekybot::$_geekybotsession->sessionexpire."');";
+            $productid      = (int) $productid;
+            $attributekey   = esc_sql( sanitize_text_field($attributekey) );
+            $attributevalue = esc_sql( sanitize_text_field($attributevalue) );
+            $chatid         = esc_sql( sanitize_text_field($chatid) );
+            $sessionexpire  = esc_sql( sanitize_text_field(geekybot::$_geekybotsession->sessionexpire) );
+
+            $query = "INSERT INTO `" . geekybot::$_db->prefix . "geekybot_sessiondata` (`usersessionid`, `sessionmsgkey`, `sessionmsgvalue`, `productid`, `sessionexpire`) VALUES ('".$chatid."', '".$attributekey."', '".$attributevalue."', '".$productid."', '".$sessionexpire."');";
             geekybot::$_db->query($query);
                 
         }
@@ -60,8 +76,14 @@ class GEEKYBOTgeekybotsessiondata {
     }
 
     public function geekybot_getVariablesDatabySessionId($usersessionid, $key = '' , $deldata = false){
+
+        $usersessionid = esc_sql( sanitize_text_field($usersessionid) );
+        $key           = esc_sql( sanitize_text_field($key) );
+        $time          = time();
+
         $query = "SELECT sessionmsgvalue
-            FROM `" . geekybot::$_db->prefix . "geekybot_sessiondata`  WHERE sessionmsgkey = '" . $key . "' AND usersessionid = '" . $usersessionid . "' AND sessionexpire > '" . time() . "'";
+            FROM `" . geekybot::$_db->prefix . "geekybot_sessiondata`  WHERE sessionmsgkey = '" . $key . "' AND usersessionid = '" . $usersessionid . "' AND sessionexpire > '" . $time . "'";
+
         $data = geekybotdb::GEEKYBOT_get_row($query);
         if($deldata){
             $query = "DELETE FROM `".geekybot::$_db->prefix . "geekybot_sessiondata` WHERE usersessionid = '".$usersessionid."'";
@@ -71,9 +93,20 @@ class GEEKYBOTgeekybotsessiondata {
     }
 
     public function geekybot_isSetVariablesDatabyAttributeId($productid, $attributekey){
+
+        if (!is_numeric($productid)) {
+            return 0;
+        }
+
         $chatid = GEEKYBOTincluder::GEEKYBOT_getModel('chathistory')->geekybot_getchatid();
+
+        $productid   = (int) $productid;
+        $attributekey = esc_sql( sanitize_text_field($attributekey) );
+        $chatid      = esc_sql( sanitize_text_field($chatid) );
+        $time        = time();
+
         $query = "SELECT sessionmsgvalue
-            FROM `" . geekybot::$_db->prefix . "geekybot_sessiondata` WHERE productid = '" . $productid . "' AND sessionmsgkey = '" . $attributekey . "' AND usersessionid = '" . $chatid . "' AND sessionexpire > '" . time() . "'";
+            FROM `" . geekybot::$_db->prefix . "geekybot_sessiondata` WHERE productid = '" . $productid . "' AND sessionmsgkey = '" . $attributekey . "' AND usersessionid = '" . $chatid . "' AND sessionexpire > '" . $time . "'";
         $sessionmsgvalue = geekybotdb::GEEKYBOT_get_var($query);
         if(isset($sessionmsgvalue) && $sessionmsgvalue != ''){
             return 1;
@@ -82,7 +115,16 @@ class GEEKYBOTgeekybotsessiondata {
     }
 
     public function geekybot_deleteVariablesDatabyProductId($productid){
+
+        if (!is_numeric($productid)) {
+            return false;
+        }
+
         $chatid = GEEKYBOTincluder::GEEKYBOT_getModel('chathistory')->geekybot_getchatid();
+
+        $productid = (int) $productid;
+        $chatid    = esc_sql( sanitize_text_field($chatid) );
+
         $query = "DELETE FROM `".geekybot::$_db->prefix . "geekybot_sessiondata` WHERE usersessionid = '".$chatid."' AND productid = ".$productid;
         geekybotdb::query($query);
         return true;
@@ -91,6 +133,7 @@ class GEEKYBOTgeekybotsessiondata {
     public function geekybot_readVarFromSessionAndCallPredefinedFunction($msg, $function_id){
         // read variables data from the session
         $chatid = GEEKYBOTincluder::GEEKYBOT_getModel('chathistory')->geekybot_getchatid();
+        $chatid = esc_sql( sanitize_text_field($chatid) );
         $query = "SELECT sessionmsgkey,sessionmsgvalue
             FROM `" . geekybot::$_db->prefix . "geekybot_sessiondata`  WHERE usersessionid = '" . $chatid . "' AND sessionmsgkey NOT IN ('nextIndex','ranking','flag','index','story','chathistory') ";
         $variables = geekybotdb::GEEKYBOT_get_results($query);
@@ -127,6 +170,8 @@ class GEEKYBOTgeekybotsessiondata {
             return false;
         }
         $chatId = GEEKYBOTincluder::GEEKYBOT_getModel('chathistory')->geekybot_getchatid();
+        $chatId = esc_sql( sanitize_text_field($chatId) );
+
         if ($type == 'user') {
             $img_scr = GEEKYBOTincluder::GEEKYBOT_getModel('geekybot')->getUserImagePath();
             $message = "<li class='geekybot-message geekybot-message-user'><section class='geekybot-message-user-img'><img src='".esc_url($img_scr)."' alt='' /></section><section class='geekybot-message-text'>".$msg."</section></li>";
@@ -139,6 +184,7 @@ class GEEKYBOTgeekybotsessiondata {
             }
         }
         if(isset($chatId) && $chatId != ''){
+            $time = absint(time());
             // check if the user chat histroy exist
             $query = 'SELECT sessionmsgvalue FROM `' . geekybot::$_db->prefix . 'geekybot_sessiondata` WHERE sessionmsgkey = "chathistory" AND usersessionid = "' . $chatId . '" AND sessionexpire > "' . time() . '"';
             $chathistory = geekybotdb::GEEKYBOT_get_var( $query);
@@ -185,6 +231,7 @@ class GEEKYBOTgeekybotsessiondata {
     public function geekybot_getSavedDataFromSession(){
         // get the chat id of the current user
         $chatid = GEEKYBOTincluder::GEEKYBOT_getModel('chathistory')->geekybot_getchatid();
+        $chatid = esc_sql( sanitize_text_field($chatid) );
         // get all the data from the seesion table against the chat id
         $query = "SELECT * FROM `" . geekybot::$_db->prefix . "geekybot_sessiondata` WHERE `usersessionid` = '" . $chatid . "'";
         $variables = geekybotdb::GEEKYBOT_get_results($query);

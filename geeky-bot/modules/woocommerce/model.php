@@ -899,8 +899,19 @@ class GEEKYBOTwoocommerceModel {
         if (!class_exists('WooCommerce')) {
             return __("WooCommerce is currently inactive.", "geeky-bot");
         }
+
+        /* Numeric validation */
+        if (!is_numeric($product_id)) {
+            return false;
+        }
+
+        $product_id = (int) $product_id;
+
         global $woocommerce;
-        // Get the WooCommerce cart instance
+        // Ensure cart object exists
+        if (!isset($woocommerce->cart)) {
+            return false;
+        }
         $cart = $woocommerce->cart;
         // Check if the cart is empty
         if ($cart->is_empty()) {
@@ -908,8 +919,11 @@ class GEEKYBOTwoocommerceModel {
         }
         // Loop through cart items
         foreach ($cart->get_cart() as $cart_item_key => $cart_item) {
+            $cart_product_id   = isset($cart_item['product_id']) ? (int)$cart_item['product_id'] : 0;
+            $cart_variation_id = isset($cart_item['variation_id']) ? (int)$cart_item['variation_id'] : 0;
+
             // Check if product ID matches
-            if ($cart_item['product_id'] == $product_id || $cart_item['variation_id'] == $product_id ) {
+            if ($cart_product_id === $product_id || $cart_variation_id === $product_id) {
                 return true;
             }
         }
@@ -925,19 +939,32 @@ class GEEKYBOTwoocommerceModel {
             $nonce = GEEKYBOTrequest::GEEKYBOT_getVar('_wpnonce');
             if (! wp_verify_nonce( $nonce, 'product-attributes') ) {
                 // disable nonce
-                // die( 'Security check Failed' ); 
+                // die('Security check Failed');
             }
-            $productid = GEEKYBOTrequest::GEEKYBOT_getVar('productid');
 
-            $isnew = GEEKYBOTrequest::GEEKYBOT_getVar('isnew');
+            $productid       = GEEKYBOTrequest::GEEKYBOT_getVar('productid');
+            $isnew           = GEEKYBOTrequest::GEEKYBOT_getVar('isnew');
             $user_attributes = GEEKYBOTrequest::GEEKYBOT_getVar('attr');
         }
+
+        /* NUMERIC VALIDATION */
+        if (!is_numeric($productid)) {
+            return;
+        }
+
+        $productid = (int) $productid;
+        $isnew     = is_numeric($isnew) ? (int)$isnew : 0;
         $savedAttributes = $this->getSavedAttributesByProductId($productid);
         if ($isnew == 1) {
             // delete all the old saved atributes
             geekybot::$_geekybotsessiondata->geekybot_deleteVariablesDatabyProductId($productid);
         }
         $product = wc_get_product( $productid );
+
+        if (!$product) {
+            return;
+        }
+
         if ( $product->is_type( 'variable' ) ) {
             $variation_attributes = [];
             $available_variations = $product->get_available_variations(); // This might need adjustment based on your logic
@@ -954,7 +981,7 @@ class GEEKYBOTwoocommerceModel {
                     </div>
                     <div class='geekybot_wc_product_right_wrp'>
                         <div class='geekybot_wc_product_name'>
-                            <a title='".$product->get_title()."' href='".$product->get_permalink()."' target='_blank'>".$product->get_title()."</a>
+                            <a title='".esc_attr($product->get_title())."' href='".esc_url($product->get_permalink())."' target='_blank'>".esc_html($product->get_title())."</a>
                         </div>
                         <div class='geekybot_wc_product_price'>
                             ".$product->get_price_html()."
@@ -983,12 +1010,13 @@ class GEEKYBOTwoocommerceModel {
                         if (is_int($optionId)) {
                             // Existing attribute, fetch name using ID
                             // Use the option ID to retrieve the option name
-                            $optionName = wc_get_product_terms($productid, $attribute->get_name(), array('fields' => 'names'))[$optionIndex]; // Use 'slugs' argument;
+                            $terms = wc_get_product_terms($productid, $attribute->get_name(), array('fields' => 'names'))[$optionIndex]; // Use 'slugs' argument;
+                            $optionName = isset($terms[$optionIndex]) ? $terms[$optionIndex] : '';
                         } else {
                             $optionName = $optionId;
                         }
                         // Add the option name to the array
-                        $optionNames[] = $optionName;
+                        $optionNames[] = sanitize_text_field($optionName);
                     }
 
                     foreach ($optionNames as $value) {
@@ -1005,15 +1033,13 @@ class GEEKYBOTwoocommerceModel {
                         // 
                         $variationkey =  explode('_', $variationkey);
                         $variationkey =  end($variationkey);
-                        $variationkey = str_replace(' ', "-", $variationkey);
-                        $variationkey = strtolower($variationkey);
-                        // 
-                        $filteredKey =  explode('_', $attributekey);
-                        $filteredKey =  end($filteredKey);
-                        $filteredKey = str_replace(' ', "-", $filteredKey);
-                        $filteredKey = strtolower($filteredKey);
-                        $jsonUserAttributes = geekybotphplib::GEEKYBOT_htmlspecialchars($user_attributes, ENT_QUOTES, 'UTF-8');
-
+                        $variationkey =  strtolower(str_replace(' ', "-", $variationkey));
+                        $filteredKey = explode('_', $attributekey);
+                        $filteredKey = end($filteredKey);
+                        $filteredKey = strtolower(str_replace(' ', "-", $filteredKey));
+                        $jsonUserAttributes = esc_attr(
+                            geekybotphplib::GEEKYBOT_htmlspecialchars($user_attributes, ENT_QUOTES, 'UTF-8')
+                        );
 
                         if ($variationkey == $filteredKey && $condition == 0) {
                             $btnhtml = "
@@ -1023,7 +1049,7 @@ class GEEKYBOTwoocommerceModel {
                                 </div>
                                 <div class='geekybot_wc_product_right_wrp'>
                                     <div class='geekybot_wc_product_name'>
-                                        <a title='".$product->get_title()."' href='".$product->get_permalink()."' target='_blank'>".$product->get_title()."</a>
+                                        <a title='".esc_attr($product->get_title())."' href='".esc_url($product->get_permalink())."' target='_blank'>".esc_html($product->get_title())."</a>
                                     </div>
                                     <div class='geekybot_wc_product_price'>
                                         ".$product->get_price_html()."
@@ -1034,34 +1060,29 @@ class GEEKYBOTwoocommerceModel {
                                         $btnhtml .="
                                         <div class='geekybot_wc_product_attr'>
                                             <span class='geekybot_wc_product_attr_key'>
-                                                ".$attribute.":
+                                                ".esc_html($attribute).":
                                             </span>
                                             <span class='geekybot_wc_product_attr_val'>
-                                                ".$value."
+                                                ".esc_html($value)."
                                             </span>
                                         </div>
                                         ";
                                     }
-                                    $btnhtml .="
-                                </div>
-                                </div>
-                            </div>
-                            <div class='geekybot_wc_product_heading'>".__('Select', 'geeky-bot')." ".$filteredKey."</div>
+                                    $btnhtml .= "</div></div></div>
+                            <div class='geekybot_wc_product_heading'>".__('Select', 'geeky-bot')." ".esc_html($filteredKey)."</div>
                                 <ul class='geeky_bot_wc_msg_btn_wrp'>";
                                     foreach ($attributevalue as $value) {
-                                        $btnhtml .=  "<li class='geeky_bot_wc_msg_btn'><button class='geeky_bot_wc_btn' onclick=\"saveProductAttributeToSession('".$productid."','".$attributekey."','".$value."','".$jsonUserAttributes."');\" value='".$value."'><span>".$value."</span></button></li>";
+                                        $safe_value = esc_attr($value);
+                                        $btnhtml .= "<li class='geeky_bot_wc_msg_btn'><button class='geeky_bot_wc_btn' onclick=\"saveProductAttributeToSession('".$productid."','".esc_attr($attributekey)."','".$safe_value."','".$jsonUserAttributes."');\" value='".$safe_value."'><span>".esc_html($value)."</span></button></li>";
                                     }
-                                    $btnhtml .= "
-                                </ul>
-                            </div>";
+                                    $btnhtml .= "</ul></div>";
                             echo wp_kses($btnhtml, GEEKYBOT_ALLOWED_TAGS);
                             die();
                         }
                     }
                 }
             }
-            // get product variation by product id and attributes
-            // Get the desired variation data (array of attribute => value pairs)
+
             $savedAttributes = $this->getSavedAttributesByProductId($productid);
             $variationResult = $this->get_variation_id_by_attributes($productid, $savedAttributes, $user_attributes);
             print_r($variationResult);
@@ -1074,6 +1095,13 @@ class GEEKYBOTwoocommerceModel {
         if (!class_exists('WooCommerce')) {
             return __("WooCommerce is currently inactive.", "geeky-bot");
         }
+
+        // Numeric validation first
+        if (!is_numeric($product_id)) {
+            return;
+        }
+
+        $product_id = (int) $product_id;
         global $woocommerce;
         $product = wc_get_product( $product_id );
         if ( ! $product || ! $product->is_type( 'variable' ) ) {
@@ -1082,6 +1110,7 @@ class GEEKYBOTwoocommerceModel {
             // save bot response to the session and chat history
             geekybot::$_geekybotsessiondata->geekybot_addChatHistoryToSession($chatMessage, 'bot');
             GEEKYBOTincluder::GEEKYBOT_getModel('chathistory')->SaveChathistoryFromchatServer($chatMessage, 'bot');
+            return;
         }
         // new code start
         $variations = $product->get_available_variations();
@@ -1118,13 +1147,20 @@ class GEEKYBOTwoocommerceModel {
             }
             if ( $variation_match == 1 ) {
                 $variation_id = $variation['variation_id'];
+
+                if (!is_numeric($variation_id)) {
+                    return;
+                }
+
+                $variation_id = (int) $variation_id;
+
                 $canAddProduct_stock = true;
                 $canAddProduct_quantity = true;
                 $canAddProduct_sold_individuallly = true;
                 $text = '';
                 if ( isset($variation['max_qty']) && $variation['max_qty'] != '' ) {
                     // Get the stock quantity of the product
-                    $stock_quantity = $variation['max_qty'];
+                    $stock_quantity = (int) $variation['max_qty'];
                     // $new_quantity = $stock_quantity + 1;
                     $new_quantity = 1;
                     // Check if the product is in stock and if adding more than the available quantity
@@ -1142,20 +1178,20 @@ class GEEKYBOTwoocommerceModel {
                 // Check for individual limit
                 if ( $variation['is_sold_individually'] == 'yes' ) {
                     if ( $this->is_product_in_cart( $product_id ) ) {
-                        $text .= __("You can't add another “", "geeky-bot").$product->get_title(). __("” to your cart.", "geeky-bot");
+                        $text .= __("You can't add another “", "geeky-bot"). esc_html($product->get_title()). __("” to your cart.", "geeky-bot");
                         $canAddProduct_sold_individuallly = false;
                     }
                 }
                 if ( $canAddProduct_stock && $canAddProduct_sold_individuallly && $canAddProduct_quantity) {
                     $quantity = 1;
-                    $added_to_cart = $woocommerce->cart->add_to_cart($product_id, $quantity, $variation_id, $variation, null);
+                    $added_to_cart = $woocommerce->cart->add_to_cart($product_id, $quantity, $variation_id, $variation, null );
                     // $added_to_cart = $woocommerce->cart->add_to_cart( $variation['variation_id'], 1 ); // Add to cart
                     if ($added_to_cart) {
                         $product = new WC_Product_Variation( $variation_id );
                         $text = "
                         <div class='geekybot_wc_product_wrp geekybot_wc_product_options_wrp'>
                             <div class='geekybot_wc_success_msg_wrp success'>
-                                ".$product->get_title()." ". __('has been added to your cart.', 'geeky-bot')." 
+                                ".esc_html($product->get_title())." ". __('has been added to your cart.', 'geeky-bot')."
                             </div>
                             <div class='geekybot_wc_product_left_wrp'>
                                 ".$product->get_image('thumbnail')."
@@ -1230,12 +1266,28 @@ class GEEKYBOTwoocommerceModel {
         if (!class_exists('WooCommerce')) {
             return __("WooCommerce is currently inactive.", "geeky-bot");
         }
+
+        // Numeric validation first
+        if (!is_numeric($productid)) {
+            return array();
+        }
+
+        $productid = (int) $productid;
+
         $chatid = GEEKYBOTincluder::GEEKYBOT_getModel('chathistory')->geekybot_getchatid();
-        $query = "SELECT * FROM `" . geekybot::$_db->prefix . "geekybot_sessiondata` WHERE productid = '" . esc_sql($productid) . "' AND usersessionid = '" . esc_sql($chatid) . "' AND sessionexpire > '" . time() . "'";
+        $chatid = esc_sql( sanitize_text_field($chatid) );
+
+        $time = time();
+
+        $query = "SELECT * FROM `" . geekybot::$_db->prefix . "geekybot_sessiondata` WHERE productid = '" . $productid . "' AND usersessionid = '" . $chatid . "' AND sessionexpire > '" . $time . "'";
+
         $attributes= geekybot::$_db->get_results($query);
         $variation_data = array();
-        foreach ($attributes as $attribute) {
-            $variation_data[$attribute->sessionmsgkey] = $attribute->sessionmsgvalue;
+
+        if (!empty($attributes)) {
+            foreach ($attributes as $attribute) {
+                $variation_data[$attribute->sessionmsgkey] = $attribute->sessionmsgvalue;
+            }
         }
         return $variation_data;
     }
