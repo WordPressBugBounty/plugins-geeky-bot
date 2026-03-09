@@ -205,6 +205,9 @@ class GEEKYBOTgeekybotsessiondata {
     public function geekybot_getStoryIdFromSession() {
 
         $chatid = GEEKYBOTincluder::GEEKYBOT_getModel('chathistory')->geekybot_getchatid();
+        // 1. CLEANING (Validation): Remove characters that shouldn't be in an ID anyway
+        // This removes the ' # and spaces before prepare even sees them.
+        $chatid = preg_replace('/[^a-zA-Z0-9_\-]/', '', (string)$chatid);
 
         // Defensive checks
         if ( empty($chatid) || ! is_string($chatid) ) {

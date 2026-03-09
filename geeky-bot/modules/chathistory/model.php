@@ -468,6 +468,9 @@ class GEEKYBOTchathistoryModel {
         if(isset($_COOKIE['geekybot_chat_id'])){
             $cid = geekybot::GEEKYBOT_sanitizeData($_COOKIE['geekybot_chat_id']);// GEEKYBOT_sanitizeData() function uses wordpress santize functions
             $chatid = json_decode( geekybotphplib::GEEKYBOT_safe_decoding($cid) , true );
+            // 1. CLEANING (Validation): Remove characters that shouldn't be in an ID anyway
+            // This removes the ' # and spaces before prepare even sees them.
+            $chatid = preg_replace('/[^a-zA-Z0-9_\-]/', '', (string)$chatid);
         }
         return $chatid;
     }
