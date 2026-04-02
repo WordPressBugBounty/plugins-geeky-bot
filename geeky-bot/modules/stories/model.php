@@ -1987,7 +1987,10 @@ class GEEKYBOTstoriesModel {
     function saveProductDataForFallback(){
         $products = wc_get_products(
             array(
-                'limit' => -1 // Get all products (set limit to -1)
+                'limit'        => -1,          // Get all matching products
+                'status'       => 'publish',   // Only published (no drafts/private)
+                'visibility'   => 'visible',   // Only visible in catalog/search
+                'has_password' => false,       // Exclude password-protected items
             )
         );
         // Loop through each product and get its name

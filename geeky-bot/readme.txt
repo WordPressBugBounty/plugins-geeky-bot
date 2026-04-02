@@ -4,7 +4,7 @@ Tags: chatbot, AI, OpenAI, lead generation, GPT
 Donate link: https://geekybot.com
 Requires at least: WordPress 5.0
 Tested up to: 6.9
-Stable tag: 1.2.2
+Stable tag: 1.2.3
 License: GPLv2
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -259,6 +259,10 @@ This plugin makes use of the following third-party services:
 - Contains optimized Guzzle HTTP client configuration.
 
 == Changelog ==
+= 1.2.3
+* Security Updates.
+* Improved privacy and security to ensure that hidden or password-protected products are never accidentally displayed in search results or chatbot suggestions..
+
 = 1.2.2
 * Security Updates.
 

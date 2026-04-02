@@ -463,25 +463,74 @@ class GEEKYBOTgeekybotModel {
         return $imgPath;
     }
 
-    function geekybotLoadMoreProducts(){
+    function geekybotLoadMoreProducts() {
+        // 1. STOPS execution if the nonce is invalid
         $nonce = GEEKYBOTrequest::GEEKYBOT_getVar('_wpnonce');
-        if (! wp_verify_nonce( $nonce, 'load-more') ) {
-            // disable nonce
-            // die( 'Security check Failed' ); 
+        if (!wp_verify_nonce($nonce, 'load-more')) {
+            wp_send_json_error('Security check Failed', 403);
+            exit; 
         }
+
         $msg = GEEKYBOTrequest::GEEKYBOT_getVar('msg');
         $data = GEEKYBOTrequest::GEEKYBOT_getVar('data');
         $next_page = GEEKYBOTrequest::GEEKYBOT_getVar('next_page');
-        $functionName = GEEKYBOTrequest::GEEKYBOT_getVar('functionName');
         $modelName = GEEKYBOTrequest::GEEKYBOT_getVar('modelName');
-        if(!is_array($data)) {
-            $data = json_decode($data,true);
+        $functionName = GEEKYBOTrequest::GEEKYBOT_getVar('functionName');
+
+        // 2. THE ALLOWLIST MAP
+        // This defines exactly which models and functions are publically accessible.
+        $allowed_map = [
+            'woocommerce' => [
+                'geekybot_showAllProducts',
+                'geekybot_searchProduct',
+                'geekybot_getProductsUnderPrice',
+                'geekybot_getProductsAbovePrice',
+                'geekybot_getProductsBetweenPrice',
+                'showProductsList'
+            ],
+            'woocommercepropack' => [
+                'geekybot_showAllSaleProducts',
+                'geekybot_showAllTrendingProducts',
+                'geekybot_showAllLatestProducts',
+                'geekybot_showAllHighestRatedProducts',
+                'geekybot_viewOrders'
+            ]
+        ];
+
+        // 3. VALIDATION LOGIC
+        // Check if the model exists in our map
+        if (!isset($allowed_map[$modelName])) {
+            wp_send_json_error('Unauthorized Model', 403);
+            exit;
         }
-        $products = GEEKYBOTincluder::GEEKYBOT_getModel($modelName)->$functionName($msg, $data, $next_page);
-        // save bot response to the session and chat history
-        geekybot::$_geekybotsessiondata->geekybot_addChatHistoryToSession($products, 'bot');
-        GEEKYBOTincluder::GEEKYBOT_getModel('chathistory')->SaveChathistoryFromchatServer($products, 'bot');
-        return $products;
+
+        // Check if the function is allowed for that specific model
+        if (!in_array($functionName, $allowed_map[$modelName])) {
+            wp_send_json_error('Unauthorized Function', 403);
+            exit;
+        }
+
+        // 4. SAFE EXECUTION
+        $model = GEEKYBOTincluder::GEEKYBOT_getModel($modelName);
+        
+        // Final check to ensure the method actually exists in the class
+        if ($model && method_exists($model, $functionName)) {
+            
+            if(!is_array($data)) {
+                $data = json_decode($data, true);
+            }
+
+            $products = $model->$functionName($msg, $data, $next_page);
+            
+            // save bot response
+            geekybot::$_geekybotsessiondata->geekybot_addChatHistoryToSession($products, 'bot');
+            GEEKYBOTincluder::GEEKYBOT_getModel('chathistory')->SaveChathistoryFromchatServer($products, 'bot');
+            
+            return $products;
+        }
+
+        wp_send_json_error('Execution failed', 500);
+        exit;
     }
 
     function geekybotLoadMoreCustomPosts(){

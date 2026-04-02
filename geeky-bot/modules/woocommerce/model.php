@@ -27,16 +27,22 @@ class GEEKYBOTwoocommerceModel {
         // get the number of products to display per page
         $productsPerPage = geekybot::$_configuration['pagination_product_page_size'];
         $args = array(
-            'post_type' => 'product',
-            'orderby'  => 'ID',
-            'order' => 'ASC',
-            'posts_per_page' => $productsPerPage, // number of products per page
-            'paged' => $currentPage, // The current page number
-            'post_status' => 'publish', // Only return published products
+            'post_type'      => 'product',
+            'orderby'        => 'ID',
+            'order'          => 'ASC',
+            'posts_per_page' => $productsPerPage,
+            'paged'          => $currentPage,
+            'status'    => 'publish', // Excludes Drafts/Private
+            'visibility'     => 'visible', // Excludes products marked as "Hidden"
+            'has_password'   => false, // STRICTLY excludes password-protected products
+            'paginate'       => true,
         );
-        $products = wc_get_products($args);
+
+        $results = wc_get_products($args);
+        $products    = $results->products; // The array of products for the current page
+        $allProducts = $results->total;    // The total count of ALL matching products
+        $maxPages    = $results->max_num_pages; // Total number of pages available
         if($products){
-            $allProducts = wp_count_posts('product')->publish;
             $html = GEEKYBOTincluder::GEEKYBOT_getModel('stories')->getWcProductListingHtml($msg, $products, 'showAllProducts', $allProducts, $currentPage, 'woocommerce', 'geekybot_showAllProducts', $data);
         } else {
             $html = __("No product was found.", "geeky-bot");
@@ -111,46 +117,56 @@ class GEEKYBOTwoocommerceModel {
         }
         // Set the number of products to display per page
         $productsPerPage = geekybot::$_configuration['pagination_product_page_size'];
+
         $args = array(
-            'category' => array( $search_value ),
-            'post_type' => 'product',
-            'orderby'  => 'ID',
-            'order' => 'ASC',
+            'category'       => array( $search_value ),
+            'post_type'      => 'product',
+            'orderby'        => 'ID',
+            'order'          => 'ASC',
             'posts_per_page' => $productsPerPage, // number of products per page
-            'paged' => $currentPage, // The current page number
-            'post_status' => 'publish', // Only return published products
+            'paged'          => $currentPage, // The current page number
+            'status'         => 'publish',   // Only return published products
+            'visibility'     => 'visible',   // Only return visible products
+            'has_password'   => false,       // Exclude password protected
         );
         $products = wc_get_products($args);
+        
         $html = '';
         if($products){
             $args = array(
-                'category' => array( $search_value ),
-                'post_type' => 'product',
-                'post_status' => 'publish', // Only return published products
-                'limit'       => -1,
-                'return'      => 'ids' // Fetch only the IDs reduces memory usage and query execution time.
+                'category'     => array( $search_value ),
+                'post_type'    => 'product',
+                'status'       => 'publish',   // Only return published products
+                'visibility'   => 'visible',   // Only return visible products
+                'has_password' => false,       // Exclude password protected
+                'limit'        => -1,
+                'return'       => 'ids' // Fetch only the IDs reduces memory usage and query execution time.
             );
             $product_ids = wc_get_products($args);
             $allProducts = count($product_ids); // Get the total count of products
             $html = GEEKYBOTincluder::GEEKYBOT_getModel('stories')->getWcProductListingHtml($msg, $products, 'searchProduct', $allProducts, $currentPage, 'woocommerce', 'geekybot_searchProduct', $data);
         }else{
             $args = array(
-                'name' => $search_value, // Search parameter for product title
-                'post_type' => 'product', // Specify product post type
-                'orderby' => 'ID', // Order by product ID
-                'order' => 'ASC',
+                'name'           => $search_value, // Search parameter for product title
+                'post_type'      => 'product', // Specify product post type
+                'orderby'        => 'ID', // Order by product ID
+                'order'          => 'ASC',
                 'posts_per_page' => $productsPerPage, // number of products per page
-                'paged' => $currentPage, // The current page number
-                'post_status' => 'publish', // Only return published products
+                'paged'          => $currentPage, // The current page number
+                'status'         => 'publish',   // Only return published products
+                'visibility'     => 'visible',   // Only return visible products
+                'has_password'   => false,       // Exclude password protected
             );
             $products = wc_get_products($args);
             if($products){
                 $args = array(
-                    'name' => $search_value, // Search parameter for product title
-                    'post_type' => 'product', // Specify product post type
-                    'post_status' => 'publish', // Only return published products
-                    'limit'       => -1,
-                    'return'      => 'ids' // Fetch only the IDs reduces memory usage and query execution time.
+                    'name'         => $search_value, // Search parameter for product title
+                    'post_type'    => 'product', // Specify product post type
+                    'status'       => 'publish',   // Only return published products
+                    'visibility'   => 'visible',   // Only return visible products
+                    'has_password' => false,       // Exclude password protected
+                    'limit'        => -1,
+                    'return'       => 'ids' // Fetch only the IDs reduces memory usage and query execution time.
                 );
                 $product_ids = wc_get_products($args);
                 $allProducts = count($product_ids); // Get the total count of products
@@ -185,17 +201,20 @@ class GEEKYBOTwoocommerceModel {
 
         // Query all products (simple and variable) with price less than or equal to the maximum price
         $args = array(
-            'post_type' => array('product', 'product_variation'), // Include both products and variations
-            'orderby' => 'ID',
-            'order' => 'ASC',
-            'post_status' => 'publish', // Only return published products
-            'numberposts' => -1, // Retrieve all matching products
-            'meta_query' => array(
+            'post_type'      => array('product', 'product_variation'), // Include both products and variations
+            'orderby'        => 'ID',
+            'order'          => 'ASC',
+            'status'         => 'publish',    // Only published
+            'limit'          => -1,           // wc_get_products uses 'limit' instead of 'numberposts'
+            'visibility'     => 'visible',    // Exclude hidden products
+            'has_password'   => false,        // Exclude password-protected products
+            
+            'meta_query'     => array(
                 array(
-                    'key' => '_price', // Price field in WooCommerce
-                    'value' => $max_price,
+                    'key'     => '_price', // Price field in WooCommerce
+                    'value'   => $max_price,
                     'compare' => '<=',
-                    'type' => 'NUMERIC',
+                    'type'    => 'NUMERIC',
                 ),
             ),
         );
@@ -268,17 +287,19 @@ class GEEKYBOTwoocommerceModel {
 
         // Query all products (simple and variable) with price greater than or equal to the minimum price
         $args = array(
-            'post_type' => array('product', 'product_variation'), // Include both products and variations
-            'orderby' => 'ID',
-            'order' => 'ASC',
-            'post_status' => 'publish', // Only return published products
-            'numberposts' => -1, // Retrieve all matching products
-            'meta_query' => array(
+            'post_type'      => array('product', 'product_variation'), // Include both products and variations
+            'orderby'        => 'ID',
+            'order'          => 'ASC',
+            'status'         => 'publish',   // Only published
+            'limit'          => -1,          // Retrieve all matching products
+            'visibility'     => 'visible',   // Excludes "Hidden" catalog products
+            'has_password'   => false,       // Excludes password-protected products
+            'meta_query'     => array(
                 array(
-                    'key' => '_price', // Price field in WooCommerce
-                    'value' => $min_price,
+                    'key'     => '_price', // Price field in WooCommerce
+                    'value'   => $min_price,
                     'compare' => '>=',
-                    'type' => 'NUMERIC',
+                    'type'    => 'NUMERIC',
                 ),
             ),
         );
@@ -348,20 +369,23 @@ class GEEKYBOTwoocommerceModel {
         // Calculate the offset based on the current page and products per page
         $offset = ($currentPage - 1) * $productsPerPage;
         $args = array(
-            'post_type' => array('product', 'product_variation'), // Include both products and variations
-            'orderby'  => 'ID',
-            'order' => 'ASC',
-            'post_status' => 'publish', // Only return published products
-            'numberposts' => -1, // Retrieve all matching products
-            'meta_query' => array(
+            'post_type'      => array('product', 'product_variation'), // Include both products and variations
+            'orderby'        => 'ID',
+            'order'          => 'ASC',
+            'status'         => 'publish',   // Only return published products
+            'limit'          => -1,          // Retrieve all matching products
+            'visibility'     => 'visible',   // Excludes "Hidden" catalog products
+            'has_password'   => false,       // Excludes password-protected products
+            'meta_query'     => array(
                 array(
-                    'key' => '_price', // Price field in WooCommerce
-                    'value' => array($min_price, $max_price), // Array for the range
+                    'key'     => '_price', // Price field in WooCommerce
+                    'value'   => array($min_price, $max_price), // Array for the range
                     'compare' => 'BETWEEN', // Use BETWEEN for price range
-                    'type' => 'NUMERIC',
+                    'type'    => 'NUMERIC',
                 ),
             ),
         );
+
         $allProducts = wc_get_products($args);
         $filteredProducts = array();
 
