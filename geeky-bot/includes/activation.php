@@ -144,7 +144,7 @@ class GEEKYBOTactivation {
             ('title',   'GeekyBot',   'default',  NULL),
             ('pagination_default_page_size',    '10',   'default',  NULL),
             ('pagination_product_page_size',    '3',   'default',  NULL),
-            ('versioncode', '1.2.3',    'default',  NULL),
+            ('versioncode', '1.2.4',    'default',  NULL),
             ('last_version',    '101',  'default',  NULL),
             ('image_file_type', 'png,jpeg,gif,jpg', 'default', NULL),
             ('bot_custom_img',  '0',    'default',  NULL),
@@ -335,6 +335,26 @@ class GEEKYBOTactivation {
             ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;";
             geekybot::$_db->query($query);
 
+            // 1. Create the NEW Use Cases Table
+            $query = "CREATE TABLE IF NOT EXISTS `".geekybot::$_db->prefix."geekybot_zywrap_use_cases` (
+              `id` int(11) NOT NULL AUTO_INCREMENT,
+              `code` varchar(255) NOT NULL,
+              `name` varchar(255) NOT NULL,
+              `description` text,
+              `category_code` varchar(255) DEFAULT NULL,
+              `schema_data` json DEFAULT NULL,
+              `ordering` int(11) DEFAULT NULL,
+              `status` tinyint(1) DEFAULT 1,
+              UNIQUE KEY `code` (`code`),
+              KEY `category_code` (`category_code`),
+              PRIMARY KEY (`id`),
+              CONSTRAINT `fk_zywrap_uc_cat`
+                  FOREIGN KEY (`category_code`)
+                  REFERENCES `".geekybot::$_db->prefix."geekybot_zywrap_categories` (`code`)
+                    ON DELETE SET NULL
+            ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;";
+            geekybot::$_db->query($query);
+
             $query = "CREATE TABLE IF NOT EXISTS `".geekybot::$_db->prefix."geekybot_zywrap_languages` (
               `id` int(11) NOT NULL AUTO_INCREMENT,
               `code` varchar(10) NOT NULL,
@@ -363,17 +383,17 @@ class GEEKYBOTactivation {
               `code` varchar(255) NOT NULL,
               `name` varchar(255) NOT NULL,
               `description` text,
-              `category_code` varchar(255) DEFAULT NULL,
+              `use_case_code` varchar(255) DEFAULT NULL,
               `featured` tinyint(1) DEFAULT NULL,
               `base` tinyint(1) DEFAULT NULL,
               `ordering` int(11) DEFAULT NULL,
               `status` tinyint(1) DEFAULT 1,
               UNIQUE KEY `code` (`code`),
-              KEY `category_code` (`category_code`),
+              KEY `use_case_code` (`use_case_code`),
               PRIMARY KEY (`id`),
-              CONSTRAINT `fk_zywrap_wrappers_cat`
-                  FOREIGN KEY (`category_code`)
-                  REFERENCES `".geekybot::$_db->prefix."geekybot_zywrap_categories` (`code`)
+              CONSTRAINT `fk_zywrap_wrappers_uc`
+                  FOREIGN KEY (`use_case_code`)
+                  REFERENCES `".geekybot::$_db->prefix."geekybot_zywrap_use_cases` (`code`)
                     ON DELETE SET NULL
             ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;";
             geekybot::$_db->query($query);
@@ -390,23 +410,26 @@ class GEEKYBOTactivation {
             geekybot::$_db->query($query);
 
             $query = "CREATE TABLE IF NOT EXISTS `".geekybot::$_db->prefix."geekybot_zywrap_logs` (
-                  `id` int(11) NOT NULL AUTO_INCREMENT,
-                  `timestamp` datetime NOT NULL,
-                  `user_id` bigint(20) DEFAULT NULL,
-                  `status` varchar(50) NOT NULL,
-                  `action` varchar(100) NOT NULL,
-                  `wrapper_code` varchar(255) DEFAULT NULL,
-                  `model_code` varchar(255) DEFAULT NULL,
-                  `http_code` int(11) DEFAULT NULL,
-                  `error_message` text DEFAULT NULL,
-                  `prompt_tokens` int(11) DEFAULT NULL,
-                  `completion_tokens` int(11) DEFAULT NULL,
-                  `total_tokens` int(11) DEFAULT NULL,
-                  `token_data` text DEFAULT NULL,
-                  PRIMARY KEY (`id`),
-                  KEY `user_id` (`user_id`),
-                  KEY `action_status` (`action`, `status`)
-                ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;";            
+              `id` int(11) NOT NULL AUTO_INCREMENT,
+              `trace_id` varchar(255) DEFAULT NULL,
+              `timestamp` datetime NOT NULL,
+              `user_id` bigint(20) DEFAULT NULL,
+              `status` varchar(50) NOT NULL,
+              `action` varchar(100) NOT NULL,
+              `wrapper_code` varchar(255) DEFAULT NULL,
+              `model_code` varchar(255) DEFAULT NULL,
+              `http_code` int(11) DEFAULT NULL,
+              `error_message` text DEFAULT NULL,
+              `prompt_tokens` int(11) DEFAULT NULL,
+              `completion_tokens` int(11) DEFAULT NULL,
+              `total_tokens` int(11) DEFAULT NULL,
+              `credits_used` bigint(20) DEFAULT 0,
+              `latency_ms` int(11) DEFAULT 0,
+              `token_data` text DEFAULT NULL,
+              PRIMARY KEY (`id`),
+              KEY `user_id` (`user_id`),
+              KEY `action_status` (`action`, `status`)
+            ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;";            
             geekybot::$_db->query($query);
         }
     }

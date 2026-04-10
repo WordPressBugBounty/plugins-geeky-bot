@@ -5,19 +5,82 @@ if (!GEEKYBOTincluder::GEEKYBOT_getTemplate('templates/admin/header',array('modu
     return;
 }
 
-// Ensure geekybot::$_data[0] is retrieved and initialized safely
 $data = geekybot::$_data[0] ?? array();
-
-// Extract logs and summary data with safe fallbacks
 $logs = $data['logs'] ?? array();
-   
-// Initialize summary data with default/N/A values, excluding cost.
 $summary_data = $data['summary'] ?? array(
     'runs'    => '0',
     'errors'  => '0',
     'model'   => __('N/A (Error)', 'geeky-bot'),
 );
 ?>
+
+<style>
+    /* Modern Logs UI matching the screenshot */
+    .geekybot-log-table-wrapper {
+        background: #fff;
+        border: 1px solid #e5e7eb;
+        border-radius: 8px;
+        overflow: hidden;
+        margin-top: 20px;
+    }
+    .geekybot-log-table {
+        width: 100%;
+        border-collapse: collapse;
+        text-align: left;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    }
+    .geekybot-log-table th {
+        background: #f9fafb;
+        padding: 12px 16px;
+        font-size: 11px;
+        font-weight: 600;
+        color: #6b7280;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+        border-bottom: 1px solid #e5e7eb;
+    }
+    .geekybot-log-table td {
+        padding: 16px;
+        border-bottom: 1px solid #e5e7eb;
+        vertical-align: middle;
+        font-size: 13px;
+        color: #374151;
+    }
+    .geekybot-log-table tr:last-child td {
+        border-bottom: none;
+    }
+    
+    /* Pill Badges */
+    .zy-badge {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        padding: 4px 10px;
+        border-radius: 4px;
+        font-size: 11px;
+        font-weight: 700;
+        letter-spacing: 0.5px;
+    }
+    .zy-badge.suc { background: #dcfce7; color: #166534; }
+    .zy-badge.err { background: #fee2e2; color: #991b1b; }
+    .zy-badge.wrn { background: #fef08a; color: #9a3412; }
+
+    /* Typographic Helpers */
+    .zy-primary-text { font-weight: 600; color: #111827; margin-bottom: 4px; }
+    .zy-secondary-text { font-size: 12px; color: #6b7280; }
+    
+    /* Details Button */
+    .zy-action-btn {
+        background: transparent;
+        border: none;
+        color: #9ca3af;
+        cursor: pointer;
+        padding: 6px;
+        border-radius: 4px;
+        transition: all 0.2s;
+    }
+    .zy-action-btn:hover { background: #f3f4f6; color: #4f46e5; }
+</style>
 
 <div id="geekybotadmin-wrapper" class="geekybot-admin-main-wrapper">
     <?php GEEKYBOTincluder::GEEKYBOT_getTemplate('templates/admin/upper-nav',array('module' => 'zywraplogs','layouts' => 'logs')); ?>
@@ -32,11 +95,13 @@ $summary_data = $data['summary'] ?? array(
               <a href="<?php echo esc_url(wp_nonce_url('admin.php?page=geekybot_zywraplogs&geekybotlt=logs','configuration'))?>" class="geekybot-tab-link active"><?php echo esc_html(__('AI Logs', 'geeky-bot')); ?></a>
             </div>
             <div id="geekybot-head">
-                <h1 class="geekybot-head-text"><?php echo esc_html(__('Zywrap Logs', 'geeky-bot')); ?></h1>
+                <h1 class="geekybot-head-text"><?php echo esc_html(__('Zywrap API Logs', 'geeky-bot')); ?></h1>
             </div>
+            
             <div id="geekybot-admin-wrapper" class="p0 bg-n bs-n geekybot-admin-error-log-container">
                 <div class="geekybot-admin-wrapper">
                     <div class="geekybot-admin-container">
+                        
                         <div class="geekybot-summary-grid">
                             <div class="geekybot-summary-card">
                                 <div class="geekybot-summary-label"><?php echo esc_html( __('Total API Runs (24h)', 'geeky-bot') ); ?></div>
@@ -48,198 +113,140 @@ $summary_data = $data['summary'] ?? array(
                             </div>
                             <div class="geekybot-summary-card">
                                 <div class="geekybot-summary-label"><?php echo esc_html( __('Top Model Used', 'geeky-bot') ); ?></div>
-                                <div class="geekybot-summary-value geekybot-model"><?php echo esc_html( $summary_data['model'] ); ?></div>
+                                <div class="geekybot-summary-value geekybot-model" style="font-size: 18px; line-height: 1.4;"><?php echo esc_html( $summary_data['model'] ); ?></div>
                             </div>
                         </div>
+
                         <div class="geekybot-filter-bar">
-                            <input type="text" value="<?php echo isset($_GET['search']) ? esc_attr(sanitize_text_field($_GET['search'])) : ''; ?>" placeholder="<?php echo esc_attr( __('Search by Action, User or Wrapper...', 'geeky-bot') ); ?>" class="geekybot-filter-input geekybot-search-input" id="geekybot-search-input">
+                            <input type="text" value="<?php echo isset($_GET['search']) ? esc_attr(sanitize_text_field($_GET['search'])) : ''; ?>" placeholder="<?php echo esc_attr( __('Search by Trace ID, Wrapper, or Model...', 'geeky-bot') ); ?>" class="geekybot-filter-input geekybot-search-input" id="geekybot-search-input" style="width: 300px;">
 
                             <select class="geekybot-filter-input geekybot-select-input" id="geekybot-status-filter">
-                                <option value=""><?php echo esc_html( __('Filter by Status', 'geeky-bot') ); ?></option>
+                                <option value=""><?php echo esc_html( __('All Statuses', 'geeky-bot') ); ?></option>
                                 <option value="success" <?php selected( isset($_GET['status_filter']) ? $_GET['status_filter'] : '', 'success' ); ?>><?php echo esc_html( __('Success', 'geeky-bot') ); ?></option>
                                 <option value="error" <?php selected( isset($_GET['status_filter']) ? $_GET['status_filter'] : '', 'error' ); ?>><?php echo esc_html( __('Error', 'geeky-bot') ); ?></option>
-                                <option value="warning" <?php selected( isset($_GET['status_filter']) ? $_GET['status_filter'] : '', 'warning' ); ?>><?php echo esc_html( __('Limited', 'geeky-bot') ); ?></option>
-                                <option value="ok" <?php selected( isset($_GET['status_filter']) ? $_GET['status_filter'] : '', 'ok' ); ?>><?php echo esc_html( __('OK/Internal', 'geeky-bot') ); ?></option>
                             </select>
+                            
                             <button class="geekybot-filter-button" id="geekybot-apply-filter">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
-                                  <polygon points="3 4 21 4 14 13 14 20 10 18 10 13 3 4"></polygon>
-                                </svg>
-                                <?php echo esc_html( __('Filter', 'geeky-bot') ); ?>
+                                <?php echo esc_html( __('Apply Filters', 'geeky-bot') ); ?>
                             </button>
 
-                            <button class="geekybot-filter-button geekybot-reset-button" id="geekybot-reset-filter" style="background-color: #6b7280;">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                    <path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"></path>
-                                    <path d="M3 3v5h5"></path>
-                                </svg>
+                            <button class="geekybot-filter-button geekybot-reset-button" id="geekybot-reset-filter" style="background-color: #f3f4f6; color: #374151; border: 1px solid #d1d5db;">
                                 <?php echo esc_html( __('Reset', 'geeky-bot') ); ?>
                             </button>
                         </div>
-                        <div class="geekybot-table-responsive-wrapper">
-                            <table class="geekybot-table geekybot-table-zywrap-log">
+
+                        <div class="geekybot-log-table-wrapper">
+                            <table class="geekybot-log-table">
                                 <thead>
                                     <tr>
-                                        <th style="width: 60px;"><?php echo esc_html( __('Status', 'geeky-bot') ); ?></th>
-                                        <th style="width: 15%;"><?php echo esc_html( __('Action & User', 'geeky-bot') ); ?></th>
-                                        <th style="width: 25%;"><?php echo esc_html( __('Wrapper / Model', 'geeky-bot') ); ?></th>
-                                        <th style="width: 20%;"><?php echo esc_html( __('Performance & Tokens', 'geeky-bot') ); ?></th>
+                                        <th style="width: 80px; text-align: center;"><?php echo esc_html( __('Status', 'geeky-bot') ); ?></th>
+                                        <th style="width: 15%;"><?php echo esc_html( __('Action / Trace ID', 'geeky-bot') ); ?></th>
+                                        <th style="width: 20%;"><?php echo esc_html( __('Wrapper / Model', 'geeky-bot') ); ?></th>
+                                        <th style="width: 15%;"><?php echo esc_html( __('Performance', 'geeky-bot') ); ?></th>
                                         <th><?php echo esc_html( __('Error / Details', 'geeky-bot') ); ?></th>
-                                        <th style="width: 100px;"><?php echo esc_html( __('Time', 'geeky-bot') ); ?></th>
-                                        <th class="geekybot-text-center" style="width: 40px;"><?php echo esc_html( __('Details', 'geeky-bot') ); ?></th>
+                                        <th style="width: 120px;"><?php echo esc_html( __('Time', 'geeky-bot') ); ?></th>
+                                        <th style="width: 60px; text-align: center;"><?php echo esc_html( __('Details', 'geeky-bot') ); ?></th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <?php 
                                     if ( empty( $logs ) ) : ?>
                                         <tr>
-                                            <td colspan="7" class="geekybot-text-center">
-                                                <?php echo esc_html( __('No log entries found or a database error occurred.', 'geeky-bot') ); ?>
+                                            <td colspan="7" style="text-align: center; padding: 40px; color: #6b7280;">
+                                                <?php echo esc_html( __('No log entries found. Generate some content in the playground to see logs.', 'geeky-bot') ); ?>
                                             </td>
                                         </tr>
                                     <?php else : ?>
                                         <?php foreach ( $logs as $log ) :
-                                            // Safely retrieve data using the null coalescing operator (??)
-                                            $http_status = absint($log['status'] ?? 0); // Assuming status is the HTTP status code
-                                            $tokens_in = absint($log['prompt_tokens'] ?? 0);
-                                            $tokens_out = absint($log['completion_tokens'] ?? 0);
-                                            $total_tokens = $tokens_in + $tokens_out;
-
-                                            // Determine status class/text
-                                            $status_text = $log['status'];
-                                            $status_class = 'geekybot-status-ok';
-                                            if ($http_status >= 500 || $status_text === 'error') {
-                                                $status_class = 'geekybot-status-error';
-                                                $status_text = 'ERR';
-                                            } elseif ($http_status >= 400 || $status_text === 'warning') {
-                                                $status_class = 'geekybot-status-warning';
-                                                $status_text = 'LIM';
-                                            } elseif ($http_status === 200 || $status_text === 'success') {
-                                                $status_class = 'geekybot-status-success';
-                                                $status_text = 'SUC';
+                                            // Data Mapping based on original table
+                                            $http_code = absint($log['http_code'] ?? 200);
+                                            $raw_status = strtolower($log['status'] ?? 'success');
+                                            
+                                            // Status Badge Logic
+                                            if ($http_code >= 500 || $raw_status === 'error' || $raw_status === 'invalid') {
+                                                $badge_class = 'err'; $badge_text = 'ERR';
+                                            } elseif ($http_code >= 400 || $raw_status === 'warning') {
+                                                $badge_class = 'wrn'; $badge_text = 'LIM';
+                                            } else {
+                                                $badge_class = 'suc'; $badge_text = 'SUC';
                                             }
 
-                                            // Fallback/Simulated data for display strings (if not provided by $data)
-                                            $log_id = $log['id'] ?? $log['log_id'] ?? 0;
-                                            $action = $log['action'] ?? __('N/A', 'geeky-bot');
-                                            //$user = $log['user'] ?? __('Guest', 'geeky-bot');
-                                            $user_id = absint($log['user_id'] ?? 0);
-                                            $user_obj = get_userdata($user_id);
-                                            // If user exists, use Display Name; otherwise, fallback to "Guest"
-                                            $user = $user_obj ? $user_obj->display_name : __('Guest', 'geeky-bot');
-                                            $wrapper = $log['wrapper_code'] ?? '-';
-                                            $model_code = $log['model_code'] ?? '-';
-                                            $message = $log['response_message'] ?? $log['error_message'] ?? __('Request completed or details N/A.', 'geeky-bot');
-                                            $log_timestamp = $log['timestamp'] ?? null;
+                                            $action = $log['action'] ?: 'proxy_execute';
+                                            $trace_id = $log['trace_id'] ?: '-';
+                                            $wrapper_code = $log['wrapper_code'] ?: '-';
+                                            $model_code = $log['model_code'] ?: '-';
+                                            
+                                            $total_tokens = number_format_i18n(absint($log['total_tokens'] ?? 0));
+                                            $error_msg = $log['error_message'] ?: __('Request completed or details N/A.', 'geeky-bot');
+                                            
+                                            // Time Ago Calculation
                                             $time_ago = __('N/A', 'geeky-bot');
-
-                                            if ( $log_timestamp ) {
-                                                // Convert the database timestamp string to a Unix time
-                                                $timestamp_unix = strtotime($log_timestamp); 
-                                                
-                                                // Ensure the timestamp is valid and not in the future
+                                            if ( !empty($log['timestamp']) ) {
+                                                $timestamp_unix = strtotime($log['timestamp']); 
                                                 if ( $timestamp_unix && $timestamp_unix <= current_time('timestamp') ) {
-                                                    $time_ago = sprintf( 
-                                                        __('%s ago', 'geeky-bot'), 
-                                                        human_time_diff($timestamp_unix, current_time('timestamp'))
-                                                    );
+                                                    $time_ago = human_time_diff($timestamp_unix, current_time('timestamp')) . ' ago';
                                                 } else {
-                                                     // If timestamp exists but cannot be calculated (e.g., future time)
                                                     $time_ago = esc_html( date('M j, Y H:i', $timestamp_unix) );
                                                 }
                                             }
-
-                                            // We assume the log array might be missing 'status_class', 'status', 'log_id', etc. from the DB, 
-                                            // so we derive them above and use the derived variables.
                                         ?>
-                                    <tr>
-                                        <td>
-                                            <span class="geekybot-status-badge <?php echo esc_attr( $status_class ); ?>">
-                                                <?php echo esc_html( $status_text ); ?>
-                                            </span>
-                                        </td>
-                                        <td>
-                                            <div class="geekybot-font-bold geekybot-text-gray-800"><?php echo esc_html( $action ); ?></div>
-                                            <div class="geekybot-text-sm geekybot-text-gray-500" title="<?php echo esc_attr( sprintf( __('User ID: %s', 'geeky-bot'), $user_id ) ); ?>">
-                                                <?php echo esc_html( $user ); ?>
-                                            </div>
-                                        </td>
-                                        <td>
-                                            <div class="geekybot-wrapper-model-cell">
-                                                <div title="<?php echo esc_attr( $wrapper ); ?>">
-                                                    <span class="geekybot-text-xs geekybot-font-semibold geekybot-text-gray-500"><?php echo esc_html( __('W:', 'geeky-bot') ); ?></span>
-                                                    <?php echo esc_html( $wrapper === '-' ? '-' : substr($wrapper, 0, 28) . '...' ); ?>
-                                                </div>
-                                                <div title="<?php echo esc_attr( $model_code ); ?>">
-                                                    <span class="geekybot-text-xs geekybot-font-semibold geekybot-text-gray-500"><?php echo esc_html( __('M:', 'geeky-bot') ); ?></span>
-                                                    <?php echo esc_html( $model_code === '-' ? '-' : substr($model_code, 0, 28) . '...' ); ?>
-                                                </div>
-                                            </div>
-                                        </td>
-                                        <td>
-                                            <div class="geekybot-performance-stats">
-                                                <div>
-                                                    <span class="geekybot-font-bold"><?php echo esc_html( __('HTTP:', 'geeky-bot') ); ?></span>
-                                                    <span class="<?php echo ($http_status >= 400 ? 'geekybot-text-error' : 'geekybot-text-success'); ?>">
-                                                        <?php echo esc_html( $http_status ); ?>
-                                                    </span>
-                                                </div>
-                                                <?php if ($total_tokens > 0) : ?>
-                                                    <div class="geekybot-token-stats">
-                                                        <span class="geekybot-font-bold"><?php echo esc_html( __('Tokens:', 'geeky-bot') ); ?></span>
-                                                        <span class="geekybot-text-gray-700" title="<?php echo esc_attr( sprintf( __('In: %s / Out: %s', 'geeky-bot'), number_format_i18n($tokens_in), number_format_i18n($tokens_out) ) ); ?>">
-                                                            <?php echo esc_html( number_format_i18n($total_tokens) ); ?>
-                                                        </span>
-                                                    </div>
-                                                <?php else : ?>
-                                                    <span class="geekybot-text-gray-400"><?php echo esc_html( __('No tokens recorded', 'geeky-bot') ); ?></span>
-                                                <?php endif; ?>
-
-                                                </div>
-                                        </td>
-                                        <td>
-                                            <?php if ( $http_status >= 400 ) : ?>
-                                                <div class="geekybot-text-error-detail" title="<?php echo esc_attr( $message ); ?>">
-                                                    <?php echo esc_html( substr($message, 0, 40) . (strlen($message) > 40 ? '...' : '') ); ?>
-                                                </div>
-                                            <?php else : ?>
-                                                <span class="geekybot-text-sm geekybot-text-gray-400">
-                                                    <?php echo esc_html( substr($message, 0, 40) . (strlen($message) > 40 ? '...' : '') ); ?>
+                                        <tr>
+                                            <td style="text-align: center;">
+                                                <span class="zy-badge <?php echo esc_attr( $badge_class ); ?>">
+                                                    <?php echo esc_html( $badge_text ); ?>
                                                 </span>
-                                            <?php endif; ?>
-                                        </td>
-                                        <td title="<?php echo esc_attr( $log['timestamp'] ?? 'N/A' ); ?>" class="geekybot-text-gray-600">
-                                            <?php echo esc_html( $time_ago ); ?>
-                                        </td>
-                                        <td class="geekybot-text-center">
-                                            <button class="geekybot-details-btn" 
-                                                type="button"
-                                                data-log-id="<?php echo esc_attr( $log_id ); ?>"
-                                                data-status="<?php echo esc_attr( $status_text ); ?>"
-                                                data-model="<?php echo esc_attr( $model_code ); ?>"
-                                                data-wrapper="<?php echo esc_attr( $wrapper ); ?>"
-                                                data-tokens-in="<?php echo esc_attr( $tokens_in ); ?>"
-                                                data-tokens-out="<?php echo esc_attr( $tokens_out ); ?>"
-                                                data-tokens-total="<?php echo esc_attr( $total_tokens ); ?>"
-                                                data-time="<?php echo esc_attr( $log['timestamp'] ); ?>"
-                                                data-user="<?php echo esc_attr( $user ); ?>"
-                                                
-                                                <?php 
-                                                    // Decide which message to show (Response or Error)
-                                                    // If it's an error, use error_message. If success, use response_message.
-                                                    $full_detail = !empty($log['error_message']) ? $log['error_message'] : ($log['response_message'] ?? __('No response data.', 'geeky-bot')); 
-                                                ?>
-                                                data-full-message="<?php echo esc_attr( $full_detail ); ?>"
-                                            >
-                                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                                    <path d="M1 12s4-7 11-7 11 7 11 7-4 7-11 7S1 12 1 12z"/>
-                                                    <circle cx="12" cy="12" r="3"/>
-                                                </svg>
-                                            </button>
-                                        </td>
-                                    </tr>
-                                    <?php endforeach; ?>
-                                <?php endif; ?>
+                                            </td>
+                                            <td>
+                                                <div class="zy-primary-text" title="Action"><?php echo esc_html( $action ); ?></div>
+                                                <div class="zy-secondary-text" title="Trace ID: <?php echo esc_attr($trace_id); ?>">
+                                                    ID: <?php echo esc_html( substr($trace_id, 0, 12) ); ?><?php echo strlen($trace_id) > 12 ? '...' : ''; ?>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <div class="zy-secondary-text" style="margin-bottom: 4px;" title="Wrapper: <?php echo esc_attr($wrapper_code); ?>">
+                                                    <strong style="color: #4b5563;">W:</strong> <?php echo esc_html( substr($wrapper_code, 0, 20) ); ?><?php echo strlen($wrapper_code) > 20 ? '...' : ''; ?>
+                                                </div>
+                                                <div class="zy-secondary-text" title="Model: <?php echo esc_attr($model_code); ?>">
+                                                    <strong style="color: #4b5563;">M:</strong> <?php echo esc_html( substr($model_code, 0, 20) ); ?><?php echo strlen($model_code) > 20 ? '...' : ''; ?>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <div class="zy-secondary-text" style="margin-bottom: 4px;">
+                                                    <strong style="color: #4b5563;">HTTP:</strong> 
+                                                    <span class="<?php echo $http_code >= 400 ? 'geekybot-text-error' : ''; ?>"><?php echo esc_html( $http_code ); ?></span>
+                                                </div>
+                                                <div class="zy-secondary-text">
+                                                    <strong style="color: #4b5563;">Tokens:</strong> <?php echo esc_html( $total_tokens ); ?>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <div class="zy-secondary-text <?php echo ($badge_class === 'err') ? 'geekybot-text-error' : ''; ?>" title="<?php echo esc_attr( $error_msg ); ?>">
+                                                    <?php echo esc_html( substr($error_msg, 0, 60) . (strlen($error_msg) > 60 ? '...' : '') ); ?>
+                                                </div>
+                                            </td>
+                                            <td class="zy-secondary-text" title="<?php echo esc_attr( $log['timestamp'] ?? '' ); ?>">
+                                                <?php echo esc_html( $time_ago ); ?>
+                                            </td>
+                                            <td style="text-align: center;">
+                                                <button class="zy-action-btn zy-view-details" 
+                                                    data-trace="<?php echo esc_attr( $trace_id ); ?>"
+                                                    data-status="<?php echo esc_attr( strtoupper($raw_status) ); ?>"
+                                                    data-wrapper="<?php echo esc_attr( $wrapper_code ); ?>"
+                                                    data-model="<?php echo esc_attr( $model_code ); ?>"
+                                                    data-http="<?php echo esc_attr( $http_code ); ?>"
+                                                    data-tokens="<?php echo esc_attr( $total_tokens ); ?> (In: <?php echo esc_attr($log['prompt_tokens']??0); ?>, Out: <?php echo esc_attr($log['completion_tokens']??0); ?>)"
+                                                    data-time="<?php echo esc_attr( $log['timestamp'] ); ?>"
+                                                    data-error="<?php echo esc_attr( $log['error_message'] ?: 'None' ); ?>"
+                                                >
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                                        <path d="M1 12s4-7 11-7 11 7 11 7-4 7-11 7S1 12 1 12z"/>
+                                                        <circle cx="12" cy="12" r="3"/>
+                                                    </svg>
+                                                </button>
+                                            </td>
+                                        </tr>
+                                        <?php endforeach; ?>
+                                    <?php endif; ?>
                                 </tbody>
                             </table>
                         </div>
@@ -248,7 +255,7 @@ $summary_data = $data['summary'] ?? array(
                         if (geekybot::$_data[1]) {
                             GEEKYBOTincluder::GEEKYBOT_getTemplate('templates/admin/pagination',array('module' => 'zywrap' , 'pagination' => geekybot::$_data[1]));
                         }
-                        ?>
+                    ?>
                 </div>
             </div>
         </div>
@@ -256,63 +263,24 @@ $summary_data = $data['summary'] ?? array(
 </div>
 
 <script>
-/**
- * jQuery implementation for log details and filtering.
- * Wrapped in the WordPress-recommended no-conflict closure.
- */
 jQuery(document).ready(function($) {
-    // Log data map used for the simulated detail view (matching PHP structure above)
-    // IMPORTANT: This static map is purely for simulation and should ideally fetch detailed data via AJAX.
-    const geekybot_log_data_map = {
-        '125': { tokens: '<?php echo esc_js('24,024'); ?>', status: '<?php echo esc_js('SUCCESS'); ?>' },
-        '124': { tokens: '<?php echo esc_js('1,234'); ?>', status: '<?php echo esc_js('ERROR'); ?>' },
-        '123': { tokens: '<?php echo esc_js('N/A'); ?>', status: '<?php echo esc_js('LIMITED'); ?>' },
-        '122': { tokens: '<?php echo esc_js('N/A'); ?>', status: '<?php echo esc_js('OK'); ?>' }
-    };
-
-    // Event listener for the Details buttons
-
-    $('.geekybot-details-btn').on('click', function(e) {
+    
+    // Custom Alert Modal for Details
+    $('.zy-view-details').on('click', function(e) {
         e.preventDefault();
-        
         const btn = $(this);
         
-        // Retrieve data from data-attributes
-        const logId = btn.data('log-id');
-        const status = btn.data('status');
-        const model = btn.data('model');
-        const wrapper = btn.data('wrapper');
-        const time = btn.data('time');
-        const user = btn.data('user');
-        
-        // Token breakdown
-        const tokensIn = btn.data('tokens-in');
-        const tokensOut = btn.data('tokens-out');
-        const tokensTotal = btn.data('tokens-total');
-        
-        // The full message (Response or Error)
-        const fullMessage = btn.data('full-message');
+        const details = 
+            'Trace ID:\t\t' + btn.data('trace') + '\n' +
+            'Time:\t\t\t' + btn.data('time') + '\n' +
+            'Status:\t\t\t' + btn.data('status') + '\n' +
+            'Wrapper:\t\t' + btn.data('wrapper') + '\n' +
+            'Model:\t\t\t' + btn.data('model') + '\n' +
+            'HTTP Code:\t\t' + btn.data('http') + '\n' +
+            'Tokens:\t\t\t' + btn.data('tokens') + '\n\n' +
+            'Error / Output:\n' + btn.data('error');
 
-        // Construct a clean, detailed message string
-        const detailMessage = 
-            '------------------------------------------------\n' +
-            'LOG DETAILS #' + logId + '\n' +
-            '------------------------------------------------\n\n' +
-            '📅 Time:      ' + time + '\n' +
-            '👤 User:      ' + user + '\n' +
-            '🤖 Model:     ' + model + ' (' + wrapper + ')\n' +
-            '📊 Status:    ' + status + '\n\n' +
-            
-            '--- TOKEN USAGE ---\n' +
-            'Input:   ' + tokensIn + '\n' +
-            'Output:  ' + tokensOut + '\n' +
-            'Total:   ' + tokensTotal + '\n\n' +
-            
-            '--- FULL RESPONSE / ERROR ---\n' +
-            fullMessage;
-
-        // Show the data
-        alert(detailMessage);
+        alert(details);
     });
 
     // Filter Logic
@@ -329,38 +297,6 @@ jQuery(document).ready(function($) {
     // Reset Logic
     $('#geekybot-reset-filter').on('click', function(e) {
         e.preventDefault();
-        window.location.href = 'admin.php?page=geekybot_zywraplogs&geekybotlt=logs';
-    });
-
-    // Real filter implementation
-    $('#geekybot-apply-filter').on('click', function(e) {
-        e.preventDefault();
-        
-        const searchVal = $('#geekybot-search-input').val();
-        const statusVal = $('#geekybot-status-filter').val();
-
-        // Construct current URL base
-        let url = 'admin.php?page=geekybot_zywraplogs&geekybotlt=logs';
-
-        if (searchVal) {
-            url += '&search=' + encodeURIComponent(searchVal);
-        }
-        if (statusVal) {
-            url += '&status_filter=' + encodeURIComponent(statusVal);
-        }
-
-        // Redirect to reload the page with filters
-        window.location.href = url;
-    });
-    // Reset Button Logic
-    $('#geekybot-reset-filter').on('click', function(e) {
-        e.preventDefault();
-
-        // 1. Clear the visual inputs immediately
-        $('#geekybot-search-input').val('');
-        $('#geekybot-status-filter').val('');
-
-        // 2. Reload the page with the base URL (removing all search parameters)
         window.location.href = 'admin.php?page=geekybot_zywraplogs&geekybotlt=logs';
     });
 });

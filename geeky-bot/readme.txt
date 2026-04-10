@@ -1,27 +1,37 @@
-=== GeekyBot — Generate AI Content Without Prompt, Chatbot and Lead Generation ===
+=== GeekyBot — AI Copilot, Chatbot, WooCommerce Lead Gen & Zero-Prompt Content ===
 Contributors: ahmadgb
-Tags: chatbot, AI, OpenAI, lead generation, GPT
+Tags: chatbot, AI, copilot, woocommerce, openai
 Donate link: https://geekybot.com
-Requires at least: WordPress 5.0
+Requires at least: 5.0
 Tested up to: 6.9
-Stable tag: 1.2.3
+Stable tag: 1.2.4
 License: GPLv2
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
 == Description ==
 
-Generate AI content without prompt, AI chatbot, WooCommerce lead generation, intelligent web search, and interactive customer engagement on your WordPress website.
+Transform your WordPress website into an AI powerhouse. **GeekyBot** is the ultimate all-in-one AI plugin that brings intelligent chatbots, WooCommerce lead generation, and a revolutionary "Zero-Prompt" AI Copilot directly to your dashboard.
 
-==Top Features ==
-- **AI Content Creator:** The AI Content Engine instantly generates high-quality content without any prompts. In a few clicks, it produces ready-to-use, polished text in multiple languages, powered by advanced AI models—making content creation effortless and efficient.
-- **WooCommerce Lead Generation:** Streamline shopping experiences by allowing users to find products, explore variations, and add items to their cart directly through GeekyBot.
-- **AI Chatbot:** Customize interactions using slots and variables to dynamically capture and process user inputs.
-- **AI Web Search:** Assist users in discovering relevant information within your blog posts or articles by searching or topics and displaying content as per user requests.
-- **GeekyBot AI Integrations:** Dialogflow (NLP), OpenAI Chat & Assistants (GPT models), OpenRouter (multi-provider AI), with custom client libraries for seamless API connectivity.
+Generate AI content without prompts, deploy an interactive AI chatbot, boost WooCommerce lead generation, enable intelligent web search, and drive interactive customer engagement on your WordPress website.
+
+**Introducing the Zywrap AI Copilot (New in 1.2.4)**
+Stop wasting time trying to engineer the perfect AI prompt. With our new Zywrap AI Engine integration, you simply select an AI Solution (e.g., SEO Blog Post, Product Description), fill in a dynamic form, and generate production-ready content directly into the Gutenberg or Classic Editor. 
+
+Whether you want to automate blog writing, engage customers with an intelligent chatbot, or boost e-commerce sales, GeekyBot does it all.
+
+== Top Features ==
+
+* 🤖 **The Zywrap AI Copilot Drawer (NEW):** A sleek, modern sliding drawer available inside Gutenberg, the Classic Editor, and WooCommerce product pages. Generate high-quality content side-by-side with your writing.
+* ⚡ **Zero Prompt Engineering:** Access a synced cloud database of professional "AI Wrappers". Just fill in the dynamic form fields (like Tone, Audience, or Keywords) and let the AI do the heavy lifting.
+* 📝 **Native Block Formatting:** AI-generated content is automatically parsed and inserted as native WordPress blocks (Paragraphs, Headings, Code blocks) flawlessly.
+* ✍️ **AI Content Creator:** The AI Content Engine instantly generates high-quality content without any prompts. In a few clicks, it produces ready-to-use, polished text in multiple languages, powered by advanced AI models.
+* 🛍️ **WooCommerce Lead Generation:** Streamline shopping experiences by allowing users to find products, explore variations, and add items to their cart directly through the GeekyBot interactive chatbot.
+* 💬 **Smart AI Chatbot:** Customize interactions using slots and variables to dynamically capture and process user inputs.
+* 🔍 **AI Web Search:** Assist users in discovering relevant information within your blog posts or articles by searching for topics and displaying content as per user requests.
+* 🔌 **Massive AI Integrations:** Connect seamlessly to Dialogflow (NLP), OpenAI Chat & Assistants (GPT models), OpenRouter (multi-provider AI), and Zywrap with custom client libraries for seamless API connectivity.
+* 🔗 **Plugin Support:** Out-of-the-box integration with bbPress, Auto Listings, Estatik Real Estate Plugin, and Motors (Car Dealer & Classifieds).
 
 https://www.youtube.com/watch?v=iyGUUFhZ9Ag
-
-
 == Usage ==
 
 ### Generate AI Content Without Prompt
@@ -259,6 +269,14 @@ This plugin makes use of the following third-party services:
 - Contains optimized Guzzle HTTP client configuration.
 
 == Changelog ==
+= 1.2.4 =
+* **Major Feature:** Introduced the modern **Zywrap AI Copilot Drawer**. Access AI generation globally across Gutenberg, Classic Editor, and WooCommerce product pages via a sleek sliding panel.
+* **Major Feature:** Upgraded to the Zywrap V1 SDK Architecture. Say goodbye to manual prompting with our new dynamic "AI Solutions" and "Configuration Styles" logic.
+* **New:** Smart Markdown-to-Block conversion. AI output is now automatically parsed (`marked.js`) and inserted as native WordPress Gutenberg blocks.
+* **New:** Multi-step "Smart Sync" progress bar. Safely download and sync thousands of AI wrappers from the cloud without server timeouts.
+* **Optimization:** Completely rewrote the database synchronization engine. Imports now use lightning-fast batch chunking to eliminate memory exhaustion on shared hosts.
+* **Optimization:** Upgraded system and usage logging to track detailed token consumption, latency, and HTTP response codes.
+
 = 1.2.3
 * Security Updates.
 * Improved privacy and security to ensure that hidden or password-protected products are never accidentally displayed in search results or chatbot suggestions..
@@ -309,43 +327,3 @@ This plugin makes use of the following third-party services:
 * Improve story board.
 * Configuration base support link.
 * Bug fix.
-
-= 1.1.0
-* Security Updates.
-* Bug fix
-
-= 1.0.9
-* Security Updates.
-* Add search in story detail page
-* Improved scroll in story detail page
-* Bug fix
-
-= 1.0.8
-* Add addons
-
-= 1.0.7
-* Improve User Search
-* Add action buttons in the fallback
-
-= 1.0.6
-* Improve AI Web Search
-
-= 1.0.5
-* Improve Admin dashboard
-* Security Updates.
-* Add default fallback for user input.
-
-= 1.0.4
-* Expanded Plugin Support for AI Web Search: Geeky Bot now supports AI web search across all WordPress plugins.
-
-= 1.0.3
-* Integration with 'bbPress', 'Auto Listings – Car Listings & Car Dealership Plugin for WordPress', 'Estatik Real Estate Plugin' and 'Motors – Car Dealer, Classifieds & Listing' plugin.
-
-= 1.0.2
-* Integration with 'WP Job Manager', 'LearnPress', 'Tutor LMS', 'BetterDocs' and 'Echo Knowledge Base' plugin.
-
-= 1.0.1
-* Add Template option for AI Story.
-
-= 1.0.0
-* Just release.
