@@ -3,8 +3,8 @@ Contributors: ahmadgb
 Tags: chatbot, AI, copilot, woocommerce, openai
 Donate link: https://geekybot.com
 Requires at least: 5.0
-Tested up to: 6.9
-Stable tag: 1.2.4
+Tested up to: 7.0
+Stable tag: 1.2.5
 License: GPLv2
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -269,6 +269,9 @@ This plugin makes use of the following third-party services:
 - Contains optimized Guzzle HTTP client configuration.
 
 == Changelog ==
+= 1.2.5 =
+* Bug Fix
+
 = 1.2.4 =
 * **Major Feature:** Introduced the modern **Zywrap AI Copilot Drawer**. Access AI generation globally across Gutenberg, Classic Editor, and WooCommerce product pages via a sleek sliding panel.
 * **Major Feature:** Upgraded to the Zywrap V1 SDK Architecture. Say goodbye to manual prompting with our new dynamic "AI Solutions" and "Configuration Styles" logic.

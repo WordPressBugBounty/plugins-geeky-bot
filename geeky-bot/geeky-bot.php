@@ -1,16 +1,11 @@
 <?php
 
-/**
- * @package Geeky Bot
- * @author Geeky Bot
- * @version 1.2.4
- */
 /*
   * Plugin Name: Geeky Bot
   * Plugin URI: https://geekybot.com/
   * Description: The ultimate AI chatbot for WooCommerce lead generation, intelligent web search, and interactive customer engagement on your WordPress website.
   * Author: Geeky Bot
-  * Version: 1.2.4
+  * Version: 1.2.5
   * Text Domain: geeky-bot
   * Domain Path: /languages
   * Author URI: https://geekybot.com/
@@ -95,7 +90,7 @@ class geekybot {
         self::$_data = array();
         self::$_error_flag = null;
         self::$_error_flag_message = null;
-        self::$_currentversion = '124';
+        self::$_currentversion = '125';
         self::$_addon_query = array('select'=>'','join'=>'','where'=>'');
         self::$_config = GEEKYBOTincluder::GEEKYBOT_getModel('configuration');
         self::$_isgeekybotplugin = true;
@@ -194,7 +189,7 @@ class geekybot {
         if (is_plugin_active('geeky-bot/geeky-bot.php')) {
             include_once GEEKYBOT_PLUGIN_PATH . 'includes/updates/updates.php';
             $installedversion = GEEKYBOTupdates::geekybot_getInstalledVersion();
-            $cversion = '124';
+            $cversion = '125';
             if ($installedversion != $cversion) {
                 add_action( 'admin_notices', array($this, 'geekybot_sql_update_available_notice') );
             }
@@ -273,7 +268,7 @@ class geekybot {
                     // restore colors data end
                     update_option('geekybot_currentversion', self::$_currentversion);
                     include_once GEEKYBOT_PLUGIN_PATH . 'includes/updates/updates.php';
-                    GEEKYBOTupdates::GEEKYBOT_checkUpdates('124');
+                    GEEKYBOTupdates::GEEKYBOT_checkUpdates('125');
                     GEEKYBOTincluder::GEEKYBOT_getModel('geekybot')->updateColorFile();
                 }
             }
@@ -1239,33 +1234,23 @@ class geekybot {
     }
 
     function geekyboot_load_wp_pcl_zip() {
-        $wp_admin_url = admin_url('includes/class-pclzip.php');
-        $wp_admin_path = str_replace(site_url('/'), ABSPATH, $wp_admin_url);
-        require_once($wp_admin_path);
+        require_once ABSPATH . 'wp-admin/includes/class-pclzip.php';
     }
     
     function geekyboot_load_wp_file() {
-        $wp_admin_url = admin_url('includes/file.php');
-        $wp_admin_path = str_replace(site_url('/'), ABSPATH, $wp_admin_url);
-        require_once($wp_admin_path);
+        require_once ABSPATH . 'wp-admin/includes/file.php';
     }
 
     function geekyboot_load_wp_plugin_file() {
-        $wp_admin_url = admin_url('includes/plugin.php');
-        $wp_admin_path = str_replace(site_url('/'), ABSPATH, $wp_admin_url);
-        require_once($wp_admin_path);
+        require_once ABSPATH . 'wp-admin/includes/plugin.php';
     }
 
     function geekyboot_load_wp_admin_file() {
-        $wp_admin_url = admin_url('includes/admin.php');
-        $wp_admin_path = str_replace(site_url('/'), ABSPATH, $wp_admin_url);
-        require_once($wp_admin_path);
+        require_once ABSPATH . 'wp-admin/includes/admin.php';
     }
 
     function geekyboot_load_phpass() {
-        $wp_site_url = site_url('wp-includes/class-phpass.php');
-        $wp_site_path = str_replace(site_url('/'), ABSPATH, $wp_site_url);
-        require_once($wp_site_path);
+        require_once ABSPATH . 'wp-includes/class-phpass.php';
     }
 
 }
