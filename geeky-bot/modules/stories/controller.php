@@ -23,7 +23,10 @@ class GEEKYBOTStoriesController {
                     break;
                 case 'admin_formstory':
                     $task = GEEKYBOTrequest::GEEKYBOT_getVar('task');
-                    $id = GEEKYBOTrequest::GEEKYBOT_getVar('storyid');
+                    $id = absint(GEEKYBOTrequest::GEEKYBOT_getVar('storyid'));
+                    if ($id <= 0) {
+                        wp_die(esc_html__('Invalid story ID.', 'geeky-bot'));
+                    }
                     GEEKYBOTincluder::GEEKYBOT_getModel('stories')->getStory($id);
                     break;
                 default:

@@ -485,7 +485,10 @@ class GEEKYBOTstoriesModel {
     }
 
     function updateStoryForm($data){
-        $storyid = $data['storyid'];
+ 	$storyid = isset($data['storyid']) ? absint($data['storyid']) : 0;
+        if ($storyid <= 0) {
+            return GEEKYBOT_SAVE_ERROR;
+        }
         $story_mode = $data['story']['story_mode'];
         if (isset($data['story']['form_ids'])) {
             $form_ids = implode(", ", $data['story']['form_ids']);
@@ -550,6 +553,10 @@ class GEEKYBOTstoriesModel {
     }
 
     function getStory($id){
+	$id = absint($id);
+        if ($id <= 0) {
+            return;
+        }
         $query = "SELECT * FROM `" . geekybot::$_db->prefix . "geekybot_stories` where id = ".esc_sql($id);
         $row = geekybotdb::GEEKYBOT_get_row($query);
         if (isset($row) && $row != '') {
@@ -810,6 +817,7 @@ class GEEKYBOTstoriesModel {
             die( 'Security check Failed' ); 
         }
         $storyId = GEEKYBOTrequest::GEEKYBOT_getVar('storyId');
+	$storyId = absint($storyId);
         $html = '';
         $fallback = '';
         if (isset($storyId) && is_numeric($storyId)) {
@@ -882,6 +890,9 @@ class GEEKYBOTstoriesModel {
         }
         $groupId = GEEKYBOTrequest::GEEKYBOT_getVar('groupId');
         $storyId = GEEKYBOTrequest::GEEKYBOT_getVar('storyId');
+	    $groupId = absint($groupId);
+	    $storyId = absint($storyId);
+
         $html = '';
         if (!empty($groupId) && is_numeric($groupId)) {
             $query = "SELECT id, default_fallback, default_fallback_buttons FROM `" . geekybot::$_db->prefix . "geekybot_intents_fallback` where group_id = ".esc_sql($groupId) ." AND story_id = ".esc_sql($storyId);
@@ -2201,6 +2212,10 @@ class GEEKYBOTstoriesModel {
     }
 
     function getBotResponseForPopup($response_id) {
+	$response_id = absint($response_id);
+        if ($response_id <= 0) {
+            return null;
+        }
         $query = "SELECT id, bot_response, response_button FROM `" . geekybot::$_db->prefix . "geekybot_responses` where id = ".esc_sql($response_id);
         $response = geekybotdb::GEEKYBOT_get_row($query);
 
@@ -2255,6 +2270,10 @@ class GEEKYBOTstoriesModel {
     }
 
     function getFunctionNameById($function_id){
+	$function_id = absint($function_id);
+        if ($function_id <= 0) {
+            return 'showAllProducts';
+        }
         $query = "SELECT name FROM `" . geekybot::$_db->prefix . "geekybot_functions` where id =  ".$function_id;
         $function_name = geekybotdb::GEEKYBOT_get_var($query);
         if (empty($function_name)) {
@@ -2264,12 +2283,16 @@ class GEEKYBOTstoriesModel {
     }
 
     function getFunctionIdByName($function_name){
+	$function_name = sanitize_text_field(wp_unslash($function_name));
+        if ($function_name === '') {
+            return 1;
+        }
         $query = "SELECT id FROM `" . geekybot::$_db->prefix . "geekybot_functions` where name =  '".$function_name."'";
         $function_id = geekybotdb::GEEKYBOT_get_var($query);
         if (empty($function_id)) {
             $function_id = 1;
         }
-        return $function_id;
+        return absint($function_id);
     }
 
     function geekybotGetTopPosition($previous_position, $previous_direction){
