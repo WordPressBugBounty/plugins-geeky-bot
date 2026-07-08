@@ -96,8 +96,7 @@ class GEEKYBOTchathistoryModel {
 
     function getUserChatHistoryMessages() {
         if (!current_user_can('manage_options')){
-            // disable nonce
-            // die('Only Administrators can perform this action.');
+            wp_die(__('Only Administrators can perform this action.', 'geeky-bot'), 403);
         }
         $nonce = GEEKYBOTrequest::GEEKYBOT_getVar('_wpnonce');
         if (! wp_verify_nonce( $nonce, 'get-user-chat-history') ) {
@@ -143,54 +142,46 @@ class GEEKYBOTchathistoryModel {
                 $style='';
                 $plain_message = '';
                 $rightusermessage='';
+                
                 if ($value->sender == 'user') {
-                    $botsd==1;
-                    if($botsd==1) {
-                        $date = '<div class=\'date\'>'.$datet.'</div>';
-                    }
+                    $botsd = 1;
+                    $date = '<div class=\'date\'>' . esc_html($datet) . '</div>';
                     $extraclass = 'usertypediv';
                     $senderClass = 'usertype';
-                    $senderimg   = '<img src=\"'. esc_url(GEEKYBOT_PLUGIN_URL).'includes/images/chat-history/users.png\" alt=\"'. esc_attr(__('user', 'geeky-bot')) .'\" >';
-                    $extraclass = 'usertypediv';
-                    $style='';
+                    $senderimg   = '<img src=\"' . esc_url(GEEKYBOT_PLUGIN_URL) . 'includes/images/chat-history/users.png\" alt=\"' . esc_attr(__('user', 'geeky-bot')) . '\" >';
+                    $style = '';
                     $intentlink = esc_url(admin_url('admin.php?page=geekybot_intent&geekybotlt=formintent&geekybotid='));
                     $intentid = $value->intent_id;
-                    $intent =  $intentlink . $intentid;
-
-                    $btn .='<span class="geekybot-history-page-subheading">'. esc_attr(__('Action', 'geeky-bot')).' :</span>';
+                    
+                    $btn .= '<span class="geekybot-history-page-subheading">' . esc_attr(__('Action', 'geeky-bot')) . ' :</span>';
                     if ($story_count > 0) {
-                        $btn .= '<a id=\"addToStory\" class=\"geekybot-table-act-btn\" title=\"'. esc_attr(__('Add to Story', 'geeky-bot')).'\">';
+                        $btn .= '<a id=\"addToStory\" class=\"geekybot-table-act-btn\" title=\"' . esc_attr(__('Add to Story', 'geeky-bot')) . '\">';
                         $btn .= esc_attr(__('Add to story', 'geeky-bot'));
-                        $btn .='</a>';
+                        $btn .= '</a>';
                     }
                     $rightusermessage = 'right-user-message';
-                    $plain_message = geekybotphplib::GEEKYBOT_wp_strip_all_tags($value->message);
-                    $plain_message = geekybotphplib::GEEKYBOT_htmlspecialchars(geekybotphplib::GEEKYBOT_addslashes($plain_message), ENT_QUOTES, 'UTF-8');
+                    
+                    // SECURITY FIX: Extract safe attributes
+                    $plain_message = wp_strip_all_tags($value->message);
                 }
+                
                 if ($value->sender == 'bot') {
                     $btn = '';
                     $date = '';
                     $botsd++;
                     $senderClass = 'bottype';
-                    // 
-                    if (strpos($value->message, '&') !== false && strpos($value->message, ';') !== false) {
-                        $value->message = html_entity_decode($value->message);
-                        $needToEncode = 1;
-                    }
+                    
+                    // SECURITY FIX: Decode the bot message so it is real HTML, but DO NOT re-encode it later.
+                    $bot_html = html_entity_decode($value->message, ENT_QUOTES, 'UTF-8');
+                    
+                    // Strip dangerous attributes from bot HTML
                     $pattern = '/\s*href=["\'][^"\']*["\']/i';
-                    $value->message = geekybotphplib::GEEKYBOT_preg_replace($pattern, '', $value->message);
-                    // Pattern to match the onclick attribute and its value
-                    $pattern = '/\s*onclick=["\'][^"\']*["\']/i';
-                    $pattern = '/\s*onclick=("|\')(.*?)\1/';
-                    // Use preg_replace to remove the onclick attribute
-                    $value->message = geekybotphplib::GEEKYBOT_preg_replace($pattern, '', $value->message);
-                    if (isset($needToEncode)) {
-                        $value->message = geekybotphplib::GEEKYBOT_htmlentities($value->message);
-                    }
-                    // 
-                    $strs = $value->message;
-                    // Use strip_tags to remove all HTML tags
-                    $buttonTag = '<button>'; // Define button tag
+                    $bot_html = preg_replace($pattern, '', $bot_html);
+                    $pattern = '/\s*onclick=("|\')(.*?)\1/i';
+                    $bot_html = preg_replace($pattern, '', $bot_html);
+
+                    $strs = $bot_html;
+                    $buttonTag = '<button>'; 
 
                     if (preg_match("/" . $buttonTag . "/", $strs)) {
                         $style = 'style="border: 1px solid #fffefe;"';
@@ -199,44 +190,51 @@ class GEEKYBOTchathistoryModel {
                         $style = '';
                         $senderimg = '<img src="' . esc_url(GEEKYBOT_PLUGIN_URL) . 'includes/images/chat-history/robot.png" alt="' . esc_attr(__('user', 'geeky-bot')) . '" >';
                     }
-                    $senderClass = 'bottype';
                     $botclass = 'botdiv';
-                    $rightusermessage='right-bot-message';
+                    $rightusermessage = 'right-bot-message';
                 }
+                
                 if ($value->sender == '') {
                     $botsd=1;
                     $style='';
                     $senderimg   = '<img src=\"'. esc_url(GEEKYBOT_PLUGIN_URL) .'includes/images/chat-history/robot.png\" alt=\"'. esc_attr(__('user', 'geeky-bot')) .'\" >';
                 }
+                
                 $str .= $date;
-                $str .= '<div class=\"body-content '. $rightusermessage .'\">';
-                $str .= '<div class=\"user-datashow '.$botsd.'\">';
-                    $str .= '<div class=\"body-content-sender\" '. $style .' > ';
-                    $str .= $senderimg;
-                    $str .='</div>';
-                    $str .= '<div class=\"body-content-message\"><span class="geekybot-history-page-subheading"> '. esc_attr(__('Message', 'geeky-bot')).':</span>';
-                    if ($value->sender == 'bot') {
-                        $str .= '<span class=\"body-content-message-value \"><section class=\"geekybot-message-text_wrp\"> '. $value->message .' </section></span>';
-                        if ($value->buttons != '[]' && $value->buttons != '') {
-                            $responseButtons = json_decode($value->buttons);
-                            $str .= "<div class='geekybot-message-button'>";
-                            foreach ($responseButtons as $responseButton) {
-                                $str .=  "<li class='geekybot-message geekybot-message-button' style=''><section><button class='wp-chat-btn'><span>".$responseButton->text."</span></button></section></li>";
-                            };
-                            $str .= "</div>";
-                        }
-                    } else {
-                        $str .= '<span data-intent=\"'. $plain_message .'\" class=\"body-content-message-value \"> '. $value->message .' </span>';
+                $str .= '<div class=\"body-content '. esc_attr($rightusermessage) .'\">';
+                $str .= '<div class=\"user-datashow '.esc_attr($botsd).'\">';
+                $str .= '<div class=\"body-content-sender\" '. $style .' > ';
+                $str .= $senderimg;
+                $str .='</div>';
+                $str .= '<div class=\"body-content-message\"><span class="geekybot-history-page-subheading"> '. esc_attr(__('Message', 'geeky-bot')).':</span>';
+                
+                if ($value->sender == 'bot') {
+                    // Output the Bot's real HTML layout safely
+                    $str .= '<span class=\"body-content-message-value \"><section class=\"geekybot-message-text_wrp\"> '. wp_kses_post($bot_html) .' </section></span>';
+                    if ($value->buttons != '[]' && $value->buttons != '') {
+                        $responseButtons = json_decode($value->buttons);
+                        $str .= "<div class='geekybot-message-button'>";
+                        foreach ($responseButtons as $responseButton) {
+                            $str .=  "<li class='geekybot-message geekybot-message-button' style=''><section><button class='wp-chat-btn'><span>".esc_html($responseButton->text)."</span></button></section></li>";
+                        };
+                        $str .= "</div>";
                     }
-                    $str .= '</div>';
-                    $str .= ' <div class=\"body-content-action\">';
-                    $str .= '<div class=\"header-action-img\">';
-                    $str .= $btn;
-                    $str .= '</div>';
-                    $str .= '</div>';
+                } else {
+                    // Output the User's message strictly as escaped text. This kills the XSS payload.
+                    $str .= '<span data-intent=\"'. esc_attr($plain_message) .'\" class=\"body-content-message-value \"> '. esc_html($value->message) .' </span>';
+                }
+                
                 $str .= '</div>';
-            $str .= '</div>';
+                $str .= ' <div class=\"body-content-action\">';
+                $str .= '<div class=\"header-action-img\">';
+                $str .= $btn;
+                $str .= '</div>';
+                $str .= '</div>';
+                $str .= '</div>';
+                $str .= '</div>';
             }
+            
+            // ... Pagination logic remains unchanged ...
             $num_of_pages = ceil($total / $maxrecorded);
             $num_of_pages = ($num_of_pages > 0) ? ceil($num_of_pages) : floor($num_of_pages);
             if($num_of_pages > 0){
@@ -280,7 +278,7 @@ class GEEKYBOTchathistoryModel {
                     $str .= '<div class="geekybot-jsst_userpages">'.wp_kses($page_html, GEEKYBOT_ALLOWED_TAGS).'</div>';
                 }
             }
-        }else{
+        } else {
             $msg = esc_html(__('No record found','geeky-bot'));
             $str .= GEEKYBOTlayout::GEEKYBOT_getNoRecordFound($msg);
         }
@@ -289,11 +287,10 @@ class GEEKYBOTchathistoryModel {
     }
 
     function SaveChathistory() {
-        // admin cards
+        // Enforce security tokens properly
         $nonce = GEEKYBOTrequest::GEEKYBOT_getVar('_wpnonce');
         if (! wp_verify_nonce( $nonce, 'save-chat-history') ) {
-            // disable nonce
-            // die( 'Security check Failed' );
+             wp_die( 'Security check Failed', '', array('response' => 403) );
         }
         $message = GEEKYBOTrequest::GEEKYBOT_getVar('cmessage');
         $sender = GEEKYBOTrequest::GEEKYBOT_getVar('csender');
@@ -506,6 +503,5 @@ class GEEKYBOTchathistoryModel {
         geekybot::$_search['chathistory']['sorton'] = isset($geekybot_search_array['sorton']) ? $geekybot_search_array['sorton'] : 6;
         geekybot::$_search['chathistory']['sortby'] = isset($geekybot_search_array['sortby']) ? $geekybot_search_array['sortby'] : 2;
     }
-    // nlu.yml end
 }
 ?>

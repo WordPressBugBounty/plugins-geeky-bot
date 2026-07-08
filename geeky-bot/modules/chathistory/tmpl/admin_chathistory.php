@@ -196,8 +196,11 @@ $geekybot_js ="
             if (data) {
                 jQuery('.userid').text(' '+userId);
                 jQuery('.user-info .username').text(userName);
-                jQuery('div.body').html('');
-                jQuery('div.body').html(geekybot_DecodeHTML(data));
+                
+                // Pure, native, safe HTML injection.
+                // The server has already sanitized everything. No decoding needed.
+                jQuery('div.body').html(data);
+                
                 if(pagination == 1) {
                     jQuery('html, body').animate({ scrollTop: 0 }, 'slow');
                 }
