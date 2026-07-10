@@ -242,6 +242,7 @@ if (!defined('GEEKYBOT_FILE_TYPE_ERROR')) {
             'data-image2' => array(),
             'data-scrolltask' => array(),
             'data-offset' => array(),
+            'data-nonce' => array(),
             'target' => array(),
             'data-tab-number' => array(),
             'style' => array(),

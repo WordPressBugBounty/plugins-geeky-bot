@@ -175,7 +175,8 @@
 
 function getNextChatHistorySessionsHtml(){
     $nextpage = 2;
-    $html = '<a id="jsjb-jm-showmorejobs" class="scrolltask" data-scrolltask="getNextChatHistorySessions" data-offset="'.esc_attr($nextpage).'" style="display:none;"></a>';
+    $nonce = wp_create_nonce( 'geekybot_chathistory_nonce' );
+    $html = '<a id="jsjb-jm-showmorejobs" class="scrolltask" data-scrolltask="getNextChatHistorySessions" data-offset="'.esc_attr($nextpage).'" data-nonce="'.esc_attr($nonce).'" style="display:none;"></a>';
     return $html;
 }
 
@@ -284,12 +285,13 @@ $geekybot_js ="
         if (scrollTop + innerHeight >= scrollHeight - 10) {  // Adding a small threshold to ensure it triggers
             var scrolltask = jQuery('div#geekybtchat-leftmenu').find('a.scrolltask').attr('data-scrolltask');
             var offset = jQuery('div#geekybtchat-leftmenu').find('a.scrolltask').attr('data-offset');
+            var scrollnonce = jQuery('div#geekybtchat-leftmenu').find('a.scrolltask').attr('data-nonce');
             if (scrolltask != null && scrolltask != '' && scrolltask != 'undefined') {
                 jQuery('div#geekybtchat-leftmenu').find('a.scrolltask').remove();
                 var searchtitle = jQuery('input#searchtitle').val();
                 var ajaxurl = '". esc_url(admin_url('admin-ajax.php')) ."';
                 jQuery('div#geekybtchat-leftmenu').append('<img id=\"geekybot-loading-icon\" src=\"".GEEKYBOT_PLUGIN_URL ."includes/images/chat-history/load.gif\" />');
-                jQuery.post(ajaxurl, {action: 'geekybot_ajax', geekybotme: 'chathistory', task: scrolltask,  offset:offset, searchtitle:searchtitle}, function (data) {
+                    jQuery.post(ajaxurl, {action: 'geekybot_ajax', geekybotme: 'chathistory', task: scrolltask,  offset:offset, searchtitle:searchtitle, _wpnonce:scrollnonce}, function (data) {
                     jQuery('div#geekybtchat-leftmenu').append(data);
                     jQuery('div#geekybtchat-leftmenu').find('img#geekybot-loading-icon').remove();
                 });

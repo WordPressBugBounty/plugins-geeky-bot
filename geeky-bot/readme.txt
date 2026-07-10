@@ -4,7 +4,7 @@ Tags: chatbot, AI, copilot, woocommerce, openai
 Donate link: https://geekybot.com
 Requires at least: 5.0
 Tested up to: 7.0
-Stable tag: 1.2.7
+Stable tag: 1.2.8
 License: GPLv2
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -269,6 +269,9 @@ This plugin makes use of the following third-party services:
 - Contains optimized Guzzle HTTP client configuration.
 
 == Changelog ==
+= 1.2.8 =
+* Security Updates
+
 = 1.2.7 =
 * Security Updates
 

@@ -22,9 +22,14 @@ class GEEKYBOTchathistoryModel {
     }
 
     function getNextChatHistorySessions(){
-        $offset = GEEKYBOTrequest::GEEKYBOT_getVar('offset');
+        if ( ! current_user_can( 'manage_options' ) ) {
+            wp_die( -1, 403 );
+        }
+        check_ajax_referer( 'geekybot_chathistory_nonce', '_wpnonce' );
+
+        $offset = absint( GEEKYBOTrequest::GEEKYBOT_getVar('offset') );
         $searchtitle = GEEKYBOTrequest::GEEKYBOT_getVar('searchtitle');
-        if(isset($offset)) {
+        if($offset > 0) {
             $currentPage = $offset;
         } else {
             $currentPage = 2;
@@ -89,7 +94,7 @@ class GEEKYBOTchathistoryModel {
         }
         if ($html != '') {
             $nextpage = $currentPage + 1;
-            $html .= '<a id="jsjb-jm-showmorejobs" class="scrolltask" data-scrolltask="getNextChatHistorySessions" data-offset="'.esc_attr($nextpage).'" style="display:none;"></a>';
+            $html .= '<a id="jsjb-jm-showmorejobs" class="scrolltask" data-scrolltask="getNextChatHistorySessions" data-offset="'.esc_attr($nextpage).'" data-nonce="'.esc_attr( wp_create_nonce( 'geekybot_chathistory_nonce' ) ).'" style="display:none;"></a>';
         }
         return $html;
     }
