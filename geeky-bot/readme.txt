@@ -1,341 +1,193 @@
-=== GeekyBot — AI Copilot, Chatbot, WooCommerce Lead Gen & Zero-Prompt Content ===
-Contributors: ahmadgb
-Tags: chatbot, AI, copilot, woocommerce, openai
-Donate link: https://geekybot.com
-Requires at least: 5.0
+=== Geeky Bot – AI Sales Assistant for WooCommerce ===
+Contributors: geekybot
+Tags: woocommerce, product search, product recommendations, ai chatbot, ecommerce
+Requires at least: 6.0
 Tested up to: 7.0
-Stable tag: 1.2.8
-License: GPLv2
+Requires PHP: 7.4
+Stable tag: 2.0.0
+License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
+
+WooCommerce AI sales assistant for natural product discovery, grounded answers, recommendations, and guided shopping.
 
 == Description ==
 
-Transform your WordPress website into an AI powerhouse. **GeekyBot** is the ultimate all-in-one AI plugin that brings intelligent chatbots, WooCommerce lead generation, and a revolutionary "Zero-Prompt" AI Copilot directly to your dashboard.
+Geeky Bot turns a WooCommerce store into a guided shopping experience.
 
-Generate AI content without prompts, deploy an interactive AI chatbot, boost WooCommerce lead generation, enable intelligent web search, and drive interactive customer engagement on your WordPress website.
+A shopper can ask "Show me wireless headphones under $100 that are in stock," follow with "Which would you recommend for daily commuting?" and then ask "Does the recommended pair support noise cancellation?"
 
-**Introducing the Zywrap AI Copilot (New in 1.2.4)**
-Stop wasting time trying to engineer the perfect AI prompt. With our new Zywrap AI Engine integration, you simply select an AI Solution (e.g., SEO Blog Post, Product Description), fill in a dynamic form, and generate production-ready content directly into the Gutenberg or Classic Editor. 
+Geeky Bot searches visible products, remembers context, explains suitable matches, and answers from WooCommerce data and approved policy pages.
 
-Whether you want to automate blog writing, engage customers with an intelligent chatbot, or boost e-commerce sales, GeekyBot does it all.
+It is built as a focused sales assistant—not a generic website chatbot.
 
-== Top Features ==
+= Natural WooCommerce product discovery =
 
-* 🤖 **The Zywrap AI Copilot Drawer (NEW):** A sleek, modern sliding drawer available inside Gutenberg, the Classic Editor, and WooCommerce product pages. Generate high-quality content side-by-side with your writing.
-* ⚡ **Zero Prompt Engineering:** Access a synced cloud database of professional "AI Wrappers". Just fill in the dynamic form fields (like Tone, Audience, or Keywords) and let the AI do the heavy lifting.
-* 📝 **Native Block Formatting:** AI-generated content is automatically parsed and inserted as native WordPress blocks (Paragraphs, Headings, Code blocks) flawlessly.
-* ✍️ **AI Content Creator:** The AI Content Engine instantly generates high-quality content without any prompts. In a few clicks, it produces ready-to-use, polished text in multiple languages, powered by advanced AI models.
-* 🛍️ **WooCommerce Lead Generation:** Streamline shopping experiences by allowing users to find products, explore variations, and add items to their cart directly through the GeekyBot interactive chatbot.
-* 💬 **Smart AI Chatbot:** Customize interactions using slots and variables to dynamically capture and process user inputs.
-* 🔍 **AI Web Search:** Assist users in discovering relevant information within your blog posts or articles by searching for topics and displaying content as per user requests.
-* 🔌 **Massive AI Integrations:** Connect seamlessly to Dialogflow (NLP), OpenAI Chat & Assistants (GPT models), OpenRouter (multi-provider AI), and Zywrap with custom client libraries for seamless API connectivity.
-* 🔗 **Plugin Support:** Out-of-the-box integration with bbPress, Auto Listings, Estatik Real Estate Plugin, and Motors (Car Dealer & Classifieds).
+Help shoppers discover products by:
 
-https://www.youtube.com/watch?v=iyGUUFhZ9Ag
-== Usage ==
+* Product name, family, category, price, color, size, stock, and sale status.
+* Use case, shopper preference, and natural long-form requests.
+* Follow-up refinements, synonyms, spelling mistakes, and close matches.
 
-### Generate AI Content Without Prompt
-Effortlessly create high-quality content with the AI Content Engine—no prompts required. In just a few clicks, it transforms ideas into polished, ready-to-use text in multiple languages, powered by advanced AI models. Save time, boost productivity, and make content creation faster, smarter, and completely stress-free.
+Search results remain grounded in products that are visible in the WooCommerce catalog.
 
-### AI Chat Conversations
-GeekyBot supports advanced conversation handling through slots and variables. Define slots to capture specific user inputs dynamically and personalize interactions based on collected data.
+= Product answers shoppers can trust =
 
-### WooCommerce Lead Generations 
+Geeky Bot answers from available WooCommerce descriptions, attributes, variations, prices, and stock.
 
-- **Find Products**
-Users can search for products by name, category, or price range directly within the chat interface, enhancing browsing efficiency.
+When information is missing, the assistant says so instead of inventing details.
 
-- **List Products**
-GeekyBot lists products based on user preferences, displaying relevant items with detailed descriptions and pricing information.
+= Helpful recommendations =
 
-- **Search Products**
-GeekyBot helps users find products on your WordPress site based on name, attributes, keywords, and category. When users search for a product, GeekyBot displays relevant results matching their search criteria.
+Geeky Bot can recommend suitable products and explain why they match the shopper's request. If no exact result exists, it can present clearly labeled close matches or suggest a sensible constraint to remove.
 
-- **Multiple Variations/Variables Products**
-Handle complex product queries effortlessly. GeekyBot understands and presents product variations, ensuring users find exactly what they need.
+= Store policy answers =
 
-- **Add to Cart**
-Enable seamless shopping experiences. Users can add products to their WooCommerce cart directly through GeekyBot, simplifying the checkout process.
+Choose which published pages Geeky Bot may use for shipping, refunds, returns, exchanges, warranty, payment, privacy, and other store-policy questions.
 
-- **One-Click WooCommerce Integration** 
-Enable GeekyBot for WooCommerce products with just one click, streamlining the integration process.
+Policy answers stay isolated to approved sources. Geeky Bot does not crawl arbitrary pages.
 
-### AI Web Search
+= Storefront shopping assistant =
 
-- **Efficient Content Discovery**
-GeekyBot features a powerful search tool for posts and pages, enabling users to quickly locate and access specific content on your WordPress site.
+The responsive floating widget provides product cards, suggested questions, persistent browser-side history, clear-chat control, accessible focus states, reduced-motion support, and scoped styling designed to avoid theme conflicts.
 
-- **Relevant Results Display**
-GeekyBot fetches and displays complete posts or excerpts based on user queries, improving content accessibility and engagement.
+= A practical setup experience =
 
-- **One-Click Post Availability**
-Activate GeekyBot for post and page search across your WordPress site with just one click, enabling seamless functionality and user interaction.
+The guided setup checks WooCommerce, builds the product index, selects policy pages, configures the widget, and verifies readiness. Guided Demo creates realistic test questions from the store's own products.
 
-### User Account Management
+= Conversations, insights, and privacy =
 
-- **Forgot Username & Password**
-Assist users in retrieving forgotten usernames or resetting passwords securely through GeekyBot's user-friendly interface.
+Store owners can review conversations, group unanswered questions, see products opened from chat, export data to CSV, delete stored conversations, configure guest storage and retention, and use WordPress personal-data export and erasure tools.
 
-- **Reset Password**
-When searching, GeekyBot shows relevant articles and posts, helping users find the information they need swiftly and efficiently. This enhances user experience by providing seamless navigation and making important information easily discoverable.
+= Local mode and optional AI services =
 
-### WHY GEEKYBOT IS THE ULTIMATE SOLUTION FOR YOU
+Core discovery and grounded routing can run locally. Zywrap and OpenAI are optional.
 
-- **Chat History**
-GeekyBot maintains a comprehensive chat history accessible exclusively to admins. This enables them to review and manage past conversations, track interactions, and understand context. By accessing historical data, admins can monitor user engagement, resolve issues more effectively, and enhance overall support and management capabilities.
+API keys are not exposed to storefront JavaScript or displayed again after saving.
 
-- **Appearance**
-GeekyBot’s appearance can be customized to fit your brand’s style. You can select from various presets for a quick setup or adjust individual elements such as the bot image, user avatar, primary color, user text background, text color, and link color to create a unique look. These options allow for a personalized and visually appealing chatbot experience.
+= Geeky Bot Commerce Pro =
 
-- **Intuitive Interface**
-We know you love simplicity. That's why GeekyBot features an intuitive interface that makes it easy for users to navigate and interact with your WordPress site, providing a smooth and engaging experience.
+The free plugin helps shoppers find and understand products.
 
-- **Customization**
-Make GeekyBot your own! Customize the live chat widget to fit your website's style. Choose your colors, add a background, change the widget position, and tweak other settings until it matches your design perfectly.
+Geeky Bot Commerce Pro is a separate paid add-on for buying actions and advanced sales assistance, including variation selection, add to cart, cart management, checkout handoff, order help, product comparison, advanced recommendations, and sales-intent analytics.
 
-- **Easy Installation**
-With GeekyBot's free live chat plugin, installing it is as quick and easy as a few clicks. In just minutes, you'll be ready to engage with your customers via live chat or our super-smart chatbots.
+Screenshots that include Commerce Pro functionality are identified clearly in their captions.
 
-- **Chat with Visitors 24/7, Even While You Sleep**
-GeekyBot works tirelessly around the clock, ensuring you're always available to chat with visitors. Even when you're catching some Z's, GeekyBot is there, keeping the conversation going.
-
-- **Convert Them into Paying Customers**
-GeekyBot isn't just about chatting; it's about results. Turn casual visitors into loyal, paying customers with engaging and personalized interactions that guide them through your sales funnel.
-
-- **Generate & Qualify Your Leads on Autopilot**
-Let GeekyBot handle the heavy lifting. It identifies, collects, and qualifies leads automatically, so you can focus on closing deals and growing your business.
-
-- **Engage Your Visitors and Collect Critical Feedback**
-Interaction is key. GeekyBot engages visitors in meaningful conversations, collecting valuable feedback that can help you improve your products, services, and overall customer experience.
-
-- **Guide and Educate Your Customers with Interactive FAQ**
-Empower your customers with knowledge. GeekyBot provides instant answers through an interactive FAQ, helping users find the information they need quickly and efficiently.
-
-- **Interact with Each and Every Website Visitor**
-No visitor left behind. GeekyBot ensures that every single website visitor receives personalized attention, making them feel valued and increasing the likelihood of conversion.
-
-- **Automate Your Customer Support 100%**
-Say goodbye to repetitive tasks. GeekyBot automates your customer support, handling common queries and issues, so your team can focus on more complex problems and strategic tasks.
-
-### One-Click Functionality
-- **GeekyBot Integration**: Seamlessly integrate GeekyBot with your WordPress site with just one click.
-- **WooCommerce Integration**: Enable GeekyBot for WooCommerce products with a single click.
-- **AI Web Search**: Make GeekyBot available across your WordPress website for seamless user interaction.
-
-### Some Other Characteristics
-
-**Easy Setup**
-GeekyBot requires no programming. Its no-code setup allows the AI to learn everything it needs upon installation.
-
-**Generative AI**
-GeekyBot’s AI technology creates unique and relevant responses to user inquiries. It instantly ingests all your site content and product data, so customers can get answers quickly.
-
-**Natural Language Processing**
-GeekyBot’s NLP AI allows for natural topic switching among responses. Switch seamlessly between Scripted NLP AI and Generative AI to control responses.
-
-**Abandoned Cart**
-Notify customers of abandoned items in their cart and incomplete checkouts (coming soon).
-
-**Order Status**
-Answer the common question, “Where’s my order?” by providing order status and tracking information.
-
-**Engagement Question Module**
-Create branching conversations to answer customer questions and overcome sales obstacles.
-
-**Page Targeting**
-Engage visitors with the right questions at the right time in their sales journey.
-
-**Reporting and Insights**
-Identify obstacles preventing purchases, such as site bugs or confusing processes, and gather shopping behavior metrics.
-
-**Awesome Support**
-We’re committed to your satisfaction. Contact us anytime with questions.
-
-###Language Support
-
-**Works with Any Language**
-GeekyBot supports any language, with multiple language support available with the GeektBot Pro Master license.
-
-**Advanced Language Center**
-Edit and customize every GeekyBot response, system language, stop words, and info messages through the Advanced Language Center.
-
-**Editable Stop Words Dictionary**
-An included stop words dictionary that admins can edit. GeekyBot will automatically exclude these words from search criteria and chat commands.
-
-**Multiple Response Variations**
-Add multiple variations of GeekyBot responses for each node. These responses are used randomly to create more human-like interactions.
-
-**Translation Files Included**
-mo/pot files are included so you can translate the backend to any language.
-
-**RTL Support**
-Right-to-left (RTL) language support is available.
-
-
-== Frequently Asked Questions ==
-
-**How do I integrate GeekyBot with my WooCommerce store?**
-GeekyBot seamlessly integrates with WooCommerce. After installation, configure WooCommerce settings within GeekyBot's plugin settings to enable product search and cart interactions.
-
-**How can I report security bugs?**
-You can report security bugs through the Patchstack Vulnerability Disclosure Program. The Patchstack team help validate, triage and handle any security vulnerabilities. [Report a security vulnerability.](https://patchstack.com/database/vdp/geeky-bot)
+Learn more at [geekybot.com](https://geekybot.com/).
 
 == Installation ==
 
-1. Upload the `GeekyBot` folder to the `/wp-content/plugins/` directory or install directly through the WordPress plugins screen.
-2. Activate the plugin through the 'Plugins' menu in WordPress.
-3. Configure GeekyBot settings under `Settings > GeekyBot` and follow setup instructions.
+1. Install and activate Geeky Bot from Plugins > Add New.
+2. Make sure WooCommerce is installed and active.
+3. Open Geeky Bot > Setup Wizard.
+4. Build the product index.
+5. Select any public store-policy pages the assistant may use.
+6. Review the widget, privacy, retention, and optional AI-provider settings.
+7. Open Geeky Bot > Guided Demo and test questions generated from your own catalog.
+8. Clear site or page caches before final storefront testing.
 
+== Frequently Asked Questions ==
 
-== Upgrade Notice ==
-= 1.0 =
-This is the initial release of GeekyBot. No specific upgrade instructions are available at this time.
+= Is Geeky Bot a general-purpose chatbot? =
+
+No. Geeky Bot 2.0 is focused on WooCommerce shopping: finding products, answering product and policy questions, explaining choices, and guiding shoppers toward a purchase.
+
+= Does Geeky Bot require WooCommerce? =
+
+WooCommerce is required for product discovery and shopping assistance. Geeky Bot handles an inactive or not-yet-installed WooCommerce setup gracefully and shows the required next step.
+
+= Does Geeky Bot require an external AI service? =
+
+No. Local grounded product discovery and policy routing can work without an external AI provider. Zywrap and OpenAI are optional for supported AI-assisted answer modes.
+
+= What information can Geeky Bot use? =
+
+Geeky Bot uses visible WooCommerce catalog data and published policy pages explicitly selected by an administrator. It does not crawl arbitrary URLs.
+
+= What happens when information is missing? =
+
+Geeky Bot does not guess. It tells the shopper when the selected product data or approved policy pages do not contain the requested information.
+
+= What is included in the free plugin? =
+
+The free plugin includes product discovery, grounded product and policy answers, recommendations, product cards, conversation review, and basic insights. Variation selection, cart and checkout actions, and order assistance require Commerce Pro.
+
+= Can shoppers continue a conversation after refreshing the page? =
+
+Yes. Browser-side conversation history can persist across page loads and tabs on the same site. Server-side storage of guest conversations depends on the privacy settings chosen by the store owner.
 
 == Screenshots ==
 
-1. AI Chatbot
+1. Natural product discovery by budget, with grounded prices, stock, match details, and product cards. Commerce Pro variation selection is shown.
+2. Need-based recommendations explain why products match the shopper's request. Commerce Pro add-to-cart actions are shown.
+3. Commerce Pro compares selected products side by side using confirmed WooCommerce catalog data.
+4. The dashboard highlights setup readiness, product-index health, shopper activity, and the next highest-impact actions.
+5. The Setup Wizard checks the store in dependency order, from WooCommerce and indexing to knowledge and storefront launch.
+6. Widget Builder combines shopper-facing controls with a live preview for branding, wording, placement, and product cards.
 
-2. WooCommerce Chatbot
+== Privacy ==
 
-3. AI Web Search
+Depending on the settings chosen by the store owner, Geeky Bot may store conversation messages, session identifiers, response intent, product references, policy references, and product-click events in the WordPress database.
 
-4. Account Assistance
+The plugin provides retention settings, conversation deletion tools, and integration with the WordPress personal-data export and erasure system. Store owners are responsible for describing their configuration and data practices in their own privacy policy.
 
-5. Admin Dashboard
+Shopper questions are sent to an external AI provider only when the administrator has selected and configured that provider.
 
-6. Edit Story
+== External services ==
 
-7. Chat History
+Geeky Bot can operate in local grounded mode without sending shopper questions to an external AI provider. External requests occur only for optional services selected or used by an administrator.
 
-8. Appearance
+= OpenAI =
 
-9. Stories
+When OpenAI mode is selected and an API key is saved, Geeky Bot sends the shopper's question, a grounding instruction, relevant visible-product summaries, and relevant excerpts from approved policy pages to the OpenAI API to generate the requested answer.
 
-10. Settings
+Service: https://api.openai.com/
 
+Terms: https://openai.com/policies/terms-of-use/
 
-== Other Notes ==
-For further information, support, and updates, please visit our site(https://geekybot.com).
+Privacy: https://openai.com/policies/privacy-policy/
 
-== Donate ==
-If you find GeekyBot helpful and wish to support its development, please consider making a donation through our [donation page](https://geekybot.com).
+= Zywrap =
 
-== Special Thanks ==
-We would like to extend our special thanks to the GeekyBot Chatbot development team for their hard work and dedication in creating this powerful chatbot solution.
+When Zywrap mode is selected, Geeky Bot sends the shopper's question, a grounding instruction, relevant visible-product context, and relevant approved policy-page context to the configured Zywrap HTTPS endpoint to generate the requested answer.
 
-== Privacy notices ==
+No shopper question is sent to Zywrap when local mode is selected.
 
-If you activate certain features in this plugin, the user's personal data, including their IP address, may be sent to the service provider. Thus, confirming the provider's privacy policy is recommended. These features include:
+Service: https://www.zywrap.com/
 
-* Font Awesome (https://fontawesome.com/privacy)
+Terms: https://www.zywrap.com/terms
 
-###External Services Used
+Privacy: https://www.zywrap.com/privacy
 
-This plugin makes use of the following third-party services:
+= Geeky Bot website =
 
-**Google Dialogflow API**
-- Used for natural language processing and chatbot responses.
-- Official API: https://cloud.google.com/dialogflow
-- Authentication Scope: https://www.googleapis.com/auth/dialogflow
-- API Documentation: https://cloud.google.com/dialogflow/docs
+When an administrator chooses to view information about Commerce Pro or follow support, documentation, purchase, account, or upgrade links, the browser connects to geekybot.com.
 
-**OpenAI Chat Completion API**
-- Used to generate AI-based chatbot replies via GPT models.
-- API Documentation: https://platform.openai.com/docs/api-reference/chat
-- Model used: gpt-3.5-turbo (configurable)
+Service: https://geekybot.com/
 
-**OpenAI Assistants API**
-- Used for creating persistent AI assistants with file search and retrieval capabilities.
-- API Documentation: https://platform.openai.com/docs/assistants
-- Authentication: Bearer token with OpenAI API key
-- Required Scope: assistants=v2 (beta)
-- Default Model: gpt-4-turbo (configurable)
+Terms: https://geekybot.com/terms-conditions/
 
-**OpenRouter API**
-- Provides unified access to multiple AI models from different providers.
-- API Documentation: https://openrouter.ai/docs
-- Authentication: Bearer token with OpenRouter API key
-- Supported Models: 100+ including Claude, Gemini, Mistral, and OpenAI models
-- Default Model: anthropic/claude-3-sonnet (configurable)
-
-**Google Client Library Package for GeekyBot (Custom Packaged)**
-- Downloaded from GitHub for simplified Dialogflow integration.
-- Download URL: https://github.com/geekybotai/geekybot_google_client/archive/main.zip
-- Contains a pre-configured version of the Google APIs Client Library.
-
-**OpenAI Assistant PHP Client Library Package for GeekyBot (Custom Packaged)**
-- Downloaded from GitHub for simplified OpenAI Assistant integration.
-- Download URL: https://github.com/geekybotai/geekybot_openai_assistant/blob/main/geekybot_openai_assistant_client_library-main.zip
-- Contains optimized Guzzle HTTP client configuration.
+Privacy: https://geekybot.com/privacy-policy/
 
 == Changelog ==
-= 1.2.8 =
-* Security Updates
 
-= 1.2.7 =
-* Security Updates
+= 2.0.0 =
 
-= 1.2.6 =
-* Security Updates
+* Rebuilt Geeky Bot as a WooCommerce-native AI Sales Assistant.
+* Added natural product discovery for product family, exact name, price, attributes, stock, sale status, and shopper preferences.
+* Added long-form requests, follow-up refinements, synonyms, spelling recovery, negative constraints, and natural constraint removal.
+* Added variation-aware matching that keeps color, size, price, and sale evidence on the same variation.
+* Added grounded Product Expert answers from visible WooCommerce product data.
+* Added grounded store-policy answers from explicitly selected published pages.
+* Added contextual recommendations with match explanations and honest close-match behavior.
+* Added a redesigned responsive widget, product cards, suggested questions, conversation persistence, and clear-chat control.
+* Added the Setup Wizard and a real-catalog Guided Demo.
+* Added Conversations, Needs Review grouping, product-click insight, CSV export, retention controls, and deletion tools.
+* Added product-index lifecycle handling for WooCommerce activation and catalog changes.
+* Added rate limiting, protected secrets, public-response allowlists, sanitized errors, and disclosure guards.
+* Added support for the separate Geeky Bot Commerce Pro add-on.
 
-= 1.2.5 =
-* Bug Fix
+== Upgrade Notice ==
 
-= 1.2.4 =
-* **Major Feature:** Introduced the modern **Zywrap AI Copilot Drawer**. Access AI generation globally across Gutenberg, Classic Editor, and WooCommerce product pages via a sleek sliding panel.
-* **Major Feature:** Upgraded to the Zywrap V1 SDK Architecture. Say goodbye to manual prompting with our new dynamic "AI Solutions" and "Configuration Styles" logic.
-* **New:** Smart Markdown-to-Block conversion. AI output is now automatically parsed (`marked.js`) and inserted as native WordPress Gutenberg blocks.
-* **New:** Multi-step "Smart Sync" progress bar. Safely download and sync thousands of AI wrappers from the cloud without server timeouts.
-* **Optimization:** Completely rewrote the database synchronization engine. Imports now use lightning-fast batch chunking to eliminate memory exhaustion on shared hosts.
-* **Optimization:** Upgraded system and usage logging to track detailed token consumption, latency, and HTTP response codes.
+= 2.0.0 =
 
-= 1.2.3
-* Security Updates.
-* Improved privacy and security to ensure that hidden or password-protected products are never accidentally displayed in search results or chatbot suggestions..
-
-= 1.2.2
-* Security Updates.
-
-= 1.2.1
-* Security Updates.
-
-= 1.2.0
-* Security Updates.
-* Improvement: Optimized the content generation process.
-
-= 1.1.9
-* Security Updates.
-
-= 1.1.8
-* Improvement: Optimized the content generation process for lightning-fast results.
-* UX: Added a specialized "Clean View" interface for the content generator to ensure a distraction-free workflow.OpenRouter Integration
-
-= 1.1.7
-* New: Introduced "AI Content Engine" - Instantly generate high-quality, ready-to-use content without manual prompting.
-* New: Added support for multi-language content generation with advanced AI models.
-
-= 1.1.6
-* OpenAI Assistant Integration
-* OpenRouter Integration
-
-= 1.1.5
-* Dialogflow Integration
-* OpenAI Integration
-
-= 1.1.4
-* Add configuration based message for abandoned cart items.
-* Improve user search.
-
-= 1.1.3
-* Customizing the heading of predefined functions.
-
-= 1.1.2
-* Add import option for story.
-* Bug fix.
-
-= 1.1.1
-* Security Updates.
-* Export option for story.
-* Improve story board.
-* Configuration base support link.
-* Bug fix.
+Major release: Geeky Bot is now a WooCommerce AI Sales Assistant. Back up your site, review the 2.0 release notes, and test the upgrade on staging before updating production.

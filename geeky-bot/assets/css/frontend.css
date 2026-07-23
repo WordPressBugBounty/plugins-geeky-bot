@@ -1,0 +1,975 @@
+#geekybot-sales-assistant,
+#geekybot-sales-assistant * {
+  box-sizing: border-box;
+}
+
+#geekybot-sales-assistant {
+  --gb-accent: #2563eb;
+  --gb-bg: #ffffff;
+  --gb-text: #111827;
+  --gb-muted: #6b7280;
+  --gb-border: #e5e7eb;
+  --gb-soft: #f8fafc;
+  --gb-shadow: 0 24px 70px rgba(15, 23, 42, 0.22);
+  --gb-radius-lg: 24px;
+  --gb-radius-md: 16px;
+  --gb-radius-sm: 12px;
+  position: fixed;
+  z-index: 999999;
+  bottom: 24px;
+  font-family: inherit;
+  color: var(--gb-text);
+}
+
+#geekybot-sales-assistant.gb-widget--right { right: 24px; }
+#geekybot-sales-assistant.gb-widget--left { left: 24px; }
+
+#geekybot-sales-assistant .gb-launcher {
+  width: 62px;
+  height: 62px;
+  border: 0;
+  border-radius: 999px;
+  cursor: pointer;
+  background: var(--gb-accent);
+  color: #fff;
+  box-shadow: var(--gb-shadow);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.18s ease, opacity 0.18s ease;
+}
+
+#geekybot-sales-assistant .gb-launcher:hover { transform: translateY(-2px); }
+#geekybot-sales-assistant .gb-launcher__icon { font-size: 28px; line-height: 1; }
+
+#geekybot-sales-assistant .gb-window {
+  position: absolute;
+  bottom: 76px;
+  width: min(430px, calc(100vw - 32px));
+  height: min(620px, calc(100vh - 120px));
+  display: none;
+  overflow: hidden;
+  border: 1px solid var(--gb-border);
+  border-radius: var(--gb-radius-lg);
+  background: var(--gb-bg);
+  box-shadow: var(--gb-shadow);
+}
+
+#geekybot-sales-assistant.gb-widget--right .gb-window { right: 0; }
+#geekybot-sales-assistant.gb-widget--left .gb-window { left: 0; }
+#geekybot-sales-assistant.gb-widget--open .gb-window { display: flex; flex-direction: column; }
+#geekybot-sales-assistant.gb-widget--open .gb-launcher { opacity: 0; pointer-events: none; }
+
+#geekybot-sales-assistant .gb-window__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 18px 18px 16px;
+  background: linear-gradient(135deg, var(--gb-accent), #0f172a);
+  color: #fff;
+}
+
+#geekybot-sales-assistant .gb-window__header strong {
+  display: block;
+  font-size: 16px;
+  line-height: 1.2;
+}
+
+#geekybot-sales-assistant .gb-window__header span {
+  display: block;
+  margin-top: 3px;
+  font-size: 12px;
+  opacity: 0.82;
+}
+
+#geekybot-sales-assistant .gb-close {
+  width: 34px;
+  height: 34px;
+  border: 0;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.16);
+  color: #fff;
+  cursor: pointer;
+  font-size: 24px;
+  line-height: 1;
+}
+
+#geekybot-sales-assistant .gb-messages {
+  flex: 1;
+  overflow-y: auto;
+  padding: 16px;
+  scroll-behavior: smooth;
+  background: var(--gb-soft);
+}
+
+#geekybot-sales-assistant .gb-message {
+  max-width: 88%;
+  margin: 0 0 12px;
+  padding: 11px 13px;
+  border-radius: 16px;
+  font-size: 14px;
+  line-height: 1.45;
+  word-wrap: break-word;
+}
+
+#geekybot-sales-assistant .gb-message--bot {
+  background: #fff;
+  border: 1px solid var(--gb-border);
+  border-top-left-radius: 6px;
+}
+
+#geekybot-sales-assistant .gb-message--user {
+  margin-left: auto;
+  background: var(--gb-accent);
+  color: #fff;
+  border-top-right-radius: 6px;
+}
+
+#geekybot-sales-assistant .gb-message--loading {
+  display: flex;
+  align-items: center;
+  width: fit-content;
+  min-height: 22px;
+  color: var(--gb-muted);
+}
+
+#geekybot-sales-assistant .gb-message__loading-label {
+  display: inline-block;
+}
+
+#geekybot-sales-assistant .gb-message__typing-dots {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  margin-left: 7px;
+}
+
+#geekybot-sales-assistant .gb-message__typing-dot {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: currentColor;
+  opacity: .42;
+  animation: geekybot-typing-dot 1.15s ease-in-out infinite;
+}
+
+#geekybot-sales-assistant .gb-message__typing-dot:nth-child(2) {
+  animation-delay: .14s;
+}
+
+#geekybot-sales-assistant .gb-message__typing-dot:nth-child(3) {
+  animation-delay: .28s;
+}
+
+@keyframes geekybot-typing-dot {
+  0%, 60%, 100% {
+    opacity: .35;
+    transform: translateY(0);
+  }
+  30% {
+    opacity: .9;
+    transform: translateY(-3px);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  #geekybot-sales-assistant .gb-message__typing-dot {
+    animation: none;
+    opacity: .58;
+    transform: none;
+  }
+}
+
+#geekybot-sales-assistant .gb-products {
+  display: grid;
+  gap: 10px;
+  margin-top: 12px;
+}
+
+#geekybot-sales-assistant .gb-product-card {
+  display: grid;
+  grid-template-columns: 74px 1fr;
+  gap: 10px;
+  padding: 10px;
+  border: 1px solid var(--gb-border);
+  border-radius: 14px;
+  background: #fff;
+}
+
+#geekybot-sales-assistant .gb-product-card__image {
+  display: block;
+  width: 74px;
+  height: 74px;
+  border-radius: 12px;
+  overflow: hidden;
+  background: var(--gb-soft);
+}
+
+#geekybot-sales-assistant .gb-product-card__image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+#geekybot-sales-assistant .gb-product-card__title {
+  display: block;
+  color: var(--gb-text);
+  font-weight: 700;
+  line-height: 1.25;
+  text-decoration: none;
+}
+
+#geekybot-sales-assistant .gb-product-card__price {
+  margin-top: 4px;
+  font-weight: 700;
+  color: var(--gb-accent);
+}
+
+#geekybot-sales-assistant .gb-product-card p {
+  margin: 6px 0 0;
+  color: var(--gb-muted);
+  font-size: 12px;
+}
+
+#geekybot-sales-assistant .gb-product-card__stock {
+  display: inline-flex;
+  margin-top: 7px;
+  padding: 3px 7px;
+  border-radius: 999px;
+  background: #ecfdf5;
+  color: #047857;
+  font-size: 11px;
+  font-weight: 700;
+}
+
+#geekybot-sales-assistant .gb-stock--outofstock {
+  background: #fef2f2;
+  color: #b91c1c;
+}
+
+#geekybot-sales-assistant .gb-product-card__button {
+  display: inline-flex;
+  margin-top: 8px;
+  padding: 7px 10px;
+  border-radius: 999px;
+  background: var(--gb-accent);
+  color: #fff;
+  font-size: 12px;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+
+#geekybot-sales-assistant .gb-product-card__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  align-items: center;
+  margin-top: 8px;
+}
+
+#geekybot-sales-assistant .gb-sources {
+  margin-top: 10px;
+  color: var(--gb-muted);
+  font-size: 12px;
+}
+
+#geekybot-sales-assistant .gb-sources a {
+  color: var(--gb-accent);
+  text-decoration: underline;
+}
+
+#geekybot-sales-assistant .gb-form {
+  display: flex;
+  gap: 8px;
+  padding: 12px;
+  border-top: 1px solid var(--gb-border);
+  background: #fff;
+}
+
+#geekybot-sales-assistant .gb-input {
+  flex: 1;
+  min-width: 0;
+  height: 42px;
+  border: 1px solid var(--gb-border);
+  border-radius: 999px;
+  padding: 0 14px;
+  color: var(--gb-text);
+  background: #fff;
+}
+
+#geekybot-sales-assistant .gb-input:focus {
+  outline: 2px solid color-mix(in srgb, var(--gb-accent) 24%, transparent);
+  border-color: var(--gb-accent);
+}
+
+#geekybot-sales-assistant .gb-send {
+  height: 42px;
+  border: 0;
+  border-radius: 999px;
+  padding: 0 16px;
+  background: var(--gb-accent);
+  color: #fff;
+  cursor: pointer;
+  font-weight: 700;
+}
+
+#geekybot-sales-assistant .gb-send:disabled,
+#geekybot-sales-assistant .gb-input:disabled {
+  opacity: 0.7;
+  cursor: wait;
+}
+
+@media (max-width: 480px) {
+  #geekybot-sales-assistant {
+    right: 16px !important;
+    left: 16px !important;
+    bottom: 16px;
+  }
+
+  #geekybot-sales-assistant .gb-window {
+    width: calc(100vw - 32px);
+    height: min(620px, calc(100vh - 90px));
+    right: 0 !important;
+    left: 0 !important;
+  }
+
+  #geekybot-sales-assistant.gb-widget--left .gb-launcher {
+    margin-right: auto;
+  }
+
+  #geekybot-sales-assistant.gb-widget--right .gb-launcher {
+    margin-left: auto;
+  }
+}
+
+#geekybot-sales-assistant .gb-sources {
+  margin-top: 10px;
+  padding-top: 8px;
+  border-top: 1px solid var(--gb-border);
+  color: var(--gb-muted);
+  font-size: 11px;
+  line-height: 1.4;
+}
+
+#geekybot-sales-assistant .gb-sources span {
+  font-weight: 700;
+}
+
+#geekybot-sales-assistant .gb-sources a {
+  color: var(--gb-accent);
+  text-decoration: none;
+  font-weight: 700;
+}
+
+
+#geekybot-sales-assistant .gb-message--with-products {
+  width: 100%;
+  max-width: 100%;
+}
+
+#geekybot-sales-assistant .gb-message__text + .gb-products {
+  margin-top: 12px;
+}
+
+#geekybot-sales-assistant .gb-suggestion-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  max-width: 100%;
+  margin: 2px 0 14px;
+}
+
+#geekybot-sales-assistant .gb-suggestion-chip {
+  min-height: 32px;
+  padding: 7px 11px;
+  border: 1px solid var(--gb-border);
+  border-radius: 999px;
+  background: #fff;
+  color: var(--gb-text);
+  cursor: pointer;
+  font-size: 12px;
+  font-weight: 700;
+  line-height: 1;
+  box-shadow: 0 6px 18px rgba(15, 23, 42, 0.06);
+}
+
+#geekybot-sales-assistant .gb-suggestion-chip:hover,
+#geekybot-sales-assistant .gb-suggestion-chip:focus-visible {
+  border-color: var(--gb-accent);
+  color: var(--gb-accent);
+  outline: 0;
+}
+
+#geekybot-sales-assistant .gb-product-card {
+  grid-template-columns: 84px 1fr;
+  gap: 12px;
+  padding: 12px;
+  border-radius: var(--gb-radius-md);
+  box-shadow: 0 10px 28px rgba(15, 23, 42, 0.06);
+}
+
+#geekybot-sales-assistant .gb-product-card__image {
+  width: 84px;
+  height: 84px;
+  border-radius: var(--gb-radius-sm);
+}
+
+#geekybot-sales-assistant .gb-product-card__body {
+  min-width: 0;
+}
+
+#geekybot-sales-assistant .gb-product-card__price del {
+  color: var(--gb-muted);
+  font-weight: 600;
+}
+
+#geekybot-sales-assistant .gb-product-card__actions {
+  gap: 7px;
+}
+
+#geekybot-sales-assistant .gb-product-card__button {
+  min-height: 30px;
+  margin-top: 0;
+}
+
+#geekybot-sales-assistant .gb-product-card__button--secondary {
+  border: 1px solid var(--gb-border);
+  background: #fff;
+  color: var(--gb-text);
+}
+
+#geekybot-sales-assistant .gb-product-card__button:focus-visible,
+#geekybot-sales-assistant .gb-launcher:focus-visible,
+#geekybot-sales-assistant .gb-close:focus-visible,
+#geekybot-sales-assistant .gb-send:focus-visible {
+  outline: 2px solid color-mix(in srgb, var(--gb-accent) 34%, transparent);
+  outline-offset: 2px;
+}
+
+@media (max-width: 480px) {
+  #geekybot-sales-assistant .gb-product-card {
+    grid-template-columns: 76px 1fr;
+  }
+
+  #geekybot-sales-assistant .gb-product-card__image {
+    width: 76px;
+    height: 76px;
+  }
+}
+
+
+/* Dev.18 storefront UX polish: compact commerce results and controlled result length. */
+#geekybot-sales-assistant .gb-window {
+  width: min(460px, calc(100vw - 32px));
+  height: min(680px, calc(100vh - 96px));
+}
+
+#geekybot-sales-assistant .gb-message--with-products {
+  padding: 10px;
+}
+
+#geekybot-sales-assistant .gb-message__text {
+  line-height: 1.45;
+}
+
+#geekybot-sales-assistant .gb-products {
+  gap: 8px;
+}
+
+#geekybot-sales-assistant .gb-product-card {
+  grid-template-columns: 72px 1fr;
+  gap: 10px;
+  padding: 10px;
+  box-shadow: 0 8px 22px rgba(15, 23, 42, 0.055);
+}
+
+#geekybot-sales-assistant .gb-product-card__image {
+  width: 72px;
+  height: 72px;
+}
+
+#geekybot-sales-assistant .gb-product-card__title {
+  font-size: 13px;
+}
+
+#geekybot-sales-assistant .gb-product-card__price {
+  margin-top: 3px;
+  font-size: 13px;
+}
+
+#geekybot-sales-assistant .gb-product-card p {
+  display: -webkit-box;
+  margin-top: 4px;
+  overflow: hidden;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 1;
+}
+
+#geekybot-sales-assistant .gb-product-card__stock {
+  margin-top: 5px;
+}
+
+#geekybot-sales-assistant .gb-product-card--hidden {
+  display: none;
+}
+
+#geekybot-sales-assistant .gb-products-show-more {
+  margin-top: 10px;
+  text-align: center;
+}
+
+#geekybot-sales-assistant .gb-products-show-more__button {
+  min-height: 32px;
+  padding: 7px 12px;
+  border: 1px solid var(--gb-border);
+  border-radius: 999px;
+  background: #fff;
+  color: var(--gb-text);
+  cursor: pointer;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+#geekybot-sales-assistant .gb-products-show-more__button:hover,
+#geekybot-sales-assistant .gb-products-show-more__button:focus-visible {
+  border-color: var(--gb-accent);
+  color: var(--gb-accent);
+  outline: 0;
+}
+
+@media (max-width: 480px) {
+  #geekybot-sales-assistant .gb-window {
+    height: min(640px, calc(100dvh - 32px));
+  }
+
+  #geekybot-sales-assistant .gb-message {
+    font-size: 13px;
+  }
+
+  #geekybot-sales-assistant .gb-product-card {
+    grid-template-columns: 64px 1fr;
+  }
+
+  #geekybot-sales-assistant .gb-product-card__image {
+    width: 64px;
+    height: 64px;
+  }
+}
+
+/* Natural search trust details inside product cards. */
+#geekybot-sales-assistant .gb-product-card__match {
+  display: grid;
+  gap: 6px;
+  margin-top: 8px;
+  padding: 8px;
+  border: 1px dashed var(--gb-border);
+  border-radius: 12px;
+  background: var(--gb-soft);
+}
+
+#geekybot-sales-assistant .gb-product-card__match-title {
+  color: var(--gb-text);
+  font-size: 11px;
+  font-weight: 800;
+  line-height: 1.2;
+}
+
+#geekybot-sales-assistant .gb-product-card__match-row {
+  display: grid;
+  gap: 4px;
+}
+
+#geekybot-sales-assistant .gb-product-card__match-row strong {
+  color: var(--gb-muted);
+  font-size: 10px;
+  font-weight: 800;
+  line-height: 1.2;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+}
+
+#geekybot-sales-assistant .gb-product-card__match-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+}
+
+#geekybot-sales-assistant .gb-product-card__match-chip {
+  display: inline-flex;
+  align-items: center;
+  max-width: 100%;
+  padding: 3px 6px;
+  border-radius: 999px;
+  background: #eef2ff;
+  color: #3730a3;
+  font-size: 10px;
+  font-weight: 800;
+  line-height: 1.2;
+}
+
+#geekybot-sales-assistant .gb-product-card__match-chip--missing {
+  background: #fff7ed;
+  color: #9a3412;
+}
+
+
+/* Natural search UI micro-polish: keep final cards clear of the input area and soften match metadata. */
+#geekybot-sales-assistant .gb-messages {
+  padding-bottom: 86px;
+}
+
+#geekybot-sales-assistant .gb-product-card__match {
+  gap: 5px;
+  margin-top: 7px;
+  padding: 7px;
+  border-style: solid;
+  border-color: #edf2f7;
+  background: #fbfdff;
+}
+
+#geekybot-sales-assistant .gb-product-card__match-chip {
+  padding: 3px 7px;
+}
+
+@media (max-width: 480px) {
+  #geekybot-sales-assistant .gb-messages {
+    padding-bottom: 96px;
+  }
+}
+
+/* Storefront widget branding */
+#geekybot-sales-assistant .gb-brand-mark-svg {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+#geekybot-sales-assistant .gb-launcher {
+  gap: 10px;
+  padding: 0;
+}
+
+#geekybot-sales-assistant.gb-widget--launcher-pill .gb-launcher {
+  width: auto;
+  min-width: 62px;
+  max-width: min(260px, calc(100vw - 48px));
+  padding: 8px 18px 8px 8px;
+}
+
+#geekybot-sales-assistant .gb-launcher__icon {
+  display: grid;
+  place-items: center;
+  width: 42px;
+  height: 42px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.96);
+  overflow: hidden;
+}
+
+#geekybot-sales-assistant .gb-launcher__icon img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+#geekybot-sales-assistant .gb-launcher__icon .gb-brand-mark-svg {
+  width: 30px;
+  height: 30px;
+}
+
+#geekybot-sales-assistant .gb-launcher__text {
+  display: none;
+  color: #fff;
+  font-size: 14px;
+  font-weight: 800;
+  line-height: 1;
+  white-space: nowrap;
+}
+
+#geekybot-sales-assistant.gb-widget--launcher-pill .gb-launcher__text {
+  display: inline-block;
+}
+
+#geekybot-sales-assistant .gb-window__brand {
+  display: flex;
+  align-items: center;
+  min-width: 0;
+  gap: 12px;
+}
+
+#geekybot-sales-assistant .gb-window__brand-logo {
+  flex: 0 0 42px;
+  display: grid;
+  place-items: center;
+  width: 42px;
+  height: 42px;
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.94);
+  overflow: hidden;
+}
+
+#geekybot-sales-assistant .gb-window__brand-logo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+#geekybot-sales-assistant .gb-window__brand-logo .gb-brand-mark-svg {
+  width: 40px;
+  height: 40px;
+}
+
+#geekybot-sales-assistant.gb-widget--header-solid .gb-window__header {
+  background: var(--gb-accent);
+}
+
+@media (max-width: 480px) {
+  #geekybot-sales-assistant.gb-widget--launcher-pill .gb-launcher {
+    max-width: calc(100vw - 32px);
+  }
+}
+
+/* Storefront Widget Branding UI Cleanup */
+#geekybot-sales-assistant .gb-launcher {
+  width: 64px;
+  height: 64px;
+  box-shadow: 0 22px 54px color-mix(in srgb, var(--gb-accent) 34%, transparent), 0 0 0 9px color-mix(in srgb, var(--gb-accent) 10%, transparent);
+}
+
+#geekybot-sales-assistant.gb-widget--launcher-pill .gb-launcher {
+  min-height: 58px;
+  padding: 8px 18px 8px 8px;
+}
+
+#geekybot-sales-assistant .gb-launcher__icon {
+  width: 46px;
+  height: 46px;
+  box-shadow: inset 0 0 0 1px rgba(15, 23, 42, .08);
+}
+
+#geekybot-sales-assistant .gb-launcher__icon img {
+  width: 78%;
+  height: 78%;
+  object-fit: contain;
+}
+
+#geekybot-sales-assistant .gb-window__brand-logo {
+  padding: 1px;
+  box-shadow: inset 0 0 0 1px rgba(15, 23, 42, .08);
+}
+
+#geekybot-sales-assistant .gb-window__brand-logo img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+#geekybot-sales-assistant .gb-window__header {
+  min-height: 82px;
+}
+
+#geekybot-sales-assistant .gb-empty-shopper-state {
+  display: grid;
+  gap: 8px;
+  margin-top: 8px;
+  padding: 13px;
+  border: 1px solid var(--gb-border);
+  border-radius: var(--gb-radius-md);
+  background: linear-gradient(180deg, #ffffff 0%, #f8fbff 100%);
+  box-shadow: 0 12px 28px rgba(15, 23, 42, .055);
+}
+
+#geekybot-sales-assistant .gb-empty-shopper-state strong {
+  color: var(--gb-text);
+  font-size: 13px;
+  font-weight: 800;
+  line-height: 1.25;
+}
+
+#geekybot-sales-assistant .gb-empty-shopper-state span {
+  color: var(--gb-muted);
+  font-size: 12px;
+  line-height: 1.35;
+}
+
+#geekybot-sales-assistant .gb-empty-shopper-state__examples {
+  display: grid;
+  gap: 7px;
+  margin-top: 2px;
+}
+
+#geekybot-sales-assistant .gb-empty-shopper-state__examples button {
+  width: 100%;
+  min-height: 30px;
+  padding: 7px 10px;
+  border: 1px solid #dbe7f7;
+  border-radius: 12px;
+  background: #eef6ff;
+  color: var(--gb-accent);
+  cursor: pointer;
+  font-size: 11px;
+  font-weight: 800;
+  line-height: 1.2;
+  text-align: left;
+}
+
+#geekybot-sales-assistant .gb-empty-shopper-state__examples button:hover,
+#geekybot-sales-assistant .gb-empty-shopper-state__examples button:focus-visible {
+  border-color: var(--gb-accent);
+  background: #fff;
+  outline: 0;
+}
+
+@media (max-width: 480px) {
+  #geekybot-sales-assistant .gb-launcher {
+    width: 60px;
+    height: 60px;
+  }
+
+  #geekybot-sales-assistant .gb-launcher__icon {
+    width: 43px;
+    height: 43px;
+  }
+
+  #geekybot-sales-assistant .gb-empty-shopper-state {
+    padding: 11px;
+  }
+}
+
+
+/* Keep long cart and order messages clear of the fixed input bar. */
+#geekybot-sales-assistant .gb-messages {
+  padding-bottom: 118px;
+}
+
+@media (max-width: 480px) {
+  #geekybot-sales-assistant .gb-messages {
+    padding-bottom: 132px;
+  }
+}
+
+/* Frontend Widget Clear Conversation Action */
+#geekybot-sales-assistant .gb-window__header-actions {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex: 0 0 auto;
+}
+
+#geekybot-sales-assistant .gb-window__menu {
+  position: relative;
+}
+
+#geekybot-sales-assistant .gb-window__menu summary {
+  display: grid;
+  place-items: center;
+  width: 34px;
+  height: 34px;
+  border: 0;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.13);
+  color: #fff;
+  cursor: pointer;
+  font-size: 15px;
+  font-weight: 900;
+  line-height: 1;
+  list-style: none;
+}
+
+#geekybot-sales-assistant .gb-window__menu summary::-webkit-details-marker {
+  display: none;
+}
+
+#geekybot-sales-assistant .gb-window__menu summary:hover,
+#geekybot-sales-assistant .gb-window__menu summary:focus-visible,
+#geekybot-sales-assistant .gb-close:hover,
+#geekybot-sales-assistant .gb-close:focus-visible {
+  background: rgba(255, 255, 255, 0.22);
+  outline: 0;
+}
+
+#geekybot-sales-assistant .gb-window__menu-panel {
+  position: absolute;
+  top: calc(100% + 10px);
+  right: 0;
+  z-index: 5;
+  min-width: 180px;
+  padding: 8px;
+  border: 1px solid var(--gb-border);
+  border-radius: 14px;
+  background: #fff;
+  box-shadow: 0 18px 42px rgba(15, 23, 42, .18);
+}
+
+#geekybot-sales-assistant .gb-clear-conversation {
+  display: block;
+  width: 100%;
+  min-height: 38px;
+  padding: 9px 12px;
+  border: 0;
+  border-radius: 10px;
+  background: #f8fafc;
+  color: #334155;
+  cursor: pointer;
+  font-size: 13px;
+  font-weight: 800;
+  line-height: 1.2;
+  text-align: left;
+}
+
+#geekybot-sales-assistant .gb-clear-conversation:hover,
+#geekybot-sales-assistant .gb-clear-conversation:focus-visible {
+  background: #eef2ff;
+  color: var(--gb-accent);
+  outline: 0;
+}
+
+@media (max-width: 480px) {
+  #geekybot-sales-assistant .gb-window__header-actions {
+    gap: 6px;
+  }
+
+  #geekybot-sales-assistant .gb-window__menu summary,
+  #geekybot-sales-assistant .gb-close {
+    width: 32px;
+    height: 32px;
+  }
+
+  #geekybot-sales-assistant .gb-window__menu-panel {
+    right: -40px;
+    min-width: 168px;
+  }
+}
+
+/* Product Expert: compact verification marker for answers grounded in store data. */
+#geekybot-sales-assistant .gb-product-expert-verified {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: 8px;
+  padding: 5px 9px;
+  border: 1px solid color-mix(in srgb, var(--gb-accent) 24%, var(--gb-border));
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--gb-accent) 8%, #fff);
+  color: var(--gb-text);
+  font-size: 11px;
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+#geekybot-sales-assistant .gb-product-expert-verified::before {
+  content: "✓";
+  color: var(--gb-accent);
+  font-size: 12px;
+}
+
+#geekybot-sales-assistant .gb-product-expert-verified + .gb-products {
+  margin-top: 12px;
+}
+
