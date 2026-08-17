@@ -87,6 +87,30 @@
   });
 
   ready(function () {
+    document.querySelectorAll('[data-gb-preview-root]').forEach(function (preview) {
+      var buttons = preview.querySelectorAll('[data-gb-preview-state-button]');
+
+      function setPreviewState(state) {
+        state = state === 'open' ? 'open' : 'closed';
+        preview.setAttribute('data-gb-preview-state', state);
+        buttons.forEach(function (button) {
+          var active = button.getAttribute('data-gb-preview-state-button') === state;
+          button.classList.toggle('is-active', active);
+          button.setAttribute('aria-pressed', active ? 'true' : 'false');
+        });
+      }
+
+      buttons.forEach(function (button) {
+        button.addEventListener('click', function () {
+          setPreviewState(button.getAttribute('data-gb-preview-state-button'));
+        });
+      });
+
+      setPreviewState(preview.getAttribute('data-gb-preview-state'));
+    });
+  });
+
+  ready(function () {
     var wrap = document.querySelector('.geekybot-admin-widget');
     if (!wrap) {
       return;
@@ -98,6 +122,8 @@
     var colorInput = wrap.querySelector('[name="accent_color"]');
     var launcherStyleInput = wrap.querySelector('[name="launcher_style"]');
     var launcherTextInput = wrap.querySelector('[name="launcher_text"]');
+    var invitationEnabledInput = wrap.querySelector('[name="shopper_invitation_enabled"][type="checkbox"]');
+    var invitationMessageInput = wrap.querySelector('[name="shopper_invitation_message"]');
     var headerStyleInput = wrap.querySelector('[name="header_style"]');
     var preview = wrap.querySelector('.gb-widget-preview-stack');
     var previewWindow = wrap.querySelector('.gb-widget-preview');
@@ -106,6 +132,8 @@
     var previewWelcome = wrap.querySelector('.gb-widget-preview__body > p');
     var previewLauncher = wrap.querySelector('[data-gb-preview-launcher]');
     var previewLauncherText = wrap.querySelector('[data-gb-preview-launcher-text]');
+    var previewInvitation = wrap.querySelector('[data-gb-preview-invitation]');
+    var previewInvitationMessage = wrap.querySelector('[data-gb-preview-invitation-message]');
 
     function updatePreview() {
       if (previewName && nameInput) {
@@ -127,13 +155,19 @@
       if (previewLauncherText && launcherTextInput) {
         previewLauncherText.textContent = text(launcherTextInput.value, 'Ask about products');
       }
+      if (previewInvitation && invitationEnabledInput) {
+        previewInvitation.hidden = !invitationEnabledInput.checked;
+      }
+      if (previewInvitationMessage && invitationMessageInput) {
+        previewInvitationMessage.textContent = text(invitationMessageInput.value, 'Need help choosing? Ask me about products, prices, or options.');
+      }
       if (previewWindow && headerStyleInput) {
         previewWindow.classList.toggle('gb-widget-preview--solid', headerStyleInput.value === 'solid');
         previewWindow.classList.toggle('gb-widget-preview--gradient', headerStyleInput.value !== 'solid');
       }
     }
 
-    [nameInput, subtitleInput, welcomeInput, colorInput, launcherStyleInput, launcherTextInput, headerStyleInput].forEach(function (field) {
+    [nameInput, subtitleInput, welcomeInput, colorInput, launcherStyleInput, launcherTextInput, invitationEnabledInput, invitationMessageInput, headerStyleInput].forEach(function (field) {
       if (!field) {
         return;
       }

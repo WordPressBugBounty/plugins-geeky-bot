@@ -24,6 +24,90 @@
 #geekybot-sales-assistant.gb-widget--right { right: 24px; }
 #geekybot-sales-assistant.gb-widget--left { left: 24px; }
 
+#geekybot-sales-assistant .gb-shopper-invitation {
+  position: absolute;
+  bottom: 76px;
+  z-index: 2;
+  display: flex;
+  align-items: flex-start;
+  width: min(320px, calc(100vw - 32px));
+  padding: 6px 42px 6px 6px;
+  border: 1px solid var(--gb-border);
+  border-radius: 18px;
+  background: #fff;
+  box-shadow: 0 18px 48px rgba(15, 23, 42, .18);
+  opacity: 0;
+  transform: translateY(8px) scale(.98);
+  transform-origin: bottom right;
+  transition: opacity .18s ease, transform .18s ease;
+}
+
+#geekybot-sales-assistant.gb-widget--right .gb-shopper-invitation { right: 0; }
+#geekybot-sales-assistant.gb-widget--left .gb-shopper-invitation {
+  left: 0;
+  transform-origin: bottom left;
+}
+
+#geekybot-sales-assistant .gb-shopper-invitation[hidden] { display: none; }
+#geekybot-sales-assistant .gb-shopper-invitation.is-visible {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+}
+
+#geekybot-sales-assistant .gb-shopper-invitation::after {
+  content: "";
+  position: absolute;
+  bottom: -7px;
+  width: 12px;
+  height: 12px;
+  border-right: 1px solid var(--gb-border);
+  border-bottom: 1px solid var(--gb-border);
+  background: #fff;
+  transform: rotate(45deg);
+}
+
+#geekybot-sales-assistant.gb-widget--right .gb-shopper-invitation::after { right: 24px; }
+#geekybot-sales-assistant.gb-widget--left .gb-shopper-invitation::after { left: 24px; }
+
+#geekybot-sales-assistant .gb-shopper-invitation__open {
+  width: 100%;
+  min-height: 44px;
+  padding: 8px 10px;
+  border: 0;
+  background: transparent;
+  color: var(--gb-text);
+  cursor: pointer;
+  font: inherit;
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 1.4;
+  text-align: left;
+}
+
+#geekybot-sales-assistant .gb-shopper-invitation__dismiss {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  display: grid;
+  place-items: center;
+  width: 28px;
+  height: 28px;
+  padding: 0;
+  border: 0;
+  border-radius: 999px;
+  background: var(--gb-soft);
+  color: var(--gb-muted);
+  cursor: pointer;
+  font-size: 19px;
+  line-height: 1;
+}
+
+#geekybot-sales-assistant .gb-shopper-invitation__open:focus-visible,
+#geekybot-sales-assistant .gb-shopper-invitation__dismiss:focus-visible {
+  outline: 2px solid var(--gb-accent);
+  outline-offset: 2px;
+}
+
 #geekybot-sales-assistant .gb-launcher {
   width: 62px;
   height: 62px;
@@ -120,10 +204,35 @@
 }
 
 #geekybot-sales-assistant .gb-message--user {
+  position: relative;
+  max-width: calc(88% - 42px);
   margin-left: auto;
+  margin-right: 42px;
   background: var(--gb-accent);
   color: #fff;
   border-top-right-radius: 6px;
+}
+
+#geekybot-sales-assistant .gb-message__user-avatar {
+  position: absolute;
+  right: -42px;
+  bottom: 2px;
+  display: grid;
+  place-items: center;
+  width: 32px;
+  height: 32px;
+  border: 1px solid color-mix(in srgb, var(--gb-accent) 30%, var(--gb-border));
+  border-radius: 999px;
+  background: linear-gradient(145deg, #ffffff, color-mix(in srgb, var(--gb-accent) 10%, #ffffff));
+  color: color-mix(in srgb, var(--gb-accent) 88%, #0f172a);
+  box-shadow: 0 0 0 3px var(--gb-soft), 0 6px 16px rgba(15, 23, 42, .11);
+  box-sizing: border-box;
+}
+
+#geekybot-sales-assistant .gb-message__user-avatar svg {
+  display: block;
+  width: 18px;
+  height: 18px;
 }
 
 #geekybot-sales-assistant .gb-message--loading {
@@ -174,6 +283,10 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
+  #geekybot-sales-assistant .gb-shopper-invitation {
+    transition: none;
+  }
+
   #geekybot-sales-assistant .gb-message__typing-dot {
     animation: none;
     opacity: .58;
@@ -334,6 +447,10 @@
     height: min(620px, calc(100vh - 90px));
     right: 0 !important;
     left: 0 !important;
+  }
+
+  #geekybot-sales-assistant .gb-shopper-invitation {
+    width: min(300px, calc(100vw - 32px));
   }
 
   #geekybot-sales-assistant.gb-widget--left .gb-launcher {
@@ -972,4 +1089,3 @@
 #geekybot-sales-assistant .gb-product-expert-verified + .gb-products {
   margin-top: 12px;
 }
-

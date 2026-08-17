@@ -3,7 +3,7 @@
  * Plugin Name: Geeky Bot
  * Plugin URI: https://geekybot.com/
  * Description: AI Sales Assistant for WooCommerce. Helps shoppers find products, understand options, and move toward purchase from a lightweight storefront widget.
- * Version: 2.0.0-beta.1
+ * Version: 2.0.1
  * Author: Geeky Bot
  * Author URI: https://geekybot.com/
  * Text Domain: geeky-bot
@@ -18,7 +18,7 @@ if (!defined('ABSPATH')) {
     exit;
 }
 
-define('GEEKYBOT_VERSION', '2.0.0-beta.1');
+define('GEEKYBOT_VERSION', '2.0.1');
 define('GEEKYBOT_DB_VERSION', '2.0.0');
 define('GEEKYBOT_FILE', __FILE__);
 define('GEEKYBOT_PATH', plugin_dir_path(__FILE__));

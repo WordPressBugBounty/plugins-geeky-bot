@@ -28,6 +28,9 @@ class Widget {
             'i18n' => array(
                 'open' => __('Open shopping assistant', 'geeky-bot'),
                 'close' => __('Close', 'geeky-bot'),
+                'invitation' => __('Shopping assistant invitation', 'geeky-bot'),
+                'dismissInvitation' => __('Dismiss shopping assistant invitation', 'geeky-bot'),
+                'you' => __('You', 'geeky-bot'),
                 'placeholder' => __('Ask about products, size, color, price, or use case…', 'geeky-bot'),
                 'send' => __('Send', 'geeky-bot'),
                 'viewProduct' => __('View product', 'geeky-bot'),

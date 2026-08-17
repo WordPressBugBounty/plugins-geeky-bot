@@ -10113,6 +10113,14 @@
   overflow: hidden;
 }
 
+.geekybot-admin-widget .gb-branding-section--invitation {
+  grid-column: 1 / -1;
+}
+
+.geekybot-admin-widget .gb-branding-section--invitation .gb-invitation-message-field {
+  grid-column: 1 / -1;
+}
+
 .geekybot-admin-widget .gb-branding-section__head {
   display: grid;
   gap: 4px;
@@ -10205,6 +10213,53 @@
   min-height: 56px;
   padding: 7px;
   box-shadow: 0 20px 44px rgba(124, 58, 237, .22), 0 0 0 8px color-mix(in srgb, var(--gb-preview-accent) 10%, transparent);
+}
+
+.geekybot-admin-widget .gb-shopper-invitation-preview {
+  position: relative;
+  width: min(310px, 100%);
+  padding: 14px 42px 14px 16px;
+  border: 1px solid #dbe7f7;
+  border-radius: 18px;
+  background: #fff;
+  color: #172033;
+  box-shadow: 0 16px 36px rgba(15, 23, 42, .12);
+  font-size: 13px;
+  font-weight: 750;
+  line-height: 1.4;
+}
+
+.geekybot-admin-widget .gb-shopper-invitation-preview[hidden] {
+  display: none;
+}
+
+.geekybot-admin-widget .gb-shopper-invitation-preview::after {
+  content: "";
+  position: absolute;
+  bottom: -7px;
+  left: 24px;
+  width: 12px;
+  height: 12px;
+  border-right: 1px solid #dbe7f7;
+  border-bottom: 1px solid #dbe7f7;
+  background: #fff;
+  transform: rotate(45deg);
+}
+
+.geekybot-admin-widget .gb-shopper-invitation-preview i {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  display: grid;
+  place-items: center;
+  width: 24px;
+  height: 24px;
+  border-radius: 999px;
+  background: #f1f5f9;
+  color: #64748b;
+  font-size: 16px;
+  font-style: normal;
+  line-height: 1;
 }
 
 .geekybot-admin-widget .gb-launcher-preview__mark {
@@ -12168,5 +12223,363 @@
 @media (max-width: 600px) {
   .geekybot-commerce-pro-promo .gb-pro-promo-feature-grid {
     grid-template-columns: 1fr;
+  }
+}
+
+/* ------------------------------------------------------------------
+   Geeky Bot 2.0.1 admin density and storefront-preview polish.
+   ------------------------------------------------------------------ */
+
+/* The dashboard hero remains the primary overview, with less vertical
+   ceremony so the first operational section is visible sooner. */
+.geekybot-cockpit-dashboard-v3 .gb-cockpit-hero {
+  grid-template-columns: minmax(0, 1fr) minmax(350px, 410px);
+  gap: 24px;
+  padding: 28px;
+}
+
+.geekybot-cockpit-dashboard-v3 .gb-cockpit-hero__main {
+  align-content: start;
+  min-height: 0;
+  padding: 0 0 0 4px;
+}
+
+.geekybot-cockpit-dashboard-v3 .gb-cockpit-hero h1 {
+  max-width: 860px;
+  margin-top: 4px;
+  font-size: clamp(42px, 3.8vw, 60px);
+  line-height: .96;
+  letter-spacing: -.06em;
+}
+
+.geekybot-cockpit-dashboard-v3 .gb-cockpit-hero__main > p:not(.gb-kicker) {
+  margin-top: 14px;
+  font-size: 15px;
+  line-height: 1.55;
+}
+
+.geekybot-cockpit-dashboard-v3 .gb-cockpit-actions {
+  margin-top: 18px;
+}
+
+.geekybot-cockpit-dashboard-v3 .gb-cockpit-actions .button {
+  min-height: 38px;
+  border-radius: 11px;
+}
+
+.geekybot-cockpit-dashboard-v3 .gb-cockpit-signal-bar {
+  gap: 9px;
+  margin-top: 18px;
+}
+
+.geekybot-cockpit-dashboard-v3 .gb-cockpit-signal-bar span {
+  min-height: 54px;
+  padding: 11px 13px;
+  border-radius: 15px;
+}
+
+.geekybot-cockpit-dashboard-v3 .gb-cockpit-signal-bar strong {
+  font-size: clamp(17px, 1.1vw, 21px);
+}
+
+.geekybot-cockpit-dashboard-v3 .gb-cockpit-readiness {
+  grid-template-columns: 116px minmax(0, 1fr);
+  gap: 17px;
+  padding: 20px;
+  border-radius: 25px;
+}
+
+.geekybot-cockpit-dashboard-v3 .gb-cockpit-ring {
+  width: 112px;
+  height: 112px;
+}
+
+.geekybot-cockpit-dashboard-v3 .gb-cockpit-ring::before {
+  width: 84px;
+  height: 84px;
+}
+
+.geekybot-cockpit-dashboard-v3 .gb-cockpit-ring strong {
+  font-size: 28px;
+}
+
+.geekybot-cockpit-dashboard-v3 .gb-cockpit-readiness__body h2 {
+  margin-bottom: 10px;
+  font-size: 19px;
+}
+
+.geekybot-cockpit-dashboard-v3 .gb-cockpit-readiness__body ul {
+  gap: 6px;
+  margin-bottom: 11px;
+}
+
+.geekybot-cockpit-dashboard-v3 .gb-cockpit-readiness__body li {
+  font-size: 12px;
+}
+
+/* Shared subpage heroes use the same visual language at a denser scale. */
+.geekybot-admin-wrap .gb-unified-hero {
+  grid-template-columns: minmax(0, 1fr) minmax(280px, 340px);
+  gap: 22px;
+  padding: 24px 26px;
+  border-radius: 30px;
+}
+
+.geekybot-admin-wrap .gb-unified-hero .gb-brand-head {
+  margin-bottom: 9px;
+}
+
+.geekybot-admin-wrap .gb-unified-hero .gb-page-context {
+  min-height: 25px;
+  margin-bottom: 10px;
+  padding: 5px 11px;
+}
+
+.geekybot-admin-wrap .gb-unified-hero h1 {
+  margin: 5px 0 9px;
+  font-size: clamp(31px, 2.65vw, 43px);
+  line-height: 1.04;
+}
+
+.geekybot-admin-wrap .gb-unified-hero__main > p:not(.gb-kicker) {
+  margin-bottom: 14px;
+  font-size: 13.5px;
+  line-height: 1.55;
+}
+
+.geekybot-admin-wrap .gb-unified-actions {
+  margin-bottom: 14px;
+}
+
+.geekybot-admin-wrap .gb-unified-signals {
+  gap: 9px;
+}
+
+.geekybot-admin-wrap .gb-unified-signals span {
+  min-height: 50px;
+  padding: 11px 13px;
+  border-radius: 14px;
+}
+
+.geekybot-admin-wrap .gb-unified-signals em {
+  margin-top: 4px;
+}
+
+.geekybot-admin-wrap .gb-unified-monitor {
+  justify-content: center;
+  min-height: 0;
+  padding: 21px;
+  border-radius: 24px;
+}
+
+.geekybot-admin-wrap .gb-unified-monitor h2 {
+  margin-bottom: 10px;
+  font-size: 18px;
+}
+
+.geekybot-admin-wrap .gb-unified-monitor ul {
+  gap: 7px;
+  font-size: 11.5px;
+  line-height: 1.4;
+}
+
+/* A preview represents one real storefront state at a time. */
+.geekybot-admin-wrap .gb-widget-preview-stack {
+  width: 100%;
+  gap: 13px;
+}
+
+.geekybot-admin-wrap .gb-widget-preview-switch {
+  display: inline-flex;
+  width: min(360px, 100%);
+  padding: 4px;
+  border: 1px solid #dbe7f6;
+  border-radius: 12px;
+  background: #f1f5f9;
+  box-sizing: border-box;
+}
+
+.geekybot-admin-wrap .gb-widget-preview-switch button {
+  flex: 1 1 50%;
+  min-height: 31px;
+  margin: 0;
+  padding: 5px 9px;
+  border: 0;
+  border-radius: 9px;
+  background: transparent;
+  color: #64748b;
+  font-size: 11px;
+  font-weight: 800;
+  line-height: 1.2;
+  cursor: pointer;
+}
+
+.geekybot-admin-wrap .gb-widget-preview-switch button.is-active {
+  background: #ffffff;
+  color: #1d4ed8;
+  box-shadow: 0 4px 12px rgba(15, 23, 42, .09);
+}
+
+.geekybot-admin-wrap .gb-widget-preview-switch button:focus-visible {
+  outline: 2px solid #2563eb;
+  outline-offset: 1px;
+}
+
+.geekybot-admin-wrap .gb-widget-preview-state {
+  width: 100%;
+}
+
+.geekybot-admin-wrap .gb-widget-preview-state--closed {
+  display: grid;
+  gap: 15px;
+  justify-items: start;
+  padding: 5px 0 9px;
+}
+
+.geekybot-admin-wrap [data-gb-preview-state="closed"] [data-gb-preview-stage="open"],
+.geekybot-admin-wrap [data-gb-preview-state="open"] [data-gb-preview-stage="closed"] {
+  display: none;
+}
+
+.geekybot-admin-wrap .gb-shopper-invitation-preview {
+  position: relative;
+  width: min(310px, 100%);
+  padding: 14px 42px 14px 16px;
+  border: 1px solid #dbe7f7;
+  border-radius: 18px;
+  background: #ffffff;
+  color: #172033;
+  box-shadow: 0 16px 36px rgba(15, 23, 42, .12);
+  box-sizing: border-box;
+  font-size: 13px;
+  font-weight: 750;
+  line-height: 1.4;
+}
+
+.geekybot-admin-wrap .gb-shopper-invitation-preview[hidden] {
+  display: none;
+}
+
+.geekybot-admin-wrap .gb-shopper-invitation-preview::after {
+  content: "";
+  position: absolute;
+  bottom: -7px;
+  left: 24px;
+  width: 12px;
+  height: 12px;
+  border-right: 1px solid #dbe7f7;
+  border-bottom: 1px solid #dbe7f7;
+  background: #ffffff;
+  transform: rotate(45deg);
+}
+
+.geekybot-admin-wrap .gb-shopper-invitation-preview i {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  display: grid;
+  place-items: center;
+  width: 24px;
+  height: 24px;
+  border-radius: 999px;
+  background: #f1f5f9;
+  color: #64748b;
+  font-size: 16px;
+  font-style: normal;
+  line-height: 1;
+}
+
+/* Commerce Pro update notices read as a compact action bar. */
+.geekybot-admin-update-notice.notice {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px 16px;
+  margin-top: 8px;
+  margin-bottom: 12px;
+  padding: 10px 12px;
+  border-top: 1px solid #dbe7f6;
+  border-right: 1px solid #dbe7f6;
+  border-bottom: 1px solid #dbe7f6;
+  border-radius: 12px;
+  background: #ffffff;
+  box-shadow: 0 8px 20px rgba(15, 23, 42, .05);
+}
+
+.geekybot-admin-update-notice__message,
+.geekybot-admin-update-notice__actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+}
+
+.geekybot-admin-update-notice__message > span {
+  display: grid;
+  place-items: center;
+  width: 24px;
+  height: 24px;
+  border-radius: 8px;
+  background: #eff6ff;
+  color: #2563eb;
+  font-size: 14px;
+  font-weight: 900;
+}
+
+.geekybot-admin-update-notice__message strong {
+  color: #334155;
+  font-size: 12px;
+}
+
+.geekybot-admin-update-notice__actions .button {
+  min-height: 30px;
+  margin: 0;
+  padding: 2px 11px;
+  border-radius: 8px;
+  font-size: 11px;
+  font-weight: 750;
+}
+
+@media (max-width: 1320px) {
+  .geekybot-admin-wrap .gb-unified-hero {
+    grid-template-columns: 1fr;
+  }
+
+  .geekybot-admin-wrap .gb-unified-monitor {
+    max-width: none;
+  }
+}
+
+@media (max-width: 1120px) {
+  .geekybot-cockpit-dashboard-v3 .gb-cockpit-hero {
+    grid-template-columns: 1fr;
+  }
+
+  .geekybot-cockpit-dashboard-v3 .gb-cockpit-readiness {
+    grid-template-columns: 116px minmax(0, 1fr);
+  }
+}
+
+@media (max-width: 782px) {
+  .geekybot-admin-wrap .gb-widget-preview-switch,
+  .geekybot-admin-wrap .gb-widget-preview {
+    max-width: none;
+  }
+
+  .geekybot-admin-update-notice.notice,
+  .geekybot-admin-update-notice__actions {
+    align-items: stretch;
+  }
+
+  .geekybot-admin-update-notice.notice,
+  .geekybot-admin-update-notice__message,
+  .geekybot-admin-update-notice__actions {
+    width: auto;
+  }
+
+  .geekybot-admin-update-notice__actions .button,
+  .geekybot-admin-update-notice__actions form {
+    flex: 1 1 auto;
   }
 }

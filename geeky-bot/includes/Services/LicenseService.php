@@ -798,8 +798,11 @@ class LicenseService {
             );
         ?>
         <div class="<?php echo esc_attr($class); ?>">
-            <p>
+            <div class="geekybot-admin-update-notice__message">
+                <span aria-hidden="true">↑</span>
                 <strong><?php echo esc_html($message); ?></strong>
+            </div>
+            <div class="geekybot-admin-update-notice__actions">
                 <?php if (!empty($summary['can_update'])) : ?>
                     <form class="geekybot-inline-notice-form" method="post" action="<?php echo esc_url(admin_url('admin-post.php')); ?>">
                         <?php wp_nonce_field('geekybot_license_action'); ?>
@@ -810,7 +813,7 @@ class LicenseService {
                     <a class="button button-primary" href="<?php echo esc_url(admin_url('admin.php?page=geekybot-addons')); ?>"><?php esc_html_e('Review license', 'geeky-bot'); ?></a>
                 <?php endif; ?>
                 <a class="button" href="<?php echo esc_url(admin_url('admin.php?page=geekybot-addons')); ?>"><?php esc_html_e('Open Add-ons', 'geeky-bot'); ?></a>
-            </p>
+            </div>
         </div>
         <?php
     }

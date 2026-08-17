@@ -4,7 +4,7 @@ Tags: woocommerce, product search, product recommendations, ai chatbot, ecommerc
 Requires at least: 6.0
 Tested up to: 7.0
 Requires PHP: 7.4
-Stable tag: 2.0.0
+Stable tag: 2.0.1
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -19,6 +19,12 @@ A shopper can ask "Show me wireless headphones under $100 that are in stock," fo
 Geeky Bot searches visible products, remembers context, explains suitable matches, and answers from WooCommerce data and approved policy pages.
 
 It is built as a focused sales assistant—not a generic website chatbot.
+
+= See Geeky Bot in action =
+
+Watch Geeky Bot turn natural shopper questions into product discovery, comparisons, grounded answers, and buying assistance inside WooCommerce.
+
+https://www.youtube.com/watch?v=KwlQ4gNXr8w
 
 = Natural WooCommerce product discovery =
 
@@ -48,7 +54,7 @@ Policy answers stay isolated to approved sources. Geeky Bot does not crawl arbit
 
 = Storefront shopping assistant =
 
-The responsive floating widget provides product cards, suggested questions, persistent browser-side history, clear-chat control, accessible focus states, reduced-motion support, and scoped styling designed to avoid theme conflicts.
+The responsive floating widget provides product cards, suggested questions, a configurable timed shopper invitation, clear shopper and assistant message identity, persistent browser-side history, clear-chat control, accessible focus states, reduced-motion support, and scoped styling designed to avoid theme conflicts.
 
 = A practical setup experience =
 
@@ -76,14 +82,12 @@ Learn more at [geekybot.com](https://geekybot.com/).
 
 == Installation ==
 
-1. Install and activate Geeky Bot from Plugins > Add New.
-2. Make sure WooCommerce is installed and active.
-3. Open Geeky Bot > Setup Wizard.
-4. Build the product index.
-5. Select any public store-policy pages the assistant may use.
-6. Review the widget, privacy, retention, and optional AI-provider settings.
-7. Open Geeky Bot > Guided Demo and test questions generated from your own catalog.
-8. Clear site or page caches before final storefront testing.
+1. Install and activate Geeky Bot, with WooCommerce active.
+2. Open Geeky Bot > Setup Wizard.
+3. Build the product index and select approved public policy pages.
+4. Review widget, privacy, retention, and optional AI-provider settings.
+5. Use Guided Demo to test questions generated from your catalog.
+6. Clear site or page caches before final storefront testing.
 
 == Frequently Asked Questions ==
 
@@ -170,24 +174,27 @@ Privacy: https://geekybot.com/privacy-policy/
 
 == Changelog ==
 
+= 2.0.1 =
+
+* Added an optional timed shopper invitation above the launcher.
+* Added controls for its message and 3–60 second delay.
+* Shows the invitation once per browser session and stops after interaction.
+* Added a privacy-friendly shopper avatar, including restored chat history.
+* Added natural "difference between," "vs," and "which is better" comparison routing.
+
 = 2.0.0 =
 
 * Rebuilt Geeky Bot as a WooCommerce-native AI Sales Assistant.
-* Added natural product discovery for product family, exact name, price, attributes, stock, sale status, and shopper preferences.
-* Added long-form requests, follow-up refinements, synonyms, spelling recovery, negative constraints, and natural constraint removal.
-* Added variation-aware matching that keeps color, size, price, and sale evidence on the same variation.
-* Added grounded Product Expert answers from visible WooCommerce product data.
-* Added grounded store-policy answers from explicitly selected published pages.
-* Added contextual recommendations with match explanations and honest close-match behavior.
-* Added a redesigned responsive widget, product cards, suggested questions, conversation persistence, and clear-chat control.
-* Added the Setup Wizard and a real-catalog Guided Demo.
-* Added Conversations, Needs Review grouping, product-click insight, CSV export, retention controls, and deletion tools.
-* Added product-index lifecycle handling for WooCommerce activation and catalog changes.
-* Added rate limiting, protected secrets, public-response allowlists, sanitized errors, and disclosure guards.
+* Added natural and variation-aware product discovery for names, families, price, attributes, stock, sale status, preferences, follow-ups, synonyms, and spelling recovery.
+* Added grounded product and selected store-policy answers.
+* Added contextual recommendations with match explanations and honest close matches.
+* Redesigned the responsive widget with product cards, suggested questions, conversation persistence, and clear-chat control.
+* Added Setup Wizard, real-catalog Guided Demo, Conversations, Needs Review, product-click insight, CSV export, retention, and deletion tools.
+* Added product-index lifecycle handling, rate limiting, protected secrets, public-response allowlists, sanitized errors, and disclosure guards.
 * Added support for the separate Geeky Bot Commerce Pro add-on.
 
 == Upgrade Notice ==
 
-= 2.0.0 =
+= 2.0.1 =
 
-Major release: Geeky Bot is now a WooCommerce AI Sales Assistant. Back up your site, review the 2.0 release notes, and test the upgrade on staging before updating production.
+Adds a timed shopper invitation and shopper avatar. Geeky Bot 2.x is a major WooCommerce-focused release; back up and test upgrades on staging.

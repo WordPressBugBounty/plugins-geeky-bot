@@ -13,7 +13,7 @@ if (!defined('ABSPATH')) {
  * this resolver handles actions against an existing product result set.
  */
 final class ShoppingCommandResolver {
-    const REVISION = 'gb-shopping-commands-2026.07.20.1';
+    const REVISION = 'gb-shopping-commands-2026.08.01.1';
 
     public function resolve($message, $context = array()) {
         $raw = $this->clean_text($message);
@@ -333,7 +333,8 @@ final class ShoppingCommandResolver {
     }
 
     private function compare_command($text, $context) {
-        if (!preg_match('/^compare\b/u', $text)) {
+        $request = $this->comparison_request($text);
+        if (empty($request)) {
             return array();
         }
 
@@ -358,9 +359,7 @@ final class ShoppingCommandResolver {
         // Explicit product names are resolved later against the visible catalog.
         // Never fall back each name to the first product from old chat context.
         if (count($positions) < 2) {
-            $comparison_text = preg_replace('/^compare\s+/u', '', $text);
-            $parts = preg_split('/\s+(?:and|with|vs\.?|versus)\s+/u', (string) $comparison_text);
-            foreach ((array) $parts as $part) {
+            foreach ((array) $request['namedProducts'] as $part) {
                 $part = trim(preg_replace('/^(?:the|a|an)\s+/u', '', trim((string) $part)));
                 if ($part !== '' && !in_array($part, $named_products, true)) {
                     $named_products[] = $part;
@@ -379,8 +378,84 @@ final class ShoppingCommandResolver {
                 'ordinalComparison' => !empty($positions),
                 'availableResultCount' => count($reference_ids),
                 'missingPositions' => array_values(array_unique($missing_positions)),
+                'comparisonQuestion' => !empty($request['comparisonQuestion'])
+                    ? $request['comparisonQuestion']
+                    : '',
             ),
         );
+    }
+
+    /**
+     * Recognizes explicit comparison wording and extracts only the named
+     * product phrases. The patterns are deliberately anchored so ordinary
+     * product searches containing words such as "different" or "better" are
+     * not converted into Commerce Pro comparison commands.
+     */
+    private function comparison_request($text) {
+        $text = trim((string) $text);
+        $parts = array();
+        $question = '';
+
+        if (preg_match('/^compare\b(?:\s+(.+))?$/u', $text, $matches)) {
+            $comparison_text = isset($matches[1]) ? trim((string) $matches[1]) : '';
+            $parts = $this->split_comparison_names($comparison_text);
+        } elseif (preg_match('/^(?:what(?:s|\s+is|\s+are)?\s+)?(?:the\s+)?differences?\s+between\s+(.+?)\s+and\s+(.+)$/u', $text, $matches)) {
+            $parts = array($matches[1], $matches[2]);
+            $question = 'difference';
+        } elseif (preg_match('/^how\s+(?:is|are)\s+(.+?)\s+and\s+(.+?)\s+different(?:\s+from\s+each\s+other)?$/u', $text, $matches)) {
+            $parts = array($matches[1], $matches[2]);
+            $question = 'difference';
+        } elseif (preg_match('/^how\s+do(?:es)?\s+(.+?)\s+and\s+(.+?)\s+differ(?:\s+from\s+each\s+other)?$/u', $text, $matches)) {
+            $parts = array($matches[1], $matches[2]);
+            $question = 'difference';
+        } elseif (preg_match('/^how\s+does\s+(.+?)\s+differ\s+from\s+(.+)$/u', $text, $matches)) {
+            $parts = array($matches[1], $matches[2]);
+            $question = 'difference';
+        } elseif (preg_match('/^which\s+(?:one\s+)?is\s+better\s+(?:between\s+)?(.+?)\s+(?:or|and)\s+(.+)$/u', $text, $matches)) {
+            $parts = array($matches[1], $matches[2]);
+        } elseif (preg_match('/^(.+?)\s+(?:vs|versus)\s+(.+)$/u', $text, $matches)) {
+            $parts = array($matches[1], $matches[2]);
+            $question = 'difference';
+        } else {
+            return array();
+        }
+
+        $clean = array();
+        foreach ((array) $parts as $part) {
+            $part = trim(preg_replace('/^(?:the|a|an)\s+/u', '', trim((string) $part)));
+            if ($part !== '' && !in_array($part, $clean, true)) {
+                $clean[] = $part;
+            }
+        }
+
+        return array(
+            'namedProducts' => array_slice($clean, 0, 4),
+            'comparisonQuestion' => $question,
+        );
+    }
+
+    /**
+     * Splits the original "compare" command without treating "with" inside a
+     * product title (for example, "Hoodie with Logo") as a separator when an
+     * unambiguous "and", "vs", or "versus" separator is also present.
+     */
+    private function split_comparison_names($text) {
+        $text = trim((string) $text);
+        if ($text === '') {
+            return array();
+        }
+
+        if (preg_match('/\s+(?:vs|versus)\s+/u', $text)) {
+            return preg_split('/\s+(?:vs|versus)\s+/u', $text);
+        }
+        if (preg_match('/\s+and\s+/u', $text)) {
+            return preg_split('/\s+and\s+/u', $text);
+        }
+        if (preg_match('/\s+with\s+/u', $text)) {
+            return preg_split('/\s+with\s+/u', $text, 2);
+        }
+
+        return array();
     }
 
     private function comparison_followup_command($text, $context) {

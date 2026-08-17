@@ -13,6 +13,7 @@
   let isSending = false;
   let isRestoringHistory = false;
   let historySaveTimer = null;
+  let invitationTimer = null;
   const productExpertSourcesSeen = new Set();
   const storageKeys = buildStorageKeys();
   let sessionKey = window.localStorage ? localStorage.getItem('geekybot_session_key') || '' : '';
@@ -23,6 +24,10 @@
 
   root.className = 'gb-widget gb-widget--' + (settings.buttonPosition === 'left' ? 'left' : 'right') + ' gb-widget--launcher-' + launcherStyle + ' gb-widget--header-' + headerStyle;
   root.innerHTML = '' +
+    '<aside class="gb-shopper-invitation" aria-label="' + escapeAttr(i18n.invitation || 'Shopping assistant invitation') + '" hidden>' +
+      '<button class="gb-shopper-invitation__open" type="button">' + escapeHtml(settings.shopperInvitationMessage || 'Need help choosing? Ask me about products, prices, or options.') + '</button>' +
+      '<button class="gb-shopper-invitation__dismiss" type="button" aria-label="' + escapeAttr(i18n.dismissInvitation || 'Dismiss shopping assistant invitation') + '">×</button>' +
+    '</aside>' +
     '<button class="gb-launcher" type="button" aria-label="' + escapeHtml(i18n.open || 'Open assistant') + '">' +
       '<span class="gb-launcher__icon">' + launcherMark + '</span>' +
       '<span class="gb-launcher__text">' + escapeHtml(settings.launcherText || 'Ask about products') + '</span>' +
@@ -48,6 +53,9 @@
     '</section>';
 
   const launcher = root.querySelector('.gb-launcher');
+  const shopperInvitation = root.querySelector('.gb-shopper-invitation');
+  const shopperInvitationOpen = root.querySelector('.gb-shopper-invitation__open');
+  const shopperInvitationDismiss = root.querySelector('.gb-shopper-invitation__dismiss');
   const closeBtn = root.querySelector('.gb-close');
   const clearBtn = root.querySelector('.gb-clear-conversation');
   const windowEl = root.querySelector('.gb-window');
@@ -62,6 +70,16 @@
   observeConversationChanges();
 
   launcher.addEventListener('click', openWidget);
+  if (shopperInvitationOpen) {
+    shopperInvitationOpen.addEventListener('click', openWidget);
+  }
+  if (shopperInvitationDismiss) {
+    shopperInvitationDismiss.addEventListener('click', function (event) {
+      event.stopPropagation();
+      hideShopperInvitation(true);
+      launcher.focus();
+    });
+  }
   closeBtn.addEventListener('click', closeWidget);
   if (clearBtn) {
     clearBtn.addEventListener('click', clearConversation);
@@ -76,8 +94,10 @@
   restoreWidgetOpenState();
   loadGuidedDemoPhrase();
   bindStorageSync();
+  scheduleShopperInvitation();
 
   function openWidget() {
+    hideShopperInvitation(true);
     root.classList.add('gb-widget--open');
     windowEl.setAttribute('aria-hidden', 'false');
     saveWidgetOpenState(true);
@@ -115,6 +135,76 @@
     windowEl.setAttribute('aria-hidden', 'true');
     saveWidgetOpenState(false);
     launcher.focus();
+  }
+
+  function scheduleShopperInvitation() {
+    if (settings.shopperInvitationEnabled === 'no'
+      || !String(settings.shopperInvitationMessage || '').trim()
+      || shopperInvitationWasSeen()
+      || root.classList.contains('gb-widget--open')) {
+      return;
+    }
+
+    if (document.hidden) {
+      document.addEventListener('visibilitychange', function waitForVisiblePage() {
+        if (!document.hidden) {
+          scheduleShopperInvitation();
+        }
+      }, { once: true });
+      return;
+    }
+
+    const delaySeconds = Math.max(3, Math.min(60, parseInt(settings.shopperInvitationDelay || '12', 10) || 12));
+    invitationTimer = window.setTimeout(showShopperInvitation, delaySeconds * 1000);
+  }
+
+  function showShopperInvitation() {
+    invitationTimer = null;
+    if (!shopperInvitation
+      || document.hidden
+      || root.classList.contains('gb-widget--open')) {
+      if (document.hidden) {
+        scheduleShopperInvitation();
+      }
+      return;
+    }
+
+    markShopperInvitationSeen();
+    shopperInvitation.hidden = false;
+    window.requestAnimationFrame(function () {
+      shopperInvitation.classList.add('is-visible');
+    });
+  }
+
+  function hideShopperInvitation(markSeen) {
+    if (invitationTimer) {
+      window.clearTimeout(invitationTimer);
+      invitationTimer = null;
+    }
+    if (markSeen) {
+      markShopperInvitationSeen();
+    }
+    if (!shopperInvitation) {
+      return;
+    }
+    shopperInvitation.classList.remove('is-visible');
+    shopperInvitation.hidden = true;
+  }
+
+  function shopperInvitationWasSeen() {
+    try {
+      return window.sessionStorage && sessionStorage.getItem(storageKeys.invitation) === '1';
+    } catch (error) {
+      return false;
+    }
+  }
+
+  function markShopperInvitationSeen() {
+    try {
+      if (window.sessionStorage) {
+        sessionStorage.setItem(storageKeys.invitation, '1');
+      }
+    } catch (error) {}
   }
 
   function initializeFreshConversation() {
@@ -302,7 +392,8 @@
     return {
       history: base + '_history_v1',
       timestamp: base + '_history_saved_at',
-      open: base + '_open'
+      open: base + '_open',
+      invitation: base + '_invitation_seen_v1'
     };
   }
 
@@ -338,6 +429,7 @@
       isRestoringHistory = true;
       messagesEl.innerHTML = cleanHtml;
       removeTransientMessages(messagesEl);
+      enhanceRestoredUserMessages();
       messagesEl.querySelectorAll('[data-gbcp-enhanced]').forEach(function (node) {
         node.removeAttribute('data-gbcp-enhanced');
       });
@@ -373,6 +465,9 @@
     });
     removeTransientMessages(template.content);
     template.content.querySelectorAll('.gb-empty-shopper-state').forEach(function (node) {
+      node.remove();
+    });
+    template.content.querySelectorAll('.gb-message__user-avatar').forEach(function (node) {
       node.remove();
     });
     template.content.querySelectorAll('*').forEach(function (node) {
@@ -470,6 +565,9 @@
     window.addEventListener('storage', function (event) {
       if (event.key === storageKeys.open) {
         const shouldOpen = event.newValue === '1';
+        if (shouldOpen) {
+          hideShopperInvitation(true);
+        }
         root.classList.toggle('gb-widget--open', shouldOpen);
         windowEl.setAttribute('aria-hidden', shouldOpen ? 'false' : 'true');
       }
@@ -493,10 +591,30 @@
   function addUserMessage(text) {
     const item = document.createElement('div');
     item.className = 'gb-message gb-message--user';
-    item.textContent = text;
+    item.appendChild(document.createTextNode(text));
+    addUserAvatar(item, text);
     messagesEl.appendChild(item);
     scrollToEnd();
     return item;
+  }
+
+  function enhanceRestoredUserMessages() {
+    messagesEl.querySelectorAll('.gb-message--user').forEach(function (item) {
+      const text = String(item.textContent || '').trim();
+      addUserAvatar(item, text);
+    });
+  }
+
+  function addUserAvatar(item, text) {
+    if (!item || item.querySelector('.gb-message__user-avatar')) {
+      return;
+    }
+    const avatar = document.createElement('span');
+    avatar.className = 'gb-message__user-avatar';
+    avatar.setAttribute('aria-hidden', 'true');
+    avatar.innerHTML = userAvatarSvg();
+    item.setAttribute('aria-label', (i18n.you || 'You') + ': ' + String(text || '').trim());
+    item.appendChild(avatar);
   }
 
   function addBotMessage(text, loading) {
@@ -802,6 +920,13 @@
       '<line x1="29" y1="60" x2="29" y2="63" stroke="' + u + '" stroke-width="4" /><line x1="42" y1="60" x2="42" y2="63" stroke="' + u + '" stroke-width="4" />' +
       '<circle cx="29" cy="66" r="3" fill="' + u + '" /><circle cx="42" cy="66" r="3" fill="' + u + '" />' +
       '</g>' +
+    '</svg>';
+  }
+
+  function userAvatarSvg() {
+    return '<svg viewBox="0 0 24 24" focusable="false" aria-hidden="true">' +
+      '<circle cx="12" cy="8" r="3.4" fill="none" stroke="currentColor" stroke-width="1.8" />' +
+      '<path d="M5.2 20c.5-4 3-6.1 6.8-6.1s6.3 2.1 6.8 6.1" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" />' +
     '</svg>';
   }
 

@@ -418,7 +418,7 @@ class Menu {
                         <h2><?php esc_html_e('Live assistant preview', 'geeky-bot'); ?></h2>
                         <p><?php esc_html_e('The assistant should feel like guided shopping, not a generic support widget.', 'geeky-bot'); ?></p>
                     </div>
-                    <?php $this->widget_preview($settings); ?>
+                    <?php $this->widget_preview($settings, 'open'); ?>
                     <div class="gb-cockpit-try-panel">
                         <span><?php esc_html_e('Try on storefront', 'geeky-bot'); ?></span>
                         <code>comfortable shoes size 42 red and white</code>
@@ -799,6 +799,17 @@ class Menu {
                         <label><span><?php esc_html_e('Assistant subtitle', 'geeky-bot'); ?></span><input name="assistant_subtitle" type="text" value="<?php echo esc_attr($settings['assistant_subtitle']); ?>" /></label>
                         <label><span><?php esc_html_e('Welcome message', 'geeky-bot'); ?></span><textarea name="welcome_message" rows="3"><?php echo esc_textarea($settings['welcome_message']); ?></textarea></label>
                         <label><span><?php esc_html_e('Safe fallback answer', 'geeky-bot'); ?></span><textarea name="fallback_human_message" rows="3"><?php echo esc_textarea($settings['fallback_human_message']); ?></textarea></label>
+                        <div class="gb-branding-section gb-branding-section--invitation">
+                            <div class="gb-branding-section__head">
+                                <strong><?php esc_html_e('Shopper invitation', 'geeky-bot'); ?></strong>
+                                <span><?php esc_html_e('Show one friendly prompt above the launcher after a shopper has spent some time on the page. The chat window stays closed until the shopper chooses to open it.', 'geeky-bot'); ?></span>
+                            </div>
+                            <div class="gb-branding-grid">
+                                <label class="gb-toggle-row"><input type="hidden" name="shopper_invitation_enabled" value="no" /><input type="checkbox" name="shopper_invitation_enabled" value="yes" <?php checked($settings['shopper_invitation_enabled'], 'yes'); ?> /> <span><strong><?php esc_html_e('Enable shopper invitation', 'geeky-bot'); ?></strong><em><?php esc_html_e('Shown once per browser session and never while the assistant is already open.', 'geeky-bot'); ?></em></span></label>
+                                <label><span><?php esc_html_e('Show after', 'geeky-bot'); ?></span><input name="shopper_invitation_delay" type="number" min="3" max="60" value="<?php echo esc_attr(absint($settings['shopper_invitation_delay'])); ?>" /><em><?php esc_html_e('Seconds after the page becomes available. Recommended: 10–15 seconds.', 'geeky-bot'); ?></em></label>
+                                <label class="gb-invitation-message-field"><span><?php esc_html_e('Invitation message', 'geeky-bot'); ?></span><textarea name="shopper_invitation_message" rows="3" maxlength="160"><?php echo esc_textarea($settings['shopper_invitation_message']); ?></textarea><em><?php esc_html_e('Keep it short, useful, and focused on helping shoppers choose products.', 'geeky-bot'); ?></em></label>
+                            </div>
+                        </div>
                         <div class="gb-inline-fields">
                             <label><span><?php esc_html_e('Accent color', 'geeky-bot'); ?></span><input name="accent_color" type="color" value="<?php echo esc_attr($settings['accent_color']); ?>" /></label>
                             <label><span><?php esc_html_e('Position', 'geeky-bot'); ?></span><select name="button_position"><option value="right" <?php selected($settings['button_position'], 'right'); ?>><?php esc_html_e('Right', 'geeky-bot'); ?></option><option value="left" <?php selected($settings['button_position'], 'left'); ?>><?php esc_html_e('Left', 'geeky-bot'); ?></option></select></label>
@@ -3142,27 +3153,39 @@ class Menu {
         <?php
     }
 
-    private function widget_preview($settings) {
+    private function widget_preview($settings, $default_state = 'closed') {
         $public = Settings::public_settings();
         $header_logo = !empty($public['headerLogoUrl']) ? $public['headerLogoUrl'] : '';
         $launcher_icon = !empty($public['launcherIconUrl']) ? $public['launcherIconUrl'] : '';
         $launcher_style = isset($settings['launcher_style']) && $settings['launcher_style'] === 'pill' ? 'pill' : 'icon';
+        $preview_state = $default_state === 'open' ? 'open' : 'closed';
         ?>
-        <div class="gb-widget-preview-stack" style="--gb-preview-accent: <?php echo esc_attr($settings['accent_color']); ?>">
-            <div class="gb-launcher-preview gb-launcher-preview--<?php echo esc_attr($launcher_style); ?>" data-gb-preview-launcher>
-                <span class="gb-launcher-preview__mark" data-gb-preview-launcher-mark>
-                    <?php if ($launcher_icon) : ?><img src="<?php echo esc_url($launcher_icon); ?>" alt="" /><?php else : ?><?php $this->brand_mark_svg(); ?><?php endif; ?>
-                </span>
-                <span class="gb-launcher-preview__text" data-gb-preview-launcher-text><?php echo esc_html($settings['launcher_text']); ?></span>
+        <div class="gb-widget-preview-stack" data-gb-preview-root data-gb-preview-state="<?php echo esc_attr($preview_state); ?>" style="--gb-preview-accent: <?php echo esc_attr($settings['accent_color']); ?>">
+            <div class="gb-widget-preview-switch" role="group" aria-label="<?php esc_attr_e('Preview display', 'geeky-bot'); ?>">
+                <button type="button" data-gb-preview-state-button="closed" aria-pressed="<?php echo $preview_state === 'closed' ? 'true' : 'false'; ?>" class="<?php echo $preview_state === 'closed' ? 'is-active' : ''; ?>"><?php esc_html_e('Invitation & launcher', 'geeky-bot'); ?></button>
+                <button type="button" data-gb-preview-state-button="open" aria-pressed="<?php echo $preview_state === 'open' ? 'true' : 'false'; ?>" class="<?php echo $preview_state === 'open' ? 'is-active' : ''; ?>"><?php esc_html_e('Open chat', 'geeky-bot'); ?></button>
             </div>
-            <div class="gb-widget-preview gb-widget-preview--<?php echo esc_attr($settings['header_style']); ?>">
-                <div class="gb-widget-preview__header">
-                    <span class="gb-widget-preview__logo" data-gb-preview-header-logo>
-                        <?php if ($header_logo) : ?><img src="<?php echo esc_url($header_logo); ?>" alt="" /><?php else : ?><?php $this->brand_mark_svg(); ?><?php endif; ?>
-                    </span>
-                    <div><strong><?php echo esc_html($settings['assistant_name']); ?></strong><span><?php echo esc_html($settings['assistant_subtitle']); ?></span></div>
+            <div class="gb-widget-preview-state gb-widget-preview-state--closed" data-gb-preview-stage="closed">
+                <div class="gb-shopper-invitation-preview" data-gb-preview-invitation<?php if ($settings['shopper_invitation_enabled'] !== 'yes') : ?> hidden<?php endif; ?>>
+                    <span data-gb-preview-invitation-message><?php echo esc_html($settings['shopper_invitation_message']); ?></span><i aria-hidden="true">×</i>
                 </div>
-                <div class="gb-widget-preview__body"><p><?php echo esc_html($settings['welcome_message']); ?></p><div class="gb-chip-row"><code>Latest products</code><code>Sale products</code><code>Top rated</code></div><div class="gb-product-mini"><span></span><div><strong>Blue hoodie</strong><em>$45.00 · In stock</em></div></div></div>
+                <div class="gb-launcher-preview gb-launcher-preview--<?php echo esc_attr($launcher_style); ?>" data-gb-preview-launcher>
+                    <span class="gb-launcher-preview__mark" data-gb-preview-launcher-mark>
+                        <?php if ($launcher_icon) : ?><img src="<?php echo esc_url($launcher_icon); ?>" alt="" /><?php else : ?><?php $this->brand_mark_svg(); ?><?php endif; ?>
+                    </span>
+                    <span class="gb-launcher-preview__text" data-gb-preview-launcher-text><?php echo esc_html($settings['launcher_text']); ?></span>
+                </div>
+            </div>
+            <div class="gb-widget-preview-state gb-widget-preview-state--open" data-gb-preview-stage="open">
+                <div class="gb-widget-preview gb-widget-preview--<?php echo esc_attr($settings['header_style']); ?>">
+                    <div class="gb-widget-preview__header">
+                        <span class="gb-widget-preview__logo" data-gb-preview-header-logo>
+                            <?php if ($header_logo) : ?><img src="<?php echo esc_url($header_logo); ?>" alt="" /><?php else : ?><?php $this->brand_mark_svg(); ?><?php endif; ?>
+                        </span>
+                        <div><strong><?php echo esc_html($settings['assistant_name']); ?></strong><span><?php echo esc_html($settings['assistant_subtitle']); ?></span></div>
+                    </div>
+                    <div class="gb-widget-preview__body"><p><?php echo esc_html($settings['welcome_message']); ?></p><div class="gb-chip-row"><code>Latest products</code><code>Sale products</code><code>Top rated</code></div><div class="gb-product-mini"><span></span><div><strong>Blue hoodie</strong><em>$45.00 · In stock</em></div></div></div>
+                </div>
             </div>
         </div>
         <?php

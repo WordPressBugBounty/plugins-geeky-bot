@@ -22,6 +22,9 @@ class Settings {
             'header_logo_attachment_id' => 0,
             'launcher_style' => 'icon',
             'launcher_text' => 'Ask about products',
+            'shopper_invitation_enabled' => 'yes',
+            'shopper_invitation_delay' => 12,
+            'shopper_invitation_message' => 'Need help choosing? Ask me about products, prices, or options.',
             'header_style' => 'gradient',
             'max_products' => 4,
             'chat_history_enabled' => 'yes',
@@ -88,6 +91,15 @@ trainers = sneakers, shoes",
         if ($clean['launcher_text'] === '') {
             $clean['launcher_text'] = self::defaults()['launcher_text'];
         }
+        $clean['shopper_invitation_enabled'] = isset($input['shopper_invitation_enabled']) && $input['shopper_invitation_enabled'] === 'yes' ? 'yes' : 'no';
+        $clean['shopper_invitation_delay'] = isset($input['shopper_invitation_delay']) ? max(3, min(60, absint($input['shopper_invitation_delay']))) : absint($current['shopper_invitation_delay']);
+        $clean['shopper_invitation_message'] = isset($input['shopper_invitation_message']) ? sanitize_textarea_field($input['shopper_invitation_message']) : $current['shopper_invitation_message'];
+        if ($clean['shopper_invitation_message'] === '') {
+            $clean['shopper_invitation_message'] = self::defaults()['shopper_invitation_message'];
+        }
+        $clean['shopper_invitation_message'] = function_exists('mb_substr')
+            ? mb_substr($clean['shopper_invitation_message'], 0, 160)
+            : substr($clean['shopper_invitation_message'], 0, 160);
         $clean['header_style'] = isset($input['header_style']) && in_array($input['header_style'], array('gradient', 'solid'), true) ? $input['header_style'] : $current['header_style'];
         $clean['max_products'] = isset($input['max_products']) ? max(1, min(8, absint($input['max_products']))) : 4;
         $clean['chat_history_enabled'] = isset($input['chat_history_enabled']) && $input['chat_history_enabled'] === 'yes' ? 'yes' : 'no';
@@ -231,6 +243,9 @@ trainers = sneakers, shoes",
             'buttonPosition' => $settings['button_position'],
             'launcherStyle' => $settings['launcher_style'],
             'launcherText' => $settings['launcher_text'],
+            'shopperInvitationEnabled' => $settings['shopper_invitation_enabled'],
+            'shopperInvitationDelay' => absint($settings['shopper_invitation_delay']),
+            'shopperInvitationMessage' => $settings['shopper_invitation_message'],
             'launcherIconSource' => $settings['launcher_icon_source'],
             'launcherIconUrl' => self::resolve_launcher_icon_url($settings),
             'headerLogoSource' => $settings['header_logo_source'],
