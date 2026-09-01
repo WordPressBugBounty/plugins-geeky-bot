@@ -133,6 +133,13 @@ final class ProductDiscoveryIntentService {
         if ($global_intent && (empty($this->subject_terms($analysis)) || $generic_catalog_noun)) {
             return true;
         }
+
+        // "cheapest" with nothing named is a browse of the catalog by price, the
+        // same shape as "show sale items". With a product named it stays a
+        // search, so "cheapest backpack" is unaffected.
+        if (!empty($analysis['budget_sort']) && empty($this->subject_terms($analysis))) {
+            return true;
+        }
         if ($stock_browse) {
             return true;
         }

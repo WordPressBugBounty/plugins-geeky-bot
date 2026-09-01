@@ -1,10 +1,10 @@
 === Geeky Bot – AI Sales Assistant for WooCommerce ===
-Contributors: geekybot
+Contributors: ahmadgb
 Tags: woocommerce, product search, product recommendations, ai chatbot, ecommerce
 Requires at least: 6.0
 Tested up to: 7.0
 Requires PHP: 7.4
-Stable tag: 2.0.1
+Stable tag: 2.0.2
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -58,7 +58,7 @@ The responsive floating widget provides product cards, suggested questions, a co
 
 = A practical setup experience =
 
-The guided setup checks WooCommerce, builds the product index, selects policy pages, configures the widget, and verifies readiness. Guided Demo creates realistic test questions from the store's own products.
+The guided setup checks WooCommerce, builds the product index, selects policy pages, configures the widget, and verifies readiness. Guided Demo creates realistic test questions from the store's own products, including short conversations that show a follow-up question being answered in context.
 
 = Conversations, insights, and privacy =
 
@@ -74,9 +74,7 @@ API keys are not exposed to storefront JavaScript or displayed again after savin
 
 The free plugin helps shoppers find and understand products.
 
-Geeky Bot Commerce Pro is a separate paid add-on for buying actions and advanced sales assistance, including variation selection, add to cart, cart management, checkout handoff, order help, product comparison, advanced recommendations, and sales-intent analytics.
-
-Screenshots that include Commerce Pro functionality are identified clearly in their captions.
+Geeky Bot Commerce Pro adds variation selection, cart and checkout actions, order help, product comparison, advanced recommendations, and sales-intent analytics.
 
 Learn more at [geekybot.com](https://geekybot.com/).
 
@@ -174,13 +172,54 @@ Privacy: https://geekybot.com/privacy-policy/
 
 == Changelog ==
 
+= 2.0.2 =
+
+Admin
+
+* Rebuilt every admin screen on a single `gb2-` design system, replacing six generations of stylesheet that had been shipping at once.
+* Reduced admin CSS from 306 KB to 55 KB, 322 `!important` rules to 2, 150 hex colours to 44, and 70 font sizes to 13.
+* Added opt-in dark mode for the admin screens, so WordPress chrome is never left mismatched.
+* Replaced the full-bleed page heroes with compact headers, and removed the duplicated status facts that appeared twice on several pages.
+
+Conversation
+
+* Added natural cart, checkout and deals commands: add, remove, change quantity, view cart, go to checkout, ask for a code, or ask for a person.
+* Products in a command can be named, pointed at by position ("add the second one"), or referred to as "it" after a previous turn.
+* A colour or size choice and the add can now arrive in one sentence, such as "Choose Blue, Logo Yes for Hoodie and add it to my cart".
+* Positions in a cart command are counted in the cart. "Remove the first product from my cart" no longer acts on the last search results.
+* Comparisons accept a description instead of a name, such as "compare the cheaper one and the second".
+* Added answers for questions about the assistant itself, such as "What can you do?", built from the capabilities actually enabled.
+* Problems described as a situation, such as "What if my item arrives damaged?", now reach the store's policy pages instead of product results.
+* Requests to place an order, complain, or reach a person are handed to the store rather than answered with products.
+* Recognised "my latest order" alongside last, previous, recent, past and earlier.
+
+Answers
+
+* Improved policy excerpt selection so an answer matches the question's polarity, and page furniture such as navigation labels and quoted questions is no longer quotable as an answer.
+* Fixed indexed page text losing the word boundaries the markup implied, which joined the last word of one block to the first word of the next.
+
+Catalog
+
+* Fixed "what is cheapest" and in-stock browsing returning the newest products instead of the cheapest or best selling. Both sort orders are catalog-only in WooCommerce and were being dropped without warning.
+
+Guided Demo
+
+* Expanded the board from 7 examples to 15, and led with the prompts a search box cannot answer.
+* Added multi-turn examples. The storefront sends the opening question, then hands over each follow-up once the previous answer arrives.
+* Removed a product-details prompt that never resolved, and stopped building product questions from titles too ambiguous to identify one product.
+* Fixed the currency symbol rendering as `&#036;` in generated budget prompts.
+
+Widget
+
+* Hardened the widget's close button and form controls against theme styles that were overriding them.
+
+
 = 2.0.1 =
 
-* Added an optional timed shopper invitation above the launcher.
-* Added controls for its message and 3–60 second delay.
-* Shows the invitation once per browser session and stops after interaction.
-* Added a privacy-friendly shopper avatar, including restored chat history.
+* Added a configurable 3–60 second shopper invitation, shown once per session and hidden after interaction.
+* Added a polished, privacy-friendly shopper avatar in live and restored conversations.
 * Added natural "difference between," "vs," and "which is better" comparison routing.
+* Polished admin hero density, storefront preview states, and Commerce Pro update notices.
 
 = 2.0.0 =
 
@@ -194,6 +233,10 @@ Privacy: https://geekybot.com/privacy-policy/
 * Added support for the separate Geeky Bot Commerce Pro add-on.
 
 == Upgrade Notice ==
+
+= 2.0.2 =
+
+Rebuilds the admin screens and adds natural cart and checkout commands. Fixes cheapest-first browsing, cart-position commands, and policy answers for problems described as a situation. Back up and test on staging.
 
 = 2.0.1 =
 

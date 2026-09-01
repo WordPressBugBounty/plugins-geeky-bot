@@ -12,12 +12,31 @@ if (!defined('ABSPATH')) {
 class GuidedDemoService {
     const SEED_OPTION = 'geekybot_guided_demo_seed';
 
+    /**
+     * Seven cards could not carry the range: three of them went on catalog
+     * shapes a search box already does, leaving no room to show a follow-up
+     * turn at all.
+     */
+    const MAX_EXAMPLES = 15;
+
+    /** Paid prompts are the upsell, so they get a reserved share of the board. */
+    const MAX_PRO_EXAMPLES = 5;
+
     public function refresh() {
         $seed = absint(get_option(self::SEED_OPTION, 0));
         update_option(self::SEED_OPTION, $seed + 1, false);
     }
 
     /**
+     * Demo prompts for the board, strongest capability first.
+     *
+     * The ordering is the whole point. A merchant reads the first two cards and
+     * decides whether this is a search box with extra steps, so the prompts only
+     * a conversation can answer come before the ones a faceted filter could
+     * fake. The catalog-shaped prompts still earn a place further down -- price
+     * and colour language is what shoppers actually type -- but they no longer
+     * introduce the product.
+     *
      * @return array<int,array<string,mixed>>
      */
     public function examples() {
@@ -30,6 +49,199 @@ class GuidedDemoService {
         $used_queries = array();
         $used_products = array();
         $used_families = array();
+
+        $pro_state = apply_filters('geekybot_guided_demo_pro_state', array(
+            'active' => false,
+            'add_to_cart' => false,
+            'variation_selection' => false,
+            'cart_commands' => false,
+        ));
+        $pro_state = is_array($pro_state) ? $pro_state : array();
+
+        // A follow-up needs something to follow. "Which one is cheaper" means
+        // nothing against a single result, so every multi-step prompt hangs off
+        // a family that actually holds more than one product.
+        $group = $this->family_with_multiple($rows);
+
+        /* -- what only a conversation can do ------------------------------ */
+
+        if ($group) {
+            $family = $group['family'];
+            $this->mark_row_used($group['row'], $used_products, $used_families);
+            $browse = sprintf(
+                /* translators: %s: product family, such as hoodie. */
+                __('show me %s', 'geeky-bot'),
+                $family
+            );
+
+            $this->add_example($examples, $used_queries, $this->product_example(array(
+                'id' => 'follow-up-price',
+                'tier' => 'free',
+                'feature' => __('Conversation memory', 'geeky-bot'),
+                'title' => __('Ask a follow-up that names no product', 'geeky-bot'),
+                'steps' => array($browse, __('which one is cheaper?', 'geeky-bot')),
+                'description' => __('The second question names nothing. It is answered against the results already on screen.', 'geeky-bot'),
+                'locked' => false,
+            ), $group['row']));
+
+            $this->add_example($examples, $used_queries, $this->product_example(array(
+                'id' => 'compare-positions',
+                'tier' => 'free',
+                'feature' => __('Comparison', 'geeky-bot'),
+                'title' => __('Compare by position, not by name', 'geeky-bot'),
+                'steps' => array($browse, __('compare the first and second', 'geeky-bot')),
+                'description' => __('Shoppers point at what they can see instead of retyping two product names.', 'geeky-bot'),
+                'locked' => false,
+            ), $group['row']));
+
+            $this->add_example($examples, $used_queries, $this->product_example(array(
+                'id' => 'grounded-detail',
+                'tier' => 'free',
+                'feature' => __('Grounded answers', 'geeky-bot'),
+                'title' => __('Ask a detail across the whole result set', 'geeky-bot'),
+                'steps' => array($browse, __('what material are they?', 'geeky-bot')),
+                'description' => __('Answered from stored product data for every result at once, naming any product the catalog does not record it for.', 'geeky-bot'),
+                'locked' => false,
+            ), $group['row']));
+        }
+
+        // Refining by price mid-conversation, rather than starting a new search.
+        $refine = $this->select_row($rows, function ($row) {
+            return (float) $row['price'] > 0 && !empty($row['family']);
+        }, $used_products, $used_families, true);
+        if ($refine) {
+            $this->mark_row_used($refine, $used_products, $used_families);
+            $this->add_example($examples, $used_queries, $this->product_example(array(
+                'id' => 'refine-in-chat',
+                'tier' => 'free',
+                'feature' => __('Refinement', 'geeky-bot'),
+                'title' => __('Narrow the results without starting over', 'geeky-bot'),
+                'steps' => array(
+                    sprintf(
+                        /* translators: %s: product family, such as jacket. */
+                        __('show me %s', 'geeky-bot'),
+                        $this->shopper_subject($refine)
+                    ),
+                    sprintf(
+                        /* translators: 1: currency symbol, 2: maximum price. */
+                        __('only under %1$s%2$s', 'geeky-bot'),
+                        $this->currency_symbol(),
+                        $this->format_number($this->friendly_price_ceiling((float) $refine['price']))
+                    ),
+                ),
+                'description' => __('The budget arrives as a second thought, the way it does in a real conversation.', 'geeky-bot'),
+                'locked' => false,
+            ), $refine));
+        }
+
+        // Two products named outright, for the shopper who already knows both.
+        $pair = $this->comparable_pair($rows, $used_products);
+        if ($pair) {
+            $this->mark_row_used($pair[0], $used_products, $used_families);
+            $this->add_example($examples, $used_queries, $this->product_example(array(
+                'id' => 'compare-names',
+                'tier' => 'free',
+                'feature' => __('Comparison', 'geeky-bot'),
+                'title' => __('Put two real products side by side', 'geeky-bot'),
+                'query' => sprintf(
+                    /* translators: 1: first product title, 2: second product title. */
+                    __('Compare %1$s and %2$s', 'geeky-bot'),
+                    $pair[0]['title'],
+                    $pair[1]['title']
+                ),
+                'description' => __('Both products, and every value compared, come from this catalog.', 'geeky-bot'),
+                'locked' => false,
+            ), $pair[0]));
+        }
+
+        /* -- grounded answers beyond the product grid ---------------------- */
+
+        $recommendation_row = $this->select_row($rows, function ($row) {
+            return !empty($row['is_on_sale']) && !empty($row['family']);
+        }, $used_products, $used_families, true);
+        $recommendation_is_sale = !empty($recommendation_row);
+        if (!$recommendation_row) {
+            $recommendation_row = $this->select_row($rows, function ($row) {
+                return !empty($row['family']);
+            }, $used_products, $used_families, true);
+        }
+        if ($recommendation_row) {
+            $this->mark_row_used($recommendation_row, $used_products, $used_families);
+            $family = !empty($recommendation_row['family']) ? $recommendation_row['family'] : $recommendation_row['title'];
+            $example = $this->product_example(array(
+                'id' => 'recommendation',
+                'tier' => 'free',
+                'feature' => __('Recommendation', 'geeky-bot'),
+                'title' => __('Ask for a grounded best match', 'geeky-bot'),
+                'query' => $recommendation_is_sale
+                    ? sprintf(
+                        /* translators: %s: product family, such as jackets. */
+                        __('Which %s on sale do you recommend?', 'geeky-bot'),
+                        $family
+                    )
+                    : sprintf(
+                        /* translators: %s: product family, such as jackets. */
+                        __('Which %s do you recommend?', 'geeky-bot'),
+                        $family
+                    ),
+                'description' => $recommendation_is_sale
+                    ? __('Uses a real product family with an active sale item.', 'geeky-bot')
+                    : __('Uses a product family detected from this catalog.', 'geeky-bot'),
+                'locked' => false,
+            ), $recommendation_row);
+            $example['sourceLabel'] = sprintf(
+                /* translators: %s: product family name. */
+                __('Catalog family: %s', 'geeky-bot'),
+                $family
+            );
+            $this->add_example($examples, $used_queries, $example);
+        }
+
+        $policy = $this->policy_example();
+        if ($policy) {
+            $this->add_example($examples, $used_queries, $policy);
+        }
+
+        $this->add_example($examples, $used_queries, array(
+            'id' => 'cheapest',
+            'tier' => 'free',
+            'feature' => __('Price intent', 'geeky-bot'),
+            'title' => __('Sort the whole catalog by price', 'geeky-bot'),
+            'query' => __('what is cheapest today', 'geeky-bot'),
+            'description' => __('No product named at all, and the answer still comes from live WooCommerce prices.', 'geeky-bot'),
+            'sourceLabel' => __('Whole catalog', 'geeky-bot'),
+            'sourceUrl' => '',
+            'sourceProductId' => 0,
+            'locked' => false,
+        ));
+
+        $this->add_example($examples, $used_queries, array(
+            'id' => 'capability',
+            'tier' => 'free',
+            'feature' => __('Scope', 'geeky-bot'),
+            'title' => __('Ask the assistant what it covers', 'geeky-bot'),
+            'query' => __('What can you do?', 'geeky-bot'),
+            'description' => __('Answers from what this install actually has switched on, not a stock script.', 'geeky-bot'),
+            'sourceLabel' => __('Assistant capabilities', 'geeky-bot'),
+            'sourceUrl' => '',
+            'sourceProductId' => 0,
+            'locked' => false,
+        ));
+
+        $this->add_example($examples, $used_queries, array(
+            'id' => 'handoff',
+            'tier' => 'free',
+            'feature' => __('Knowing when to stop', 'geeky-bot'),
+            'title' => __('See it hand a complaint to a person', 'geeky-bot'),
+            'query' => __('I want to complain', 'geeky-bot'),
+            'description' => __('A complaint is not a shopping request, so it stops selling instead of answering with products.', 'geeky-bot'),
+            'sourceLabel' => __('Support handover', 'geeky-bot'),
+            'sourceUrl' => '',
+            'sourceProductId' => 0,
+            'locked' => false,
+        ));
+
+        /* -- the catalog-shaped prompts, which still earn a place ---------- */
 
         $exact = $this->best_distinctive_row($rows, $used_products);
         if (!$exact) {
@@ -51,8 +263,6 @@ class GuidedDemoService {
         }, $used_products, $used_families, true);
         if ($priced) {
             $this->mark_row_used($priced, $used_products, $used_families);
-            $ceiling = $this->friendly_price_ceiling((float) $priced['price']);
-            $subject = $this->shopper_subject($priced);
             $this->add_example($examples, $used_queries, $this->product_example(array(
                 'id' => 'price-filter',
                 'tier' => 'free',
@@ -61,9 +271,9 @@ class GuidedDemoService {
                 'query' => sprintf(
                     /* translators: 1: product type, 2: currency symbol, 3: maximum price. */
                     __('%1$s under %2$s%3$s', 'geeky-bot'),
-                    $subject,
+                    $this->shopper_subject($priced),
                     $this->currency_symbol(),
-                    $this->format_number($ceiling)
+                    $this->format_number($this->friendly_price_ceiling((float) $priced['price']))
                 ),
                 'description' => __('Uses a confirmed current product price from this store.', 'geeky-bot'),
                 'locked' => false,
@@ -101,81 +311,14 @@ class GuidedDemoService {
             ), $faceted));
         }
 
-        $recommendation_row = $this->select_row($rows, function ($row) {
-            return !empty($row['is_on_sale']) && !empty($row['family']);
-        }, $used_products, $used_families, true);
-        $recommendation_is_sale = !empty($recommendation_row);
-        if (!$recommendation_row) {
-            $recommendation_row = $this->select_row($rows, function ($row) {
-                return !empty($row['family']);
-            }, $used_products, $used_families, true);
-        }
-        if ($recommendation_row) {
-            $this->mark_row_used($recommendation_row, $used_products, $used_families);
-            $family = !empty($recommendation_row['family']) ? $recommendation_row['family'] : $recommendation_row['title'];
-            $query = $recommendation_is_sale
-                ? sprintf(
-                    /* translators: %s: product family, such as jackets. */
-                    __('Which %s on sale do you recommend?', 'geeky-bot'),
-                    $family
-                )
-                : sprintf(
-                    /* translators: %s: product family, such as jackets. */
-                    __('Which %s do you recommend?', 'geeky-bot'),
-                    $family
-                );
-            $example = $this->product_example(array(
-                'id' => 'recommendation',
-                'tier' => 'free',
-                'feature' => __('Recommendation', 'geeky-bot'),
-                'title' => __('Ask for a grounded best match', 'geeky-bot'),
-                'query' => $query,
-                'description' => $recommendation_is_sale ? __('Uses a real product family with an active sale item.', 'geeky-bot') : __('Uses a product family detected from this catalog.', 'geeky-bot'),
-                'locked' => false,
-            ), $recommendation_row);
-            $example['sourceLabel'] = sprintf(
-                /* translators: %s: product family name. */
-                __('Catalog family: %s', 'geeky-bot'),
-                $family
-            );
-            $this->add_example($examples, $used_queries, $example);
-        }
-
-        $policy = $this->policy_example();
-        if ($policy) {
-            $this->add_example($examples, $used_queries, $policy);
-        } else {
-            $question_row = $this->select_row($rows, function ($row) {
-                return !empty($row['title']);
-            }, $used_products, $used_families, false);
-            if (!$question_row) {
-                $question_row = $exact;
-            }
-            $this->mark_row_used($question_row, $used_products, $used_families);
-            $this->add_example($examples, $used_queries, $this->product_example(array(
-                'id' => 'product-question',
-                'tier' => 'free',
-                'feature' => __('Product Q&A', 'geeky-bot'),
-                'title' => __('Ask about store-provided product details', 'geeky-bot'),
-                'query' => sprintf(
-                    /* translators: %s: product title. */
-                    __('What are the key details of %s?', 'geeky-bot'),
-                    $question_row['title']
-                ),
-                'description' => __('Answers only from the product information stored in WooCommerce.', 'geeky-bot'),
-                'locked' => false,
-            ), $question_row));
-        }
-
-        $free_count = $this->tier_count($examples, 'free');
-        if ($free_count < 5) {
-            $stock_row = $this->select_row($rows, function ($row) {
-                return !empty($row['title']);
-            }, $used_products, $used_families, false);
-            if (!$stock_row) {
-                $stock_row = $exact;
-            }
-            $this->mark_row_used($stock_row, $used_products, $used_families);
+        // A product fact only resolves against a title distinctive enough to
+        // identify one product. Asked about "Belt" in a store with four of
+        // them, the assistant correctly refuses to guess -- which is right
+        // behaviour and a poor advertisement, so the prompt is only built when
+        // a distinctive title is available to build it from.
+        $fact_row = $this->distinctive_row($rows, $used_products);
+        if ($fact_row) {
+            $this->mark_row_used($fact_row, $used_products, $used_families);
             $this->add_example($examples, $used_queries, $this->product_example(array(
                 'id' => 'stock-question',
                 'tier' => 'free',
@@ -184,21 +327,16 @@ class GuidedDemoService {
                 'query' => sprintf(
                     /* translators: %s: product title. */
                     __('Is %s in stock?', 'geeky-bot'),
-                    $stock_row['title']
+                    $fact_row['title']
                 ),
                 'description' => __('Uses the current WooCommerce stock state for this product.', 'geeky-bot'),
                 'locked' => false,
-            ), $stock_row));
+            ), $fact_row));
         }
 
-        if ($this->tier_count($examples, 'free') < 5) {
-            $price_row = $this->select_row($rows, function ($row) {
-                return (float) $row['price'] > 0;
-            }, $used_products, $used_families, false);
-            if (!$price_row) {
-                $price_row = $exact;
-            }
-            $this->mark_row_used($price_row, $used_products, $used_families);
+        $price_fact_row = $this->distinctive_row($rows, $used_products, true);
+        if ($price_fact_row) {
+            $this->mark_row_used($price_fact_row, $used_products, $used_families);
             $this->add_example($examples, $used_queries, $this->product_example(array(
                 'id' => 'price-question',
                 'tier' => 'free',
@@ -207,20 +345,14 @@ class GuidedDemoService {
                 'query' => sprintf(
                     /* translators: %s: product title. */
                     __('How much does %s cost?', 'geeky-bot'),
-                    $price_row['title']
+                    $price_fact_row['title']
                 ),
                 'description' => __('Uses only the current WooCommerce product price.', 'geeky-bot'),
                 'locked' => false,
-            ), $price_row));
+            ), $price_fact_row));
         }
 
-        $pro_state = apply_filters('geekybot_guided_demo_pro_state', array(
-            'active' => false,
-            'add_to_cart' => false,
-            'variation_selection' => false,
-            'cart_commands' => false,
-        ));
-        $pro_state = is_array($pro_state) ? $pro_state : array();
+        /* -- Commerce Pro -------------------------------------------------- */
 
         $simple = $this->select_row($rows, function ($row) {
             return $row['product_type'] === 'simple';
@@ -260,35 +392,174 @@ class GuidedDemoService {
                 (array) $variable['variation_selection'],
                 absint($variable['product_id'])
             );
-            $selection = is_array($selection) ? $selection : array();
-            $query = $this->variation_query($variable['title'], $selection);
             $this->add_example($examples, $used_queries, $this->product_example(array(
                 'id' => 'pro-variation',
                 'tier' => 'pro',
                 'feature' => __('Variation buying', 'geeky-bot'),
-                'title' => __('Select an option and buy in chat', 'geeky-bot'),
-                'query' => $query,
+                'title' => __('Select an option and buy in one sentence', 'geeky-bot'),
+                'query' => $this->variation_query($variable['title'], is_array($selection) ? $selection : array()),
                 'description' => __('Commerce Pro can select a real purchasable variation before adding it to the cart.', 'geeky-bot'),
                 'locked' => empty($pro_state['active']) || empty($pro_state['variation_selection']),
             ), $variable));
-        } else {
-            $this->add_example($examples, $used_queries, array(
-                'id' => 'pro-cart',
-                'tier' => 'pro',
-                'feature' => __('Cart assistance', 'geeky-bot'),
-                'title' => __('Manage the current cart from chat', 'geeky-bot'),
-                'query' => __('Show my cart', 'geeky-bot'),
-                'description' => __('Commerce Pro can show, update and remove cart items.', 'geeky-bot'),
-                'sourceLabel' => __('WooCommerce cart', 'geeky-bot'),
-                'sourceUrl' => function_exists('wc_get_cart_url') ? wc_get_cart_url() : '',
-                'sourceProductId' => 0,
-                'locked' => empty($pro_state['active']) || empty($pro_state['cart_commands']),
-            ));
         }
+
+        if ($group) {
+            $this->add_example($examples, $used_queries, $this->product_example(array(
+                'id' => 'pro-ordinal-add',
+                'tier' => 'pro',
+                'feature' => __('Buying by reference', 'geeky-bot'),
+                'title' => __('Buy the one on screen, unnamed', 'geeky-bot'),
+                'steps' => array(
+                    sprintf(
+                        /* translators: %s: product family, such as hoodie. */
+                        __('show me %s', 'geeky-bot'),
+                        $group['family']
+                    ),
+                    __('add the second one', 'geeky-bot'),
+                ),
+                'description' => __('The shopper points at a position in the results and Commerce Pro carts that product.', 'geeky-bot'),
+                'locked' => empty($pro_state['active']) || empty($pro_state['cart_commands']),
+            ), $group['row']));
+        }
+
+        $this->add_example($examples, $used_queries, $this->product_example(array(
+            'id' => 'pro-quantity',
+            'tier' => 'pro',
+            'feature' => __('Cart assistance', 'geeky-bot'),
+            'title' => __('Change a quantity in conversation', 'geeky-bot'),
+            'steps' => array(
+                sprintf(
+                    /* translators: %s: product title. */
+                    __('Add %s to my cart', 'geeky-bot'),
+                    $buy_row['title']
+                ),
+                __('make it quantity 2', 'geeky-bot'),
+            ),
+            'description' => __('Commerce Pro updates the line it just created, without the shopper naming it again.', 'geeky-bot'),
+            'locked' => empty($pro_state['active']) || empty($pro_state['cart_commands']),
+        ), $buy_row));
+
+        $this->add_example($examples, $used_queries, $this->product_example(array(
+            'id' => 'pro-remove',
+            'tier' => 'pro',
+            'feature' => __('Cart assistance', 'geeky-bot'),
+            'title' => __('Take something back out of the cart', 'geeky-bot'),
+            'steps' => array(
+                sprintf(
+                    /* translators: %s: product title. */
+                    __('Add %s to my cart', 'geeky-bot'),
+                    $buy_row['title']
+                ),
+                __('remove first product from cart', 'geeky-bot'),
+            ),
+            'description' => __('Positions are counted in the cart, not in the last search.', 'geeky-bot'),
+            'locked' => empty($pro_state['active']) || empty($pro_state['cart_commands']),
+        ), $buy_row));
 
         $examples = apply_filters('geekybot_guided_demo_examples', $examples, $rows);
 
-        return array_slice(array_values($examples), 0, 7);
+        // Pro is built last, so a flat truncation spent every slot on free
+        // prompts and cut the paid tier off the board entirely. Each tier gets
+        // its own budget, and free reclaims whatever Pro does not use.
+        $free = array();
+        $pro = array();
+        foreach ($examples as $example) {
+            if (($example['tier'] ?? 'free') === 'pro') {
+                $pro[] = $example;
+            } else {
+                $free[] = $example;
+            }
+        }
+
+        $pro = array_slice($pro, 0, self::MAX_PRO_EXAMPLES);
+        $free = array_slice($free, 0, self::MAX_EXAMPLES - count($pro));
+
+        return array_values(array_merge($free, $pro));
+    }
+
+    /**
+     * A family holding more than one product, so a follow-up has something to
+     * refer back to. Single-result families cannot demonstrate a comparison.
+     *
+     * @param array $rows Catalog rows.
+     * @return array|null {family, row}
+     */
+    private function family_with_multiple($rows) {
+        $counts = array();
+        foreach ($rows as $row) {
+            $family = strtolower(trim((string) ($row['family'] ?? '')));
+            if ($family === '' || strlen($family) < 3) {
+                continue;
+            }
+            if (!isset($counts[$family])) {
+                $counts[$family] = array('n' => 0, 'row' => $row);
+            }
+            $counts[$family]['n']++;
+        }
+
+        $best = null;
+        foreach ($counts as $family => $data) {
+            if ($data['n'] < 2) {
+                continue;
+            }
+            if ($best === null || $data['n'] > $best['n']) {
+                $best = array('family' => $family, 'row' => $data['row'], 'n' => $data['n']);
+            }
+        }
+
+        return $best;
+    }
+
+    /**
+     * Two products from one family, for a named comparison.
+     *
+     * @param array $rows          Catalog rows.
+     * @param array $used_products Already-spent products.
+     * @return array|null
+     */
+    private function comparable_pair($rows, $used_products) {
+        $by_family = array();
+        foreach ($rows as $row) {
+            $family = strtolower(trim((string) ($row['family'] ?? '')));
+            if ($family === '' || $this->distinctive_title_score((string) $row['title']) < 20) {
+                continue;
+            }
+            $by_family[$family][] = $row;
+            if (count($by_family[$family]) >= 2) {
+                return array_slice($by_family[$family], 0, 2);
+            }
+        }
+
+        return null;
+    }
+
+    /**
+     * A product whose title identifies it on its own.
+     *
+     * A one-word title in a store holding four of them cannot be resolved from
+     * a question, and the assistant rightly says so -- correct behaviour that
+     * reads as a failure on a board built to show the plugin off.
+     *
+     * @param array $rows          Catalog rows.
+     * @param array $used_products Already-spent products.
+     * @param bool  $needs_price   Require a price as well.
+     * @return array|null
+     */
+    private function distinctive_row($rows, $used_products, $needs_price = false) {
+        foreach ($rows as $row) {
+            if (isset($used_products[absint($row['product_id'])])) {
+                continue;
+            }
+            if ($needs_price && (float) $row['price'] <= 0) {
+                continue;
+            }
+            if ($this->distinctive_title_score((string) $row['title']) < 25) {
+                continue;
+            }
+            return $row;
+        }
+
+        return null;
     }
 
     public function counts($examples = null) {
@@ -427,11 +698,30 @@ class GuidedDemoService {
     }
 
     private function add_example(&$examples, &$used_queries, $example) {
+        // A prompt may be a short conversation. The first turn doubles as the
+        // query, so anything reading only 'query' still behaves as it did.
+        $steps = array();
+        foreach ((array) ($example['steps'] ?? array()) as $step) {
+            $step = sanitize_text_field((string) $step);
+            if ($step !== '') {
+                $steps[] = $step;
+            }
+        }
+        $steps = array_slice($steps, 0, 4);
+
         $query = sanitize_text_field((string) ($example['query'] ?? ''));
+        if ($query === '' && !empty($steps)) {
+            $query = $steps[0];
+        }
         if ($query === '') {
             return;
         }
-        $hash = md5(strtolower($query));
+        $example['steps'] = $steps;
+        // Hash the whole conversation, not just its opening line. Three
+        // prompts can share a first turn -- browse, then compare; browse, then
+        // ask a detail; browse, then cart the second result -- and hashing the
+        // opener alone silently dropped all but the first of them.
+        $hash = md5(strtolower(implode(' | ', !empty($steps) ? $steps : array($query))));
         if (isset($used_queries[$hash])) {
             return;
         }
@@ -446,6 +736,7 @@ class GuidedDemoService {
         $example['sourceUrl'] = esc_url_raw((string) ($example['sourceUrl'] ?? ''));
         $example['sourceProductId'] = absint($example['sourceProductId'] ?? 0);
         $example['locked'] = !empty($example['locked']);
+        $example['isConversation'] = count($example['steps']) > 1;
         $examples[] = $example;
     }
 
@@ -657,7 +948,19 @@ class GuidedDemoService {
     }
 
     private function currency_symbol() {
-        return function_exists('get_woocommerce_currency_symbol') ? wp_strip_all_tags(get_woocommerce_currency_symbol()) : '$';
+        if (!function_exists('get_woocommerce_currency_symbol')) {
+            return '$';
+        }
+
+        // WooCommerce stores these HTML-encoded -- USD is "&#36;", not "$".
+        // Stripping tags leaves the entity intact, so the example query held
+        // six literal characters where a dollar sign belonged, and the board
+        // that exists to show the plugin off read "beanie under &#036;20".
+        return html_entity_decode(
+            wp_strip_all_tags(get_woocommerce_currency_symbol()),
+            ENT_QUOTES,
+            'UTF-8'
+        );
     }
 
     private function format_number($number) {

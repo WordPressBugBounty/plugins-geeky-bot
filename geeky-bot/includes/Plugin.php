@@ -8,6 +8,7 @@ if (!defined('ABSPATH')) {
 use GeekyBot\Admin\Menu;
 use GeekyBot\Frontend\Widget;
 use GeekyBot\REST\Api;
+use GeekyBot\Services\HealthService;
 use GeekyBot\Services\Installer;
 use GeekyBot\Services\KnowledgeIndexService;
 use GeekyBot\Services\LicenseService;
@@ -40,6 +41,7 @@ final class Plugin {
 
         if (is_admin()) {
             (new Menu())->hooks();
+            (new HealthService())->hooks();
         }
 
         (new Widget())->hooks();

@@ -13,13 +13,33 @@ class Widget {
         add_action('wp_footer', array($this, 'render'));
     }
 
+    /**
+     * Cache-busting version for a storefront asset.
+     *
+     * Mirrors the admin behaviour: the plugin version alone leaves the URL
+     * unchanged when a file is edited, so browsers keep the stale copy.
+     *
+     * @param string $relative_path Path relative to the plugin root.
+     * @return string
+     */
+    private static function asset_version($relative_path) {
+        $file = GEEKYBOT_PATH . ltrim($relative_path, '/');
+        $stamp = file_exists($file) ? filemtime($file) : 0;
+
+        return $stamp ? GEEKYBOT_VERSION . '.' . $stamp : GEEKYBOT_VERSION;
+    }
+
     public function assets() {
         if (!$this->should_render()) {
             return;
         }
 
-        wp_enqueue_style('geekybot-frontend', GEEKYBOT_URL . 'assets/css/frontend.css', array(), GEEKYBOT_VERSION);
-        wp_enqueue_script('geekybot-frontend', GEEKYBOT_URL . 'assets/js/frontend.js', array(), GEEKYBOT_VERSION, true);
+        // Versioned by file modification time, not the plugin version alone.
+        // With only GEEKYBOT_VERSION, editing frontend.js without a version bump
+        // left every browser on the cached copy — which is exactly why widget
+        // settings appeared to have no effect on the storefront.
+        wp_enqueue_style('geekybot-frontend', GEEKYBOT_URL . 'assets/css/frontend.css', array(), self::asset_version('assets/css/frontend.css'));
+        wp_enqueue_script('geekybot-frontend', GEEKYBOT_URL . 'assets/js/frontend.js', array(), self::asset_version('assets/js/frontend.js'), true);
 
         wp_localize_script('geekybot-frontend', 'GeekyBotConfig', array(
             'restUrl' => esc_url_raw(rest_url('geekybot/v1')),
@@ -40,12 +60,9 @@ class Widget {
                 'timeout' => __('The store is taking longer than expected. Please try again.', 'geeky-bot'),
                 'sessionExpired' => __('Your shopping session expired. Please refresh the page and try again.', 'geeky-bot'),
                 'rateLimited' => __('Too many requests were sent. Please wait a moment and try again.', 'geeky-bot'),
-                'suggestions' => array(
-                    __('Latest products', 'geeky-bot'),
-                    __('Sale products', 'geeky-bot'),
-                    __('Top rated', 'geeky-bot'),
-                    __('Products under 50', 'geeky-bot'),
-                ),
+                // Merchant-editable in Storefront Widget → Starter prompts.
+                // Previously four hard-coded strings with no setting behind them.
+                'suggestions' => Settings::starter_prompts(4),
             ),
         ));
 

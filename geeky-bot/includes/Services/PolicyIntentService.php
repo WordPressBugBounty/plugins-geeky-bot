@@ -19,6 +19,17 @@ class PolicyIntentService {
     public function analyze($message) {
         $normalized = $this->normalize($message);
         $types = $this->matched_types($normalized);
+        // A shopper describing what went wrong rarely names the policy. "What if
+        // my item arrives damaged?" is a returns question containing no returns
+        // word, so the noun vocabulary alone cannot see it.
+        $types = array_values(array_unique(array_merge($types, $this->situation_types($normalized))));
+        // A question about one specific order's state is never a policy
+        // question, whichever vocabulary matched it. "What is the status of my
+        // delivery?" carries a shipping noun and reads like policy, but the
+        // order record holds that answer and the shipping page does not.
+        if ($this->asks_own_order_state($normalized)) {
+            $types = array();
+        }
         if (in_array('payment', $types, true) && strpos($normalized, 'cash on delivery') !== false) {
             $types = array_values(array_diff($types, array('shipping')));
         }
@@ -54,6 +65,13 @@ class PolicyIntentService {
         $title_normalized = $this->normalize($title);
         $content_normalized = $this->normalize($content);
         $title_types = $this->matched_types($title_normalized);
+        // "About", "About Us", "Contact" and "Contact Us" are the near-universal
+        // titles for store information. The bare words are far too common to put
+        // in the shared phrase vocabulary -- "what about shipping?" would become
+        // a store-information question -- but as a title they are unambiguous.
+        if (preg_match('/^(?:about|contact)\b/u', $title_normalized)) {
+            $title_types[] = 'about';
+        }
         $content_types = $this->strong_document_types($content_normalized);
         $types = array_values(array_unique(array_merge($title_types, $content_types)));
 
@@ -68,7 +86,7 @@ class PolicyIntentService {
      */
     public function facet_terms($facet) {
         $map = array(
-            'time' => array('day', 'days', 'hour', 'hours', 'week', 'weeks', 'time', 'processing', 'dispatch', 'delivery', 'within', 'business day'),
+            'time' => array('day', 'days', 'hour', 'hours', 'week', 'weeks', 'time', 'processing', 'dispatch', 'delivery', 'within', 'business day', 'delayed', 'delay', 'late'),
             'cost' => array('free', 'cost', 'fee', 'fees', 'charge', 'charges', 'paid', 'price', 'shipping cost'),
             'location' => array('international', 'worldwide', 'country', 'countries', 'region', 'area', 'overseas', 'abroad', 'local'),
             'eligibility' => array('eligible', 'eligibility', 'accepted', 'allowed', 'qualify', 'may return', 'can return', 'cannot return'),
@@ -140,6 +158,11 @@ class PolicyIntentService {
             'terms' => array(
                 'process' => array('terms and conditions', 'terms of service', 'by using this website'),
             ),
+            'about' => array(
+                'process' => array('contact us', 'get in touch', 'email us', 'customer service', 'customer support', 'our story', 'about us', 'our team'),
+                'location' => array('we are based', 'based in', 'located in', 'our address', 'head office'),
+                'time' => array('opening hours', 'business hours', 'we reply within', 'respond within'),
+            ),
         );
 
         if (!isset($map[$type])) {
@@ -182,6 +205,7 @@ class PolicyIntentService {
             'payment' => __('payment', 'geeky-bot'),
             'privacy' => __('privacy', 'geeky-bot'),
             'terms' => __('terms', 'geeky-bot'),
+            'about' => __('store information', 'geeky-bot'),
             'general' => __('store policy', 'geeky-bot'),
         );
 
@@ -224,6 +248,11 @@ class PolicyIntentService {
             'shipping' => array('shipping', 'ship', 'ship to', 'ship internationally', 'delivery', 'deliver', 'dispatch', 'postage', 'courier', 'tracking'),
             'privacy' => array('privacy', 'personal data', 'data policy', 'data protection'),
             'terms' => array('terms', 'terms and conditions', 'terms of service', 'store terms'),
+            // Store information is last so a question naming a real policy is
+            // never answered from the About page instead. Every phrase here is
+            // multi-word on purpose: bare "contact" appears in "contact lenses"
+            // and bare "about" in "what about shipping?".
+            'about' => array('about this store', 'about the store', 'about your store', 'about us', 'about you', 'who runs', 'who owns', 'who is behind', 'contact us', 'contact you', 'contact the store', 'get in touch', 'customer service', 'customer support', 'where are you based', 'where are you located', 'store address', 'opening hours', 'business hours', 'real store', 'real shop', 'real online store', 'real online shop', 'real business'),
         );
     }
 
@@ -244,6 +273,7 @@ class PolicyIntentService {
             'payment' => array('payment methods', 'accepted payment methods', 'we accept credit cards', 'we accept debit cards', 'we accept visa', 'we accept mastercard', 'cash on delivery', 'apple pay', 'google pay', 'bank transfer'),
             'privacy' => array('privacy policy', 'information we collect', 'personal data', 'data protection', 'how we use your data'),
             'terms' => array('terms and conditions', 'terms of service', 'by using this website'),
+            'about' => array('about us', 'our story', 'who we are', 'contact us', 'get in touch', 'customer service', 'customer support', 'our team', 'opening hours', 'we are based'),
         );
         $types = array();
 
@@ -303,7 +333,7 @@ class PolicyIntentService {
      */
     private function matched_facets($normalized) {
         $map = array(
-            'time' => array('how long', 'when will', 'when do', 'days', 'hours', 'weeks', 'delivery time', 'processing time', 'return window', 'refund time'),
+            'time' => array('how long', 'when will', 'when do', 'days', 'hours', 'weeks', 'delivery time', 'processing time', 'return window', 'refund time', 'delayed', 'delay', 'late', 'still waiting'),
             'cost' => array('how much', 'cost', 'fee', 'fees', 'free', 'charge', 'charges', 'paid'),
             'location' => array('ship to', 'deliver to', 'international', 'worldwide', 'country', 'countries', 'abroad', 'overseas', 'outside', 'region', 'area'),
             'eligibility' => array('eligible', 'allowed', 'can i', 'may i', 'do you accept', 'qualify', 'does this store provide', 'do you provide'),
@@ -392,5 +422,140 @@ class PolicyIntentService {
         $text = preg_replace('/\s+/', ' ', $text);
 
         return trim((string) $text);
+    }
+
+    /**
+     * Policy types implied by the situation a shopper describes.
+     *
+     * The phrase vocabulary is built from policy nouns -- "refund", "shipping",
+     * "warranty" -- so it only recognises a question that already knows which
+     * policy it is asking about. Shoppers routinely do not. "What if my item
+     * arrives damaged?" and "What happens if my order is delayed?" are answered
+     * on almost every store's returns and shipping pages, yet neither contains a
+     * single word from that vocabulary. Both fell through to catalog search, and
+     * because discovery almost always returns something, "What if my item
+     * arrives damaged?" was answered with a bottle of shampoo.
+     *
+     * The gate that keeps this from swallowing ordinary shopping is that the
+     * message has to be about the shopper's own purchase, so "do you sell
+     * damaged stock cheap?" stays a product search.
+     *
+     * The second gate lives in analyze(), because it has to cover the noun
+     * vocabulary too: a question about one specific order's state is left alone
+     * whichever way it was matched.
+     *
+     * @param string $normalized Normalized shopper message.
+     * @return array
+     */
+    private function situation_types($normalized) {
+        if ($normalized === '' || !$this->describes_own_purchase($normalized)) {
+            return array();
+        }
+
+        $types = array();
+        foreach ($this->situation_patterns() as $type => $patterns) {
+            foreach ($patterns as $pattern) {
+                if (preg_match($pattern, $normalized)) {
+                    $types[] = $type;
+                    break;
+                }
+            }
+        }
+
+        return array_values(array_unique($types));
+    }
+
+    /**
+     * What went wrong, and which policy answers it.
+     *
+     * Ordered like type_phrases(): the specific remedy first, so a damaged item
+     * is answered from the returns page rather than the general shipping one.
+     *
+     * @return array
+     */
+    private function situation_patterns() {
+        return array(
+            'returns' => array(
+                '/\b(?:damaged|broken|faulty|defective|cracked|torn|leaking|scratched)\b/u',
+                '/\b(?:doesn|didn|does|did)[\x{2019}\']?\s*(?:n[\x{2019}\']?t)?\s*work\b/u',
+                '/\b(?:not|stopped)\s+working\b/u',
+                '/\bwrong\s+(?:item|items|product|products|thing|order)\b/u',
+                '/\bmissing\s+(?:item|items|part|parts|piece|pieces)\b/u',
+                '/\bnot\s+(?:what|as)\s+(?:i\s+)?(?:ordered|described|expected|advertised)\b/u',
+            ),
+            'exchanges' => array(
+                '/\b(?:doesn|didn)[\x{2019}\']?t\s+fit\b/u',
+                '/\bdoes\s+not\s+fit\b/u',
+                '/\bwrong\s+(?:size|colour|color)\b/u',
+                '/\btoo\s+(?:big|small|large|tight|loose|short|long)\b/u',
+            ),
+            'shipping' => array(
+                '/\b(?:delayed|delay|delays)\b/u',
+                '/\b(?:is|are|was|were|arrives|arrived|running|showed\s+up)\s+late\b/u',
+                '/\b(?:hasn|haven|hadn)[\x{2019}\']?t\s+(?:yet\s+)?(?:arrived|shipped|turned\s+up|been\s+delivered|come)\b/u',
+                '/\b(?:has|have|had)\s+not\s+(?:yet\s+)?(?:arrived|shipped|been\s+delivered)\b/u',
+                '/\bnever\s+(?:arrived|turned\s+up|showed\s+up|came|got\s+here)\b/u',
+                '/\b(?:still|not\s+yet)\s+(?:waiting|arrived|here|delivered|received)\b/u',
+                '/\b(?:lost|stuck)\s+in\s+(?:transit|the\s+post|the\s+mail|customs)\b/u',
+            ),
+        );
+    }
+
+    /**
+     * Whether the message is about something the shopper bought or is buying.
+     *
+     * This is the gate that keeps the situation words from reaching the catalog
+     * side of the store. "Damaged" on its own is a perfectly good product search
+     * term for a salvage shop; "my order is damaged" never is.
+     *
+     * @param string $normalized Normalized shopper message.
+     * @return bool
+     */
+    private function describes_own_purchase($normalized) {
+        $frames = array(
+            '/\b(?:my|the|this|that)\s+(?:order|orders|item|items|parcel|parcels|package|packages|delivery|deliveries|shipment|shipments|purchase|purchases|goods)\b/u',
+            '/\bi\s+(?:received|receive|got|ordered|bought|purchased)\b/u',
+            '/\bwhat\s+(?:if|happens\s+if|happens\s+when|do\s+i\s+do\s+if)\b/u',
+            '/\bif\s+(?:my|the|it)\b/u',
+            '/\barrives?\s+(?:damaged|broken|faulty|late)\b/u',
+        );
+
+        foreach ($frames as $frame) {
+            if (preg_match($frame, $normalized)) {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    /**
+     * Whether the shopper is asking after one specific order rather than the
+     * rule that governs it.
+     *
+     * Mirrors the wording the assistant already routes to an order lookup, so
+     * widening policy detection cannot quietly take those questions away from
+     * the part of the system that can answer them properly.
+     *
+     * @param string $normalized Normalized shopper message.
+     * @return bool
+     */
+    private function asks_own_order_state($normalized) {
+        $patterns = array(
+            '/\bwhere\s+(?:is|are)\s+my\s+(?:order|orders|parcel|package|delivery|shipment|item)\b/u',
+            '/\b(?:track|tracking)\b[^?]{0,16}\bmy\s+(?:order|parcel|package|shipment|delivery)\b/u',
+            '/\bmy\s+order\s+(?:status|number|id|tracking)\b/u',
+            '/\bstatus\s+of\s+my\s+(?:order|delivery|shipment)\b/u',
+            '/\bwhen\s+will\s+my\s+(?:order|parcel|package|delivery|shipment|item)\b/u',
+            '/\bhas\s+my\s+(?:order|parcel|package)\s+(?:shipped|arrived|dispatched)\b/u',
+        );
+
+        foreach ($patterns as $pattern) {
+            if (preg_match($pattern, $normalized)) {
+                return true;
+            }
+        }
+
+        return false;
     }
 }

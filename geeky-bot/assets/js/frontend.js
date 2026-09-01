@@ -19,10 +19,18 @@
   let sessionKey = window.localStorage ? localStorage.getItem('geekybot_session_key') || '' : '';
   const launcherStyle = settings.launcherStyle === 'pill' ? 'pill' : 'icon';
   const headerStyle = settings.headerStyle === 'solid' ? 'solid' : 'gradient';
+  // Merchant-chosen appearance. 'auto' hands the decision to the shopper's own
+  // OS setting via prefers-color-scheme rather than deciding for them.
+  const colorMode = ['light', 'dark', 'auto'].indexOf(settings.colorMode) !== -1 ? settings.colorMode : 'light';
+  const launcherShape = settings.launcherShape === 'rounded' ? 'rounded' : 'round';
   const launcherMark = settings.launcherIconUrl ? '<img src="' + escapeAttr(settings.launcherIconUrl) + '" alt="" />' : brandMarkSvg();
   const headerLogo = settings.headerLogoSource === 'hide' ? '' : '<span class="gb-window__brand-logo">' + (settings.headerLogoUrl ? '<img src="' + escapeAttr(settings.headerLogoUrl) + '" alt="" />' : brandMarkSvg()) + '</span>';
 
-  root.className = 'gb-widget gb-widget--' + (settings.buttonPosition === 'left' ? 'left' : 'right') + ' gb-widget--launcher-' + launcherStyle + ' gb-widget--header-' + headerStyle;
+  root.className = 'gb-widget gb-widget--' + (settings.buttonPosition === 'left' ? 'left' : 'right') +
+    ' gb-widget--launcher-' + launcherStyle +
+    ' gb-widget--header-' + headerStyle +
+    ' gb-widget--launcher-shape-' + launcherShape +
+    ' gb-widget--' + colorMode;
   root.innerHTML = '' +
     '<aside class="gb-shopper-invitation" aria-label="' + escapeAttr(i18n.invitation || 'Shopping assistant invitation') + '" hidden>' +
       '<button class="gb-shopper-invitation__open" type="button">' + escapeHtml(settings.shopperInvitationMessage || 'Need help choosing? Ask me about products, prices, or options.') + '</button>' +
@@ -115,12 +123,24 @@
     }
     phrase = phrase.slice(0, 1000);
     openWidget();
-    input.value = phrase;
-    input.setAttribute('aria-label', (i18n.placeholder || 'Ask about products…') + ': ' + phrase);
-    setTimeout(function () {
-      input.focus();
-      input.setSelectionRange(input.value.length, input.value.length);
-    }, 80);
+
+    // A guided prompt can be a short conversation. The follow-up turn only
+    // means anything once the first has been answered -- "which one is
+    // cheaper" needs results on screen to be cheaper *than* -- so the opener
+    // is sent for real and the follow-up is queued behind its reply.
+    var followUps = parseGuidedDemoSteps(params.get('geekybot_demo_steps'));
+    if (followUps.length) {
+      queueGuidedDemoFollowUps(followUps);
+      params.delete('geekybot_demo_steps');
+      sendMessage(phrase);
+    } else {
+      input.value = phrase;
+      input.setAttribute('aria-label', (i18n.placeholder || 'Ask about products…') + ': ' + phrase);
+      setTimeout(function () {
+        input.focus();
+        input.setSelectionRange(input.value.length, input.value.length);
+      }, 80);
+    }
 
     params.delete('geekybot_demo');
     if (window.history && window.history.replaceState) {
@@ -128,6 +148,58 @@
       var cleanUrl = window.location.pathname + (query ? '?' + query : '') + window.location.hash;
       window.history.replaceState({}, document.title, cleanUrl);
     }
+  }
+
+  /**
+   * Turns after the first, as sent by the Guided Demo board.
+   */
+  function parseGuidedDemoSteps(raw) {
+    if (!raw) {
+      return [];
+    }
+    var parsed;
+    try {
+      parsed = JSON.parse(raw);
+    } catch (error) {
+      return [];
+    }
+    if (!Array.isArray(parsed)) {
+      return [];
+    }
+    return parsed
+      .map(function (step) { return String(step || '').trim().slice(0, 1000); })
+      .filter(function (step) { return step !== ''; })
+      .slice(0, 3);
+  }
+
+  /**
+   * Hands the merchant the next turn once the previous one has been answered.
+   *
+   * It is placed in the box rather than sent: the point of the card is that a
+   * follow-up naming no product still lands in context, and that is only
+   * convincing if the person pressing send is the one reading it.
+   */
+  function queueGuidedDemoFollowUps(steps) {
+    var pending = steps.slice();
+
+    document.addEventListener('geekybot:chatResponse', function onResponse() {
+      if (!pending.length) {
+        document.removeEventListener('geekybot:chatResponse', onResponse);
+        return;
+      }
+
+      var next = pending.shift();
+      if (!pending.length) {
+        document.removeEventListener('geekybot:chatResponse', onResponse);
+      }
+
+      setTimeout(function () {
+        input.value = next;
+        input.setAttribute('aria-label', (i18n.placeholder || 'Ask about products…') + ': ' + next);
+        input.focus();
+        input.setSelectionRange(input.value.length, input.value.length);
+      }, 350);
+    });
   }
 
   function closeWidget() {
@@ -609,11 +681,19 @@
     if (!item || item.querySelector('.gb-message__user-avatar')) {
       return;
     }
+    // Set regardless of the icon, so screen readers still announce who spoke
+    // when a merchant turns the avatar off.
+    item.setAttribute('aria-label', (i18n.you || 'You') + ': ' + String(text || '').trim());
+
+    if (!settings || settings.userAvatarEnabled !== 'yes') {
+      item.classList.add('gb-message--no-avatar');
+      return;
+    }
+
     const avatar = document.createElement('span');
     avatar.className = 'gb-message__user-avatar';
     avatar.setAttribute('aria-hidden', 'true');
     avatar.innerHTML = userAvatarSvg();
-    item.setAttribute('aria-label', (i18n.you || 'You') + ': ' + String(text || '').trim());
     item.appendChild(avatar);
   }
 

@@ -197,8 +197,23 @@ class ShopperOutputService {
      * @param mixed $value Message value.
      * @return string
      */
+    /**
+     * Prepare a reply for the storefront.
+     *
+     * Sanitising only. The leak screen deliberately does NOT run here, because
+     * by this point the text is the plugin's own: every provider response is
+     * already screened by AiService the moment it is read, so a second pass adds
+     * nothing for model output while punishing our own strings for resembling
+     * one. A store whose returns policy legitimately mentions an API key had the
+     * whole answer replaced with a generic error, and a store installed at
+     * /geekybot_demo/ lost every reply carrying a My Account link -- silently,
+     * because a rejected message is never logged.
+     *
+     * @param mixed $value Reply text.
+     * @return string
+     */
     private function public_message($value) {
-        $message = $this->guarded_ai_text($value);
+        $message = $this->clean_message($value, 1800);
         if ($message !== '') {
             return $message;
         }
@@ -207,9 +222,18 @@ class ShopperOutputService {
     }
 
     /**
-     * Reject AI output that appears to expose internal instructions or errors.
+     * Reject model output that appears to expose internal instructions or errors.
      *
-     * @param string $text Candidate AI output.
+     * Applied to provider responses only, at the point AiService reads them --
+     * see AiService::clean_ai_text(). That call is now the single line of defence
+     * between a model and a shopper, so it must not be removed: nothing screens
+     * this text again downstream.
+     *
+     * It is deliberately NOT applied to the plugin's own replies. Those are
+     * authored here, and screening them only ever produced false positives on
+     * ordinary wording that happens to resemble an internal name.
+     *
+     * @param string $text Candidate model output.
      * @return string Empty string when unsafe.
      */
     public function guarded_ai_text($text) {
@@ -217,6 +241,18 @@ class ShopperOutputService {
         if ($text === '') {
             return '';
         }
+
+        // Links to this store are not a leak. The identifier rule below matches
+        // a `geekybot_` or `gbcp_` name anywhere, and a WordPress install living
+        // at a path such as /geekybot_demo/ or /gbcp_staging/ puts that string
+        // inside its own public address. Every reply carrying a My Account link
+        // was therefore discarded and replaced with the generic error, silently,
+        // because a rejected message is never logged.
+        //
+        // Removing the store's own URLs before scanning keeps the rule's real
+        // job intact: an internal option name is still caught wherever it
+        // appears, and so is a genuinely internal path such as wp-content.
+        $scannable = $this->without_store_urls($text);
 
         $patterns = array(
             '/\b(?:system|developer|hidden)\s+(?:prompt|instruction|message)s?\b/iu',
@@ -228,9 +264,51 @@ class ShopperOutputService {
         );
 
         foreach ($patterns as $pattern) {
-            if (preg_match($pattern, $text)) {
+            if (preg_match($pattern, $scannable)) {
                 return '';
             }
+        }
+
+        return $text;
+    }
+
+    /**
+     * Blank out links that point at this store, so they cannot be mistaken for
+     * an internal identifier.
+     *
+     * Only the site's own addresses are removed, and only for scanning. The
+     * shopper still receives the original text, links included.
+     *
+     * @param string $text Candidate message.
+     * @return string
+     */
+    private function without_store_urls($text) {
+        $roots = array();
+
+        foreach (array('home_url', 'site_url') as $source) {
+            if (!function_exists($source)) {
+                continue;
+            }
+            $url = call_user_func($source, '/');
+            if (is_string($url) && $url !== '') {
+                $roots[] = rtrim($url, '/');
+            }
+        }
+
+        $roots = array_values(array_unique(array_filter($roots)));
+        if (empty($roots)) {
+            return $text;
+        }
+
+        // Longest first, so a site URL nested inside a home URL goes whole.
+        usort($roots, function ($a, $b) {
+            return strlen($b) <=> strlen($a);
+        });
+
+        foreach ($roots as $root) {
+            // The address plus whatever path follows it, so a link such as
+            // /geekybot_demo/my-account/ is removed in one piece.
+            $text = preg_replace('#' . preg_quote($root, '#') . '[^\s]*#iu', ' ', $text);
         }
 
         return $text;
@@ -320,7 +398,9 @@ class ShopperOutputService {
             );
         }
 
-        $message = $this->guarded_ai_text(isset($comparison['message']) ? $comparison['message'] : '');
+        // Authored by the plugin or a commerce addon, so sanitised rather than
+        // screened, for the same reason as public_message().
+        $message = $this->clean_message(isset($comparison['message']) ? $comparison['message'] : '', 1800);
         if ($message === '') {
             $message = __('Here is the product comparison.', 'geeky-bot');
         }

@@ -26,6 +26,19 @@ class Settings {
             'shopper_invitation_delay' => 12,
             'shopper_invitation_message' => 'Need help choosing? Ask me about products, prices, or options.',
             'header_style' => 'gradient',
+            // One per line. These were hard-coded in Frontend/Widget.php, so a
+            // merchant could see them in the admin but had no way to change
+            // them — and the label claimed they were "generated from the current
+            // capabilities", which was never true. Blank falls back to these.
+            'starter_prompts' => "Latest products\nSale products\nTop rated\nProducts under 50",
+            // The small avatar beside a shopper's own message. Off by default:
+            // it costs 42px of every message bubble to repeat what the message's
+            // right alignment already says. Merchants who want it can enable it.
+            'user_avatar_enabled' => 'no',
+            // Taste, so it belongs to the site admin rather than to us.
+            // auto follows the shopper's own OS preference.
+            'widget_color_mode' => 'light',
+            'launcher_shape' => 'round',
             'max_products' => 4,
             'chat_history_enabled' => 'yes',
             'retention_days' => 30,
@@ -68,6 +81,32 @@ trainers = sneakers, shoes",
         return array_key_exists($key, $settings) ? $settings[$key] : $default;
     }
 
+    /**
+     * Starter prompts as a clean list.
+     *
+     * @param int $limit Maximum prompts to return. The widget shows four.
+     * @return array
+     */
+    public static function starter_prompts($limit = 4) {
+        $raw = (string) self::get('starter_prompts', '');
+        if (trim($raw) === '') {
+            $raw = self::defaults()['starter_prompts'];
+        }
+
+        $lines = preg_split('/\r\n|\r|\n/', $raw);
+        $prompts = array();
+        foreach ((array) $lines as $line) {
+            $line = trim(wp_strip_all_tags((string) $line));
+            if ($line !== '') {
+                $prompts[] = $line;
+            }
+        }
+
+        $prompts = array_values(array_unique($prompts));
+
+        return $limit > 0 ? array_slice($prompts, 0, absint($limit)) : $prompts;
+    }
+
     public static function update($input) {
         $current = self::all();
         $clean = array();
@@ -97,6 +136,29 @@ trainers = sneakers, shoes",
         if ($clean['shopper_invitation_message'] === '') {
             $clean['shopper_invitation_message'] = self::defaults()['shopper_invitation_message'];
         }
+
+        $clean['starter_prompts'] = isset($input['starter_prompts'])
+            ? substr(sanitize_textarea_field((string) $input['starter_prompts']), 0, 1000)
+            : (isset($current['starter_prompts']) ? $current['starter_prompts'] : self::defaults()['starter_prompts']);
+        if (trim($clean['starter_prompts']) === '') {
+            $clean['starter_prompts'] = self::defaults()['starter_prompts'];
+        }
+
+        $clean['widget_color_mode'] = isset($input['widget_color_mode']) && in_array($input['widget_color_mode'], array('light', 'dark', 'auto'), true)
+            ? $input['widget_color_mode']
+            : (isset($current['widget_color_mode']) ? $current['widget_color_mode'] : self::defaults()['widget_color_mode']);
+
+        $clean['launcher_shape'] = isset($input['launcher_shape']) && in_array($input['launcher_shape'], array('round', 'rounded'), true)
+            ? $input['launcher_shape']
+            : (isset($current['launcher_shape']) ? $current['launcher_shape'] : self::defaults()['launcher_shape']);
+
+        // Only treated as a checkbox when the field was actually submitted. The
+        // Settings screen posts the full option set but does not render this
+        // control, so a plain "isset ? yes : no" would silently switch it back
+        // off every time that page was saved.
+        $clean['user_avatar_enabled'] = isset($input['user_avatar_enabled'])
+            ? ($input['user_avatar_enabled'] === 'yes' ? 'yes' : 'no')
+            : (isset($current['user_avatar_enabled']) ? $current['user_avatar_enabled'] : self::defaults()['user_avatar_enabled']);
         $clean['shopper_invitation_message'] = function_exists('mb_substr')
             ? mb_substr($clean['shopper_invitation_message'], 0, 160)
             : substr($clean['shopper_invitation_message'], 0, 160);
@@ -246,6 +308,9 @@ trainers = sneakers, shoes",
             'shopperInvitationEnabled' => $settings['shopper_invitation_enabled'],
             'shopperInvitationDelay' => absint($settings['shopper_invitation_delay']),
             'shopperInvitationMessage' => $settings['shopper_invitation_message'],
+            'userAvatarEnabled' => isset($settings['user_avatar_enabled']) ? $settings['user_avatar_enabled'] : 'no',
+            'colorMode' => isset($settings['widget_color_mode']) ? $settings['widget_color_mode'] : 'light',
+            'launcherShape' => isset($settings['launcher_shape']) ? $settings['launcher_shape'] : 'round',
             'launcherIconSource' => $settings['launcher_icon_source'],
             'launcherIconUrl' => self::resolve_launcher_icon_url($settings),
             'headerLogoSource' => $settings['header_logo_source'],

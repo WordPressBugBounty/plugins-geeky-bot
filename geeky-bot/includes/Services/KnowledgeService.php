@@ -310,6 +310,7 @@ class KnowledgeService {
      */
     private function best_excerpt($content, $analysis) {
         $chunks = $this->content_chunks($content);
+        $polarity = $this->question_polarity($analysis);
         $specific_terms = !empty($analysis['specificTerms']) ? (array) $analysis['specificTerms'] : array();
         $facets = !empty($analysis['facets']) ? (array) $analysis['facets'] : array();
         $primary_type = !empty($analysis['primaryType']) ? sanitize_key((string) $analysis['primaryType']) : '';
@@ -355,10 +356,15 @@ class KnowledgeService {
                     }
                 }
 
+                // One credit per facet. Several cues in the list describe the
+                // same sentence -- "may be returned" and "items may be returned"
+                // both match one clause -- and counting each of them stacked the
+                // score for a single piece of evidence.
                 foreach ($this->intents->answer_cues($primary_type, $facet) as $answer_cue) {
                     if ($this->text_contains_term($chunk, $answer_cue)) {
                         $matched_answer_cues[] = $answer_cue;
                         $score += 14;
+                        break;
                     }
                 }
 
@@ -373,13 +379,39 @@ class KnowledgeService {
                     if ($this->text_contains_term($chunk, $answer_cue)) {
                         $matched_answer_cues[] = $answer_cue;
                         $score += 10;
+                        break;
                     }
+                }
+            }
+
+            // Almost every policy page carries a section listing what is NOT
+            // allowed, written in the same vocabulary as the rule itself, and
+            // usually longer. Asked "Can I return an item if I change my mind?",
+            // selection picked "the following items are not eligible for a
+            // change-of-mind return" -- the shopper's own words, answering the
+            // opposite of the question. Score has to know which way a chunk
+            // points, not merely that it is on topic.
+            // A published page carries more than its policy: a hero lead, a
+            // sidebar of links, an example question printed as a prompt, button
+            // labels. Those passages repeat the page's topic words -- and a
+            // printed example question repeats the SHOPPER's words exactly --
+            // so they score like answers while stating nothing. Quoting them
+            // back is worse than quoting the wrong section, because it reads as
+            // the store having no answer at all.
+            $score -= 16 * $this->furniture_weight($chunk);
+
+            if ($polarity !== '') {
+                list($affirms, $denies) = $this->chunk_polarity($chunk);
+                if ($denies > $affirms) {
+                    $score += ($polarity === 'negative') ? 8 : -14;
+                } elseif ($affirms > $denies) {
+                    $score += ($polarity === 'affirmative') ? 6 : -8;
                 }
             }
 
             if ($score > $best['score'] || ($best['text'] === '' && $score === 0)) {
                 $best = array(
-                    'text' => wp_trim_words($chunk, 110),
+                    'text' => wp_trim_words($this->without_furniture($chunk), 110),
                     'score' => $score,
                     'matchedSpecificTerms' => array_values(array_unique($matched_specific)),
                     'matchedFacets' => array_values(array_unique($matched_facets)),
@@ -394,6 +426,159 @@ class KnowledgeService {
         }
 
         return $best;
+    }
+
+    /**
+     * Drop navigation and button text from the ends of a passage.
+     *
+     * The chunker joins neighbouring sentences, so a section that ends where a
+     * sidebar begins produces a passage that answers the question and then runs
+     * on into "On this page. Order processing. Delivery methods...". The answer
+     * is right; the tail makes it read like a scrape. Only whole segments that
+     * are recognisably furniture are removed, and only when something is left.
+     *
+     * @param string $chunk Chosen excerpt.
+     * @return string
+     */
+    private function without_furniture($chunk) {
+        $segments = preg_split('/(?<=[.!?])\s+/u', (string) $chunk, -1, PREG_SPLIT_NO_EMPTY);
+        if (count($segments) < 2) {
+            return (string) $chunk;
+        }
+
+        $kept = array();
+        foreach ($segments as $segment) {
+            $is_nav = preg_match('/^\s*(?:on this page|related policies|more store information|popular topics|browse answers|see the answer|back to shop|quick answers)\b/iu', $segment)
+                || preg_match('/[\x{2192}\x{2190}\x{21BA}\x{2794}]/u', $segment);
+            $is_prompt = preg_match('/[\x{201C}\x{201D}"][^\x{201C}\x{201D}"]{6,120}\?[\x{201C}\x{201D}"]/u', $segment);
+
+            if (!$is_nav && !$is_prompt) {
+                $kept[] = $segment;
+            }
+        }
+
+        $text = trim(implode(' ', $kept));
+
+        // Never hand back nothing: a passage that is entirely furniture stays as
+        // it was, and the score penalty is what keeps it from being chosen.
+        return $text !== '' ? $text : (string) $chunk;
+    }
+
+    /**
+     * How much of a passage is page furniture rather than statement.
+     *
+     * Returns 0 for ordinary prose and 1 for a passage that is entirely
+     * navigation, headings or quoted questions, so the caller can scale a
+     * penalty rather than take an all-or-nothing decision on a mixed chunk.
+     *
+     * @param string $chunk Candidate excerpt.
+     * @return float
+     */
+    private function furniture_weight($chunk) {
+        $text = trim((string) $chunk);
+        if ($text === '') {
+            return 1.0;
+        }
+
+        $signals = 0;
+        $possible = 3;
+
+        // A question is not an answer. Pages print example questions as
+        // prompts, and they match a shopper's wording better than any policy
+        // sentence ever will.
+        if (preg_match('/[\x{201C}\x{201D}"][^\x{201C}\x{201D}"]{6,120}\?[\x{201C}\x{201D}"]/u', $text)
+            || preg_match_all('/\?/u', $text) >= 2) {
+            $signals++;
+        }
+
+        // Link and button furniture.
+        if (preg_match('/[\x{2192}\x{2190}\x{21BA}\x{2794}]/u', $text)
+            || preg_match('/\b(?:on this page|browse answers|see the answer|back to shop|related policies|popular topics|quick answers|more store information)\b/iu', $text)) {
+            $signals++;
+        }
+
+        // Runs of short fragments -- nav lists and heading stacks -- rather
+        // than sentences. Measured on the longest run, so one heading above a
+        // real paragraph does not disqualify the paragraph.
+        $longest = 0;
+        foreach (preg_split('/(?<=[.!?:])\s+/u', $text, -1, PREG_SPLIT_NO_EMPTY) as $sentence) {
+            $words = str_word_count($sentence);
+            if ($words > $longest) {
+                $longest = $words;
+            }
+        }
+        if ($longest < 9) {
+            $signals++;
+        }
+
+        return $signals / $possible;
+    }
+
+    /**
+     * Which way the shopper's question points.
+     *
+     * "Can I return this?" wants the rule. "What can't I return?" wants the
+     * exceptions. The same page answers both, in adjacent paragraphs, using
+     * the same words -- so the question has to say which one it meant.
+     *
+     * @param array $analysis Policy analysis.
+     * @return string affirmative, negative, or an empty string when unclear.
+     */
+    private function question_polarity($analysis) {
+        $text = isset($analysis['normalized']) ? (string) $analysis['normalized'] : '';
+        if ($text === '') {
+            return '';
+        }
+
+        // Checked first: "can I return something I cannot use" is still a
+        // question about exclusions.
+        if (preg_match('/\b(?:cannot|can\s*not|non-?returnable|non-?refundable|not\s+eligible|not\s+allowed|excluded|exclusions|ineligible|do\s+not\s+accept|refuse)\b/u', $text)
+            || preg_match('/\b(?:can|could|may|will|should)\s+not\b/u', $text)
+            || preg_match('/\b(?:can|won|couldn|shouldn|wouldn|isn|aren|doesn|don)[\x{2019}\']?t\b/u', $text)
+            || preg_match('/\bwhat\s+(?:items\s+)?(?:are\s+)?not\b/u', $text)) {
+            return 'negative';
+        }
+
+        if (preg_match('/^(?:can|could|may|am\s+i|are\s+we|do\s+you|does\s+the\s+store|is\s+it\s+possible)\b/u', $text)
+            || preg_match('/\b(?:eligible|eligibility|allowed|qualify|do\s+you\s+accept)\b/u', $text)) {
+            return 'affirmative';
+        }
+
+        return '';
+    }
+
+    /**
+     * How many statements in a chunk grant something versus withhold it.
+     *
+     * @param string $chunk Candidate excerpt.
+     * @return array{0:int,1:int} Affirming count, denying count.
+     */
+    private function chunk_polarity($chunk) {
+        // Judged per sentence, because the phrases overlap. "eligible for" sits
+        // inside "not eligible for a return", so counting phrases scored that
+        // sentence as both affirming and denying -- a tie, which cancelled the
+        // adjustment entirely and let the exclusions passage keep its lead. A
+        // sentence either grants the thing or withholds it.
+        $affirms = 0;
+        $denies = 0;
+
+        $sentences = preg_split('/(?<=[.!?:])\s+/u', (string) $chunk, -1, PREG_SPLIT_NO_EMPTY);
+        if (empty($sentences)) {
+            return array(0, 0);
+        }
+
+        foreach ($sentences as $sentence) {
+            if (preg_match('/\b(?:not|never|cannot|can\'t|non-?returnable|non-?refundable|ineligible|excluded|exclusions|refuse)\b/iu', $sentence)) {
+                $denies++;
+                continue;
+            }
+
+            if (preg_match('/\b(?:may\s+be\s+returned|can\s+be\s+returned|may\s+be\s+exchanged|can\s+be\s+exchanged|eligible\s+for|are\s+eligible|is\s+eligible|we\s+accept|are\s+accepted|qualify\s+for|within\s+\d+\s+days|refund\s+will\s+be)\b/iu', $sentence)) {
+                $affirms++;
+            }
+        }
+
+        return array($affirms, $denies);
     }
 
     /**

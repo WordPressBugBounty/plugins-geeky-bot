@@ -42,10 +42,12 @@ class ChatService {
 
         $this->save_message($session_id, 'user', $message, null);
 
-        $routing_message = $this->cart_product_search_message($message);
-        if ($routing_message === '') {
-            $routing_message = $message;
-        }
+        // "add the Trek 32L to my cart" used to be rewritten into a bare
+        // search for "the Trek 32L", because there was nowhere to send a cart
+        // action and a search was the least-bad answer. The command layer now
+        // resolves the verb, so the message reaches it whole; rewriting it here
+        // would strip the action before anything could act on it.
+        $routing_message = $message;
 
         $context_service = new SearchContextService();
         $context_resolution = $context_service->resolve($routing_message, $session_id);
@@ -54,6 +56,10 @@ class ChatService {
             ? $context_resolution['discovery']
             : (new ProductDiscoveryIntentService())->analyze($routing_message, !empty($context_resolution['previousAnalysis']) ? $context_resolution['previousAnalysis'] : array());
         $named_comparison_error = array();
+
+        // Must run before the ordinal check below, which would otherwise reject
+        // "compare the cheaper one and the second" for naming only one position.
+        $context_resolution = $this->resolve_price_comparison($context_resolution);
 
         $ordinal_comparison_error = $this->ordinal_comparison_error_reply($context_resolution);
         if ($ordinal_comparison_error !== '') {
@@ -137,9 +143,114 @@ class ChatService {
             return $response;
         }
 
+        // Commerce commands. The assistant has always understood the reference
+        // in "add second product"; until now there was nowhere to send the verb,
+        // so the reference resolved and the action was dropped, leaving a
+        // catalog search in its place.
+        //
+        // Nothing here performs the action: core resolves the language and the
+        // addon owns the cart, the coupons and the people. When no addon claims
+        // it, the shopper is told plainly rather than shown products.
+        if (in_array($action, \GeekyBot\Search\ShoppingCommandResolver::commerce_actions(), true)) {
+            $command_result = array();
+
+            // Called directly first, as comparison is, so hook order cannot let
+            // another callback answer in the addon's place.
+            if (class_exists('GeekyBotCommercePro\Services\ChatCommandService')) {
+                $command_service = new \GeekyBotCommercePro\Services\ChatCommandService();
+                $command_result = $command_service->handle(
+                    array(),
+                    $action,
+                    $context_resolution,
+                    array(),
+                    $session_id,
+                    $session_key
+                );
+            }
+
+            if (empty($command_result['handled'])) {
+                $command_result = apply_filters(
+                    'geekybot_shopping_command_result',
+                    array(),
+                    $action,
+                    $context_resolution,
+                    array(),
+                    $session_id,
+                    $session_key
+                );
+            }
+
+            $handled = !empty($command_result['handled']) && !empty($command_result['message']);
+            $reply = $handled
+                ? wp_strip_all_tags((string) $command_result['message'])
+                : $this->commerce_unavailable_reply($action);
+            $intent = $handled
+                ? (!empty($command_result['intent']) ? sanitize_key($command_result['intent']) : $action)
+                : 'unsupported_' . $action;
+
+            $command_products = (!$handled || empty($command_result['productIds']))
+                ? array()
+                : $this->products->products_by_ids(
+                    array_map('absint', (array) $command_result['productIds']),
+                    absint(Settings::get('max_products', 4)),
+                    array(),
+                    'commerce_command'
+                );
+
+            $response = $this->response(
+                $reply,
+                $command_products,
+                $intent,
+                $session_id,
+                $session_key,
+                array(),
+                $context_service->build_conversation_payload($message, $context_resolution, 0, '', 'commerce_command', array()),
+                !empty($command_result['extra']) && is_array($command_result['extra']) ? array('commerce' => $command_result['extra']) : array()
+            );
+
+            if (!$handled) {
+                $this->log_unanswered($session_id, $message, $intent, array('action' => $action));
+            }
+
+            $this->save_message($session_id, 'bot', $reply, $response);
+            return $response;
+        }
+
         // Product Expert questions are answered before catalog search so shopper
         // questions such as "What material is this backpack made from?" do not
         // become keyword searches for "backpack made".
+        // Extension point for commerce addons, fired before catalog discovery
+        // takes the message. Comparing the products on screen and answering from
+        // a shopper's own orders are Commerce Pro capabilities, so the core
+        // plugin offers the turn and does not implement either.
+        //
+        // Returning null leaves core behaviour exactly as it was, which is what
+        // keeps the free plugin working on its own.
+        $addon_reply = apply_filters('geekybot_chat_pre_discovery_reply', null, $message, $context_resolution, $session_id);
+        if (is_array($addon_reply) && !empty($addon_reply['message'])) {
+            $addon_products = !empty($addon_reply['productIds'])
+                ? $this->products->products_by_ids(
+                    array_map('absint', (array) $addon_reply['productIds']),
+                    absint(Settings::get('max_products', 4)),
+                    array(),
+                    'addon_reply'
+                )
+                : array();
+            $addon_intent = !empty($addon_reply['intent']) ? sanitize_key($addon_reply['intent']) : 'addon_reply';
+            $reply = wp_strip_all_tags((string) $addon_reply['message']);
+            $response = $this->response(
+                $reply,
+                $addon_products,
+                $addon_intent,
+                $session_id,
+                $session_key,
+                array(),
+                $context_service->build_conversation_payload($message, $context_resolution, 0, '', 'product_question', array())
+            );
+            $this->save_message($session_id, 'bot', $reply, $response);
+            return $response;
+        }
+
         if ($this->products->is_woocommerce_ready()) {
             $product_expert_result = $this->product_expert->handle($message, $context_resolution);
             if (!empty($product_expert_result['handled'])) {
@@ -260,6 +371,38 @@ class ChatService {
             'best', 'best_discount', 'cheaper', 'filter_current', 'remove_constraint',
             'select', 'premium', 'similar', 'another_color', 'go_back', 'compare',
         );
+
+        // Last chance to admit a limit before catalog discovery takes the message.
+        //
+        // Discovery is the fall-through for everything policy and Product Expert
+        // did not claim, and it nearly always returns a product. That turned
+        // out-of-scope requests into confident nonsense: "where is my order?"
+        // was answered with an Office Footrest. Saying so plainly is the only
+        // correct behaviour for an assistant that sells itself on grounded
+        // answers, and it is logged so the merchant can see the real demand for
+        // order lookups rather than reading it as a search-quality problem.
+        if (!$is_policy_question) {
+            $unsupported = (new UnsupportedIntentService())->detect($search_message);
+
+            if ($unsupported['type'] !== '' && $unsupported['message'] !== '') {
+                $reply = $unsupported['message'];
+                // No search context: the request never reached discovery, and
+                // storing one would leave a phantom product mission behind for
+                // the next turn to inherit.
+                $response = $this->response(
+                    $reply,
+                    array(),
+                    'unsupported_' . $unsupported['type'],
+                    $session_id,
+                    $session_key,
+                    array(),
+                    array()
+                );
+                $this->log_unanswered($session_id, $message, 'unsupported_' . $unsupported['type'], array());
+                $this->save_message($session_id, 'bot', $reply, $response);
+                return $response;
+            }
+        }
 
         if (!$is_policy_question && $this->products->is_woocommerce_ready() && $is_product_question) {
             $limit = absint(Settings::get('max_products', 4));
@@ -549,6 +692,134 @@ class ChatService {
         $response = $this->response($reply, $products, $intent, $session_id, $session_key, $response_knowledge, $search_context_payload);
         $this->save_message($session_id, 'bot', $reply, $response);
         return $response;
+    }
+
+    /**
+     * Fills in a comparison side the shopper described by price.
+     *
+     * "compare the cheaper one and the second" names one position and describes
+     * the other. The resolver recognises the description but cannot price it,
+     * because it never reads the catalog. Here the products are available, so
+     * the description becomes the position it was always pointing at.
+     *
+     * @param array $resolution Context resolution.
+     * @return array
+     */
+    private function resolve_price_comparison($resolution) {
+        $resolution = is_array($resolution) ? $resolution : array();
+        if (empty($resolution['action']) || sanitize_key((string) $resolution['action']) !== 'compare') {
+            return $resolution;
+        }
+
+        $args = !empty($resolution['commandArgs']) && is_array($resolution['commandArgs'])
+            ? $resolution['commandArgs']
+            : array();
+        $markers = !empty($args['priceReferences']) ? array_values((array) $args['priceReferences']) : array();
+        if (empty($markers)) {
+            return $resolution;
+        }
+
+        $reference_ids = $this->visible_product_ids($resolution);
+        if (count($reference_ids) < 2) {
+            return $resolution;
+        }
+
+        $positions = array_values(array_unique(array_map('absint', (array) (isset($args['positions']) ? $args['positions'] : array()))));
+
+        // Price every visible product once, then read off each end as needed.
+        $priced = array();
+        foreach ($reference_ids as $index => $product_id) {
+            $product = function_exists('wc_get_product') ? wc_get_product(absint($product_id)) : null;
+            if (!$product) {
+                continue;
+            }
+            $price = $product->get_price();
+            if ($price === '' || $price === null) {
+                continue;
+            }
+            $priced[$index] = (float) $price;
+        }
+
+        if (count($priced) < 2) {
+            return $resolution;
+        }
+
+        foreach ($markers as $marker) {
+            // A described side must not land on a position the shopper already
+            // named, or the comparison would hold one product twice.
+            $candidates = array_diff_key($priced, array_flip($positions));
+            if (empty($candidates)) {
+                break;
+            }
+
+            $target = ($marker === 'priciest')
+                ? array_search(max($candidates), $candidates, true)
+                : array_search(min($candidates), $candidates, true);
+
+            if ($target === false) {
+                continue;
+            }
+
+            $positions[] = absint($target);
+        }
+
+        $positions = array_values(array_unique($positions));
+        sort($positions);
+
+        $ids = array();
+        foreach ($positions as $position) {
+            if (isset($reference_ids[$position])) {
+                $ids[] = absint($reference_ids[$position]);
+            }
+        }
+
+        if (count($ids) < 2) {
+            return $resolution;
+        }
+
+        $resolution['commandArgs']['positions'] = $positions;
+        $resolution['commandArgs']['productIds'] = array_slice(array_values(array_unique($ids)), 0, 4);
+        $resolution['commandArgs']['missingPositions'] = array();
+        $resolution['commandArgs']['availableResultCount'] = count($reference_ids);
+        $resolution['compareProductIds'] = $resolution['commandArgs']['productIds'];
+
+        // Both sides are now positions, so the leftover wording is spent. Left
+        // in place it would be searched for as a product name -- "second" is not
+        // one, and the comparison would fail on a side already resolved.
+        $resolution['commandArgs']['namedProducts'] = array();
+        $resolution['commandArgs']['explicitNames'] = false;
+
+        return $resolution;
+    }
+
+    /**
+     * The product ids the shopper can currently see, newest context first.
+     *
+     * @param array $resolution Context resolution.
+     * @return array
+     */
+    private function visible_product_ids($resolution) {
+        $sources = array(
+            isset($resolution['previousLastMultiProductIds']) ? $resolution['previousLastMultiProductIds'] : array(),
+            isset($resolution['previousReferenceProductIds']) ? $resolution['previousReferenceProductIds'] : array(),
+            isset($resolution['previousProductIds']) ? $resolution['previousProductIds'] : array(),
+        );
+
+        $previous = !empty($resolution['previousContext']) && is_array($resolution['previousContext'])
+            ? $resolution['previousContext']
+            : array();
+        foreach (array('lastMultiProductIds', 'referenceProductIds', 'productIds') as $key) {
+            $sources[] = isset($previous[$key]) ? $previous[$key] : array();
+        }
+
+        foreach ($sources as $ids) {
+            $ids = array_values(array_filter(array_map('absint', (array) $ids)));
+            if (count($ids) >= 2) {
+                return $ids;
+            }
+        }
+
+        return array();
     }
 
     private function ordinal_comparison_error_reply($resolution) {
@@ -935,6 +1206,37 @@ class ChatService {
             return 'knowledge_answer';
         }
         return 'no_answer';
+    }
+
+    /**
+     * What to say when the command is understood but nothing can perform it.
+     *
+     * Understanding a request and then answering with unrelated products is
+     * worse than saying no, because the shopper cannot tell the difference
+     * between a refusal and a recommendation.
+     *
+     * @param string $action Resolved commerce action.
+     * @return string
+     */
+    private function commerce_unavailable_reply($action) {
+        switch ($action) {
+            case 'cart_add':
+                return __("I can't add items to your cart from here. You can add it from the product page and carry on shopping.", 'geeky-bot');
+            case 'cart_remove':
+                return __("I can't change your cart from here. You can remove it on the cart page.", 'geeky-bot');
+            case 'cart_quantity':
+                return __("I can't change quantities from here. You can update the amount on the cart page.", 'geeky-bot');
+            case 'cart_view':
+                return __("I can't show your cart from here. The cart page has everything currently in it.", 'geeky-bot');
+            case 'checkout':
+                return __("I can't take you through checkout. You can review your cart and check out as usual.", 'geeky-bot');
+            case 'deals':
+                return __("I don't have discount codes to give out. Any current offers will be shown on the product or cart pages.", 'geeky-bot');
+            case 'handoff':
+                return __("I can't pass you to a person from here, and I'd rather say so than guess. The store's contact details are on its help pages.", 'geeky-bot');
+        }
+
+        return __("I understood that, but I can't carry it out from here.", 'geeky-bot');
     }
 
     private function response($message, $products, $intent, $session_id, $session_key, $knowledge_matches, $search_context = array(), $extra = array()) {

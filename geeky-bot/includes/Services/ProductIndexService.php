@@ -79,6 +79,7 @@ class ProductIndexService {
             full_description longtext NULL,
             search_text longtext NOT NULL,
             semantic_text longtext NOT NULL,
+            stem_text longtext NULL,
             product_url text NULL,
             image_url text NULL,
             created_at datetime NOT NULL,
@@ -91,7 +92,7 @@ class ProductIndexService {
             KEY price (price),
             KEY rating (rating),
             KEY total_sales (total_sales),
-            FULLTEXT KEY gb_fulltext (title, sku, categories, tags, attributes, color_terms, size_terms, search_text)
+            FULLTEXT KEY gb_fulltext (title, sku, categories, tags, attributes, color_terms, size_terms, search_text, stem_text)
         ) {$charset_collate};";
 
         dbDelta($sql);
@@ -268,6 +269,15 @@ class ProductIndexService {
         $wpdb->delete(self::table_name(), array('product_id' => absint($post_id)), array('%d'));
     }
 
+    /**
+     * Relearn the store's family vocabulary after the catalog is reindexed.
+     *
+     * @return array
+     */
+    public function rebuild_vocabulary() {
+        return $this->vocabulary()->rebuild();
+    }
+
     public function rebuild($limit = 0) {
         if (!self::woocommerce_ready()) {
             return array('indexed' => 0, 'skipped' => 0, 'complete' => false);
@@ -302,6 +312,12 @@ class ProductIndexService {
             if (get_option(self::REBUILD_PENDING_OPTION, '') === $pending_marker) {
                 delete_option(self::REBUILD_PENDING_OPTION);
             }
+
+            // Relearn the store's own product words from the catalog that was
+            // just indexed. Tying it to a full rebuild keeps the vocabulary in
+            // step with the categories a merchant adds or renames, without
+            // paying for the scan on every partial sync.
+            $this->rebuild_vocabulary();
         }
 
         return array('indexed' => $indexed, 'skipped' => $skipped, 'complete' => $complete);
@@ -420,7 +436,8 @@ class ProductIndexService {
             $size_terms,
             $negative_color_terms,
             $negative_size_terms,
-            $modifier_terms
+            $modifier_terms,
+            $lower
         );
         $core_terms = array_values(array_unique(array_filter(array_merge(
             (array) ($product_phrase['search_terms'] ?? array()),
@@ -431,6 +448,7 @@ class ProductIndexService {
             $this->core_product_terms($base_terms, $color_terms, $size_terms, $negative_color_terms, $negative_size_terms, $modifier_terms)
         ))));
         $boolean_terms = array_values(array_unique(array_filter(array_merge($core_terms, $color_terms, $size_terms))));
+        $boolean_groups = $this->boolean_term_groups($product_phrase, $core_terms, $display_core_terms, $color_terms, $size_terms);
         $budget_sort = $language->contains_budget_signal($lower);
         $value_sort = $language->contains_value_signal($lower);
 
@@ -459,7 +477,11 @@ class ProductIndexService {
             'gift_signals' => !empty($buyer_profile['gift_signals']) ? (array) $buyer_profile['gift_signals'] : array(),
             'buyer_profile' => $buyer_profile,
             'audience' => !empty($buyer_profile['audience']) ? (array) $buyer_profile['audience'] : array(),
-            'boolean' => $this->boolean_query($boolean_terms),
+            'boolean' => $this->boolean_query($boolean_groups),
+            // Kept so a session analysis saved by an earlier release still has
+            // the flat list its scoring helpers expect.
+            'boolean_terms' => $boolean_terms,
+            'boolean_groups' => $boolean_groups,
             'phrase' => !empty($product_phrase['phrase']) ? $product_phrase['phrase'] : $this->phrase_for_like($searchable),
             'product_phrase' => !empty($product_phrase['phrase']) ? $product_phrase['phrase'] : '',
             'product_phrase_terms' => !empty($product_phrase['terms']) ? (array) $product_phrase['terms'] : array(),
@@ -469,6 +491,7 @@ class ProductIndexService {
             'required_family_aliases' => !empty($product_phrase['required_family_aliases']) ? (array) $product_phrase['required_family_aliases'] : array(),
             'family_gate_aliases' => !empty($product_phrase['family_gate_aliases']) ? (array) $product_phrase['family_gate_aliases'] : array(),
             'product_qualifier_terms' => !empty($product_phrase['qualifier_terms']) ? (array) $product_phrase['qualifier_terms'] : array(),
+            'product_declared_qualifier_terms' => !empty($product_phrase['declared_qualifier_terms']) ? (array) $product_phrase['declared_qualifier_terms'] : array(),
             'price_range' => $price_range,
             'intent' => $sale_required ? 'sale' : $intent,
             'sale_required' => $sale_required,
@@ -514,6 +537,18 @@ class ProductIndexService {
             $full,
         )));
 
+        // A stemmed copy of the identity fields, so a shopper's plural can reach a
+        // catalog singular. Both sides run through StemmerService, which is the
+        // whole point: `beanies` and `Beanie` only meet if the same function
+        // reduces them. Descriptions are left out -- stemming prose adds noise
+        // without helping a product be found by name.
+        $stem_text = $this->stemmer()->unique_stem_text($this->normalize_index_text(implode(' ', array(
+            $title,
+            implode(' ', $categories),
+            implode(' ', $tags),
+            $attributes,
+        ))));
+
         $semantic_text = $this->normalize_index_text(implode('. ', array_filter(array(
             'Product: ' . $title,
             $sku ? 'SKU: ' . $sku : '',
@@ -549,6 +584,7 @@ class ProductIndexService {
             'full_description' => $full,
             'search_text' => $search_text,
             'semantic_text' => $semantic_text,
+            'stem_text' => $stem_text,
             'product_url' => get_permalink($product_id),
             'image_url' => $image ? esc_url_raw($image) : '',
             'created_at' => get_post_time('Y-m-d H:i:s', false, $product_id) ?: $now,
@@ -601,10 +637,23 @@ class ProductIndexService {
 
         if ($boolean !== '') {
             $order_sql = $this->candidate_order_sql($analysis, true);
-            $sql = "SELECT *, MATCH(title, sku, categories, tags, attributes, color_terms, size_terms, search_text) AGAINST (%s IN BOOLEAN MODE) AS ft_score FROM {$table} WHERE {$where_sql} AND MATCH(title, sku, categories, tags, attributes, color_terms, size_terms, search_text) AGAINST (%s IN BOOLEAN MODE) ORDER BY {$order_sql} LIMIT %d";
+            $sql = "SELECT *, MATCH(title, sku, categories, tags, attributes, color_terms, size_terms, search_text, stem_text) AGAINST (%s IN BOOLEAN MODE) AS ft_score FROM {$table} WHERE {$where_sql} AND MATCH(title, sku, categories, tags, attributes, color_terms, size_terms, search_text, stem_text) AGAINST (%s IN BOOLEAN MODE) ORDER BY {$order_sql} LIMIT %d";
             $params_for_fulltext = array_merge(array($boolean), $params, array($boolean, absint($limit)));
             // phpcs:ignore WordPress.DB.PreparedSQL.NotPrepared,PluginCheck.Security.DirectDB.UnescapedDBParameter -- Dynamic clauses are selected from internal allowlists and all shopper values use placeholders.
             $rows = $wpdb->get_results($wpdb->prepare($sql, $params_for_fulltext));
+
+            // An empty result and a failed query are not the same thing, and
+            // treating them the same is how a broken FULLTEXT index hid here
+            // indefinitely: MySQL error 1191 made every match fail, the empty
+            // array fell through to the LIKE pass below, and search silently ran
+            // with no relevance ranking at all. Record the fault so HealthService
+            // can report it instead of leaving it to be discovered by accident.
+            if (!empty($wpdb->last_error)) {
+                HealthService::record_fulltext_failure($wpdb->last_error);
+            } elseif (!empty($rows)) {
+                HealthService::record_fulltext_success();
+            }
+
             if (!empty($rows)) {
                 return $rows;
             }
@@ -708,7 +757,8 @@ class ProductIndexService {
 
         $matched_core_count = 0;
         foreach ((array) ($analysis['core_terms'] ?? array()) as $core_term) {
-            if ($this->row_text_has_term((string) $row->title . ' ' . (string) $row->sku . ' ' . (string) $row->categories . ' ' . (string) $row->tags . ' ' . (string) $row->attributes, $core_term)) {
+            $identity_text = (string) $row->title . ' ' . (string) $row->sku . ' ' . (string) $row->categories . ' ' . (string) $row->tags . ' ' . (string) $row->attributes;
+            if ($this->row_has_term_or_stem($row, $identity_text, $core_term)) {
                 $matched_core_count++;
             }
         }
@@ -1263,8 +1313,17 @@ class ProductIndexService {
                 continue;
             }
             $like = '%' . $wpdb->esc_like($term) . '%';
-            $core_clauses[] = '(title LIKE %s OR sku LIKE %s OR categories LIKE %s OR tags LIKE %s OR attributes LIKE %s)';
-            array_push($core_params, $like, $like, $like, $like, $like);
+
+            // stem_text carries a stemmed copy of the identity fields, so this
+            // clause has to be stem-aware too. Without it the fulltext match can
+            // find a product by its stem while this gate rejects it on the raw
+            // wording, which is exactly how "beanies" -- singularised upstream to
+            // the non-word "beany" -- matched nothing at all.
+            $stem = $this->stemmer()->stem($term);
+            $stem_like = '%' . $wpdb->esc_like($stem) . '%';
+
+            $core_clauses[] = '(title LIKE %s OR sku LIKE %s OR categories LIKE %s OR tags LIKE %s OR attributes LIKE %s OR stem_text LIKE %s)';
+            array_push($core_params, $like, $like, $like, $like, $like, $stem_like);
         }
         if (!empty($core_clauses)) {
             $where[] = '(' . implode(' OR ', $core_clauses) . ')';
@@ -1380,12 +1439,40 @@ class ProductIndexService {
 
         $product_text = (string) $row->title . ' ' . (string) $row->sku . ' ' . (string) $row->categories . ' ' . (string) $row->tags . ' ' . (string) $row->attributes . ' ' . (string) $row->search_text;
         foreach ($core_terms as $term) {
-            if ($this->row_text_has_term($product_text, $term)) {
+            if ($this->row_has_term_or_stem($row, $product_text, $term)) {
                 return true;
             }
         }
 
         return false;
+    }
+
+    /**
+     * Whether a row carries a term in its own wording, or the term's stem in the
+     * stemmed copy of that wording.
+     *
+     * Comparing a stem against raw catalog text, or a raw term against stem_text,
+     * proves nothing -- the two sides have to be reduced by the same function
+     * before they can be compared. Query tokens are singularised upstream, so a
+     * shopper typing "beanies" arrives here as the non-word "beany"; only its
+     * stem, `beani`, can meet the indexed "Beanie".
+     *
+     * @param object $row          Product index row.
+     * @param string $product_text Raw text already assembled by the caller.
+     * @param string $term         Query term.
+     * @return bool
+     */
+    private function row_has_term_or_stem($row, $product_text, $term) {
+        if ($this->row_text_has_term($product_text, $term)) {
+            return true;
+        }
+
+        $stem = $this->stemmer()->stem($this->normalize_index_text($term));
+        if ($stem === '' || $stem === $term) {
+            return false;
+        }
+
+        return $this->row_text_has_term((string) ($row->stem_text ?? ''), $stem);
     }
 
     private function row_matches_product_phrase($row, $analysis) {
@@ -1409,6 +1496,20 @@ class ProductIndexService {
         $product_text = $family_identity_text . ' ' . (string) $row->tags . ' ' . (string) $row->attributes . ' ' . (string) $row->search_text;
         if (!$this->row_matches_any_term($family_identity_text, $required_aliases)) {
             return false;
+        }
+
+        // A qualifier the merchant declared as half of a category name is always
+        // required, even when it doubles as a neighbour of the family. "Tote
+        // Bags" makes `tote` a bag alias AND the word that distinguishes a tote
+        // from every other bag; skipping it returned pouches for "tote bag".
+        foreach ((array) ($analysis['product_declared_qualifier_terms'] ?? array()) as $declared) {
+            $declared = $this->normalize_index_text($declared);
+            if ($declared === '' || $declared === $family) {
+                continue;
+            }
+            if (!$this->row_text_has_term($product_text, $declared)) {
+                return false;
+            }
         }
 
         $qualifiers = !empty($analysis['product_qualifier_terms'])
@@ -1458,7 +1559,7 @@ class ProductIndexService {
         return array_values(array_unique($core));
     }
 
-    private function product_phrase_profile($query, $color_terms, $size_terms, $negative_color_terms, $negative_size_terms, $modifier_terms) {
+    private function product_phrase_profile($query, $color_terms, $size_terms, $negative_color_terms, $negative_size_terms, $modifier_terms, $raw_query = '') {
         $language = $this->search_language();
         $normalized = $language->normalize_text($query);
         $terms = $language->query_terms($normalized);
@@ -1495,6 +1596,29 @@ class ProductIndexService {
         }
         $clean = array_values(array_unique($clean));
 
+        // A compound family the merchant declared, such as "Running Shoes" or
+        // "T-Shirts", is matched against the normalised query rather than the
+        // tokenised one. query_terms() drops anything too short to be a search
+        // term, which discards the `t` in "t-shirt" -- and `t` is the entire
+        // difference between a t-shirt and an office shirt.
+        // Matched against the query BEFORE buyer-modifier stripping. "running"
+        // is normally a lifestyle signal and is stripped from $query as such,
+        // but a merchant with a "Running Shoes" category has said it is part of
+        // the product's name in their shop. A declared compound outranks a
+        // generic reading of the same word.
+        $phrase_family = null;
+        if (!empty($clean)) {
+            $phrase_source = trim((string) $raw_query) !== '' ? $language->normalize_text($raw_query) : $normalized;
+            $raw_tokens = preg_split('/\s+/u', $phrase_source, -1, PREG_SPLIT_NO_EMPTY);
+            if (is_array($raw_tokens) && count($raw_tokens) > 1) {
+                $raw_stems = array();
+                foreach ($raw_tokens as $raw_token) {
+                    $raw_stems[] = $this->stemmer()->stem($raw_token);
+                }
+                $phrase_family = $this->vocabulary()->match_phrase($raw_stems);
+            }
+        }
+
         $family = '';
         $family_index = -1;
         foreach ($clean as $index => $term) {
@@ -1504,6 +1628,25 @@ class ProductIndexService {
                 $family_index = $index;
             }
         }
+
+        // The declared compound wins over the bare head noun it contains, but
+        // only when the head noun is what the single-token scan already found.
+        // Anything else means the shopper asked for something different.
+        $forced_qualifiers = array();
+        if ($phrase_family !== null && $phrase_family['canonical'] !== '') {
+            $matches_head = $family === $phrase_family['canonical']
+                || $family === '' 
+                || in_array($phrase_family['canonical'], (array) $this->product_family_aliases($family), true);
+
+            if ($matches_head) {
+                $family = $phrase_family['canonical'];
+                $forced_qualifiers = (array) $phrase_family['qualifiers'];
+                if ($family_index < 0) {
+                    $family_index = count($clean) - 1;
+                }
+            }
+        }
+
         if ($family === '' || $family_index < 0) {
             return array('phrase' => '', 'terms' => array(), 'family' => '', 'family_source' => '', 'family_aliases' => array(), 'required_family_aliases' => array(), 'family_gate_aliases' => array(), 'qualifier_terms' => array(), 'search_terms' => array());
         }
@@ -1540,6 +1683,13 @@ class ProductIndexService {
             }
             $qualifiers[] = $phrase_term;
         }
+        foreach ($forced_qualifiers as $forced) {
+            $forced = $this->normalize_index_text($forced);
+            if ($forced !== '' && $forced !== $family && !in_array($forced, $qualifiers, true)) {
+                $qualifiers[] = $forced;
+            }
+        }
+
         $qualifiers = array_values(array_unique($qualifiers));
         $search_terms = array_values(array_unique(array_filter(array_merge($phrase_terms, $required_aliases))));
 
@@ -1552,42 +1702,194 @@ class ProductIndexService {
             'required_family_aliases' => $required_aliases,
             'family_gate_aliases' => $family_gate_aliases,
             'qualifier_terms' => $qualifiers,
+            'declared_qualifier_terms' => array_values(array_unique(array_filter(array_map(
+                array($this, 'normalize_index_text'),
+                $forced_qualifiers
+            )))),
             'search_terms' => $search_terms,
         );
     }
 
+    /**
+     * Maps a shopper's product noun onto a canonical family stem.
+     *
+     * Two rules govern every entry, and breaking either one silently empties
+     * result sets:
+     *
+     * 1. The canonical value must be a SUBSTRING of every surface form it has
+     *    to match, because `row_text_has_term()` matches by substring on the
+     *    product's identity text (title + sku + categories). That is why the
+     *    stems below are `accessor` (accessory / accessories) and `jean`
+     *    (jean / jeans) rather than the tidy dictionary singular.
+     *
+     * 2. The canonical value must equal the single token used as this noun's
+     *    hard gate in `required_product_family_aliases()`. `product_phrase()`
+     *    seeds `phrase_terms` with the canonical and merges the gate list into
+     *    `search_terms`, which `boolean_query()` turns into `+term*` for every
+     *    entry -- a fulltext AND. A canonical that disagrees with its own gate
+     *    compiles to a query no product can satisfy. The old
+     *    `headphones => earbud` mapping produced `+earbud* +headphone*` and
+     *    returned nothing while three headphones sat in the catalog;
+     *    `pouch => organiser` and `cover => case` failed the same way.
+     *
+     * Rule 2 removes the canonical-vs-gate contradiction but does NOT make
+     * every query single-term, and it is worth being honest about why.
+     * `analyze_query()` builds `core_terms` from `product_phrase['search_terms']`
+     * PLUS `core_product_terms()`, and the latter contributes the shopper's own
+     * literal token. So a cross-word synonym still compiles to two required
+     * terms: typing "trousers" yields `+pant* +trouser*`, and "cover" yields
+     * `+case* +cover*`. Those survive only because `candidate_rows()` falls back
+     * to a LIKE pass on the canonical phrase when the fulltext match returns
+     * nothing -- correct results, but without fulltext ranking.
+     *
+     * The synonyms below are kept regardless, because the alternative is worse:
+     * mapping `trousers` to a `trouser` family of its own would gate on a token
+     * no product carries and return nothing at all. The real repair is teaching
+     * `boolean_query()` to emit an OR group, `+(pant trouser)`, after which
+     * these become both satisfiable and properly ranked.
+     */
     private function canonical_product_family($term) {
         $term = $this->normalize_index_text($term);
         $map = array(
-            'accessory' => 'accessory', 'accessories' => 'accessory',
+            // -- audio ------------------------------------------------------
+            'earbud' => 'earbud', 'earbuds' => 'earbud',
+            'earphone' => 'earbud', 'earphones' => 'earbud',
+            'headphone' => 'headphone', 'headphones' => 'headphone',
+            'headset' => 'headset', 'headsets' => 'headset',
+            'speaker' => 'speaker', 'speakers' => 'speaker',
+            'soundbar' => 'soundbar', 'soundbars' => 'soundbar',
+
+            // -- computing and mobile --------------------------------------
             'adapter' => 'adapter', 'adapters' => 'adapter',
-            'bag' => 'bag', 'bags' => 'bag', 'backpack' => 'bag', 'backpacks' => 'bag', 'tote' => 'bag', 'totes' => 'bag',
-            'belt' => 'belt', 'belts' => 'belt',
-            'bottle' => 'bottle', 'bottles' => 'bottle', 'flask' => 'bottle', 'flasks' => 'bottle',
-            'case' => 'case', 'cases' => 'case', 'cover' => 'case', 'covers' => 'case',
+            'adaptor' => 'adapter', 'adaptors' => 'adapter',
+            'cable' => 'cable', 'cables' => 'cable',
             'charger' => 'charger', 'chargers' => 'charger',
-            'clock' => 'clock', 'clocks' => 'clock',
-            'coat' => 'jacket', 'coats' => 'jacket', 'jacket' => 'jacket', 'jackets' => 'jacket',
-            'cup' => 'drinkware', 'cups' => 'drinkware', 'mug' => 'drinkware', 'mugs' => 'drinkware', 'tumbler' => 'drinkware', 'tumblers' => 'drinkware', 'drinkware' => 'drinkware',
-            'dress' => 'dress', 'dresses' => 'dress',
-            'earbud' => 'earbud', 'earbuds' => 'earbud', 'headphone' => 'earbud', 'headphones' => 'earbud',
-            'footrest' => 'footrest', 'footrests' => 'footrest',
-            'hoodie' => 'hoodie', 'hoodies' => 'hoodie',
+            'dock' => 'dock', 'docks' => 'dock',
+            'hub' => 'hub', 'hubs' => 'hub',
             'keyboard' => 'keyboard', 'keyboards' => 'keyboard',
+            'laptop' => 'laptop', 'laptops' => 'laptop',
+            'monitor' => 'monitor', 'monitors' => 'monitor',
+            'mouse' => 'mouse', 'mice' => 'mouse',
+            'mousepad' => 'mousepad', 'mousepads' => 'mousepad',
+            'powerbank' => 'powerbank', 'powerbanks' => 'powerbank',
+            'tablet' => 'tablet', 'tablets' => 'tablet',
+            'webcam' => 'webcam', 'webcams' => 'webcam',
+
+            // -- wearables and timepieces ----------------------------------
+            'smartwatch' => 'smartwatch', 'smartwatches' => 'smartwatch',
+            'watch' => 'watch', 'watches' => 'watch',
+            'tracker' => 'tracker', 'trackers' => 'tracker',
+
+            // -- protective goods ------------------------------------------
+            // `case` and `cover` are one family, but the gate can only carry a
+            // single token, so both resolve to `case`.
+            'case' => 'case', 'cases' => 'case',
+            'cover' => 'case', 'covers' => 'case',
+            'sleeve' => 'sleeve', 'sleeves' => 'sleeve',
+            'screenprotector' => 'screenprotector',
+
+            // -- bags, carry and travel ------------------------------------
+            'bag' => 'bag', 'bags' => 'bag',
+            'backpack' => 'backpack', 'backpacks' => 'backpack',
+            'rucksack' => 'backpack', 'rucksacks' => 'backpack',
+            'duffel' => 'duffel', 'duffels' => 'duffel', 'duffle' => 'duffel',
+            'holdall' => 'duffel',
+            'luggage' => 'luggage', 'suitcase' => 'luggage', 'suitcases' => 'luggage',
+            'tote' => 'tote', 'totes' => 'tote',
+            'organiser' => 'organiser', 'organisers' => 'organiser',
+            'organizer' => 'organizer', 'organizers' => 'organizer',
+            'pouch' => 'pouch', 'pouches' => 'pouch',
+            'umbrella' => 'umbrella', 'umbrellas' => 'umbrella',
+            'wallet' => 'wallet', 'wallets' => 'wallet',
+
+            // -- drinkware -------------------------------------------------
+            'bottle' => 'bottle', 'bottles' => 'bottle',
+            'flask' => 'bottle', 'flasks' => 'bottle',
+            'cup' => 'cup', 'cups' => 'cup',
+            'drinkware' => 'drinkware',
+            'mug' => 'mug', 'mugs' => 'mug',
+            'tumbler' => 'tumbler', 'tumblers' => 'tumbler',
+
+            // -- tops ------------------------------------------------------
+            'blouse' => 'blouse', 'blouses' => 'blouse',
+            'hoodie' => 'hoodie', 'hoodies' => 'hoodie',
+            'jacket' => 'jacket', 'jackets' => 'jacket',
+            'coat' => 'jacket', 'coats' => 'jacket',
+            'polo' => 'polo', 'polos' => 'polo',
+            'shirt' => 'shirt', 'shirts' => 'shirt',
+            'sweater' => 'sweater', 'sweaters' => 'sweater',
+            'jumper' => 'sweater', 'jumpers' => 'sweater',
+            'sweatshirt' => 'sweatshirt', 'sweatshirts' => 'sweatshirt',
+            'cardigan' => 'cardigan', 'cardigans' => 'cardigan',
+
+            // -- bottoms and dresses ---------------------------------------
+            'dress' => 'dress', 'dresses' => 'dress',
+            'jean' => 'jean', 'jeans' => 'jean',
+            'legging' => 'legging', 'leggings' => 'legging',
+            'pant' => 'pant', 'pants' => 'pant',
+            'trouser' => 'pant', 'trousers' => 'pant',
+            'chino' => 'chino', 'chinos' => 'chino',
+            'jogger' => 'jogger', 'joggers' => 'jogger',
+            'shorts' => 'shorts',
+            'skirt' => 'skirt', 'skirts' => 'skirt',
+
+            // -- footwear --------------------------------------------------
+            'shoe' => 'shoe', 'shoes' => 'shoe',
+            'sneaker' => 'sneaker', 'sneakers' => 'sneaker',
+            'trainer' => 'sneaker', 'trainers' => 'sneaker',
+            'boot' => 'boot', 'boots' => 'boot',
+            'loafer' => 'loafer', 'loafers' => 'loafer',
+            'sandal' => 'sandal', 'sandals' => 'sandal',
+            'slipper' => 'slipper', 'slippers' => 'slipper',
+
+            // -- worn accessories ------------------------------------------
+            // These are plain words again. `beany`, `scarve` and `sunglass` used
+            // to be keyed here too, because the singulariser mangled plurals
+            // before the lookup ever ran. StemmerService now reduces the query
+            // and the index with the same function, so the mangled forms no
+            // longer need a home in the vocabulary.
+            'beanie' => 'beanie', 'beanies' => 'beanie',
+            'belt' => 'belt', 'belts' => 'belt',
+            'cap' => 'cap', 'caps' => 'cap',
+            'glove' => 'glove', 'gloves' => 'glove',
+            'hat' => 'hat', 'hats' => 'hat',
+            'scarf' => 'scarf', 'scarves' => 'scarf',
+            'sock' => 'sock', 'socks' => 'sock',
+            'sunglass' => 'sunglass', 'sunglasses' => 'sunglass',
+
+            // -- home and desk ---------------------------------------------
+            'candle' => 'candle', 'candles' => 'candle',
+            'clock' => 'clock', 'clocks' => 'clock',
+            'cushion' => 'cushion', 'cushions' => 'cushion',
+            'footrest' => 'footrest', 'footrests' => 'footrest',
             'lamp' => 'lamp', 'lamps' => 'lamp',
             'mat' => 'mat', 'mats' => 'mat',
-            'organiser' => 'organiser', 'organisers' => 'organiser', 'organizer' => 'organiser', 'organizers' => 'organiser', 'pouch' => 'organiser', 'pouches' => 'organiser',
             'pillow' => 'pillow', 'pillows' => 'pillow',
-            'powerbank' => 'powerbank', 'powerbanks' => 'powerbank',
-            'scarf' => 'scarf', 'scarves' => 'scarf',
-            'shirt' => 'shirt', 'shirts' => 'shirt',
-            'shoe' => 'shoe', 'shoes' => 'shoe', 'sneaker' => 'shoe', 'sneakers' => 'shoe', 'trainer' => 'shoe', 'trainers' => 'shoe',
-            'sleeve' => 'sleeve', 'sleeves' => 'sleeve',
-            'speaker' => 'speaker', 'speakers' => 'speaker',
-            'wallet' => 'wallet', 'wallets' => 'wallet',
-            'watch' => 'watch', 'watches' => 'watch',
+            'stand' => 'stand', 'stands' => 'stand',
+            'towel' => 'towel', 'towels' => 'towel',
+            'vase' => 'vase', 'vases' => 'vase',
+
+            // -- fitness ---------------------------------------------------
+            'dumbbell' => 'dumbbell', 'dumbbells' => 'dumbbell',
+            'kettlebell' => 'kettlebell', 'kettlebells' => 'kettlebell',
+
+            // -- stationery ------------------------------------------------
+            'notebook' => 'notebook', 'notebooks' => 'notebook',
+            'pen' => 'pen', 'pens' => 'pen',
+            'pencil' => 'pencil', 'pencils' => 'pencil',
+
+            // -- catch-all -------------------------------------------------
+            // `accessor` is the shared stem of accessory and accessories.
+            'accessory' => 'accessor', 'accessories' => 'accessor',
         );
-        return isset($map[$term]) ? $map[$term] : '';
+        if (isset($map[$term])) {
+            return $map[$term];
+        }
+
+        // Nothing curated covers this word, so fall back to what the store's own
+        // category tree teaches. Curated entries deliberately win: a mis-learned
+        // term can then never displace a deliberate one.
+        return $this->vocabulary()->canonical($term);
     }
 
     /**
@@ -1596,37 +1898,173 @@ class ProductIndexService {
      * Broad catalog families remain useful for ranking and fallback, but a
      * specific noun such as `backpack` must not silently widen to every bag,
      * sleeve, tote, organiser, or pouch.
+     *
+     * Every gate below is deliberately ONE token, and that token is the same
+     * value `canonical_product_family()` returns for the same noun. The reason
+     * is structural rather than stylistic: `product_phrase()` merges this list
+     * into `search_terms`, and `boolean_query()` renders each entry as `+term*`
+     * in a MySQL BOOLEAN MODE match. A two-token gate is therefore not "either
+     * of these" but "both of these at once". The previous
+     * `pouch => (pouch, organiser, organizer)` gate compiled to
+     * `+pouch* +organiser* +organizer*` and matched nothing, even with three
+     * organiser pouches indexed; `cup => (cup, mug)` and
+     * `backpack => (backpack, rucksack)` carried the same defect.
+     *
+     * Multi-token gates only become safe once `boolean_query()` can emit an OR
+     * group -- `+(pouch organiser organizer)` -- at which point the alternates
+     * can move back in here. Until then, spelling variants and cross-word
+     * synonyms are handled by pointing them at one shared canonical stem in
+     * `canonical_product_family()`, and neighbouring families for ranking live
+     * in `product_family_aliases()`.
      */
     private function required_product_family_aliases($family, $family_source = '') {
         $family = $this->normalize_index_text($family);
         $source = $this->normalize_index_text($family_source);
+
+        // Nouns that must stay narrow. Anything absent falls through to the
+        // broad alias list, which is the right default for umbrella nouns such
+        // as `bag` or `drinkware` where widening is what the shopper wants.
         $specific = array(
-            'backpack' => array('backpack', 'rucksack'),
-            'backpacks' => array('backpack', 'rucksack'),
-            'tote' => array('tote'),
-            'totes' => array('tote'),
-            'sleeve' => array('sleeve'),
-            'sleeves' => array('sleeve'),
-            'pouch' => array('pouch', 'organiser', 'organizer'),
-            'pouches' => array('pouch', 'organiser', 'organizer'),
-            'organiser' => array('organiser', 'organizer', 'pouch'),
-            'organisers' => array('organiser', 'organizer', 'pouch'),
-            'organizer' => array('organiser', 'organizer', 'pouch'),
-            'organizers' => array('organiser', 'organizer', 'pouch'),
-            'mug' => array('mug'),
-            'mugs' => array('mug'),
-            'tumbler' => array('tumbler'),
-            'tumblers' => array('tumbler'),
-            'cup' => array('cup', 'mug'),
-            'cups' => array('cup', 'mug'),
-            'headphone' => array('headphone'),
-            'headphones' => array('headphone'),
-            'earbud' => array('earbud'),
-            'earbuds' => array('earbud'),
+            // audio
+            'earbud' => array('earbud', 'earphone'), 'earbuds' => array('earbud', 'earphone'),
+            'earphone' => array('earbud', 'earphone'), 'earphones' => array('earbud', 'earphone'),
+            'headphone' => 'headphone', 'headphones' => 'headphone',
+            'headset' => 'headset', 'headsets' => 'headset',
+            'speaker' => 'speaker', 'speakers' => 'speaker',
+            'soundbar' => 'soundbar', 'soundbars' => 'soundbar',
+
+            // computing and mobile
+            'adapter' => 'adapter', 'adapters' => 'adapter',
+            'adaptor' => 'adapter', 'adaptors' => 'adapter',
+            'cable' => 'cable', 'cables' => 'cable',
+            'charger' => 'charger', 'chargers' => 'charger',
+            'dock' => 'dock', 'docks' => 'dock',
+            'hub' => 'hub', 'hubs' => 'hub',
+            'keyboard' => 'keyboard', 'keyboards' => 'keyboard',
+            'laptop' => 'laptop', 'laptops' => 'laptop',
+            'monitor' => 'monitor', 'monitors' => 'monitor',
+            'mouse' => 'mouse', 'mice' => 'mouse',
+            'mousepad' => 'mousepad', 'mousepads' => 'mousepad',
+            'powerbank' => 'powerbank', 'powerbanks' => 'powerbank',
+            'tablet' => 'tablet', 'tablets' => 'tablet',
+            'webcam' => 'webcam', 'webcams' => 'webcam',
+
+            // wearables and timepieces
+            'smartwatch' => 'smartwatch', 'smartwatches' => 'smartwatch',
+            'watch' => 'watch', 'watches' => 'watch',
+            'tracker' => 'tracker', 'trackers' => 'tracker',
+
+            // protective goods
+            'case' => array('case', 'cover'), 'cases' => array('case', 'cover'),
+            'cover' => array('case', 'cover'), 'covers' => array('case', 'cover'),
+            'sleeve' => 'sleeve', 'sleeves' => 'sleeve',
+            'screenprotector' => 'screenprotector',
+
+            // bags, carry and travel
+            'backpack' => array('backpack', 'rucksack'), 'backpacks' => array('backpack', 'rucksack'),
+            'rucksack' => array('backpack', 'rucksack'), 'rucksacks' => array('backpack', 'rucksack'),
+            'duffel' => 'duffel', 'duffels' => 'duffel', 'duffle' => 'duffel',
+            'holdall' => 'duffel',
+            'luggage' => 'luggage', 'suitcase' => 'luggage', 'suitcases' => 'luggage',
+            'tote' => 'tote', 'totes' => 'tote',
+            'organiser' => array('organiser', 'organizer', 'pouch'), 'organisers' => array('organiser', 'organizer', 'pouch'),
+            'organizer' => array('organizer', 'organiser', 'pouch'), 'organizers' => array('organizer', 'organiser', 'pouch'),
+            'pouch' => array('pouch', 'organiser', 'organizer'), 'pouches' => array('pouch', 'organiser', 'organizer'),
+            'umbrella' => 'umbrella', 'umbrellas' => 'umbrella',
+            'wallet' => 'wallet', 'wallets' => 'wallet',
+
+            // drinkware
+            'bottle' => 'bottle', 'bottles' => 'bottle',
+            'flask' => 'bottle', 'flasks' => 'bottle',
+            'cup' => array('cup', 'mug'), 'cups' => array('cup', 'mug'),
+            'mug' => array('mug', 'cup'), 'mugs' => array('mug', 'cup'),
+            'tumbler' => 'tumbler', 'tumblers' => 'tumbler',
+
+            // tops
+            'blouse' => 'blouse', 'blouses' => 'blouse',
+            'hoodie' => 'hoodie', 'hoodies' => 'hoodie',
+            'jacket' => 'jacket', 'jackets' => 'jacket',
+            'coat' => 'jacket', 'coats' => 'jacket',
+            'polo' => 'polo', 'polos' => 'polo',
+            'sweater' => 'sweater', 'sweaters' => 'sweater',
+            'jumper' => 'sweater', 'jumpers' => 'sweater',
+            'sweatshirt' => 'sweatshirt', 'sweatshirts' => 'sweatshirt',
+            'cardigan' => 'cardigan', 'cardigans' => 'cardigan',
+
+            // bottoms and dresses
+            'dress' => 'dress', 'dresses' => 'dress',
+            'jean' => 'jean', 'jeans' => 'jean',
+            'legging' => 'legging', 'leggings' => 'legging',
+            'chino' => 'chino', 'chinos' => 'chino',
+            'jogger' => 'jogger', 'joggers' => 'jogger',
+            'shorts' => 'shorts',
+            'skirt' => 'skirt', 'skirts' => 'skirt',
+
+            // footwear
+            'sneaker' => array('sneaker', 'trainer'), 'sneakers' => array('sneaker', 'trainer'),
+            'trainer' => array('sneaker', 'trainer'), 'trainers' => array('sneaker', 'trainer'),
+            'boot' => 'boot', 'boots' => 'boot',
+            'loafer' => 'loafer', 'loafers' => 'loafer',
+            'sandal' => 'sandal', 'sandals' => 'sandal',
+            'slipper' => 'slipper', 'slippers' => 'slipper',
+
+            // worn accessories
+            'beanie' => 'beanie', 'beanies' => 'beanie',
+            'belt' => 'belt', 'belts' => 'belt',
+            'cap' => 'cap', 'caps' => 'cap',
+            'glove' => 'glove', 'gloves' => 'glove',
+            'hat' => 'hat', 'hats' => 'hat',
+            'scarf' => 'scarf', 'scarves' => 'scarf',
+            'sock' => 'sock', 'socks' => 'sock',
+            'sunglass' => 'sunglass', 'sunglasses' => 'sunglass',
+
+            // home and desk
+            'candle' => 'candle', 'candles' => 'candle',
+            'clock' => 'clock', 'clocks' => 'clock',
+            'cushion' => 'cushion', 'cushions' => 'cushion',
+            'footrest' => 'footrest', 'footrests' => 'footrest',
+            'lamp' => 'lamp', 'lamps' => 'lamp',
+            'pillow' => 'pillow', 'pillows' => 'pillow',
+            'towel' => 'towel', 'towels' => 'towel',
+            'vase' => 'vase', 'vases' => 'vase',
+
+            // fitness
+            'dumbbell' => 'dumbbell', 'dumbbells' => 'dumbbell',
+            'kettlebell' => 'kettlebell', 'kettlebells' => 'kettlebell',
+
+            // stationery
+            'notebook' => 'notebook', 'notebooks' => 'notebook',
+            'pencil' => 'pencil', 'pencils' => 'pencil',
         );
 
         if ($source !== '' && isset($specific[$source])) {
-            return array_values(array_unique(array_filter($specific[$source])));
+            // A string is the common case: one noun, one gate token. An array
+            // widens to genuine retail synonyms, and its first entry is the
+            // canonical, so the compiled OR group always contains it.
+            //
+            // Arrays were impossible until boolean_query() learned to emit OR
+            // groups. Before that every gate token became another `+term*` in a
+            // fulltext AND, so `pouch => (pouch, organiser, organizer)` demanded
+            // a product be all three at once and matched nothing.
+            return array_values(array_unique(array_filter(array_map(
+                array($this, 'normalize_index_text'),
+                (array) $specific[$source]
+            ))));
+        }
+
+        // Curated breadth outranks derived breadth. `drinkware` is the example:
+        // the curated alias list deliberately reaches mugs, cups, tumblers and
+        // bottles, while the store's own tree only knows the one category of that
+        // name. Letting derivation answer first quietly narrowed the query.
+        // Derivation exists to cover families nobody hardcoded, not to second-
+        // guess the ones somebody did.
+        if ($this->curated_family_aliases($family) !== null) {
+            return $this->product_family_aliases($family);
+        }
+
+        $derived = $this->vocabulary()->gate($source);
+        if (!empty($derived)) {
+            return $derived;
         }
 
         return $this->product_family_aliases($family);
@@ -1656,9 +2094,30 @@ class ProductIndexService {
         return !empty($required_aliases) ? $required_aliases : $this->product_family_aliases($family);
     }
 
-    private function product_family_aliases($family) {
+    /**
+     * Curated neighbours for a family, or null when nothing is hardcoded for it.
+     *
+     * The null is the point: it separates "hardcoded as exactly itself" from
+     * "never hardcoded at all", which is what lets derived data fill only the
+     * genuine gaps.
+     *
+     * @param string $family Canonical family.
+     * @return array<int, string>|null
+     */
+    private function curated_family_aliases($family) {
+        $map = $this->curated_family_alias_map();
         $family = $this->normalize_index_text($family);
-        $map = array(
+
+        return isset($map[$family]) ? $map[$family] : null;
+    }
+
+    /**
+     * Hardcoded neighbouring families, used for ranking breadth.
+     *
+     * @return array<string, array<int, string>>
+     */
+    private function curated_family_alias_map() {
+        return array(
             'accessory' => array('accessory', 'adapter', 'organiser', 'organizer', 'pouch', 'case', 'sleeve', 'pillow', 'bag'),
             'adapter' => array('adapter'),
             'bag' => array('bag', 'backpack', 'tote', 'sleeve', 'organiser', 'organizer', 'pouch'),
@@ -1671,6 +2130,7 @@ class ProductIndexService {
             'drinkware' => array('drinkware', 'mug', 'cup', 'tumbler', 'bottle', 'flask'),
             'dress' => array('dress'),
             'earbud' => array('earbud', 'headphone'),
+            'headphone' => array('headphone', 'earbud'),
             'footrest' => array('footrest'),
             'hoodie' => array('hoodie'),
             'keyboard' => array('keyboard'),
@@ -1687,7 +2147,19 @@ class ProductIndexService {
             'wallet' => array('wallet', 'card holder'),
             'watch' => array('watch'),
         );
-        $aliases = isset($map[$family]) ? $map[$family] : array($family);
+    }
+
+    private function product_family_aliases($family) {
+        $family = $this->normalize_index_text($family);
+        $map = $this->curated_family_alias_map();
+
+        if (isset($map[$family])) {
+            $aliases = $map[$family];
+        } else {
+            $derived = $this->vocabulary()->neighbours($family);
+            $aliases = !empty($derived) ? $derived : array($family);
+        }
+
         return array_values(array_unique(array_filter((array) apply_filters('geekybot_product_family_aliases', $aliases, $family))));
     }
 
@@ -1765,12 +2237,31 @@ class ProductIndexService {
         return array_values(array_unique($clean));
     }
 
+    /**
+     * Family-gate matching: does the row's identity carry any of these nouns?
+     *
+     * Anchored to the start of a word, unlike the loose substring test used for
+     * ranking. The gate decides whether a product IS the thing being asked for,
+     * and a noun buried mid-word is a different thing entirely: "hardcover"
+     * contains "cover" but a hardcover notebook is not a phone cover. That false
+     * positive appeared the moment the `cover` gate was widened, and matching a
+     * word start keeps the synonym without the noise. Suffixes still match, so
+     * "covers" and "covered" continue to count.
+     */
     private function row_matches_any_term($text, $terms) {
+        $haystack = ' ' . $this->normalize_index_text($text) . ' ';
+
         foreach ((array) $terms as $term) {
-            if ($this->row_text_has_term($text, $term)) {
+            $term = $this->normalize_index_text($term);
+            if ($term === '') {
+                continue;
+            }
+
+            if (strpos($haystack, ' ' . $term) !== false) {
                 return true;
             }
         }
+
         return false;
     }
 
@@ -1803,16 +2294,163 @@ class ProductIndexService {
         return $this->search_language()->expand_synonyms($query);
     }
 
-    private function boolean_query($terms) {
-        $items = array();
-        foreach (array_slice((array) $terms, 0, 8) as $term) {
-            $term = preg_replace('/[^\pL\pN_\-]/u', '', $term);
-            if ($term === '' || strlen($term) < 2) {
+    /**
+     * Split analysis terms into OR groups for the fulltext candidate query.
+     *
+     * Group 1 collects every surface form of the product family the shopper
+     * named: the canonical stem, the word they actually typed, the hard gate
+     * tokens and the neighbouring families. Widening here is deliberate and
+     * safe, because `candidate_rows()` only proposes candidates --
+     * `row_matches_product_phrase()` then re-applies the narrow gate in PHP with
+     * OR semantics, so precision is decided there, not here. Fetching a
+     * neighbour and discarding it costs one row; missing the shopper's wording
+     * costs the answer.
+     *
+     * Colours and sizes each become a single OR group, so "blue or grey hoodie"
+     * asks for either colour instead of demanding both at once.
+     *
+     * Only words the shopper actually typed stay individually required. Tokens
+     * that appear solely because `expand_synonyms()` added them are alternates,
+     * never requirements -- the difference between `$core_terms` (expanded) and
+     * `$display_core_terms` (as typed) is exactly that provenance. Treating an
+     * expansion as required inverts its purpose: "walking shoes" expanded to
+     * include `footwear` and then demanded `+(shoe* sneaker* trainer*)
+     * +footwear*`, so a product had to be described as footwear as well as a
+     * shoe. A synonym must widen a search, never narrow it.
+     *
+     * @param array $product_phrase      Result of product_phrase_profile().
+     * @param array $core_terms          Required terms after synonym expansion.
+     * @param array $display_core_terms  The same list before expansion.
+     * @param array $color_terms         Normalised colour facets.
+     * @param array $size_terms          Normalised size facets.
+     * @return array<int, array<int, string>>
+     */
+    private function boolean_term_groups($product_phrase, $core_terms, $display_core_terms, $color_terms, $size_terms) {
+        $product_phrase = is_array($product_phrase) ? $product_phrase : array();
+
+        $typed = array_fill_keys(array_filter(array_map(
+            array($this, 'normalize_index_text'),
+            (array) $display_core_terms
+        )), true);
+
+        $family_group = array();
+        if (!empty($product_phrase['family'])) {
+            $family_group = array_merge(
+                array((string) $product_phrase['family']),
+                array((string) ($product_phrase['family_source'] ?? '')),
+                (array) ($product_phrase['required_family_aliases'] ?? array()),
+                (array) ($product_phrase['family_aliases'] ?? array())
+            );
+            $family_group = array_values(array_unique(array_filter(array_map(
+                array($this, 'normalize_index_text'),
+                $family_group
+            ))));
+        }
+
+        $facets = array_map(array($this, 'normalize_index_text'), array_merge((array) $color_terms, (array) $size_terms));
+        $claimed = array_fill_keys(array_merge($family_group, array_filter($facets)), true);
+
+        $groups = array();
+        if (!empty($family_group)) {
+            $groups[] = $family_group;
+        }
+
+        // Qualifiers the shopper typed stay individually required. Anything only
+        // a synonym expansion contributed joins the family alternates instead,
+        // or forms one shared alternates group when no family was detected.
+        $expanded_only = array();
+        foreach ((array) $core_terms as $term) {
+            $term = $this->normalize_index_text($term);
+            if ($term === '' || isset($claimed[$term])) {
                 continue;
             }
-            $items[] = '+' . $term . '*';
+            $claimed[$term] = true;
+
+            if (isset($typed[$term])) {
+                $groups[] = array($term);
+                continue;
+            }
+
+            $expanded_only[] = $term;
         }
-        return implode(' ', $items);
+
+        if (!empty($expanded_only)) {
+            if (!empty($groups) && !empty($family_group)) {
+                $groups[0] = array_values(array_unique(array_merge($groups[0], $expanded_only)));
+            } else {
+                $groups[] = $expanded_only;
+            }
+        }
+
+        foreach (array((array) $color_terms, (array) $size_terms) as $facet_group) {
+            $facet_group = array_values(array_unique(array_filter(array_map(
+                array($this, 'normalize_index_text'),
+                $facet_group
+            ))));
+            if (!empty($facet_group)) {
+                $groups[] = $facet_group;
+            }
+        }
+
+        return $groups;
+    }
+
+    /**
+     * Compile analysis terms into a MySQL BOOLEAN MODE expression.
+     *
+     * Accepts either a flat list of terms, which stays strictly required, or a
+     * list of groups. A group is a set of ALTERNATIVE surface forms for one
+     * concept and compiles to `+(a* b* c*)` -- the row must carry at least one
+     * of them. Separate groups remain ANDed, so precision is unchanged.
+     *
+     * This distinction is the whole point. A shopper noun routinely has several
+     * valid spellings in one catalog: trousers/pants, cover/case, organiser/
+     * organizer, trainers/sneakers, earphones/earbuds. Emitting those as
+     * `+pant* +trouser*` demanded a product be both at once and matched nothing,
+     * which is the opposite of understanding the question. `+(pant* trouser*)`
+     * accepts either wording while a genuine qualifier such as `walking` stays a
+     * separate required group.
+     *
+     * @param array $terms Flat term list, or a list of arrays to OR internally.
+     * @return string
+     */
+    private function boolean_query($terms) {
+        $groups = array();
+
+        foreach (array_slice((array) $terms, 0, 8) as $group) {
+            $alternates = array();
+
+            foreach ((array) $group as $term) {
+                $term = preg_replace('/[^\pL\pN_\-]/u', '', (string) $term);
+                // InnoDB will not index tokens below innodb_ft_min_token_size,
+                // so a one or two character alternate can never match here. The
+                // LIKE pass and the PHP facet filters still handle those.
+                if ($term === '' || strlen($term) < 2) {
+                    continue;
+                }
+                $alternates[$term] = $term . '*';
+
+                // The stem is an extra way to match, never a replacement: the
+                // raw term still has to be offered because `stem_text` only
+                // covers identity fields while the raw columns cover
+                // descriptions too. Adding it to the same OR group is what lets
+                // "beanies" reach a product titled "Beanie".
+                $stem = $this->stemmer()->stem($term);
+                if ($stem !== '' && $stem !== $term && strlen($stem) >= 2) {
+                    $alternates[$stem] = $stem . '*';
+                }
+            }
+
+            if (empty($alternates)) {
+                continue;
+            }
+
+            $groups[] = count($alternates) === 1
+                ? '+' . reset($alternates)
+                : '+(' . implode(' ', $alternates) . ')';
+        }
+
+        return implode(' ', $groups);
     }
 
     private function query_terms($query) {
@@ -1863,6 +2501,22 @@ class ProductIndexService {
         $analysis = is_array($analysis) ? $analysis : array();
         return !empty($analysis['sale_required'])
             || (!empty($analysis['intent']) && $analysis['intent'] === 'sale');
+    }
+
+    private function vocabulary() {
+        static $vocabulary = null;
+        if ($vocabulary === null) {
+            $vocabulary = new FamilyVocabularyService();
+        }
+        return $vocabulary;
+    }
+
+    private function stemmer() {
+        static $stemmer = null;
+        if ($stemmer === null) {
+            $stemmer = new StemmerService();
+        }
+        return $stemmer;
     }
 
     private function search_language() {

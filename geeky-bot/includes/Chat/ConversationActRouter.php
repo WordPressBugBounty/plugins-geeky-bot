@@ -2,6 +2,7 @@
 namespace GeekyBot\Chat;
 
 use GeekyBot\Services\CatalogVisibilityService;
+use GeekyBot\Services\Settings;
 use GeekyBot\Services\ProductDiscoveryIntentService;
 
 if (!defined('ABSPATH')) {
@@ -68,6 +69,16 @@ class ConversationActRouter {
                 'acknowledgement',
                 __('Glad to help. What would you like to check next?', 'geeky-bot')
             );
+        }
+
+        // "What can you do?" is one of the most common opening messages to any
+        // assistant, and it has no product answer. Catalog discovery was the
+        // fall-through for anything unrecognised, and because it almost always
+        // returns something, this question was answered with three unrelated
+        // products. Store-policy detection runs before this router, so a
+        // question naming a real policy never reaches here.
+        if ($this->is_capability_question($normalized)) {
+            return $this->handled('assistant_capability', $this->capability_reply());
         }
 
         if ($this->is_other_product_correction($normalized)) {
@@ -559,6 +570,110 @@ class ConversationActRouter {
             'showProduct' => false,
             'pendingSelection' => array(),
             'clearPendingSelection' => false,
+        );
+    }
+
+    /**
+     * Whether the shopper is asking what the assistant itself can do.
+     *
+     * The assistant's name is configurable, so shoppers address it by whatever
+     * the store called it. Matching only "you" would answer for one store and
+     * search the catalog for the next.
+     *
+     * @param string $normalized Normalized shopper message.
+     * @return bool
+     */
+    private function is_capability_question($normalized) {
+        $who = 'you|this\s+(?:bot|chat|assistant)|the\s+(?:bot|chat|assistant)';
+        // Shoppers shorten the name the store configured: an assistant called
+        // "Geeky Bot SE" gets asked "what can Geeky Bot do?" and "what can Geeky
+        // do?". Matching only the full string answered for a store that kept the
+        // default name and searched the catalog for one that had not.
+        $name = strtolower(trim((string) Settings::get('assistant_name', '')));
+        $words = preg_split('/\s+/u', $name, -1, PREG_SPLIT_NO_EMPTY);
+        $named = array();
+        for ($length = count($words); $length >= 1; $length--) {
+            $variant = implode(' ', array_slice($words, 0, $length));
+            if (strlen($variant) >= 3) {
+                $named[] = preg_quote($variant, '/');
+                $who .= '|' . preg_quote($variant, '/');
+            }
+        }
+
+        // A request the assistant cannot serve is not a capability question,
+        // even when it names the assistant. "Can Geeky Bot place my order?"
+        // deserves the refusal that says so, not a list of what it can do.
+        if (preg_match('/\b(?:place|submit|complete|pay|paying|checkout|check\s?out|cancel|track|tracking|refund|cart|basket)\b/u', $normalized)) {
+            return false;
+        }
+
+        if (!empty($named)) {
+            $third_person = '/\b(?:can|could|does|will|would)\s+(?:' . implode('|', $named) . ')\b/u';
+            if (preg_match($third_person, $normalized)) {
+                return true;
+            }
+        }
+
+        // Naming the assistant in the third person is the giveaway. "Can Geeky
+        // Bot compare products?" is a question about the assistant; "can you
+        // compare these two?" is a request to do it, and the two have to part
+        // company here or every shopper request becomes a brochure.
+        $patterns = array(
+            '/\b(?:what|which)\s+(?:can|could|do|does)\s+(?:' . $who . ')\b[^?]{0,48}\bdo\b/u',
+            '/\bwhat\s+(?:can|could)\s+i\s+ask\b/u',
+            '/\bcan\s+i\s+ask\s+(?:you|it|the\s+(?:bot|assistant)|about|for|questions)\b/u',
+            '/\bwhat\s+(?:are\s+you\s+able\s+to\s+do|can\s+you\s+help\s+(?:me\s+)?with)\b/u',
+            '/\bhow\s+(?:can|could)\s+(?:' . $who . ')\s+help\b/u',
+            '/\bwhat\s+(?:kind\s+of\s+)?(?:things|questions)\s+can\s+(?:' . $who . ')\b/u',
+            '/\bwho\s+are\s+you\b/u',
+        );
+
+        foreach ($patterns as $pattern) {
+            if (preg_match($pattern, $normalized)) {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    /**
+     * What this assistant can actually do, in its own words.
+     *
+     * Core lists only what core does. Addons extend the assistant, so they
+     * extend this list too rather than core guessing on their behalf -- the same
+     * arrangement as the chat seams, and it keeps the free plugin from promising
+     * a capability it does not ship.
+     *
+     * @return string
+     */
+    private function capability_reply() {
+        $capabilities = array(
+            __('find products in this store and narrow them down', 'geeky-bot'),
+            __('answer questions about a product from its store details', 'geeky-bot'),
+            __('answer store questions such as shipping, returns and payment', 'geeky-bot'),
+        );
+
+        $capabilities = array_values(array_unique(array_filter(array_map(
+            'wp_strip_all_tags',
+            (array) apply_filters('geekybot_assistant_capabilities', $capabilities)
+        ))));
+
+        if (empty($capabilities)) {
+            return __('Ask me about anything in the store and I will do what I can.', 'geeky-bot');
+        }
+
+        if (count($capabilities) > 1) {
+            $last = array_pop($capabilities);
+            $listed = implode(', ', $capabilities) . ' ' . __('and', 'geeky-bot') . ' ' . $last;
+        } else {
+            $listed = $capabilities[0];
+        }
+
+        return sprintf(
+            /* translators: %s: list of things the assistant can do. */
+            __('I can %s. What would you like to start with?', 'geeky-bot'),
+            $listed
         );
     }
 

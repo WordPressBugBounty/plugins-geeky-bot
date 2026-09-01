@@ -36,7 +36,9 @@ class ProductQuestionRouter {
             'sale' => '/\b(on\s+sale|sale\s+price|discount(?:ed)?|which\s+.*\s+sale)\b/u',
             'included' => '/\b(include(?:s|d)?|included|comes?\s+with|in\s+the\s+box|accessories?)\b/u',
             'battery' => '/\b(battery\s+(?:life|duration|runtime|lasts?)|playback(?:\s+time)?|runtime|how\s+long(?:\s+does|\s+will)?.*\b(?:battery|last))\b/u',
-            'care' => '/\b(care|wash|washing|dishwasher|machine\s+wash|hand\s+wash|clean|microwave)\b/u',
+            // `washable` and `dishwasher-safe` are the usual shopper phrasings and
+            // neither matched: \bwash\b stops at the `a` in "washable".
+            'care' => '/\b(care|wash|washes|washable|washing|dishwasher|dishwasher[-\s]?safe|machine\s+wash(?:able)?|hand\s+wash(?:able)?|clean|cleanable|microwave|microwaveable|tumble\s+dry|dry\s+clean)\b/u',
             'leak_protection' => '/\b(leak[-\s]?proof|leak[-\s]?resistant|leak|loose\s+(?:in|inside)\s+(?:a|my)\s+bag)\b/u',
             'backlight' => '/\b(backlight|backlit)\b/u',
             'capacity' => '/\b(capacity|how\s+many\s+(?:ml|litres?|liters?)|\d+\s*(?:ml|l|litres?|liters?))\b/u',
@@ -156,17 +158,54 @@ class ProductQuestionRouter {
             || preg_match('/\bwhich\s+.*\b(colou?rs?|sizes?|options?)\s+are\s+currently\s+available\b/u', $lower) === 1;
     }
 
+    /**
+     * Best guess at the product a question is about, or '' when it names none.
+     *
+     * Extraction is subtractive: strip the question wording, strip the fact
+     * wording, and treat whatever survives as the product the shopper meant.
+     * That makes leftover grammar dangerous. "what material is used?" reduced to
+     * the subject "is used", and ProductReferenceResolver then compared the
+     * product the shopper had just selected against that fragment. The
+     * comparison failed, so the bot replied "I'm not sure which product you
+     * mean" to a question it had invited one turn earlier.
+     *
+     * '' is the honest answer for a question that names no product. It lets the
+     * resolver stay on the selected product instead of testing it against a
+     * scrap of English.
+     */
     private function subject_text($lower) {
         $text = $lower;
         $patterns = array(
+            // Runs before the leading question word is stripped, because "how"
+            // is the only thing marking these adjectives as a measurement rather
+            // than part of a product name. Removing a bare `long` or `big` would
+            // corrupt real titles such as "Long Sleeve Tee".
+            '/\bhow\s+(?:heavy|big|large|small|long|wide|tall|deep|many|much)\b/u',
             '/^(what|which|is|are|does|do|can|could|will|would|how|tell\s+me(?:\s+more)?(?:\s+about)?|describe)\b/u',
-            '/\b(material|fabric|made\s+(?:of|from)|waterproof|water[-\s]?resistant|warranty|guarantee|price|cost|dimensions?|measurements?|weight|weigh|compatible|compatibility|suitable\s+for|good\s+for|intended\s+for|use\s+case|in\s+stock|out\s+of\s+stock|available|availability|colou?rs?|sizes?|sale\s+price|on\s+sale|included|comes?\s+with|battery|playback|care|wash|dishwasher|leak[-\s]?proof|leak[-\s]?resistant|backlight|backlit|capacity|options?|variations?|product\s+details?)\b/u',
+            // Multi-word fact phrases come first: alternation is first-match-wins,
+            // so a bare `dishwasher` alternative placed earlier would strip only
+            // half of "dishwasher safe" and leave "safe" behind as a fake subject.
+            '/\b(machine\s+wash(?:able)?|hand\s+wash(?:able)?|dishwasher[-\s]?safe|microwave[-\s]?safe|tumble\s+dry|dry\s+clean|made\s+(?:of|from)|water[-\s]?resistant|suitable\s+for|good\s+for|intended\s+for|use\s+case|in\s+stock|out\s+of\s+stock|sale\s+price|on\s+sale|comes?\s+with|leak[-\s]?proof|leak[-\s]?resistant|product\s+details?|material|fabric|waterproof|warranty|guarantee|price|cost|dimensions?|measurements?|weight|weigh|compatible|compatibility|available|availability|colou?rs?|sizes?|included|battery|playback|care|wash(?:able|es|ing)?|dishwasher|microwave|backlight|backlit|capacity|options?|variations?)\b/u',
             '/\b(the|this|that|it|one|currently|now|please|from|for|with|have|has|made|come|comes)\b/u',
+            // Residual grammar. Without this an auxiliary or participle left
+            // behind by the strips above is mistaken for a product name.
+            '/\b(a|an|any|some|is|are|am|was|were|be|been|being|do|does|did|use|used|using|last|lasts|take|takes|there|of|in|on|at|to|and|or|but|its|their|your|my|much|many|kind|sort|type)\b/u',
             '/\?+$/u',
         );
         $text = preg_replace($patterns, ' ', $text);
         $text = preg_replace('/\s+/u', ' ', (string) $text);
-        return trim($text);
+        $text = trim($text);
+
+        // Nothing under three characters identifies a product on its own, so a
+        // remainder of only stray fragments means there is no subject at all.
+        $meaningful = array_filter(explode(' ', $text), array($this, 'is_subject_token'));
+
+        return empty($meaningful) ? '' : $text;
+    }
+
+    private function is_subject_token($token) {
+        $length = function_exists('mb_strlen') ? mb_strlen((string) $token, 'UTF-8') : strlen((string) $token);
+        return $length >= 3;
     }
 
     private function empty_route() {

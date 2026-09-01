@@ -3,6 +3,44 @@
   box-sizing: border-box;
 }
 
+/*
+ * The widget renders inside somebody else's theme, and themes style form
+ * controls globally. Kadence sets `padding: .4em 1em` on every button; at the
+ * close button's 24px font size that is 24px of horizontal padding, which
+ * turned a 34x34 circle into a 48x32 pill. Nothing was overriding the plugin's
+ * own rules -- padding was simply a property the plugin never stated, so the
+ * theme's value stood.
+ *
+ * This resets the properties a host theme is likely to set, at a specificity no
+ * element selector can reach. Component rules below are more specific still, so
+ * each control keeps whatever it declares for itself; this only decides the
+ * properties a component leaves unsaid.
+ */
+#geekybot-sales-assistant button,
+#geekybot-sales-assistant input,
+#geekybot-sales-assistant select,
+#geekybot-sales-assistant textarea {
+  margin: 0;
+  padding: 0;
+  min-width: 0;
+  min-height: 0;
+  max-width: none;
+  max-height: none;
+  border: 0;
+  border-radius: 0;
+  background: none;
+  box-shadow: none;
+  color: inherit;
+  font: inherit;
+  line-height: normal;
+  letter-spacing: normal;
+  text-transform: none;
+  text-shadow: none;
+  text-indent: 0;
+  -webkit-appearance: none;
+  appearance: none;
+}
+
 #geekybot-sales-assistant {
   --gb-accent: #2563eb;
   --gb-bg: #ffffff;
@@ -168,8 +206,13 @@
 }
 
 #geekybot-sales-assistant .gb-close {
+  flex: 0 0 auto;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
   width: 34px;
   height: 34px;
+  padding: 0;
   border: 0;
   border-radius: 999px;
   background: rgba(255, 255, 255, 0.16);
@@ -853,9 +896,8 @@
 
 /* Storefront Widget Branding UI Cleanup */
 #geekybot-sales-assistant .gb-launcher {
-  width: 64px;
-  height: 64px;
-  box-shadow: 0 22px 54px color-mix(in srgb, var(--gb-accent) 34%, transparent), 0 0 0 9px color-mix(in srgb, var(--gb-accent) 10%, transparent);
+  /* Size and depth now live in the 2.0.2 refresh block at the end of this file.
+     The accent ring and 54px glow that used to sit here were removed there. */
 }
 
 #geekybot-sales-assistant.gb-widget--launcher-pill .gb-launcher {
@@ -1088,4 +1130,227 @@
 
 #geekybot-sales-assistant .gb-product-expert-verified + .gb-products {
   margin-top: 12px;
+}
+
+/* ==========================================================================
+   Preview mode
+
+   Used by the admin Storefront Widget screen. The preview renders the real
+   widget with the real class names and this same stylesheet, so what a merchant
+   configures is literally what shoppers receive. Before 2.0.2 the preview was a
+   separate imitation with its own markup and CSS, and the two had drifted: the
+   preview drew a 22px window with a navy gradient while the storefront drew a
+   24px window with a slate one.
+
+   These rules only undo the things that exist purely because the live widget
+   floats over a storefront — fixed positioning, the launcher hiding when open,
+   and the entrance transition. Every visual property stays inherited from the
+   rules above, which is the point.
+   ========================================================================== */
+
+#geekybot-sales-assistant.gb-widget--preview {
+  position: relative;
+  right: auto;
+  left: auto;
+  bottom: auto;
+  z-index: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 14px;
+}
+
+#geekybot-sales-assistant.gb-widget--preview .gb-shopper-invitation,
+#geekybot-sales-assistant.gb-widget--preview .gb-window {
+  position: relative;
+  right: auto;
+  left: auto;
+  bottom: auto;
+}
+
+/* No entrance animation in a static preview. */
+#geekybot-sales-assistant.gb-widget--preview .gb-shopper-invitation {
+  opacity: 1;
+  transform: none;
+  transition: none;
+}
+
+/* The preview switch decides which state is shown, so the launcher stays
+   visible in the closed state and the window is hidden until asked for. */
+#geekybot-sales-assistant.gb-widget--preview .gb-window {
+  display: none;
+  width: 100%;
+  height: auto;
+  max-height: 460px;
+}
+
+#geekybot-sales-assistant.gb-widget--preview.gb-widget--open .gb-window {
+  display: flex;
+  flex-direction: column;
+}
+
+#geekybot-sales-assistant.gb-widget--preview.gb-widget--open .gb-shopper-invitation,
+#geekybot-sales-assistant.gb-widget--preview.gb-widget--open .gb-launcher {
+  display: none;
+}
+
+/* Static stand-ins for the composer, which is a real form on the storefront. */
+#geekybot-sales-assistant.gb-widget--preview .gb-input {
+  display: flex;
+  align-items: center;
+  color: var(--gb-muted);
+}
+
+#geekybot-sales-assistant.gb-widget--preview .gb-send {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#geekybot-sales-assistant.gb-widget--preview .gb-launcher,
+#geekybot-sales-assistant.gb-widget--preview .gb-suggestion-chip,
+#geekybot-sales-assistant.gb-widget--preview .gb-send {
+  cursor: default;
+}
+
+/* When the merchant turns the shopper avatar off, the bubble reclaims the 42px
+   that was reserved for it rather than leaving a gap where the icon used to be. */
+#geekybot-sales-assistant .gb-message--user.gb-message--no-avatar {
+  max-width: 82%;
+  margin-right: 0;
+}
+
+/* ==========================================================================
+   2.0.2 refresh
+
+   Six changes agreed after the design review. The structure is untouched — only
+   depth, radii and the launcher treatment. Two of the decisions were taste, so
+   they became merchant settings rather than our opinion: colour mode and
+   launcher shape.
+   ========================================================================== */
+
+#geekybot-sales-assistant {
+	/* Layered depth instead of one 70px blur at 22%, which read as fog. */
+	--gb-shadow: 0 1px 2px rgba(15, 23, 42, .08), 0 12px 32px rgba(15, 23, 42, .16);
+	--gb-shadow-sm: 0 1px 2px rgba(15, 23, 42, .06), 0 6px 18px rgba(15, 23, 42, .10);
+
+	/* Three radii, down from seven. */
+	--gb-radius-lg: 18px;
+	--gb-radius-md: 14px;
+	--gb-radius-sm: 10px;
+}
+
+/* Launcher: the accent ring and 54px accent glow are gone. They were the single
+   most dated element — coloured glows belong to about 2020. */
+#geekybot-sales-assistant .gb-launcher {
+	width: 56px;
+	height: 56px;
+	box-shadow: var(--gb-shadow-sm);
+}
+
+/* Shape is a merchant choice. Round stays the default. */
+#geekybot-sales-assistant.gb-widget--launcher-shape-rounded .gb-launcher {
+	border-radius: var(--gb-radius-lg);
+}
+
+#geekybot-sales-assistant .gb-shopper-invitation {
+	border-radius: var(--gb-radius-md);
+	box-shadow: var(--gb-shadow-sm);
+}
+
+#geekybot-sales-assistant .gb-window {
+	border-radius: var(--gb-radius-lg);
+	box-shadow: var(--gb-shadow);
+}
+
+/* Bubbles: the tail moves to the bottom corner, which is what every current
+   messenger does, and the shopper bubble stops running to 88% of the panel. */
+#geekybot-sales-assistant .gb-message {
+	border-radius: var(--gb-radius-md);
+}
+
+#geekybot-sales-assistant .gb-message--bot {
+	border-top-left-radius: var(--gb-radius-md);
+	border-bottom-left-radius: 5px;
+}
+
+#geekybot-sales-assistant .gb-message--user {
+	max-width: calc(78% - 42px);
+	border-top-right-radius: var(--gb-radius-md);
+	border-bottom-right-radius: 5px;
+}
+
+#geekybot-sales-assistant .gb-message--user.gb-message--no-avatar {
+	max-width: 78%;
+}
+
+#geekybot-sales-assistant .gb-product-card {
+	border-radius: var(--gb-radius-md);
+	box-shadow: none;
+}
+
+/* ==========================================================================
+   Colour mode
+
+   The tokens were already in place, so a dark storefront is a palette swap.
+   Merchants choose light, dark, or auto; auto follows the shopper's own OS
+   setting, which is why the same block is repeated under a media query rather
+   than being written once.
+   ========================================================================== */
+
+#geekybot-sales-assistant.gb-widget--dark,
+#geekybot-sales-assistant.gb-widget--auto-dark {
+	--gb-bg: #191c22;
+	--gb-text: #e9ebf1;
+	--gb-muted: #9aa2b4;
+	--gb-border: #2a2e38;
+	--gb-soft: #15171c;
+	--gb-shadow: 0 1px 2px rgba(0, 0, 0, .4), 0 12px 32px rgba(0, 0, 0, .5);
+	--gb-shadow-sm: 0 1px 2px rgba(0, 0, 0, .35), 0 6px 18px rgba(0, 0, 0, .4);
+}
+
+@media (prefers-color-scheme: dark) {
+	#geekybot-sales-assistant.gb-widget--auto {
+		--gb-bg: #191c22;
+		--gb-text: #e9ebf1;
+		--gb-muted: #9aa2b4;
+		--gb-border: #2a2e38;
+		--gb-soft: #15171c;
+		--gb-shadow: 0 1px 2px rgba(0, 0, 0, .4), 0 12px 32px rgba(0, 0, 0, .5);
+		--gb-shadow-sm: 0 1px 2px rgba(0, 0, 0, .35), 0 6px 18px rgba(0, 0, 0, .4);
+	}
+}
+
+/* Surfaces that were hard-coded white now follow the tokens, so dark mode does
+   not leave white slabs inside a dark panel. */
+#geekybot-sales-assistant.gb-widget--dark .gb-message--bot,
+#geekybot-sales-assistant.gb-widget--dark .gb-product-card,
+#geekybot-sales-assistant.gb-widget--dark .gb-shopper-invitation,
+#geekybot-sales-assistant.gb-widget--dark .gb-suggestion-chip,
+#geekybot-sales-assistant.gb-widget--dark .gb-form {
+	background: var(--gb-bg);
+	color: var(--gb-text);
+}
+
+#geekybot-sales-assistant.gb-widget--dark .gb-input {
+	background: var(--gb-soft);
+	color: var(--gb-text);
+	border-color: var(--gb-border);
+}
+
+@media (prefers-color-scheme: dark) {
+	#geekybot-sales-assistant.gb-widget--auto .gb-message--bot,
+	#geekybot-sales-assistant.gb-widget--auto .gb-product-card,
+	#geekybot-sales-assistant.gb-widget--auto .gb-shopper-invitation,
+	#geekybot-sales-assistant.gb-widget--auto .gb-suggestion-chip,
+	#geekybot-sales-assistant.gb-widget--auto .gb-form {
+		background: var(--gb-bg);
+		color: var(--gb-text);
+	}
+
+	#geekybot-sales-assistant.gb-widget--auto .gb-input {
+		background: var(--gb-soft);
+		color: var(--gb-text);
+		border-color: var(--gb-border);
+	}
 }

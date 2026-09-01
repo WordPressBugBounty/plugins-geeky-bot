@@ -1,6 +1,7 @@
 <?php
 namespace GeekyBot\Search;
 
+use GeekyBot\ProductExpert\ProductQuestionRouter;
 use GeekyBot\Services\ProductDiscoveryIntentService;
 
 if (!defined('ABSPATH')) {
@@ -30,10 +31,50 @@ class SearchContextService {
         $command = (new ShoppingCommandResolver())->resolve($message, $previous);
         $action = !empty($command['action']) ? sanitize_key($command['action']) : '';
 
+        // A question about the product the shopper already chose is not a new
+        // mission, however much it looks like one.
+        //
+        // Selecting a product answers "You selected X. What would you like to
+        // know about it?" -- and the obvious next line, "what material is
+        // used?", was then classified as a fresh catalog mission. That reset
+        // `selectedProductId` to 0 further down, so Product Expert had no
+        // subject left and replied "I'm not sure which product you mean" to the
+        // exact question the bot had just invited. "is it machine washable?"
+        // was worse: with the selection gone it searched the catalog and
+        // returned a memory-foam travel pillow.
+        //
+        // ProductQuestionRouter already decides what counts as a product-fact
+        // question, and it deliberately ignores discovery and store-policy
+        // wording, so reusing it keeps one definition of that in the codebase.
+        $product_fact_question = (new ProductQuestionRouter())->route($message);
+        $has_product_subject = !empty($previous['selectedProductId']) || !empty($previous['productIds']);
+        $keeps_product_subject = $has_product_subject && !empty($product_fact_question['isQuestion']);
+
+        /**
+         * Filters whether this message keeps the previous product subject.
+         *
+         * A commerce addon that answers questions about the products on screen
+         * needs the result set to survive its own follow-up: words like "bigger"
+         * and "lighter" read as a fresh search to Product Discovery, which would
+         * clear the very set the question is about.
+         *
+         * @param bool   $keeps_product_subject Whether context is retained.
+         * @param string $message               Shopper message.
+         * @param array  $previous              Previous conversation context.
+         */
+        $keeps_product_subject = (bool) apply_filters(
+            'geekybot_keeps_product_subject',
+            $keeps_product_subject,
+            $message,
+            $previous
+        );
+
         // Product Discovery owns clear catalog missions before short-modifier
         // merging. A new product family, global sale/stock browse, or explicit
         // discovery request must not inherit an earlier mission's terms.
-        if (!empty($discovery['isNewMission']) && in_array($action, array('', 'filter_current', 'new_search'), true)) {
+        if (!empty($discovery['isNewMission'])
+            && !$keeps_product_subject
+            && in_array($action, array('', 'filter_current', 'new_search'), true)) {
             $action = 'new_search';
             $command['action'] = 'new_search';
             $command['args'] = array();
@@ -155,8 +196,16 @@ class SearchContextService {
 
         $has_context = $base_query !== '' || !empty($active_analysis) || !empty($current_ids) || !empty($last_multi_ids);
         $comparison_command = $action === 'compare';
+        // A command that names what it acts on is self-contained, exactly as a
+        // named comparison is. "add the Trek 32L to my cart" is a complete
+        // request on the first message of a conversation, and forcing it to a
+        // new search here threw the action away before anything could run it.
+        // One that points at the screen instead -- "add second product" -- still
+        // arrives with no product, and is answered by asking which, not by
+        // searching for the word "second".
+        $commerce_command = in_array($action, ShoppingCommandResolver::commerce_actions(), true);
         $explicit_named_compare = $comparison_command && !empty($args['explicitNames']) && !empty($args['namedProducts']);
-        if ($message === '' || $action === '' || (!$has_context && !$comparison_command)) {
+        if ($message === '' || $action === '' || (!$has_context && !$comparison_command && !$commerce_command)) {
             $base['action'] = 'new_search';
             $base['effectiveQuery'] = $message;
             $base['missionQuery'] = $message;
@@ -933,6 +982,37 @@ class SearchContextService {
         }
         if (isset($args['productName'])) {
             $clean['productName'] = wp_strip_all_tags((string) $args['productName']);
+        }
+        // Commerce commands. This is an allowlist, so an argument the resolver
+        // produces but this does not name is silently dropped -- which is how a
+        // quantity or an attribute choice would reach the addon as nothing.
+        if (isset($args['productQuery'])) {
+            $clean['productQuery'] = wp_strip_all_tags((string) $args['productQuery']);
+        }
+        if (isset($args['quantity'])) {
+            $clean['quantity'] = max(0, min(999, absint($args['quantity'])));
+        }
+        if (isset($args['attributesText'])) {
+            $clean['attributesText'] = wp_strip_all_tags((string) $args['attributesText']);
+        }
+        if (isset($args['message'])) {
+            $clean['message'] = wp_strip_all_tags((string) $args['message']);
+        }
+        if (isset($args['referenceIsPronoun'])) {
+            $clean['referenceIsPronoun'] = !empty($args['referenceIsPronoun']);
+        }
+        if (isset($args['cartSelectionIndex']) && $args['cartSelectionIndex'] !== null) {
+            $clean['cartSelectionIndex'] = absint($args['cartSelectionIndex']);
+        }
+        if (isset($args['priceReferences']) && is_array($args['priceReferences'])) {
+            $clean['priceReferences'] = array_slice(
+                array_values(array_filter(array_map(function ($marker) {
+                    $marker = sanitize_key((string) $marker);
+                    return in_array($marker, array('cheapest', 'priciest'), true) ? $marker : '';
+                }, $args['priceReferences']))),
+                0,
+                2
+            );
         }
         if (isset($args['productIds'])) {
             $clean['productIds'] = $this->unique_ids($args['productIds'], 4);

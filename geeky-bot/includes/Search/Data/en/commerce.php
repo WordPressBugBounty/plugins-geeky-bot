@@ -190,8 +190,12 @@ return array(
         'can you please', 'could you please', 'please', 'i think', 'i am looking for', 'im looking for',
         'i need', 'i want', 'do you have', 'show me', 'find me', 'find something', 'what do you recommend',
         'what would you recommend', 'which one should i buy', 'give me some options', 'give me options',
-        'only show', 'show only', 'right now', 'currently', 'actually', 'something', 'option', 'options'
+        'only show', 'show only', 'right now', 'currently', 'actually', 'something', 'option', 'options',
+        // Temporal filler. "cheapest today" was searching the catalog for a
+        // product called "today" and finding nothing; the single words live in
+        // ignore_tokens, the phrases here.
+        'this week', 'at the moment', 'these days'
     ),
 
-    'ignore_tokens' => array('what', 'would', 'will', 'should', 'could', 'if', 'one', 'ones', 'something', 'option', 'options', 'possible', 'possibly', 'actually', 'currently', 'still', 'look', 'looks', 'nice'),
+    'ignore_tokens' => array('what', 'would', 'will', 'should', 'could', 'if', 'one', 'ones', 'something', 'option', 'options', 'possible', 'possibly', 'actually', 'currently', 'still', 'look', 'looks', 'nice', 'today', 'tonight'),
 );

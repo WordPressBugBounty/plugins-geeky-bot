@@ -89,10 +89,17 @@
   ready(function () {
     document.querySelectorAll('[data-gb-preview-root]').forEach(function (preview) {
       var buttons = preview.querySelectorAll('[data-gb-preview-state-button]');
+      var widget = preview.querySelector('[data-gb-preview-widget]');
 
       function setPreviewState(state) {
         state = state === 'open' ? 'open' : 'closed';
         preview.setAttribute('data-gb-preview-state', state);
+        // The preview is the real widget, so open and closed use the same
+        // `gb-widget--open` class the storefront toggles, rather than showing
+        // and hiding two separate mock-ups.
+        if (widget) {
+          widget.classList.toggle('gb-widget--open', state === 'open');
+        }
         buttons.forEach(function (button) {
           var active = button.getAttribute('data-gb-preview-state-button') === state;
           button.classList.toggle('is-active', active);
@@ -125,11 +132,11 @@
     var invitationEnabledInput = wrap.querySelector('[name="shopper_invitation_enabled"][type="checkbox"]');
     var invitationMessageInput = wrap.querySelector('[name="shopper_invitation_message"]');
     var headerStyleInput = wrap.querySelector('[name="header_style"]');
-    var preview = wrap.querySelector('.gb-widget-preview-stack');
-    var previewWindow = wrap.querySelector('.gb-widget-preview');
-    var previewName = wrap.querySelector('.gb-widget-preview__header strong');
-    var previewSubtitle = wrap.querySelector('.gb-widget-preview__header span:not(.gb-widget-preview__logo)');
-    var previewWelcome = wrap.querySelector('.gb-widget-preview__body > p');
+    var preview = wrap.querySelector('[data-gb-preview-widget]');
+    var previewWindow = wrap.querySelector('[data-gb-preview-widget]');
+    var previewName = wrap.querySelector('[data-gb-preview-name]');
+    var previewSubtitle = wrap.querySelector('[data-gb-preview-subtitle]');
+    var previewWelcome = wrap.querySelector('[data-gb-preview-welcome]');
     var previewLauncher = wrap.querySelector('[data-gb-preview-launcher]');
     var previewLauncherText = wrap.querySelector('[data-gb-preview-launcher-text]');
     var previewInvitation = wrap.querySelector('[data-gb-preview-invitation]');
@@ -146,11 +153,11 @@
         previewWelcome.textContent = text(welcomeInput.value, 'Hi! Ask me what you are looking for and I will help you find the right product.');
       }
       if (preview && colorInput) {
-        preview.style.setProperty('--gb-preview-accent', colorInput.value || '#2563eb');
+        preview.style.setProperty('--gb-accent', colorInput.value || '#2563eb');
       }
       if (previewLauncher && launcherStyleInput) {
-        previewLauncher.classList.toggle('gb-launcher-preview--pill', launcherStyleInput.value === 'pill');
-        previewLauncher.classList.toggle('gb-launcher-preview--icon', launcherStyleInput.value !== 'pill');
+        preview.classList.toggle('gb-widget--launcher-pill', launcherStyleInput.value === 'pill');
+        preview.classList.toggle('gb-widget--launcher-icon', launcherStyleInput.value !== 'pill');
       }
       if (previewLauncherText && launcherTextInput) {
         previewLauncherText.textContent = text(launcherTextInput.value, 'Ask about products');
@@ -162,8 +169,8 @@
         previewInvitationMessage.textContent = text(invitationMessageInput.value, 'Need help choosing? Ask me about products, prices, or options.');
       }
       if (previewWindow && headerStyleInput) {
-        previewWindow.classList.toggle('gb-widget-preview--solid', headerStyleInput.value === 'solid');
-        previewWindow.classList.toggle('gb-widget-preview--gradient', headerStyleInput.value !== 'solid');
+        previewWindow.classList.toggle('gb-widget--header-solid', headerStyleInput.value === 'solid');
+        previewWindow.classList.toggle('gb-widget--header-gradient', headerStyleInput.value !== 'solid');
       }
     }
 

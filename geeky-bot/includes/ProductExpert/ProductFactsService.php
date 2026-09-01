@@ -66,9 +66,25 @@ class ProductFactsService {
                 'length' => $length,
                 'width' => $width,
                 'height' => $height,
-                'unit' => function_exists('get_option') ? sanitize_text_field((string) get_option('woocommerce_dimension_unit', 'cm')) : 'cm',
+                'unit' => $this->dimension_unit(
+                    $product,
+                    $attributes,
+                    function_exists('get_option') ? sanitize_text_field((string) get_option('woocommerce_dimension_unit', 'cm')) : 'cm'
+                ),
             ),
-            'weightUnit' => function_exists('get_option') ? sanitize_text_field((string) get_option('woocommerce_weight_unit', 'kg')) : 'kg',
+            // The unit the catalog stated, when it stated one. A store that
+            // records weight as an attribute writes "245 g" and leaves the
+            // WooCommerce field empty; taking the number and labelling it with
+            // the store setting produced "It weighs 245 lbs" -- wrong by a factor
+            // of 450. A unit written down beats one inferred from a setting.
+            'weightUnit' => $this->measurement_unit(
+                $product,
+                'get_weight',
+                '_weight',
+                $attributes,
+                array('weight', 'product weight'),
+                function_exists('get_option') ? sanitize_text_field((string) get_option('woocommerce_weight_unit', 'kg')) : 'kg'
+            ),
             'shippingClass' => wp_strip_all_tags($product->get_shipping_class()),
             'sourceText' => trim($this->plain_text($product->get_short_description()) . ' ' . $this->plain_text($product->get_description())),
         );
@@ -218,6 +234,116 @@ class ProductFactsService {
         return str_replace('-', ' ', $value);
     }
 
+
+    /**
+     * The unit the three dimensions should be reported in.
+     *
+     * Length, width and height share a single unit, so they are resolved
+     * together. If any of them came from a real WooCommerce field the store
+     * setting stays authoritative, because those fields are bare numbers and
+     * mixing a written unit with an unwritten one would mislabel the rest.
+     * Otherwise the first unit the catalog states is used.
+     *
+     * @param mixed  $product    WooCommerce product.
+     * @param array  $attributes Normalised product attributes.
+     * @param string $store_unit Unit configured for the store.
+     * @return string
+     */
+    private function dimension_unit($product, $attributes, $store_unit) {
+        $sources = array(
+            array('get_length', '_length', array('length', 'product length')),
+            array('get_width', '_width', array('width', 'product width')),
+            array('get_height', '_height', array('height', 'product height')),
+        );
+
+        foreach ($sources as $source) {
+            $native = $this->native_measurement($product, $source[0], $source[1]);
+            if ($native !== '' && $native !== null) {
+                return $store_unit;
+            }
+        }
+
+        foreach ($sources as $source) {
+            $written = $this->attribute_unit($attributes, $source[2]);
+            if ($written !== '') {
+                return $written;
+            }
+        }
+
+        return $store_unit;
+    }
+
+    /**
+     * The unit a measurement should be reported in.
+     *
+     * A WooCommerce field or meta value is a bare number, so the store setting is
+     * the right label for it. An attribute is free text the merchant wrote, and
+     * when it carries its own unit that wins -- it describes the value actually
+     * being shown.
+     *
+     * @param mixed  $product    WooCommerce product.
+     * @param string $getter     Product getter for the native field.
+     * @param string $meta_key   Allowlisted meta fallback.
+     * @param array  $attributes Normalised product attributes.
+     * @param array  $aliases    Attribute names to look for.
+     * @param string $store_unit Unit configured for the store.
+     * @return string
+     */
+    private function measurement_unit($product, $getter, $meta_key, $attributes, $aliases, $store_unit) {
+        $native = $this->native_measurement($product, $getter, $meta_key);
+
+        // The store setting describes its own fields, so it stays authoritative
+        // whenever one of them supplied the number.
+        if ($native !== '' && $native !== null) {
+            return $store_unit;
+        }
+
+        $written = $this->attribute_unit($attributes, $aliases);
+
+        return $written !== '' ? $written : $store_unit;
+    }
+
+    /**
+     * A measurement taken straight from WooCommerce, before any attribute
+     * fallback. Empty when the store records none.
+     *
+     * @param mixed  $product  WooCommerce product.
+     * @param string $getter   Product getter for the native field.
+     * @param string $meta_key Allowlisted meta fallback.
+     * @return mixed
+     */
+    private function native_measurement($product, $getter, $meta_key) {
+        $value = '';
+        if ($product && method_exists($product, $getter)) {
+            $value = $product->{$getter}();
+        }
+        if (($value === '' || $value === null) && $product && function_exists('get_post_meta')) {
+            $value = get_post_meta($product->get_id(), $meta_key, true);
+        }
+
+        return $value;
+    }
+
+    /**
+     * The unit written inside an attribute value, or '' when it states none.
+     *
+     * @param array $attributes Normalised product attributes.
+     * @param array $aliases    Attribute names to look for.
+     * @return string
+     */
+    private function attribute_unit($attributes, $aliases) {
+        $raw = $this->attribute_value(array('attributes' => $attributes), $aliases);
+        if ($raw === '') {
+            return '';
+        }
+
+        // "245 g" -> "g", "1.4 kg" -> "kg", "245" -> "".
+        if (!preg_match('~^\s*[0-9]+(?:[.,][0-9]+)?\s*([A-Za-z]{1,12})~u', $raw, $m)) {
+            return '';
+        }
+
+        return sanitize_text_field($m[1]);
+    }
 
     private function product_decimal_fact($product, $getter, $meta_key, $attributes, $aliases) {
         $value = '';

@@ -109,6 +109,10 @@ class ProductService {
             $this->last_search_context = array('note' => 'top_rated_intent', 'analysis' => $analysis);
             return $this->top_rated($limit);
         }
+        if (!$has_product_terms && !empty($analysis['budget_sort'])) {
+            $this->last_search_context = array('note' => 'cheapest_intent', 'analysis' => $analysis);
+            return $this->cheapest_products($limit);
+        }
 
         $this->last_search_context = $this->search_context('normal_search', $analysis);
 
@@ -1827,6 +1831,53 @@ class ProductService {
         return $this->hydrate_products($rated_ids);
     }
 
+    /**
+     * The catalog by price, for a shopper who named no product.
+     *
+     * Out-of-stock and hidden products are dropped before the limit is
+     * applied, so "cheapest" never opens with something nobody can buy.
+     *
+     * @param int $limit Maximum products.
+     * @return array
+     */
+    private function cheapest_products($limit = 4) {
+        if (!$this->is_woocommerce_ready() || !function_exists('wc_get_products')) {
+            return array();
+        }
+
+        $limit = max(1, min(8, absint($limit)));
+        $product_ids = wc_get_products(array(
+            'status' => 'publish',
+            'limit' => 120,
+            'return' => 'ids',
+            // wc_get_products() is the CRUD query layer, which accepts a much
+            // shorter orderby list than the catalog query. 'price' is
+            // catalog-only: WC_Product_Query drops it without a warning and
+            // falls back to date, so "what is cheapest today" answered with the
+            // newest products. Sort on the indexed price meta, as top_rated()
+            // above already does for the rating.
+            // phpcs:ignore WordPress.DB.SlowDBQuery.slow_db_query_meta_key -- Indexed WooCommerce price meta.
+            'meta_key' => '_price',
+            'orderby' => 'meta_value_num',
+            'order' => 'ASC',
+        ));
+
+        $cheapest = array();
+        foreach ((array) $product_ids as $product_id) {
+            $product = wc_get_product(absint($product_id));
+            if (!CatalogVisibilityService::is_visible($product, 'cheapest_products')
+                || !CatalogAvailabilityService::is_available($product)) {
+                continue;
+            }
+            $cheapest[] = absint($product_id);
+            if (count($cheapest) >= $limit) {
+                break;
+            }
+        }
+
+        return $this->hydrate_products($cheapest);
+    }
+
     private function available_products($limit = 4) {
         if (!$this->is_woocommerce_ready() || !function_exists('wc_get_products')) {
             return array();
@@ -1837,7 +1888,11 @@ class ProductService {
             'status' => 'publish',
             'limit' => 120,
             'return' => 'ids',
-            'orderby' => 'popularity',
+            // 'popularity' is catalog-only for the same reason as 'price'
+            // above, and was silently ordering by date.
+            // phpcs:ignore WordPress.DB.SlowDBQuery.slow_db_query_meta_key -- Indexed WooCommerce sales counter.
+            'meta_key' => 'total_sales',
+            'orderby' => 'meta_value_num',
             'order' => 'DESC',
         ));
 
@@ -2683,7 +2738,12 @@ class ProductService {
             }
         }
 
-        if (!empty($product_data['isInStock'])) {
+        // Availability is supporting context, never a match reason on its own.
+        // Added unconditionally, it meant a plain browse such as "latest
+        // products" produced a "Match details / Matched / In stock" panel, which
+        // explains nothing to the shopper and repeats the stock badge shown
+        // immediately above it. It now only appears alongside a real criterion.
+        if (!empty($product_data['isInStock']) && (!empty($matched) || !empty($not_confirmed))) {
             $matched[] = __('In stock', 'geeky-bot');
         }
 

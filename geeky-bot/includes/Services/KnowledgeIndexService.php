@@ -405,6 +405,22 @@ class KnowledgeIndexService {
         $content = (string) $post->post_content;
         $content = preg_replace('/<!--\s*\/?wp:[^>]*-->/', ' ', $content);
         $content = strip_shortcodes($content);
+
+        // Tags are separators, not nothing. Stripping them without putting
+        // whitespace back fused adjacent elements into single words -- a card
+        // built as <span>01</span><strong>Processing time</strong><p>Orders are
+        // prepared...</p> indexed as "01Processing timeOrders are prepared",
+        // and that is what got quoted back to the shopper.
+        $blocks = 'address|article|aside|blockquote|br|dd|div|dl|dt|fieldset|figcaption|figure'
+            . '|footer|form|h[1-6]|header|hr|li|main|nav|ol|p|pre|section|table|tbody|td|tfoot'
+            . '|th|thead|tr|ul';
+        $content = preg_replace('~</?(?:' . $blocks . ')\b[^>]*>~i', ' $0 ', $content);
+
+        // Inline tags are only separators where the join would fuse two words:
+        // a letter or digit running straight into a capital or digit. Splitting
+        // on every inline tag would break "un<b>believable</b>" instead.
+        $content = preg_replace('~(?<=[a-z0-9])(?:<[^>]+>)+(?=[A-Z0-9])~', ' ', $content);
+
         $content = wp_strip_all_tags($content, true);
         $content = html_entity_decode($content, ENT_QUOTES, get_bloginfo('charset'));
         $content = preg_replace('/[\r\n\t]+/', "\n", $content);

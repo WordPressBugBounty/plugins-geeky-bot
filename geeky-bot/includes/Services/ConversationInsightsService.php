@@ -108,11 +108,18 @@ class ConversationInsightsService {
      * @param int $days Reporting window.
      * @return array
      */
-    public function summary($days = 30) {
+    public function summary($days = 30, $offset_days = 0) {
         global $wpdb;
 
         $days = max(1, min(365, absint($days)));
-        $cutoff = gmdate('Y-m-d H:i:s', current_time('timestamp') - ($days * DAY_IN_SECONDS));
+        // $offset_days shifts the window back, so the dashboard can request the
+        // preceding period and show a real comparison instead of a bare count.
+        // summary(30) is now, summary(30, 30) is the 30 days before that.
+        $offset_days = max(0, min(365, absint($offset_days)));
+        $now = current_time('timestamp');
+        $window_end = $now - ($offset_days * DAY_IN_SECONDS);
+        $cutoff = gmdate('Y-m-d H:i:s', $window_end - ($days * DAY_IN_SECONDS));
+        $until = gmdate('Y-m-d H:i:s', $window_end);
         $sessions = $wpdb->prefix . 'geekybot_sessions';
         $messages = $wpdb->prefix . 'geekybot_messages';
         $unanswered = $wpdb->prefix . 'geekybot_unanswered';
@@ -130,13 +137,14 @@ class ConversationInsightsService {
         );
 
         if ($this->table_exists($sessions)) {
-            $summary['sessions'] = absint($wpdb->get_var($wpdb->prepare("SELECT COUNT(*) FROM {$sessions} WHERE updated_at >= %s", $cutoff)));
+            $summary['sessions'] = absint($wpdb->get_var($wpdb->prepare("SELECT COUNT(*) FROM {$sessions} WHERE updated_at >= %s AND updated_at < %s", $cutoff, $until)));
         }
         if ($this->table_exists($messages)) {
             $message_rows = $wpdb->get_results(
                 $wpdb->prepare(
-                    "SELECT direction, COUNT(*) AS total FROM {$messages} WHERE created_at >= %s GROUP BY direction",
-                    $cutoff
+                    "SELECT direction, COUNT(*) AS total FROM {$messages} WHERE created_at >= %s AND created_at < %s GROUP BY direction",
+                    $cutoff,
+                    $until
                 ),
                 ARRAY_A
             );
@@ -151,13 +159,14 @@ class ConversationInsightsService {
             }
         }
         if ($this->table_exists($unanswered)) {
-            $summary['unanswered'] = absint($wpdb->get_var($wpdb->prepare("SELECT COUNT(*) FROM {$unanswered} WHERE created_at >= %s", $cutoff)));
+            $summary['unanswered'] = absint($wpdb->get_var($wpdb->prepare("SELECT COUNT(*) FROM {$unanswered} WHERE created_at >= %s AND created_at < %s", $cutoff, $until)));
         }
         if ($this->table_exists($events)) {
             $event_rows = $wpdb->get_results(
                 $wpdb->prepare(
-                    "SELECT event_type, COUNT(*) AS total FROM {$events} WHERE created_at >= %s GROUP BY event_type",
-                    $cutoff
+                    "SELECT event_type, COUNT(*) AS total FROM {$events} WHERE created_at >= %s AND created_at < %s GROUP BY event_type",
+                    $cutoff,
+                    $until
                 ),
                 ARRAY_A
             );
@@ -575,12 +584,16 @@ class ConversationInsightsService {
             ),
             ARRAY_A
         );
-        foreach ((array) $rows as &$row) {
-            $row['meta'] = self::reason_meta($row['reason']);
+        // Note: this used to read `foreach ((array) $rows as &$row)`. The cast
+        // produces a temporary, so the reference bound to a throwaway copy and
+        // 'meta' never reached the returned rows. Iterate the variable itself.
+        $rows = (array) $rows;
+        foreach ($rows as &$row) {
+            $row['meta'] = self::reason_meta(isset($row['reason']) ? $row['reason'] : '');
         }
         unset($row);
 
-        return (array) $rows;
+        return $rows;
     }
 
     /**

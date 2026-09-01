@@ -15,6 +15,19 @@ if (!defined('ABSPATH')) {
 final class ShoppingCommandResolver {
     const REVISION = 'gb-shopping-commands-2026.08.01.1';
 
+    /**
+     * Actions that act on the cart, an order, a discount or a person.
+     *
+     * Public because the context layer and the chat router both have to
+     * recognise them, and three copies of the same list is how one of them
+     * ends up missing an action nobody notices for a release.
+     *
+     * @return array
+     */
+    public static function commerce_actions() {
+        return array('cart_add', 'cart_remove', 'cart_quantity', 'cart_view', 'checkout', 'deals', 'handoff');
+    }
+
     public function resolve($message, $context = array()) {
         $raw = $this->clean_text($message);
         $text = $this->normalize($raw);
@@ -32,6 +45,14 @@ final class ShoppingCommandResolver {
         $reset = $this->reset_command($raw, $text);
         if (!empty($reset)) {
             return array_merge($empty, $reset);
+        }
+
+        // Commerce actions are resolved before the refinement commands below.
+        // "add second product" has to reach the cart, not be read as a request
+        // to narrow the current result set.
+        $commerce = $this->commerce_command($raw, $text, $context);
+        if (!empty($commerce)) {
+            return array_merge($empty, $commerce);
         }
 
         if ($this->matches($text, array(
@@ -367,6 +388,22 @@ final class ShoppingCommandResolver {
             }
         }
 
+        // "the cheaper one" describes something already on screen rather than
+        // naming a product, so resolving it as a name finds nothing and the
+        // comparison loses a side. Pricing it needs the catalog, which this
+        // class does not read, so the description is reported and ChatService
+        // turns it into a position.
+        $price_references = array();
+        foreach ($named_products as $index => $name) {
+            $marker = $this->price_reference_marker($name);
+            if ($marker === '') {
+                continue;
+            }
+            $price_references[] = $marker;
+            unset($named_products[$index]);
+        }
+        $named_products = array_values($named_products);
+
         $ids = array_values(array_unique(array_filter($ids)));
         return array(
             'action' => 'compare',
@@ -374,6 +411,7 @@ final class ShoppingCommandResolver {
                 'positions' => $positions,
                 'productIds' => array_slice($ids, 0, 4),
                 'namedProducts' => array_slice($named_products, 0, 4),
+                'priceReferences' => array_slice($price_references, 0, 2),
                 'explicitNames' => count($named_products) >= 2,
                 'ordinalComparison' => !empty($positions),
                 'availableResultCount' => count($reference_ids),
@@ -383,6 +421,30 @@ final class ShoppingCommandResolver {
                     : '',
             ),
         );
+    }
+
+    /**
+     * Whether a comparison phrase points at a product by price rather than by
+     * name, and at which end of the range.
+     *
+     * @param string $phrase One side of a comparison, as written.
+     * @return string 'cheapest', 'priciest', or '' when it names something.
+     */
+    private function price_reference_marker($phrase) {
+        $phrase = $this->normalize((string) $phrase);
+        if ($phrase === '') {
+            return '';
+        }
+
+        if (preg_match('/\b(?:cheaper|cheapest|less\s+expensive|lower\s+priced?|budget)\b/u', $phrase)) {
+            return 'cheapest';
+        }
+
+        if (preg_match('/\b(?:pricier|priciest|dearer|more\s+expensive|most\s+expensive|higher\s+priced?|premium)\b/u', $phrase)) {
+            return 'priciest';
+        }
+
+        return '';
     }
 
     /**
@@ -611,6 +673,310 @@ final class ShoppingCommandResolver {
         }
 
         return array('productId' => 0, 'selectionIndex' => null, 'productName' => '');
+    }
+
+    /**
+     * Shopping actions that act on the cart, the order or a person.
+     *
+     * The assistant already understood the hard half of these: "add second
+     * product" resolves the ordinal to the right product, and always did. What
+     * it lacked was anywhere to send the verb, so the reference was resolved and
+     * the action silently dropped, leaving a catalog search in its place.
+     *
+     * The reference itself is resolved with the same helper the comparison
+     * commands use, so "second", "the Trek 32L" and "it" mean here exactly what
+     * they mean everywhere else in the conversation.
+     *
+     * Attribute choices are captured as written rather than parsed into pairs.
+     * "Blue, Logo Yes" only means something against a product's real attribute
+     * names, and the catalog lives on the addon side of this boundary.
+     *
+     * @param string $raw     Original message.
+     * @param string $text    Normalised message.
+     * @param array  $context Conversation context.
+     * @return array Action and args, or an empty array.
+     */
+    private function commerce_command($raw, $text, $context) {
+        if ($text === '') {
+            return array();
+        }
+
+        // A person, not a product. Checked first: "problem with my order" must
+        // not be read as an order lookup or a shipping question.
+        if ($this->matches($text, array(
+            '/\b(?:complain|complaint|complaining)\b/u',
+            '/\bproblem\s+with\s+my\s+(?:order|purchase|delivery|parcel|item)\b/u',
+            '/\b(?:talk|speak|chat)\s+to\s+(?:a\s+)?(?:human|person|agent|someone|representative)\b/u',
+            '/\b(?:human|live)\s+(?:help|agent|support)\b/u',
+            '/\bi\s+want\s+to\s+(?:complain|report\s+a\s+problem)\b/u',
+        ))) {
+            return array('action' => 'handoff', 'args' => array('message' => $raw));
+        }
+
+        // Only discount codes. "show sale items" and "cheapest today" already
+        // work as ordinary catalog searches, and claiming them here would take
+        // working behaviour away to hand it to a feature that may be disabled.
+        if ($this->matches($text, array(
+            '/\b(?:coupon|voucher)\b/u',
+            '/\b(?:promo|discount|offer)\s*code\b/u',
+        ))) {
+            return array('action' => 'deals', 'args' => array());
+        }
+
+        if ($this->matches($text, array(
+            '/^(?:go\s+to\s+)?check\s?out$/u',
+            '/^(?:continue|proceed)\s+to\s+check\s?out$/u',
+            '/^take\s+me\s+to\s+check\s?out$/u',
+        ))) {
+            return array('action' => 'checkout', 'args' => array());
+        }
+
+        if ($this->matches($text, array(
+            '/^(?:show|view|open|see|display|check)?\s*(?:me\s+)?(?:my\s+)?(?:cart|basket|bag)$/u',
+            '/^what(?:\x27s| is)\s+in\s+my\s+(?:cart|basket|bag)$/u',
+        ))) {
+            return array('action' => 'cart_view', 'args' => array());
+        }
+
+        // Quantity is only a quantity command when the shopper says so. "add 2
+        // belts to my cart" is an add that carries a quantity, not a change to
+        // an existing line.
+        if (preg_match('/\bquantit(?:y|ies)\b/u', $text)
+            && preg_match('/\b(\d{1,3})\b/u', $text, $number)) {
+            $reference = $this->commerce_reference($raw, $text, $context);
+            return array(
+                'action' => 'cart_quantity',
+                'args' => $this->commerce_args($reference, array('quantity' => max(0, (int) $number[1]))),
+            );
+        }
+
+        if ($this->matches($text, array(
+            '/^(?:remove|delete|drop)\b/u',
+            '/\b(?:remove|delete|drop|take\s+out)\b[^.]{0,40}\b(?:cart|basket|bag)\b/u',
+        ))) {
+            $reference = $this->commerce_reference($raw, $text, $context);
+            return array(
+                'action' => 'cart_remove',
+                'args' => $this->commerce_args($reference, array()),
+            );
+        }
+
+        // "Choose Black for the water bottle and add it to my cart" -- the verb
+        // is at the end, so an opening-word test never sees it.
+        $adds = $this->matches($text, array(
+            '/^(?:add|put|place)\b/u',
+            '/\badd\b[^.]{0,60}\b(?:to\s+)?(?:my\s+|the\s+)?(?:cart|basket|bag)\b/u',
+            '/\b(?:buy|order)\s+(?:it|this|that|these|them)\s+now\b/u',
+        ));
+
+        if ($adds) {
+            $reference = $this->commerce_reference($raw, $text, $context);
+            $extra = array('quantity' => $this->commerce_quantity($text));
+
+            $attributes = $this->commerce_attributes($raw);
+            if ($attributes !== '') {
+                $extra['attributesText'] = $attributes;
+            }
+
+            return array(
+                'action' => 'cart_add',
+                'args' => $this->commerce_args($reference, $extra),
+            );
+        }
+
+        return array();
+    }
+
+    /**
+     * Which product a commerce command acts on, or none.
+     *
+     * resolve_reference() falls back to the first product on screen when it
+     * recognises nothing, which is the right instinct for refining a result set
+     * and the wrong one for the cart: "make belt quantity 3" would have set the
+     * quantity of whatever happened to be listed first. A command that acts on
+     * the shopper's money only proceeds on a reference it actually matched.
+     *
+     * When no product on screen matches, the phrase is passed through as a
+     * query for the addon to resolve against the catalog, because the named
+     * product need not be one of the visible results at all.
+     *
+     * @param string $raw     Original message.
+     * @param string $text    Normalised message.
+     * @param array  $context Conversation context.
+     * @return array
+     */
+    private function commerce_reference($raw, $text, $context) {
+        $empty = array(
+            'productId' => 0,
+            'selectionIndex' => null,
+            'productName' => '',
+            'productQuery' => '',
+            'cartSelectionIndex' => null,
+        );
+
+        $ordinal = $this->first_ordinal_index($text);
+
+        // An ordinal in a cart command can point at a line in the cart rather
+        // than a position in the last search: "remove first product from cart"
+        // means the first thing the shopper is holding, not the first thing
+        // they last looked at. Which is meant depends on the cart, which this
+        // class does not read, so the position is reported alongside the
+        // on-screen resolution and the addon prefers whichever it can honour.
+        $empty['cartSelectionIndex'] = $ordinal;
+
+        // When the sentence says which list it is counting -- "the first
+        // product *from my cart*" -- that settles it, and the last search
+        // results must not answer for the cart. Only "from/in", never "to my
+        // cart", which is a destination for an add rather than a place to
+        // count positions in.
+        if ($ordinal !== null
+            && preg_match('/\b(?:from|in|out\s+of|inside|within)\s+(?:the\s+|my\s+)?(?:cart|basket|bag)\b/u', $text)) {
+            return $empty;
+        }
+
+        // An ordinal is otherwise unambiguous: it means a position on screen.
+        if ($ordinal !== null) {
+            $reference = $this->resolve_reference($text, $context);
+            if (!empty($reference['productId'])) {
+                return array_merge($empty, $reference);
+            }
+        }
+
+        // A name the shopper typed that matches something already on screen.
+        $names = array();
+        foreach (array('lastMultiProductNames', 'productNames', 'referenceProductNames') as $key) {
+            if (!empty($context[$key])) {
+                $names = array_values((array) $context[$key]);
+                break;
+            }
+        }
+        $ids = array();
+        foreach (array('lastMultiProductIds', 'productIds', 'referenceProductIds') as $key) {
+            if (!empty($context[$key])) {
+                $ids = array_values((array) $context[$key]);
+                break;
+            }
+        }
+
+        foreach ($names as $index => $name) {
+            $needle = $this->normalize(wp_strip_all_tags((string) $name));
+            if ($needle !== '' && strpos($text, $needle) !== false && isset($ids[$index])) {
+                return array_merge($empty, array(
+                    'productId' => absint($ids[$index]),
+                    'selectionIndex' => $index,
+                    'productName' => wp_strip_all_tags((string) $name),
+                    'productQuery' => '',
+                ));
+            }
+        }
+
+        // Nothing on screen matches, so hand the phrase on rather than acting
+        // on a product the shopper did not name.
+        $empty['productQuery'] = $this->commerce_product_query($raw);
+
+        // "make it quantity 2" after adding something is a real reference, not
+        // a guess -- but which line it points at depends on the cart, which core
+        // does not read, so the pronoun is reported and the addon resolves it.
+        //
+        // Only when the sentence names nothing else. "Choose Black for the
+        // Tumbler and add it to my cart" carries both a name and an "it"; taking
+        // the pronoun there put the wrong product in the cart.
+        if ($empty['productQuery'] === ''
+            && preg_match('/\b(?:it|this|that|the\s+same)\b/u', $text)) {
+            $empty['referenceIsPronoun'] = true;
+        }
+
+        return $empty;
+    }
+
+    /**
+     * The product phrase inside a command, as written.
+     *
+     * @param string $raw Original message.
+     * @return string
+     */
+    private function commerce_product_query($raw) {
+        $raw = trim((string) $raw);
+
+        $patterns = array(
+            '/\bfor\s+(.+?)\s+and\s+(?:add|put|place)\b/iu',
+            '/^(?:add|put|place)\s+(?:\d{1,3}\s+)?(.+?)\s+(?:to|into)\s+(?:my\s+|the\s+)?(?:cart|basket|bag)\b/iu',
+            '/^(?:make|set|change|update)\s+(.+?)\s+quantit(?:y|ies)\b/iu',
+            '/^(?:remove|delete|drop)\s+(?:the\s+)?(.+?)(?:\s+from\s+.*)?$/iu',
+        );
+
+        foreach ($patterns as $pattern) {
+            if (preg_match($pattern, $raw, $matches)) {
+                $phrase = trim($matches[1]);
+                // Strip a leading quantity and trailing filler the verb leaves behind.
+                $phrase = preg_replace('/^\d{1,3}\s+/u', '', $phrase);
+                $phrase = preg_replace('/\b(?:it|this|that|them|these|product|item)$/iu', '', $phrase);
+                $phrase = trim($phrase, " \t\n\r\0\x0B-,");
+                if ($phrase !== '' && !preg_match('/^(?:it|this|that|them|these)$/iu', $phrase)) {
+                    return $phrase;
+                }
+            }
+        }
+
+        return '';
+    }
+
+    /**
+     * @param array $reference Output of resolve_reference().
+     * @param array $extra     Action-specific arguments.
+     * @return array
+     */
+    private function commerce_args($reference, $extra) {
+        $args = array(
+            'productId' => !empty($reference['productId']) ? absint($reference['productId']) : 0,
+            'productName' => isset($reference['productName']) ? (string) $reference['productName'] : '',
+            'productQuery' => isset($reference['productQuery']) ? (string) $reference['productQuery'] : '',
+            'referenceIsPronoun' => !empty($reference['referenceIsPronoun']),
+            'selectionIndex' => isset($reference['selectionIndex']) ? $reference['selectionIndex'] : null,
+            'cartSelectionIndex' => isset($reference['cartSelectionIndex']) ? $reference['cartSelectionIndex'] : null,
+        );
+
+        return array_merge($args, $extra);
+    }
+
+    /**
+     * How many, when an add says so. Defaults to one.
+     *
+     * @param string $text Normalised message.
+     * @return int
+     */
+    private function commerce_quantity($text) {
+        if (preg_match('/\b(\d{1,3})\s*(?:x|pcs?|pieces?|units?)\b/u', $text, $m)) {
+            return max(1, (int) $m[1]);
+        }
+        if (preg_match('/^(?:add|put|place)\s+(\d{1,3})\b/u', $text, $m)) {
+            return max(1, (int) $m[1]);
+        }
+
+        return 1;
+    }
+
+    /**
+     * The attribute choice as the shopper wrote it.
+     *
+     * Kept as text on purpose: "Logo Yes" is only a name/value pair against a
+     * product that has an attribute called Logo, and this side of the boundary
+     * does not read the catalog.
+     *
+     * @param string $raw Original message, for its capitalisation.
+     * @return string
+     */
+    private function commerce_attributes($raw) {
+        $raw = (string) $raw;
+
+        if (preg_match('/\bchoose\s+(.+?)\s+for\s+/iu', $raw, $m)) {
+            return trim($m[1]);
+        }
+        if (preg_match('/\bin\s+((?:[a-z]+\s*,\s*)*[a-z]+)\s+(?:size|colou?r)\b/iu', $raw, $m)) {
+            return trim($m[1]);
+        }
+
+        return '';
     }
 
     private function all_ordinal_indices($text) {

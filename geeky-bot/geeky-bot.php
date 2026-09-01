@@ -3,7 +3,7 @@
  * Plugin Name: Geeky Bot
  * Plugin URI: https://geekybot.com/
  * Description: AI Sales Assistant for WooCommerce. Helps shoppers find products, understand options, and move toward purchase from a lightweight storefront widget.
- * Version: 2.0.1
+ * Version: 2.0.2
  * Author: Geeky Bot
  * Author URI: https://geekybot.com/
  * Text Domain: geeky-bot
@@ -18,8 +18,8 @@ if (!defined('ABSPATH')) {
     exit;
 }
 
-define('GEEKYBOT_VERSION', '2.0.1');
-define('GEEKYBOT_DB_VERSION', '2.0.0');
+define('GEEKYBOT_VERSION', '2.0.2');
+define('GEEKYBOT_DB_VERSION', '2.0.3');
 define('GEEKYBOT_FILE', __FILE__);
 define('GEEKYBOT_PATH', plugin_dir_path(__FILE__));
 define('GEEKYBOT_URL', plugin_dir_url(__FILE__));
@@ -30,6 +30,9 @@ require_once GEEKYBOT_PATH . 'includes/Services/Settings.php';
 require_once GEEKYBOT_PATH . 'includes/Services/ShopperOutputService.php';
 require_once GEEKYBOT_PATH . 'includes/Services/Installer.php';
 require_once GEEKYBOT_PATH . 'includes/Services/DatabaseMigrator.php';
+require_once GEEKYBOT_PATH . 'includes/Services/HealthService.php';
+require_once GEEKYBOT_PATH . 'includes/Services/StemmerService.php';
+require_once GEEKYBOT_PATH . 'includes/Services/FamilyVocabularyService.php';
 require_once GEEKYBOT_PATH . 'includes/Services/OnboardingService.php';
 require_once GEEKYBOT_PATH . 'includes/Services/GuidedDemoService.php';
 require_once GEEKYBOT_PATH . 'includes/Services/LicenseVault.php';
@@ -39,6 +42,7 @@ require_once GEEKYBOT_PATH . 'includes/Services/CatalogVisibilityService.php';
 require_once GEEKYBOT_PATH . 'includes/Services/CatalogAvailabilityService.php';
 require_once GEEKYBOT_PATH . 'includes/Services/NamedProductResolver.php';
 require_once GEEKYBOT_PATH . 'includes/Services/ProductDiscoveryIntentService.php';
+require_once GEEKYBOT_PATH . 'includes/Services/UnsupportedIntentService.php';
 require_once GEEKYBOT_PATH . 'includes/Search/BuyerIntentLibrary.php';
 require_once GEEKYBOT_PATH . 'includes/Search/ShoppingCommandResolver.php';
 require_once GEEKYBOT_PATH . 'includes/Search/SearchContextService.php';
@@ -64,6 +68,7 @@ require_once GEEKYBOT_PATH . 'includes/Services/ChatService.php';
 require_once GEEKYBOT_PATH . 'includes/Services/PrivacyService.php';
 require_once GEEKYBOT_PATH . 'includes/Services/AnalyticsEventService.php';
 require_once GEEKYBOT_PATH . 'includes/Services/ConversationInsightsService.php';
+require_once GEEKYBOT_PATH . 'includes/Admin/Components.php';
 require_once GEEKYBOT_PATH . 'includes/Admin/Menu.php';
 require_once GEEKYBOT_PATH . 'includes/Frontend/Widget.php';
 require_once GEEKYBOT_PATH . 'includes/REST/Api.php';

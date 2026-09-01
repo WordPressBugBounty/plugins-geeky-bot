@@ -1,0 +1,2821 @@
+/**
+ * Geeky Bot admin design system — 2.0.2
+ *
+ * Namespace: everything is prefixed `gb2-` and scoped under `.gb2`.
+ * This is deliberate. The legacy `assets/css/admin.css` carries 322 `!important`
+ * declarations across six generations of page-specific styling. Because no
+ * selector in that file targets a `gb2-` class, the two stylesheets cannot
+ * collide, and pages can migrate one at a time without a cascade fight.
+ *
+ * Rules for anything added to this file:
+ *   1. No `!important`. Ever. If you need it, the selector is wrong.
+ *   2. No raw hex values in components — use the tokens below.
+ *   3. Type sizes come from the 7-step scale. Radii from the 3-step set.
+ *   4. Three breakpoints only: 782px (WordPress's own), 1100px, 1400px.
+ *
+ * @package GeekyBot
+ * @since 2.0.2
+ */
+
+/* ==========================================================================
+   1. Tokens
+   ========================================================================== */
+
+/* Declared on :root, not on a wrapper class, so any `gb2-` component works the
+   moment it is rendered — no page needs a wrapper added first. That matters
+   while ten pages migrate one at a time. The `--gb2-` prefix keeps this clear
+   of the legacy `--gb-admin-*` / `--gb-cockpit-*` tokens in admin.css. */
+:root {
+	/* Surfaces — neutrals biased slightly cool so they read as chosen,
+	   and sit correctly beside WordPress's own #f0f0f1 admin ground. */
+	--gb2-canvas: #f4f5f8;
+	--gb2-surface: #ffffff;
+	--gb2-surface-2: #fafbfc;
+	--gb2-line: #e2e4ea;
+	--gb2-line-soft: #eef0f4;
+
+	/* Ink */
+	--gb2-ink: #14161c;
+	--gb2-mute: #5c6273;
+	--gb2-faint: #8b90a0;
+
+	/* Brand — one accent, spent on the primary action only. */
+	--gb2-accent: #5b3df5;
+	--gb2-accent-hover: #4a2fd6;
+	--gb2-accent-soft: #f0edff;
+
+	/* State — semantic only. These never decorate. */
+	--gb2-ok: #127a4b;
+	--gb2-ok-soft: #e6f5ed;
+	--gb2-warn: #a35c00;
+	--gb2-warn-soft: #fdf3e3;
+	--gb2-crit: #b42318;
+	--gb2-crit-soft: #fdeceb;
+
+	/* Radii — three, no more. */
+	--gb2-r-sm: 6px;
+	--gb2-r-md: 10px;
+	--gb2-r-full: 999px;
+
+	/* Elevation */
+	--gb2-sh-xs: 0 1px 2px rgba(20, 22, 28, .06);
+	--gb2-sh-sm: 0 1px 3px rgba(20, 22, 28, .08), 0 1px 2px rgba(20, 22, 28, .04);
+
+	/* Type scale — 7 sizes. The 2.0.1 sheet shipped 68. */
+	--gb2-t-xs: 11px;
+	--gb2-t-sm: 12px;
+	--gb2-t-md: 13px;
+	--gb2-t-lg: 16px;
+	--gb2-t-xl: 20px;
+	--gb2-t-2xl: 26px;
+	--gb2-t-num: 22px;
+
+	/* Space */
+	--gb2-s1: 4px;
+	--gb2-s2: 8px;
+	--gb2-s3: 12px;
+	--gb2-s4: 16px;
+	--gb2-s5: 24px;
+	--gb2-s6: 32px;
+
+	--gb2-mono: ui-monospace, SFMono-Regular, "SF Mono", Consolas, "Liberation Mono", monospace;
+
+	/* Offset used by the sticky header; WordPress's admin bar is 32px. */
+	--gb2-adminbar: 32px;
+}
+
+/* Opt-in dark palette.
+   Not wired to prefers-color-scheme on purpose: WordPress's own admin chrome
+   stays light, so auto-switching would render a dark panel inside a light
+   screen. Add `data-gb2-theme="dark"` to <html> or any ancestor to enable. */
+[data-gb2-theme="dark"] {
+	--gb2-canvas: #0e1015;
+	--gb2-surface: #171a21;
+	--gb2-surface-2: #1c1f28;
+	--gb2-line: #262a33;
+	--gb2-line-soft: #21242d;
+	--gb2-ink: #e7e9ee;
+	--gb2-mute: #a2a8b8;
+	--gb2-faint: #757b8b;
+	--gb2-accent: #8b74ff;
+	--gb2-accent-hover: #9d8aff;
+	--gb2-accent-soft: #221d3d;
+	--gb2-ok: #3ecf8e;
+	--gb2-ok-soft: #12271d;
+	--gb2-warn: #f0b429;
+	--gb2-warn-soft: #2a2113;
+	--gb2-crit: #ff6b6b;
+	--gb2-crit-soft: #2d1717;
+	--gb2-sh-xs: 0 1px 2px rgba(0, 0, 0, .3);
+	--gb2-sh-sm: 0 1px 3px rgba(0, 0, 0, .4), 0 1px 2px rgba(0, 0, 0, .3);
+}
+
+/* ==========================================================================
+   2. Wrapper
+   ========================================================================== */
+
+/* Optional wrapper. Components do not require it — it only sets the base type
+   and a border-box default for anything nested inside a migrated page. */
+.gb2 {
+	color: var(--gb2-ink);
+	font-size: var(--gb2-t-md);
+	line-height: 1.5;
+}
+
+.gb2 *,
+.gb2 *::before,
+.gb2 *::after {
+	box-sizing: border-box;
+}
+
+[class*="gb2-"],
+[class*="gb2-"] *,
+[class*="gb2-"] *::before,
+[class*="gb2-"] *::after {
+	box-sizing: border-box;
+}
+
+[class*="gb2-"] :focus-visible {
+	outline: 2px solid var(--gb2-accent);
+	outline-offset: 2px;
+	border-radius: var(--gb2-r-sm);
+}
+
+/* ==========================================================================
+   3. Page header — replaces the 470px `gb-unified-hero`
+   ========================================================================== */
+
+.gb2-header {
+	position: sticky;
+	top: var(--gb2-adminbar);
+	z-index: 20;
+	display: flex;
+	align-items: center;
+	gap: var(--gb2-s4);
+	padding: 14px 20px;
+	/* Cancels WordPress's own `.wrap { margin: 10px 20px 0 2px; }` so the bar
+	   runs edge to edge inside #wpbody-content and reads as page chrome. */
+	margin: -10px -20px 0 -2px;
+	background: var(--gb2-surface);
+	/* A faint wash toward the brand hue on the left. Enough to make the bar read
+	   as product chrome rather than another white card, without becoming the
+	   gradient hero this replaced. */
+	background-image: linear-gradient(100deg, var(--gb2-accent-soft) 0%, transparent 38%);
+	border-bottom: 1px solid var(--gb2-line);
+	box-shadow: var(--gb2-sh-xs);
+}
+
+/* The GeekyBot mark, in a tile that keeps its gradient legible on any ground.
+   Present on every screen: this is the product's identity, and the nine pages
+   that lacked it read as if they belonged to something else. */
+.gb2-header__brand {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	flex: none;
+	width: 40px;
+	height: 40px;
+	background: var(--gb2-surface);
+	border: 1px solid var(--gb2-line);
+	border-radius: var(--gb2-r-md);
+	box-shadow: var(--gb2-sh-xs);
+}
+
+.gb2-header__brand svg {
+	width: 30px;
+	height: 30px;
+	display: block;
+}
+
+/* Product name above the page title, so every screen says what it belongs to. */
+.gb2-header__product {
+	display: block;
+	margin-bottom: 1px;
+	font-size: 10.5px;
+	font-weight: 700;
+	letter-spacing: .1em;
+	text-transform: uppercase;
+	color: var(--gb2-accent);
+}
+
+.gb2-header__text {
+	min-width: 0;
+}
+
+.gb2-header__title {
+	margin: 0;
+	padding: 0;
+	font-size: 22px;
+	font-weight: 650;
+	line-height: 1.2;
+	letter-spacing: -.015em;
+	color: var(--gb2-ink);
+}
+
+.gb2-header__desc {
+	margin: 2px 0 0;
+	font-size: var(--gb2-t-sm);
+	line-height: 1.45;
+	color: var(--gb2-mute);
+}
+
+/* Compact fact row. Carries the signals the old hero showed as large chips. */
+.gb2-header__signals {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	gap: 4px 14px;
+	margin: 5px 0 0;
+	padding: 0;
+	list-style: none;
+}
+
+.gb2-header__signals li {
+	display: inline-flex;
+	align-items: baseline;
+	gap: 5px;
+	font-size: var(--gb2-t-xs);
+	color: var(--gb2-faint);
+}
+
+.gb2-header__signals b {
+	font-weight: 600;
+	font-size: var(--gb2-t-sm);
+	color: var(--gb2-ink);
+	font-variant-numeric: tabular-nums;
+}
+
+.gb2-header__actions {
+	display: flex;
+	align-items: center;
+	gap: var(--gb2-s2);
+	flex: none;
+	margin-left: auto;
+}
+
+@media (max-width: 1100px) {
+	.gb2-header {
+		flex-wrap: wrap;
+	}
+
+	.gb2-header__actions {
+		width: 100%;
+		margin-left: 0;
+	}
+}
+
+@media (max-width: 782px) {
+	/* WordPress's admin bar stops being fixed below 782px, so sticky offset
+	   would leave a gap. Fall back to a normal static header. */
+	.gb2-header {
+		position: static;
+		margin: -10px -12px 0 -2px;
+		padding: 12px;
+	}
+
+	.gb2-header__title {
+		font-size: var(--gb2-t-lg);
+	}
+}
+
+/* ==========================================================================
+   4. Buttons
+   ========================================================================== */
+
+.gb2-btn {
+	display: inline-flex;
+	align-items: center;
+	gap: 6px;
+	padding: 6px 12px;
+	font-family: inherit;
+	font-size: var(--gb2-t-sm);
+	font-weight: 500;
+	line-height: 1.5;
+	white-space: nowrap;
+	text-decoration: none;
+	cursor: pointer;
+	color: var(--gb2-ink);
+	background: var(--gb2-surface);
+	border: 1px solid var(--gb2-line);
+	border-radius: var(--gb2-r-sm);
+	box-shadow: var(--gb2-sh-xs);
+	transition: background-color .12s ease, border-color .12s ease;
+}
+
+.gb2-btn:hover,
+.gb2-btn:focus {
+	background: var(--gb2-surface-2);
+	color: var(--gb2-ink);
+	border-color: #d3d6de;
+}
+
+.gb2-btn--primary {
+	color: #fff;
+	background: var(--gb2-accent);
+	border-color: var(--gb2-accent);
+}
+
+.gb2-btn--primary:hover,
+.gb2-btn--primary:focus {
+	color: #fff;
+	background: var(--gb2-accent-hover);
+	border-color: var(--gb2-accent-hover);
+}
+
+.gb2-btn--ghost {
+	background: transparent;
+	border-color: transparent;
+	box-shadow: none;
+	color: var(--gb2-mute);
+}
+
+.gb2-btn--ghost:hover,
+.gb2-btn--ghost:focus {
+	background: var(--gb2-line-soft);
+	color: var(--gb2-ink);
+}
+
+/* ==========================================================================
+   5. Pills
+   ========================================================================== */
+
+.gb2-pill {
+	display: inline-flex;
+	align-items: center;
+	gap: 5px;
+	padding: 2px 8px;
+	font-size: var(--gb2-t-xs);
+	font-weight: 600;
+	line-height: 1.6;
+	white-space: nowrap;
+	border-radius: var(--gb2-r-full);
+	background: var(--gb2-line-soft);
+	color: var(--gb2-mute);
+}
+
+.gb2-pill__dot {
+	width: 6px;
+	height: 6px;
+	flex: none;
+	border-radius: 50%;
+	background: currentColor;
+}
+
+.gb2-pill--ok {
+	background: var(--gb2-ok-soft);
+	color: var(--gb2-ok);
+}
+
+.gb2-pill--warn {
+	background: var(--gb2-warn-soft);
+	color: var(--gb2-warn);
+}
+
+.gb2-pill--crit {
+	background: var(--gb2-crit-soft);
+	color: var(--gb2-crit);
+}
+
+/* ==========================================================================
+   6. Layout — 12 column grid
+   ========================================================================== */
+
+.gb2-main {
+	padding: var(--gb2-s5) 0 var(--gb2-s5);
+}
+
+.gb2-grid {
+	display: grid;
+	grid-template-columns: repeat(12, 1fr);
+	gap: 14px;
+}
+
+.gb2-grid + .gb2-grid {
+	margin-top: 14px;
+}
+
+/* A direct child with no gb2-col-* class would otherwise occupy a single
+   column of twelve and collapse to an unreadable sliver. Default it to half
+   width so a forgotten span class is a layout imperfection, not a broken page. */
+.gb2-grid > *:not([class*="gb2-col-"]) {
+	grid-column: span 6;
+	min-width: 0;
+}
+
+/* Cards sitting alone in a column stretch to the tallest card in their row,
+   so a description that wraps to two lines cannot leave its neighbours short.
+   Scoped to :only-child so stacked cards in one column keep their own height. */
+.gb2-grid > [class*="gb2-col-"] {
+	display: flex;
+	flex-direction: column;
+	min-width: 0;
+}
+
+.gb2-grid > [class*="gb2-col-"] > .gb2-card:only-child {
+	flex: 1;
+}
+
+.gb2-col-3 { grid-column: span 3; }
+.gb2-col-4 { grid-column: span 4; }
+.gb2-col-5 { grid-column: span 5; }
+.gb2-col-6 { grid-column: span 6; }
+.gb2-col-7 { grid-column: span 7; }
+.gb2-col-8 { grid-column: span 8; }
+.gb2-col-12 { grid-column: span 12; }
+
+@media (max-width: 1100px) {
+	.gb2-col-3,
+	.gb2-col-4,
+	.gb2-col-5 {
+		grid-column: span 6;
+	}
+
+	.gb2-col-7,
+	.gb2-col-8 {
+		grid-column: span 12;
+	}
+}
+
+@media (max-width: 782px) {
+	.gb2-grid > [class*="gb2-col-"] {
+		grid-column: span 12;
+	}
+}
+
+/* Labelled band divider — gives a long page a reading order. */
+.gb2-rule {
+	display: flex;
+	align-items: center;
+	gap: var(--gb2-s3);
+	margin: var(--gb2-s5) 0 var(--gb2-s3);
+}
+
+.gb2-rule b {
+	flex: none;
+	font-size: var(--gb2-t-xs);
+	font-weight: 600;
+	letter-spacing: .1em;
+	text-transform: uppercase;
+	color: var(--gb2-faint);
+}
+
+.gb2-rule::after {
+	content: "";
+	flex: 1;
+	height: 1px;
+	background: var(--gb2-line);
+}
+
+/* ==========================================================================
+   7. Card
+   ========================================================================== */
+
+.gb2-card {
+	display: flex;
+	flex-direction: column;
+	background: var(--gb2-surface);
+	border: 1px solid var(--gb2-line);
+	border-radius: var(--gb2-r-md);
+	box-shadow: var(--gb2-sh-xs);
+}
+
+.gb2-card__head {
+	display: flex;
+	align-items: center;
+	gap: var(--gb2-s3);
+	padding: var(--gb2-s3) var(--gb2-s4);
+	border-bottom: 1px solid var(--gb2-line-soft);
+}
+
+.gb2-card__head h2 {
+	margin: 0;
+	padding: 0;
+	font-size: 13.5px;
+	font-weight: 600;
+	line-height: 1.4;
+	color: var(--gb2-ink);
+}
+
+.gb2-card__meta {
+	flex: none;
+	margin-left: auto;
+	font-size: var(--gb2-t-sm);
+	color: var(--gb2-faint);
+}
+
+.gb2-card__body {
+	padding: 14px var(--gb2-s4);
+}
+
+.gb2-card__body--flush {
+	padding: 0;
+}
+
+/* ==========================================================================
+   8. Metric strip
+   ========================================================================== */
+
+.gb2-metrics {
+	display: flex;
+	flex-wrap: wrap;
+	overflow: hidden;
+	background: var(--gb2-surface);
+	border: 1px solid var(--gb2-line);
+	border-radius: var(--gb2-r-md);
+	box-shadow: var(--gb2-sh-xs);
+}
+
+.gb2-metric {
+	flex: 1 1 160px;
+	min-width: 0;
+	padding: var(--gb2-s3) var(--gb2-s4);
+	border-right: 1px solid var(--gb2-line-soft);
+}
+
+.gb2-metric:last-child {
+	border-right: 0;
+}
+
+.gb2-metric__label {
+	display: block;
+	margin-bottom: 3px;
+	font-size: 11.5px;
+	color: var(--gb2-mute);
+}
+
+.gb2-metric__value {
+	display: flex;
+	align-items: baseline;
+	gap: 7px;
+	font-size: var(--gb2-t-num);
+	font-weight: 600;
+	line-height: 1.2;
+	letter-spacing: -.02em;
+	color: var(--gb2-ink);
+	font-variant-numeric: tabular-nums;
+}
+
+.gb2-metric__delta {
+	font-size: 11.5px;
+	font-weight: 600;
+	font-style: normal;
+}
+
+.gb2-metric__delta--up { color: var(--gb2-ok); }
+.gb2-metric__delta--down { color: var(--gb2-crit); }
+
+.gb2-metric__base {
+	display: block;
+	margin-top: var(--gb2-s1);
+	font-size: var(--gb2-t-xs);
+	color: var(--gb2-faint);
+}
+
+/* ==========================================================================
+   9. Task rows
+   ========================================================================== */
+
+.gb2-tasks {
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+
+.gb2-task {
+	display: flex;
+	align-items: flex-start;
+	gap: var(--gb2-s3);
+	padding: var(--gb2-s3) var(--gb2-s4);
+	border-bottom: 1px solid var(--gb2-line-soft);
+}
+
+.gb2-task:last-child {
+	border-bottom: 0;
+}
+
+.gb2-task__sev {
+	flex: none;
+	align-self: stretch;
+	width: 3px;
+	margin: 1px 0;
+	border-radius: 2px;
+	background: #c9ccd4;
+}
+
+.gb2-task__sev--high { background: var(--gb2-warn); }
+.gb2-task__sev--done { background: var(--gb2-ok); }
+.gb2-task__sev--critical { background: var(--gb2-crit); }
+
+.gb2-task__text {
+	flex: 1;
+	min-width: 0;
+}
+
+.gb2-task__text strong {
+	display: block;
+	margin-bottom: 2px;
+	font-size: var(--gb2-t-md);
+	font-weight: 600;
+}
+
+.gb2-task__text span {
+	display: block;
+	font-size: var(--gb2-t-sm);
+	line-height: 1.45;
+	color: var(--gb2-mute);
+}
+
+.gb2-task__action {
+	flex: none;
+	align-self: center;
+}
+
+/* ==========================================================================
+   10. Table
+   ========================================================================== */
+
+.gb2-table {
+	width: 100%;
+	border-collapse: collapse;
+	font-size: var(--gb2-t-sm);
+}
+
+.gb2-table th {
+	padding: var(--gb2-s2) var(--gb2-s4);
+	font-size: var(--gb2-t-xs);
+	font-weight: 600;
+	letter-spacing: .05em;
+	text-transform: uppercase;
+	text-align: left;
+	color: var(--gb2-faint);
+	background: var(--gb2-surface-2);
+	border-bottom: 1px solid var(--gb2-line-soft);
+}
+
+.gb2-table td {
+	padding: 9px var(--gb2-s4);
+	color: var(--gb2-ink);
+	border-bottom: 1px solid var(--gb2-line-soft);
+}
+
+.gb2-table tr:last-child td {
+	border-bottom: 0;
+}
+
+.gb2-table__num {
+	text-align: right;
+	font-weight: 600;
+	font-variant-numeric: tabular-nums;
+}
+
+.gb2-table code {
+	padding: 0;
+	font-family: var(--gb2-mono);
+	font-size: 11.5px;
+	color: var(--gb2-mute);
+	background: none;
+}
+
+.gb2-scroll {
+	overflow-x: auto;
+}
+
+/* ==========================================================================
+   11. Forms
+   ========================================================================== */
+
+.gb2-field {
+	margin-bottom: 14px;
+}
+
+.gb2-field:last-child {
+	margin-bottom: 0;
+}
+
+.gb2-field > label {
+	display: block;
+	margin-bottom: 5px;
+	font-size: var(--gb2-t-sm);
+	font-weight: 600;
+	color: var(--gb2-ink);
+}
+
+.gb2-field__help {
+	margin: 5px 0 0;
+	font-size: 11.5px;
+	line-height: 1.45;
+	color: var(--gb2-faint);
+}
+
+.gb2-input {
+	width: 100%;
+	padding: 7px 10px;
+	font-family: inherit;
+	font-size: var(--gb2-t-md);
+	line-height: 1.5;
+	color: var(--gb2-ink);
+	background: var(--gb2-surface);
+	border: 1px solid #d3d6de;
+	border-radius: var(--gb2-r-sm);
+}
+
+.gb2-input:focus {
+	border-color: var(--gb2-accent);
+	box-shadow: 0 0 0 1px var(--gb2-accent);
+	outline: none;
+}
+
+.gb2-input--mono {
+	font-family: var(--gb2-mono);
+	font-size: 11.5px;
+	line-height: 1.6;
+}
+
+.gb2-field-row {
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	gap: 14px;
+}
+
+@media (max-width: 782px) {
+	.gb2-field-row {
+		grid-template-columns: 1fr;
+	}
+}
+
+.gb2-switch-row {
+	display: flex;
+	align-items: flex-start;
+	gap: var(--gb2-s3);
+	padding: 11px 0;
+	border-bottom: 1px solid var(--gb2-line-soft);
+}
+
+.gb2-switch-row:last-child {
+	border-bottom: 0;
+}
+
+.gb2-switch-row__text strong {
+	display: block;
+	margin-bottom: 1px;
+	font-size: var(--gb2-t-sm);
+	font-weight: 600;
+}
+
+.gb2-switch-row__text span {
+	font-size: 11.5px;
+	color: var(--gb2-mute);
+}
+
+/* ==========================================================================
+   11b. Setup guide — shown only while setup is incomplete
+   ========================================================================== */
+
+.gb2-setup {
+	margin-bottom: var(--gb2-s4);
+	background: var(--gb2-surface);
+	border: 1px solid var(--gb2-line);
+	border-radius: var(--gb2-r-md);
+	box-shadow: var(--gb2-sh-sm);
+	/* The one place the accent is spent structurally: this panel outranks
+	   everything else on the page while it is visible. */
+	border-top: 3px solid var(--gb2-accent);
+	overflow: hidden;
+}
+
+.gb2-setup__head {
+	display: flex;
+	align-items: flex-start;
+	gap: var(--gb2-s4);
+	padding: var(--gb2-s4);
+	background: var(--gb2-accent-soft);
+	border-bottom: 1px solid var(--gb2-line);
+}
+
+.gb2-setup__head h2 {
+	margin: 0 0 3px;
+	padding: 0;
+	font-size: var(--gb2-t-lg);
+	font-weight: 600;
+	line-height: 1.3;
+	color: var(--gb2-ink);
+}
+
+.gb2-setup__head p {
+	max-width: 70ch;
+	margin: 0;
+	font-size: var(--gb2-t-sm);
+	line-height: 1.5;
+	color: var(--gb2-mute);
+}
+
+.gb2-setup__count {
+	flex: none;
+	margin-left: auto;
+	padding: 3px 10px;
+	font-size: var(--gb2-t-xs);
+	font-weight: 600;
+	color: var(--gb2-accent);
+	white-space: nowrap;
+	background: var(--gb2-surface);
+	border: 1px solid var(--gb2-line);
+	border-radius: var(--gb2-r-full);
+	font-variant-numeric: tabular-nums;
+}
+
+.gb2-setup__steps {
+	margin: 0;
+	padding: 0;
+	list-style: none;
+	counter-reset: none;
+}
+
+.gb2-setup__step {
+	display: flex;
+	align-items: flex-start;
+	gap: var(--gb2-s3);
+	padding: var(--gb2-s3) var(--gb2-s4);
+	border-bottom: 1px solid var(--gb2-line-soft);
+}
+
+.gb2-setup__step:last-child {
+	border-bottom: 0;
+}
+
+.gb2-setup__marker {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	flex: none;
+	width: 22px;
+	height: 22px;
+	margin-top: 1px;
+	font-size: var(--gb2-t-xs);
+	font-weight: 700;
+	border-radius: 50%;
+	font-variant-numeric: tabular-nums;
+}
+
+.gb2-setup__body {
+	flex: 1;
+	min-width: 0;
+}
+
+.gb2-setup__body h3 {
+	display: flex;
+	align-items: center;
+	flex-wrap: wrap;
+	gap: var(--gb2-s2);
+	margin: 0 0 2px;
+	padding: 0;
+	font-size: var(--gb2-t-md);
+	font-weight: 600;
+	line-height: 1.4;
+	color: var(--gb2-ink);
+}
+
+.gb2-setup__body p {
+	max-width: 76ch;
+	margin: 0;
+	font-size: var(--gb2-t-sm);
+	line-height: 1.5;
+	color: var(--gb2-mute);
+}
+
+.gb2-setup__now {
+	padding: 1px 7px;
+	font-size: 10px;
+	font-style: normal;
+	font-weight: 700;
+	letter-spacing: .06em;
+	text-transform: uppercase;
+	color: #fff;
+	background: var(--gb2-accent);
+	border-radius: var(--gb2-r-full);
+}
+
+.gb2-setup__risk {
+	margin-top: 3px;
+	font-size: 11.5px;
+	color: var(--gb2-warn);
+}
+
+.gb2-setup__action {
+	flex: none;
+	align-self: center;
+}
+
+/* Step states */
+.gb2-setup__step--done .gb2-setup__marker {
+	color: var(--gb2-ok);
+	background: var(--gb2-ok-soft);
+}
+
+.gb2-setup__step--done .gb2-setup__body h3 {
+	font-weight: 500;
+	color: var(--gb2-mute);
+}
+
+.gb2-setup__step--current {
+	background: var(--gb2-surface-2);
+	box-shadow: inset 3px 0 0 var(--gb2-accent);
+}
+
+.gb2-setup__step--current .gb2-setup__marker {
+	color: #fff;
+	background: var(--gb2-accent);
+}
+
+.gb2-setup__step--todo .gb2-setup__marker {
+	color: var(--gb2-faint);
+	background: var(--gb2-line-soft);
+}
+
+.gb2-setup__step--todo .gb2-setup__body h3,
+.gb2-setup__step--todo .gb2-setup__body p {
+	color: var(--gb2-faint);
+}
+
+@media (max-width: 782px) {
+	.gb2-setup__head {
+		flex-wrap: wrap;
+	}
+
+	.gb2-setup__count {
+		margin-left: 0;
+	}
+
+	.gb2-setup__step {
+		flex-wrap: wrap;
+	}
+
+	.gb2-setup__action {
+		width: 100%;
+		padding-left: 34px;
+	}
+}
+
+/* ==========================================================================
+   11d. Tabs, toolbar, transcript, pagination
+   ========================================================================== */
+
+.gb2-tabs {
+	display: flex;
+	gap: 2px;
+	margin: var(--gb2-s4) 0 var(--gb2-s3);
+	border-bottom: 1px solid var(--gb2-line);
+}
+
+.gb2-tabs a {
+	display: inline-flex;
+	align-items: center;
+	gap: 7px;
+	padding: 9px 12px;
+	margin-bottom: -1px;
+	font-size: var(--gb2-t-sm);
+	color: var(--gb2-mute);
+	text-decoration: none;
+	border-bottom: 2px solid transparent;
+}
+
+.gb2-tabs a:hover {
+	color: var(--gb2-ink);
+}
+
+.gb2-tabs a.is-active {
+	font-weight: 600;
+	color: var(--gb2-ink);
+	border-bottom-color: var(--gb2-accent);
+}
+
+.gb2-tabs b {
+	padding: 1px 7px;
+	font-size: var(--gb2-t-xs);
+	font-weight: 600;
+	color: var(--gb2-mute);
+	background: var(--gb2-line-soft);
+	border-radius: var(--gb2-r-full);
+	font-variant-numeric: tabular-nums;
+}
+
+.gb2-tabs__count--warn {
+	color: var(--gb2-warn);
+	background: var(--gb2-warn-soft);
+}
+
+.gb2-toolbar {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	gap: var(--gb2-s3);
+	margin-bottom: var(--gb2-s3);
+	padding: 10px 12px;
+	background: var(--gb2-surface);
+	border: 1px solid var(--gb2-line);
+	border-radius: var(--gb2-r-md);
+	box-shadow: var(--gb2-sh-xs);
+}
+
+.gb2-toolbar__search {
+	display: flex;
+	align-items: center;
+	gap: var(--gb2-s2);
+	flex: 1;
+	min-width: 240px;
+}
+
+.gb2-toolbar__search label {
+	flex: 1;
+	min-width: 0;
+}
+
+.gb2-toolbar__actions {
+	display: flex;
+	align-items: center;
+	gap: var(--gb2-s2);
+	flex-wrap: wrap;
+	margin-left: auto;
+}
+
+/* Destructive actions read as destructive only on hover, so the page is not
+   dominated by red while nothing has been chosen. */
+.gb2-btn--danger {
+	color: var(--gb2-crit);
+	border-color: var(--gb2-line);
+}
+
+.gb2-btn--danger:hover,
+.gb2-btn--danger:focus {
+	color: #fff;
+	background: var(--gb2-crit);
+	border-color: var(--gb2-crit);
+}
+
+.gb2-transcript {
+	display: flex;
+	flex-direction: column;
+	gap: var(--gb2-s2);
+}
+
+.gb2-msg {
+	max-width: 78%;
+	padding: 10px 12px;
+	border: 1px solid var(--gb2-line);
+	border-radius: var(--gb2-r-md);
+	background: var(--gb2-surface-2);
+}
+
+.gb2-msg--user {
+	align-self: flex-end;
+	background: var(--gb2-accent-soft);
+	border-color: transparent;
+}
+
+.gb2-msg__meta {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: baseline;
+	gap: var(--gb2-s2);
+	margin-bottom: 4px;
+	font-size: var(--gb2-t-xs);
+	color: var(--gb2-faint);
+}
+
+.gb2-msg__meta strong {
+	font-size: var(--gb2-t-xs);
+	font-weight: 600;
+	color: var(--gb2-ink);
+}
+
+.gb2-msg__meta code {
+	font-family: var(--gb2-mono);
+	font-size: 10.5px;
+	color: var(--gb2-mute);
+}
+
+.gb2-msg p {
+	margin: 0;
+	font-size: var(--gb2-t-sm);
+	line-height: 1.55;
+	color: var(--gb2-ink);
+}
+
+/* Review issue cards */
+.gb2-review {
+	display: flex;
+	align-items: flex-start;
+	gap: var(--gb2-s4);
+	padding: var(--gb2-s3) var(--gb2-s4);
+	background: var(--gb2-surface);
+	border: 1px solid var(--gb2-line);
+	border-left: 3px solid var(--gb2-line);
+	border-radius: var(--gb2-r-md);
+	box-shadow: var(--gb2-sh-xs);
+}
+
+.gb2-review--open { border-left-color: var(--gb2-warn); }
+.gb2-review--handled { border-left-color: var(--gb2-ok); }
+.gb2-review--ignored { border-left-color: #c9ccd4; }
+
+.gb2-review__main {
+	flex: 1;
+	min-width: 0;
+}
+
+.gb2-review__meta {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 4px 14px;
+	margin-bottom: var(--gb2-s2);
+}
+
+.gb2-review__meta span {
+	font-size: var(--gb2-t-xs);
+	color: var(--gb2-faint);
+}
+
+.gb2-review__actions {
+	display: flex;
+	align-items: center;
+	gap: var(--gb2-s2);
+	flex: none;
+	flex-wrap: wrap;
+}
+
+/* Overflow menu */
+.gb2-more {
+	position: relative;
+}
+
+.gb2-more > summary {
+	padding: 5px 9px;
+	font-size: var(--gb2-t-sm);
+	line-height: 1;
+	color: var(--gb2-mute);
+	list-style: none;
+	cursor: pointer;
+	border: 1px solid var(--gb2-line);
+	border-radius: var(--gb2-r-sm);
+	background: var(--gb2-surface);
+}
+
+.gb2-more > summary::-webkit-details-marker {
+	display: none;
+}
+
+.gb2-more[open] > summary {
+	background: var(--gb2-surface-2);
+	color: var(--gb2-ink);
+}
+
+.gb2-more__menu {
+	position: absolute;
+	right: 0;
+	z-index: 10;
+	display: flex;
+	flex-direction: column;
+	min-width: 180px;
+	margin-top: 4px;
+	padding: var(--gb2-s1);
+	background: var(--gb2-surface);
+	border: 1px solid var(--gb2-line);
+	border-radius: var(--gb2-r-sm);
+	box-shadow: 0 6px 18px rgba(20, 22, 28, .12);
+}
+
+.gb2-more__menu a,
+.gb2-more__menu button {
+	display: block;
+	width: 100%;
+	padding: 7px 10px;
+	font-family: inherit;
+	font-size: var(--gb2-t-sm);
+	text-align: left;
+	color: var(--gb2-ink);
+	text-decoration: none;
+	background: none;
+	border: 0;
+	border-radius: var(--gb2-r-sm);
+	cursor: pointer;
+}
+
+.gb2-more__menu a:hover,
+.gb2-more__menu button:hover {
+	background: var(--gb2-line-soft);
+}
+
+.gb2-filters {
+	gap: var(--gb2-s1);
+}
+
+.gb2-filters a {
+	padding: 5px 10px;
+	font-size: var(--gb2-t-sm);
+	color: var(--gb2-mute);
+	text-decoration: none;
+	border: 1px solid transparent;
+	border-radius: var(--gb2-r-sm);
+}
+
+.gb2-filters a:hover {
+	color: var(--gb2-ink);
+	background: var(--gb2-line-soft);
+}
+
+.gb2-filters a.is-active {
+	font-weight: 600;
+	color: var(--gb2-accent);
+	background: var(--gb2-accent-soft);
+	border-color: transparent;
+}
+
+@media (max-width: 782px) {
+	.gb2-review {
+		flex-wrap: wrap;
+	}
+}
+
+.gb2-pagination {
+	display: flex;
+	flex-wrap: wrap;
+	gap: var(--gb2-s1);
+	padding: var(--gb2-s3) var(--gb2-s4);
+	border-top: 1px solid var(--gb2-line-soft);
+}
+
+.gb2-pagination .page-numbers {
+	padding: 4px 9px;
+	font-size: var(--gb2-t-sm);
+	color: var(--gb2-mute);
+	text-decoration: none;
+	border: 1px solid var(--gb2-line);
+	border-radius: var(--gb2-r-sm);
+}
+
+.gb2-pagination .page-numbers:hover {
+	color: var(--gb2-ink);
+	background: var(--gb2-surface-2);
+}
+
+.gb2-pagination .page-numbers.current {
+	font-weight: 600;
+	color: #fff;
+	background: var(--gb2-accent);
+	border-color: var(--gb2-accent);
+}
+
+.gb2-pagination .page-numbers.dots {
+	border-color: transparent;
+}
+
+@media (max-width: 782px) {
+	.gb2-toolbar__actions {
+		margin-left: 0;
+	}
+
+	.gb2-msg {
+		max-width: 100%;
+	}
+}
+
+/* ==========================================================================
+   11c. Checkbox picker list
+   ========================================================================== */
+
+.gb2-picker {
+	display: flex;
+	flex-direction: column;
+	max-height: 420px;
+	overflow-y: auto;
+	border: 1px solid var(--gb2-line);
+	border-radius: var(--gb2-r-sm);
+}
+
+.gb2-picker__option {
+	display: flex;
+	align-items: flex-start;
+	gap: var(--gb2-s3);
+	padding: 10px 12px;
+	cursor: pointer;
+	border-bottom: 1px solid var(--gb2-line-soft);
+}
+
+.gb2-picker__option:last-child {
+	border-bottom: 0;
+}
+
+.gb2-picker__option:hover {
+	background: var(--gb2-surface-2);
+}
+
+.gb2-picker__option input {
+	flex: none;
+	margin: 2px 0 0;
+}
+
+.gb2-picker__text {
+	min-width: 0;
+}
+
+.gb2-picker__text strong {
+	display: block;
+	font-size: var(--gb2-t-sm);
+	font-weight: 600;
+	color: var(--gb2-ink);
+}
+
+.gb2-picker__text em {
+	font-size: var(--gb2-t-xs);
+	font-style: normal;
+	color: var(--gb2-faint);
+}
+
+.gb2-picker__option--suggested .gb2-picker__text strong::after {
+	content: "★";
+	margin-left: 5px;
+	font-size: 10px;
+	color: var(--gb2-accent);
+}
+
+/* ==========================================================================
+   11e. Settings field grids (label > span + control + em)
+   ========================================================================== */
+
+.gb2-sgrid {
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+	gap: 14px;
+}
+
+.gb2-sfield {
+	display: flex;
+	flex-direction: column;
+	gap: 5px;
+}
+
+.gb2-sfield--wide {
+	grid-column: 1 / -1;
+}
+
+.gb2-sfield > span {
+	font-size: var(--gb2-t-sm);
+	font-weight: 600;
+	color: var(--gb2-ink);
+}
+
+.gb2-sfield > em {
+	font-size: 11.5px;
+	font-style: normal;
+	line-height: 1.45;
+	color: var(--gb2-faint);
+}
+
+.gb2-sfield input[type="text"],
+.gb2-sfield input[type="url"],
+.gb2-sfield input[type="password"],
+.gb2-sfield input[type="number"],
+.gb2-sfield select,
+.gb2-sfield textarea {
+	width: 100%;
+	padding: 7px 10px;
+	font-family: inherit;
+	font-size: var(--gb2-t-md);
+	color: var(--gb2-ink);
+	background: var(--gb2-surface);
+	border: 1px solid #d3d6de;
+	border-radius: var(--gb2-r-sm);
+}
+
+.gb2-sfield textarea {
+	min-height: 76px;
+	resize: vertical;
+}
+
+.gb2-sfield input:focus,
+.gb2-sfield select:focus,
+.gb2-sfield textarea:focus {
+	border-color: var(--gb2-accent);
+	box-shadow: 0 0 0 1px var(--gb2-accent);
+	outline: none;
+}
+
+.gb2-sfield--color input[type="color"] {
+	width: 56px;
+	height: 32px;
+	padding: 3px;
+	border: 1px solid var(--gb2-line);
+	border-radius: var(--gb2-r-sm);
+	background: var(--gb2-surface);
+}
+
+/* Toggle rows */
+.gb2-stoggle {
+	display: flex;
+	align-items: flex-start;
+	gap: var(--gb2-s3);
+	grid-column: 1 / -1;
+	padding: 11px 12px;
+	cursor: pointer;
+	background: var(--gb2-surface-2);
+	border: 1px solid var(--gb2-line);
+	border-radius: var(--gb2-r-sm);
+}
+
+.gb2-stoggle input[type="checkbox"] {
+	flex: none;
+	margin: 2px 0 0;
+}
+
+.gb2-stoggle strong {
+	display: block;
+	font-size: var(--gb2-t-sm);
+	font-weight: 600;
+	color: var(--gb2-ink);
+}
+
+.gb2-stoggle em {
+	font-size: 11.5px;
+	font-style: normal;
+	line-height: 1.45;
+	color: var(--gb2-mute);
+}
+
+.gb2-stoggle--danger {
+	background: var(--gb2-crit-soft);
+	border-color: rgba(180, 35, 24, .2);
+}
+
+.gb2-stoggle--danger strong {
+	color: var(--gb2-crit);
+}
+
+/* Radio group for answer mode */
+.gb2-radios {
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+	gap: var(--gb2-s2);
+	margin-bottom: 14px;
+}
+
+.gb2-radio {
+	display: flex;
+	align-items: flex-start;
+	gap: var(--gb2-s2);
+	padding: 11px 12px;
+	cursor: pointer;
+	background: var(--gb2-surface);
+	border: 1px solid var(--gb2-line);
+	border-radius: var(--gb2-r-sm);
+}
+
+.gb2-radio.is-selected {
+	background: var(--gb2-accent-soft);
+	border-color: var(--gb2-accent);
+}
+
+.gb2-radio input {
+	flex: none;
+	margin: 2px 0 0;
+}
+
+.gb2-radio strong {
+	display: block;
+	font-size: var(--gb2-t-sm);
+	font-weight: 600;
+}
+
+.gb2-radio em {
+	font-size: 11.5px;
+	font-style: normal;
+	line-height: 1.45;
+	color: var(--gb2-mute);
+}
+
+/* Inline checkbox */
+.gb2-check {
+	display: flex;
+	align-items: center;
+	gap: var(--gb2-s2);
+	padding: 8px 10px;
+	font-size: var(--gb2-t-sm);
+	cursor: pointer;
+	background: var(--gb2-surface-2);
+	border: 1px solid var(--gb2-line);
+	border-radius: var(--gb2-r-sm);
+}
+
+/* Reassurance note */
+.gb2-snote {
+	margin-top: 14px;
+	padding: 10px 12px;
+	font-size: 11.5px;
+	line-height: 1.5;
+	color: var(--gb2-mute);
+	background: var(--gb2-surface-2);
+	border-left: 2px solid var(--gb2-line);
+	border-radius: 0 var(--gb2-r-sm) var(--gb2-r-sm) 0;
+}
+
+.gb2-snote strong {
+	display: block;
+	margin-bottom: 2px;
+	color: var(--gb2-ink);
+}
+
+/* Parsed-intent debug blocks */
+.gb2-debug {
+	padding: 10px 12px;
+	background: var(--gb2-surface-2);
+	border: 1px solid var(--gb2-line-soft);
+	border-radius: var(--gb2-r-sm);
+}
+
+.gb2-debug > strong {
+	display: block;
+	margin-bottom: 6px;
+	font-size: var(--gb2-t-xs);
+	font-weight: 600;
+	letter-spacing: .06em;
+	text-transform: uppercase;
+	color: var(--gb2-faint);
+}
+
+.gb2-debug__grid {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 5px 16px;
+}
+
+.gb2-debug__grid span {
+	font-size: 11.5px;
+	color: var(--gb2-ink);
+}
+
+.gb2-debug__grid b {
+	margin-right: 5px;
+	font-weight: 600;
+	color: var(--gb2-faint);
+}
+
+.gb2-debug--inline {
+	margin-top: 6px;
+	padding: 6px 8px;
+	background: none;
+	border: 0;
+}
+
+/* Selected page list */
+.gb2-pagelist {
+	margin: 0;
+	padding: 0;
+	list-style: none;
+	border: 1px solid var(--gb2-line);
+	border-radius: var(--gb2-r-sm);
+}
+
+.gb2-pagelist li {
+	display: flex;
+	align-items: baseline;
+	gap: var(--gb2-s2);
+	padding: 8px 12px;
+	font-size: var(--gb2-t-sm);
+	border-bottom: 1px solid var(--gb2-line-soft);
+}
+
+.gb2-pagelist li:last-child {
+	border-bottom: 0;
+}
+
+.gb2-pagelist em {
+	margin-left: auto;
+	font-size: var(--gb2-t-xs);
+	font-style: normal;
+	text-align: right;
+	color: var(--gb2-faint);
+}
+
+/* ==========================================================================
+   12. Chart
+   ========================================================================== */
+
+.gb2-chart__svg {
+	display: block;
+	width: 100%;
+	height: auto;
+	overflow: visible;
+}
+
+.gb2-chart__axis {
+	font-size: 9.5px;
+	fill: var(--gb2-faint);
+}
+
+.gb2-chart__legend {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	gap: var(--gb2-s2) var(--gb2-s4);
+	margin-bottom: var(--gb2-s3);
+}
+
+.gb2-chart__legend span {
+	display: inline-flex;
+	align-items: center;
+	gap: 6px;
+	font-size: 11.5px;
+	color: var(--gb2-mute);
+}
+
+.gb2-chart__key {
+	display: inline-block;
+	flex: none;
+	width: 16px;
+	height: 2px;
+	border-radius: 2px;
+	background: var(--gb2-accent);
+}
+
+.gb2-chart__key--ghost {
+	height: 0;
+	background: none;
+	border-top: 2px dashed #b9bdc8;
+}
+
+.gb2-chart__note {
+	margin-left: auto;
+	color: var(--gb2-faint);
+}
+
+/* ==========================================================================
+   13. Funnel
+   ========================================================================== */
+
+.gb2-funnel {
+	display: flex;
+	flex-direction: column;
+	gap: 2px;
+}
+
+.gb2-funnel__stage {
+	position: relative;
+	overflow: hidden;
+	padding: 9px var(--gb2-s3);
+	background: var(--gb2-surface-2);
+	border: 1px solid var(--gb2-line-soft);
+	border-radius: var(--gb2-r-sm);
+}
+
+.gb2-funnel__bar {
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	background: var(--gb2-accent);
+	opacity: .10;
+}
+
+.gb2-funnel__text {
+	position: relative;
+	display: flex;
+	align-items: baseline;
+	gap: var(--gb2-s2);
+}
+
+.gb2-funnel__label {
+	font-size: var(--gb2-t-sm);
+	font-weight: 500;
+	color: var(--gb2-ink);
+}
+
+.gb2-funnel__value {
+	flex: none;
+	margin-left: auto;
+	font-size: 14px;
+	font-weight: 600;
+	font-variant-numeric: tabular-nums;
+}
+
+.gb2-funnel__share {
+	flex: none;
+	width: 38px;
+	font-size: var(--gb2-t-xs);
+	text-align: right;
+	color: var(--gb2-faint);
+	font-variant-numeric: tabular-nums;
+}
+
+.gb2-funnel__drop {
+	margin: 0;
+	padding: 1px var(--gb2-s3);
+	font-size: 10.5px;
+	color: var(--gb2-faint);
+}
+
+/* ==========================================================================
+   13b. Attributed revenue
+   ========================================================================== */
+
+.gb2-revenue {
+	margin-top: var(--gb2-s3);
+	padding: 11px 12px;
+	background: var(--gb2-ok-soft);
+	border: 1px solid rgba(18, 122, 75, .18);
+	border-radius: var(--gb2-r-sm);
+}
+
+.gb2-revenue__label {
+	display: block;
+	font-size: var(--gb2-t-xs);
+	font-weight: 600;
+	color: var(--gb2-ok);
+}
+
+.gb2-revenue__value {
+	display: flex;
+	align-items: baseline;
+	gap: var(--gb2-s2);
+	margin-top: 2px;
+	font-size: var(--gb2-t-num);
+	font-weight: 600;
+	line-height: 1.2;
+	color: var(--gb2-ok);
+	font-variant-numeric: tabular-nums;
+}
+
+.gb2-revenue__base {
+	display: block;
+	margin-top: 3px;
+	font-size: var(--gb2-t-xs);
+	color: var(--gb2-mute);
+}
+
+/* ==========================================================================
+   14. Breakdown bars
+   ========================================================================== */
+
+.gb2-bars {
+	display: flex;
+	flex-direction: column;
+	gap: 11px;
+}
+
+.gb2-bar__top {
+	display: flex;
+	align-items: baseline;
+	gap: var(--gb2-s2);
+	margin-bottom: var(--gb2-s1);
+}
+
+.gb2-bar__label {
+	font-size: var(--gb2-t-sm);
+	color: var(--gb2-ink);
+}
+
+.gb2-bar__value {
+	margin-left: auto;
+	font-size: var(--gb2-t-sm);
+	font-weight: 600;
+	color: var(--gb2-mute);
+	font-variant-numeric: tabular-nums;
+}
+
+.gb2-bar__track {
+	height: 6px;
+	overflow: hidden;
+	background: var(--gb2-line-soft);
+	border-radius: 3px;
+}
+
+.gb2-bar__fill {
+	height: 100%;
+	border-radius: 3px;
+	background: var(--gb2-accent);
+}
+
+.gb2-bar__fill--warn { background: var(--gb2-warn); }
+.gb2-bar__fill--crit { background: var(--gb2-crit); }
+.gb2-bar__fill--mute { background: #c9ccd4; }
+
+/* ==========================================================================
+   15. Activity feed
+   ========================================================================== */
+
+.gb2-feed {
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+
+.gb2-feed__item {
+	display: flex;
+	gap: var(--gb2-s3);
+	padding: 10px var(--gb2-s4);
+	border-bottom: 1px solid var(--gb2-line-soft);
+}
+
+.gb2-feed__item:last-child {
+	border-bottom: 0;
+}
+
+.gb2-feed__icon {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	flex: none;
+	width: 22px;
+	height: 22px;
+	font-size: 11px;
+	font-weight: 700;
+	border-radius: var(--gb2-r-sm);
+}
+
+.gb2-feed__icon--ask {
+	background: var(--gb2-accent-soft);
+	color: var(--gb2-accent);
+}
+
+.gb2-feed__icon--cart {
+	background: var(--gb2-ok-soft);
+	color: var(--gb2-ok);
+}
+
+.gb2-feed__icon--miss {
+	background: var(--gb2-warn-soft);
+	color: var(--gb2-warn);
+}
+
+.gb2-feed__text {
+	flex: 1;
+	min-width: 0;
+}
+
+.gb2-feed__text b {
+	display: block;
+	overflow: hidden;
+	font-size: var(--gb2-t-sm);
+	font-weight: 500;
+	color: var(--gb2-ink);
+	text-overflow: ellipsis;
+	white-space: nowrap;
+}
+
+.gb2-feed__text span {
+	font-size: var(--gb2-t-xs);
+	color: var(--gb2-faint);
+}
+
+.gb2-feed__when {
+	flex: none;
+	font-size: 10.5px;
+	color: var(--gb2-faint);
+	font-variant-numeric: tabular-nums;
+}
+
+/* ==========================================================================
+   15b. Quick nav
+   ========================================================================== */
+
+.gb2-quicknav {
+	display: flex;
+	flex-wrap: wrap;
+	gap: var(--gb2-s1);
+	padding: var(--gb2-s2);
+	background: var(--gb2-surface);
+	border: 1px solid var(--gb2-line);
+	border-radius: var(--gb2-r-md);
+	box-shadow: var(--gb2-sh-xs);
+}
+
+.gb2-quicknav a {
+	padding: 5px 10px;
+	font-size: var(--gb2-t-sm);
+	color: var(--gb2-mute);
+	text-decoration: none;
+	border-radius: var(--gb2-r-sm);
+}
+
+.gb2-quicknav a:hover,
+.gb2-quicknav a:focus {
+	background: var(--gb2-line-soft);
+	color: var(--gb2-ink);
+}
+
+/* ==========================================================================
+   15c. Chip cloud and plain lists
+   ========================================================================== */
+
+.gb2-chips {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 6px;
+}
+
+.gb2-chips span {
+	padding: 3px 9px;
+	font-size: var(--gb2-t-xs);
+	color: var(--gb2-mute);
+	background: var(--gb2-surface-2);
+	border: 1px solid var(--gb2-line);
+	border-radius: var(--gb2-r-full);
+}
+
+.gb2-checklist {
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+
+.gb2-checklist li {
+	display: flex;
+	align-items: flex-start;
+	gap: var(--gb2-s2);
+	padding: 5px 0;
+	font-size: var(--gb2-t-sm);
+	color: var(--gb2-mute);
+}
+
+.gb2-checklist li::before {
+	content: "✓";
+	flex: none;
+	font-size: var(--gb2-t-sm);
+	color: var(--gb2-ok);
+}
+
+/* An unmet requirement must not render as a green tick. */
+.gb2-checklist__missing::before {
+	content: "!";
+	font-weight: 700;
+	color: var(--gb2-warn);
+}
+
+.gb2-checklist__missing {
+	color: var(--gb2-warn);
+}
+
+.gb2-keyvalues {
+	display: flex;
+	flex-direction: column;
+	gap: var(--gb2-s2);
+}
+
+.gb2-keyvalue {
+	display: flex;
+	align-items: baseline;
+	gap: var(--gb2-s2);
+	padding-bottom: var(--gb2-s2);
+	border-bottom: 1px solid var(--gb2-line-soft);
+}
+
+.gb2-keyvalue:last-child {
+	padding-bottom: 0;
+	border-bottom: 0;
+}
+
+.gb2-keyvalue span {
+	font-size: var(--gb2-t-sm);
+	color: var(--gb2-mute);
+}
+
+.gb2-keyvalue strong {
+	margin-left: auto;
+	font-size: var(--gb2-t-lg);
+	font-weight: 600;
+	color: var(--gb2-ink);
+	font-variant-numeric: tabular-nums;
+}
+
+.gb2-link {
+	display: inline-block;
+	margin-top: var(--gb2-s3);
+	font-size: var(--gb2-t-sm);
+	color: var(--gb2-accent);
+	text-decoration: none;
+}
+
+.gb2-link:hover,
+.gb2-link:focus {
+	text-decoration: underline;
+	color: var(--gb2-accent-hover);
+}
+
+.gb2-note {
+	margin: var(--gb2-s3) 0 0;
+	padding: var(--gb2-s2) var(--gb2-s3);
+	font-size: 11.5px;
+	line-height: 1.5;
+	color: var(--gb2-mute);
+	background: var(--gb2-surface-2);
+	border-left: 2px solid var(--gb2-line);
+	border-radius: 0 var(--gb2-r-sm) var(--gb2-r-sm) 0;
+}
+
+.gb2-code-list {
+	display: flex;
+	flex-direction: column;
+	gap: 6px;
+}
+
+.gb2-code-list code {
+	padding: 6px 10px;
+	font-family: var(--gb2-mono);
+	font-size: 11.5px;
+	color: var(--gb2-ink);
+	background: var(--gb2-surface-2);
+	border: 1px solid var(--gb2-line);
+	border-radius: var(--gb2-r-sm);
+}
+
+/* ==========================================================================
+   16. Empty state
+   ========================================================================== */
+
+.gb2-empty {
+	padding: var(--gb2-s5) var(--gb2-s4);
+	text-align: center;
+	color: var(--gb2-mute);
+}
+
+.gb2-empty strong {
+	display: block;
+	margin-bottom: var(--gb2-s1);
+	font-size: var(--gb2-t-md);
+	color: var(--gb2-ink);
+}
+
+.gb2-empty p {
+	max-width: 46ch;
+	margin: 0 auto var(--gb2-s2);
+	font-size: var(--gb2-t-sm);
+	line-height: 1.5;
+}
+
+/* ==========================================================================
+   16b. Plugin update notice
+
+   Styled here because the class is assembled in PHP, so it slipped past the
+   class sweep when the legacy sheet was removed and the notice lost its layout
+   — message and buttons stacked with a large dead gap.
+   ========================================================================== */
+
+.geekybot-admin-update-notice {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	gap: var(--gb2-s3);
+	padding: 10px 12px;
+}
+
+.geekybot-admin-update-notice__message {
+	display: flex;
+	align-items: baseline;
+	gap: var(--gb2-s2);
+	flex: 1;
+	min-width: 240px;
+	margin: 0;
+}
+
+.geekybot-admin-update-notice__message strong {
+	font-size: var(--gb2-t-md);
+	font-weight: 600;
+	line-height: 1.45;
+}
+
+.geekybot-admin-update-notice__actions {
+	display: flex;
+	align-items: center;
+	gap: var(--gb2-s2);
+	flex: none;
+	margin-left: auto;
+}
+
+/* The submit button ships inside its own form, which would otherwise become a
+   block-level row and push the buttons onto separate lines. */
+.geekybot-admin-update-notice__actions form,
+.geekybot-inline-notice-form {
+	display: inline-flex;
+	margin: 0;
+}
+
+.geekybot-admin-update-notice__actions p {
+	margin: 0;
+}
+
+@media (max-width: 782px) {
+	.geekybot-admin-update-notice__actions {
+		margin-left: 0;
+	}
+}
+
+/* ==========================================================================
+   17. Utilities
+   ========================================================================== */
+
+.gb2-stack {
+	display: flex;
+	flex-direction: column;
+	gap: 14px;
+}
+
+.gb2-inline {
+	display: flex;
+	align-items: center;
+	gap: var(--gb2-s2);
+	flex-wrap: wrap;
+}
+
+.gb2-fill {
+	height: 100%;
+}
+
+.gb2-screen-reader-text {
+	position: absolute;
+	width: 1px;
+	height: 1px;
+	margin: -1px;
+	padding: 0;
+	overflow: hidden;
+	clip: rect(0, 0, 0, 0);
+	white-space: nowrap;
+	border: 0;
+}
+
+@media (prefers-reduced-motion: reduce) {
+	.gb2 * {
+		transition: none;
+		animation: none;
+	}
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.gb-widget-preview-stack {
+  --gb-preview-accent: #2563eb;
+  display: grid;
+  gap: 16px;
+  justify-items: start;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.gb-widget-preview-stack {
+  width: 100%;
+  gap: 13px;
+}
+.gb-widget-preview-switch {
+  display: inline-flex;
+  width: min(360px, 100%);
+  padding: 4px;
+  border: 1px solid #dbe7f6;
+  border-radius: 12px;
+  background: #f1f5f9;
+  box-sizing: border-box;
+}
+.gb-widget-preview-switch button {
+  flex: 1 1 50%;
+  min-height: 31px;
+  margin: 0;
+  padding: 5px 9px;
+  border: 0;
+  border-radius: 9px;
+  background: transparent;
+  color: #64748b;
+  font-size: 11px;
+  font-weight: 800;
+  line-height: 1.2;
+  cursor: pointer;
+}
+.gb-widget-preview-switch button.is-active {
+  background: #ffffff;
+  color: #1d4ed8;
+  box-shadow: 0 4px 12px rgba(15, 23, 42, .09);
+}
+.gb-widget-preview-switch button:focus-visible {
+  outline: 2px solid #2563eb;
+  outline-offset: 1px;
+}
+
+
+
+
+
+
+.gb-widget-preview-switch,
+  .gb-widget-preview {
+    max-width: none;
+  }
+
+/* ==========================================================================
+   19. Widget preview frame
+
+   Only the admin chrome around the preview lives here — the state switch and
+   the stage it sits on. The widget itself is drawn entirely by frontend.css,
+   which is what guarantees the preview matches the storefront.
+   ========================================================================== */
+
+.gb-widget-preview-stack {
+	display: flex;
+	flex-direction: column;
+	gap: var(--gb2-s3);
+}
+
+.gb-widget-preview-switch {
+	display: inline-flex;
+	align-self: flex-start;
+	padding: 3px;
+	background: var(--gb2-surface-2);
+	border: 1px solid var(--gb2-line);
+	border-radius: var(--gb2-r-sm);
+}
+
+.gb-widget-preview-switch button {
+	padding: 5px 11px;
+	font-family: inherit;
+	font-size: var(--gb2-t-sm);
+	color: var(--gb2-mute);
+	background: none;
+	border: 0;
+	border-radius: var(--gb2-r-sm);
+	cursor: pointer;
+}
+
+.gb-widget-preview-switch button.is-active {
+	font-weight: 600;
+	color: var(--gb2-ink);
+	background: var(--gb2-surface);
+	box-shadow: var(--gb2-sh-xs);
+}
+
+/* A neutral ground so the widget is judged against a page, not against the
+   admin card it happens to sit in. */
+.gb-widget-preview-stage {
+	display: flex;
+	justify-content: flex-end;
+	padding: var(--gb2-s4);
+	background: var(--gb2-canvas);
+	border: 1px solid var(--gb2-line);
+	border-radius: var(--gb2-r-md);
+}
+
+/* ==========================================================================
+   20. Settings and licence layouts
+
+   These class names were introduced when the Settings and Add-ons pages were
+   converted, but the rules behind them were never written — the markup was
+   renamed and the styling assumed. The result was label and value pairs running
+   together ("CartPublic page", "localhostDomain", "01Storefront") because the
+   inline elements had no spacing of their own.
+   ========================================================================== */
+
+.gb2-eyebrow {
+	display: block;
+	margin: 0 0 2px;
+	font-size: var(--gb2-t-xs);
+	font-weight: 650;
+	letter-spacing: .1em;
+	text-transform: uppercase;
+	color: var(--gb2-faint);
+}
+
+/* --- Settings shell ------------------------------------------------------ */
+
+.gb2-settings {
+	display: grid;
+	grid-template-columns: 190px minmax(0, 1fr);
+	gap: var(--gb2-s4);
+	align-items: start;
+}
+
+.gb2-settings__main {
+	display: flex;
+	flex-direction: column;
+	gap: var(--gb2-s4);
+	min-width: 0;
+}
+
+@media (max-width: 1100px) {
+	.gb2-settings {
+		grid-template-columns: 1fr;
+	}
+}
+
+/* Sticky section rail. The step numbers are separate spans, so with no gap
+   they printed as "01Storefront". */
+.gb2-rail {
+	position: sticky;
+	top: calc(var(--gb2-adminbar) + 84px);
+	display: flex;
+	flex-direction: column;
+	gap: 2px;
+	padding: var(--gb2-s2);
+	background: var(--gb2-surface);
+	border: 1px solid var(--gb2-line);
+	border-radius: var(--gb2-r-md);
+	box-shadow: var(--gb2-sh-xs);
+}
+
+.gb2-rail a {
+	display: flex;
+	align-items: center;
+	gap: var(--gb2-s2);
+	padding: 7px 9px;
+	font-size: var(--gb2-t-sm);
+	color: var(--gb2-mute);
+	text-decoration: none;
+	border-radius: var(--gb2-r-sm);
+}
+
+.gb2-rail a:hover,
+.gb2-rail a:focus {
+	color: var(--gb2-ink);
+	background: var(--gb2-line-soft);
+}
+
+.gb2-rail a > span {
+	flex: none;
+	min-width: 20px;
+	font-size: 10.5px;
+	font-weight: 700;
+	text-align: center;
+	color: var(--gb2-faint);
+	font-variant-numeric: tabular-nums;
+}
+
+@media (max-width: 1100px) {
+	.gb2-rail {
+		position: static;
+		flex-direction: row;
+		flex-wrap: wrap;
+	}
+}
+
+/* --- Settings section card ----------------------------------------------- */
+
+.gb2-scard {
+	scroll-margin-top: calc(var(--gb2-adminbar) + 90px);
+	padding: var(--gb2-s4);
+}
+
+.gb2-scard__head {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: flex-start;
+	gap: var(--gb2-s3);
+	margin-bottom: var(--gb2-s4);
+	padding-bottom: var(--gb2-s3);
+	border-bottom: 1px solid var(--gb2-line-soft);
+}
+
+.gb2-scard__head > div {
+	flex: 1;
+	min-width: 0;
+}
+
+/* Some cards wrap the title and description in a div, others do not. When they
+   are direct children the row put them side by side, so the title shares the
+   row with the status chips and the description drops to its own line. */
+.gb2-scard__head > h2 {
+	flex: 1 1 auto;
+}
+
+.gb2-scard__head > p {
+	flex: 1 1 100%;
+	/* No measure cap here: max-width clamps the flex base size, so a 74ch cap
+	   would let the description sit beside the heading instead of wrapping. */
+	max-width: none;
+	margin-top: 0;
+}
+
+.gb2-scard__head h2 {
+	margin: 0;
+	padding: 0;
+	font-size: var(--gb2-t-lg);
+	font-weight: 620;
+	line-height: 1.3;
+	color: var(--gb2-ink);
+}
+
+.gb2-scard__head p {
+	margin: 4px 0 0;
+	font-size: var(--gb2-t-sm);
+	line-height: 1.5;
+	color: var(--gb2-mute);
+}
+
+/* Reading measure applies where the head wraps its text in a div, which is
+   already on its own line and so cannot be affected by flex line breaking. */
+.gb2-scard__head > div p {
+	max-width: 74ch;
+}
+
+.gb2-scard__head p.gb2-eyebrow {
+	margin: 0 0 2px;
+}
+
+/* Status chips beside a section title. Each is a bare span, so they needed
+   their own separation — this is what produced "Live4 productsRight". */
+.gb2-scard__meta {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	gap: 6px;
+	flex: none;
+	margin-left: auto;
+}
+
+.gb2-scard__meta > span {
+	padding: 3px 9px;
+	font-size: var(--gb2-t-xs);
+	font-weight: 600;
+	color: var(--gb2-mute);
+	white-space: nowrap;
+	background: var(--gb2-surface-2);
+	border: 1px solid var(--gb2-line);
+	border-radius: var(--gb2-r-full);
+}
+
+/* --- Policy page picker cards -------------------------------------------- */
+
+.gb2-pagecard {
+	display: flex;
+	align-items: flex-start;
+	gap: var(--gb2-s2);
+	padding: 10px 12px;
+	cursor: pointer;
+	background: var(--gb2-surface);
+	border: 1px solid var(--gb2-line);
+	border-radius: var(--gb2-r-sm);
+}
+
+.gb2-pagecard:hover {
+	background: var(--gb2-surface-2);
+}
+
+.gb2-pagecard.is-selected {
+	background: var(--gb2-accent-soft);
+	border-color: var(--gb2-accent);
+}
+
+.gb2-pagecard input {
+	flex: none;
+	margin: 2px 0 0;
+}
+
+/* strong and em are inline siblings; without display:block they printed as
+   "CartPublic page". */
+.gb2-pagecard strong {
+	display: block;
+	font-size: var(--gb2-t-sm);
+	font-weight: 600;
+	line-height: 1.35;
+	color: var(--gb2-ink);
+}
+
+.gb2-pagecard em {
+	display: block;
+	font-size: var(--gb2-t-xs);
+	font-style: normal;
+	color: var(--gb2-faint);
+}
+
+.gb2-pagecard.is-suggested strong::after {
+	content: "\2605";
+	margin-left: 5px;
+	font-size: 10px;
+	color: var(--gb2-accent);
+}
+
+/* --- Saved notice and save bar ------------------------------------------- */
+
+.gb2-savednotice {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: baseline;
+	gap: var(--gb2-s2);
+	margin-bottom: var(--gb2-s4);
+	padding: 10px 12px;
+	font-size: var(--gb2-t-sm);
+	color: var(--gb2-mute);
+	background: var(--gb2-ok-soft);
+	border: 1px solid rgba(18, 122, 75, .2);
+	border-radius: var(--gb2-r-sm);
+}
+
+.gb2-savednotice strong {
+	color: var(--gb2-ok);
+}
+
+/* Commerce Pro uses this too; defined here because that page loads this sheet. */
+.gb2-savebar {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	gap: var(--gb2-s3);
+	padding: var(--gb2-s3) var(--gb2-s4);
+	background: var(--gb2-surface);
+	border: 1px solid var(--gb2-line);
+	border-radius: var(--gb2-r-md);
+	box-shadow: var(--gb2-sh-xs);
+}
+
+.gb2-savebar strong {
+	display: block;
+	font-size: var(--gb2-t-md);
+	font-weight: 600;
+	color: var(--gb2-ink);
+}
+
+.gb2-savebar span {
+	font-size: var(--gb2-t-sm);
+	color: var(--gb2-mute);
+}
+
+.gb2-savebar > :last-child {
+	margin-left: auto;
+}
+
+.gb2-sfield__help {
+	margin: 5px 0 0;
+	font-size: 11.5px;
+	line-height: 1.45;
+	color: var(--gb2-faint);
+}
+
+/* --- Fact pairs, value first then label ---------------------------------- */
+
+/* The licence screens use span > strong + em, a different shape from the
+   dashboard rows that use .gb2-keyvalue. Both were mapped onto one class,
+   which is why "localhostDomain" ran together. */
+.gb2-license-strip,
+.gb2-license-strip > span,
+.gb2-factgrid > span {
+	display: flex;
+}
+
+.gb2-license-strip {
+	flex-wrap: wrap;
+	gap: var(--gb2-s3) var(--gb2-s5);
+	padding: var(--gb2-s3) var(--gb2-s4);
+	background: var(--gb2-surface-2);
+	border: 1px solid var(--gb2-line);
+	border-radius: var(--gb2-r-md);
+}
+
+.gb2-license-strip > span,
+.gb2-factgrid > span {
+	flex-direction: column;
+	gap: 1px;
+	min-width: 0;
+}
+
+/* Value-first fact pairs laid out as a wrapping grid rather than one tall
+   column, which is how the licence details read as a panel instead of a list. */
+.gb2-factgrid {
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+	gap: var(--gb2-s3) var(--gb2-s4);
+}
+
+.gb2-license-strip strong,
+.gb2-factgrid > span strong {
+	font-size: var(--gb2-t-md);
+	font-weight: 620;
+	color: var(--gb2-ink);
+	overflow-wrap: anywhere;
+}
+
+.gb2-license-strip em,
+.gb2-factgrid > span em {
+	font-size: var(--gb2-t-xs);
+	font-style: normal;
+	color: var(--gb2-faint);
+}
+
+/* --- Licence and update panels ------------------------------------------- */
+
+.gb2-license-hero,
+.gb2-license-hero__main {
+	min-width: 0;
+}
+
+.gb2-license-form {
+	display: block;
+}
+
+/* Field and its primary action share one line; the label sits above them. */
+.gb2-license-form__row {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	gap: var(--gb2-s2);
+}
+
+.gb2-license-form__row .gb2-input {
+	flex: 1 1 220px;
+	min-width: 0;
+}
+
+.gb2-license-form__row .gb2-btn {
+	flex: none;
+}
+
+/* Managing an existing activation is a separate job from entering a key, so it
+   sits below a divider with its own label rather than in the same button row. */
+.gb2-license-manage {
+	margin-top: var(--gb2-s4);
+	padding-top: var(--gb2-s3);
+	border-top: 1px solid var(--gb2-line-soft);
+}
+
+.gb2-license-manage__title {
+	display: block;
+	margin-bottom: var(--gb2-s2);
+	font-size: var(--gb2-t-xs);
+	font-weight: 650;
+	letter-spacing: .08em;
+	text-transform: uppercase;
+	color: var(--gb2-faint);
+}
+
+.gb2-license-manage form {
+	display: inline-flex;
+	margin: 0;
+}
+
+.gb2-update {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: flex-start;
+	gap: var(--gb2-s3);
+	padding: var(--gb2-s4);
+}
+
+.gb2-update__icon {
+	flex: none;
+	font-size: var(--gb2-t-lg);
+	color: var(--gb2-accent);
+}
+
+.gb2-update__body {
+	flex: 1;
+	min-width: 0;
+}
+
+.gb2-update__body h2,
+.gb2-update__body h3 {
+	margin: 0 0 4px;
+	font-size: var(--gb2-t-lg);
+	font-weight: 620;
+}
+
+.gb2-update__body p {
+	margin: 0;
+	font-size: var(--gb2-t-sm);
+	line-height: 1.5;
+	color: var(--gb2-mute);
+}
+
+.gb2-snote--ok {
+	color: var(--gb2-ok);
+	background: var(--gb2-ok-soft);
+	border-left-color: var(--gb2-ok);
+}
+
+.gb2-snote--error {
+	color: var(--gb2-crit);
+	background: var(--gb2-crit-soft);
+	border-left-color: var(--gb2-crit);
+}
+
+.gb2-promo-feature {
+	display: flex;
+	flex-direction: column;
+	gap: 3px;
+	padding: 11px 12px;
+	background: var(--gb2-surface-2);
+	border: 1px solid var(--gb2-line);
+	border-radius: var(--gb2-r-sm);
+}
+
+.gb2-promo-feature strong {
+	font-size: var(--gb2-t-sm);
+	font-weight: 620;
+}
+
+.gb2-promo-feature span,
+.gb2-promo-feature em {
+	font-size: var(--gb2-t-xs);
+	font-style: normal;
+	color: var(--gb2-mute);
+}
+
+.gb2-chart,
+.gb2-bar {
+	min-width: 0;
+}
+
+/* The mark is normally sized by its container, but the Commerce Pro add-on
+   renders it too, so it carries a sane default of its own. */
+.gb2-brand-mark {
+	display: block;
+	width: 100%;
+	height: 100%;
+}
+/* Grids holding panels rather than form fields. Stretching made a short card
+   (License activation) match a tall neighbour and left a large dead area
+   underneath its buttons. Panels size to their own content instead. */
+.gb2-sgrid--top {
+	align-items: start;
+}
+/* Headings that sit directly in a settings-style card rather than inside a
+   .gb2-scard__head. Without this they fell back to WordPress's default h2,
+   which is a different size and carries its own margins — the licence hero
+   read as if it belonged to another page. */
+.gb2-scard > h2,
+.gb2-license-hero__main > h2 {
+	margin: 0 0 4px;
+	padding: 0;
+	font-size: var(--gb2-t-lg);
+	font-weight: 620;
+	line-height: 1.3;
+	color: var(--gb2-ink);
+}
+
+.gb2-scard > p,
+.gb2-license-hero__main > p {
+	max-width: 84ch;
+	margin: 0 0 var(--gb2-s3);
+	font-size: var(--gb2-t-sm);
+	line-height: 1.55;
+	color: var(--gb2-mute);
+}
+
+/* The licence hero carries the page's headline status, so it gets a little
+   more room than a standard section card. */
+.gb2-license-hero {
+	padding: var(--gb2-s5) var(--gb2-s4);
+}
+
+.gb2-license-hero > .gb2-license-hero__main > .gb2-license-strip {
+	margin-top: var(--gb2-s3);
+}
+/* Disabled buttons now that the licence screen uses gb2 buttons with a
+   conditional disabled attribute instead of WordPress's submit_button(). */
+.gb2-btn:disabled,
+.gb2-btn[disabled] {
+	opacity: .5;
+	cursor: not-allowed;
+}
+
+.gb2-btn:disabled:hover,
+.gb2-btn[disabled]:hover {
+	background: var(--gb2-surface);
+	border-color: var(--gb2-line);
+	color: var(--gb2-ink);
+}
+
+.gb2-btn--primary:disabled:hover,
+.gb2-btn--primary[disabled]:hover {
+	background: var(--gb2-accent);
+	border-color: var(--gb2-accent);
+	color: #fff;
+}
