@@ -33,7 +33,10 @@
       }
       return;
     }
-    preview.innerHTML = '<span class="gb-media-field__empty">No image selected</span>';
+    var emptyLabel = (window.GeekyBotAdmin || {}).noImage || 'No image selected';
+    preview.innerHTML = '<span class="gb-media-field__empty">' + String(emptyLabel).replace(/[&<>"]/g, function (char) {
+      return ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' })[char];
+    }) + '</span>';
     preview.classList.remove('has-image');
     wrap.classList.remove('has-image');
     wrap.classList.add('is-empty');
@@ -142,15 +145,17 @@
     var previewInvitation = wrap.querySelector('[data-gb-preview-invitation]');
     var previewInvitationMessage = wrap.querySelector('[data-gb-preview-invitation-message]');
 
+    var previewDefaults = (window.GeekyBotAdmin || {}).previewDefaults || {};
+
     function updatePreview() {
       if (previewName && nameInput) {
-        previewName.textContent = text(nameInput.value, 'Geeky Bot');
+        previewName.textContent = text(nameInput.value, previewDefaults.assistantName || 'Geeky Bot');
       }
       if (previewSubtitle && subtitleInput) {
-        previewSubtitle.textContent = text(subtitleInput.value, 'WooCommerce shopping assistant');
+        previewSubtitle.textContent = text(subtitleInput.value, previewDefaults.assistantSubtitle || 'WooCommerce shopping assistant');
       }
       if (previewWelcome && welcomeInput) {
-        previewWelcome.textContent = text(welcomeInput.value, 'Hi! Ask me what you are looking for and I will help you find the right product.');
+        previewWelcome.textContent = text(welcomeInput.value, previewDefaults.welcomeMessage || 'Hi! Ask me what you are looking for and I will help you find the right product.');
       }
       if (preview && colorInput) {
         preview.style.setProperty('--gb-accent', colorInput.value || '#2563eb');
@@ -160,13 +165,13 @@
         preview.classList.toggle('gb-widget--launcher-icon', launcherStyleInput.value !== 'pill');
       }
       if (previewLauncherText && launcherTextInput) {
-        previewLauncherText.textContent = text(launcherTextInput.value, 'Ask about products');
+        previewLauncherText.textContent = text(launcherTextInput.value, previewDefaults.launcherText || 'Ask about products');
       }
       if (previewInvitation && invitationEnabledInput) {
         previewInvitation.hidden = !invitationEnabledInput.checked;
       }
       if (previewInvitationMessage && invitationMessageInput) {
-        previewInvitationMessage.textContent = text(invitationMessageInput.value, 'Need help choosing? Ask me about products, prices, or options.');
+        previewInvitationMessage.textContent = text(invitationMessageInput.value, previewDefaults.invitationMessage || 'Need help choosing? Ask me about products, prices, or options.');
       }
       if (previewWindow && headerStyleInput) {
         previewWindow.classList.toggle('gb-widget--header-solid', headerStyleInput.value === 'solid');

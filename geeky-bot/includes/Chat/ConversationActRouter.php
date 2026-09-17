@@ -141,8 +141,8 @@ class ConversationActRouter {
         $count = count($candidates);
         $reply = $position > 0
             ? sprintf(
-                /* translators: 1: number of current products, 2: requested position. */
                 _n(
+                    /* translators: 1: number of current products, 2: requested position. */
                     'I only have %1$d product in the current results, so there is no product %2$d to select.',
                     'I only have %1$d products in the current results, so there is no product %2$d to select.',
                     $count,
@@ -440,7 +440,6 @@ class ConversationActRouter {
         if ($family === '' || in_array($family, $generic, true)) {
             return '';
         }
-
         return $this->canonical_family($family);
     }
 

@@ -12,7 +12,7 @@ if (!defined('ABSPATH')) {
  * can stay broad and useful.
  */
 return array(
-    'revision' => '2026.07.12.2',
+    'revision' => '2026.09.11.1',
 
     'preferences' => array(
         'comfortable' => array(
@@ -109,7 +109,7 @@ return array(
         'best_value' => array(
             'label' => 'Best value',
             'weight' => 16,
-            'phrases' => array('best value', 'good value', 'value for money', 'balanced choice', 'worth buying', 'not the cheapest', 'not cheapest', 'not the lowest price', 'safe choice', 'safest choice'),
+            'phrases' => array('best value', 'good value', 'value for money', 'for the money', 'best for the money', 'balanced choice', 'worth buying', 'not the cheapest', 'not cheapest', 'not the lowest price', 'safe choice', 'safest choice'),
         ),
         'premium' => array(
             'label' => 'Premium',
@@ -143,7 +143,10 @@ return array(
                 'gift for my husband', 'for my husband', 'gift for husband',
                 'gift for my boyfriend', 'for my boyfriend', 'gift for boyfriend',
                 'gift for my dad', 'gift for dad', 'for my dad', 'gift for my father', 'for my father',
-                'gift for my son', 'for my son', 'gift for men', 'for men', 'mens gift', 'men gift'
+                'gift for my son', 'for my son', 'gift for men', 'for men', 'mens gift', 'men gift',
+                // Bare possessives. A shopper says "my son starts school next week",
+                // not "for my son", and the bare form matched no rule at all.
+                'my brother', 'my husband', 'my boyfriend', 'my dad', 'my father', 'my son'
             ),
             'recipient_tokens' => array('brother', 'husband', 'boyfriend', 'dad', 'father', 'son', 'men', 'mens', 'male', 'guy'),
             'positive_terms' => array('men', 'mens', 'male', 'unisex', 'for him'),
@@ -156,7 +159,8 @@ return array(
                 'gift for my wife', 'for my wife', 'gift for wife',
                 'gift for my girlfriend', 'for my girlfriend', 'gift for girlfriend',
                 'gift for my mother', 'gift for mother', 'for my mother',
-                'gift for my mom', 'for my mom', 'gift for women', 'for women', 'womens gift', 'women gift'
+                'gift for my mom', 'for my mom', 'gift for women', 'for women', 'womens gift', 'women gift',
+                'my sister', 'my wife', 'my girlfriend', 'my mother', 'my mom', 'my daughter'
             ),
             'recipient_tokens' => array('sister', 'wife', 'girlfriend', 'mother', 'mom', 'women', 'womens', 'female', 'lady'),
             'positive_terms' => array('women', 'womens', 'female', 'unisex', 'for her'),
@@ -164,7 +168,7 @@ return array(
         ),
         'children' => array(
             'label' => 'Child preference',
-            'phrases' => array('gift for my child', 'gift for child', 'for my child', 'gift for my kid', 'gift for kid', 'for my kid', 'gift for kids', 'for kids', 'gift for toddler', 'for toddler', 'gift for boy', 'for boy', 'gift for girl', 'for girl'),
+            'phrases' => array('gift for my child', 'gift for child', 'for my child', 'gift for my kid', 'gift for kid', 'for my kid', 'gift for kids', 'for kids', 'gift for toddler', 'for toddler', 'gift for boy', 'for boy', 'gift for girl', 'for girl', 'my child', 'my kid', 'my kids', 'my toddler'),
             'recipient_tokens' => array('child', 'children', 'kid', 'kids', 'toddler', 'boy', 'girl'),
             'positive_terms' => array('kid', 'kids', 'child', 'children', 'toddler', 'boy', 'girl', 'junior'),
             'negative_terms' => array('adult only', 'adults only'),
@@ -194,8 +198,85 @@ return array(
         // Temporal filler. "cheapest today" was searching the catalog for a
         // product called "today" and finding nothing; the single words live in
         // ignore_tokens, the phrases here.
-        'this week', 'at the moment', 'these days'
+        'this week', 'at the moment', 'these days',
+
+        // Availability questions. This is the single most common way a shopper
+        // opens, and every verb here was surviving into the term list as a
+        // required term: "do you sell running shoes" searched for a product
+        // called "sell" and returned nothing at all. The verbs stay as phrases
+        // rather than single tokens because "carry", "stock" and "shopping" can
+        // each name a product ("carry-on", "stock pot", "shopping bag").
+        'do you sell', 'do you guys sell', 'do you carry', 'do you stock', 'do you guys have',
+        'do you have any', 'do you have some', 'do u have', 'have you got', 'you got any',
+        'what do you have', 'what have you got', 'are there any', 'is there any',
+        'do you offer', 'are you selling',
+
+        // Request framings.
+        'i am searching for', 'im searching for', 'searching for', 'i am after', 'im after',
+        'i am interested in', 'im interested in', 'interested in', 'shopping for',
+        'looking to buy', 'want to buy', 'i want to buy', 'need to buy', 'i need to buy',
+        'i would like', 'i d like', 'id like', 'i will take', 'help me find', 'help me choose',
+        'can i get', 'can i see', 'may i see', 'let me see', 'let me have a look at', 'just browsing for',
+
+        // Advice framings. "any recommendations for headphones" was searching
+        // for a product called "recommendations".
+        'any recommendations for', 'any recommendations', 'recommend me', 'can you recommend',
+        'any suggestions for', 'any suggestions', 'suggest me', 'any ideas for', 'what should i get',
+
+        // Category framings. "what type of" is kept as a phrase because a bare
+        // "type" token belongs to real products such as a Type-C cable.
+        'what kind of', 'what type of', 'what sort of', 'any kind of', 'any type of', 'some kind of',
+
+        // Conversational framings. The shopper's own error message named the
+        // culprit every time: "I couldn't find a match for OLD backpack",
+        // "for GIMME sneaker", "for SEE WANNA backpack". Each is one ordinary
+        // English word standing where a product name should be.
+        'to carry', 'what would go well with', 'go well with', 'goes well with',
+        'whats the difference between', 'what is the difference between', 'the difference between',
+        'im not sure what i need', 'not sure what i need', 'im not sure', 'not sure',
+        'check out', 'what can i get', 'how much is', 'how much are', 'how much does',
+        'whats your', 'what is your', 'my old', 'need a new', 'get a new', 'a new one',
+        'wanna see', 'want to see', 'would like to see', 'to see', 'next week', 'right away',
+
+        // Slang. Listed in both lists -- see the ignore_tokens note -- because
+        // a word left in the text still reaches core_terms.
+        'gimme', 'lemme', 'wanna', 'gotta', 'gonna', 'yo', 'sup', 'cool', 'plz', 'pls', 'thx',
+
+        // Single words that must leave the TEXT, not just the term list.
+        // ignore_tokens is applied to the extracted terms, but core_terms is
+        // rebuilt from the stripped query by product_phrase_profile(), which
+        // applies no ignore list of its own -- so "hello i need a laptop bag"
+        // still required a product called "hello" and returned nothing. Words
+        // repeated here are the ones that can never form part of a product
+        // name; "see", "kind", "guy" and "thing" stay in ignore_tokens only.
+        'hello', 'hi there', 'good morning', 'good afternoon', 'good evening',
+        'thanks', 'thank you', 'thankyou', 'anything', 'anyone', 'stuff',
+        'available', 'availability', 'sell', 'sells', 'selling', 'sold',
+        'searching', 'seeking', 'recommend', 'recommends', 'recommended',
+        'recommendation', 'recommendations', 'suggest', 'suggested', 'suggestion',
+        'suggestions', 'interested', 'wondering', 'browse', 'browsing'
     ),
 
-    'ignore_tokens' => array('what', 'would', 'will', 'should', 'could', 'if', 'one', 'ones', 'something', 'option', 'options', 'possible', 'possibly', 'actually', 'currently', 'still', 'look', 'looks', 'nice', 'today', 'tonight'),
+    // Single junk tokens. A token that is not listed here survives as a
+    // REQUIRED term, so one unrecognised word returns an empty result set
+    // rather than a worse-ranked one. Both the surface and the stemmed form are
+    // listed ("thanks"/"thank") because removal runs before stemming on one
+    // path and after it on the other. Nothing that could name a product goes in
+    // this list -- use filler_phrases for those.
+    'ignore_tokens' => array(
+        'what', 'would', 'will', 'should', 'could', 'if', 'one', 'ones', 'something', 'option', 'options',
+        'possible', 'possibly', 'actually', 'currently', 'still', 'look', 'looks', 'nice', 'today', 'tonight',
+        'sell', 'sells', 'selling', 'sold', 'searching', 'seeking', 'see', 'let',
+        'recommend', 'recommends', 'recommended', 'recommendation', 'recommendations',
+        'suggest', 'suggested', 'suggestion', 'suggestions', 'interested', 'wondering',
+        'anything', 'anyone', 'stuff', 'thing', 'things', 'kind', 'kinds', 'sort',
+        'guy', 'guys', 'hello', 'thanks', 'thank', 'available', 'availability', 'browse', 'browsing',
+        // "money" is deliberately absent: a money clip is a real product. It is
+        // handled by the best_value phrase "for the money" instead. query_terms()
+        // does not stem these down, so "cooling", "checkered", "starter" and
+        // "weekender" survive intact and their products stay findable.
+        'old', 'broke', 'sure', 'well', 'go', 'difference', 'start', 'starts',
+        'next', 'week', 'weeks', 'yo', 'sup', 'out', 'check', 'much', 'how', 'cool',
+        'yeah', 'yep', 'ok', 'okay', 'gimme', 'lemme', 'wanna', 'gotta', 'gonna'
+    ),
 );

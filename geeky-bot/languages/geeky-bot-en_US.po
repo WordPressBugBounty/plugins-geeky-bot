@@ -1,0 +1,5899 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: Geeky Bot\n"
+"Report-Msgid-Bugs-To: https://geekybot.com/\n"
+"POT-Creation-Date: 2026-09-16 11:20+0500\n"
+"PO-Revision-Date: 2026-09-16 11:20+0500\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: en_US\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Domain: geeky-bot\n"
+"X-Generator: geeky-bot/tools/make-translation-file.sh\n"
+"X-Poedit-Basepath: .\n"
+"X-Poedit-KeywordsList: __;_e;esc_html__;esc_html_e;esc_attr__;esc_attr_e;esc_xml__;_x:1,2c;_ex:1,2c;esc_html_x:1,2c;esc_attr_x:1,2c;_n:1,2;_nx:1,2,4c;_n_noop:1,2;_nx_noop:1,2,3c\n"
+"X-Poedit-SearchPath-0: geeky-bot\n"
+"X-Poedit-SearchPath-1: geeky-bot-commerce-pro\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+
+msgid "Commerce Pro"
+msgstr "Commerce Pro"
+
+msgid "Buying actions inside the assistant: variations, cart, checkout handoff, order help, recommendations, coupons and leads."
+msgstr "Buying actions inside the assistant: variations, cart, checkout handoff, order help, recommendations, coupons and leads."
+
+msgid "%1$s of %2$s features on"
+msgstr "%1$s of %2$s features on"
+
+msgid "WooCommerce inactive"
+msgstr "WooCommerce inactive"
+
+msgid "add-to-cart actions"
+msgstr "add-to-cart actions"
+
+msgid "cart updates"
+msgstr "cart updates"
+
+msgid "Test on storefront"
+msgstr "Test on storefront"
+
+msgid "Assistant settings"
+msgstr "Assistant settings"
+
+msgid "Dashboard"
+msgstr "Dashboard"
+
+msgid "WooCommerce is not active. Commerce Pro buying actions need WooCommerce."
+msgstr "WooCommerce is not active. Commerce Pro buying actions need WooCommerce."
+
+msgid "Commerce Pro settings saved."
+msgstr "Commerce Pro settings saved."
+
+msgid "Commerce Pro settings imported."
+msgstr "Commerce Pro settings imported."
+
+msgid "Settings import failed. Please upload a valid Commerce Pro settings JSON file."
+msgstr "Settings import failed. Please upload a valid Commerce Pro settings JSON file."
+
+msgid "Commerce Pro readiness"
+msgstr "Commerce Pro readiness"
+
+msgid "Buying actions"
+msgstr "Buying actions"
+
+msgid "Add-to-cart and variation selection"
+msgstr "Add-to-cart and variation selection"
+
+msgid "Cart buttons active"
+msgstr "Cart buttons active"
+
+msgid "Cart flow"
+msgstr "Cart flow"
+
+msgid "View, update and checkout handoff"
+msgstr "View, update and checkout handoff"
+
+msgid "Checkout handoff ready"
+msgstr "Checkout handoff ready"
+
+msgid "Sales assistance"
+msgstr "Sales assistance"
+
+msgid "Compare, recommend and coupons"
+msgstr "Compare, recommend and coupons"
+
+msgid "Buyer guidance active"
+msgstr "Buyer guidance active"
+
+msgid "Handoff"
+msgstr "Handoff"
+
+msgid "Lead capture and human follow-up"
+msgstr "Lead capture and human follow-up"
+
+msgid "Follow-up forms active"
+msgstr "Follow-up forms active"
+
+msgid "Guardrails"
+msgstr "Guardrails"
+
+msgid "Tone, claims and analytics safety"
+msgstr "Tone, claims and analytics safety"
+
+msgid "Safe sales mode"
+msgstr "Safe sales mode"
+
+msgid "Sales action intelligence"
+msgstr "Sales action intelligence"
+
+msgid "Buying actions handled by the assistant"
+msgstr "Buying actions handled by the assistant"
+
+msgid "Track the buying actions Commerce Pro adds on top of product discovery."
+msgstr "Track the buying actions Commerce Pro adds on top of product discovery."
+
+msgid "Add-to-cart"
+msgstr "Add-to-cart"
+
+msgid "Simple and variation cart adds"
+msgstr "Simple and variation cart adds"
+
+msgid "Cart updates"
+msgstr "Cart updates"
+
+msgid "Quantity and remove actions"
+msgstr "Quantity and remove actions"
+
+msgid "Checkout handoffs"
+msgstr "Checkout handoffs"
+
+msgid "Checkout clicks from the assistant"
+msgstr "Checkout clicks from the assistant"
+
+msgid "Order lookups"
+msgstr "Order lookups"
+
+msgid "Customer order helper"
+msgstr "Customer order helper"
+
+msgid "Comparisons"
+msgstr "Comparisons"
+
+msgid "Product comparison intent"
+msgstr "Product comparison intent"
+
+msgid "Recommendations"
+msgstr "Recommendations"
+
+msgid "Smart product suggestions"
+msgstr "Smart product suggestions"
+
+msgid "Leads"
+msgstr "Leads"
+
+msgid "Follow-up captures"
+msgstr "Follow-up captures"
+
+msgid "Coupon views"
+msgstr "Coupon views"
+
+msgid "Safe coupon exposure"
+msgstr "Safe coupon exposure"
+
+msgid "Product intent"
+msgstr "Product intent"
+
+msgid "Top products by assistant intent"
+msgstr "Top products by assistant intent"
+
+msgid "Products receiving assistant clicks, comparisons, recommendations, and cart actions."
+msgstr "Products receiving assistant clicks, comparisons, recommendations, and cart actions."
+
+msgid "Unknown product"
+msgstr "Unknown product"
+
+msgid "No product intent yet"
+msgstr "No product intent yet"
+
+msgid "Test product search, compare, add-to-cart and checkout phrases in the storefront widget."
+msgstr "Test product search, compare, add-to-cart and checkout phrases in the storefront widget."
+
+msgid "Sales flow readiness"
+msgstr "Sales flow readiness"
+
+msgid "Buying path must stay ready"
+msgstr "Buying path must stay ready"
+
+msgid "Main buyer actions should stay enabled for Commerce Pro to prove value."
+msgstr "Main buyer actions should stay enabled for Commerce Pro to prove value."
+
+msgid "WooCommerce actions"
+msgstr "WooCommerce actions"
+
+msgid "Cart and order APIs are available."
+msgstr "Cart and order APIs are available."
+
+msgid "Activate WooCommerce."
+msgstr "Activate WooCommerce."
+
+msgid "Buying through the assistant"
+msgstr "Buying through the assistant"
+
+msgid "Simple products and variations can be added through the assistant."
+msgstr "Simple products and variations can be added through the assistant."
+
+msgid "Cart and checkout"
+msgstr "Cart and checkout"
+
+msgid "Shoppers can review cart, update items, and move to checkout."
+msgstr "Shoppers can review cart, update items, and move to checkout."
+
+msgid "Order helper"
+msgstr "Order helper"
+
+msgid "Logged-in customers can view their own recent orders."
+msgstr "Logged-in customers can view their own recent orders."
+
+msgid "Next best action"
+msgstr "Next best action"
+
+msgid "Test the full buying journey"
+msgstr "Test the full buying journey"
+
+msgid "Run shopper phrases that prove search, comparison, cart, checkout, orders, coupons, and human handoff stay separated."
+msgstr "Run shopper phrases that prove search, comparison, cart, checkout, orders, coupons, and human handoff stay separated."
+
+msgid "Test storefront widget"
+msgstr "Test storefront widget"
+
+msgid "Feature checklist"
+msgstr "Feature checklist"
+
+msgid "What the feature count means"
+msgstr "What the feature count means"
+
+msgid "%1$s of %2$s on"
+msgstr "%1$s of %2$s on"
+
+msgid "On, inactive"
+msgstr "On, inactive"
+
+msgid "On"
+msgstr "On"
+
+msgid "Off"
+msgstr "Off"
+
+msgid "The last two count only once you have entered coupon codes or written sales rules, not merely enabled the switch."
+msgstr "The last two count only once you have entered coupon codes or written sales rules, not merely enabled the switch."
+
+msgid "Commerce Pro settings"
+msgstr "Commerce Pro settings"
+
+msgid "Configure buying actions and guardrails"
+msgstr "Configure buying actions and guardrails"
+
+msgid "Keep purchase actions enabled unless you are testing a specific feature. These controls affect the live shopper assistant after saving."
+msgstr "Keep purchase actions enabled unless you are testing a specific feature. These controls affect the live shopper assistant after saving."
+
+msgid "Commerce Pro settings sections"
+msgstr "Commerce Pro settings sections"
+
+msgid "Lead and handoff"
+msgstr "Lead and handoff"
+
+msgid "AI guardrails"
+msgstr "AI guardrails"
+
+msgid "Buyer actions"
+msgstr "Buyer actions"
+
+msgid "Active"
+msgstr "Active"
+
+msgid "Needs attention"
+msgstr "Needs attention"
+
+msgid "Checkout flow"
+msgstr "Checkout flow"
+
+msgid "Ready"
+msgstr "Ready"
+
+msgid "Review"
+msgstr "Review"
+
+msgid "Sales rules"
+msgstr "Sales rules"
+
+msgid "Enabled"
+msgstr "Enabled"
+
+msgid "Optional"
+msgstr "Optional"
+
+msgid "Save Commerce Pro Settings"
+msgstr "Save Commerce Pro Settings"
+
+msgid "Add to cart through assistant"
+msgstr "Add to cart through assistant"
+
+msgid "Show add-to-cart buttons for simple products and option selectors for variable products."
+msgstr "Show add-to-cart buttons for simple products and option selectors for variable products."
+
+msgid "Variation selection"
+msgstr "Variation selection"
+
+msgid "Let shoppers choose variable product attributes directly inside the storefront assistant."
+msgstr "Let shoppers choose variable product attributes directly inside the storefront assistant."
+
+msgid "Cart requests"
+msgstr "Cart requests"
+
+msgid "Let shoppers ask for their cart and update items through the assistant."
+msgstr "Let shoppers ask for their cart and update items through the assistant."
+
+msgid "Cart quantity controls"
+msgstr "Cart quantity controls"
+
+msgid "Show plus, minus, and remove controls in the assistant cart view."
+msgstr "Show plus, minus, and remove controls in the assistant cart view."
+
+msgid "Checkout handoff"
+msgstr "Checkout handoff"
+
+msgid "Show a checkout button only when the cart has items."
+msgstr "Show a checkout button only when the cart has items."
+
+msgid "Order lookup"
+msgstr "Order lookup"
+
+msgid "Allow logged-in customers to ask for their own recent orders and order status."
+msgstr "Allow logged-in customers to ask for their own recent orders and order status."
+
+msgid "Product comparison"
+msgstr "Product comparison"
+
+msgid "Let shoppers compare catalog products inside the storefront assistant."
+msgstr "Let shoppers compare catalog products inside the storefront assistant."
+
+msgid "Smart recommendations"
+msgstr "Smart recommendations"
+
+msgid "Show related, upsell, and cross-sell products from WooCommerce data."
+msgstr "Show related, upsell, and cross-sell products from WooCommerce data."
+
+msgid "Safe coupon suggestions"
+msgstr "Safe coupon suggestions"
+
+msgid "Only show coupon codes explicitly allowlisted below. The assistant will not invent coupon codes."
+msgstr "Only show coupon codes explicitly allowlisted below. The assistant will not invent coupon codes."
+
+msgid "Public coupon codes"
+msgstr "Public coupon codes"
+
+msgid "Enter one public coupon code per line. Only valid, published, non-expired coupons from this list can be shown in the assistant."
+msgstr "Enter one public coupon code per line. Only valid, published, non-expired coupons from this list can be shown in the assistant."
+
+msgid "Product sales rules"
+msgstr "Product sales rules"
+
+msgid "Show merchant-written sales notes for products, categories, tags, keywords, or globally."
+msgstr "Show merchant-written sales notes for products, categories, tags, keywords, or globally."
+
+msgid "One rule per line. Examples: product:123 | Mention sizing runs small. category:shoes | Recommend checking size and return policy. global | Free shipping over $50."
+msgstr "One rule per line. Examples: product:123 | Mention sizing runs small. category:shoes | Recommend checking size and return policy. global | Free shipping over $50."
+
+msgid "Abandoned-cart prompts"
+msgstr "Abandoned-cart prompts"
+
+msgid "After a shopper adds items but stays on the site, gently remind them that checkout is available once per session."
+msgstr "After a shopper adds items but stays on the site, gently remind them that checkout is available once per session."
+
+msgid "Cart prompt delay"
+msgstr "Cart prompt delay"
+
+msgid "Seconds to wait before showing the cart reminder in the assistant. Allowed range: 15 to 600 seconds."
+msgstr "Seconds to wait before showing the cart reminder in the assistant. Allowed range: 15 to 600 seconds."
+
+msgid "Lead capture and handoff"
+msgstr "Lead capture and handoff"
+
+msgid "Lead capture"
+msgstr "Lead capture"
+
+msgid "Let shoppers leave their name, email, and question when they need follow-up."
+msgstr "Let shoppers leave their name, email, and question when they need follow-up."
+
+msgid "Human handoff"
+msgstr "Human handoff"
+
+msgid "Show a human handoff form for questions the assistant cannot complete."
+msgstr "Show a human handoff form for questions the assistant cannot complete."
+
+msgid "Handoff email"
+msgstr "Handoff email"
+
+msgid "New lead notifications are sent here. Leave empty to use the WordPress admin email."
+msgstr "New lead notifications are sent here. Leave empty to use the WordPress admin email."
+
+msgid "AI sales rules and guardrails"
+msgstr "AI sales rules and guardrails"
+
+msgid "Multilingual sales assistant"
+msgstr "Multilingual sales assistant"
+
+msgid "Add language instructions to the grounded AI layer while keeping product names, SKUs, coupons, and policy titles unchanged."
+msgstr "Add language instructions to the grounded AI layer while keeping product names, SKUs, coupons, and policy titles unchanged."
+
+msgid "Language mode"
+msgstr "Language mode"
+
+msgid "Auto replies in the shopper language, site follows WordPress locale, and force uses the language field below."
+msgstr "Auto replies in the shopper language, site follows WordPress locale, and force uses the language field below."
+
+msgid "Auto-detect shopper language"
+msgstr "Auto-detect shopper language"
+
+msgid "Use site language"
+msgstr "Use site language"
+
+msgid "Force selected language"
+msgstr "Force selected language"
+
+msgid "Forced language"
+msgstr "Forced language"
+
+msgid "Example: English, Arabic, Spanish, German, French, Urdu. Used only when language mode is force."
+msgstr "Example: English, Arabic, Spanish, German, French, Urdu. Used only when language mode is force."
+
+msgid "Assistant tone"
+msgstr "Assistant tone"
+
+msgid "Controls AI answer style without changing product facts."
+msgstr "Controls AI answer style without changing product facts."
+
+msgid "Helpful"
+msgstr "Helpful"
+
+msgid "Friendly"
+msgstr "Friendly"
+
+msgid "Premium retail"
+msgstr "Premium retail"
+
+msgid "Concise"
+msgstr "Concise"
+
+msgid "Extra sales guardrails"
+msgstr "Extra sales guardrails"
+
+msgid "Strengthen rules against unsupported claims, invented offers, private coupons, and unsafe guarantees."
+msgstr "Strengthen rules against unsupported claims, invented offers, private coupons, and unsafe guarantees."
+
+msgid "Blocked / restricted claim topics"
+msgstr "Blocked / restricted claim topics"
+
+msgid "One topic per line. The assistant will be extra careful and refuse unsupported claims in these areas."
+msgstr "One topic per line. The assistant will be extra careful and refuse unsupported claims in these areas."
+
+msgid "Store-approved sales guidance"
+msgstr "Store-approved sales guidance"
+
+msgid "Optional approved guidance lines. Keep this factual and grounded, such as size advice or support instructions."
+msgstr "Optional approved guidance lines. Keep this factual and grounded, such as size advice or support instructions."
+
+msgid "Product-intent analytics"
+msgstr "Product-intent analytics"
+
+msgid "Track safe aggregate events such as comparisons, recommendations, cart actions, order lookups, coupon views, leads, and sales notes."
+msgstr "Track safe aggregate events such as comparisons, recommendations, cart actions, order lookups, coupon views, leads, and sales notes."
+
+msgid "Save Commerce Pro settings"
+msgstr "Save Commerce Pro settings"
+
+msgid "Frontend buyer actions use these settings immediately after saving."
+msgstr "Frontend buyer actions use these settings immediately after saving."
+
+msgid "Portable setup"
+msgstr "Portable setup"
+
+msgid "Import / export settings"
+msgstr "Import / export settings"
+
+msgid "Use this for staging-to-live moves, support handoff, and repeatable setup. Secrets are not included."
+msgstr "Use this for staging-to-live moves, support handoff, and repeatable setup. Secrets are not included."
+
+msgid "Export settings JSON"
+msgstr "Export settings JSON"
+
+msgid "Import settings JSON"
+msgstr "Import settings JSON"
+
+msgid "Human follow-up"
+msgstr "Human follow-up"
+
+msgid "Recent leads"
+msgstr "Recent leads"
+
+msgid "Latest handoff and lead-capture requests from the assistant."
+msgstr "Latest handoff and lead-capture requests from the assistant."
+
+msgid "Name"
+msgstr "Name"
+
+msgid "Email"
+msgstr "Email"
+
+msgid "Message"
+msgstr "Message"
+
+msgid "Date"
+msgstr "Date"
+
+msgid "No leads captured yet"
+msgstr "No leads captured yet"
+
+msgid "Lead and human handoff requests will appear here after shoppers use the assistant."
+msgstr "Lead and human handoff requests will appear here after shoppers use the assistant."
+
+msgid "Add to cart"
+msgstr "Add to cart"
+
+msgid "Coupon suggestions"
+msgstr "Coupon suggestions"
+
+msgid "Multilingual replies"
+msgstr "Multilingual replies"
+
+msgid "Needs Zywrap or OpenAI. Local mode does not generate text."
+msgstr "Needs Zywrap or OpenAI. Local mode does not generate text."
+
+msgid "Local mode never generates free text, so nothing needs constraining."
+msgstr "Local mode never generates free text, so nothing needs constraining."
+
+msgid "Public coupon codes added"
+msgstr "Public coupon codes added"
+
+msgid "The switch is on; add codes for it to have anything to offer."
+msgstr "The switch is on; add codes for it to have anything to offer."
+
+msgid "Sales rules written"
+msgstr "Sales rules written"
+
+msgid "The switch is on; write a rule for it to have anything to say."
+msgstr "The switch is on; write a rule for it to have anything to say."
+
+msgid "Activate Commerce Pro on this site"
+msgstr "Activate Commerce Pro on this site"
+
+msgid "The add-on is installed, but buying actions stay disabled until Geeky Bot confirms a valid license for this site."
+msgstr "The add-on is installed, but buying actions stay disabled until Geeky Bot confirms a valid license for this site."
+
+msgid "Not activated"
+msgstr "Not activated"
+
+msgid "No key"
+msgstr "No key"
+
+msgid "license key"
+msgstr "license key"
+
+msgid "Never"
+msgstr "Never"
+
+msgid "last checked"
+msgstr "last checked"
+
+msgid "Open license screen"
+msgstr "Open license screen"
+
+msgid "Plugins"
+msgstr "Plugins"
+
+msgid "Buying actions are disabled"
+msgstr "Buying actions are disabled"
+
+msgid "Storefront Pro buttons are not loaded."
+msgstr "Storefront Pro buttons are not loaded."
+
+msgid "Cart, comparison, coupon, lead and order endpoints require license authorization."
+msgstr "Cart, comparison, coupon, lead and order endpoints require license authorization."
+
+msgid "Free product discovery still works in Geeky Bot core."
+msgstr "Free product discovery still works in Geeky Bot core."
+
+msgid "Why this is locked"
+msgstr "Why this is locked"
+
+msgid "Commerce Pro requires a site entitlement"
+msgstr "Commerce Pro requires a site entitlement"
+
+msgid "A copied add-on folder cannot run Pro buying actions without an active license for this site."
+msgstr "A copied add-on folder cannot run Pro buying actions without an active license for this site."
+
+msgid "Adding…"
+msgstr "Adding…"
+
+msgid "Add selected option"
+msgstr "Add selected option"
+
+msgid "Choose product options"
+msgstr "Choose product options"
+
+msgid "That option is not available. Please choose a different combination."
+msgstr "That option is not available. Please choose a different combination."
+
+msgid "View cart"
+msgstr "View cart"
+
+msgid "Checkout"
+msgstr "Checkout"
+
+msgid "Choose options"
+msgstr "Choose options"
+
+msgid "View product page"
+msgstr "View product page"
+
+msgid "View bundle"
+msgstr "View bundle"
+
+msgid "Close"
+msgstr "Close"
+
+msgid "Your cart is empty."
+msgstr "Your cart is empty."
+
+msgid "Here is your cart:"
+msgstr "Here is your cart:"
+
+msgid "Subtotal"
+msgstr "Subtotal"
+
+msgid "Total"
+msgstr "Total"
+
+msgid "Increase"
+msgstr "Increase"
+
+msgid "Decrease"
+msgstr "Decrease"
+
+msgid "Remove"
+msgstr "Remove"
+
+msgid "Updating…"
+msgstr "Updating…"
+
+msgid "Checking your cart…"
+msgstr "Checking your cart…"
+
+msgid "Checking your order…"
+msgstr "Checking your order…"
+
+msgid "Checking your recent orders…"
+msgstr "Checking your recent orders…"
+
+msgid "Ready to checkout. Review your cart total below and continue when you are ready."
+msgstr "Ready to checkout. Review your cart total below and continue when you are ready."
+
+msgid "Your cart is empty. Add a product before checkout."
+msgstr "Your cart is empty. Add a product before checkout."
+
+msgid "Log in to account"
+msgstr "Log in to account"
+
+msgid "Recent orders"
+msgstr "Recent orders"
+
+msgid "You do not have any orders yet."
+msgstr "You do not have any orders yet."
+
+msgid "View account orders"
+msgstr "View account orders"
+
+msgid "Details"
+msgstr "Details"
+
+msgid "View order"
+msgstr "View order"
+
+msgid "Pay order"
+msgstr "Pay order"
+
+msgid "Status"
+msgstr "Status"
+
+msgid "Payment"
+msgstr "Payment"
+
+msgid "Shipping"
+msgstr "Shipping"
+
+msgid "Compare"
+msgstr "Compare"
+
+msgid "Compare now"
+msgstr "Compare now"
+
+msgid "Added to comparison."
+msgstr "Added to comparison."
+
+msgid "Choose at least two products to compare."
+msgstr "Choose at least two products to compare."
+
+msgid "Similar products"
+msgstr "Similar products"
+
+msgid "Recommend"
+msgstr "Recommend"
+
+msgid "I couldn't find related products for this item yet."
+msgstr "I couldn't find related products for this item yet."
+
+msgid "View product"
+msgstr "View product"
+
+msgid "Contact store team"
+msgstr "Contact store team"
+
+msgid "Talk to a human"
+msgstr "Talk to a human"
+
+msgid "Please leave your details and the store team will contact you."
+msgstr "Please leave your details and the store team will contact you."
+
+msgid "Your name"
+msgstr "Your name"
+
+msgid "Your email"
+msgstr "Your email"
+
+msgid "Your question"
+msgstr "Your question"
+
+msgid "Send request"
+msgstr "Send request"
+
+msgid "Check coupons"
+msgstr "Check coupons"
+
+msgid "Sales note"
+msgstr "Sales note"
+
+msgid "Additional store information for this product:"
+msgstr "Additional store information for this product:"
+
+msgid "No additional sales information is available for this product."
+msgstr "No additional sales information is available for this product."
+
+msgid "You still have items in your cart. Ready to continue?"
+msgstr "You still have items in your cart. Ready to continue?"
+
+msgid "I couldn't find a coupon code available to share right now."
+msgstr "I couldn't find a coupon code available to share right now."
+
+msgid "Copy code"
+msgstr "Copy code"
+
+msgid "Copied"
+msgstr "Copied"
+
+msgid "I couldn't complete that action right now. Please try again."
+msgstr "I couldn't complete that action right now. Please try again."
+
+msgid "Geeky Bot Commerce Pro could not complete its database update. Please reload the page, then contact support if the notice remains."
+msgstr "Geeky Bot Commerce Pro could not complete its database update. Please reload the page, then contact support if the notice remains."
+
+msgid "Geeky Bot Commerce Pro requires the Geeky Bot core plugin to be installed and active."
+msgstr "Geeky Bot Commerce Pro requires the Geeky Bot core plugin to be installed and active."
+
+msgid "Geeky Bot Commerce Pro requires Geeky Bot core %1$s or newer. The installed Core version is %2$s."
+msgstr "Geeky Bot Commerce Pro requires Geeky Bot core %1$s or newer. The installed Core version is %2$s."
+
+msgid "unknown"
+msgstr "unknown"
+
+msgid "Commerce Pro Settings"
+msgstr "Commerce Pro Settings"
+
+msgid "Activate License"
+msgstr "Activate License"
+
+msgid "Security check failed. Please refresh the page and try again."
+msgstr "Security check failed. Please refresh the page and try again."
+
+msgid "WooCommerce cart is not available."
+msgstr "WooCommerce cart is not available."
+
+msgid "Cart commands are disabled."
+msgstr "Cart commands are disabled."
+
+msgid "Add to cart is disabled."
+msgstr "Add to cart is disabled."
+
+msgid "This product is not available."
+msgstr "This product is not available."
+
+msgid "This product needs options before it can be added to cart."
+msgstr "This product needs options before it can be added to cart."
+
+msgid "Open the product page to choose the available buying options."
+msgstr "Open the product page to choose the available buying options."
+
+msgid "This product cannot be purchased right now."
+msgstr "This product cannot be purchased right now."
+
+msgid "This product is out of stock."
+msgstr "This product is out of stock."
+
+msgid "The product could not be added to cart."
+msgstr "The product could not be added to cart."
+
+msgid "WooCommerce accepted the request, but the product was not safely verified in the cart. Please try again or open the product page."
+msgstr "WooCommerce accepted the request, but the product was not safely verified in the cart. Please try again or open the product page."
+
+msgid "%s has been added to your cart."
+msgstr "%s has been added to your cart."
+
+msgid "Variation selection is disabled."
+msgstr "Variation selection is disabled."
+
+msgid "This variable product is not available."
+msgstr "This variable product is not available."
+
+msgid "Please choose all required product options before adding this item to cart."
+msgstr "Please choose all required product options before adding this item to cart."
+
+msgid "The selected options do not match an available variation. Please choose the options again."
+msgstr "The selected options do not match an available variation. Please choose the options again."
+
+msgid "This option cannot be purchased right now."
+msgstr "This option cannot be purchased right now."
+
+msgid "This option is out of stock."
+msgstr "This option is out of stock."
+
+msgid "The selected option could not be added to cart."
+msgstr "The selected option could not be added to cart."
+
+msgid "WooCommerce accepted the request, but the selected option could not be safely verified in the cart. Please choose the options again or open the product page."
+msgstr "WooCommerce accepted the request, but the selected option could not be safely verified in the cart. Please choose the options again or open the product page."
+
+msgid "Cart quantity controls are disabled."
+msgstr "Cart quantity controls are disabled."
+
+msgid "Your cart is already up to date."
+msgstr "Your cart is already up to date."
+
+msgid "Cart updated."
+msgstr "Cart updated."
+
+msgid "Item removed. Your cart is updated below."
+msgstr "Item removed. Your cart is updated below."
+
+msgid "Quantity increased. Your cart is updated below."
+msgstr "Quantity increased. Your cart is updated below."
+
+msgid "Quantity decreased. Your cart is updated below."
+msgstr "Quantity decreased. Your cart is updated below."
+
+msgid "This product does not have selectable variations."
+msgstr "This product does not have selectable variations."
+
+msgid "Too many assistant actions. Please wait a few minutes and try again."
+msgstr "Too many assistant actions. Please wait a few minutes and try again."
+
+msgid "Selected option"
+msgstr "Selected option"
+
+msgid "In stock"
+msgstr "In stock"
+
+msgid "Out of stock"
+msgstr "Out of stock"
+
+msgid "On backorder"
+msgstr "On backorder"
+
+msgid "Human handoff is disabled for this store."
+msgstr "Human handoff is disabled for this store."
+
+msgid "Please enter your name."
+msgstr "Please enter your name."
+
+msgid "Please enter a valid email address."
+msgstr "Please enter a valid email address."
+
+msgid "Thanks. A store team member will contact you soon."
+msgstr "Thanks. A store team member will contact you soon."
+
+msgid "Coupon suggestions are disabled for this store."
+msgstr "Coupon suggestions are disabled for this store."
+
+msgid "Here are the coupon codes currently available from this store."
+msgstr "Here are the coupon codes currently available from this store."
+
+msgid "New Geeky Bot lead from %s"
+msgstr "New Geeky Bot lead from %s"
+
+msgid "Too many contact requests. Please wait a few minutes and try again."
+msgstr "Too many contact requests. Please wait a few minutes and try again."
+
+msgid "Order lookup is disabled."
+msgstr "Order lookup is disabled."
+
+msgid "Please log in to view your order status."
+msgstr "Please log in to view your order status."
+
+msgid "WooCommerce orders are not available."
+msgstr "WooCommerce orders are not available."
+
+msgid "Order not found."
+msgstr "Order not found."
+
+msgid "For privacy, I can only show orders from your current account."
+msgstr "For privacy, I can only show orders from your current account."
+
+msgid "WooCommerce product data is not available."
+msgstr "WooCommerce product data is not available."
+
+msgid "Product comparison is disabled."
+msgstr "Product comparison is disabled."
+
+msgid "I couldn't find enough available products to compare."
+msgstr "I couldn't find enough available products to compare."
+
+msgid "Here is a side-by-side comparison of the selected products."
+msgstr "Here is a side-by-side comparison of the selected products."
+
+msgid "Smart recommendations are disabled."
+msgstr "Smart recommendations are disabled."
+
+msgid "Because you are viewing %s, these related products may also fit."
+msgstr "Because you are viewing %s, these related products may also fit."
+
+msgid "That analytics event is not allowed."
+msgstr "That analytics event is not allowed."
+
+msgid "Price"
+msgstr "Price"
+
+msgid "Stock"
+msgstr "Stock"
+
+msgid "Rating"
+msgstr "Rating"
+
+msgid "Categories"
+msgstr "Categories"
+
+msgid "Attributes"
+msgstr "Attributes"
+
+msgid "Description"
+msgstr "Description"
+
+msgid "Product #%d"
+msgstr "Product #%d"
+
+msgid "Product comparison is unavailable right now. You can still open the products below to review their details."
+msgstr "Product comparison is unavailable right now. You can still open the products below to review their details."
+
+msgid "Choose at least two different shown products to compare."
+msgstr "Choose at least two different shown products to compare."
+
+msgid "That needs an active Commerce Pro licence. You can still browse and ask about products."
+msgstr "That needs an active Commerce Pro licence. You can still browse and ask about products."
+
+msgid "The store is not available right now."
+msgstr "The store is not available right now."
+
+msgid "Your cart is not available right now."
+msgstr "Your cart is not available right now."
+
+msgid "%s comes in options, so tell me which one — for example the colour or size — and I will add it."
+msgstr "%s comes in options, so tell me which one — for example the colour or size — and I will add it."
+
+msgid "That product needs options first."
+msgstr "That product needs options first."
+
+msgid "%s is not in your cart, so there is nothing to change."
+msgstr "%s is not in your cart, so there is nothing to change."
+
+msgid "Your cart has been updated."
+msgstr "Your cart has been updated."
+
+msgid "Your cart is now empty."
+msgstr "Your cart is now empty."
+
+msgid "Your cart now has %s."
+msgstr "Your cart now has %s."
+
+msgid "Your cart is empty at the moment."
+msgstr "Your cart is empty at the moment."
+
+msgid "Your cart has %s."
+msgstr "Your cart has %s."
+
+msgid "Checkout is handled on the store pages. Your cart is ready when you are."
+msgstr "Checkout is handled on the store pages. Your cart is ready when you are."
+
+msgid "You can complete your order here: %s"
+msgstr "You can complete your order here: %s"
+
+msgid "You can complete your order from the checkout page."
+msgstr "You can complete your order from the checkout page."
+
+msgid "There are no discount codes to share right now."
+msgstr "There are no discount codes to share right now."
+
+msgid "There are no public discount codes available at the moment."
+msgstr "There are no public discount codes available at the moment."
+
+msgid "Current code: %s. Enter it at checkout."
+msgid_plural "Current codes: %s. Enter one at checkout."
+msgstr[0] "Current code: %s. Enter it at checkout."
+msgstr[1] "Current codes: %s. Enter one at checkout."
+
+msgid "I can't pass this to the team from here, but the store's help pages have its contact details."
+msgstr "I can't pass this to the team from here, but the store's help pages have its contact details."
+
+msgid "I've noted that you want a person to look at this. The store team can pick it up from your account, here: %s"
+msgstr "I've noted that you want a person to look at this. The store team can pick it up from your account, here: %s"
+
+msgid "I've noted that you want a person to look at this, and the store team can pick it up from its help pages."
+msgstr "I've noted that you want a person to look at this, and the store team can pick it up from its help pages."
+
+msgid "I couldn't find %s in this store, so I haven't changed anything."
+msgstr "I couldn't find %s in this store, so I haven't changed anything."
+
+msgid "I'm not sure which product you mean. Name it, or say which of the results you want."
+msgstr "I'm not sure which product you mean. Name it, or say which of the results you want."
+
+msgid "The first product"
+msgstr "The first product"
+
+msgid "the second product"
+msgstr "the second product"
+
+msgid "Here are the confirmed differences between %1$s and %2$s. Compare their price, stock, rating, categories, attributes, and description below."
+msgstr "Here are the confirmed differences between %1$s and %2$s. Compare their price, stock, rating, categories, attributes, and description below."
+
+msgid "I could not confirm both product prices, so I cannot reliably say which one is cheaper."
+msgstr "I could not confirm both product prices, so I cannot reliably say which one is cheaper."
+
+msgid "%1$s and %2$s currently have the same price: %3$s."
+msgstr "%1$s and %2$s currently have the same price: %3$s."
+
+msgid "%1$s is cheaper at %2$s, compared with %3$s at %4$s."
+msgstr "%1$s is cheaper at %2$s, compared with %3$s at %4$s."
+
+msgid "Neither %1$s nor %2$s has a customer rating yet."
+msgstr "Neither %1$s nor %2$s has a customer rating yet."
+
+msgid "%1$s and %2$s have the same customer rating: %3$s out of 5."
+msgstr "%1$s and %2$s have the same customer rating: %3$s out of 5."
+
+msgid "%1$s has the better customer rating at %2$s out of 5."
+msgstr "%1$s has the better customer rating at %2$s out of 5."
+
+msgid "%s%% off eligible items"
+msgstr "%s%% off eligible items"
+
+msgid "%s off eligible cart"
+msgstr "%s off eligible cart"
+
+msgid "Discount for eligible products"
+msgstr "Discount for eligible products"
+
+msgid "Minimum spend: %s."
+msgstr "Minimum spend: %s."
+
+msgid "Geeky Bot Commerce Pro can only be activated after a valid Commerce Pro license is verified for this site."
+msgstr "Geeky Bot Commerce Pro can only be activated after a valid Commerce Pro license is verified for this site."
+
+msgid "Commerce Pro activation blocked"
+msgstr "Commerce Pro activation blocked"
+
+msgid "Commerce Pro could not create a verified runtime binding for this site."
+msgstr "Commerce Pro could not create a verified runtime binding for this site."
+
+msgid "Commerce Pro requires the Geeky Bot core license service."
+msgstr "Commerce Pro requires the Geeky Bot core license service."
+
+msgid "Commerce Pro could not verify this site’s entitlement."
+msgstr "Commerce Pro could not verify this site’s entitlement."
+
+msgid "This Commerce Pro installation is not verified for the current site."
+msgstr "This Commerce Pro installation is not verified for the current site."
+
+msgid "This shopping action is unavailable right now. Please try again later."
+msgstr "This shopping action is unavailable right now. Please try again later."
+
+msgid "Geeky Bot Commerce Pro is installed, but its features are locked until this site has a valid verified Commerce Pro entitlement."
+msgstr "Geeky Bot Commerce Pro is installed, but its features are locked until this site has a valid verified Commerce Pro entitlement."
+
+msgid "Geeky Bot Commerce Pro leads and analytics"
+msgstr "Geeky Bot Commerce Pro leads and analytics"
+
+msgid "Geeky Bot Commerce Pro leads"
+msgstr "Geeky Bot Commerce Pro leads"
+
+msgid "Created"
+msgstr "Created"
+
+msgid "Geeky Bot Commerce Pro analytics"
+msgstr "Geeky Bot Commerce Pro analytics"
+
+msgid "Recent events"
+msgstr "Recent events"
+
+msgid "Geeky Bot Commerce Pro lead data was removed and analytics were anonymized."
+msgstr "Geeky Bot Commerce Pro lead data was removed and analytics were anonymized."
+
+msgid "capacity"
+msgstr "capacity"
+
+msgid "battery life"
+msgstr "battery life"
+
+msgid "weight"
+msgstr "weight"
+
+msgid "size"
+msgstr "size"
+
+msgid "material"
+msgstr "material"
+
+msgid "warmth"
+msgstr "warmth"
+
+msgid "I don't have %s recorded for the products shown, so I can't compare them on that. The product pages may list more detail."
+msgstr "I don't have %s recorded for the products shown, so I can't compare them on that. The product pages may list more detail."
+
+msgid "Only %1$s lists %2$s: %3$s. I don't have that detail for %4$s."
+msgstr "Only %1$s lists %2$s: %3$s. I don't have that detail for %4$s."
+
+msgid "%1$s has the lowest %2$s at %3$s, compared with %4$s."
+msgstr "%1$s has the lowest %2$s at %3$s, compared with %4$s."
+
+msgid "%1$s has the highest %2$s at %3$s, compared with %4$s."
+msgstr "%1$s has the highest %2$s at %3$s, compared with %4$s."
+
+msgid "I don't have that detail for %s."
+msgstr "I don't have that detail for %s."
+
+msgid "Here is the %1$s for each: %2$s."
+msgstr "Here is the %1$s for each: %2$s."
+
+msgid "%1$s and %2$s"
+msgstr "%1$s and %2$s"
+
+msgid "compare the products on screen side by side"
+msgstr "compare the products on screen side by side"
+
+msgid "check your own orders while you are signed in"
+msgstr "check your own orders while you are signed in"
+
+msgid "I couldn't find order %s on your account. Check the number, or open your account to see all your orders."
+msgstr "I couldn't find order %s on your account. Check the number, or open your account to see all your orders."
+
+msgid "You don't have any past orders on this account yet."
+msgstr "You don't have any past orders on this account yet."
+
+msgid "Your last order was on %1$s: %2$s. It is currently %3$s."
+msgstr "Your last order was on %1$s: %2$s. It is currently %3$s."
+
+msgid "You don't have any orders on this account yet."
+msgstr "You don't have any orders on this account yet."
+
+msgid "I couldn't read that order."
+msgstr "I couldn't read that order."
+
+msgid "Order %1$s, placed on %2$s, is currently %3$s. Total %4$s."
+msgstr "Order %1$s, placed on %2$s, is currently %3$s. Total %4$s."
+
+msgid "Your shopping session expired. Please refresh the page and try again."
+msgstr "Your shopping session expired. Please refresh the page and try again."
+
+msgid "Geeky Bot"
+msgstr "Geeky Bot"
+
+msgid "(opens in a new tab)"
+msgstr "(opens in a new tab)"
+
+msgid "Finish setting up Geeky Bot"
+msgstr "Finish setting up Geeky Bot"
+
+msgid "The assistant is not ready for shoppers yet. Work through these steps in order — each one takes a minute."
+msgstr "The assistant is not ready for shoppers yet. Work through these steps in order — each one takes a minute."
+
+msgid "%1$s of %2$s done"
+msgstr "%1$s of %2$s done"
+
+msgid "Do this next"
+msgstr "Do this next"
+
+msgid "Done"
+msgstr "Done"
+
+msgid "Not enough history yet"
+msgstr "Not enough history yet"
+
+msgid "The chart appears once shoppers have used the assistant on at least two different days."
+msgstr "The chart appears once shoppers have used the assistant on at least two different days."
+
+msgid "No activity in this period"
+msgstr "No activity in this period"
+
+msgid "Once shoppers start using the assistant, their daily activity is plotted here."
+msgstr "Once shoppers start using the assistant, their daily activity is plotted here."
+
+msgid "Daily assistant activity"
+msgstr "Daily assistant activity"
+
+msgid "No shopper activity yet"
+msgstr "No shopper activity yet"
+
+msgid "Once shoppers open the assistant, the steps they take through it are tracked here."
+msgstr "Once shoppers open the assistant, the steps they take through it are tracked here."
+
+msgid "%s%% continued"
+msgstr "%s%% continued"
+
+msgid "Setup Wizard"
+msgstr "Setup Wizard"
+
+msgid "Storefront Widget"
+msgstr "Storefront Widget"
+
+msgid "Product Search"
+msgstr "Product Search"
+
+msgid "Store Knowledge"
+msgstr "Store Knowledge"
+
+msgid "Conversations"
+msgstr "Conversations"
+
+msgid "Analytics"
+msgstr "Analytics"
+
+msgid "Guided Demo"
+msgstr "Guided Demo"
+
+msgid "Answer Mode"
+msgstr "Answer Mode"
+
+msgid "Settings"
+msgstr "Settings"
+
+msgid "Add-ons"
+msgstr "Add-ons"
+
+msgid "Choose widget image"
+msgstr "Choose widget image"
+
+msgid "Use this image"
+msgstr "Use this image"
+
+msgid "Remove image"
+msgstr "Remove image"
+
+msgid "Copy"
+msgstr "Copy"
+
+msgid "You do not have permission to rebuild the product index."
+msgstr "You do not have permission to rebuild the product index."
+
+msgid "You do not have permission to refresh store knowledge."
+msgstr "You do not have permission to refresh store knowledge."
+
+msgid "You do not have permission to refresh Guided Demo examples."
+msgstr "You do not have permission to refresh Guided Demo examples."
+
+msgid "You do not have permission to update setup progress."
+msgstr "You do not have permission to update setup progress."
+
+msgid "You do not have permission to manage Geeky Bot licenses."
+msgstr "You do not have permission to manage Geeky Bot licenses."
+
+msgid "You do not have permission to install plugins."
+msgstr "You do not have permission to install plugins."
+
+msgid "You do not have permission to activate plugins."
+msgstr "You do not have permission to activate plugins."
+
+msgid "You do not have permission to manage Commerce Pro updates."
+msgstr "You do not have permission to manage Commerce Pro updates."
+
+msgid "You do not have permission to check Commerce Pro updates."
+msgstr "You do not have permission to check Commerce Pro updates."
+
+msgid "You do not have permission to update Commerce Pro."
+msgstr "You do not have permission to update Commerce Pro."
+
+msgid "Live-ready"
+msgstr "Live-ready"
+
+msgid "%s shopper question"
+msgid_plural "%s shopper questions"
+msgstr[0] "%s shopper question"
+msgstr[1] "%s shopper questions"
+
+msgid "No urgent questions"
+msgstr "No urgent questions"
+
+msgid "Review %s shopper question"
+msgid_plural "Review %s shopper questions"
+msgstr[0] "Review %s shopper question"
+msgstr[1] "Review %s shopper questions"
+
+msgid "No urgent shopper questions"
+msgstr "No urgent shopper questions"
+
+msgid "Exact matches"
+msgstr "Exact matches"
+
+msgid "Smart product matches"
+msgstr "Smart product matches"
+
+msgid "Exact match"
+msgstr "Exact match"
+
+msgid "Smart matches"
+msgstr "Smart matches"
+
+msgid "Natural search is active"
+msgstr "Natural search is active"
+
+msgid "Natural search needs tuning"
+msgstr "Natural search needs tuning"
+
+msgid "Conversations started"
+msgstr "Conversations started"
+
+msgid "Products opened"
+msgstr "Products opened"
+
+msgid "Products compared"
+msgstr "Products compared"
+
+msgid "Added to cart"
+msgstr "Added to cart"
+
+msgid "AI sales assistant · connected to %s products"
+msgstr "AI sales assistant · connected to %s products"
+
+msgid "Live on storefront"
+msgstr "Live on storefront"
+
+msgid "Widget is off"
+msgstr "Widget is off"
+
+msgid "Tune product intelligence"
+msgstr "Tune product intelligence"
+
+msgid "Review questions"
+msgstr "Review questions"
+
+msgid "Open store"
+msgstr "Open store"
+
+msgid "Connect WooCommerce"
+msgstr "Connect WooCommerce"
+
+msgid "Geeky Bot reads your live products, prices, stock and variations directly from WooCommerce."
+msgstr "Geeky Bot reads your live products, prices, stock and variations directly from WooCommerce."
+
+msgid "Without it the assistant has no catalog to answer from."
+msgstr "Without it the assistant has no catalog to answer from."
+
+msgid "Check WooCommerce"
+msgstr "Check WooCommerce"
+
+msgid "Build the product search index"
+msgstr "Build the product search index"
+
+msgid "Indexing lets shoppers search in their own words, like \"warm jacket under 60\", instead of exact product names."
+msgstr "Indexing lets shoppers search in their own words, like \"warm jacket under 60\", instead of exact product names."
+
+msgid "Until this runs, product questions return nothing."
+msgstr "Until this runs, product questions return nothing."
+
+msgid "Index products"
+msgstr "Index products"
+
+msgid "Choose your policy pages"
+msgstr "Choose your policy pages"
+
+msgid "Pick the published pages covering shipping, refunds and returns. The assistant quotes only these and never invents a policy."
+msgstr "Pick the published pages covering shipping, refunds and returns. The assistant quotes only these and never invents a policy."
+
+msgid "Shoppers asking about returns or delivery get the fallback answer instead."
+msgstr "Shoppers asking about returns or delivery get the fallback answer instead."
+
+msgid "Select pages"
+msgstr "Select pages"
+
+msgid "Turn on the storefront widget"
+msgstr "Turn on the storefront widget"
+
+msgid "This puts the assistant on your public store pages. Do it last, once the steps above are done."
+msgstr "This puts the assistant on your public store pages. Do it last, once the steps above are done."
+
+msgid "Nobody can use the assistant until the widget is live."
+msgstr "Nobody can use the assistant until the widget is live."
+
+msgid "Enable widget"
+msgstr "Enable widget"
+
+msgid "vs %s previous 30 days"
+msgstr "vs %s previous 30 days"
+
+msgid "Shopper questions"
+msgstr "Shopper questions"
+
+msgid "Answered from store data"
+msgstr "Answered from store data"
+
+msgid "vs %s%% previous 30 days"
+msgstr "vs %s%% previous 30 days"
+
+msgid "No history yet"
+msgstr "No history yet"
+
+msgid "Needs review"
+msgstr "Needs review"
+
+msgid "Unanswered shopper phrases"
+msgstr "Unanswered shopper phrases"
+
+msgid "Products indexed"
+msgstr "Products indexed"
+
+msgid "Rebuilt %s"
+msgstr "Rebuilt %s"
+
+msgid "Assisted revenue"
+msgstr "Assisted revenue"
+
+msgid "%s order in 30 days"
+msgid_plural "%s orders in 30 days"
+msgstr[0] "%s order in 30 days"
+msgstr[1] "%s orders in 30 days"
+
+msgid "Performance"
+msgstr "Performance"
+
+msgid "Conversations over time"
+msgstr "Conversations over time"
+
+msgid "Last 30 days"
+msgstr "Last 30 days"
+
+msgid "This period · %s"
+msgstr "This period · %s"
+
+msgid "Previous 30 days · %s"
+msgstr "Previous 30 days · %s"
+
+msgid "Daily conversations over the last 30 days"
+msgstr "Daily conversations over the last 30 days"
+
+msgid "What shoppers do next"
+msgstr "What shoppers do next"
+
+msgid "Comparison and cart steps appear once Commerce Pro is active, which adds buying actions to the assistant."
+msgstr "Comparison and cart steps appear once Commerce Pro is active, which adds buying actions to the assistant."
+
+msgid "Revenue attribution arrives with Commerce Pro 2.0.2. Update the add-on to see what the assistant actually sold."
+msgstr "Revenue attribution arrives with Commerce Pro 2.0.2. Update the add-on to see what the assistant actually sold."
+
+msgid "Revenue from items added in chat"
+msgstr "Revenue from items added in chat"
+
+msgid "Across %1$s order worth %2$s"
+msgid_plural "Across %1$s orders worth %2$s"
+msgstr[0] "Across %1$s order worth %2$s"
+msgstr[1] "Across %1$s orders worth %2$s"
+
+msgid "Only the lines the shopper added through the assistant are counted, not the whole order."
+msgstr "Only the lines the shopper added through the assistant are counted, not the whole order."
+
+msgid "No orders in this period included an item added through the assistant."
+msgstr "No orders in this period included an item added through the assistant."
+
+msgid "Revenue appears here after the first order containing an item a shopper added through the assistant. Earlier orders cannot be attributed retroactively."
+msgstr "Revenue appears here after the first order containing an item a shopper added through the assistant. Earlier orders cannot be attributed retroactively."
+
+msgid "Needs action"
+msgstr "Needs action"
+
+msgid "Next highest-impact actions"
+msgstr "Next highest-impact actions"
+
+msgid "%s%% set up"
+msgstr "%s%% set up"
+
+msgid "Turn repeated misses into better attributes, synonyms, selected policy pages, or Commerce Pro rules."
+msgstr "Turn repeated misses into better attributes, synonyms, selected policy pages, or Commerce Pro rules."
+
+msgid "The current build is handling the latest reviewed shopper questions."
+msgstr "The current build is handling the latest reviewed shopper questions."
+
+msgid "Open review"
+msgstr "Open review"
+
+msgid "WooCommerce catalog connected"
+msgstr "WooCommerce catalog connected"
+
+msgid "The assistant reads live products, prices and stock from WooCommerce."
+msgstr "The assistant reads live products, prices and stock from WooCommerce."
+
+msgid "Check"
+msgstr "Check"
+
+msgid "Buyer-language search turns shopper phrasing into catalog matches."
+msgstr "Buyer-language search turns shopper phrasing into catalog matches."
+
+msgid "Tune search"
+msgstr "Tune search"
+
+msgid "Policy answers grounded"
+msgstr "Policy answers grounded"
+
+msgid "Shipping, refund and returns questions need a selected policy page, or the assistant sends the fallback answer."
+msgstr "Shipping, refund and returns questions need a selected policy page, or the assistant sends the fallback answer."
+
+msgid "Choose pages"
+msgstr "Choose pages"
+
+msgid "Storefront widget enabled"
+msgstr "Storefront widget enabled"
+
+msgid "Shoppers only see the assistant once the widget is live on public store pages."
+msgstr "Shoppers only see the assistant once the widget is live on public store pages."
+
+msgid "Open widget"
+msgstr "Open widget"
+
+msgid "Why answers failed"
+msgstr "Why answers failed"
+
+msgid "No failed answers recorded"
+msgstr "No failed answers recorded"
+
+msgid "When the assistant cannot ground an answer, the reason is logged here so you can fix the cause."
+msgstr "When the assistant cannot ground an answer, the reason is logged here so you can fix the cause."
+
+msgid "Open conversation review"
+msgstr "Open conversation review"
+
+msgid "What shoppers ask"
+msgstr "What shoppers ask"
+
+msgid "Latest unanswered questions"
+msgstr "Latest unanswered questions"
+
+msgid "Nothing unanswered right now"
+msgstr "Nothing unanswered right now"
+
+msgid "Shopper phrases the assistant could not ground in your catalog or policy pages will appear here."
+msgstr "Shopper phrases the assistant could not ground in your catalog or policy pages will appear here."
+
+msgid "Shopper asked"
+msgstr "Shopper asked"
+
+msgid "Reason"
+msgstr "Reason"
+
+msgid "When"
+msgstr "When"
+
+msgid "Conversation review signal"
+msgstr "Conversation review signal"
+
+msgid "Messages stored"
+msgstr "Messages stored"
+
+msgid "Now handled"
+msgstr "Now handled"
+
+msgid "Every unanswered shopper phrase becomes a signal for product data, synonyms, policy pages, or future sales rules."
+msgstr "Every unanswered shopper phrase becomes a signal for product data, synonyms, policy pages, or future sales rules."
+
+msgid "Right now"
+msgstr "Right now"
+
+msgid "Recent conversations"
+msgstr "Recent conversations"
+
+msgid "No conversations yet"
+msgstr "No conversations yet"
+
+msgid "Shopper conversations appear here as soon as the widget is used on your store."
+msgstr "Shopper conversations appear here as soon as the widget is used on your store."
+
+msgid "%s question went unanswered"
+msgid_plural "%s questions went unanswered"
+msgstr[0] "%s question went unanswered"
+msgstr[1] "%s questions went unanswered"
+
+msgid "%s product opened"
+msgid_plural "%s products opened"
+msgstr[0] "%s product opened"
+msgstr[1] "%s products opened"
+
+msgid "%s message"
+msgid_plural "%s messages"
+msgstr[0] "%s message"
+msgstr[1] "%s messages"
+
+msgid "(no shopper message stored)"
+msgstr "(no shopper message stored)"
+
+msgid "Products the assistant shows"
+msgstr "Products the assistant shows"
+
+msgid "No product activity recorded"
+msgstr "No product activity recorded"
+
+msgid "Once shoppers open products through the assistant, the most requested ones are listed here."
+msgstr "Once shoppers open products through the assistant, the most requested ones are listed here."
+
+msgid "Per-product tracking is part of Commerce Pro, which records the buying actions shoppers take inside the chat."
+msgstr "Per-product tracking is part of Commerce Pro, which records the buying actions shoppers take inside the chat."
+
+msgid "Product"
+msgstr "Product"
+
+msgid "Requests"
+msgstr "Requests"
+
+msgid "What shoppers see"
+msgstr "What shoppers see"
+
+msgid "Tune widget"
+msgstr "Tune widget"
+
+msgid "Open storefront"
+msgstr "Open storefront"
+
+msgid "Reference"
+msgstr "Reference"
+
+msgid "Product discovery signals"
+msgstr "Product discovery signals"
+
+msgid "Search uses WooCommerce product data first, then shopper-language synonyms and close-match rules."
+msgstr "Search uses WooCommerce product data first, then shopper-language synonyms and close-match rules."
+
+msgid "Natural search"
+msgstr "Natural search"
+
+msgid "Match mode"
+msgstr "Match mode"
+
+msgid "Product name"
+msgstr "Product name"
+
+msgid "SKU"
+msgstr "SKU"
+
+msgid "Tags"
+msgstr "Tags"
+
+msgid "Price phrases"
+msgstr "Price phrases"
+
+msgid "Sale signals"
+msgstr "Sale signals"
+
+msgid "Beyond simple product search"
+msgstr "Beyond simple product search"
+
+msgid "Commerce Pro extends the assistant into buying actions while keeping answers grounded in store data."
+msgstr "Commerce Pro extends the assistant into buying actions while keeping answers grounded in store data."
+
+msgid "Natural product search"
+msgstr "Natural product search"
+
+msgid "Cart add, update and remove"
+msgstr "Cart add, update and remove"
+
+msgid "Order history"
+msgstr "Order history"
+
+msgid "Coupons and deals"
+msgstr "Coupons and deals"
+
+msgid "See what Commerce Pro adds"
+msgstr "See what Commerce Pro adds"
+
+msgid "Try examples from this store"
+msgstr "Try examples from this store"
+
+msgid "Guided Demo uses visible indexed products and approved policy pages, then labels which requests are free and which need Commerce Pro."
+msgstr "Guided Demo uses visible indexed products and approved policy pages, then labels which requests are free and which need Commerce Pro."
+
+msgid "Product names, prices, attributes and sale state"
+msgstr "Product names, prices, attributes and sale state"
+
+msgid "Selected shipping, refund and store pages"
+msgstr "Selected shipping, refund and store pages"
+
+msgid "Find, understand and choose products"
+msgstr "Find, understand and choose products"
+
+msgid "Variations, cart actions and checkout flow"
+msgstr "Variations, cart actions and checkout flow"
+
+msgid "Open Guided Demo"
+msgstr "Open Guided Demo"
+
+msgid "Go to"
+msgstr "Go to"
+
+msgid "Geeky Bot admin sections"
+msgstr "Geeky Bot admin sections"
+
+msgid "Setup"
+msgstr "Setup"
+
+msgid "Widget"
+msgstr "Widget"
+
+msgid "Product search"
+msgstr "Product search"
+
+msgid "Store knowledge"
+msgstr "Store knowledge"
+
+msgid "Integrations"
+msgstr "Integrations"
+
+msgid "Guest conversations appear in the admin review center."
+msgstr "Guest conversations appear in the admin review center."
+
+msgid "Guest conversations stay in the shopper browser and do not appear in admin."
+msgstr "Guest conversations stay in the shopper browser and do not appear in admin."
+
+msgid "Prepare products"
+msgstr "Prepare products"
+
+msgid "Waiting for WooCommerce"
+msgstr "Waiting for WooCommerce"
+
+msgid "Try real examples"
+msgstr "Try real examples"
+
+msgid "Waiting for product index"
+msgstr "Waiting for product index"
+
+msgid "%s launch check ready"
+msgid_plural "%s launch checks ready"
+msgstr[0] "%s launch check ready"
+msgstr[1] "%s launch checks ready"
+
+msgid "%1$s ready · %2$s not configured · %3$s blocked · %4$s optional. The same live readiness score is used throughout Geeky Bot."
+msgstr "%1$s ready · %2$s not configured · %3$s blocked · %4$s optional. The same live readiness score is used throughout Geeky Bot."
+
+msgid "Current mode: %s. Local grounded mode is the default and calls no language model — answers are built from store data. Zywrap and OpenAI are optional and add generated wording."
+msgstr "Current mode: %s. Local grounded mode is the default and calls no language model — answers are built from store data. Zywrap and OpenAI are optional and add generated wording."
+
+msgid "Indexed products: %s. Rebuild after large imports or major catalog changes."
+msgstr "Indexed products: %s. Rebuild after large imports or major catalog changes."
+
+msgid "Blocked until WooCommerce is active. Product preparation and indexing cannot run without the store catalog."
+msgstr "Blocked until WooCommerce is active. Product preparation and indexing cannot run without the store catalog."
+
+msgid "Retention: %1$s days. %2$s"
+msgstr "Retention: %1$s days. %2$s"
+
+msgid "%1$s store-grounded Free examples and %2$s Commerce Pro examples are available."
+msgstr "%1$s store-grounded Free examples and %2$s Commerce Pro examples are available."
+
+msgid "Blocked until WooCommerce has at least one visible indexed product."
+msgstr "Blocked until WooCommerce has at least one visible indexed product."
+
+msgid "Current status: %s. This does not disable any feature or remove settings."
+msgstr "Current status: %s. This does not disable any feature or remove settings."
+
+msgid "Launch a useful WooCommerce shopping assistant through a resumable seven-step path. Every check uses the live store configuration, so you can leave and continue later without losing progress."
+msgstr "Launch a useful WooCommerce shopping assistant through a resumable seven-step path. Every check uses the live store configuration, so you can leave and continue later without losing progress."
+
+msgid "Guided launch"
+msgstr "Guided launch"
+
+msgid "Welcome to Geeky Bot. Complete the important checks below, or leave this page and return from Geeky Bot → Setup Wizard at any time."
+msgstr "Welcome to Geeky Bot. Complete the important checks below, or leave this page and return from Geeky Bot → Setup Wizard at any time."
+
+msgid "Setup review status updated."
+msgstr "Setup review status updated."
+
+msgid "Set up the assistant in dependency order"
+msgstr "Set up the assistant in dependency order"
+
+msgid "All checks ready"
+msgstr "All checks ready"
+
+msgid "Store system check"
+msgstr "Store system check"
+
+msgid "Confirm WooCommerce, WordPress, PHP and the local REST runtime before configuring shopper features."
+msgstr "Confirm WooCommerce, WordPress, PHP and the local REST runtime before configuring shopper features."
+
+msgid "Review system"
+msgstr "Review system"
+
+msgid "Answer mode"
+msgstr "Answer mode"
+
+msgid "Review answer mode"
+msgstr "Review answer mode"
+
+msgid "Product search index"
+msgstr "Product search index"
+
+msgid "Approve public shipping, returns, refunds, payment or warranty pages. Optional for product discovery — missing information stays unanswered rather than invented."
+msgstr "Approve public shipping, returns, refunds, payment or warranty pages. Optional for product discovery — missing information stays unanswered rather than invented."
+
+msgid "Select policy pages"
+msgstr "Select policy pages"
+
+msgid "Storefront widget"
+msgstr "Storefront widget"
+
+msgid "Confirm the assistant name, welcome copy, launcher, mobile position and product-card volume."
+msgstr "Confirm the assistant name, welcome copy, launcher, mobile position and product-card volume."
+
+msgid "Configure widget"
+msgstr "Configure widget"
+
+msgid "Privacy and conversations"
+msgstr "Privacy and conversations"
+
+msgid "Review privacy"
+msgstr "Review privacy"
+
+msgid "Launch progress"
+msgstr "Launch progress"
+
+msgid "Ready for a full rehearsal"
+msgstr "Ready for a full rehearsal"
+
+msgid "System checks"
+msgstr "System checks"
+
+msgid "Local only"
+msgstr "Local only"
+
+msgid "OK"
+msgstr "OK"
+
+msgid "Failed"
+msgstr "Failed"
+
+msgid "Review status"
+msgstr "Review status"
+
+msgid "Finish setup review"
+msgstr "Finish setup review"
+
+msgid "Skip for now"
+msgstr "Skip for now"
+
+msgid "The Setup Wizard stays available from the Geeky Bot menu."
+msgstr "The Setup Wizard stays available from the Geeky Bot menu."
+
+msgid "How this setup works"
+msgstr "How this setup works"
+
+msgid "WooCommerce first"
+msgstr "WooCommerce first"
+
+msgid "Products and the Guided Demo stay blocked until the store runtime is available."
+msgstr "Products and the Guided Demo stay blocked until the store runtime is available."
+
+msgid "No AI account required"
+msgstr "No AI account required"
+
+msgid "Local grounded mode is the default and works without an external provider or API key. It does not call a language model: answers are assembled from your catalog and selected policy pages. Add a provider key under Answer mode if you want generated, conversational wording."
+msgstr "Local grounded mode is the default and works without an external provider or API key. It does not call a language model: answers are assembled from your catalog and selected policy pages. Add a provider key under Answer mode if you want generated, conversational wording."
+
+msgid "You can stop anytime"
+msgstr "You can stop anytime"
+
+msgid "Leave this page and return later. Progress is read from your live store, so nothing is lost."
+msgstr "Leave this page and return later. Progress is read from your live store, so nothing is lost."
+
+msgid "Try Geeky Bot with realistic shopper requests generated from this store’s own indexed products and approved policy pages. Refresh the board whenever you want a different catalog sample."
+msgstr "Try Geeky Bot with realistic shopper requests generated from this store’s own indexed products and approved policy pages. Refresh the board whenever you want a different catalog sample."
+
+msgid "Real-store rehearsal"
+msgstr "Real-store rehearsal"
+
+msgid "Guided Demo examples regenerated from the current store data."
+msgstr "Guided Demo examples regenerated from the current store data."
+
+msgid "The storefront widget is off. You can still copy examples, but turn the widget on before using Try on storefront."
+msgstr "The storefront widget is off. You can still copy examples, but turn the widget on before using Try on storefront."
+
+msgid "Real-store examples"
+msgstr "Real-store examples"
+
+msgid "Generated locally, with no AI usage"
+msgstr "Generated locally, with no AI usage"
+
+msgid "Free capabilities"
+msgstr "Free capabilities"
+
+msgid "Commerce Pro examples"
+msgstr "Commerce Pro examples"
+
+msgid "Buying actions are unlocked"
+msgstr "Buying actions are unlocked"
+
+msgid "Preview of the paid buying journey"
+msgstr "Preview of the paid buying journey"
+
+msgid "Examples from your catalog"
+msgstr "Examples from your catalog"
+
+msgid "Refresh examples"
+msgstr "Refresh examples"
+
+msgid "Connect the store catalog before generating examples"
+msgstr "Connect the store catalog before generating examples"
+
+msgid "Guided Demo uses real, visible WooCommerce products. Activate WooCommerce, add or import products, then build the product search index."
+msgstr "Guided Demo uses real, visible WooCommerce products. Activate WooCommerce, add or import products, then build the product search index."
+
+msgid "Add or import at least one visible product"
+msgstr "Add or import at least one visible product"
+
+msgid "Examples are never generated from fake demo data. Add a real WooCommerce product, then build the product search index."
+msgstr "Examples are never generated from fake demo data. Add a real WooCommerce product, then build the product search index."
+
+msgid "Add a product"
+msgstr "Add a product"
+
+msgid "Build the product index to generate real examples"
+msgstr "Build the product index to generate real examples"
+
+msgid "%s published products are available, but none are ready in the Geeky Bot index yet."
+msgstr "%s published products are available, but none are ready in the Geeky Bot index yet."
+
+msgid "Build the index"
+msgstr "Build the index"
+
+msgid "Free"
+msgstr "Free"
+
+msgid "Runs as a short conversation, not a single question."
+msgstr "Runs as a short conversation, not a single question."
+
+msgid "%d turn"
+msgid_plural "%d turns"
+msgstr[0] "%d turn"
+msgstr[1] "%d turns"
+
+msgid "%d."
+msgstr "%d."
+
+msgid "Built from"
+msgstr "Built from"
+
+msgid "View Commerce Pro"
+msgstr "View Commerce Pro"
+
+msgid "Try on storefront"
+msgstr "Try on storefront"
+
+msgid "This example uses a buying action available in Commerce Pro."
+msgstr "This example uses a buying action available in Commerce Pro."
+
+msgid "What each tier proves"
+msgstr "What each tier proves"
+
+msgid "Free proves product intelligence"
+msgstr "Free proves product intelligence"
+
+msgid "Shoppers find products, apply real constraints, ask product questions, receive grounded recommendations, and read approved store-policy answers."
+msgstr "Shoppers find products, apply real constraints, ask product questions, receive grounded recommendations, and read approved store-policy answers."
+
+msgid "Commerce Pro completes the sale"
+msgstr "Commerce Pro completes the sale"
+
+msgid "Shoppers select variations, add products, manage the cart, and continue to checkout without leaving the assistant."
+msgstr "Shoppers select variations, add products, manage the cart, and continue to checkout without leaving the assistant."
+
+msgid "Shape the live shopper panel: welcome copy, product-card volume, starter prompts, accent color, placement and mobile-ready preview."
+msgstr "Shape the live shopper panel: welcome copy, product-card volume, starter prompts, accent color, placement and mobile-ready preview."
+
+msgid "Shopper experience"
+msgstr "Shopper experience"
+
+msgid "Widget settings saved."
+msgstr "Widget settings saved."
+
+msgid "Shopper-facing basics"
+msgstr "Shopper-facing basics"
+
+msgid "Show the assistant on my store"
+msgstr "Show the assistant on my store"
+
+msgid "Adds the assistant button to your public store pages."
+msgstr "Adds the assistant button to your public store pages."
+
+msgid "Assistant name"
+msgstr "Assistant name"
+
+msgid "Subtitle"
+msgstr "Subtitle"
+
+msgid "Welcome message"
+msgstr "Welcome message"
+
+msgid "The first thing a shopper reads. Keep it short and inviting."
+msgstr "The first thing a shopper reads. Keep it short and inviting."
+
+msgid "When the assistant cannot answer"
+msgstr "When the assistant cannot answer"
+
+msgid "Sent when no catalog data or approved policy page covers the question."
+msgstr "Sent when no catalog data or approved policy page covers the question."
+
+msgid "Accent color"
+msgstr "Accent color"
+
+msgid "Position on screen"
+msgstr "Position on screen"
+
+msgid "Right"
+msgstr "Right"
+
+msgid "Left"
+msgstr "Left"
+
+msgid "Products per answer"
+msgstr "Products per answer"
+
+msgid "Three or four keeps replies readable on a phone."
+msgstr "Three or four keeps replies readable on a phone."
+
+msgid "Shopper invitation"
+msgstr "Shopper invitation"
+
+msgid "Shows one friendly prompt above the button after a shopper has been on the page a while. The chat stays closed until they open it."
+msgstr "Shows one friendly prompt above the button after a shopper has been on the page a while. The chat stays closed until they open it."
+
+msgid "Show the invitation"
+msgstr "Show the invitation"
+
+msgid "Shown once per browser session, and never while the assistant is already open."
+msgstr "Shown once per browser session, and never while the assistant is already open."
+
+msgid "Show it after"
+msgstr "Show it after"
+
+msgid "Seconds after the page loads. Ten to fifteen works well."
+msgstr "Seconds after the page loads. Ten to fifteen works well."
+
+msgid "Invitation message"
+msgstr "Invitation message"
+
+msgid "Keep it short and focused on helping shoppers choose."
+msgstr "Keep it short and focused on helping shoppers choose."
+
+msgid "Launcher button"
+msgstr "Launcher button"
+
+msgid "What shoppers see before they open the assistant."
+msgstr "What shoppers see before they open the assistant."
+
+msgid "Icon"
+msgstr "Icon"
+
+msgid "Default GeekyBot icon"
+msgstr "Default GeekyBot icon"
+
+msgid "Store logo"
+msgstr "Store logo"
+
+msgid "Custom image"
+msgstr "Custom image"
+
+msgid "Custom icon"
+msgstr "Custom icon"
+
+msgid "Style"
+msgstr "Style"
+
+msgid "Icon only"
+msgstr "Icon only"
+
+msgid "Icon and text"
+msgstr "Icon and text"
+
+msgid "Icon only is compact. Adding text can reassure first-time visitors."
+msgstr "Icon only is compact. Adding text can reassure first-time visitors."
+
+msgid "Button text"
+msgstr "Button text"
+
+msgid "Used only when the style is Icon and text."
+msgstr "Used only when the style is Icon and text."
+
+msgid "Widget header"
+msgstr "Widget header"
+
+msgid "Keeps the opened assistant aligned with your store brand."
+msgstr "Keeps the opened assistant aligned with your store brand."
+
+msgid "Logo"
+msgstr "Logo"
+
+msgid "Same as launcher"
+msgstr "Same as launcher"
+
+msgid "No logo"
+msgstr "No logo"
+
+msgid "Custom header logo"
+msgstr "Custom header logo"
+
+msgid "Colour mode"
+msgstr "Colour mode"
+
+msgid "Light"
+msgstr "Light"
+
+msgid "Dark"
+msgstr "Dark"
+
+msgid "Match the shopper device"
+msgstr "Match the shopper device"
+
+msgid "Choose Match the shopper device if your storefront has a dark theme."
+msgstr "Choose Match the shopper device if your storefront has a dark theme."
+
+msgid "Button shape"
+msgstr "Button shape"
+
+msgid "Circle"
+msgstr "Circle"
+
+msgid "Rounded square"
+msgstr "Rounded square"
+
+msgid "Header style"
+msgstr "Header style"
+
+msgid "Gradient"
+msgstr "Gradient"
+
+msgid "Solid accent"
+msgstr "Solid accent"
+
+msgid "Starter prompts"
+msgstr "Starter prompts"
+
+msgid "The buttons a shopper sees before typing anything. Write them the way a customer would ask."
+msgstr "The buttons a shopper sees before typing anything. Write them the way a customer would ask."
+
+msgid "One per line. The first four appear in the widget. Leave it empty to restore the defaults."
+msgstr "One per line. The first four appear in the widget. Leave it empty to restore the defaults."
+
+msgid "Shopper messages"
+msgstr "Shopper messages"
+
+msgid "Show an icon beside the shopper's messages"
+msgstr "Show an icon beside the shopper's messages"
+
+msgid "Off by default. The icon reserves space in every message to repeat what the alignment already shows."
+msgstr "Off by default. The icon reserves space in every message to repeat what the alignment already shows."
+
+msgid "Save widget"
+msgstr "Save widget"
+
+msgid "Live preview"
+msgstr "Live preview"
+
+msgid "Updates as you type"
+msgstr "Updates as you type"
+
+msgid "Styles are scoped so your theme is untouched"
+msgstr "Styles are scoped so your theme is untouched"
+
+msgid "Mobile-first panel"
+msgstr "Mobile-first panel"
+
+msgid "Product cards ready"
+msgstr "Product cards ready"
+
+msgid "Save before testing on the storefront — the preview shows unsaved changes."
+msgstr "Save before testing on the storefront — the preview shows unsaved changes."
+
+msgid "Test real shopper phrases, inspect match reasons, tune synonyms, rebuild the product index, and control product-match ranking."
+msgstr "Test real shopper phrases, inspect match reasons, tune synonyms, rebuild the product index, and control product-match ranking."
+
+msgid "Product discovery"
+msgstr "Product discovery"
+
+msgid "Open products"
+msgstr "Open products"
+
+msgid "Index status"
+msgstr "Index status"
+
+msgid "Last full index"
+msgstr "Last full index"
+
+msgid "Rebuild after catalog changes"
+msgstr "Rebuild after catalog changes"
+
+msgid "Buyer search"
+msgstr "Buyer search"
+
+msgid "Natural"
+msgstr "Natural"
+
+msgid "Keyword"
+msgstr "Keyword"
+
+msgid "How shopper phrasing is read"
+msgstr "How shopper phrasing is read"
+
+msgid "Product matches"
+msgstr "Product matches"
+
+msgid "Exact"
+msgstr "Exact"
+
+msgid "Smart"
+msgstr "Smart"
+
+msgid "How close a match must be"
+msgstr "How close a match must be"
+
+msgid "Test what shoppers type"
+msgstr "Test what shoppers type"
+
+msgid "Shopper phrase test lab"
+msgstr "Shopper phrase test lab"
+
+msgid "Run real buyer language, see what Geeky Bot understood, then tune catalog data or synonyms before checking the storefront."
+msgstr "Run real buyer language, see what Geeky Bot understood, then tune catalog data or synonyms before checking the storefront."
+
+msgid "Try: comfortable shoes size 42 red and white"
+msgstr "Try: comfortable shoes size 42 red and white"
+
+msgid "Test search"
+msgstr "Test search"
+
+msgid "Result mode: %s"
+msgstr "Result mode: %s"
+
+msgid "catalog search"
+msgstr "catalog search"
+
+msgid "%s match"
+msgid_plural "%s matches"
+msgstr[0] "%s match"
+msgstr[1] "%s matches"
+
+msgid "No matching products found"
+msgstr "No matching products found"
+
+msgid "Add product attributes, improve titles and tags, add a synonym below, or switch product matches back to Smart."
+msgstr "Add product attributes, improve titles and tags, add a synonym below, or switch product matches back to Smart."
+
+msgid "View"
+msgstr "View"
+
+msgid "Edit"
+msgstr "Edit"
+
+msgid "%d more close matches are available. Narrow the phrase, or check the storefront widget for the shopper view."
+msgstr "%d more close matches are available. Narrow the phrase, or check the storefront widget for the shopper view."
+
+msgid "1. Read the phrase"
+msgstr "1. Read the phrase"
+
+msgid "Product terms, colour, size, price phrases and soft preferences."
+msgstr "Product terms, colour, size, price phrases and soft preferences."
+
+msgid "2. Score the catalog"
+msgstr "2. Score the catalog"
+
+msgid "Names, categories, tags, attributes, stock and sale status."
+msgstr "Names, categories, tags, attributes, stock and sale status."
+
+msgid "3. Close the gap"
+msgstr "3. Close the gap"
+
+msgid "Add synonyms when your wording differs from your shoppers."
+msgstr "Add synonyms when your wording differs from your shoppers."
+
+msgid "Tune the index"
+msgstr "Tune the index"
+
+msgid "Product index"
+msgstr "Product index"
+
+msgid "Rebuild after imports, category changes, product updates, attribute edits, or stock and sale changes."
+msgstr "Rebuild after imports, category changes, product updates, attribute edits, or stock and sale changes."
+
+msgid "Rebuild search index"
+msgstr "Rebuild search index"
+
+msgid "Product data"
+msgstr "Product data"
+
+msgid "Name, SKU, category, tags, attributes"
+msgstr "Name, SKU, category, tags, attributes"
+
+msgid "Buyer intent"
+msgstr "Buyer intent"
+
+msgid "Price, colour, size, recommendations"
+msgstr "Price, colour, size, recommendations"
+
+msgid "Commerce signals"
+msgstr "Commerce signals"
+
+msgid "Stock, sale, ratings, popularity"
+msgstr "Stock, sale, ratings, popularity"
+
+msgid "Sale status"
+msgstr "Sale status"
+
+msgid "Rehearsal board"
+msgstr "Rehearsal board"
+
+msgid "Phrases worth re-testing"
+msgstr "Phrases worth re-testing"
+
+msgid "Click a phrase to load it into the test lab and confirm buyer language still maps to the right products."
+msgstr "Click a phrase to load it into the test lab and confirm buyer language still maps to the right products."
+
+msgid "Budget intent"
+msgstr "Budget intent"
+
+msgid "Price range"
+msgstr "Price range"
+
+msgid "Colour attribute"
+msgstr "Colour attribute"
+
+msgid "Size attribute"
+msgstr "Size attribute"
+
+msgid "Natural buyer query"
+msgstr "Natural buyer query"
+
+msgid "Soft preference"
+msgstr "Soft preference"
+
+msgid "Sale filter"
+msgstr "Sale filter"
+
+msgid "Recommendation"
+msgstr "Recommendation"
+
+msgid "Choose the public policy pages Geeky Bot may use for shipping, returns, refunds, payment and warranty answers. Selected pages are indexed locally and missing details produce a safe fallback instead of guesses."
+msgstr "Choose the public policy pages Geeky Bot may use for shipping, returns, refunds, payment and warranty answers. Selected pages are indexed locally and missing details produce a safe fallback instead of guesses."
+
+msgid "Grounded policy answers"
+msgstr "Grounded policy answers"
+
+msgid "Create policy page"
+msgstr "Create policy page"
+
+msgid "Store knowledge saved and synchronized."
+msgstr "Store knowledge saved and synchronized."
+
+msgid "Knowledge refresh complete: %1$d indexed, %2$d unchanged, %3$d removed, %4$d failed."
+msgstr "Knowledge refresh complete: %1$d indexed, %2$d unchanged, %3$d removed, %4$d failed."
+
+msgid "These selected pages are not recognized as policy sources and will not answer specific policy questions: %s"
+msgstr "These selected pages are not recognized as policy sources and will not answer specific policy questions: %s"
+
+msgid "Selected sources"
+msgstr "Selected sources"
+
+msgid "Only these pages can ground policy answers"
+msgstr "Only these pages can ground policy answers"
+
+msgid "Recognized sources"
+msgstr "Recognized sources"
+
+msgid "Last refreshed %s"
+msgstr "Last refreshed %s"
+
+msgid "Save or refresh to build the index"
+msgstr "Save or refresh to build the index"
+
+msgid "Knowledge is current"
+msgstr "Knowledge is current"
+
+msgid "Sources need attention"
+msgstr "Sources need attention"
+
+msgid "Changed, missing or draft pages are never trusted silently"
+msgstr "Changed, missing or draft pages are never trusted silently"
+
+msgid "Answer sources"
+msgstr "Answer sources"
+
+msgid "Choose public answer sources"
+msgstr "Choose public answer sources"
+
+msgid "Pick a small set of accurate, shopper-facing pages. Geeky Bot reads the stored page text only — it never crawls arbitrary URLs or runs shortcodes."
+msgstr "Pick a small set of accurate, shopper-facing pages. Geeky Bot reads the stored page text only — it never crawls arbitrary URLs or runs shortcodes."
+
+msgid "No published pages found"
+msgstr "No published pages found"
+
+msgid "Create a shipping, refund or returns page, then select it here so the assistant can answer policy questions."
+msgstr "Create a shipping, refund or returns page, then select it here so the assistant can answer policy questions."
+
+msgid "Create a page"
+msgstr "Create a page"
+
+msgid "Suggested policy page"
+msgstr "Suggested policy page"
+
+msgid "Public page"
+msgstr "Public page"
+
+msgid "Save and index pages"
+msgstr "Save and index pages"
+
+msgid "Test a refund question"
+msgstr "Test a refund question"
+
+msgid "Approved library"
+msgstr "Approved library"
+
+msgid "%s page"
+msgid_plural "%s pages"
+msgstr[0] "%s page"
+msgstr[1] "%s pages"
+
+msgid "%d suggested policy pages were detected. Only checked pages become approved sources."
+msgstr "%d suggested policy pages were detected. Only checked pages become approved sources."
+
+msgid "Shipping, return, refund, exchange, warranty, payment and cancellation questions are checked here before product search or any external AI."
+msgstr "Shipping, return, refund, exchange, warranty, payment and cancellation questions are checked here before product search or any external AI."
+
+msgid "A source must actually answer the question, or the assistant says it is not confirmed"
+msgstr "A source must actually answer the question, or the assistant says it is not confirmed"
+
+msgid "Grounded answers show the page title and a link"
+msgstr "Grounded answers show the page title and a link"
+
+msgid "Index maintenance"
+msgstr "Index maintenance"
+
+msgid "Refresh the knowledge index"
+msgstr "Refresh the knowledge index"
+
+msgid "Selected pages refresh automatically when you save. Use this after imports, page-builder migrations, or when a source shows as stale or missing above."
+msgstr "Selected pages refresh automatically when you save. Use this after imports, page-builder migrations, or when a source shows as stale or missing above."
+
+msgid "Refresh selected sources"
+msgstr "Refresh selected sources"
+
+msgid "See how shoppers use Geeky Bot, which products they open, and where catalog or policy data still needs attention. Free analytics stays focused on assistant quality rather than conversion attribution."
+msgstr "See how shoppers use Geeky Bot, which products they open, and where catalog or policy data still needs attention. Free analytics stays focused on assistant quality rather than conversion attribution."
+
+msgid "Review conversations"
+msgstr "Review conversations"
+
+msgid "%s messages per conversation"
+msgstr "%s messages per conversation"
+
+msgid "Product clicks"
+msgstr "Product clicks"
+
+msgid "Opened from product cards in chat"
+msgstr "Opened from product cards in chat"
+
+msgid "Grounded-answer gaps logged"
+msgstr "Grounded-answer gaps logged"
+
+msgid "Conversation activity"
+msgstr "Conversation activity"
+
+msgid "Daily shopper messages"
+msgstr "Daily shopper messages"
+
+msgid "Aggregate only — individual shoppers are not identified."
+msgstr "Aggregate only — individual shoppers are not identified."
+
+msgid "Daily shopper messages over the last 30 days"
+msgstr "Daily shopper messages over the last 30 days"
+
+msgid "Why answers were unavailable"
+msgstr "Why answers were unavailable"
+
+msgid "No grounded-answer gaps"
+msgstr "No grounded-answer gaps"
+
+msgid "Keep monitoring after catalog and policy updates."
+msgstr "Keep monitoring after catalog and policy updates."
+
+msgid "Open unanswered questions"
+msgstr "Open unanswered questions"
+
+msgid "Product interest"
+msgstr "Product interest"
+
+msgid "Most-opened products"
+msgstr "Most-opened products"
+
+msgid "No product clicks yet"
+msgstr "No product clicks yet"
+
+msgid "Product interest appears after shoppers open products from chat."
+msgstr "Product interest appears after shoppers open products from chat."
+
+msgid "Clicks"
+msgstr "Clicks"
+
+msgid "Clicks are an interest signal, not conversion attribution. Cart and checkout tracking are Commerce Pro features."
+msgstr "Clicks are an interest signal, not conversion attribution. Cart and checkout tracking are Commerce Pro features."
+
+msgid "Insight without profiling"
+msgstr "Insight without profiling"
+
+msgid "This page uses conversation IDs and aggregate events. It never shows IP hashes, browser fingerprints, or API secrets."
+msgstr "This page uses conversation IDs and aggregate events. It never shows IP hashes, browser fingerprints, or API secrets."
+
+msgid "Conversations kept for %s days"
+msgstr "Conversations kept for %s days"
+
+msgid "WordPress personal-data export and erasure are supported."
+msgstr "WordPress personal-data export and erasure are supported."
+
+msgid "Conversation records can be exported or deleted."
+msgstr "Conversation records can be exported or deleted."
+
+msgid "Product clicks are interest signals, not attribution."
+msgstr "Product clicks are interest signals, not attribution."
+
+msgid "Privacy settings"
+msgstr "Privacy settings"
+
+msgid "Manage data"
+msgstr "Manage data"
+
+msgid "Encrypted"
+msgstr "Encrypted"
+
+msgid "Encrypted at rest, never shown again after saving"
+msgstr "Encrypted at rest, never shown again after saving"
+
+msgid "Cannot store"
+msgstr "Cannot store"
+
+msgid "No libsodium or OpenSSL on this server"
+msgstr "No libsodium or OpenSSL on this server"
+
+msgid "Unencrypted"
+msgstr "Unencrypted"
+
+msgid "Saved before 2.1.0 — re-save the key to encrypt it"
+msgstr "Saved before 2.1.0 — re-save the key to encrypt it"
+
+msgid "None saved"
+msgstr "None saved"
+
+msgid "Encrypted at rest when you save one"
+msgstr "Encrypted at rest when you save one"
+
+msgid "Choose local grounded answers, Zywrap, or BYOK while keeping API keys server-side and answers grounded in store data."
+msgstr "Choose local grounded answers, Zywrap, or BYOK while keeping API keys server-side and answers grounded in store data."
+
+msgid "Configure answer mode"
+msgstr "Configure answer mode"
+
+msgid "Current answer mode"
+msgstr "Current answer mode"
+
+msgid "Used to generate grounded answers"
+msgstr "Used to generate grounded answers"
+
+msgid "API keys"
+msgstr "API keys"
+
+msgid "Modes available"
+msgstr "Modes available"
+
+msgid "Local mode is always available"
+msgstr "Local mode is always available"
+
+msgid "AI budget left today"
+msgstr "AI budget left today"
+
+msgid "Not used"
+msgstr "Not used"
+
+msgid "Local grounded mode makes no provider calls"
+msgstr "Local grounded mode makes no provider calls"
+
+msgid "Of %1$s per day. %2$s left this month."
+msgstr "Of %1$s per day. %2$s left this month."
+
+msgid "Answer modes"
+msgstr "Answer modes"
+
+msgid "Local grounded mode"
+msgstr "Local grounded mode"
+
+msgid "The fastest and safest default, and what a new install runs on. No language model is called: answers are assembled from WooCommerce product data and your selected policy pages, so wording is consistent rather than conversational and nothing leaves your server. Add a provider key below for generated answers."
+msgstr "The fastest and safest default, and what a new install runs on. No language model is called: answers are assembled from WooCommerce product data and your selected policy pages, so wording is consistent rather than conversational and nothing leaves your server. Add a provider key below for generated answers."
+
+msgid "Available"
+msgstr "Available"
+
+msgid "No API key required"
+msgstr "No API key required"
+
+msgid "Grounded in your catalog"
+msgstr "Grounded in your catalog"
+
+msgid "Safe policy fallback"
+msgstr "Safe policy fallback"
+
+msgid "Review active mode"
+msgstr "Review active mode"
+
+msgid "Choose local mode"
+msgstr "Choose local mode"
+
+msgid "Zywrap endpoint"
+msgstr "Zywrap endpoint"
+
+msgid "A hosted endpoint for store-grounded answers, when you want stronger response generation without exposing secrets to the storefront."
+msgstr "A hosted endpoint for store-grounded answers, when you want stronger response generation without exposing secrets to the storefront."
+
+msgid "Configured"
+msgstr "Configured"
+
+msgid "Endpoint saved"
+msgstr "Endpoint saved"
+
+msgid "Endpoint missing"
+msgstr "Endpoint missing"
+
+msgid "API key stored"
+msgstr "API key stored"
+
+msgid "API key missing"
+msgstr "API key missing"
+
+msgid "Review Zywrap setup"
+msgstr "Review Zywrap setup"
+
+msgid "Configure Zywrap"
+msgstr "Configure Zywrap"
+
+msgid "OpenAI (your own key)"
+msgstr "OpenAI (your own key)"
+
+msgid "Optional bring-your-own-key mode. Geeky Bot sends only the shopper question and the grounded store context, from the server."
+msgstr "Optional bring-your-own-key mode. Geeky Bot sends only the shopper question and the grounded store context, from the server."
+
+msgid "Model is controlled"
+msgstr "Model is controlled"
+
+msgid "Token limit enforced"
+msgstr "Token limit enforced"
+
+msgid "Review OpenAI setup"
+msgstr "Review OpenAI setup"
+
+msgid "Configure your key"
+msgstr "Configure your key"
+
+msgid "Before you change it"
+msgstr "Before you change it"
+
+msgid "Confirm the mode before launch"
+msgstr "Confirm the mode before launch"
+
+msgid "Keep local mode for the safest baseline, or configure Zywrap or your own OpenAI key from Settings when you want AI-generated grounded answers."
+msgstr "Keep local mode for the safest baseline, or configure Zywrap or your own OpenAI key from Settings when you want AI-generated grounded answers."
+
+msgid "After changing answer mode, run one product search and one policy question on the storefront to confirm the assistant is still grounded."
+msgstr "After changing answer mode, run one product search and one policy question on the storefront to confirm the assistant is still grounded."
+
+msgid "Secrets stay behind WordPress"
+msgstr "Secrets stay behind WordPress"
+
+msgid "The storefront receives public widget settings and a REST nonce only. Provider secrets are saved server-side and never printed into JavaScript."
+msgstr "The storefront receives public widget settings and a REST nonce only. Provider secrets are saved server-side and never printed into JavaScript."
+
+msgid "Saved API keys are not displayed after saving"
+msgstr "Saved API keys are not displayed after saving"
+
+msgid "Admin changes require capability and nonce checks"
+msgstr "Admin changes require capability and nonce checks"
+
+msgid "Public assistant requests are rate limited"
+msgstr "Public assistant requests are rate limited"
+
+msgid "No invented products, prices, coupons or policies"
+msgstr "No invented products, prices, coupons or policies"
+
+msgid "Widget behavior, buyer-language search, grounded answers, provider security, privacy and rate limits."
+msgstr "Widget behavior, buyer-language search, grounded answers, provider security, privacy and rate limits."
+
+msgid "%s%% configured"
+msgstr "%s%% configured"
+
+msgid "Live"
+msgstr "Live"
+
+msgid "storefront widget"
+msgstr "storefront widget"
+
+msgid "buyer language"
+msgstr "buyer language"
+
+msgid "Grounded"
+msgstr "Grounded"
+
+msgid "answer mode"
+msgstr "answer mode"
+
+msgid "conversation review"
+msgstr "conversation review"
+
+msgid "Settings saved."
+msgstr "Settings saved."
+
+msgid "Your storefront assistant will use the updated configuration."
+msgstr "Your storefront assistant will use the updated configuration."
+
+msgid "The API key was not saved."
+msgstr "The API key was not saved."
+
+msgid "Geeky Bot stores provider keys encrypted, and this server has neither the libsodium nor the OpenSSL PHP extension available. Ask your host to enable one, then save the key again. Every other setting on this page was saved."
+msgstr "Geeky Bot stores provider keys encrypted, and this server has neither the libsodium nor the OpenSSL PHP extension available. Ask your host to enable one, then save the key again. Every other setting on this page was saved."
+
+msgid "Settings sections"
+msgstr "Settings sections"
+
+msgid "01"
+msgstr "01"
+
+msgid "Storefront"
+msgstr "Storefront"
+
+msgid "02"
+msgstr "02"
+
+msgid "Search"
+msgstr "Search"
+
+msgid "03"
+msgstr "03"
+
+msgid "Knowledge"
+msgstr "Knowledge"
+
+msgid "04"
+msgstr "04"
+
+msgid "05"
+msgstr "05"
+
+msgid "Privacy"
+msgstr "Privacy"
+
+msgid "Storefront experience"
+msgstr "Storefront experience"
+
+msgid "Assistant and widget"
+msgstr "Assistant and widget"
+
+msgid "Set the shopper-facing name, first message, safe fallback answer, accent color, and product-card volume."
+msgstr "Set the shopper-facing name, first message, safe fallback answer, accent color, and product-card volume."
+
+msgid "products"
+msgstr "products"
+
+msgid "Catalog intelligence"
+msgstr "Catalog intelligence"
+
+msgid "Buyer-language search"
+msgstr "Buyer-language search"
+
+msgid "Tune buyer-language understanding, synonym expansion, product matches, and ranking boosts."
+msgstr "Tune buyer-language understanding, synonym expansion, product matches, and ranking boosts."
+
+msgid "Natural search on"
+msgstr "Natural search on"
+
+msgid "Natural search off"
+msgstr "Natural search off"
+
+msgid "Exact only"
+msgstr "Exact only"
+
+msgid "boosts"
+msgstr "boosts"
+
+msgid "Grounded answers"
+msgstr "Grounded answers"
+
+msgid "Select safe public pages for shipping, refund, return, payment and warranty answers."
+msgstr "Select safe public pages for shipping, refund, return, payment and warranty answers."
+
+msgid "selected"
+msgstr "selected"
+
+msgid "Safe fallback answer"
+msgstr "Safe fallback answer"
+
+msgid "No public pages found."
+msgstr "No public pages found."
+
+msgid "Create shipping, returns, refund, payment, warranty or privacy pages before enabling policy answers."
+msgstr "Create shipping, returns, refund, payment, warranty or privacy pages before enabling policy answers."
+
+msgid "Likely policy page"
+msgstr "Likely policy page"
+
+msgid "Safe policy answer rule"
+msgstr "Safe policy answer rule"
+
+msgid "If selected pages do not confirm the detail, Geeky Bot says it is not confirmed and directs the shopper to the source or store team."
+msgstr "If selected pages do not confirm the detail, Geeky Bot says it is not confirmed and directs the shopper to the source or store team."
+
+msgid "Answer mode and security"
+msgstr "Answer mode and security"
+
+msgid "Choose local grounded mode, Zywrap, or BYOK while keeping secrets server-side."
+msgstr "Choose local grounded mode, Zywrap, or BYOK while keeping secrets server-side."
+
+msgid "Keys hidden"
+msgstr "Keys hidden"
+
+msgid "Privacy and abuse protection"
+msgstr "Privacy and abuse protection"
+
+msgid "History, retention and rate limits"
+msgstr "History, retention and rate limits"
+
+msgid "Set conversation storage, retention, visitor rate limits, and uninstall cleanup behavior."
+msgstr "Set conversation storage, retention, visitor rate limits, and uninstall cleanup behavior."
+
+msgid "days"
+msgstr "days"
+
+msgid "messages/window"
+msgstr "messages/window"
+
+msgid "Save Geeky Bot settings"
+msgstr "Save Geeky Bot settings"
+
+msgid "Changes apply to the storefront assistant after saving."
+msgstr "Changes apply to the storefront assistant after saving."
+
+msgid "Save settings"
+msgstr "Save settings"
+
+msgid "Conversation deleted."
+msgstr "Conversation deleted."
+
+msgid "All Geeky Bot conversation and interaction data was deleted."
+msgstr "All Geeky Bot conversation and interaction data was deleted."
+
+msgid "Some conversation data could not be deleted. Check the database permissions and try again."
+msgstr "Some conversation data could not be deleted. Check the database permissions and try again."
+
+msgid "Review stored shopper conversations, understand product interest, and turn unanswered questions into better catalog and policy data."
+msgstr "Review stored shopper conversations, understand product interest, and turn unanswered questions into better catalog and policy data."
+
+msgid "Privacy-safe review"
+msgstr "Privacy-safe review"
+
+msgid "Open analytics"
+msgstr "Open analytics"
+
+msgid "Questions and refinements"
+msgstr "Questions and refinements"
+
+msgid "From chat product cards"
+msgstr "From chat product cards"
+
+msgid "Unique grounded-answer gaps"
+msgstr "Unique grounded-answer gaps"
+
+msgid "Conversation workspace"
+msgstr "Conversation workspace"
+
+msgid "Conversation stream"
+msgstr "Conversation stream"
+
+msgid "Search conversations"
+msgstr "Search conversations"
+
+msgid "Search shopper messages or conversation ID"
+msgstr "Search shopper messages or conversation ID"
+
+msgid "Clear"
+msgstr "Clear"
+
+msgid "Export CSV"
+msgstr "Export CSV"
+
+msgid "Delete all Geeky Bot conversations, unanswered questions, and click events? This cannot be undone."
+msgstr "Delete all Geeky Bot conversations, unanswered questions, and click events? This cannot be undone."
+
+msgid "Delete all data"
+msgstr "Delete all data"
+
+msgid "Conversation #%d"
+msgstr "Conversation #%d"
+
+msgid "Started %1$s · Last activity %2$s"
+msgstr "Started %1$s · Last activity %2$s"
+
+msgid "Back to list"
+msgstr "Back to list"
+
+msgid "Export this conversation"
+msgstr "Export this conversation"
+
+msgid "Delete this conversation and its analytics events?"
+msgstr "Delete this conversation and its analytics events?"
+
+msgid "Delete conversation"
+msgstr "Delete conversation"
+
+msgid "No stored messages"
+msgstr "No stored messages"
+
+msgid "This conversation has no saved messages."
+msgstr "This conversation has no saved messages."
+
+msgid "Shopper"
+msgstr "Shopper"
+
+msgid "Shopper interactions"
+msgstr "Shopper interactions"
+
+msgid "Product opened"
+msgstr "Product opened"
+
+msgid "Policy source opened"
+msgstr "Policy source opened"
+
+msgid "No conversations found"
+msgstr "No conversations found"
+
+msgid "No conversation matches that search. Try a shorter phrase, or clear the search."
+msgstr "No conversation matches that search. Try a shorter phrase, or clear the search."
+
+msgid "Storefront conversations appear here once shoppers use the assistant and history is enabled."
+msgstr "Storefront conversations appear here once shoppers use the assistant and history is enabled."
+
+msgid "Conversation"
+msgstr "Conversation"
+
+msgid "Last shopper message"
+msgstr "Last shopper message"
+
+msgid "Messages"
+msgstr "Messages"
+
+msgid "Gaps"
+msgstr "Gaps"
+
+msgid "Last activity"
+msgstr "Last activity"
+
+msgid "Registered shopper"
+msgstr "Registered shopper"
+
+msgid "Guest shopper"
+msgstr "Guest shopper"
+
+msgid "Previous"
+msgstr "Previous"
+
+msgid "Next"
+msgstr "Next"
+
+msgid "Unanswered question workbench"
+msgstr "Unanswered question workbench"
+
+msgid "Search needs review"
+msgstr "Search needs review"
+
+msgid "Search questions, products, or policy areas"
+msgstr "Search questions, products, or policy areas"
+
+msgid "Handled"
+msgstr "Handled"
+
+msgid "Ignored"
+msgstr "Ignored"
+
+msgid "All"
+msgstr "All"
+
+msgid "%1$s unique issue from %2$s unanswered message."
+msgid_plural "%1$s unique issues from %2$s unanswered messages."
+msgstr[0] "%1$s unique issue from %2$s unanswered message."
+msgstr[1] "%1$s unique issues from %2$s unanswered messages."
+
+msgid "Catalog data"
+msgstr "Catalog data"
+
+msgid "Unique product-data issues"
+msgstr "Unique product-data issues"
+
+msgid "Policy coverage"
+msgstr "Policy coverage"
+
+msgid "Unique selected-page gaps"
+msgstr "Unique selected-page gaps"
+
+msgid "Shopper wording"
+msgstr "Shopper wording"
+
+msgid "Unique wording gaps"
+msgstr "Unique wording gaps"
+
+msgid "Unique Commerce Pro intents"
+msgstr "Unique Commerce Pro intents"
+
+msgid "No matching review issues"
+msgstr "No matching review issues"
+
+msgid "Try another filter or search phrase, or keep testing the storefront assistant."
+msgstr "Try another filter or search phrase, or keep testing the storefront assistant."
+
+msgid "Last asked %s ago"
+msgstr "Last asked %s ago"
+
+msgid "Fix policy source"
+msgstr "Fix policy source"
+
+msgid "Improve store data"
+msgstr "Improve store data"
+
+msgid "Handled now"
+msgstr "Handled now"
+
+msgid "Asked %s time"
+msgid_plural "Asked %s times"
+msgstr[0] "Asked %s time"
+msgstr[1] "Asked %s times"
+
+msgid "%s conversation"
+msgid_plural "%s conversations"
+msgstr[0] "%s conversation"
+msgstr[1] "%s conversations"
+
+msgid "Product: %s"
+msgstr "Product: %s"
+
+msgid "%s products affected"
+msgstr "%s products affected"
+
+msgid "Policy area: %s"
+msgstr "Policy area: %s"
+
+msgid "%s policy areas"
+msgstr "%s policy areas"
+
+msgid "Recommended action"
+msgstr "Recommended action"
+
+msgid "Retest only if this still fails in the storefront widget."
+msgstr "Retest only if this still fails in the storefront widget."
+
+msgid "Mark handled"
+msgstr "Mark handled"
+
+msgid "Restore to review"
+msgstr "Restore to review"
+
+msgid "Retest phrase"
+msgstr "Retest phrase"
+
+msgid "More review actions"
+msgstr "More review actions"
+
+msgid "Test phrase"
+msgstr "Test phrase"
+
+msgid "Ignore issue"
+msgstr "Ignore issue"
+
+msgid "Unanswered question pages"
+msgstr "Unanswered question pages"
+
+msgid "You do not have permission to update the review queue."
+msgstr "You do not have permission to update the review queue."
+
+msgid "You do not have permission to export Geeky Bot conversations."
+msgstr "You do not have permission to export Geeky Bot conversations."
+
+msgid "Could not create the conversation export."
+msgstr "Could not create the conversation export."
+
+msgid "You do not have permission to delete Geeky Bot conversations."
+msgstr "You do not have permission to delete Geeky Bot conversations."
+
+msgid "You do not have permission to delete Geeky Bot conversation data."
+msgstr "You do not have permission to delete Geeky Bot conversation data."
+
+msgid "Installed and active"
+msgstr "Installed and active"
+
+msgid "Installed, inactive"
+msgstr "Installed, inactive"
+
+msgid "Not installed"
+msgstr "Not installed"
+
+msgid "Not applicable"
+msgstr "Not applicable"
+
+msgid "Current"
+msgstr "Current"
+
+msgid "Commerce Pro license activated for this site."
+msgstr "Commerce Pro license activated for this site."
+
+msgid "Commerce Pro license deactivated on this site."
+msgstr "Commerce Pro license deactivated on this site."
+
+msgid "Commerce Pro license status refreshed."
+msgstr "Commerce Pro license status refreshed."
+
+msgid "Commerce Pro installed and activated."
+msgstr "Commerce Pro installed and activated."
+
+msgid "Commerce Pro plugin activated."
+msgstr "Commerce Pro plugin activated."
+
+msgid "Commerce Pro update settings saved."
+msgstr "Commerce Pro update settings saved."
+
+msgid "Commerce Pro update status refreshed."
+msgstr "Commerce Pro update status refreshed."
+
+msgid "Commerce Pro updated successfully."
+msgstr "Commerce Pro updated successfully."
+
+msgid "Commerce Pro updated successfully. Activate the add-on to enable Pro buying actions."
+msgstr "Commerce Pro updated successfully. Activate the add-on to enable Pro buying actions."
+
+msgid "Commerce Pro updated and activated successfully."
+msgstr "Commerce Pro updated and activated successfully."
+
+msgid "Activate a license, connect this site to geekybot.com, install the protected Commerce Pro add-on, and keep buying actions locked to authorized sites."
+msgstr "Activate a license, connect this site to geekybot.com, install the protected Commerce Pro add-on, and keep buying actions locked to authorized sites."
+
+msgid "Open geekybot.com"
+msgstr "Open geekybot.com"
+
+msgid "Protected add-on access"
+msgstr "Protected add-on access"
+
+msgid "Commerce Pro is authorized on this site"
+msgstr "Commerce Pro is authorized on this site"
+
+msgid "Commerce Pro is not authorized on this site"
+msgstr "Commerce Pro is not authorized on this site"
+
+msgid "Activate Commerce Pro for this site"
+msgstr "Activate Commerce Pro for this site"
+
+msgid "The license is valid, but this site is beyond its included activation allowance. Commerce Pro remains unavailable here until an activation is freed or added."
+msgstr "The license is valid, but this site is beyond its included activation allowance. Commerce Pro remains unavailable here until an activation is freed or added."
+
+msgid "A copied ZIP is not enough. Commerce Pro buying actions require a valid license, an allowed site activation, and a live or cached entitlement check."
+msgstr "A copied ZIP is not enough. Commerce Pro buying actions require a valid license, an allowed site activation, and a live or cached entitlement check."
+
+msgid "License"
+msgstr "License"
+
+msgid "Commerce Pro plugin"
+msgstr "Commerce Pro plugin"
+
+msgid "Update"
+msgstr "Update"
+
+msgid "Staging"
+msgstr "Staging"
+
+msgid "Production"
+msgstr "Production"
+
+msgid "Site type"
+msgstr "Site type"
+
+msgid "Key"
+msgstr "Key"
+
+msgid "Not checked yet"
+msgstr "Not checked yet"
+
+msgid "License last checked"
+msgstr "License last checked"
+
+msgid "License activation"
+msgstr "License activation"
+
+msgid "Enter the Commerce Pro key from geekybot.com. The key is encrypted with this WordPress installation’s salts, masked after save, and never sent to storefront JavaScript."
+msgstr "Enter the Commerce Pro key from geekybot.com. The key is encrypted with this WordPress installation’s salts, masked after save, and never sent to storefront JavaScript."
+
+msgid "License key"
+msgstr "License key"
+
+msgid "Activate license"
+msgstr "Activate license"
+
+msgid "Find your key in your account on geekybot.com."
+msgstr "Find your key in your account on geekybot.com."
+
+msgid "This activation"
+msgstr "This activation"
+
+msgid "Refresh status"
+msgstr "Refresh status"
+
+msgid "Deactivate Commerce Pro on this site? Buying actions will stop until it is activated again."
+msgstr "Deactivate Commerce Pro on this site? Buying actions will stop until it is activated again."
+
+msgid "Clear the saved license key from this site?"
+msgstr "Clear the saved license key from this site?"
+
+msgid "Deactivate this site"
+msgstr "Deactivate this site"
+
+msgid "Clear saved license"
+msgstr "Clear saved license"
+
+msgid "Refreshing re-checks entitlement with geekybot.com. Deactivating frees this site's activation slot for another install."
+msgstr "Refreshing re-checks entitlement with geekybot.com. Deactivating frees this site's activation slot for another install."
+
+msgid "Commerce Pro add-on"
+msgstr "Commerce Pro add-on"
+
+msgid "Install, activate, and update Commerce Pro from a protected geekybot.com package after the site entitlement is valid."
+msgstr "Install, activate, and update Commerce Pro from a protected geekybot.com package after the site entitlement is valid."
+
+msgid "Valid entitlement is available."
+msgstr "Valid entitlement is available."
+
+msgid "Valid entitlement is required before install or activation."
+msgstr "Valid entitlement is required before install or activation."
+
+msgid "This entitlement is bound to the current site installation."
+msgstr "This entitlement is bound to the current site installation."
+
+msgid "This site still needs a fresh entitlement binding."
+msgstr "This site still needs a fresh entitlement binding."
+
+msgid "The server-signed entitlement was verified."
+msgstr "The server-signed entitlement was verified."
+
+msgid "The configured signed-entitlement check has not passed."
+msgstr "The configured signed-entitlement check has not passed."
+
+msgid "Entitlement uses standard HTTPS verification; signed-response mode is not configured."
+msgstr "Entitlement uses standard HTTPS verification; signed-response mode is not configured."
+
+msgid "Installed version: %s"
+msgstr "Installed version: %s"
+
+msgid "Commerce Pro is not installed yet."
+msgstr "Commerce Pro is not installed yet."
+
+msgid "Commerce Pro plugin is active."
+msgstr "Commerce Pro plugin is active."
+
+msgid "Commerce Pro plugin is not active."
+msgstr "Commerce Pro plugin is not active."
+
+msgid "Running on cached license verification grace period."
+msgstr "Running on cached license verification grace period."
+
+msgid "Live entitlement or normal cached check required."
+msgstr "Live entitlement or normal cached check required."
+
+msgid "Latest release: %s"
+msgstr "Latest release: %s"
+
+msgid "Latest release has not been checked yet."
+msgstr "Latest release has not been checked yet."
+
+msgid "Updates are allowed for this license."
+msgstr "Updates are allowed for this license."
+
+msgid "Updates require an active renewal entitlement."
+msgstr "Updates require an active renewal entitlement."
+
+msgid "Install Commerce Pro"
+msgstr "Install Commerce Pro"
+
+msgid "Activate Commerce Pro"
+msgstr "Activate Commerce Pro"
+
+msgid "Update Commerce Pro"
+msgstr "Update Commerce Pro"
+
+msgid "Check for update"
+msgstr "Check for update"
+
+msgid "Open plugins"
+msgstr "Open plugins"
+
+msgid "Commerce Pro update channel"
+msgstr "Commerce Pro update channel"
+
+msgid "Version metadata is checked from the CDN first. Protected ZIP downloads are requested from geekybot.com only when a valid update entitlement exists."
+msgstr "Version metadata is checked from the CDN first. Protected ZIP downloads are requested from geekybot.com only when a valid update entitlement exists."
+
+msgid "Update available"
+msgstr "Update available"
+
+msgid "Commerce Pro %1$s is ready"
+msgstr "Commerce Pro %1$s is ready"
+
+msgid "Installed version: %s. This update is served from geekybot.com after license verification."
+msgstr "Installed version: %s. This update is served from geekybot.com after license verification."
+
+msgid "Review update entitlement"
+msgstr "Review update entitlement"
+
+msgid "Open plugins page"
+msgstr "Open plugins page"
+
+msgid "Unknown"
+msgstr "Unknown"
+
+msgid "Latest CDN version"
+msgstr "Latest CDN version"
+
+msgid "Channel"
+msgstr "Channel"
+
+msgid "Allowed"
+msgstr "Allowed"
+
+msgid "Renewal required"
+msgstr "Renewal required"
+
+msgid "Update entitlement"
+msgstr "Update entitlement"
+
+msgid "Yes"
+msgstr "Yes"
+
+msgid "No"
+msgstr "No"
+
+msgid "Critical flag"
+msgstr "Critical flag"
+
+msgid "Release channel"
+msgstr "Release channel"
+
+msgid "Stable"
+msgstr "Stable"
+
+msgid "Beta"
+msgstr "Beta"
+
+msgid "Dev"
+msgstr "Dev"
+
+msgid "Automatic updates"
+msgstr "Automatic updates"
+
+msgid "Manual updates only"
+msgstr "Manual updates only"
+
+msgid "Critical security updates only"
+msgstr "Critical security updates only"
+
+msgid "Patch releases only"
+msgstr "Patch releases only"
+
+msgid "Patch and minor releases"
+msgstr "Patch and minor releases"
+
+msgid "All stable releases"
+msgstr "All stable releases"
+
+msgid "Always allow critical security auto-updates"
+msgstr "Always allow critical security auto-updates"
+
+msgid "Recommended for live WooCommerce stores. The package still requires valid update entitlement from geekybot.com."
+msgstr "Recommended for live WooCommerce stores. The package still requires valid update entitlement from geekybot.com."
+
+msgid "Save update settings"
+msgstr "Save update settings"
+
+msgid "Site activation details"
+msgstr "Site activation details"
+
+msgid "These values are sent to geekybot.com during activation, refresh, protected download, and update checks."
+msgstr "These values are sent to geekybot.com during activation, refresh, protected download, and update checks."
+
+msgid "Domain"
+msgstr "Domain"
+
+msgid "Site URL"
+msgstr "Site URL"
+
+msgid "Production activations"
+msgstr "Production activations"
+
+msgid "Allowed staging sites"
+msgstr "Allowed staging sites"
+
+msgid "None"
+msgstr "None"
+
+msgid "Expires"
+msgstr "Expires"
+
+msgid "Locked"
+msgstr "Locked"
+
+msgid "Runtime entitlement"
+msgstr "Runtime entitlement"
+
+msgid "Support entitlement"
+msgstr "Support entitlement"
+
+msgid "Activate the Commerce Pro add-on"
+msgstr "Activate the Commerce Pro add-on"
+
+msgid "Install the Commerce Pro add-on"
+msgstr "Install the Commerce Pro add-on"
+
+msgid "Get Commerce Pro"
+msgstr "Get Commerce Pro"
+
+msgid "I already have a license"
+msgstr "I already have a license"
+
+msgid "Preview examples"
+msgstr "Preview examples"
+
+msgid "Let shoppers buy without leaving the chat"
+msgstr "Let shoppers buy without leaving the chat"
+
+msgid "Commerce Pro finishes the sale: variations, cart control, checkout handoff, order help, comparisons, recommendations and coupons — grounded in your WooCommerce data."
+msgstr "Commerce Pro finishes the sale: variations, cart control, checkout handoff, order help, comparisons, recommendations and coupons — grounded in your WooCommerce data."
+
+msgid "18"
+msgstr "18"
+
+msgid "pro buying features"
+msgstr "pro buying features"
+
+msgid "In-chat"
+msgstr "In-chat"
+
+msgid "cart and checkout"
+msgstr "cart and checkout"
+
+msgid "safe sales rules"
+msgstr "safe sales rules"
+
+msgid "From product finder to sales channel"
+msgstr "From product finder to sales channel"
+
+msgid "Why stores upgrade"
+msgstr "Why stores upgrade"
+
+msgid "Shoppers complete the purchase inside the assistant flow."
+msgstr "Shoppers complete the purchase inside the assistant flow."
+
+msgid "Every buying action uses your live WooCommerce cart and orders."
+msgstr "Every buying action uses your live WooCommerce cart and orders."
+
+msgid "All controls stay in this dashboard, protected by safe guardrails."
+msgstr "All controls stay in this dashboard, protected by safe guardrails."
+
+msgid "Your license is already active on this site. Install and activate the Commerce Pro add-on to unlock buying actions."
+msgstr "Your license is already active on this site. Install and activate the Commerce Pro add-on to unlock buying actions."
+
+msgid "Buying engine"
+msgstr "Buying engine"
+
+msgid "What Commerce Pro unlocks"
+msgstr "What Commerce Pro unlocks"
+
+msgid "Every feature works inside the storefront assistant your shoppers already use — no extra widget, no theme changes."
+msgstr "Every feature works inside the storefront assistant your shoppers already use — no extra widget, no theme changes."
+
+msgid "Add to cart in chat"
+msgstr "Add to cart in chat"
+
+msgid "Simple products and variable products with option selection."
+msgstr "Simple products and variable products with option selection."
+
+msgid "Cart control"
+msgstr "Cart control"
+
+msgid "Shoppers review the cart, change quantities, and remove items by asking."
+msgstr "Shoppers review the cart, change quantities, and remove items by asking."
+
+msgid "A checkout button appears as soon as the cart has items."
+msgstr "A checkout button appears as soon as the cart has items."
+
+msgid "Order help"
+msgstr "Order help"
+
+msgid "Logged-in customers ask about their own recent orders and status."
+msgstr "Logged-in customers ask about their own recent orders and status."
+
+msgid "Clear side-by-side answers when shoppers compare products."
+msgstr "Clear side-by-side answers when shoppers compare products."
+
+msgid "Suggestions grounded in your own catalog, never invented."
+msgstr "Suggestions grounded in your own catalog, never invented."
+
+msgid "Safe exposure of existing store coupons only."
+msgstr "Safe exposure of existing store coupons only."
+
+msgid "Leads and human handoff"
+msgstr "Leads and human handoff"
+
+msgid "Capture follow-up requests when a human touch is needed."
+msgstr "Capture follow-up requests when a human touch is needed."
+
+msgid "Try before you buy"
+msgstr "Try before you buy"
+
+msgid "See it on your own store data"
+msgstr "See it on your own store data"
+
+msgid "Guided Demo generates real shopper requests from your indexed products and labels the buying actions that Commerce Pro completes."
+msgstr "Guided Demo generates real shopper requests from your indexed products and labels the buying actions that Commerce Pro completes."
+
+msgid "Getting started"
+msgstr "Getting started"
+
+msgid "Live in three steps"
+msgstr "Live in three steps"
+
+msgid "No FTP and no manual ZIP handling — everything happens from this dashboard."
+msgstr "No FTP and no manual ZIP handling — everything happens from this dashboard."
+
+msgid "Get a license"
+msgstr "Get a license"
+
+msgid "Purchase Commerce Pro on geekybot.com."
+msgstr "Purchase Commerce Pro on geekybot.com."
+
+msgid "Activate it here"
+msgstr "Activate it here"
+
+msgid "Enter the key on the Add-ons page to authorize this site."
+msgstr "Enter the key on the Add-ons page to authorize this site."
+
+msgid "Install with one click"
+msgstr "Install with one click"
+
+msgid "The protected add-on installs and updates from this dashboard."
+msgstr "The protected add-on installs and updates from this dashboard."
+
+msgid "Open license page"
+msgstr "Open license page"
+
+msgid "Rebuilding the product search index in the background (%1$s of %2$s products). Shoppers keep searching the current index until the new one is ready."
+msgstr "Rebuilding the product search index in the background (%1$s of %2$s products). Shoppers keep searching the current index until the new one is ready."
+
+msgid "Product search index rebuilt. Indexed: %1$s. Skipped: %2$s."
+msgstr "Product search index rebuilt. Indexed: %1$s. Skipped: %2$s."
+
+msgid "Buyer search settings saved."
+msgstr "Buyer search settings saved."
+
+msgid "Default synonyms restored."
+msgstr "Default synonyms restored."
+
+msgid "Buyer search settings reset to defaults."
+msgstr "Buyer search settings reset to defaults."
+
+msgid "Draft"
+msgstr "Draft"
+
+msgid "Keyword search"
+msgstr "Keyword search"
+
+msgid "Conversation review"
+msgstr "Conversation review"
+
+msgid "conversations"
+msgstr "conversations"
+
+msgid "messages stored"
+msgstr "messages stored"
+
+msgid "need review"
+msgstr "need review"
+
+msgid "Readiness"
+msgstr "Readiness"
+
+msgid "Indexed products"
+msgstr "Indexed products"
+
+msgid "Policy sources"
+msgstr "Policy sources"
+
+msgid "WooCommerce catalog is checked before launch."
+msgstr "WooCommerce catalog is checked before launch."
+
+msgid "Search index, policy pages, widget and privacy are reviewed."
+msgstr "Search index, policy pages, widget and privacy are reviewed."
+
+msgid "Final test links keep setup focused."
+msgstr "Final test links keep setup focused."
+
+msgid "Products shown"
+msgstr "Products shown"
+
+msgid "Placement"
+msgstr "Placement"
+
+msgid "Widget preview follows the live storefront panel."
+msgstr "Widget preview follows the live storefront panel."
+
+msgid "Welcome copy, fallback text and product card volume are controlled here."
+msgstr "Welcome copy, fallback text and product card volume are controlled here."
+
+msgid "Scoped frontend CSS avoids theme layout changes."
+msgstr "Scoped frontend CSS avoids theme layout changes."
+
+msgid "Buyer language"
+msgstr "Buyer language"
+
+msgid "Search lab explains parsed buyer intent and match reasons."
+msgstr "Search lab explains parsed buyer intent and match reasons."
+
+msgid "Synonyms, close matches and ranking boosts are configurable."
+msgstr "Synonyms, close matches and ranking boosts are configurable."
+
+msgid "Product index tools stay separate from storefront behavior."
+msgstr "Product index tools stay separate from storefront behavior."
+
+msgid "Safe answer sources"
+msgstr "Safe answer sources"
+
+msgid "Selected pages"
+msgstr "Selected pages"
+
+msgid "Safe"
+msgstr "Safe"
+
+msgid "Fallback"
+msgstr "Fallback"
+
+msgid "Public only"
+msgstr "Public only"
+
+msgid "Source rule"
+msgstr "Source rule"
+
+msgid "Only selected public pages can ground policy answers."
+msgstr "Only selected public pages can ground policy answers."
+
+msgid "Missing policy details use the fallback message."
+msgstr "Missing policy details use the fallback message."
+
+msgid "No shipping, refund or warranty policy is invented."
+msgstr "No shipping, refund or warranty policy is invented."
+
+msgid "Assistant performance"
+msgstr "Assistant performance"
+
+msgid "Conversation counts show usage and learning volume."
+msgstr "Conversation counts show usage and learning volume."
+
+msgid "Needs-review signals expose product, policy, and synonym issues."
+msgstr "Needs-review signals expose product, policy, and synonym issues."
+
+msgid "Commerce Pro analytics are kept clearly separated."
+msgstr "Commerce Pro analytics are kept clearly separated."
+
+msgid "Hidden"
+msgstr "Hidden"
+
+msgid "Protected"
+msgstr "Protected"
+
+msgid "REST requests"
+msgstr "REST requests"
+
+msgid "API keys stay server-side and are never exposed to frontend JavaScript."
+msgstr "API keys stay server-side and are never exposed to frontend JavaScript."
+
+msgid "Admin changes use nonce and capability checks."
+msgstr "Admin changes use nonce and capability checks."
+
+msgid "Grounded answering avoids invented products, prices, coupons and policies."
+msgstr "Grounded answering avoids invented products, prices, coupons and policies."
+
+msgid "Buyer search controls"
+msgstr "Buyer search controls"
+
+msgid "Tune how shopper wording is understood, without editing code. Rebuild the index after catalog changes."
+msgstr "Tune how shopper wording is understood, without editing code. Rebuild the index after catalog changes."
+
+msgid "Save search settings"
+msgstr "Save search settings"
+
+msgid "Reset actions"
+msgstr "Reset actions"
+
+msgid "Reset:"
+msgstr "Reset:"
+
+msgid "Restore the default synonym examples? Your custom synonym text will be replaced."
+msgstr "Restore the default synonym examples? Your custom synonym text will be replaced."
+
+msgid "Default synonyms"
+msgstr "Default synonyms"
+
+msgid "Reset all buyer search settings to their defaults?"
+msgstr "Reset all buyer search settings to their defaults?"
+
+msgid "All search settings"
+msgstr "All search settings"
+
+msgid "Automatic indexing"
+msgstr "Automatic indexing"
+
+msgid "Storefront intent checklist"
+msgstr "Storefront intent checklist"
+
+msgid "Try these grouped phrases in the storefront widget to confirm search, compare, cart, orders, deals and human handoff stay separated."
+msgstr "Try these grouped phrases in the storefront widget to confirm search, compare, cart, orders, deals and human handoff stay separated."
+
+msgid "Cart"
+msgstr "Cart"
+
+msgid "Orders"
+msgstr "Orders"
+
+msgid "Deals"
+msgstr "Deals"
+
+msgid "Understand natural buyer language"
+msgstr "Understand natural buyer language"
+
+msgid "Long phrases, price words, colour, size and soft preferences."
+msgstr "Long phrases, price words, colour, size and soft preferences."
+
+msgid "Product match behaviour"
+msgstr "Product match behaviour"
+
+msgid "Exact matches only"
+msgstr "Exact matches only"
+
+msgid "Minimum score"
+msgstr "Minimum score"
+
+msgid "Raise it only if weak results appear. Higher values hide close matches."
+msgstr "Raise it only if weak results appear. Higher values hide close matches."
+
+msgid "Ranking boosts"
+msgstr "Ranking boosts"
+
+msgid "In-stock products"
+msgstr "In-stock products"
+
+msgid "Sale products"
+msgstr "Sale products"
+
+msgid "Well-rated products"
+msgstr "Well-rated products"
+
+msgid "Popular products"
+msgstr "Popular products"
+
+msgid "Custom synonyms"
+msgstr "Custom synonyms"
+
+msgid "One rule per line: what shoppers type = what your catalog calls it. For example: comfy = comfortable, soft, cushioned."
+msgstr "One rule per line: what shoppers type = what your catalog calls it. For example: comfy = comfortable, soft, cushioned."
+
+msgid "Natural buyer search"
+msgstr "Natural buyer search"
+
+msgid "Understand long buyer phrases instead of keyword-only search."
+msgstr "Understand long buyer phrases instead of keyword-only search."
+
+msgid "Product match behavior"
+msgstr "Product match behavior"
+
+msgid "Smart product matches when exact color/size is not confirmed"
+msgstr "Smart product matches when exact color/size is not confirmed"
+
+msgid "Minimum result score"
+msgstr "Minimum result score"
+
+msgid "Keep low unless you are seeing weak results. Higher values hide more close matches."
+msgstr "Keep low unless you are seeing weak results. Higher values hide more close matches."
+
+msgid "Boost in-stock products"
+msgstr "Boost in-stock products"
+
+msgid "Boost sale products"
+msgstr "Boost sale products"
+
+msgid "Boost ratings"
+msgstr "Boost ratings"
+
+msgid "Boost popularity"
+msgstr "Boost popularity"
+
+msgid "One rule per line: shopper words = catalog words. Example: comfy = comfortable, soft, cushioned. Use words shoppers type on the left and catalog words/attributes on the right. These are added to the built-in search synonyms."
+msgstr "One rule per line: shopper words = catalog words. Example: comfy = comfortable, soft, cushioned. Use words shoppers type on the left and catalog words/attributes on the right. These are added to the built-in search synonyms."
+
+msgid "Enable storefront widget"
+msgstr "Enable storefront widget"
+
+msgid "Show the floating assistant button on public store pages."
+msgstr "Show the floating assistant button on public store pages."
+
+msgid "Shown in the widget header."
+msgstr "Shown in the widget header."
+
+msgid "Assistant subtitle"
+msgstr "Assistant subtitle"
+
+msgid "Shown below the assistant name."
+msgstr "Shown below the assistant name."
+
+msgid "Use shopper-friendly language that invites natural product questions."
+msgstr "Use shopper-friendly language that invites natural product questions."
+
+msgid "Shown when catalog data or selected policy pages cannot answer the shopper safely."
+msgstr "Shown when catalog data or selected policy pages cannot answer the shopper safely."
+
+msgid "Used for widget buttons and header accents."
+msgstr "Used for widget buttons and header accents."
+
+msgid "Button position"
+msgstr "Button position"
+
+msgid "Floating widget placement on the storefront."
+msgstr "Floating widget placement on the storefront."
+
+msgid "Recommended: 3–4 products for clean assistant replies."
+msgstr "Recommended: 3–4 products for clean assistant replies."
+
+msgid "Local grounded mode (default)"
+msgstr "Local grounded mode (default)"
+
+msgid "Calls no language model. Answers are assembled from your catalog and selected policy pages."
+msgstr "Calls no language model. Answers are assembled from your catalog and selected policy pages."
+
+msgid "Hosted AI endpoint for grounded answers."
+msgstr "Hosted AI endpoint for grounded answers."
+
+msgid "OpenAI BYOK"
+msgstr "OpenAI BYOK"
+
+msgid "Optional bring-your-own-key grounded answer mode."
+msgstr "Optional bring-your-own-key grounded answer mode."
+
+msgid "Only used when Zywrap mode is selected."
+msgstr "Only used when Zywrap mode is selected."
+
+msgid "Zywrap API key"
+msgstr "Zywrap API key"
+
+msgid "Saved secret is not displayed after save."
+msgstr "Saved secret is not displayed after save."
+
+msgid "OpenAI API key"
+msgstr "OpenAI API key"
+
+msgid "OpenAI model"
+msgstr "OpenAI model"
+
+msgid "Used only in OpenAI BYOK mode."
+msgstr "Used only in OpenAI BYOK mode."
+
+msgid "AI answer token limit"
+msgstr "AI answer token limit"
+
+msgid "Keeps generated answers short and controlled."
+msgstr "Keeps generated answers short and controlled."
+
+msgid "Daily AI call budget"
+msgstr "Daily AI call budget"
+
+msgid "Site-wide ceiling on paid provider calls per day. Applies to everyone, including logged-in staff."
+msgstr "Site-wide ceiling on paid provider calls per day. Applies to everyone, including logged-in staff."
+
+msgid "Monthly AI call cap"
+msgstr "Monthly AI call cap"
+
+msgid "Hard stop for the calendar month. Past the cap, shoppers still get grounded local answers."
+msgstr "Hard stop for the calendar month. Past the cap, shoppers still get grounded local answers."
+
+msgid "Security posture"
+msgstr "Security posture"
+
+msgid "API keys are encrypted at rest and remain server-side. The storefront receives public widget settings and REST nonce only."
+msgstr "API keys are encrypted at rest and remain server-side. The storefront receives public widget settings and REST nonce only."
+
+msgid "Local grounded mode does not call a language model"
+msgstr "Local grounded mode does not call a language model"
+
+msgid "This is the shipped default. Replies are assembled from your WooCommerce data and selected policy pages, so there is no provider cost and no AI account to set up. Conversational, generated wording starts only after you select Zywrap or OpenAI and save a key."
+msgstr "This is the shipped default. Replies are assembled from your WooCommerce data and selected policy pages, so there is no provider cost and no AI account to set up. Conversational, generated wording starts only after you select Zywrap or OpenAI and save a key."
+
+msgid "AI spend ceiling"
+msgstr "AI spend ceiling"
+
+msgid "Today: %1$s of %2$s calls used. This month: %3$s of %4$s."
+msgstr "Today: %1$s of %2$s calls used. This month: %3$s of %4$s."
+
+msgid "%s calls were declined today after a budget was reached; those shoppers received local grounded answers."
+msgstr "%s calls were declined today after a budget was reached; those shoppers received local grounded answers."
+
+msgid "API keys cannot be stored on this server."
+msgstr "API keys cannot be stored on this server."
+
+msgid "Geeky Bot encrypts provider keys at rest, and neither the libsodium nor the OpenSSL PHP extension is available here. Saving a key will be refused until your host enables one. Local grounded mode is unaffected."
+msgstr "Geeky Bot encrypts provider keys at rest, and neither the libsodium nor the OpenSSL PHP extension is available here. Saving a key will be refused until your host enables one. Local grounded mode is unaffected."
+
+msgid "A provider key is still stored unencrypted."
+msgstr "A provider key is still stored unencrypted."
+
+msgid "It was saved by an earlier version. Re-enter and save the key to store it encrypted."
+msgstr "It was saved by an earlier version. Re-enter and save the key to store it encrypted."
+
+msgid "Key storage"
+msgstr "Key storage"
+
+msgid "Provider keys are encrypted at rest with a key derived from this installation's WordPress salts. A copied database cannot decrypt them elsewhere."
+msgstr "Provider keys are encrypted at rest with a key derived from this installation's WordPress salts. A copied database cannot decrypt them elsewhere."
+
+msgid "Save conversation history"
+msgstr "Save conversation history"
+
+msgid "Store shopper conversations for analytics and unanswered-question review."
+msgstr "Store shopper conversations for analytics and unanswered-question review."
+
+msgid "Save guest conversations"
+msgstr "Save guest conversations"
+
+msgid "When disabled, logged-out shoppers can still use Geeky Bot, but their server-side conversation history and click events are not stored."
+msgstr "When disabled, logged-out shoppers can still use Geeky Bot, but their server-side conversation history and click events are not stored."
+
+msgid "Retention days"
+msgstr "Retention days"
+
+msgid "How long conversation data is retained."
+msgstr "How long conversation data is retained."
+
+msgid "Rate limit shopper messages"
+msgstr "Rate limit shopper messages"
+
+msgid "Maximum public shopper messages per window."
+msgstr "Maximum public shopper messages per window."
+
+msgid "Rate limit window minutes"
+msgstr "Rate limit window minutes"
+
+msgid "Administrators, shop managers, and product or order editors are not subject to public visitor rate limits. Contributors and authors are."
+msgstr "Administrators, shop managers, and product or order editors are not subject to public visitor rate limits. Contributors and authors are."
+
+msgid "Trusted proxies in front of this site"
+msgstr "Trusted proxies in front of this site"
+
+msgid "Leave at 0 unless a reverse proxy or CDN sits in front of the store. Set to 1 for a single CDN such as Cloudflare. X-Forwarded-For is only believed up to this many hops, because a visitor can otherwise forge it to get a fresh rate-limit bucket."
+msgstr "Leave at 0 unless a reverse proxy or CDN sits in front of the store. Set to 1 for a single CDN such as Cloudflare. X-Forwarded-For is only believed up to this many hops, because a visitor can otherwise forge it to get a fresh rate-limit bucket."
+
+msgid "Delete data on uninstall"
+msgstr "Delete data on uninstall"
+
+msgid "Remove conversations, review queue, product index, and Commerce Pro data when the plugin is uninstalled. Keep disabled on live stores unless intentional."
+msgstr "Remove conversations, review queue, product index, and Commerce Pro data when the plugin is uninstalled. Keep disabled on live stores unless intentional."
+
+msgid "Conversation data tools"
+msgstr "Conversation data tools"
+
+msgid "Export individual or complete conversation records, inspect product-click signals, or delete stored conversation data from Geeky Bot → Conversations."
+msgstr "Export individual or complete conversation records, inspect product-click signals, or delete stored conversation data from Geeky Bot → Conversations."
+
+msgid "Open conversation data tools"
+msgstr "Open conversation data tools"
+
+msgid "Activate WooCommerce"
+msgstr "Activate WooCommerce"
+
+msgid "Install WooCommerce"
+msgstr "Install WooCommerce"
+
+msgid "Rebuilding %d%%"
+msgstr "Rebuilding %d%%"
+
+msgid "Waiting"
+msgstr "Waiting"
+
+msgid "Scheduled"
+msgstr "Scheduled"
+
+msgid "Pending"
+msgstr "Pending"
+
+msgid "Full index scheduled"
+msgstr "Full index scheduled"
+
+msgid "Full index pending"
+msgstr "Full index pending"
+
+msgid "Product changes sync automatically"
+msgstr "Product changes sync automatically"
+
+msgid "Indexing starts automatically after WooCommerce is activated. Last full index:"
+msgstr "Indexing starts automatically after WooCommerce is activated. Last full index:"
+
+msgid "A full product index is queued. Last full index:"
+msgstr "A full product index is queued. Last full index:"
+
+msgid "Product changes sync automatically. Last full index:"
+msgstr "Product changes sync automatically. Last full index:"
+
+msgid "Strong match"
+msgstr "Strong match"
+
+msgid "Good match"
+msgstr "Good match"
+
+msgid "Close match"
+msgstr "Close match"
+
+msgid "Not configured"
+msgstr "Not configured"
+
+msgid "Blocked"
+msgstr "Blocked"
+
+msgid "%1$s. %2$s"
+msgstr "%1$s. %2$s"
+
+msgid "Product terms"
+msgstr "Product terms"
+
+msgid "Colors"
+msgstr "Colors"
+
+msgid "Sizes"
+msgstr "Sizes"
+
+msgid "Shopping mission"
+msgstr "Shopping mission"
+
+msgid "Gift discovery"
+msgstr "Gift discovery"
+
+msgid "Decision mode"
+msgstr "Decision mode"
+
+msgid "Audience preference"
+msgstr "Audience preference"
+
+msgid "Min %s"
+msgstr "Min %s"
+
+msgid "Max %s"
+msgstr "Max %s"
+
+msgid "What Geeky Bot understood"
+msgstr "What Geeky Bot understood"
+
+msgid "Intent"
+msgstr "Intent"
+
+msgid "Matched: %s"
+msgstr "Matched: %s"
+
+msgid "Not confirmed: %s"
+msgstr "Not confirmed: %s"
+
+msgid "Why this product matched"
+msgstr "Why this product matched"
+
+msgid "Raw score: %s"
+msgstr "Raw score: %s"
+
+msgid "Added search terms: %s"
+msgstr "Added search terms: %s"
+
+msgid "No image selected"
+msgstr "No image selected"
+
+msgid "Choose image"
+msgstr "Choose image"
+
+msgid "Uses a Media Library image. PNG, JPG, WEBP, or GIF recommended."
+msgstr "Uses a Media Library image. PNG, JPG, WEBP, or GIF recommended."
+
+msgid "Preview display"
+msgstr "Preview display"
+
+msgid "Invitation & launcher"
+msgstr "Invitation & launcher"
+
+msgid "Open chat"
+msgstr "Open chat"
+
+msgid "Latest products"
+msgstr "Latest products"
+
+msgid "Top rated"
+msgstr "Top rated"
+
+msgid "Blue hoodie"
+msgstr "Blue hoodie"
+
+msgid "Ask about products, size, colour, price…"
+msgstr "Ask about products, size, colour, price…"
+
+msgid "Send"
+msgstr "Send"
+
+msgid "Selected"
+msgstr "Selected"
+
+msgid "Suggested"
+msgstr "Suggested"
+
+msgid "No pages selected yet."
+msgstr "No pages selected yet."
+
+msgid "No obvious policy pages found."
+msgstr "No obvious policy pages found."
+
+msgid "Returns"
+msgstr "Returns"
+
+msgid "Refunds"
+msgstr "Refunds"
+
+msgid "Exchanges"
+msgstr "Exchanges"
+
+msgid "Warranty"
+msgstr "Warranty"
+
+msgid "Cancellation"
+msgstr "Cancellation"
+
+msgid "Terms"
+msgstr "Terms"
+
+msgid "Not recognized as a policy source"
+msgstr "Not recognized as a policy source"
+
+msgid "Retest this phrase in the storefront widget. If it still fails, tune the Commerce Pro action wording or add a sales rule."
+msgstr "Retest this phrase in the storefront widget. If it still fails, tune the Commerce Pro action wording or add a sales rule."
+
+msgid "Select or improve the matching public policy page, then test the phrase again."
+msgstr "Select or improve the matching public policy page, then test the phrase again."
+
+msgid "Add or improve synonyms so shopper wording maps to catalog words, then run the phrase in Search Lab."
+msgstr "Add or improve synonyms so shopper wording maps to catalog words, then run the phrase in Search Lab."
+
+msgid "Check product titles, categories, tags, price, stock and attributes, then rebuild the product index."
+msgstr "Check product titles, categories, tags, price, stock and attributes, then rebuild the product index."
+
+msgid "Check whether this is a product, policy, synonym, or Commerce Pro wording issue before marking it handled."
+msgstr "Check whether this is a product, policy, synonym, or Commerce Pro wording issue before marking it handled."
+
+msgid "Review catalog terms, synonyms, policy pages or buying-action rules, then retest the shopper phrase."
+msgstr "Review catalog terms, synonyms, policy pages or buying-action rules, then retest the shopper phrase."
+
+msgid "Review queue updated."
+msgstr "Review queue updated."
+
+msgid "Review issue marked as handled."
+msgstr "Review issue marked as handled."
+
+msgid "Review issue ignored."
+msgstr "Review issue ignored."
+
+msgid "Review issue restored to review."
+msgstr "Review issue restored to review."
+
+msgid "Policy answer"
+msgstr "Policy answer"
+
+msgid "Synonym / wording"
+msgstr "Synonym / wording"
+
+msgid "Commerce action"
+msgstr "Commerce action"
+
+msgid "Zywrap enabled"
+msgstr "Zywrap enabled"
+
+msgid "Zywrap selected but not fully configured"
+msgstr "Zywrap selected but not fully configured"
+
+msgid "OpenAI enabled"
+msgstr "OpenAI enabled"
+
+msgid "OpenAI selected but API key missing"
+msgstr "OpenAI selected but API key missing"
+
+msgid "Glad to help. What would you like to check next?"
+msgstr "Glad to help. What would you like to check next?"
+
+msgid "Got it. What would you like to check about %s next?"
+msgstr "Got it. What would you like to check about %s next?"
+
+msgid "Got it. What would you like to check next?"
+msgstr "Got it. What would you like to check next?"
+
+msgid "I do not have a current product list to select from. Show some products first."
+msgstr "I do not have a current product list to select from. Show some products first."
+
+msgid "I only have %1$d product in the current results, so there is no product %2$d to select."
+msgid_plural "I only have %1$d products in the current results, so there is no product %2$d to select."
+msgstr[0] "I only have %1$d product in the current results, so there is no product %2$d to select."
+msgstr[1] "I only have %1$d products in the current results, so there is no product %2$d to select."
+
+msgid "I could not match that position to the current product results."
+msgstr "I could not match that position to the current product results."
+
+msgid "I do not have a current %s selected. Please use the product name or show matching products first."
+msgstr "I do not have a current %s selected. Please use the product name or show matching products first."
+
+msgid "Which product do you mean? Please use the product name or show some products first."
+msgstr "Which product do you mean? Please use the product name or show some products first."
+
+msgid "Which other product do you mean—%s?"
+msgstr "Which other product do you mean—%s?"
+
+msgid "I do not have another current product to switch to. Please name the product you mean."
+msgstr "I do not have another current product to switch to. Please name the product you mean."
+
+msgid "You selected %s. What would you like to know about it?"
+msgstr "You selected %s. What would you like to know about it?"
+
+msgid "You are looking at %s. What would you like to know about it?"
+msgstr "You are looking at %s. What would you like to know about it?"
+
+msgid "Which product do you mean—%s?"
+msgstr "Which product do you mean—%s?"
+
+msgid "Which product do you mean? Please use the product name."
+msgstr "Which product do you mean? Please use the product name."
+
+msgid "find products in this store and narrow them down"
+msgstr "find products in this store and narrow them down"
+
+msgid "answer questions about a product from its store details"
+msgstr "answer questions about a product from its store details"
+
+msgid "answer store questions such as shipping, returns and payment"
+msgstr "answer store questions such as shipping, returns and payment"
+
+msgid "Ask me about anything in the store and I will do what I can."
+msgstr "Ask me about anything in the store and I will do what I can."
+
+msgid "and"
+msgstr "and"
+
+msgid "I can %s. What would you like to start with?"
+msgstr "I can %s. What would you like to start with?"
+
+msgid "or"
+msgstr "or"
+
+msgid "Open shopping assistant"
+msgstr "Open shopping assistant"
+
+msgid "Shopping assistant invitation"
+msgstr "Shopping assistant invitation"
+
+msgid "Dismiss shopping assistant invitation"
+msgstr "Dismiss shopping assistant invitation"
+
+msgid "You"
+msgstr "You"
+
+msgid "Ask about products, size, color, price, or use case…"
+msgstr "Ask about products, size, color, price, or use case…"
+
+msgid "Let me check that"
+msgstr "Let me check that"
+
+msgid "I couldn't complete that request right now. Please try again."
+msgstr "I couldn't complete that request right now. Please try again."
+
+msgid "The store is taking longer than expected. Please try again."
+msgstr "The store is taking longer than expected. Please try again."
+
+msgid "Too many requests were sent. Please wait a moment and try again."
+msgstr "Too many requests were sent. Please wait a moment and try again."
+
+msgid "Geeky Bot could not complete its database update. Please reload the page, then contact support if the notice remains."
+msgstr "Geeky Bot could not complete its database update. Please reload the page, then contact support if the notice remains."
+
+msgid "It's made from %1$s with %2$s."
+msgstr "It's made from %1$s with %2$s."
+
+msgid "It's made from %s."
+msgstr "It's made from %s."
+
+msgid "No—don't submerge it. It's %s, not waterproof."
+msgstr "No—don't submerge it. It's %s, not waterproof."
+
+msgid "No—don't submerge it. It's not waterproof."
+msgstr "No—don't submerge it. It's not waterproof."
+
+msgid "No. It's %s, not waterproof."
+msgstr "No. It's %s, not waterproof."
+
+msgid "No. It's not waterproof."
+msgstr "No. It's not waterproof."
+
+msgid "Yes. The store describes it as waterproof: %s."
+msgstr "Yes. The store describes it as waterproof: %s."
+
+msgid "Yes. The store describes it as waterproof."
+msgstr "Yes. The store describes it as waterproof."
+
+msgid "It's described as water-resistant, but the store does not confirm that it is waterproof."
+msgstr "It's described as water-resistant, but the store does not confirm that it is waterproof."
+
+msgid "It's described as %s, but the store does not confirm that it is waterproof."
+msgstr "It's described as %s, but the store does not confirm that it is waterproof."
+
+msgid "It's compatible with %s."
+msgstr "It's compatible with %s."
+
+msgid "Yes. The store lists it for %s."
+msgstr "Yes. The store lists it for %s."
+
+msgid "The store does not specifically list it for %1$s. Its confirmed uses are %2$s."
+msgstr "The store does not specifically list it for %1$s. Its confirmed uses are %2$s."
+
+msgid "Its listed uses are %s."
+msgstr "Its listed uses are %s."
+
+msgid "Yes. %s is listed as available."
+msgstr "Yes. %s is listed as available."
+
+msgid "No. %s is listed as unavailable."
+msgstr "No. %s is listed as unavailable."
+
+msgid "%1$s: %2$s."
+msgstr "%1$s: %2$s."
+
+msgid "It measures %1$s × %2$s × %3$s %4$s and weighs %5$s %6$s."
+msgstr "It measures %1$s × %2$s × %3$s %4$s and weighs %5$s %6$s."
+
+msgid "It measures %1$s × %2$s × %3$s %4$s."
+msgstr "It measures %1$s × %2$s × %3$s %4$s."
+
+msgid "It weighs %1$s %2$s."
+msgstr "It weighs %1$s %2$s."
+
+msgid "It comes with %s."
+msgstr "It comes with %s."
+
+msgid "It's currently %1$s, reduced from %2$s."
+msgstr "It's currently %1$s, reduced from %2$s."
+
+msgid "It's currently %s."
+msgstr "It's currently %s."
+
+msgid "It's currently out of stock, but you can still order it on backorder."
+msgstr "It's currently out of stock, but you can still order it on backorder."
+
+msgid "The item will be clearly marked as backordered before purchase."
+msgstr "The item will be clearly marked as backordered before purchase."
+
+msgid "Yes, it's currently in stock."
+msgstr "Yes, it's currently in stock."
+
+msgid "No, it's currently out of stock."
+msgstr "No, it's currently out of stock."
+
+msgid "Available %1$s: %2$s."
+msgstr "Available %1$s: %2$s."
+
+msgid "It isn't currently on sale."
+msgstr "It isn't currently on sale."
+
+msgid "Yes, a charging cable is included."
+msgstr "Yes, a charging cable is included."
+
+msgid "No, a charging cable isn't included."
+msgstr "No, a charging cable isn't included."
+
+msgid "Included: %s."
+msgstr "Included: %s."
+
+msgid "Battery life: %s."
+msgstr "Battery life: %s."
+
+msgid "Care instructions: %s."
+msgstr "Care instructions: %s."
+
+msgid "The bottle body is dishwasher safe, but the lid should be hand washed."
+msgstr "The bottle body is dishwasher safe, but the lid should be hand washed."
+
+msgid "No, it isn't dishwasher safe."
+msgstr "No, it isn't dishwasher safe."
+
+msgid "No, it isn't microwave safe."
+msgstr "No, it isn't microwave safe."
+
+msgid "No. It's leak-resistant, not leak-proof."
+msgstr "No. It's leak-resistant, not leak-proof."
+
+msgid "Leak protection: %s."
+msgstr "Leak protection: %s."
+
+msgid "Yes, it has a backlight."
+msgstr "Yes, it has a backlight."
+
+msgid "No, it doesn't have a backlight."
+msgstr "No, it doesn't have a backlight."
+
+msgid "Available options: %s."
+msgstr "Available options: %s."
+
+msgid "It's currently in stock."
+msgstr "It's currently in stock."
+
+msgid "It's currently out of stock."
+msgstr "It's currently out of stock."
+
+msgid "I couldn't find that information in this product's store details."
+msgstr "I couldn't find that information in this product's store details."
+
+msgid "I couldn't find %s in this product's store details."
+msgstr "I couldn't find %s in this product's store details."
+
+msgid "I couldn't find %s in the store details."
+msgstr "I couldn't find %s in the store details."
+
+msgid "Yes, %s is in stock."
+msgstr "Yes, %s is in stock."
+
+msgid "%s is out of stock, but it can be ordered on backorder."
+msgstr "%s is out of stock, but it can be ordered on backorder."
+
+msgid "%s is currently out of stock."
+msgstr "%s is currently out of stock."
+
+msgid "It is %1$s, reduced from %2$s."
+msgstr "It is %1$s, reduced from %2$s."
+
+msgid "It is %s."
+msgstr "It is %s."
+
+msgid "%1$s is on sale for %2$s, reduced from %3$s."
+msgstr "%1$s is on sale for %2$s, reduced from %3$s."
+
+msgid "%1$s is on sale at %2$s."
+msgstr "%1$s is on sale at %2$s."
+
+msgid "colors"
+msgstr "colors"
+
+msgid "sizes"
+msgstr "sizes"
+
+msgid "is"
+msgstr "is"
+
+msgid "are"
+msgstr "are"
+
+msgid "In %1$s, %2$s %3$s available."
+msgstr "In %1$s, %2$s %3$s available."
+
+msgid "%1$s %2$s currently out of stock."
+msgstr "%1$s %2$s currently out of stock."
+
+msgid "Available: %s."
+msgstr "Available: %s."
+
+msgid "Out of stock: %s."
+msgstr "Out of stock: %s."
+
+msgid "I couldn't find that exact option combination for this product."
+msgstr "I couldn't find that exact option combination for this product."
+
+msgid "None of the matching options is currently on sale."
+msgstr "None of the matching options is currently on sale."
+
+msgid "I couldn't find matching options for that request."
+msgstr "I couldn't find matching options for that request."
+
+msgid "Checked store details"
+msgstr "Checked store details"
+
+msgid "From store details"
+msgstr "From store details"
+
+msgid "the material"
+msgstr "the material"
+
+msgid "water-protection information"
+msgstr "water-protection information"
+
+msgid "compatibility details"
+msgstr "compatibility details"
+
+msgid "suitability details"
+msgstr "suitability details"
+
+msgid "that product detail"
+msgstr "that product detail"
+
+msgid "the dimensions"
+msgstr "the dimensions"
+
+msgid "the weight"
+msgstr "the weight"
+
+msgid "warranty information"
+msgstr "warranty information"
+
+msgid "the current price"
+msgstr "the current price"
+
+msgid "stock information"
+msgstr "stock information"
+
+msgid "available colors"
+msgstr "available colors"
+
+msgid "available sizes"
+msgstr "available sizes"
+
+msgid "sale information"
+msgstr "sale information"
+
+msgid "included-item information"
+msgstr "included-item information"
+
+msgid "battery-life information"
+msgstr "battery-life information"
+
+msgid "care instructions"
+msgstr "care instructions"
+
+msgid "leak-protection information"
+msgstr "leak-protection information"
+
+msgid "backlight information"
+msgstr "backlight information"
+
+msgid "capacity options"
+msgstr "capacity options"
+
+msgid "product options"
+msgstr "product options"
+
+msgid "a product summary"
+msgstr "a product summary"
+
+msgid "the dimensions or weight"
+msgstr "the dimensions or weight"
+
+msgid "size %s"
+msgstr "size %s"
+
+msgid "On sale: %s."
+msgstr "On sale: %s."
+
+msgid "%1$s in size %2$s"
+msgstr "%1$s in size %2$s"
+
+msgid "%1$s for %2$s"
+msgstr "%1$s for %2$s"
+
+msgid "%1$s in %2$s"
+msgstr "%1$s in %2$s"
+
+msgid "I'm not sure which product you mean. Please use the product name or ask about one of the products currently shown."
+msgstr "I'm not sure which product you mean. Please use the product name or ask about one of the products currently shown."
+
+msgid "I couldn't access that product's store details."
+msgstr "I couldn't access that product's store details."
+
+msgid "Are you asking about %s?"
+msgstr "Are you asking about %s?"
+
+msgid "Which product are you asking about?"
+msgstr "Which product are you asking about?"
+
+msgid "%1$s sale price; regular price %2$s"
+msgstr "%1$s sale price; regular price %2$s"
+
+msgid "This analytics event is not allowed."
+msgstr "This analytics event is not allowed."
+
+msgid "Product search limit is too high."
+msgstr "Product search limit is too high."
+
+msgid "Please keep your question shorter so I can search the store accurately."
+msgstr "Please keep your question shorter so I can search the store accurately."
+
+msgid "Product search is temporarily unavailable. Please try again."
+msgstr "Product search is temporarily unavailable. Please try again."
+
+msgid "Gift"
+msgstr "Gift"
+
+msgid "The monthly AI answer budget for this store has been reached."
+msgstr "The monthly AI answer budget for this store has been reached."
+
+msgid "The daily AI answer budget for this store has been reached."
+msgstr "The daily AI answer budget for this store has been reached."
+
+msgid "Please type a product or store question so I can help."
+msgstr "Please type a product or store question so I can help."
+
+msgid "I cleared the previous shopping request. Tell me what you would like to find next."
+msgstr "I cleared the previous shopping request. Tell me what you would like to find next."
+
+msgid "What would you like to check next?"
+msgstr "What would you like to check next?"
+
+msgid "Product assistance is temporarily unavailable. Please contact the store if you need help."
+msgstr "Product assistance is temporarily unavailable. Please contact the store if you need help."
+
+msgid "I couldn't find an available product with that name."
+msgstr "I couldn't find an available product with that name."
+
+msgid "Here is the product comparison."
+msgstr "Here is the product comparison."
+
+msgid "Product comparison isn't available right now. You can still open the products below to review their details."
+msgstr "Product comparison isn't available right now. You can still open the products below to review their details."
+
+msgid "Choose at least two shown products to compare."
+msgstr "Choose at least two shown products to compare."
+
+msgid "Here are the best matches for your request."
+msgstr "Here are the best matches for your request."
+
+msgid "Choose two different result positions to compare, such as “compare the first and third.”"
+msgstr "Choose two different result positions to compare, such as “compare the first and third.”"
+
+msgid "I do not have a current product list to compare. Show some products first, or name the two products you would like to compare."
+msgstr "I do not have a current product list to compare. Show some products first, or name the two products you would like to compare."
+
+msgid "I only have one product in the current results, so there is no %s product to compare. Show more products or name the two products you would like to compare."
+msgstr "I only have one product in the current results, so there is no %s product to compare. Show more products or name the two products you would like to compare."
+
+msgid "The current results contain only %1$d product, so there is no %2$s product to compare. Show more products or name the two products you would like to compare."
+msgid_plural "The current results contain only %1$d products, so there is no %2$s product to compare. Show more products or name the two products you would like to compare."
+msgstr[0] "The current results contain only %1$d product, so there is no %2$s product to compare. Show more products or name the two products you would like to compare."
+msgstr[1] "The current results contain only %1$d products, so there is no %2$s product to compare. Show more products or name the two products you would like to compare."
+
+msgid "first"
+msgstr "first"
+
+msgid "second"
+msgstr "second"
+
+msgid "third"
+msgstr "third"
+
+msgid "fourth"
+msgstr "fourth"
+
+msgid "fifth"
+msgstr "fifth"
+
+msgid "sixth"
+msgstr "sixth"
+
+msgid "seventh"
+msgstr "seventh"
+
+msgid "eighth"
+msgstr "eighth"
+
+msgid "ninth"
+msgstr "ninth"
+
+msgid "tenth"
+msgstr "tenth"
+
+msgid "#%d"
+msgstr "#%d"
+
+msgid "I couldn't find two visible store products matching those names."
+msgstr "I couldn't find two visible store products matching those names."
+
+msgid "that product"
+msgstr "that product"
+
+msgid "I found more than one visible product for “%1$s”: %2$s and %3$s. Please use the full product name."
+msgstr "I found more than one visible product for “%1$s”: %2$s and %3$s. Please use the full product name."
+
+msgid "I couldn't find a visible store product matching “%s”."
+msgstr "I couldn't find a visible store product matching “%s”."
+
+msgid "I couldn't find another confirmed color for %s that also matches your remaining filters."
+msgstr "I couldn't find another confirmed color for %s that also matches your remaining filters."
+
+msgid "I couldn't find a close alternative to %s that also matches your remaining filters."
+msgstr "I couldn't find a close alternative to %s that also matches your remaining filters."
+
+msgid "There isn't an earlier product list to restore in this conversation."
+msgstr "There isn't an earlier product list to restore in this conversation."
+
+msgid "I couldn't find products matching that change."
+msgstr "I couldn't find products matching that change."
+
+msgid "I couldn't find this information in the store’s published policies. Please contact the store for confirmation."
+msgstr "I couldn't find this information in the store’s published policies. Please contact the store for confirmation."
+
+msgid "Here is %s."
+msgstr "Here is %s."
+
+msgid "From the products shown, %s is the closest match to your request. Open it to review the price, stock, and available options."
+msgstr "From the products shown, %s is the closest match to your request. Open it to review the price, stock, and available options."
+
+msgid "%1$s has the largest confirmed discount among the products shown at about %2$d%% off. Open it to review the price, stock, and available options."
+msgstr "%1$s has the largest confirmed discount among the products shown at about %2$d%% off. Open it to review the price, stock, and available options."
+
+msgid "%s is the best discounted option I could confirm from the products shown."
+msgstr "%s is the best discounted option I could confirm from the products shown."
+
+msgid "You selected %s. Open it to review the price, stock, and available options."
+msgstr "You selected %s. Open it to review the price, stock, and available options."
+
+msgid "%1$s is available in these colors: %2$s. Open the product to choose an available option."
+msgstr "%1$s is available in these colors: %2$s. Open the product to choose an available option."
+
+msgid "I couldn't find another confirmed color for that product."
+msgstr "I couldn't find another confirmed color for that product."
+
+msgid "the selected product"
+msgstr "the selected product"
+
+msgid "Here are some related alternatives to %s."
+msgstr "Here are some related alternatives to %s."
+
+msgid "I restored the previous product options."
+msgstr "I restored the previous product options."
+
+msgid "I removed those filters and updated the results."
+msgstr "I removed those filters and updated the results."
+
+msgid "I removed that filter and updated the results."
+msgstr "I removed that filter and updated the results."
+
+msgid "Here are some lower-priced options that still match your request."
+msgstr "Here are some lower-priced options that still match your request."
+
+msgid "I narrowed the results using your latest preference."
+msgstr "I narrowed the results using your latest preference."
+
+msgid "Here are some more premium options that still match your request."
+msgstr "Here are some more premium options that still match your request."
+
+msgid "I couldn't find %1$s %2$s. Here are other products in that price range."
+msgstr "I couldn't find %1$s %2$s. Here are other products in that price range."
+
+msgid "I couldn't find %s at that price. Here are other products that may fit your budget."
+msgstr "I couldn't find %s at that price. Here are other products that may fit your budget."
+
+msgid "I couldn't find anything for \"%1$s\", so I searched for \"%2$s\" instead. Here is what I found."
+msgstr "I couldn't find anything for \"%1$s\", so I searched for \"%2$s\" instead. Here is what I found."
+
+msgid "Here are the closest matches I could find."
+msgstr "Here are the closest matches I could find."
+
+msgid "I couldn't find an exact match %s. Here are the closest available products."
+msgstr "I couldn't find an exact match %s. Here are the closest available products."
+
+msgid "I couldn't find %1$s. Here are other %2$s options that may help."
+msgstr "I couldn't find %1$s. Here are other %2$s options that may help."
+
+msgid "Here is %d product that matches your request."
+msgid_plural "Here are %d products that match your request."
+msgstr[0] "Here is %d product that matches your request."
+msgstr[1] "Here are %d products that match your request."
+
+msgid "Top matches: %s."
+msgstr "Top matches: %s."
+
+msgid "I marked any requested details that the store has not confirmed."
+msgstr "I marked any requested details that the store has not confirmed."
+
+msgid "Open a product to review its price, stock, and available options."
+msgstr "Open a product to review its price, stock, and available options."
+
+msgid "I couldn't find a matching product. Try a different color, size, price, or product name."
+msgstr "I couldn't find a matching product. Try a different color, size, price, or product name."
+
+msgid "The store hasn't provided enough information for me to answer that."
+msgstr "The store hasn't provided enough information for me to answer that."
+
+msgid "I can't add items to your cart from here. You can add it from the product page and carry on shopping."
+msgstr "I can't add items to your cart from here. You can add it from the product page and carry on shopping."
+
+msgid "I can't change your cart from here. You can remove it on the cart page."
+msgstr "I can't change your cart from here. You can remove it on the cart page."
+
+msgid "I can't change quantities from here. You can update the amount on the cart page."
+msgstr "I can't change quantities from here. You can update the amount on the cart page."
+
+msgid "I can't show your cart from here. The cart page has everything currently in it."
+msgstr "I can't show your cart from here. The cart page has everything currently in it."
+
+msgid "I can't take you through checkout. You can review your cart and check out as usual."
+msgstr "I can't take you through checkout. You can review your cart and check out as usual."
+
+msgid "I don't have discount codes to give out. Any current offers will be shown on the product or cart pages."
+msgstr "I don't have discount codes to give out. Any current offers will be shown on the product or cart pages."
+
+msgid "I can't pass you to a person from here, and I'd rather say so than guess. The store's contact details are on its help pages."
+msgstr "I can't pass you to a person from here, and I'd rather say so than guess. The store's contact details are on its help pages."
+
+msgid "I understood that, but I can't carry it out from here."
+msgstr "I understood that, but I can't carry it out from here."
+
+msgid "No matching product"
+msgstr "No matching product"
+
+msgid "Review product titles, categories, attributes, stock, price, and common synonyms."
+msgstr "Review product titles, categories, attributes, stock, price, and common synonyms."
+
+msgid "Product detail missing"
+msgstr "Product detail missing"
+
+msgid "Add the missing fact to the WooCommerce product description or attributes."
+msgstr "Add the missing fact to the WooCommerce product description or attributes."
+
+msgid "Product reference unclear"
+msgstr "Product reference unclear"
+
+msgid "Retest the selection flow and ensure product names are distinctive."
+msgstr "Retest the selection flow and ensure product names are distinctive."
+
+msgid "Policy source missing"
+msgstr "Policy source missing"
+
+msgid "Select a published page for this policy area in Store Knowledge."
+msgstr "Select a published page for this policy area in Store Knowledge."
+
+msgid "Policy detail missing"
+msgstr "Policy detail missing"
+
+msgid "Add a clear answer to the selected policy page and refresh the knowledge index."
+msgstr "Add a clear answer to the selected policy page and refresh the knowledge index."
+
+msgid "No grounded answer"
+msgstr "No grounded answer"
+
+msgid "Check whether the phrase belongs to products, policy content, or a Commerce Pro action."
+msgstr "Check whether the phrase belongs to products, policy content, or a Commerce Pro action."
+
+msgid "Review the shopper phrase and improve the matching store data."
+msgstr "Review the shopper phrase and improve the matching store data."
+
+msgid "show me %s"
+msgstr "show me %s"
+
+msgid "Conversation memory"
+msgstr "Conversation memory"
+
+msgid "Ask a follow-up that names no product"
+msgstr "Ask a follow-up that names no product"
+
+msgid "which one is cheaper?"
+msgstr "which one is cheaper?"
+
+msgid "The second question names nothing. It is answered against the results already on screen."
+msgstr "The second question names nothing. It is answered against the results already on screen."
+
+msgid "Comparison"
+msgstr "Comparison"
+
+msgid "Compare by position, not by name"
+msgstr "Compare by position, not by name"
+
+msgid "compare the first and second"
+msgstr "compare the first and second"
+
+msgid "Shoppers point at what they can see instead of retyping two product names."
+msgstr "Shoppers point at what they can see instead of retyping two product names."
+
+msgid "Ask a detail across the whole result set"
+msgstr "Ask a detail across the whole result set"
+
+msgid "what material are they?"
+msgstr "what material are they?"
+
+msgid "Answered from stored product data for every result at once, naming any product the catalog does not record it for."
+msgstr "Answered from stored product data for every result at once, naming any product the catalog does not record it for."
+
+msgid "Refinement"
+msgstr "Refinement"
+
+msgid "Narrow the results without starting over"
+msgstr "Narrow the results without starting over"
+
+msgid "only under %1$s%2$s"
+msgstr "only under %1$s%2$s"
+
+msgid "The budget arrives as a second thought, the way it does in a real conversation."
+msgstr "The budget arrives as a second thought, the way it does in a real conversation."
+
+msgid "Put two real products side by side"
+msgstr "Put two real products side by side"
+
+msgid "Compare %1$s and %2$s"
+msgstr "Compare %1$s and %2$s"
+
+msgid "Both products, and every value compared, come from this catalog."
+msgstr "Both products, and every value compared, come from this catalog."
+
+msgid "Ask for a grounded best match"
+msgstr "Ask for a grounded best match"
+
+msgid "Which %s on sale do you recommend?"
+msgstr "Which %s on sale do you recommend?"
+
+msgid "Which %s do you recommend?"
+msgstr "Which %s do you recommend?"
+
+msgid "Uses a real product family with an active sale item."
+msgstr "Uses a real product family with an active sale item."
+
+msgid "Uses a product family detected from this catalog."
+msgstr "Uses a product family detected from this catalog."
+
+msgid "Catalog family: %s"
+msgstr "Catalog family: %s"
+
+msgid "Price intent"
+msgstr "Price intent"
+
+msgid "Sort the whole catalog by price"
+msgstr "Sort the whole catalog by price"
+
+msgid "what is cheapest today"
+msgstr "what is cheapest today"
+
+msgid "No product named at all, and the answer still comes from live WooCommerce prices."
+msgstr "No product named at all, and the answer still comes from live WooCommerce prices."
+
+msgid "Whole catalog"
+msgstr "Whole catalog"
+
+msgid "Scope"
+msgstr "Scope"
+
+msgid "Ask the assistant what it covers"
+msgstr "Ask the assistant what it covers"
+
+msgid "What can you do?"
+msgstr "What can you do?"
+
+msgid "Answers from what this install actually has switched on, not a stock script."
+msgstr "Answers from what this install actually has switched on, not a stock script."
+
+msgid "Assistant capabilities"
+msgstr "Assistant capabilities"
+
+msgid "Knowing when to stop"
+msgstr "Knowing when to stop"
+
+msgid "See it hand a complaint to a person"
+msgstr "See it hand a complaint to a person"
+
+msgid "I want to complain"
+msgstr "I want to complain"
+
+msgid "A complaint is not a shopping request, so it stops selling instead of answering with products."
+msgstr "A complaint is not a shopping request, so it stops selling instead of answering with products."
+
+msgid "Support handover"
+msgstr "Support handover"
+
+msgid "Exact product"
+msgstr "Exact product"
+
+msgid "Open a real product by name"
+msgstr "Open a real product by name"
+
+msgid "Shows how shoppers can ask for one exact catalog product without browsing menus."
+msgstr "Shows how shoppers can ask for one exact catalog product without browsing menus."
+
+msgid "Price filter"
+msgstr "Price filter"
+
+msgid "Test a real budget request"
+msgstr "Test a real budget request"
+
+msgid "%1$s under %2$s%3$s"
+msgstr "%1$s under %2$s%3$s"
+
+msgid "Uses a confirmed current product price from this store."
+msgstr "Uses a confirmed current product price from this store."
+
+msgid "in %s"
+msgstr "in %s"
+
+msgid "Try color or size language"
+msgstr "Try color or size language"
+
+msgid "Uses attributes already indexed from this product."
+msgstr "Uses attributes already indexed from this product."
+
+msgid "Product Q&A"
+msgstr "Product Q&A"
+
+msgid "Check a live stock fact"
+msgstr "Check a live stock fact"
+
+msgid "Is %s in stock?"
+msgstr "Is %s in stock?"
+
+msgid "Uses the current WooCommerce stock state for this product."
+msgstr "Uses the current WooCommerce stock state for this product."
+
+msgid "Check a confirmed product price"
+msgstr "Check a confirmed product price"
+
+msgid "How much does %s cost?"
+msgstr "How much does %s cost?"
+
+msgid "Uses only the current WooCommerce product price."
+msgstr "Uses only the current WooCommerce product price."
+
+msgid "Buying action"
+msgstr "Buying action"
+
+msgid "Add a real product from chat"
+msgstr "Add a real product from chat"
+
+msgid "Add %s to my cart"
+msgstr "Add %s to my cart"
+
+msgid "Commerce Pro turns the product conversation into a cart action."
+msgstr "Commerce Pro turns the product conversation into a cart action."
+
+msgid "Variation buying"
+msgstr "Variation buying"
+
+msgid "Select an option and buy in one sentence"
+msgstr "Select an option and buy in one sentence"
+
+msgid "Commerce Pro can select a real purchasable variation before adding it to the cart."
+msgstr "Commerce Pro can select a real purchasable variation before adding it to the cart."
+
+msgid "Buying by reference"
+msgstr "Buying by reference"
+
+msgid "Buy the one on screen, unnamed"
+msgstr "Buy the one on screen, unnamed"
+
+msgid "add the second one"
+msgstr "add the second one"
+
+msgid "The shopper points at a position in the results and Commerce Pro carts that product."
+msgstr "The shopper points at a position in the results and Commerce Pro carts that product."
+
+msgid "Cart assistance"
+msgstr "Cart assistance"
+
+msgid "Change a quantity in conversation"
+msgstr "Change a quantity in conversation"
+
+msgid "make it quantity 2"
+msgstr "make it quantity 2"
+
+msgid "Commerce Pro updates the line it just created, without the shopper naming it again."
+msgstr "Commerce Pro updates the line it just created, without the shopper naming it again."
+
+msgid "Take something back out of the cart"
+msgstr "Take something back out of the cart"
+
+msgid "remove first product from cart"
+msgstr "remove first product from cart"
+
+msgid "Positions are counted in the cart, not in the last search."
+msgstr "Positions are counted in the cart, not in the last search."
+
+msgid "How long does shipping take?"
+msgstr "How long does shipping take?"
+
+msgid "Can I return an opened product?"
+msgstr "Can I return an opened product?"
+
+msgid "When will I receive my refund?"
+msgstr "When will I receive my refund?"
+
+msgid "Can I exchange an item for another size?"
+msgstr "Can I exchange an item for another size?"
+
+msgid "Does this store provide a warranty?"
+msgstr "Does this store provide a warranty?"
+
+msgid "Which payment methods do you accept?"
+msgstr "Which payment methods do you accept?"
+
+msgid "How do you use my personal data?"
+msgstr "How do you use my personal data?"
+
+msgid "Where can I read the store terms?"
+msgstr "Where can I read the store terms?"
+
+msgid "Store policy"
+msgstr "Store policy"
+
+msgid "Test a grounded policy answer"
+msgstr "Test a grounded policy answer"
+
+msgid "Uses one of the public policy pages approved in Store Knowledge."
+msgstr "Uses one of the public policy pages approved in Store Knowledge."
+
+msgid "Policy page: %s"
+msgstr "Policy page: %s"
+
+msgid "Choose an available option for %s and add it to my cart"
+msgstr "Choose an available option for %s and add it to my cart"
+
+msgid "Choose %1$s for %2$s and add it to my cart"
+msgstr "Choose %1$s for %2$s and add it to my cart"
+
+msgid "Product index table"
+msgstr "Product index table"
+
+msgid "The product index table is present."
+msgstr "The product index table is present."
+
+msgid "The product index table is missing, so Geeky Bot cannot search your catalog. Deactivating and reactivating the plugin rebuilds it."
+msgstr "The product index table is missing, so Geeky Bot cannot search your catalog. Deactivating and reactivating the plugin rebuilds it."
+
+msgid "The product search index is missing. Geeky Bot is falling back to slower matching with no relevance ranking. Reactivate the plugin to rebuild it."
+msgstr "The product search index is missing. Geeky Bot is falling back to slower matching with no relevance ranking. Reactivate the plugin to rebuild it."
+
+msgid "The product search index covers the wrong columns, so every search silently falls back to slower matching with no relevance ranking. Found: %1$s. Expected: %2$s. Reactivating the plugin repairs it."
+msgstr "The product search index covers the wrong columns, so every search silently falls back to slower matching with no relevance ranking. Found: %1$s. Expected: %2$s. Reactivating the plugin repairs it."
+
+msgid "The index looks correct but the last product search failed in the database and fell back to slower matching. Error: %s"
+msgstr "The index looks correct but the last product search failed in the database and fell back to slower matching. Error: %s"
+
+msgid "The product search index covers the expected columns."
+msgstr "The product search index covers the expected columns."
+
+msgid "This store has no published products yet."
+msgstr "This store has no published products yet."
+
+msgid "None of your %d published products are indexed, so Geeky Bot cannot recommend anything. Rebuild the product index from the Geeky Bot settings."
+msgstr "None of your %d published products are indexed, so Geeky Bot cannot recommend anything. Rebuild the product index from the Geeky Bot settings."
+
+msgid "Only %1$d of %2$d published products are indexed. Rebuild the product index so recommendations cover your whole catalog."
+msgstr "Only %1$d of %2$d published products are indexed. Rebuild the product index so recommendations cover your whole catalog."
+
+msgid "%1$d of %2$d published products are indexed."
+msgstr "%1$d of %2$d published products are indexed."
+
+msgid "Store vocabulary"
+msgstr "Store vocabulary"
+
+msgid "WooCommerce categories are unavailable, so only the built-in vocabulary is used."
+msgstr "WooCommerce categories are unavailable, so only the built-in vocabulary is used."
+
+msgid "No product categories have products in them, so Geeky Bot can only fall back to its built-in wording. Categorising your products teaches it the words your shoppers use."
+msgstr "No product categories have products in them, so Geeky Bot can only fall back to its built-in wording. Categorising your products teaches it the words your shoppers use."
+
+msgid "Your product categories have not been read yet, so searches rely on built-in wording only. Rebuild the product index to learn them."
+msgstr "Your product categories have not been read yet, so searches rely on built-in wording only. Rebuild the product index to learn them."
+
+msgid "%1$d product words learned from your %2$d categories."
+msgstr "%1$d product words learned from your %2$d categories."
+
+msgid "Store policy answers"
+msgstr "Store policy answers"
+
+msgid "No policy pages are selected, so Geeky Bot cannot answer questions about shipping, returns or refunds. Choose your policy pages in the Geeky Bot settings."
+msgstr "No policy pages are selected, so Geeky Bot cannot answer questions about shipping, returns or refunds. Choose your policy pages in the Geeky Bot settings."
+
+msgid "Policy pages are selected but none are indexed, so policy questions fall back to \"please contact the store\". Re-sync your knowledge sources in the Geeky Bot settings."
+msgstr "Policy pages are selected but none are indexed, so policy questions fall back to \"please contact the store\". Re-sync your knowledge sources in the Geeky Bot settings."
+
+msgid "%1$d of %2$d selected policy pages are indexed. Re-sync your knowledge sources so every page can be quoted."
+msgstr "%1$d of %2$d selected policy pages are indexed. Re-sync your knowledge sources so every page can be quoted."
+
+msgid "%d policy pages are indexed and available for answers."
+msgstr "%d policy pages are indexed and available for answers."
+
+msgid "Assistant visibility"
+msgstr "Assistant visibility"
+
+msgid "The storefront assistant is switched off, so shoppers cannot see Geeky Bot."
+msgstr "The storefront assistant is switched off, so shoppers cannot see Geeky Bot."
+
+msgid "WooCommerce is not active, so Geeky Bot cannot read your catalog."
+msgstr "WooCommerce is not active, so Geeky Bot cannot read your catalog."
+
+msgid "The storefront assistant is enabled and WooCommerce is active."
+msgstr "The storefront assistant is enabled and WooCommerce is active."
+
+msgid "Geeky Bot search health"
+msgstr "Geeky Bot search health"
+
+msgid "Geeky Bot search is healthy"
+msgstr "Geeky Bot search is healthy"
+
+msgid "The product index, search index and policy sources are all working."
+msgstr "The product index, search index and policy sources are all working."
+
+msgid "Geeky Bot search needs attention"
+msgstr "Geeky Bot search needs attention"
+
+msgid "Geeky Bot search is degraded"
+msgstr "Geeky Bot search is degraded"
+
+msgid "Geeky Bot is answering from a degraded state."
+msgstr "Geeky Bot is answering from a degraded state."
+
+msgid "The page is not an approved knowledge source."
+msgstr "The page is not an approved knowledge source."
+
+msgid "The selected page is not public."
+msgstr "The selected page is not public."
+
+msgid "The selected page has no readable public text."
+msgstr "The selected page has no readable public text."
+
+msgid "The policy page could not be indexed."
+msgstr "The policy page could not be indexed."
+
+msgid "According to the store’s “%1$s” page: %2$s"
+msgstr "According to the store’s “%1$s” page: %2$s"
+
+msgid "store policy"
+msgstr "store policy"
+
+msgid "I couldn't find this information in the store’s published %s pages. Please contact the store for confirmation."
+msgstr "I couldn't find this information in the store’s published %s pages. Please contact the store for confirmation."
+
+msgid "I couldn't find that detail in the store’s published %s information. Please review the page below or contact the store for confirmation."
+msgstr "I couldn't find that detail in the store’s published %s information. Please review the page below or contact the store for confirmation."
+
+msgid "Commerce Pro license storage requires the PHP OpenSSL or Sodium extension. Commerce Pro remains locked until secure local storage is available and the license is refreshed."
+msgstr "Commerce Pro license storage requires the PHP OpenSSL or Sodium extension. Commerce Pro remains locked until secure local storage is available and the license is refreshed."
+
+msgid "Commerce Pro needs a fresh license verification before it can run on this site."
+msgstr "Commerce Pro needs a fresh license verification before it can run on this site."
+
+msgid "Your Commerce Pro license has expired. Buying actions continue on this activated site, but updates, protected downloads, support, and new activations require renewal."
+msgstr "Your Commerce Pro license has expired. Buying actions continue on this activated site, but updates, protected downloads, support, and new activations require renewal."
+
+msgid "Your Commerce Pro subscription is cancelled but remains active until the paid period ends. Renew to keep updates, downloads, and support active after expiry."
+msgstr "Your Commerce Pro subscription is cancelled but remains active until the paid period ends. Renew to keep updates, downloads, and support active after expiry."
+
+msgid "Could not refresh the Commerce Pro license recently. Commerce Pro is running on cached verification until the grace period expires."
+msgstr "Could not refresh the Commerce Pro license recently. Commerce Pro is running on cached verification until the grace period expires."
+
+msgid "Staging limit reached"
+msgstr "Staging limit reached"
+
+msgid "Production limit reached"
+msgstr "Production limit reached"
+
+msgid "This server cannot securely store the Commerce Pro license key. Enable the PHP OpenSSL or Sodium extension, then try again."
+msgstr "This server cannot securely store the Commerce Pro license key. Enable the PHP OpenSSL or Sodium extension, then try again."
+
+msgid "Please enter a license key."
+msgstr "Please enter a license key."
+
+msgid "No Commerce Pro license key is saved yet."
+msgstr "No Commerce Pro license key is saved yet."
+
+msgid "License deactivated on this site."
+msgstr "License deactivated on this site."
+
+msgid "A valid Commerce Pro license with download access is required before installing the add-on."
+msgstr "A valid Commerce Pro license with download access is required before installing the add-on."
+
+msgid "The license server did not return a safe Commerce Pro package URL."
+msgstr "The license server did not return a safe Commerce Pro package URL."
+
+msgid "Commerce Pro could not be installed."
+msgstr "Commerce Pro could not be installed."
+
+msgid "Activate a valid Commerce Pro license before activating the add-on."
+msgstr "Activate a valid Commerce Pro license before activating the add-on."
+
+msgid "You do not have permission to update plugins."
+msgstr "You do not have permission to update plugins."
+
+msgid "Your Commerce Pro license must include update access before updating the add-on."
+msgstr "Your Commerce Pro license must include update access before updating the add-on."
+
+msgid "Commerce Pro is already on the latest available version."
+msgstr "Commerce Pro is already on the latest available version."
+
+msgid "The license server did not return a valid Commerce Pro update package."
+msgstr "The license server did not return a valid Commerce Pro update package."
+
+msgid "Commerce Pro could not be updated."
+msgstr "Commerce Pro could not be updated."
+
+msgid "The Commerce Pro update package could not be downloaded."
+msgstr "The Commerce Pro update package could not be downloaded."
+
+msgid "The Commerce Pro update package is empty or incomplete."
+msgstr "The Commerce Pro update package is empty or incomplete."
+
+msgid "The Commerce Pro update package is invalid. Please try again or contact Geeky Bot support."
+msgstr "The Commerce Pro update package is invalid. Please try again or contact Geeky Bot support."
+
+msgid "The downloaded Commerce Pro package is not a valid ZIP archive."
+msgstr "The downloaded Commerce Pro package is not a valid ZIP archive."
+
+msgid "The downloaded Commerce Pro package did not match the release checksum."
+msgstr "The downloaded Commerce Pro package did not match the release checksum."
+
+msgid "Important Commerce Pro security update %1$s is available. Installed version: %2$s."
+msgstr "Important Commerce Pro security update %1$s is available. Installed version: %2$s."
+
+msgid "Commerce Pro %1$s is available. Installed version: %2$s."
+msgstr "Commerce Pro %1$s is available. Installed version: %2$s."
+
+msgid "Review license"
+msgstr "Review license"
+
+msgid "Open Add-ons"
+msgstr "Open Add-ons"
+
+msgid "CDN release metadata was too large."
+msgstr "CDN release metadata was too large."
+
+msgid "CDN release metadata was not readable."
+msgstr "CDN release metadata was not readable."
+
+msgid "CDN release metadata was for a different product."
+msgstr "CDN release metadata was for a different product."
+
+msgid "The requested license action is not allowed."
+msgstr "The requested license action is not allowed."
+
+msgid "The license server response was too large."
+msgstr "The license server response was too large."
+
+msgid "The license server returned an invalid response."
+msgstr "The license server returned an invalid response."
+
+msgid "The license server rejected the request."
+msgstr "The license server rejected the request."
+
+msgid "Staging activation limit reached. This license already uses all included staging-site activations. Commerce Pro was not authorized for this site and cannot be installed or enabled from Geeky Bot. Deactivate an unused staging site at geekybot.com or contact support for another staging activation."
+msgstr "Staging activation limit reached. This license already uses all included staging-site activations. Commerce Pro was not authorized for this site and cannot be installed or enabled from Geeky Bot. Deactivate an unused staging site at geekybot.com or contact support for another staging activation."
+
+msgid "Production activation limit reached. This license already uses all included production-site activations. Commerce Pro was not authorized for this site and cannot be installed or enabled from Geeky Bot. Deactivate an unused production site at geekybot.com or upgrade the license."
+msgstr "Production activation limit reached. This license already uses all included production-site activations. Commerce Pro was not authorized for this site and cannot be installed or enabled from Geeky Bot. Deactivate an unused production site at geekybot.com or upgrade the license."
+
+msgid "License active."
+msgstr "License active."
+
+msgid "Commerce Pro was not authorized for this site. Review the license status and try again."
+msgstr "Commerce Pro was not authorized for this site. Review the license status and try again."
+
+msgid "The license server response could not be verified."
+msgstr "The license server response could not be verified."
+
+msgid "This server cannot verify the Commerce Pro entitlement signature. Enable the PHP OpenSSL extension."
+msgstr "This server cannot verify the Commerce Pro entitlement signature. Enable the PHP OpenSSL extension."
+
+msgid "The Commerce Pro entitlement signature is invalid."
+msgstr "The Commerce Pro entitlement signature is invalid."
+
+msgid "The Commerce Pro entitlement claims are invalid."
+msgstr "The Commerce Pro entitlement claims are invalid."
+
+msgid "This Commerce Pro entitlement belongs to a different site."
+msgstr "This Commerce Pro entitlement belongs to a different site."
+
+msgid "The Commerce Pro entitlement response is incomplete."
+msgstr "The Commerce Pro entitlement response is incomplete."
+
+msgid "The Commerce Pro entitlement response is stale. Please refresh the license."
+msgstr "The Commerce Pro entitlement response is stale. Please refresh the license."
+
+msgid "The Commerce Pro entitlement response does not match this request."
+msgstr "The Commerce Pro entitlement response does not match this request."
+
+msgid "The Commerce Pro entitlement response has expired. Please refresh the license."
+msgstr "The Commerce Pro entitlement response has expired. Please refresh the license."
+
+msgid "Trial"
+msgstr "Trial"
+
+msgid "Expired"
+msgstr "Expired"
+
+msgid "Cancelled"
+msgstr "Cancelled"
+
+msgid "Refunded"
+msgstr "Refunded"
+
+msgid "Disabled"
+msgstr "Disabled"
+
+msgid "Activation limit reached"
+msgstr "Activation limit reached"
+
+msgid "Domain mismatch"
+msgstr "Domain mismatch"
+
+msgid "Grace period"
+msgstr "Grace period"
+
+msgid "WooCommerce runtime"
+msgstr "WooCommerce runtime"
+
+msgid "Products, prices and stock are available."
+msgstr "Products, prices and stock are available."
+
+msgid "Activate WooCommerce before launching product assistance."
+msgstr "Activate WooCommerce before launching product assistance."
+
+msgid "WordPress REST API"
+msgstr "WordPress REST API"
+
+msgid "The storefront assistant can use the local REST API."
+msgstr "The storefront assistant can use the local REST API."
+
+msgid "The WordPress REST API is unavailable."
+msgstr "The WordPress REST API is unavailable."
+
+msgid "PHP compatibility"
+msgstr "PHP compatibility"
+
+msgid "Running PHP %s."
+msgstr "Running PHP %s."
+
+msgid "WordPress compatibility"
+msgstr "WordPress compatibility"
+
+msgid "Running WordPress %s."
+msgstr "Running WordPress %s."
+
+msgid "Permalink mode"
+msgstr "Permalink mode"
+
+msgid "Plain permalinks work, but a readable permalink structure is recommended."
+msgstr "Plain permalinks work, but a readable permalink structure is recommended."
+
+msgid "Readable permalinks are enabled."
+msgstr "Readable permalinks are enabled."
+
+msgid "shipping and delivery"
+msgstr "shipping and delivery"
+
+msgid "returns"
+msgstr "returns"
+
+msgid "refunds"
+msgstr "refunds"
+
+msgid "exchanges"
+msgstr "exchanges"
+
+msgid "warranty"
+msgstr "warranty"
+
+msgid "cancellation"
+msgstr "cancellation"
+
+msgid "payment"
+msgstr "payment"
+
+msgid "privacy"
+msgstr "privacy"
+
+msgid "terms"
+msgstr "terms"
+
+msgid "store information"
+msgstr "store information"
+
+msgid "Geeky Bot conversations"
+msgstr "Geeky Bot conversations"
+
+msgid "Session key"
+msgstr "Session key"
+
+msgid "User ID"
+msgstr "User ID"
+
+msgid "Updated"
+msgstr "Updated"
+
+msgid "Product and source clicks"
+msgstr "Product and source clicks"
+
+msgid "Geeky Bot conversation data was removed."
+msgstr "Geeky Bot conversation data was removed."
+
+msgid "I removed those filters, but I still couldn't find a match for %s."
+msgstr "I removed those filters, but I still couldn't find a match for %s."
+
+msgid "I removed that filter, but I still couldn't find a match for %s."
+msgstr "I removed that filter, but I still couldn't find a match for %s."
+
+msgid "I removed those filters, but I still couldn't find a matching product."
+msgstr "I removed those filters, but I still couldn't find a matching product."
+
+msgid "I removed that filter, but I still couldn't find a matching product."
+msgstr "I removed that filter, but I still couldn't find a matching product."
+
+msgid "I couldn't find a match for %s."
+msgstr "I couldn't find a match for %s."
+
+msgid "I couldn't find a product that matches your request."
+msgstr "I couldn't find a product that matches your request."
+
+msgid "I kept your original request unchanged."
+msgstr "I kept your original request unchanged."
+
+msgid "not in %s"
+msgstr "not in %s"
+
+msgid "in size %s"
+msgstr "in size %s"
+
+msgid "not in size %s"
+msgstr "not in size %s"
+
+msgid "currently on sale"
+msgstr "currently on sale"
+
+msgid "in stock"
+msgstr "in stock"
+
+msgid "with %s"
+msgstr "with %s"
+
+msgid "suitable as a gift"
+msgstr "suitable as a gift"
+
+msgid "Try removing the sale filter."
+msgstr "Try removing the sale filter."
+
+msgid "Try a higher budget or remove the price limit."
+msgstr "Try a higher budget or remove the price limit."
+
+msgid "Try another color or remove the color filter."
+msgstr "Try another color or remove the color filter."
+
+msgid "Try another size or remove the size filter."
+msgstr "Try another size or remove the size filter."
+
+msgid "Try including products that are not currently in stock."
+msgstr "Try including products that are not currently in stock."
+
+msgid "Try removing one preference."
+msgstr "Try removing one preference."
+
+msgid "Try a broader product name or a different type of product."
+msgstr "Try a broader product name or a different type of product."
+
+msgid "Try a broader product search."
+msgstr "Try a broader product search."
+
+msgid "%1$s, and %2$s"
+msgstr "%1$s, and %2$s"
+
+msgid "Product/category matched: %s"
+msgstr "Product/category matched: %s"
+
+msgid "Color matched: %s"
+msgstr "Color matched: %s"
+
+msgid "Size matched: %s"
+msgstr "Size matched: %s"
+
+msgid "Price filter matched"
+msgstr "Price filter matched"
+
+msgid "Soft preference matched: %s"
+msgstr "Soft preference matched: %s"
+
+msgid "Soft preference requested: %s"
+msgstr "Soft preference requested: %s"
+
+msgid "Recipient preference boost: %s"
+msgstr "Recipient preference boost: %s"
+
+msgid "Best-value ranking applied"
+msgstr "Best-value ranking applied"
+
+msgid "In-stock boost applied"
+msgstr "In-stock boost applied"
+
+msgid "Sale boost applied"
+msgstr "Sale boost applied"
+
+msgid "Rating boost: %s"
+msgstr "Rating boost: %s"
+
+msgid "Popularity boost: %d sales"
+msgstr "Popularity boost: %d sales"
+
+msgid "My top match is %s."
+msgstr "My top match is %s."
+
+msgid "It has the lowest current price among these matches at %s."
+msgstr "It has the lowest current price among these matches at %s."
+
+msgid "It has the largest confirmed discount among these matches at about %d%%."
+msgstr "It has the largest confirmed discount among these matches at about %d%%."
+
+msgid "It matches %s."
+msgstr "It matches %s."
+
+msgid "It is the closest overall match based on the available product details."
+msgstr "It is the closest overall match based on the available product details."
+
+msgid "It also matches %s."
+msgstr "It also matches %s."
+
+msgid "The other matching options are listed below for comparison."
+msgstr "The other matching options are listed below for comparison."
+
+msgid "Open it to review the full price, stock, and available options."
+msgstr "Open it to review the full price, stock, and available options."
+
+msgid "the requested %s color"
+msgstr "the requested %s color"
+
+msgid "your price range"
+msgstr "your price range"
+
+msgid "the sale filter"
+msgstr "the sale filter"
+
+msgid "in-stock availability"
+msgstr "in-stock availability"
+
+msgid "selectable options"
+msgstr "selectable options"
+
+msgid "with %s preference"
+msgstr "with %s preference"
+
+msgid "%1$s or %2$s"
+msgstr "%1$s or %2$s"
+
+msgid "shoes"
+msgstr "shoes"
+
+msgid "t-shirts"
+msgstr "t-shirts"
+
+msgid "%1$s, or %2$s"
+msgstr "%1$s, or %2$s"
+
+msgid "Comfort"
+msgstr "Comfort"
+
+msgid "Budget friendly"
+msgstr "Budget friendly"
+
+msgid "Walking / sports"
+msgstr "Walking / sports"
+
+msgid "Party / event"
+msgstr "Party / event"
+
+msgid "School / college"
+msgstr "School / college"
+
+msgid "Premium quality"
+msgstr "Premium quality"
+
+msgid "around %s"
+msgstr "around %s"
+
+msgid "between %1$s and %2$s"
+msgstr "between %1$s and %2$s"
+
+msgid "under %s"
+msgstr "under %s"
+
+msgid "over %s"
+msgstr "over %s"
+
+msgid "Was %1$s, now %2$s"
+msgstr "Was %1$s, now %2$s"
+
+msgid "Color: %s"
+msgstr "Color: %s"
+
+msgid "Size: %s"
+msgstr "Size: %s"
+
+msgid "Price: %s"
+msgstr "Price: %s"
+
+msgid "On sale"
+msgstr "On sale"
+
+msgid "Close match details"
+msgstr "Close match details"
+
+msgid "Match details"
+msgstr "Match details"
+
+msgid "Matched"
+msgstr "Matched"
+
+msgid "Not confirmed"
+msgstr "Not confirmed"
+
+msgid "Too many assistant messages. Please wait a few minutes and try again."
+msgstr "Too many assistant messages. Please wait a few minutes and try again."
+
+msgid "Too many product searches. Please wait a few minutes and try again."
+msgstr "Too many product searches. Please wait a few minutes and try again."
+
+msgid "Too many assistant interaction events. Please wait a few minutes and try again."
+msgstr "Too many assistant interaction events. Please wait a few minutes and try again."
+
+msgid "comfort"
+msgstr "comfort"
+
+msgid "formal"
+msgstr "formal"
+
+msgid "casual"
+msgstr "casual"
+
+msgid "premium quality"
+msgstr "premium quality"
+
+msgid "budget-friendly"
+msgstr "budget-friendly"
+
+msgid "gift"
+msgstr "gift"
+
+msgid "popular"
+msgstr "popular"
+
+msgid "useful"
+msgstr "useful"
+
+msgid "simple style"
+msgstr "simple style"
+
+msgid "quality"
+msgstr "quality"
+
+msgid "best value"
+msgstr "best value"
+
+msgid "winter"
+msgstr "winter"
+
+msgid "summer"
+msgstr "summer"
+
+msgid "sports/walking"
+msgstr "sports/walking"
+
+msgid "travel"
+msgstr "travel"
+
+msgid "party/event"
+msgstr "party/event"
+
+msgid "school/college"
+msgstr "school/college"
+
+msgid "WooCommerce shopping assistant"
+msgstr "WooCommerce shopping assistant"
+
+msgid "Hi! Ask me what you are looking for and I will help you find the right product."
+msgstr "Hi! Ask me what you are looking for and I will help you find the right product."
+
+msgid "Ask about products"
+msgstr "Ask about products"
+
+msgid "Need help choosing? Ask me about products, prices, or options."
+msgstr "Need help choosing? Ask me about products, prices, or options."
+
+msgid "The store has not provided enough information for me to answer that. Please contact the store team for confirmation."
+msgstr "The store has not provided enough information for me to answer that. Please contact the store team for confirmation."
+
+msgid "That request could not be completed."
+msgstr "That request could not be completed."
+
+msgid "I can't see your order history, so I can't tell you what you bought before. Your past orders are listed under your account."
+msgstr "I can't see your order history, so I can't tell you what you bought before. Your past orders are listed under your account."
+
+msgid "I can't look up orders or delivery tracking. You'll find the current status of your order under your account, and the store team can help if something looks wrong."
+msgstr "I can't look up orders or delivery tracking. You'll find the current status of your order under your account, and the store team can help if something looks wrong."
+
+msgid "I can't view or change your account details. You can manage those yourself under your account."
+msgstr "I can't view or change your account details. You can manage those yourself under your account."
+
+msgid "I can't add items to your cart or complete a purchase. You can add this from the product page and check out as usual."
+msgstr "I can't add items to your cart or complete a purchase. You can add this from the product page and check out as usual."
+
+msgid "I can't place an order or take a payment. You can add what you want to your cart and complete checkout yourself, and I'll help you decide what to buy before that."
+msgstr "I can't place an order or take a payment. You can add what you want to your cart and complete checkout yourself, and I'll help you decide what to buy before that."
+
+msgid "%1$s You can open it here: %2$s"
+msgstr "%1$s You can open it here: %2$s"
+
+msgid "Ready to add"
+msgstr "Ready to add"
+
+msgid "Choose options for %s before adding it to your cart."
+msgstr "Choose options for %s before adding it to your cart."
+
+msgid "Quantity"
+msgstr "Quantity"
+
+msgid "Unavailable"
+msgstr "Unavailable"
+
+msgid "More actions"
+msgstr "More actions"
+
+msgid "Checking available coupon codes…"
+msgstr "Checking available coupon codes…"
+
+msgid "Please choose at least two different products to compare."
+msgstr "Please choose at least two different products to compare."
+
+msgid "Search for a product first, then ask me to compare the first, second, third, cheapest, or other shown options."
+msgstr "Search for a product first, then ask me to compare the first, second, third, cheapest, or other shown options."
+
+msgid "This product is already selected. Choose a different product to compare with it."
+msgstr "This product is already selected. Choose a different product to compare with it."
+
+msgid "Building the product comparison…"
+msgstr "Building the product comparison…"
+
+msgid "Selected for comparison. Open another product’s More menu and choose Compare with selected."
+msgstr "Selected for comparison. Open another product’s More menu and choose Compare with selected."
+
+msgid "Compare with selected"
+msgstr "Compare with selected"
+
+msgid "Clear conversation"
+msgstr "Clear conversation"
+
+msgid "Source:"
+msgstr "Source:"
+
+msgid "Store page"
+msgstr "Store page"
+
+msgid "Show %s more product"
+msgid_plural "Show %s more products"
+msgstr[0] "Show %s more product"
+msgstr[1] "Show %s more products"
+
+msgid "Products under 50"
+msgstr "Products under 50"

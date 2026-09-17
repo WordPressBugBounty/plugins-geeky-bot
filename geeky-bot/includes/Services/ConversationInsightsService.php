@@ -673,7 +673,8 @@ class ConversationInsightsService {
         foreach ((array) $rows as $row) {
             $payload = !empty($row['payload']) ? json_decode((string) $row['payload'], true) : array();
             $clean[] = array(
-                'conversation' => 'Conversation #' . absint($row['session_id']),
+                /* translators: %d: conversation ID as shown in the review centre. */
+                'conversation' => sprintf(__('Conversation #%d', 'geeky-bot'), absint($row['session_id'])),
                 'session_created_at' => sanitize_text_field((string) $row['session_created_at']),
                 'session_updated_at' => sanitize_text_field((string) $row['session_updated_at']),
                 'direction' => sanitize_key((string) $row['direction']),

@@ -10,6 +10,14 @@
     return;
   }
 
+  // PHP owns this number: it pre-translates one "show the rest" label per
+  // count the button can display, which it can only do if both sides cut the
+  // list in the same place.
+  function productsInitialLimit() {
+    const limit = parseInt(config.productsInitialLimit, 10);
+    return limit > 0 ? limit : 3;
+  }
+
   let isSending = false;
   let isRestoringHistory = false;
   let historySaveTimer = null;
@@ -765,7 +773,7 @@
     if (products && products.length) {
       const list = document.createElement('div');
       list.className = 'gb-products';
-      const initialLimit = 3;
+      const initialLimit = productsInitialLimit();
       products.forEach(function (product, index) {
         const card = productCard(product);
         if (index >= initialLimit) {
@@ -781,7 +789,11 @@
         const moreButton = document.createElement('button');
         moreButton.type = 'button';
         moreButton.className = 'gb-products-show-more__button';
-        moreButton.textContent = 'Show ' + String(products.length - initialLimit) + ' more products';
+        const hidden = products.length - initialLimit;
+        // Pre-translated per count in PHP; the English string is only the
+        // fallback for a stale cached config.
+        moreButton.textContent = (i18n.showMore && i18n.showMore[hidden])
+          || ('Show ' + String(hidden) + ' more products');
         moreButton.addEventListener('click', function () {
           list.querySelectorAll('.gb-product-card--hidden').forEach(function (card) {
             card.classList.remove('gb-product-card--hidden');
@@ -798,16 +810,16 @@
     if (knowledge && knowledge.length) {
       const sources = document.createElement('div');
       sources.className = 'gb-sources';
-      sources.innerHTML = '<span>Source:</span> ';
+      sources.innerHTML = '<span>' + escapeHtml(i18n.sourcesLabel || 'Source:') + '</span> ';
       knowledge.slice(0, 2).forEach(function (source, index) {
         if (index) {
           sources.appendChild(document.createTextNode(', '));
         }
         const link = document.createElement('a');
         link.href = source.url || '#';
-        link.textContent = source.title || 'Store page';
+        link.textContent = source.title || i18n.storePage || 'Store page';
         link.addEventListener('click', function () {
-          trackAnalyticsEvent('policy_source_click', source.id || 0, source.title || 'Store page', {
+          trackAnalyticsEvent('policy_source_click', source.id || 0, source.title || i18n.storePage || 'Store page', {
             surface: 'policy_source',
             url: source.url || ''
           });
@@ -961,10 +973,12 @@
     }));
   }
 
+  // Only reached when a payload arrives without a stockLabel; the server sends
+  // one for the cards it builds. The English literals stay as the last resort.
   function formatStock(stock) {
-    if (stock === 'instock') return 'In stock';
-    if (stock === 'outofstock') return 'Out of stock';
-    if (stock === 'onbackorder') return 'On backorder';
+    if (stock === 'instock') return i18n.inStock || 'In stock';
+    if (stock === 'outofstock') return i18n.outOfStock || 'Out of stock';
+    if (stock === 'onbackorder') return i18n.onBackorder || 'On backorder';
     return stock;
   }
 

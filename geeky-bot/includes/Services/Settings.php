@@ -8,12 +8,120 @@ if (!defined('ABSPATH')) {
 class Settings {
     const OPTION = 'geekybot_v2_settings';
 
+    /**
+     * Reasons a submitted secret was refused during the current request.
+     *
+     * @var array
+     */
+    private static $secret_errors = array();
+
+    /**
+     * Shopper-facing text defaults, as English source => translation.
+     *
+     * Both halves are literals, in one place, on purpose. The KEY is what a
+     * store actually has in its database: every install persists the defaults
+     * at setup, so these fields are never blank and the saved value is the
+     * English source rather than nothing. The VALUE is what the shopper should
+     * read. Calling __() on a variable instead would leave every one of these
+     * strings out of the .pot, which is the failure this exists to fix.
+     *
+     * i18n-exempt: the bare keys are not display text. They are what the store
+     * has in `geekybot_v2_settings`, compared byte for byte, and translating a
+     * key would mean a German store no longer matched its own saved default.
+     *
+     * @return array<string,array<string,string>>
+     */
+    private static function shopper_text_map() {
+        return array(
+            'assistant_subtitle' => array(
+                'WooCommerce shopping assistant' => __('WooCommerce shopping assistant', 'geeky-bot'),
+            ),
+            'welcome_message' => array(
+                'Hi! Ask me what you are looking for and I will help you find the right product.' => __('Hi! Ask me what you are looking for and I will help you find the right product.', 'geeky-bot'),
+            ),
+            'launcher_text' => array(
+                'Ask about products' => __('Ask about products', 'geeky-bot'),
+            ),
+            'shopper_invitation_message' => array(
+                'Need help choosing? Ask me about products, prices, or options.' => __('Need help choosing? Ask me about products, prices, or options.', 'geeky-bot'),
+            ),
+            'fallback_human_message' => array(
+                'The store has not provided enough information for me to answer that. Please contact the store team for confirmation.' => __('The store has not provided enough information for me to answer that. Please contact the store team for confirmation.', 'geeky-bot'),
+            ),
+        );
+    }
+
+    /**
+     * The starter prompt defaults, as English source => translation.
+     *
+     * Kept per prompt rather than as one block so a merchant who deleted one
+     * line still gets the other three in their shopper's language.
+     *
+     * Each one is a shopper QUERY as well as a label -- the chip sends its own
+     * text to the assistant -- so a translation has to be wording the language
+     * pack recognises, not a literal rendering.
+     *
+     * i18n-exempt: as above, the keys are the saved English to match on.
+     *
+     * @return array<string,string>
+     */
+    private static function starter_prompt_defaults() {
+        return array(
+            'Latest products' => __('Latest products', 'geeky-bot'),
+            'Sale products' => __('Sale products', 'geeky-bot'),
+            'Top rated' => __('Top rated', 'geeky-bot'),
+            'Products under 50' => __('Products under 50', 'geeky-bot'),
+        );
+    }
+
+    /**
+     * The translated default for one shopper-facing setting.
+     *
+     * @param string $key Setting key.
+     * @return string
+     */
+    private static function shopper_text_default($key) {
+        $map = self::shopper_text_map();
+
+        return isset($map[$key]) ? (string) reset($map[$key]) : '';
+    }
+
+    /**
+     * A stored value, with an untouched English default swapped for its translation.
+     *
+     * A store that never edited the field has the English source sitting in the
+     * database, so the translated default in defaults() is never reached and a
+     * German shop greets its shoppers in English. Matching on the exact English
+     * source is what keeps this safe: anything the merchant actually wrote --
+     * including their own translation -- does not match and is returned
+     * untouched. Nothing is written back, so the admin screen still shows, and
+     * saves, exactly what is stored.
+     *
+     * @param string $key Setting key.
+     * @param mixed $value Stored value.
+     * @return mixed
+     */
+    private static function translated_if_untouched($key, $value) {
+        $map = self::shopper_text_map();
+        if (!isset($map[$key]) || !is_string($value)) {
+            return $value;
+        }
+
+        $stored = trim($value);
+
+        return isset($map[$key][$stored]) ? $map[$key][$stored] : $value;
+    }
+
     public static function defaults() {
         return array(
             'widget_enabled' => 'yes',
+            // i18n-exempt: the product's name, so it is the same in every language. Every
+            // default below it IS shopper-facing text and is translated, or a
+            // German store greets its shoppers in English until the merchant
+            // notices and retypes all four by hand.
             'assistant_name' => 'Geeky Bot',
-            'assistant_subtitle' => 'WooCommerce shopping assistant',
-            'welcome_message' => 'Hi! Ask me what you are looking for and I will help you find the right product.',
+            'assistant_subtitle' => self::shopper_text_default('assistant_subtitle'),
+            'welcome_message' => self::shopper_text_default('welcome_message'),
             'accent_color' => '#2563eb',
             'button_position' => 'right',
             'launcher_icon_source' => 'default',
@@ -21,16 +129,23 @@ class Settings {
             'header_logo_source' => 'same',
             'header_logo_attachment_id' => 0,
             'launcher_style' => 'icon',
-            'launcher_text' => 'Ask about products',
+            'launcher_text' => self::shopper_text_default('launcher_text'),
             'shopper_invitation_enabled' => 'yes',
             'shopper_invitation_delay' => 12,
-            'shopper_invitation_message' => 'Need help choosing? Ask me about products, prices, or options.',
+            'shopper_invitation_message' => self::shopper_text_default('shopper_invitation_message'),
             'header_style' => 'gradient',
             // One per line. These were hard-coded in Frontend/Widget.php, so a
             // merchant could see them in the admin but had no way to change
             // them — and the label claimed they were "generated from the current
             // capabilities", which was never true. Blank falls back to these.
-            'starter_prompts' => "Latest products\nSale products\nTop rated\nProducts under 50",
+            // Four msgids, not one four-line msgid. A translator handed the
+            // blob has to preserve the line breaks exactly or the merchant
+            // silently loses chips, and a reviewer cannot see which line is
+            // which. Each one is also a shopper QUERY, not just a label: the
+            // chip sends its own text to the assistant, so a translation has
+            // to be wording the language pack recognises. "ultimos productos"
+            // returns nothing in Spanish where "nuevos productos" works.
+            'starter_prompts' => implode("\n", array_values(self::starter_prompt_defaults())),
             // The small avatar beside a shopper's own message. Off by default:
             // it costs 42px of every message bubble to repeat what the message's
             // right alignment already says. Merchants who want it can enable it.
@@ -52,7 +167,16 @@ class Settings {
             'ai_max_tokens' => 450,
             'rate_limit_messages' => 120,
             'rate_limit_window_minutes' => 5,
-            'fallback_human_message' => 'The store has not provided enough information for me to answer that. Please contact the store team for confirmation.',
+            // A per-visitor limit keyed on IP + User-Agent is defeated by
+            // rotating either one, so it never bounded total provider spend.
+            // These two are site-wide and enforced server-side in AiBudgetService.
+            'ai_daily_call_cap' => 1000,
+            'ai_monthly_call_cap' => 20000,
+            // X-Forwarded-For is only believed when the merchant declares how
+            // many proxies sit in front of the site. 0 means "no proxy", and
+            // REMOTE_ADDR stays the only source of the client address.
+            'trusted_proxy_count' => 0,
+            'fallback_human_message' => self::shopper_text_default('fallback_human_message'),
             'natural_search_enabled' => 'yes',
             'search_close_match_mode' => 'smart',
             'search_boost_in_stock' => 'yes',
@@ -78,7 +202,11 @@ trainers = sneakers, shoes",
 
     public static function get($key, $default = null) {
         $settings = self::all();
-        return array_key_exists($key, $settings) ? $settings[$key] : $default;
+        if (!array_key_exists($key, $settings)) {
+            return $default;
+        }
+
+        return self::translated_if_untouched($key, $settings[$key]);
     }
 
     /**
@@ -102,12 +230,22 @@ trainers = sneakers, shoes",
             }
         }
 
+        // Per line, so a merchant who replaced one chip keeps their own wording
+        // and still gets the rest in the shopper's language.
+        $translations = self::starter_prompt_defaults();
+        foreach ($prompts as $index => $prompt) {
+            if (isset($translations[$prompt])) {
+                $prompts[$index] = $translations[$prompt];
+            }
+        }
+
         $prompts = array_values(array_unique($prompts));
 
         return $limit > 0 ? array_slice($prompts, 0, absint($limit)) : $prompts;
     }
 
     public static function update($input) {
+        self::$secret_errors = array();
         $current = self::all();
         $clean = array();
 
@@ -176,6 +314,15 @@ trainers = sneakers, shoes",
         $clean['ai_max_tokens'] = isset($input['ai_max_tokens']) ? max(120, min(1200, absint($input['ai_max_tokens']))) : 450;
         $clean['rate_limit_messages'] = isset($input['rate_limit_messages']) ? max(20, min(1000, absint($input['rate_limit_messages']))) : 120;
         $clean['rate_limit_window_minutes'] = isset($input['rate_limit_window_minutes']) ? max(1, min(60, absint($input['rate_limit_window_minutes']))) : 5;
+        $clean['ai_daily_call_cap'] = isset($input['ai_daily_call_cap'])
+            ? max(AiBudgetService::DAILY_MIN, min(AiBudgetService::DAILY_MAX, absint($input['ai_daily_call_cap'])))
+            : max(AiBudgetService::DAILY_MIN, min(AiBudgetService::DAILY_MAX, absint($current['ai_daily_call_cap'])));
+        $clean['ai_monthly_call_cap'] = isset($input['ai_monthly_call_cap'])
+            ? max(AiBudgetService::MONTHLY_MIN, min(AiBudgetService::MONTHLY_MAX, absint($input['ai_monthly_call_cap'])))
+            : max(AiBudgetService::MONTHLY_MIN, min(AiBudgetService::MONTHLY_MAX, absint($current['ai_monthly_call_cap'])));
+        $clean['trusted_proxy_count'] = isset($input['trusted_proxy_count'])
+            ? min(10, absint($input['trusted_proxy_count']))
+            : min(10, absint($current['trusted_proxy_count']));
         $clean['fallback_human_message'] = isset($input['fallback_human_message']) ? sanitize_textarea_field($input['fallback_human_message']) : $current['fallback_human_message'];
         $clean['natural_search_enabled'] = isset($input['natural_search_enabled']) ? ($input['natural_search_enabled'] === 'yes' ? 'yes' : 'no') : $current['natural_search_enabled'];
         $clean['search_close_match_mode'] = isset($input['search_close_match_mode']) && in_array($input['search_close_match_mode'], array('smart', 'strict'), true) ? $input['search_close_match_mode'] : $current['search_close_match_mode'];
@@ -204,6 +351,17 @@ trainers = sneakers, shoes",
         $clean['last_updated'] = current_time('mysql');
 
         update_option(self::OPTION, $clean, false);
+
+        // Ranking boosts and match mode are part of the ranking cache key, but
+        // custom synonyms change the analysed query itself, so any search
+        // setting change has to retire the cached lists.
+        foreach (array('search_boost_in_stock', 'search_boost_sale', 'search_boost_rating', 'search_boost_popularity', 'search_min_score', 'search_close_match_mode', 'search_custom_synonyms', 'natural_search_enabled') as $search_key) {
+            if (!isset($current[$search_key]) || $current[$search_key] !== $clean[$search_key]) {
+                ProductIndexService::flush_search_cache();
+                break;
+            }
+        }
+
         return $clean;
     }
 
@@ -291,23 +449,119 @@ trainers = sneakers, shoes",
         $value = preg_replace('/[\r\n\t]+/', '', $value);
         $value = preg_replace('/[^\P{C}]+/u', '', $value);
         $value = sanitize_text_field($value);
+        $value = function_exists('mb_substr') ? mb_substr($value, 0, 4096) : substr($value, 0, 4096);
 
-        return function_exists('mb_substr') ? mb_substr($value, 0, 4096) : substr($value, 0, 4096);
+        if ($value === '') {
+            return $current;
+        }
+
+        // Fail closed. A provider key written in the clear into a serialized
+        // option is readable by anything that can read the database -- a second
+        // vulnerable plugin, a leaked backup, a compromised credential -- and
+        // is spendable entirely outside the store. If this installation cannot
+        // encrypt, the key is refused and the merchant is told why, rather than
+        // being silently downgraded to plaintext storage.
+        if (!LicenseVault::available()) {
+            self::$secret_errors[] = 'vault_unavailable';
+            return $current;
+        }
+
+        $encrypted = LicenseVault::encrypt($value);
+        if (!is_string($encrypted) || $encrypted === '') {
+            self::$secret_errors[] = 'encrypt_failed';
+            return $current;
+        }
+
+        return $encrypted;
+    }
+
+    /**
+     * Plaintext value of an encrypted provider secret.
+     *
+     * Everything that actually talks to a provider must read keys through
+     * here. Settings::get() intentionally returns the stored (encrypted) value
+     * so nothing leaks a usable key by accident.
+     *
+     * @param string $key Settings key.
+     * @return string
+     */
+    public static function secret($key) {
+        $stored = (string) self::get($key, '');
+        if ($stored === '') {
+            return '';
+        }
+
+        if (!LicenseVault::is_encrypted($stored)) {
+            // Pre-2.0.3 plaintext value that the migration has not reached yet.
+            return $stored;
+        }
+
+        return LicenseVault::decrypt($stored);
+    }
+
+    /**
+     * How provider secrets are being stored on this installation.
+     *
+     * Surfaced in the admin so an installation without libsodium or OpenSSL
+     * shows the state instead of failing invisibly.
+     *
+     * @return string encrypted|plaintext|unavailable|none
+     */
+    public static function secret_storage_state() {
+        $stored = array();
+        foreach (self::secret_keys() as $key) {
+            $value = (string) self::get($key, '');
+            if ($value !== '') {
+                $stored[] = $value;
+            }
+        }
+
+        if (!LicenseVault::available()) {
+            return 'unavailable';
+        }
+
+        if (empty($stored)) {
+            return 'none';
+        }
+
+        foreach ($stored as $value) {
+            if (!LicenseVault::is_encrypted($value)) {
+                return 'plaintext';
+            }
+        }
+
+        return 'encrypted';
+    }
+
+    /**
+     * @return array
+     */
+    public static function secret_keys() {
+        return array('zywrap_api_key', 'openai_api_key');
+    }
+
+    /**
+     * Reasons a submitted secret was refused during the last update() call.
+     *
+     * @return array
+     */
+    public static function last_secret_errors() {
+        return array_values(array_unique(self::$secret_errors));
     }
 
     public static function public_settings() {
         $settings = self::all();
         return array(
             'assistantName' => $settings['assistant_name'],
-            'assistantSubtitle' => $settings['assistant_subtitle'],
-            'welcomeMessage' => $settings['welcome_message'],
+            'assistantSubtitle' => self::get('assistant_subtitle'),
+            'welcomeMessage' => self::get('welcome_message'),
             'accentColor' => $settings['accent_color'],
             'buttonPosition' => $settings['button_position'],
             'launcherStyle' => $settings['launcher_style'],
-            'launcherText' => $settings['launcher_text'],
+            'launcherText' => self::get('launcher_text'),
             'shopperInvitationEnabled' => $settings['shopper_invitation_enabled'],
             'shopperInvitationDelay' => absint($settings['shopper_invitation_delay']),
-            'shopperInvitationMessage' => $settings['shopper_invitation_message'],
+            'shopperInvitationMessage' => self::get('shopper_invitation_message'),
             'userAvatarEnabled' => isset($settings['user_avatar_enabled']) ? $settings['user_avatar_enabled'] : 'no',
             'colorMode' => isset($settings['widget_color_mode']) ? $settings['widget_color_mode'] : 'light',
             'launcherShape' => isset($settings['launcher_shape']) ? $settings['launcher_shape'] : 'round',

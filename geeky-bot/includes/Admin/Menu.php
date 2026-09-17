@@ -15,6 +15,7 @@ use GeekyBot\Services\ConversationInsightsService;
 use GeekyBot\Services\AnalyticsEventService;
 use GeekyBot\Services\GuidedDemoService;
 use GeekyBot\Services\OnboardingService;
+use GeekyBot\Services\AiBudgetService;
 
 class Menu {
     public function hooks() {
@@ -113,12 +114,26 @@ class Menu {
 
         wp_enqueue_media();
         wp_enqueue_script('geekybot-admin', GEEKYBOT_URL . 'assets/js/admin.js', array(), self::asset_version('assets/js/admin.js'), true);
+        // The live preview fills an empty field with the same text the widget
+        // would fall back to, so it takes those from Settings instead of
+        // repeating them: they are translated there, and an admin working in
+        // German should not be shown an English preview of their own store.
+        $defaults = Settings::defaults();
+
         wp_localize_script('geekybot-admin', 'GeekyBotAdmin', array(
             'mediaTitle' => __('Choose widget image', 'geeky-bot'),
             'mediaButton' => __('Use this image', 'geeky-bot'),
             'removeImage' => __('Remove image', 'geeky-bot'),
+            'noImage' => __('No image selected', 'geeky-bot'),
             'copyDemo' => __('Copy', 'geeky-bot'),
             'copiedDemo' => __('Copied', 'geeky-bot'),
+            'previewDefaults' => array(
+                'assistantName' => $defaults['assistant_name'],
+                'assistantSubtitle' => $defaults['assistant_subtitle'],
+                'welcomeMessage' => $defaults['welcome_message'],
+                'launcherText' => $defaults['launcher_text'],
+                'invitationMessage' => $defaults['shopper_invitation_message'],
+            ),
         ));
     }
 
@@ -160,6 +175,13 @@ class Menu {
         Settings::update($input);
         (new KnowledgeIndexService())->sync_selected_pages();
 
+        // A provider key that could not be encrypted is not saved. Say so,
+        // rather than letting the merchant believe a key is in place.
+        $secret_errors = Settings::last_secret_errors();
+        if (!empty($secret_errors)) {
+            $search_notice = 'secret_refused';
+        }
+
         $redirect = !empty($input['geekybot_redirect']) ? esc_url_raw((string) $input['geekybot_redirect']) : '';
         if (!$redirect) {
             $redirect = wp_get_referer();
@@ -172,18 +194,85 @@ class Menu {
         exit;
     }
 
+    /**
+     * Wall-clock budget for rebuild batches run inside the admin request.
+     *
+     * Long enough that an ordinary catalog finishes before the redirect, short
+     * enough that a large one hands off to cron instead of timing out.
+     */
+    const INLINE_REBUILD_SECONDS = 10;
+
+    /**
+     * Memory level at which inline rebuild batches stop, or 0 when the process
+     * has no limit.
+     *
+     * Each batch retains roughly 4-5MB of primed post, meta and term caches,
+     * so a long inline run climbs steadily. Stopping at 60% of the limit
+     * leaves room for the rest of the admin page to render.
+     *
+     * @return int Bytes, or 0 for no ceiling.
+     */
+    private static function inline_rebuild_memory_ceiling() {
+        $limit = function_exists('wp_convert_hr_to_bytes')
+            ? wp_convert_hr_to_bytes((string) ini_get('memory_limit'))
+            : 0;
+
+        return $limit > 0 ? (int) ($limit * 0.6) : 0;
+    }
+
     public function handle_rebuild_product_index() {
         if (!current_user_can('manage_options')) {
             wp_die(esc_html__('You do not have permission to rebuild the product index.', 'geeky-bot'));
         }
 
         check_admin_referer('geekybot_rebuild_product_index');
-        $result = (new ProductIndexService())->rebuild();
-        wp_safe_redirect(add_query_arg(array(
-            'page' => 'geekybot-product-assistant',
-            'gb_indexed' => absint($result['indexed']),
-            'gb_skipped' => absint($result['skipped']),
-        ), admin_url('admin.php')));
+
+        // The rebuild populates a shadow table and swaps it in atomically, so
+        // shoppers keep searching the current index throughout. A few batches
+        // run inline, which finishes an ordinary catalog before the redirect;
+        // anything larger is handed to the batch cron and reports progress.
+        $index = new ProductIndexService();
+        $index->start_batched_rebuild();
+
+        $complete = false;
+        $deadline = microtime(true) + self::INLINE_REBUILD_SECONDS;
+        $memory_ceiling = self::inline_rebuild_memory_ceiling();
+
+        for ($i = 0; $i < 25; $i++) {
+            $batch = $index->rebuild_batch();
+            if (!empty($batch['complete'])) {
+                $complete = true;
+                break;
+            }
+            if (empty($batch['running'])) {
+                break;
+            }
+
+            // A batch count alone does not bound this request. Measured on a
+            // 20k-product catalog, 25 batches took 175s and 211MB -- past the
+            // usual max_execution_time and close enough to a 256M limit to
+            // fatal once the rest of wp-admin is loaded. Stop on whichever
+            // budget runs out first and let the batch cron finish the job:
+            // the shadow table and the saved cursor mean handing off costs
+            // nothing, and the admin screen already reports live progress.
+            if (microtime(true) >= $deadline) {
+                break;
+            }
+            if ($memory_ceiling > 0 && memory_get_usage(true) >= $memory_ceiling) {
+                break;
+            }
+        }
+
+        $state = ProductIndexService::rebuild_state();
+        $args = array('page' => 'geekybot-product-assistant');
+        if ($complete) {
+            $args['gb_indexed'] = absint(is_array($state) ? $state['indexed'] : 0);
+            $args['gb_skipped'] = absint(is_array($state) ? $state['skipped'] : 0);
+        } else {
+            $args['gb_index_queued'] = '1';
+        }
+
+        wp_safe_redirect(add_query_arg($args, admin_url('admin.php')));
         exit;
     }
 
@@ -910,6 +999,7 @@ class Menu {
 
                                         if ($unanswered_in_session > 0) {
                                             $tone = 'miss';
+                                            /* translators: %s: number of shopper questions in this conversation that got no answer. */
                                             $meta = _n('%s question went unanswered', '%s questions went unanswered', $unanswered_in_session, 'geeky-bot');
                                             $meta = sprintf($meta, number_format_i18n($unanswered_in_session));
                                         } elseif ($clicks > 0) {
@@ -1144,7 +1234,7 @@ class Menu {
         );
         $provider_detail = sprintf(
             /* translators: %s: active answer-provider mode. */
-            __('Current mode: %s. Local grounded mode is available without an external provider; Zywrap and OpenAI remain optional.', 'geeky-bot'),
+            __('Current mode: %s. Local grounded mode is the default and calls no language model — answers are built from store data. Zywrap and OpenAI are optional and add generated wording.', 'geeky-bot'),
             $this->provider_label($ctx['settings'])
         );
         $index_detail = $ctx['wc_ready']
@@ -1295,7 +1385,7 @@ class Menu {
                     <div class="gb2-col-4">
                         <?php Components::card_open(__('No AI account required', 'geeky-bot'), '', false); ?>
                             <p style="margin:0;font-size:12.5px;line-height:1.55;color:var(--gb2-mute)"><?php
-                                esc_html_e('Local grounded mode works without an external provider or API key.', 'geeky-bot'); ?></p>
+                                esc_html_e('Local grounded mode is the default and works without an external provider or API key. It does not call a language model: answers are assembled from your catalog and selected policy pages. Add a provider key under Answer mode if you want generated, conversational wording.', 'geeky-bot'); ?></p>
                         <?php Components::card_close(); ?>
                     </div>
                     <div class="gb2-col-4">
@@ -2378,6 +2468,20 @@ class Menu {
         $zywrap_ready = $mode === 'zywrap' && $zywrap_key_saved && $zywrap_endpoint_saved;
         $openai_ready = $mode === 'openai' && $openai_key_saved;
         $configured_count = 1 + ($zywrap_key_saved && $zywrap_endpoint_saved ? 1 : 0) + ($openai_key_saved ? 1 : 0);
+        $budget = AiBudgetService::status();
+        $key_storage_state = Settings::secret_storage_state();
+        $key_storage_value = __('Encrypted', 'geeky-bot');
+        $key_storage_base = __('Encrypted at rest, never shown again after saving', 'geeky-bot');
+        if ($key_storage_state === 'unavailable') {
+            $key_storage_value = __('Cannot store', 'geeky-bot');
+            $key_storage_base = __('No libsodium or OpenSSL on this server', 'geeky-bot');
+        } elseif ($key_storage_state === 'plaintext') {
+            $key_storage_value = __('Unencrypted', 'geeky-bot');
+            $key_storage_base = __('Saved before 2.1.0 — re-save the key to encrypt it', 'geeky-bot');
+        } elseif ($key_storage_state === 'none') {
+            $key_storage_value = __('None saved', 'geeky-bot');
+            $key_storage_base = __('Encrypted at rest when you save one', 'geeky-bot');
+        }
         ?>
         <div class="wrap geekybot-admin-wrap geekybot-integrations">
             <?php $this->page_hero(__('Answer Mode', 'geeky-bot'), __('Choose local grounded answers, Zywrap, or BYOK while keeping API keys server-side and answers grounded in store data.', 'geeky-bot'), __('Answer mode', 'geeky-bot'), admin_url('admin.php?page=geekybot-settings#gb-settings-ai'), __('Configure answer mode', 'geeky-bot')); ?>
@@ -2392,13 +2496,27 @@ class Menu {
                     ),
                     array(
                         'label' => __('API keys', 'geeky-bot'),
-                        'value' => __('Server-side', 'geeky-bot'),
-                        'base' => __('Never shown again after saving', 'geeky-bot'),
+                        'value' => $key_storage_value,
+                        'base' => $key_storage_base,
                     ),
                     array(
                         'label' => __('Modes available', 'geeky-bot'),
                         'value' => number_format_i18n($configured_count) . '/3',
                         'base' => __('Local mode is always available', 'geeky-bot'),
+                    ),
+                    array(
+                        'label' => __('AI budget left today', 'geeky-bot'),
+                        'value' => $local_active
+                            ? __('Not used', 'geeky-bot')
+                            : number_format_i18n($budget['daily']['remaining']),
+                        'base' => $local_active
+                            ? __('Local grounded mode makes no provider calls', 'geeky-bot')
+                            : sprintf(
+                                /* translators: 1: daily cap, 2: monthly calls remaining. */
+                                __('Of %1$s per day. %2$s left this month.', 'geeky-bot'),
+                                number_format_i18n($budget['daily']['cap']),
+                                number_format_i18n($budget['monthly']['remaining'])
+                            ),
                     ),
                 )); ?>
 
@@ -2409,7 +2527,7 @@ class Menu {
                     $providers = array(
                         array(
                             'title' => __('Local grounded mode', 'geeky-bot'),
-                            'description' => __('The fastest and safest default. Answers use WooCommerce product data and your selected policy pages, without sending catalog context to an external provider.', 'geeky-bot'),
+                            'description' => __('The fastest and safest default, and what a new install runs on. No language model is called: answers are assembled from WooCommerce product data and your selected policy pages, so wording is consistent rather than conversational and nothing leaves your server. Add a provider key below for generated answers.', 'geeky-bot'),
                             'active' => $local_active,
                             'state_label' => $local_active ? __('Active', 'geeky-bot') : __('Available', 'geeky-bot'),
                             'state' => $local_active ? 'ok' : 'neutral',
@@ -2579,7 +2697,12 @@ class Menu {
             ));
             ?>
             <?php // phpcs:ignore WordPress.Security.NonceVerification.Recommended -- Read-only status notice flag. ?>
-            <?php if (!empty($_GET['updated'])) : ?><div class="gb2-savednotice" role="status"><strong><?php esc_html_e('Settings saved.', 'geeky-bot'); ?></strong><span><?php esc_html_e('Your storefront assistant will use the updated configuration.', 'geeky-bot'); ?></span></div><?php endif; ?>
+            <?php // phpcs:ignore WordPress.Security.NonceVerification.Recommended -- Read-only status notice flag. ?>
+            <?php $gb_secret_refused = isset($_GET['gb_notice']) && sanitize_key(wp_unslash($_GET['gb_notice'])) === 'secret_refused'; ?>
+            <?php if (!empty($_GET['updated']) && !$gb_secret_refused) : ?><div class="gb2-savednotice" role="status"><strong><?php esc_html_e('Settings saved.', 'geeky-bot'); ?></strong><span><?php esc_html_e('Your storefront assistant will use the updated configuration.', 'geeky-bot'); ?></span></div><?php endif; ?>
+            <?php if ($gb_secret_refused) : ?>
+                <div class="notice notice-error"><p><strong><?php esc_html_e('The API key was not saved.', 'geeky-bot'); ?></strong> <?php esc_html_e('Geeky Bot stores provider keys encrypted, and this server has neither the libsodium nor the OpenSSL PHP extension available. Ask your host to enable one, then save the key again. Every other setting on this page was saved.', 'geeky-bot'); ?></p></div>
+            <?php endif; ?>
 
             <form method="post" class="gb2-settings">
                 <?php wp_nonce_field('geekybot_save_settings'); ?>
@@ -2981,8 +3104,8 @@ class Menu {
                     <?php
                     echo esc_html(
                         sprintf(
-                            /* translators: 1: number of unique issues, 2: total unanswered-message occurrences. */
                             _n(
+                                /* translators: 1: number of unique issues, 2: total unanswered-message occurrences. */
                                 '%1$s unique issue from %2$s unanswered message.',
                                 '%1$s unique issues from %2$s unanswered messages.',
                                 $active_review_count,
@@ -3271,7 +3394,8 @@ class Menu {
             fputcsv($output, array('conversation', 'direction', 'message', 'intent', 'products', 'created_at'));
             foreach ((array) ($detail['messages'] ?? array()) as $message) {
                 fputcsv($output, array_map(array($this, 'csv_safe_cell'), array(
-                    'Conversation #' . $session_id,
+                    /* translators: %d: conversation ID as shown in the review centre. */
+                    sprintf(__('Conversation #%d', 'geeky-bot'), (int) $session_id),
                     $message['direction'],
                     $message['message'],
                     $message['intent'],
@@ -3723,6 +3847,17 @@ class Menu {
 
     private function admin_notice_indexed() {
         // phpcs:disable WordPress.Security.NonceVerification.Recommended -- These integer values only render an indexing result notice.
+        if (isset($_GET['gb_index_queued'])) :
+            $progress = ProductIndexService::rebuild_progress(); ?>
+            <div class="notice notice-info is-dismissible"><p><?php
+                printf(
+                    /* translators: 1: products processed, 2: total products. */
+                    esc_html__('Rebuilding the product search index in the background (%1$s of %2$s products). Shoppers keep searching the current index until the new one is ready.', 'geeky-bot'),
+                    esc_html(number_format_i18n(absint($progress['processed']))),
+                    esc_html(number_format_i18n(absint($progress['total'])))
+                );
+            ?></p></div>
+        <?php endif;
         if (isset($_GET['gb_indexed'])) : ?>
             <div class="notice notice-success is-dismissible"><p><?php printf(
                 /* translators: 1: number of indexed products, 2: number of skipped products. */
@@ -3999,6 +4134,18 @@ class Menu {
         <?php Components::card_close(); ?>
     <?php }
 
+    /**
+     * Example phrases an admin types into the widget to check intent routing.
+     *
+     * i18n-exempt: the phrases are deliberately not translatable. They are
+     * INPUT, and an input only proves anything if the language pack for the
+     * store's language actually matches it -- a translator supplying plausible
+     * German would ship examples that quietly return nothing. The group
+     * headings around them are translated, because those are read.
+     *
+     * A German set belongs in Search/Data/de/, beside the phrases that decide
+     * whether it matches, not in the .pot.
+     */
     private function nlp_action_examples() { ?>
         <?php Components::card_open(__('Storefront intent checklist', 'geeky-bot'), '', false); ?>
             <p style="margin:0 0 12px;font-size:12.5px;line-height:1.55;color:var(--gb2-mute)"><?php
@@ -4110,7 +4257,7 @@ class Menu {
 
     private function settings_table_ai($settings) { ?>
         <div class="gb2-radios" role="radiogroup" aria-label="<?php esc_attr_e('Answer mode', 'geeky-bot'); ?>">
-            <label class="gb2-radio <?php echo esc_attr($settings['provider_mode'] === 'local' ? 'is-selected' : ''); ?>"><input type="radio" name="provider_mode" value="local" <?php checked($settings['provider_mode'], 'local'); ?> /><span><strong><?php esc_html_e('Local grounded mode', 'geeky-bot'); ?></strong><em><?php esc_html_e('No external AI needed. Uses catalog and selected policy pages.', 'geeky-bot'); ?></em></span></label>
+            <label class="gb2-radio <?php echo esc_attr($settings['provider_mode'] === 'local' ? 'is-selected' : ''); ?>"><input type="radio" name="provider_mode" value="local" <?php checked($settings['provider_mode'], 'local'); ?> /><span><strong><?php esc_html_e('Local grounded mode (default)', 'geeky-bot'); ?></strong><em><?php esc_html_e('Calls no language model. Answers are assembled from your catalog and selected policy pages.', 'geeky-bot'); ?></em></span></label>
             <label class="gb2-radio <?php echo esc_attr($settings['provider_mode'] === 'zywrap' ? 'is-selected' : ''); ?>"><input type="radio" name="provider_mode" value="zywrap" <?php checked($settings['provider_mode'], 'zywrap'); ?> /><span><strong><?php esc_html_e('Zywrap endpoint', 'geeky-bot'); ?></strong><em><?php esc_html_e('Hosted AI endpoint for grounded answers.', 'geeky-bot'); ?></em></span></label>
             <label class="gb2-radio <?php echo esc_attr($settings['provider_mode'] === 'openai' ? 'is-selected' : ''); ?>"><input type="radio" name="provider_mode" value="openai" <?php checked($settings['provider_mode'], 'openai'); ?> /><span><strong><?php esc_html_e('OpenAI BYOK', 'geeky-bot'); ?></strong><em><?php esc_html_e('Optional bring-your-own-key grounded answer mode.', 'geeky-bot'); ?></em></span></label>
         </div>
@@ -4120,9 +4267,69 @@ class Menu {
             <label class="gb2-sfield"><span><?php esc_html_e('OpenAI API key', 'geeky-bot'); ?></span><input id="openai_api_key" name="openai_api_key" type="password" value="<?php echo esc_attr($settings['openai_api_key'] ? '••••••••' : ''); ?>" autocomplete="new-password" /><em><?php esc_html_e('Saved secret is not displayed after save.', 'geeky-bot'); ?></em></label>
             <label class="gb2-sfield"><span><?php esc_html_e('OpenAI model', 'geeky-bot'); ?></span><input id="openai_model" name="openai_model" type="text" value="<?php echo esc_attr($settings['openai_model']); ?>" /><em><?php esc_html_e('Used only in OpenAI BYOK mode.', 'geeky-bot'); ?></em></label>
             <label class="gb2-sfield"><span><?php esc_html_e('AI answer token limit', 'geeky-bot'); ?></span><input id="ai_max_tokens" name="ai_max_tokens" type="number" min="120" max="1200" value="<?php echo esc_attr(absint($settings['ai_max_tokens'])); ?>" /><em><?php esc_html_e('Keeps generated answers short and controlled.', 'geeky-bot'); ?></em></label>
+            <label class="gb2-sfield"><span><?php esc_html_e('Daily AI call budget', 'geeky-bot'); ?></span><input id="ai_daily_call_cap" name="ai_daily_call_cap" type="number" min="<?php echo esc_attr(AiBudgetService::DAILY_MIN); ?>" max="<?php echo esc_attr(AiBudgetService::DAILY_MAX); ?>" value="<?php echo esc_attr(AiBudgetService::daily_cap()); ?>" /><em><?php esc_html_e('Site-wide ceiling on paid provider calls per day. Applies to everyone, including logged-in staff.', 'geeky-bot'); ?></em></label>
+            <label class="gb2-sfield"><span><?php esc_html_e('Monthly AI call cap', 'geeky-bot'); ?></span><input id="ai_monthly_call_cap" name="ai_monthly_call_cap" type="number" min="<?php echo esc_attr(AiBudgetService::MONTHLY_MIN); ?>" max="<?php echo esc_attr(AiBudgetService::MONTHLY_MAX); ?>" value="<?php echo esc_attr(AiBudgetService::monthly_cap()); ?>" /><em><?php esc_html_e('Hard stop for the calendar month. Past the cap, shoppers still get grounded local answers.', 'geeky-bot'); ?></em></label>
         </div>
-        <div class="gb2-snote"><strong><?php esc_html_e('Security posture', 'geeky-bot'); ?></strong><span><?php esc_html_e('API keys remain server-side. The storefront receives public widget settings and REST nonce only.', 'geeky-bot'); ?></span></div>
+        <?php $this->ai_budget_note(); ?>
+        <?php $this->ai_secret_storage_note(); ?>
+        <div class="gb2-snote"><strong><?php esc_html_e('Security posture', 'geeky-bot'); ?></strong><span><?php esc_html_e('API keys are encrypted at rest and remain server-side. The storefront receives public widget settings and REST nonce only.', 'geeky-bot'); ?></span></div>
+        <div class="gb2-snote"><strong><?php esc_html_e('Local grounded mode does not call a language model', 'geeky-bot'); ?></strong><span><?php esc_html_e('This is the shipped default. Replies are assembled from your WooCommerce data and selected policy pages, so there is no provider cost and no AI account to set up. Conversational, generated wording starts only after you select Zywrap or OpenAI and save a key.', 'geeky-bot'); ?></span></div>
     <?php }
+
+    /**
+     * Remaining site-wide AI budget, so the ceiling is a visible dial rather
+     * than a silent failure the merchant only notices as missing answers.
+     */
+    private function ai_budget_note() {
+        $budget = AiBudgetService::status();
+        ?>
+        <div class="gb2-snote"><strong><?php esc_html_e('AI spend ceiling', 'geeky-bot'); ?></strong><span><?php
+            printf(
+                /* translators: 1: calls used today, 2: daily cap, 3: calls used this month, 4: monthly cap. */
+                esc_html__('Today: %1$s of %2$s calls used. This month: %3$s of %4$s.', 'geeky-bot'),
+                esc_html(number_format_i18n($budget['daily']['used'])),
+                esc_html(number_format_i18n($budget['daily']['cap'])),
+                esc_html(number_format_i18n($budget['monthly']['used'])),
+                esc_html(number_format_i18n($budget['monthly']['cap']))
+            );
+            if ($budget['blocked_count'] > 0) {
+                echo ' ';
+                printf(
+                    /* translators: %s: number of blocked calls. */
+                    esc_html__('%s calls were declined today after a budget was reached; those shoppers received local grounded answers.', 'geeky-bot'),
+                    esc_html(number_format_i18n($budget['blocked_count']))
+                );
+            }
+        ?></span></div>
+        <?php
+    }
+
+    /**
+     * How provider keys are stored on this installation. An install that
+     * cannot encrypt has to say so instead of failing invisibly.
+     */
+    private function ai_secret_storage_note() {
+        $state = Settings::secret_storage_state();
+        if ($state === 'unavailable') {
+            ?>
+            <div class="notice notice-error inline"><p><strong><?php esc_html_e('API keys cannot be stored on this server.', 'geeky-bot'); ?></strong> <?php esc_html_e('Geeky Bot encrypts provider keys at rest, and neither the libsodium nor the OpenSSL PHP extension is available here. Saving a key will be refused until your host enables one. Local grounded mode is unaffected.', 'geeky-bot'); ?></p></div>
+            <?php
+            return;
+        }
+
+        if ($state === 'plaintext') {
+            ?>
+            <div class="notice notice-warning inline"><p><strong><?php esc_html_e('A provider key is still stored unencrypted.', 'geeky-bot'); ?></strong> <?php esc_html_e('It was saved by an earlier version. Re-enter and save the key to store it encrypted.', 'geeky-bot'); ?></p></div>
+            <?php
+            return;
+        }
+
+        if ($state === 'encrypted') {
+            ?>
+            <div class="gb2-snote"><strong><?php esc_html_e('Key storage', 'geeky-bot'); ?></strong><span><?php esc_html_e('Provider keys are encrypted at rest with a key derived from this installation\'s WordPress salts. A copied database cannot decrypt them elsewhere.', 'geeky-bot'); ?></span></div>
+            <?php
+        }
+    }
 
     private function settings_table_privacy($settings) { ?>
         <div class="gb2-sgrid">
@@ -4130,7 +4337,8 @@ class Menu {
             <label class="gb2-stoggle"><input type="hidden" name="allow_guest_sessions" value="no" /><input type="checkbox" name="allow_guest_sessions" value="yes" <?php checked($settings['allow_guest_sessions'], 'yes'); ?> /> <span><strong><?php esc_html_e('Save guest conversations', 'geeky-bot'); ?></strong><em><?php esc_html_e('When disabled, logged-out shoppers can still use Geeky Bot, but their server-side conversation history and click events are not stored.', 'geeky-bot'); ?></em></span></label>
             <label class="gb2-sfield"><span><?php esc_html_e('Retention days', 'geeky-bot'); ?></span><input id="retention_days" name="retention_days" type="number" min="1" max="365" value="<?php echo esc_attr(absint($settings['retention_days'])); ?>" /><em><?php esc_html_e('How long conversation data is retained.', 'geeky-bot'); ?></em></label>
             <label class="gb2-sfield"><span><?php esc_html_e('Rate limit shopper messages', 'geeky-bot'); ?></span><input id="rate_limit_messages" name="rate_limit_messages" type="number" min="20" max="1000" value="<?php echo esc_attr(absint($settings['rate_limit_messages'])); ?>" /><em><?php esc_html_e('Maximum public shopper messages per window.', 'geeky-bot'); ?></em></label>
-            <label class="gb2-sfield"><span><?php esc_html_e('Rate limit window minutes', 'geeky-bot'); ?></span><input id="rate_limit_window_minutes" name="rate_limit_window_minutes" type="number" min="1" max="60" value="<?php echo esc_attr(absint($settings['rate_limit_window_minutes'])); ?>" /><em><?php esc_html_e('Administrators, shop managers, and local development environments are not subject to public visitor rate limits.', 'geeky-bot'); ?></em></label>
+            <label class="gb2-sfield"><span><?php esc_html_e('Rate limit window minutes', 'geeky-bot'); ?></span><input id="rate_limit_window_minutes" name="rate_limit_window_minutes" type="number" min="1" max="60" value="<?php echo esc_attr(absint($settings['rate_limit_window_minutes'])); ?>" /><em><?php esc_html_e('Administrators, shop managers, and product or order editors are not subject to public visitor rate limits. Contributors and authors are.', 'geeky-bot'); ?></em></label>
+            <label class="gb2-sfield"><span><?php esc_html_e('Trusted proxies in front of this site', 'geeky-bot'); ?></span><input id="trusted_proxy_count" name="trusted_proxy_count" type="number" min="0" max="10" value="<?php echo esc_attr(min(10, absint(isset($settings['trusted_proxy_count']) ? $settings['trusted_proxy_count'] : 0))); ?>" /><em><?php esc_html_e('Leave at 0 unless a reverse proxy or CDN sits in front of the store. Set to 1 for a single CDN such as Cloudflare. X-Forwarded-For is only believed up to this many hops, because a visitor can otherwise forge it to get a fresh rate-limit bucket.', 'geeky-bot'); ?></em></label>
             <label class="gb2-stoggle gb2-stoggle--danger"><input type="hidden" name="delete_data_on_uninstall" value="no" /><input type="checkbox" name="delete_data_on_uninstall" value="yes" <?php checked(isset($settings['delete_data_on_uninstall']) ? $settings['delete_data_on_uninstall'] : get_option('geekybot_delete_data_on_uninstall', 'no'), 'yes'); ?> /> <span><strong><?php esc_html_e('Delete data on uninstall', 'geeky-bot'); ?></strong><em><?php esc_html_e('Remove conversations, review queue, product index, and Commerce Pro data when the plugin is uninstalled. Keep disabled on live stores unless intentional.', 'geeky-bot'); ?></em></span></label>
         </div>
         <div class="gb2-snote"><strong><?php esc_html_e('Conversation data tools', 'geeky-bot'); ?></strong><span><?php esc_html_e('Export individual or complete conversation records, inspect product-click signals, or delete stored conversation data from Geeky Bot → Conversations.', 'geeky-bot'); ?> <a href="<?php echo esc_url(admin_url('admin.php?page=geekybot-conversations')); ?>"><?php esc_html_e('Open conversation data tools', 'geeky-bot'); ?></a></span></div>
@@ -4214,6 +4422,14 @@ class Menu {
 
     private function product_index_status_label($context) {
         $status = isset($context['index_status']) ? (string) $context['index_status'] : 'current';
+        if ($status === 'running') {
+            $progress = ProductIndexService::rebuild_progress();
+            return sprintf(
+                /* translators: %d: percentage complete. */
+                __('Rebuilding %d%%', 'geeky-bot'),
+                absint($progress['percent'])
+            );
+        }
         if ($status === 'waiting_for_woocommerce') {
             return __('Waiting', 'geeky-bot');
         }
@@ -4508,7 +4724,8 @@ class Menu {
             }
             $added = array_values(array_unique($added));
             if (!empty($added)) {
-                $expansions[] = __('Added search terms: ', 'geeky-bot') . implode(', ', array_slice($added, 0, 8));
+                /* translators: %s: comma-separated list of search terms the expansion added. */
+                $expansions[] = sprintf(__('Added search terms: %s', 'geeky-bot'), implode(', ', array_slice($added, 0, 8)));
             }
         }
 

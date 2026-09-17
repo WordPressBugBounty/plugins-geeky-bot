@@ -17,6 +17,15 @@ class DatabaseMigrator {
     const LOCK_TTL = 300;
 
     /**
+     * Caches "the tables are all there" so the check costs one option read.
+     *
+     * Short enough that a site which loses a table repairs itself within the
+     * hour, long enough that the SHOW TABLES sweep is not on every request.
+     */
+    const SCHEMA_OK_TRANSIENT = 'geekybot_schema_verified';
+    const SCHEMA_OK_TTL = 3600;
+
+    /**
      * Run any missing database migrations.
      *
      * @return bool True when the database is current or another request is
@@ -25,10 +34,81 @@ class DatabaseMigrator {
     public static function maybe_migrate() {
         $installed = (string) get_option(self::VERSION_OPTION, '0');
         if (version_compare($installed, GEEKYBOT_DB_VERSION, '>=')) {
-            return true;
+            return self::ensure_schema_present();
         }
 
         return self::migrate();
+    }
+
+    /**
+     * Rebuild tables that have gone missing although the version says current.
+     *
+     * The stored version was the only gate on table creation, so a database
+     * where the option row survived and the tables did not could never repair
+     * itself: every request read "2.1.0", skipped the migrations, and every
+     * query then failed against a table that was not there. It is not a
+     * theoretical state -- a site restored from a backup that dumped only the
+     * core tables, or cloned by copying wp_options, lands in exactly it, and
+     * the only symptom is "Table 'wp_geekybot_knowledge_index' doesn't exist"
+     * repeating in the log while the admin screens look installed.
+     *
+     * Creating them is safe to repeat: dbDelta is idempotent, and a table
+     * created now is created at the current schema, which is what the later
+     * migrations exist to bring an OLD table up to.
+     *
+     * @return bool
+     */
+    private static function ensure_schema_present() {
+        if (get_transient(self::SCHEMA_OK_TRANSIENT)) {
+            return true;
+        }
+
+        $missing = Installer::missing_tables();
+        if (empty($missing)) {
+            set_transient(self::SCHEMA_OK_TRANSIENT, 1, self::SCHEMA_OK_TTL);
+            return true;
+        }
+
+        // Without the lock two concurrent requests would both rebuild, and the
+        // loser would schedule a second full product index rebuild.
+        if (!self::acquire_lock()) {
+            return true;
+        }
+
+        try {
+            $created = Installer::create_tables();
+            if (!$created) {
+                /**
+                 * Fires when tables are missing and could not be recreated.
+                 *
+                 * @param string[] $missing Tables still absent.
+                 */
+                do_action('geekybot_database_repair_failed', Installer::missing_tables());
+                return false;
+            }
+
+            set_transient(self::SCHEMA_OK_TRANSIENT, 1, self::SCHEMA_OK_TTL);
+
+            // The tables came back empty, so the content that lived in them has
+            // to be rebuilt or the store answers every shopper with nothing.
+            if (class_exists('GeekyBot\\Services\\ProductIndexService')) {
+                ProductIndexService::request_rebuild(30);
+            }
+            if (class_exists('GeekyBot\\Services\\KnowledgeIndexService')) {
+                KnowledgeIndexService::schedule_sync();
+            }
+
+            /**
+             * Fires after missing tables have been recreated.
+             *
+             * @param string[] $missing Tables that had been absent.
+             */
+            do_action('geekybot_database_repaired', $missing);
+
+            return true;
+        } finally {
+            self::release_lock();
+        }
     }
 
     /**
@@ -88,6 +168,8 @@ class DatabaseMigrator {
             '2.0.0' => array(__CLASS__, 'migrate_200_base_schema'),
             '2.0.2' => array(__CLASS__, 'migrate_202_product_index_fulltext'),
             '2.0.3' => array(__CLASS__, 'migrate_203_product_index_stem_text'),
+            '2.0.4' => array(__CLASS__, 'migrate_204_encrypt_provider_secrets'),
+            '2.1.0' => array(__CLASS__, 'migrate_210_product_index_facet_text'),
         );
     }
 
@@ -163,6 +245,50 @@ class DatabaseMigrator {
 
         // Existing rows have an empty stem_text until they are rebuilt. Queue it
         // rather than reindexing the whole catalog inside a migration request.
+        (new ProductIndexService())->schedule_rebuild();
+
+        return true;
+    }
+
+    /**
+     * Add `facet_text` to the product index.
+     *
+     * The facet and core-term WHERE clauses compared a normalized shopper term
+     * against `title`, `categories`, `tags`, `attributes`, `color_terms` and
+     * `size_terms`, all of which store the merchant's raw wording. Latin scripts
+     * never noticed -- utf8mb4 collation already folds case and accents -- but
+     * `normalize_text()` rewrites the Arabic letter family, so a query for أسود
+     * became اسود and could not match a column still holding أسود. Colour and
+     * size filters therefore matched nothing at all in Arabic, Persian and Urdu.
+     *
+     * `facet_text` holds those same identity fields in normalized form, which is
+     * the form the query side has always been in.
+     *
+     * @return bool
+     */
+    public static function migrate_210_product_index_facet_text() {
+        global $wpdb;
+
+        $table = $wpdb->prefix . 'geekybot_product_index';
+
+        // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery,WordPress.DB.DirectDatabaseQuery.NoCaching,WordPress.DB.PreparedSQL.InterpolatedNotPrepared -- Own plugin table.
+        if (!$wpdb->get_var($wpdb->prepare('SHOW TABLES LIKE %s', $table))) {
+            // Nothing to alter yet; ProductIndexService::create_table() builds
+            // the column into a fresh table.
+            return true;
+        }
+
+        ProductIndexService::create_table();
+
+        // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery,WordPress.DB.DirectDatabaseQuery.NoCaching,WordPress.DB.PreparedSQL.InterpolatedNotPrepared -- Own plugin table.
+        $column = $wpdb->get_var($wpdb->prepare("SHOW COLUMNS FROM {$table} LIKE %s", 'facet_text'));
+        if ($column !== 'facet_text') {
+            return false;
+        }
+
+        // Existing rows carry an empty facet_text until they are rebuilt, and an
+        // empty one matches nothing. Queue the rebuild rather than reindexing the
+        // whole catalog inside a migration request.
         (new ProductIndexService())->schedule_rebuild();
 
         return true;
@@ -253,6 +379,48 @@ class DatabaseMigrator {
      *
      * @return bool
      */
+    /**
+     * Encrypt provider API keys that were stored in plaintext before 2.0.3.
+     *
+     * Sites upgrading with a live key keep working: Settings::secret() reads a
+     * legacy plaintext value, and this pass rewrites it as vault ciphertext so
+     * the value in wp_options stops being usable on its own.
+     *
+     * @return bool
+     */
+    public static function migrate_204_encrypt_provider_secrets() {
+        $settings = get_option(Settings::OPTION, array());
+        if (!is_array($settings)) {
+            return true;
+        }
+
+        $changed = false;
+        foreach (Settings::secret_keys() as $key) {
+            $value = isset($settings[$key]) ? (string) $settings[$key] : '';
+            if ($value === '' || LicenseVault::is_encrypted($value)) {
+                continue;
+            }
+
+            if (!LicenseVault::available()) {
+                // Nothing on this installation can encrypt. Leaving the key in
+                // place keeps the store answering; the admin reports the state.
+                continue;
+            }
+
+            $encrypted = LicenseVault::encrypt($value);
+            if (is_string($encrypted) && $encrypted !== '' && LicenseVault::decrypt($encrypted) === $value) {
+                $settings[$key] = $encrypted;
+                $changed = true;
+            }
+        }
+
+        if ($changed) {
+            update_option(Settings::OPTION, $settings, false);
+        }
+
+        return true;
+    }
+
     private static function acquire_lock() {
         $now = time();
         if (add_option(self::LOCK_OPTION, $now, '', 'no')) {

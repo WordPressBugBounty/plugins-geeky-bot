@@ -1,0 +1,5881 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: Geeky Bot\n"
+"Report-Msgid-Bugs-To: https://geekybot.com/\n"
+"POT-Creation-Date: 2026-09-16 11:20+0500\n"
+"PO-Revision-Date: 2026-09-16 11:20+0500\n"
+"Last-Translator: \n"
+"Language-Team: Japanese\n"
+"Language: ja\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"X-Domain: geeky-bot\n"
+"X-Generator: geeky-bot/tools/make-translation-file.sh\n"
+"X-Poedit-Basepath: .\n"
+"X-Poedit-KeywordsList: __;_e;esc_html__;esc_html_e;esc_attr__;esc_attr_e;esc_xml__;_x:1,2c;_ex:1,2c;esc_html_x:1,2c;esc_attr_x:1,2c;_n:1,2;_nx:1,2,4c;_n_noop:1,2;_nx_noop:1,2,3c\n"
+"X-Poedit-SearchPath-0: geeky-bot\n"
+"X-Poedit-SearchPath-1: geeky-bot-commerce-pro\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+
+msgid "Commerce Pro"
+msgstr "Commerce Pro"
+
+msgid "Buying actions inside the assistant: variations, cart, checkout handoff, order help, recommendations, coupons and leads."
+msgstr "アシスタント内の購入アクション：バリエーション、カート、チェックアウトへの引き継ぎ、注文サポート、おすすめ、クーポン、リード。"
+
+msgid "%1$s of %2$s features on"
+msgstr "%2$s 件中 %1$s 件の機能が有効"
+
+msgid "WooCommerce inactive"
+msgstr "WooCommerce は無効です"
+
+msgid "add-to-cart actions"
+msgstr "カートに追加のアクション"
+
+msgid "cart updates"
+msgstr "カートの更新"
+
+msgid "Test on storefront"
+msgstr "ストアフロントでテスト"
+
+msgid "Assistant settings"
+msgstr "アシスタント設定"
+
+msgid "Dashboard"
+msgstr "ダッシュボード"
+
+msgid "WooCommerce is not active. Commerce Pro buying actions need WooCommerce."
+msgstr "WooCommerce が有効ではありません。Commerce Pro の購入アクションには WooCommerce が必要です。"
+
+msgid "Commerce Pro settings saved."
+msgstr "Commerce Pro の設定を保存しました。"
+
+msgid "Commerce Pro settings imported."
+msgstr "Commerce Pro の設定をインポートしました。"
+
+msgid "Settings import failed. Please upload a valid Commerce Pro settings JSON file."
+msgstr "設定のインポートに失敗しました。有効な Commerce Pro 設定 JSON ファイルをアップロードしてください。"
+
+msgid "Commerce Pro readiness"
+msgstr "Commerce Pro の準備状況"
+
+msgid "Buying actions"
+msgstr "購入アクション"
+
+msgid "Add-to-cart and variation selection"
+msgstr "カートへの追加とバリエーション選択"
+
+msgid "Cart buttons active"
+msgstr "カートボタンが有効"
+
+msgid "Cart flow"
+msgstr "カートフロー"
+
+msgid "View, update and checkout handoff"
+msgstr "表示・更新・チェックアウトへの引き継ぎ"
+
+msgid "Checkout handoff ready"
+msgstr "チェックアウト引き継ぎの準備完了"
+
+msgid "Sales assistance"
+msgstr "販売サポート"
+
+msgid "Compare, recommend and coupons"
+msgstr "比較・おすすめ・クーポン"
+
+msgid "Buyer guidance active"
+msgstr "購入ガイドが有効"
+
+msgid "Handoff"
+msgstr "引き継ぎ"
+
+msgid "Lead capture and human follow-up"
+msgstr "リード獲得と担当者によるフォローアップ"
+
+msgid "Follow-up forms active"
+msgstr "フォローアップフォームが有効"
+
+msgid "Guardrails"
+msgstr "ガードレール"
+
+msgid "Tone, claims and analytics safety"
+msgstr "トーン・表現・アナリティクスの安全性"
+
+msgid "Safe sales mode"
+msgstr "安全な販売モード"
+
+msgid "Sales action intelligence"
+msgstr "販売アクションのインテリジェンス"
+
+msgid "Buying actions handled by the assistant"
+msgstr "アシスタントが処理した購入アクション"
+
+msgid "Track the buying actions Commerce Pro adds on top of product discovery."
+msgstr "商品検索に加えて Commerce Pro が追加する購入アクションを追跡します。"
+
+msgid "Add-to-cart"
+msgstr "カートに追加"
+
+msgid "Simple and variation cart adds"
+msgstr "通常商品とバリエーション商品のカート追加"
+
+msgid "Cart updates"
+msgstr "カートの更新"
+
+msgid "Quantity and remove actions"
+msgstr "数量変更と削除のアクション"
+
+msgid "Checkout handoffs"
+msgstr "チェックアウト引き継ぎ"
+
+msgid "Checkout clicks from the assistant"
+msgstr "アシスタントからのチェックアウトクリック"
+
+msgid "Order lookups"
+msgstr "注文照会"
+
+msgid "Customer order helper"
+msgstr "顧客向け注文ヘルパー"
+
+msgid "Comparisons"
+msgstr "比較"
+
+msgid "Product comparison intent"
+msgstr "商品比較の意図"
+
+msgid "Recommendations"
+msgstr "おすすめ"
+
+msgid "Smart product suggestions"
+msgstr "スマートな商品提案"
+
+msgid "Leads"
+msgstr "リード"
+
+msgid "Follow-up captures"
+msgstr "フォローアップの獲得"
+
+msgid "Coupon views"
+msgstr "クーポン表示"
+
+msgid "Safe coupon exposure"
+msgstr "安全なクーポン提示"
+
+msgid "Product intent"
+msgstr "商品への関心"
+
+msgid "Top products by assistant intent"
+msgstr "アシスタントでの関心が高い商品"
+
+msgid "Products receiving assistant clicks, comparisons, recommendations, and cart actions."
+msgstr "アシスタントでのクリック、比較、おすすめ、カートアクションを受けた商品。"
+
+msgid "Unknown product"
+msgstr "不明な商品"
+
+msgid "No product intent yet"
+msgstr "商品への関心はまだありません"
+
+msgid "Test product search, compare, add-to-cart and checkout phrases in the storefront widget."
+msgstr "ストアフロントのウィジェットで商品検索・比較・カート追加・チェックアウトのフレーズをテストします。"
+
+msgid "Sales flow readiness"
+msgstr "販売フローの準備状況"
+
+msgid "Buying path must stay ready"
+msgstr "購入経路を常に利用可能に保つ"
+
+msgid "Main buyer actions should stay enabled for Commerce Pro to prove value."
+msgstr "Commerce Pro の価値を発揮するには、主要な購入アクションを有効のままにしてください。"
+
+msgid "WooCommerce actions"
+msgstr "WooCommerce のアクション"
+
+msgid "Cart and order APIs are available."
+msgstr "カートと注文の API が利用可能です。"
+
+msgid "Activate WooCommerce."
+msgstr "WooCommerce を有効化してください。"
+
+msgid "Buying through the assistant"
+msgstr "アシスタント経由の購入"
+
+msgid "Simple products and variations can be added through the assistant."
+msgstr "通常商品とバリエーション商品をアシスタント経由でカートに追加できます。"
+
+msgid "Cart and checkout"
+msgstr "カートとチェックアウト"
+
+msgid "Shoppers can review cart, update items, and move to checkout."
+msgstr "買い物客はカートを確認し、商品を更新して、チェックアウトに進めます。"
+
+msgid "Order helper"
+msgstr "注文ヘルパー"
+
+msgid "Logged-in customers can view their own recent orders."
+msgstr "ログイン済みの顧客は自分の最近の注文を確認できます。"
+
+msgid "Next best action"
+msgstr "次に行うべきこと"
+
+msgid "Test the full buying journey"
+msgstr "購入フロー全体をテストする"
+
+msgid "Run shopper phrases that prove search, comparison, cart, checkout, orders, coupons, and human handoff stay separated."
+msgstr "検索・比較・カート・チェックアウト・注文・クーポン・担当者への引き継ぎが正しく分離されていることを確認するフレーズを実行します。"
+
+msgid "Test storefront widget"
+msgstr "ストアフロントウィジェットをテスト"
+
+msgid "Feature checklist"
+msgstr "機能チェックリスト"
+
+msgid "What the feature count means"
+msgstr "機能カウントの意味"
+
+msgid "%1$s of %2$s on"
+msgstr "%2$s 件中 %1$s 件が有効"
+
+msgid "On, inactive"
+msgstr "有効、未使用"
+
+msgid "On"
+msgstr "オン"
+
+msgid "Off"
+msgstr "オフ"
+
+msgid "The last two count only once you have entered coupon codes or written sales rules, not merely enabled the switch."
+msgstr "最後の 2 つは、クーポンコードを入力したか販売ルールを記述した場合にのみカウントされます。スイッチを有効にしただけではカウントされません。"
+
+msgid "Commerce Pro settings"
+msgstr "Commerce Pro の設定"
+
+msgid "Configure buying actions and guardrails"
+msgstr "購入アクションとガードレールを設定"
+
+msgid "Keep purchase actions enabled unless you are testing a specific feature. These controls affect the live shopper assistant after saving."
+msgstr "特定の機能をテストする場合を除き、購入アクションは有効のままにしてください。これらの設定は保存後すぐに公開中のアシスタントに反映されます。"
+
+msgid "Commerce Pro settings sections"
+msgstr "Commerce Pro 設定セクション"
+
+msgid "Lead and handoff"
+msgstr "リードと引き継ぎ"
+
+msgid "AI guardrails"
+msgstr "AI ガードレール"
+
+msgid "Buyer actions"
+msgstr "購入者のアクション"
+
+msgid "Active"
+msgstr "有効"
+
+msgid "Needs attention"
+msgstr "要確認"
+
+msgid "Checkout flow"
+msgstr "チェックアウトフロー"
+
+msgid "Ready"
+msgstr "準備完了"
+
+msgid "Review"
+msgstr "確認"
+
+msgid "Sales rules"
+msgstr "販売ルール"
+
+msgid "Enabled"
+msgstr "有効"
+
+msgid "Optional"
+msgstr "任意"
+
+msgid "Save Commerce Pro Settings"
+msgstr "Commerce Pro の設定を保存"
+
+msgid "Add to cart through assistant"
+msgstr "アシスタント経由でカートに追加"
+
+msgid "Show add-to-cart buttons for simple products and option selectors for variable products."
+msgstr "通常商品には「カートに追加」ボタン、バリエーション商品にはオプション選択を表示します。"
+
+msgid "Variation selection"
+msgstr "バリエーションの選択"
+
+msgid "Let shoppers choose variable product attributes directly inside the storefront assistant."
+msgstr "買い物客がストアフロントのアシスタント内で直接バリエーション属性を選べるようにします。"
+
+msgid "Cart requests"
+msgstr "カートのリクエスト"
+
+msgid "Let shoppers ask for their cart and update items through the assistant."
+msgstr "買い物客がアシスタントでカートを確認し、商品を更新できるようにします。"
+
+msgid "Cart quantity controls"
+msgstr "カート数量のコントロール"
+
+msgid "Show plus, minus, and remove controls in the assistant cart view."
+msgstr "アシスタントのカート表示にプラス・マイナス・削除のコントロールを表示します。"
+
+msgid "Checkout handoff"
+msgstr "チェックアウトへの引き継ぎ"
+
+msgid "Show a checkout button only when the cart has items."
+msgstr "カートに商品がある場合のみチェックアウトボタンを表示します。"
+
+msgid "Order lookup"
+msgstr "注文の照会"
+
+msgid "Allow logged-in customers to ask for their own recent orders and order status."
+msgstr "ログイン済みの顧客が自分の最近の注文や注文状況を確認できるようにします。"
+
+msgid "Product comparison"
+msgstr "商品の比較"
+
+msgid "Let shoppers compare catalog products inside the storefront assistant."
+msgstr "買い物客がストアフロントのアシスタント内で商品を比較できるようにします。"
+
+msgid "Smart recommendations"
+msgstr "スマートおすすめ"
+
+msgid "Show related, upsell, and cross-sell products from WooCommerce data."
+msgstr "WooCommerce のデータから関連商品・アップセル・クロスセル商品を表示します。"
+
+msgid "Safe coupon suggestions"
+msgstr "安全なクーポン提案"
+
+msgid "Only show coupon codes explicitly allowlisted below. The assistant will not invent coupon codes."
+msgstr "以下で明示的に許可したクーポンコードのみを表示します。アシスタントがクーポンコードを創作することはありません。"
+
+msgid "Public coupon codes"
+msgstr "公開クーポンコード"
+
+msgid "Enter one public coupon code per line. Only valid, published, non-expired coupons from this list can be shown in the assistant."
+msgstr "公開クーポンコードを 1 行に 1 つ入力してください。このリストの有効・公開済み・未期限切れのクーポンのみがアシスタントに表示されます。"
+
+msgid "Product sales rules"
+msgstr "商品の販売ルール"
+
+msgid "Show merchant-written sales notes for products, categories, tags, keywords, or globally."
+msgstr "商品・カテゴリー・タグ・キーワード単位、または全体に対して、店舗が記述した販売メモを表示します。"
+
+msgid "One rule per line. Examples: product:123 | Mention sizing runs small. category:shoes | Recommend checking size and return policy. global | Free shipping over $50."
+msgstr "1 行に 1 ルール。例：product:123 | サイズは小さめとお伝えください。category:shoes | サイズと返品ポリシーの確認をおすすめしてください。global | 50ドル以上で送料無料。"
+
+msgid "Abandoned-cart prompts"
+msgstr "カート放棄のリマインダー"
+
+msgid "After a shopper adds items but stays on the site, gently remind them that checkout is available once per session."
+msgstr "買い物客が商品を追加したままサイトに留まっている場合、セッションごとに 1 回だけチェックアウトできることをそっと知らせます。"
+
+msgid "Cart prompt delay"
+msgstr "カートリマインダーの待機時間"
+
+msgid "Seconds to wait before showing the cart reminder in the assistant. Allowed range: 15 to 600 seconds."
+msgstr "アシスタントにカートのリマインダーを表示するまでの待機秒数。設定可能な範囲：15〜600 秒。"
+
+msgid "Lead capture and handoff"
+msgstr "リード獲得と引き継ぎ"
+
+msgid "Lead capture"
+msgstr "リード獲得"
+
+msgid "Let shoppers leave their name, email, and question when they need follow-up."
+msgstr "フォローアップが必要な買い物客が名前・メールアドレス・質問を残せるようにします。"
+
+msgid "Human handoff"
+msgstr "担当者への引き継ぎ"
+
+msgid "Show a human handoff form for questions the assistant cannot complete."
+msgstr "アシスタントが対応できない質問のために、担当者への引き継ぎフォームを表示します。"
+
+msgid "Handoff email"
+msgstr "引き継ぎ通知先メールアドレス"
+
+msgid "New lead notifications are sent here. Leave empty to use the WordPress admin email."
+msgstr "新しいリードの通知はここに送信されます。空欄の場合は WordPress の管理者メールアドレスを使用します。"
+
+msgid "AI sales rules and guardrails"
+msgstr "AI の販売ルールとガードレール"
+
+msgid "Multilingual sales assistant"
+msgstr "多言語対応の販売アシスタント"
+
+msgid "Add language instructions to the grounded AI layer while keeping product names, SKUs, coupons, and policy titles unchanged."
+msgstr "商品名・SKU・クーポン・ポリシータイトルはそのままに、店舗データに基づく AI レイヤーに言語の指示を追加します。"
+
+msgid "Language mode"
+msgstr "言語モード"
+
+msgid "Auto replies in the shopper language, site follows WordPress locale, and force uses the language field below."
+msgstr "「自動」は買い物客の言語で返信し、「サイト」は WordPress のロケールに従い、「強制」は下の言語フィールドを使用します。"
+
+msgid "Auto-detect shopper language"
+msgstr "買い物客の言語を自動検出"
+
+msgid "Use site language"
+msgstr "サイトの言語を使用"
+
+msgid "Force selected language"
+msgstr "選択した言語を強制"
+
+msgid "Forced language"
+msgstr "強制する言語"
+
+msgid "Example: English, Arabic, Spanish, German, French, Urdu. Used only when language mode is force."
+msgstr "例：英語、アラビア語、スペイン語、ドイツ語、フランス語、ウルドゥー語。言語モードが「強制」の場合のみ使用されます。"
+
+msgid "Assistant tone"
+msgstr "アシスタントのトーン"
+
+msgid "Controls AI answer style without changing product facts."
+msgstr "商品情報を変えずに AI の回答スタイルを調整します。"
+
+msgid "Helpful"
+msgstr "親切"
+
+msgid "Friendly"
+msgstr "フレンドリー"
+
+msgid "Premium retail"
+msgstr "高級小売"
+
+msgid "Concise"
+msgstr "簡潔"
+
+msgid "Extra sales guardrails"
+msgstr "追加の販売ガードレール"
+
+msgid "Strengthen rules against unsupported claims, invented offers, private coupons, and unsafe guarantees."
+msgstr "根拠のない主張、架空のオファー、非公開クーポン、危険な保証に対するルールを強化します。"
+
+msgid "Blocked / restricted claim topics"
+msgstr "禁止・制限する主張のトピック"
+
+msgid "One topic per line. The assistant will be extra careful and refuse unsupported claims in these areas."
+msgstr "1 行に 1 トピック。これらの領域では、アシスタントは特に慎重になり、根拠のない主張を拒否します。"
+
+msgid "Store-approved sales guidance"
+msgstr "店舗が承認した販売ガイダンス"
+
+msgid "Optional approved guidance lines. Keep this factual and grounded, such as size advice or support instructions."
+msgstr "任意の承認済みガイダンス。サイズのアドバイスやサポート手順など、事実に基づいた内容にしてください。"
+
+msgid "Product-intent analytics"
+msgstr "商品関心のアナリティクス"
+
+msgid "Track safe aggregate events such as comparisons, recommendations, cart actions, order lookups, coupon views, leads, and sales notes."
+msgstr "比較、おすすめ、カートアクション、注文照会、クーポン表示、リード、販売メモなど、安全な集計イベントを追跡します。"
+
+msgid "Save Commerce Pro settings"
+msgstr "Commerce Pro の設定を保存"
+
+msgid "Frontend buyer actions use these settings immediately after saving."
+msgstr "フロントエンドの購入アクションは、保存後すぐにこれらの設定を使用します。"
+
+msgid "Portable setup"
+msgstr "移行可能なセットアップ"
+
+msgid "Import / export settings"
+msgstr "設定のインポート / エクスポート"
+
+msgid "Use this for staging-to-live moves, support handoff, and repeatable setup. Secrets are not included."
+msgstr "ステージングから本番への移行、サポートへの引き継ぎ、繰り返し可能なセットアップに使用します。シークレット情報は含まれません。"
+
+msgid "Export settings JSON"
+msgstr "設定 JSON をエクスポート"
+
+msgid "Import settings JSON"
+msgstr "設定 JSON をインポート"
+
+msgid "Human follow-up"
+msgstr "担当者によるフォローアップ"
+
+msgid "Recent leads"
+msgstr "最近のリード"
+
+msgid "Latest handoff and lead-capture requests from the assistant."
+msgstr "アシスタントからの最新の引き継ぎおよびリード獲得のリクエスト。"
+
+msgid "Name"
+msgstr "名前"
+
+msgid "Email"
+msgstr "メールアドレス"
+
+msgid "Message"
+msgstr "メッセージ"
+
+msgid "Date"
+msgstr "日付"
+
+msgid "No leads captured yet"
+msgstr "リードはまだ獲得されていません"
+
+msgid "Lead and human handoff requests will appear here after shoppers use the assistant."
+msgstr "買い物客がアシスタントを使用すると、リードと担当者への引き継ぎリクエストがここに表示されます。"
+
+msgid "Add to cart"
+msgstr "カートに追加"
+
+msgid "Coupon suggestions"
+msgstr "クーポンの提案"
+
+msgid "Multilingual replies"
+msgstr "多言語での返信"
+
+msgid "Needs Zywrap or OpenAI. Local mode does not generate text."
+msgstr "Zywrap または OpenAI が必要です。ローカルモードではテキストを生成しません。"
+
+msgid "Local mode never generates free text, so nothing needs constraining."
+msgstr "ローカルモードは自由文を生成しないため、制約する対象がありません。"
+
+msgid "Public coupon codes added"
+msgstr "公開クーポンコードを追加済み"
+
+msgid "The switch is on; add codes for it to have anything to offer."
+msgstr "スイッチはオンですが、提示できるコードを追加してください。"
+
+msgid "Sales rules written"
+msgstr "販売ルールを記述済み"
+
+msgid "The switch is on; write a rule for it to have anything to say."
+msgstr "スイッチはオンですが、伝える内容となるルールを記述してください。"
+
+msgid "Activate Commerce Pro on this site"
+msgstr "このサイトで Commerce Pro を有効化"
+
+msgid "The add-on is installed, but buying actions stay disabled until Geeky Bot confirms a valid license for this site."
+msgstr "アドオンはインストール済みですが、Geeky Bot がこのサイトの有効なライセンスを確認するまで購入アクションは無効のままです。"
+
+msgid "Not activated"
+msgstr "未有効化"
+
+msgid "No key"
+msgstr "キーなし"
+
+msgid "license key"
+msgstr "ライセンスキー"
+
+msgid "Never"
+msgstr "なし"
+
+msgid "last checked"
+msgstr "最終確認"
+
+msgid "Open license screen"
+msgstr "ライセンス画面を開く"
+
+msgid "Plugins"
+msgstr "プラグイン"
+
+msgid "Buying actions are disabled"
+msgstr "購入アクションは無効です"
+
+msgid "Storefront Pro buttons are not loaded."
+msgstr "ストアフロントの Pro ボタンは読み込まれていません。"
+
+msgid "Cart, comparison, coupon, lead and order endpoints require license authorization."
+msgstr "カート、比較、クーポン、リード、注文のエンドポイントにはライセンス認証が必要です。"
+
+msgid "Free product discovery still works in Geeky Bot core."
+msgstr "無料の商品検索は Geeky Bot コアで引き続き利用できます。"
+
+msgid "Why this is locked"
+msgstr "ロックされている理由"
+
+msgid "Commerce Pro requires a site entitlement"
+msgstr "Commerce Pro にはサイトごとのライセンスが必要です"
+
+msgid "A copied add-on folder cannot run Pro buying actions without an active license for this site."
+msgstr "アドオンフォルダーをコピーしても、このサイトの有効なライセンスがなければ Pro の購入アクションは動作しません。"
+
+msgid "Adding…"
+msgstr "追加中…"
+
+msgid "Add selected option"
+msgstr "選択したオプションを追加"
+
+msgid "Choose product options"
+msgstr "商品オプションを選択"
+
+msgid "That option is not available. Please choose a different combination."
+msgstr "そのオプションは利用できません。別の組み合わせをお選びください。"
+
+msgid "View cart"
+msgstr "カートを見る"
+
+msgid "Checkout"
+msgstr "レジに進む"
+
+msgid "Choose options"
+msgstr "オプションを選択"
+
+msgid "View product page"
+msgstr "商品ページを見る"
+
+msgid "View bundle"
+msgstr "セットを見る"
+
+msgid "Close"
+msgstr "閉じる"
+
+msgid "Your cart is empty."
+msgstr "カートは空です。"
+
+msgid "Here is your cart:"
+msgstr "現在のカートはこちらです："
+
+msgid "Subtotal"
+msgstr "小計"
+
+msgid "Total"
+msgstr "合計"
+
+msgid "Increase"
+msgstr "増やす"
+
+msgid "Decrease"
+msgstr "減らす"
+
+msgid "Remove"
+msgstr "削除"
+
+msgid "Updating…"
+msgstr "更新中…"
+
+msgid "Checking your cart…"
+msgstr "カートを確認しています…"
+
+msgid "Checking your order…"
+msgstr "ご注文を確認しています…"
+
+msgid "Checking your recent orders…"
+msgstr "最近のご注文を確認しています…"
+
+msgid "Ready to checkout. Review your cart total below and continue when you are ready."
+msgstr "購入手続きの準備ができました。下のカート合計をご確認のうえ、よろしければお進みください。"
+
+msgid "Your cart is empty. Add a product before checkout."
+msgstr "カートは空です。購入手続きの前に商品を追加してください。"
+
+msgid "Log in to account"
+msgstr "アカウントにログイン"
+
+msgid "Recent orders"
+msgstr "最近の注文"
+
+msgid "You do not have any orders yet."
+msgstr "まだご注文はありません。"
+
+msgid "View account orders"
+msgstr "アカウントの注文を見る"
+
+msgid "Details"
+msgstr "詳細"
+
+msgid "View order"
+msgstr "注文を見る"
+
+msgid "Pay order"
+msgstr "注文を支払う"
+
+msgid "Status"
+msgstr "ステータス"
+
+msgid "Payment"
+msgstr "お支払い"
+
+msgid "Shipping"
+msgstr "配送"
+
+msgid "Compare"
+msgstr "比較"
+
+msgid "Compare now"
+msgstr "今すぐ比較"
+
+msgid "Added to comparison."
+msgstr "比較リストに追加しました。"
+
+msgid "Choose at least two products to compare."
+msgstr "比較するには商品を 2 つ以上選んでください。"
+
+msgid "Similar products"
+msgstr "類似商品"
+
+msgid "Recommend"
+msgstr "おすすめ"
+
+msgid "I couldn't find related products for this item yet."
+msgstr "この商品に関連する商品はまだ見つかりませんでした。"
+
+msgid "View product"
+msgstr "商品を見る"
+
+msgid "Contact store team"
+msgstr "店舗スタッフに問い合わせる"
+
+msgid "Talk to a human"
+msgstr "担当者と話す"
+
+msgid "Please leave your details and the store team will contact you."
+msgstr "ご連絡先をご記入いただければ、店舗スタッフからご連絡いたします。"
+
+msgid "Your name"
+msgstr "お名前"
+
+msgid "Your email"
+msgstr "メールアドレス"
+
+msgid "Your question"
+msgstr "ご質問"
+
+msgid "Send request"
+msgstr "リクエストを送信"
+
+msgid "Check coupons"
+msgstr "クーポンを確認"
+
+msgid "Sales note"
+msgstr "販売メモ"
+
+msgid "Additional store information for this product:"
+msgstr "この商品に関する店舗からの追加情報："
+
+msgid "No additional sales information is available for this product."
+msgstr "この商品に関する追加の販売情報はありません。"
+
+msgid "You still have items in your cart. Ready to continue?"
+msgstr "カートにまだ商品が残っています。お手続きを続けますか？"
+
+msgid "I couldn't find a coupon code available to share right now."
+msgstr "現在ご案内できるクーポンコードは見つかりませんでした。"
+
+msgid "Copy code"
+msgstr "コードをコピー"
+
+msgid "Copied"
+msgstr "コピーしました"
+
+msgid "I couldn't complete that action right now. Please try again."
+msgstr "その操作を実行できませんでした。もう一度お試しください。"
+
+msgid "Geeky Bot Commerce Pro could not complete its database update. Please reload the page, then contact support if the notice remains."
+msgstr "Geeky Bot Commerce Pro はデータベースの更新を完了できませんでした。ページを再読み込みし、それでも通知が残る場合はサポートにご連絡ください。"
+
+msgid "Geeky Bot Commerce Pro requires the Geeky Bot core plugin to be installed and active."
+msgstr "Geeky Bot Commerce Pro を使用するには、Geeky Bot コアプラグインのインストールと有効化が必要です。"
+
+msgid "Geeky Bot Commerce Pro requires Geeky Bot core %1$s or newer. The installed Core version is %2$s."
+msgstr "Geeky Bot Commerce Pro には Geeky Bot コア %1$s 以降が必要です。インストール済みのコアバージョンは %2$s です。"
+
+msgid "unknown"
+msgstr "不明"
+
+msgid "Commerce Pro Settings"
+msgstr "Commerce Pro の設定"
+
+msgid "Activate License"
+msgstr "ライセンスを有効化"
+
+msgid "Security check failed. Please refresh the page and try again."
+msgstr "セキュリティチェックに失敗しました。ページを更新してもう一度お試しください。"
+
+msgid "WooCommerce cart is not available."
+msgstr "WooCommerce のカートを利用できません。"
+
+msgid "Cart commands are disabled."
+msgstr "カートのコマンドは無効です。"
+
+msgid "Add to cart is disabled."
+msgstr "カートへの追加は無効です。"
+
+msgid "This product is not available."
+msgstr "この商品は利用できません。"
+
+msgid "This product needs options before it can be added to cart."
+msgstr "この商品はカートに追加する前にオプションの選択が必要です。"
+
+msgid "Open the product page to choose the available buying options."
+msgstr "商品ページを開いて、購入可能なオプションをお選びください。"
+
+msgid "This product cannot be purchased right now."
+msgstr "この商品は現在購入できません。"
+
+msgid "This product is out of stock."
+msgstr "この商品は在庫切れです。"
+
+msgid "The product could not be added to cart."
+msgstr "この商品をカートに追加できませんでした。"
+
+msgid "WooCommerce accepted the request, but the product was not safely verified in the cart. Please try again or open the product page."
+msgstr "WooCommerce はリクエストを受け付けましたが、商品がカート内で安全に確認できませんでした。もう一度お試しいただくか、商品ページを開いてください。"
+
+msgid "%s has been added to your cart."
+msgstr "%s をカートに追加しました。"
+
+msgid "Variation selection is disabled."
+msgstr "バリエーションの選択は無効です。"
+
+msgid "This variable product is not available."
+msgstr "このバリエーション商品は利用できません。"
+
+msgid "Please choose all required product options before adding this item to cart."
+msgstr "この商品をカートに追加する前に、必要なオプションをすべてお選びください。"
+
+msgid "The selected options do not match an available variation. Please choose the options again."
+msgstr "選択したオプションに一致するバリエーションがありません。オプションをもう一度お選びください。"
+
+msgid "This option cannot be purchased right now."
+msgstr "このオプションは現在購入できません。"
+
+msgid "This option is out of stock."
+msgstr "このオプションは在庫切れです。"
+
+msgid "The selected option could not be added to cart."
+msgstr "選択したオプションをカートに追加できませんでした。"
+
+msgid "WooCommerce accepted the request, but the selected option could not be safely verified in the cart. Please choose the options again or open the product page."
+msgstr "WooCommerce はリクエストを受け付けましたが、選択したオプションをカート内で安全に確認できませんでした。オプションを選び直すか、商品ページを開いてください。"
+
+msgid "Cart quantity controls are disabled."
+msgstr "カート数量のコントロールは無効です。"
+
+msgid "Your cart is already up to date."
+msgstr "カートはすでに最新の状態です。"
+
+msgid "Cart updated."
+msgstr "カートを更新しました。"
+
+msgid "Item removed. Your cart is updated below."
+msgstr "商品を削除しました。更新後のカートは以下のとおりです。"
+
+msgid "Quantity increased. Your cart is updated below."
+msgstr "数量を増やしました。更新後のカートは以下のとおりです。"
+
+msgid "Quantity decreased. Your cart is updated below."
+msgstr "数量を減らしました。更新後のカートは以下のとおりです。"
+
+msgid "This product does not have selectable variations."
+msgstr "この商品には選択できるバリエーションがありません。"
+
+msgid "Too many assistant actions. Please wait a few minutes and try again."
+msgstr "アシスタントの操作が多すぎます。数分お待ちのうえ、もう一度お試しください。"
+
+msgid "Selected option"
+msgstr "選択したオプション"
+
+msgid "In stock"
+msgstr "在庫あり"
+
+msgid "Out of stock"
+msgstr "在庫切れ"
+
+msgid "On backorder"
+msgstr "取り寄せ"
+
+msgid "Human handoff is disabled for this store."
+msgstr "この店舗では担当者への引き継ぎは無効です。"
+
+msgid "Please enter your name."
+msgstr "お名前をご入力ください。"
+
+msgid "Please enter a valid email address."
+msgstr "有効なメールアドレスをご入力ください。"
+
+msgid "Thanks. A store team member will contact you soon."
+msgstr "ありがとうございます。店舗スタッフからまもなくご連絡いたします。"
+
+msgid "Coupon suggestions are disabled for this store."
+msgstr "この店舗ではクーポンの提案は無効です。"
+
+msgid "Here are the coupon codes currently available from this store."
+msgstr "現在この店舗でご利用いただけるクーポンコードはこちらです。"
+
+msgid "New Geeky Bot lead from %s"
+msgstr "%s からの新しい Geeky Bot リード"
+
+msgid "Too many contact requests. Please wait a few minutes and try again."
+msgstr "お問い合わせの回数が多すぎます。数分お待ちのうえ、もう一度お試しください。"
+
+msgid "Order lookup is disabled."
+msgstr "注文の照会は無効です。"
+
+msgid "Please log in to view your order status."
+msgstr "注文状況を確認するにはログインしてください。"
+
+msgid "WooCommerce orders are not available."
+msgstr "WooCommerce の注文を利用できません。"
+
+msgid "Order not found."
+msgstr "注文が見つかりません。"
+
+msgid "For privacy, I can only show orders from your current account."
+msgstr "プライバシー保護のため、現在のアカウントの注文のみ表示できます。"
+
+msgid "WooCommerce product data is not available."
+msgstr "WooCommerce の商品データを利用できません。"
+
+msgid "Product comparison is disabled."
+msgstr "商品の比較は無効です。"
+
+msgid "I couldn't find enough available products to compare."
+msgstr "比較できる商品が十分に見つかりませんでした。"
+
+msgid "Here is a side-by-side comparison of the selected products."
+msgstr "選択した商品を並べて比較した結果はこちらです。"
+
+msgid "Smart recommendations are disabled."
+msgstr "スマートおすすめは無効です。"
+
+msgid "Because you are viewing %s, these related products may also fit."
+msgstr "%s をご覧いただいているため、こちらの関連商品もお役に立つかもしれません。"
+
+msgid "That analytics event is not allowed."
+msgstr "そのアナリティクスイベントは許可されていません。"
+
+msgid "Price"
+msgstr "価格"
+
+msgid "Stock"
+msgstr "在庫"
+
+msgid "Rating"
+msgstr "評価"
+
+msgid "Categories"
+msgstr "カテゴリー"
+
+msgid "Attributes"
+msgstr "属性"
+
+msgid "Description"
+msgstr "説明"
+
+msgid "Product #%d"
+msgstr "商品 #%d"
+
+msgid "Product comparison is unavailable right now. You can still open the products below to review their details."
+msgstr "現在、商品の比較はご利用いただけません。以下の商品を開いて詳細をご確認いただけます。"
+
+msgid "Choose at least two different shown products to compare."
+msgstr "比較するには、表示されている商品のうち異なるものを 2 つ以上お選びください。"
+
+msgid "That needs an active Commerce Pro licence. You can still browse and ask about products."
+msgstr "それには有効な Commerce Pro ライセンスが必要です。商品の閲覧やご質問は引き続きご利用いただけます。"
+
+msgid "The store is not available right now."
+msgstr "現在ストアをご利用いただけません。"
+
+msgid "Your cart is not available right now."
+msgstr "現在カートをご利用いただけません。"
+
+msgid "%s comes in options, so tell me which one — for example the colour or size — and I will add it."
+msgstr "%s にはオプションがあります。どれをご希望か（例えば色やサイズ）お知らせいただければ、追加いたします。"
+
+msgid "That product needs options first."
+msgstr "その商品はまずオプションの選択が必要です。"
+
+msgid "%s is not in your cart, so there is nothing to change."
+msgstr "%s はカートに入っていないため、変更する対象がありません。"
+
+msgid "Your cart has been updated."
+msgstr "カートを更新しました。"
+
+msgid "Your cart is now empty."
+msgstr "カートは空になりました。"
+
+msgid "Your cart now has %s."
+msgstr "現在カートには %s が入っています。"
+
+msgid "Your cart is empty at the moment."
+msgstr "現在カートは空です。"
+
+msgid "Your cart has %s."
+msgstr "カートには %s が入っています。"
+
+msgid "Checkout is handled on the store pages. Your cart is ready when you are."
+msgstr "購入手続きは店舗のページで行います。カートはいつでもご利用いただけます。"
+
+msgid "You can complete your order here: %s"
+msgstr "こちらでご注文を完了できます：%s"
+
+msgid "You can complete your order from the checkout page."
+msgstr "購入手続きページからご注文を完了できます。"
+
+msgid "There are no discount codes to share right now."
+msgstr "現在ご案内できる割引コードはありません。"
+
+msgid "There are no public discount codes available at the moment."
+msgstr "現在ご利用いただける公開の割引コードはありません。"
+
+msgid "Current code: %s. Enter it at checkout."
+msgid_plural "Current codes: %s. Enter one at checkout."
+msgstr[0] "現在のコード：%s。購入手続きの際にご入力ください。"
+
+msgid "I can't pass this to the team from here, but the store's help pages have its contact details."
+msgstr "ここから担当チームにお繋ぎすることはできませんが、店舗のヘルプページに連絡先が記載されています。"
+
+msgid "I've noted that you want a person to look at this. The store team can pick it up from your account, here: %s"
+msgstr "担当者による確認をご希望とのこと、承りました。店舗チームがこちらのアカウントページから対応いたします：%s"
+
+msgid "I've noted that you want a person to look at this, and the store team can pick it up from its help pages."
+msgstr "担当者による確認をご希望とのこと、承りました。店舗チームはヘルプページから対応いたします。"
+
+msgid "I couldn't find %s in this store, so I haven't changed anything."
+msgstr "この店舗で %s が見つからなかったため、何も変更していません。"
+
+msgid "I'm not sure which product you mean. Name it, or say which of the results you want."
+msgstr "どの商品のことか分かりませんでした。商品名をお知らせいただくか、検索結果のどれかをお選びください。"
+
+msgid "The first product"
+msgstr "1 つ目の商品"
+
+msgid "the second product"
+msgstr "2 つ目の商品"
+
+msgid "Here are the confirmed differences between %1$s and %2$s. Compare their price, stock, rating, categories, attributes, and description below."
+msgstr "%1$s と %2$s の確認済みの違いはこちらです。以下で価格・在庫・評価・カテゴリー・属性・説明を比較できます。"
+
+msgid "I could not confirm both product prices, so I cannot reliably say which one is cheaper."
+msgstr "両方の商品価格を確認できなかったため、どちらが安いかを確実にはお答えできません。"
+
+msgid "%1$s and %2$s currently have the same price: %3$s."
+msgstr "%1$s と %2$s の現在の価格は同じです：%3$s。"
+
+msgid "%1$s is cheaper at %2$s, compared with %3$s at %4$s."
+msgstr "%1$s は %2$s で、%4$s の %3$s より安価です。"
+
+msgid "Neither %1$s nor %2$s has a customer rating yet."
+msgstr "%1$s にも %2$s にもまだお客様の評価がありません。"
+
+msgid "%1$s and %2$s have the same customer rating: %3$s out of 5."
+msgstr "%1$s と %2$s のお客様の評価は同じです：5 段階中 %3$s。"
+
+msgid "%1$s has the better customer rating at %2$s out of 5."
+msgstr "%1$s の方がお客様の評価が高く、5 段階中 %2$s です。"
+
+msgid "%s%% off eligible items"
+msgstr "対象商品が %s%% オフ"
+
+msgid "%s off eligible cart"
+msgstr "対象カートから %s オフ"
+
+msgid "Discount for eligible products"
+msgstr "対象商品の割引"
+
+msgid "Minimum spend: %s."
+msgstr "最低購入金額：%s。"
+
+msgid "Geeky Bot Commerce Pro can only be activated after a valid Commerce Pro license is verified for this site."
+msgstr "Geeky Bot Commerce Pro は、このサイトで有効な Commerce Pro ライセンスが確認された後にのみ有効化できます。"
+
+msgid "Commerce Pro activation blocked"
+msgstr "Commerce Pro の有効化がブロックされました"
+
+msgid "Commerce Pro could not create a verified runtime binding for this site."
+msgstr "Commerce Pro はこのサイトで検証済みのランタイムバインディングを作成できませんでした。"
+
+msgid "Commerce Pro requires the Geeky Bot core license service."
+msgstr "Commerce Pro には Geeky Bot コアのライセンスサービスが必要です。"
+
+msgid "Commerce Pro could not verify this site’s entitlement."
+msgstr "Commerce Pro はこのサイトの利用権を確認できませんでした。"
+
+msgid "This Commerce Pro installation is not verified for the current site."
+msgstr "この Commerce Pro のインストールは、現在のサイトで検証されていません。"
+
+msgid "This shopping action is unavailable right now. Please try again later."
+msgstr "このショッピング操作は現在ご利用いただけません。しばらくしてからお試しください。"
+
+msgid "Geeky Bot Commerce Pro is installed, but its features are locked until this site has a valid verified Commerce Pro entitlement."
+msgstr "Geeky Bot Commerce Pro はインストール済みですが、このサイトで有効な Commerce Pro の利用権が確認されるまで機能はロックされます。"
+
+msgid "Geeky Bot Commerce Pro leads and analytics"
+msgstr "Geeky Bot Commerce Pro のリードとアナリティクス"
+
+msgid "Geeky Bot Commerce Pro leads"
+msgstr "Geeky Bot Commerce Pro のリード"
+
+msgid "Created"
+msgstr "作成日"
+
+msgid "Geeky Bot Commerce Pro analytics"
+msgstr "Geeky Bot Commerce Pro のアナリティクス"
+
+msgid "Recent events"
+msgstr "最近のイベント"
+
+msgid "Geeky Bot Commerce Pro lead data was removed and analytics were anonymized."
+msgstr "Geeky Bot Commerce Pro のリードデータを削除し、アナリティクスを匿名化しました。"
+
+msgid "capacity"
+msgstr "容量"
+
+msgid "battery life"
+msgstr "バッテリー駆動時間"
+
+msgid "weight"
+msgstr "重量"
+
+msgid "size"
+msgstr "サイズ"
+
+msgid "material"
+msgstr "素材"
+
+msgid "warmth"
+msgstr "保温性"
+
+msgid "I don't have %s recorded for the products shown, so I can't compare them on that. The product pages may list more detail."
+msgstr "表示中の商品について %s の記録がないため、その点では比較できません。商品ページに詳細が記載されている場合があります。"
+
+msgid "Only %1$s lists %2$s: %3$s. I don't have that detail for %4$s."
+msgstr "%2$s が記載されているのは %1$s のみです：%3$s。%4$s についてはその情報がありません。"
+
+msgid "%1$s has the lowest %2$s at %3$s, compared with %4$s."
+msgstr "%1$s の %2$s が最も低く %3$s で、%4$s と比較できます。"
+
+msgid "%1$s has the highest %2$s at %3$s, compared with %4$s."
+msgstr "%1$s の %2$s が最も高く %3$s で、%4$s と比較できます。"
+
+msgid "I don't have that detail for %s."
+msgstr "%s についてはその情報がありません。"
+
+msgid "Here is the %1$s for each: %2$s."
+msgstr "それぞれの %1$s はこちらです：%2$s。"
+
+msgid "%1$s and %2$s"
+msgstr "%1$s と %2$s"
+
+msgid "compare the products on screen side by side"
+msgstr "画面上の商品を並べて比較する"
+
+msgid "check your own orders while you are signed in"
+msgstr "ログイン中にご自身の注文を確認する"
+
+msgid "I couldn't find order %s on your account. Check the number, or open your account to see all your orders."
+msgstr "お客様のアカウントで注文 %s が見つかりませんでした。番号をご確認いただくか、アカウントを開いてすべての注文をご覧ください。"
+
+msgid "You don't have any past orders on this account yet."
+msgstr "このアカウントには過去の注文がまだありません。"
+
+msgid "Your last order was on %1$s: %2$s. It is currently %3$s."
+msgstr "直近のご注文は %1$s の %2$s です。現在のステータスは %3$s です。"
+
+msgid "You don't have any orders on this account yet."
+msgstr "このアカウントにはまだ注文がありません。"
+
+msgid "I couldn't read that order."
+msgstr "その注文を読み取れませんでした。"
+
+msgid "Order %1$s, placed on %2$s, is currently %3$s. Total %4$s."
+msgstr "%2$s に行われた注文 %1$s は、現在 %3$s です。合計 %4$s。"
+
+msgid "Your shopping session expired. Please refresh the page and try again."
+msgstr "ショッピングセッションの有効期限が切れました。ページを更新してもう一度お試しください。"
+
+msgid "Geeky Bot"
+msgstr "Geeky Bot"
+
+msgid "(opens in a new tab)"
+msgstr "(新しいタブで開きます)"
+
+msgid "Finish setting up Geeky Bot"
+msgstr "Geeky Bot のセットアップを完了する"
+
+msgid "The assistant is not ready for shoppers yet. Work through these steps in order — each one takes a minute."
+msgstr "アシスタントはまだ買い物客向けの準備ができていません。以下のステップを順に進めてください。各ステップは 1 分ほどで完了します。"
+
+msgid "%1$s of %2$s done"
+msgstr "%2$s 件中 %1$s 件完了"
+
+msgid "Do this next"
+msgstr "次はこちら"
+
+msgid "Done"
+msgstr "完了"
+
+msgid "Not enough history yet"
+msgstr "履歴がまだ足りません"
+
+msgid "The chart appears once shoppers have used the assistant on at least two different days."
+msgstr "買い物客が 2 日以上アシスタントを利用すると、グラフが表示されます。"
+
+msgid "No activity in this period"
+msgstr "この期間のアクティビティはありません"
+
+msgid "Once shoppers start using the assistant, their daily activity is plotted here."
+msgstr "買い物客がアシスタントを使い始めると、日ごとのアクティビティがここに表示されます。"
+
+msgid "Daily assistant activity"
+msgstr "アシスタントの日次アクティビティ"
+
+msgid "No shopper activity yet"
+msgstr "買い物客のアクティビティはまだありません"
+
+msgid "Once shoppers open the assistant, the steps they take through it are tracked here."
+msgstr "買い物客がアシスタントを開くと、その中でのステップがここで追跡されます。"
+
+msgid "%s%% continued"
+msgstr "%s%% が継続"
+
+msgid "Setup Wizard"
+msgstr "セットアップウィザード"
+
+msgid "Storefront Widget"
+msgstr "ストアフロントウィジェット"
+
+msgid "Product Search"
+msgstr "商品検索"
+
+msgid "Store Knowledge"
+msgstr "ストアナレッジ"
+
+msgid "Conversations"
+msgstr "会話"
+
+msgid "Analytics"
+msgstr "アナリティクス"
+
+msgid "Guided Demo"
+msgstr "ガイド付きデモ"
+
+msgid "Answer Mode"
+msgstr "回答モード"
+
+msgid "Settings"
+msgstr "設定"
+
+msgid "Add-ons"
+msgstr "アドオン"
+
+msgid "Choose widget image"
+msgstr "ウィジェット画像を選択"
+
+msgid "Use this image"
+msgstr "この画像を使用"
+
+msgid "Remove image"
+msgstr "画像を削除"
+
+msgid "Copy"
+msgstr "コピー"
+
+msgid "You do not have permission to rebuild the product index."
+msgstr "商品インデックスを再構築する権限がありません。"
+
+msgid "You do not have permission to refresh store knowledge."
+msgstr "ストアナレッジを更新する権限がありません。"
+
+msgid "You do not have permission to refresh Guided Demo examples."
+msgstr "ガイド付きデモの例を更新する権限がありません。"
+
+msgid "You do not have permission to update setup progress."
+msgstr "セットアップの進捗を更新する権限がありません。"
+
+msgid "You do not have permission to manage Geeky Bot licenses."
+msgstr "Geeky Bot のライセンスを管理する権限がありません。"
+
+msgid "You do not have permission to install plugins."
+msgstr "プラグインをインストールする権限がありません。"
+
+msgid "You do not have permission to activate plugins."
+msgstr "プラグインを有効化する権限がありません。"
+
+msgid "You do not have permission to manage Commerce Pro updates."
+msgstr "Commerce Pro の更新を管理する権限がありません。"
+
+msgid "You do not have permission to check Commerce Pro updates."
+msgstr "Commerce Pro の更新を確認する権限がありません。"
+
+msgid "You do not have permission to update Commerce Pro."
+msgstr "Commerce Pro を更新する権限がありません。"
+
+msgid "Live-ready"
+msgstr "公開準備完了"
+
+msgid "%s shopper question"
+msgid_plural "%s shopper questions"
+msgstr[0] "買い物客からの質問 %s 件"
+
+msgid "No urgent questions"
+msgstr "緊急の質問はありません"
+
+msgid "Review %s shopper question"
+msgid_plural "Review %s shopper questions"
+msgstr[0] "買い物客からの質問 %s 件を確認"
+
+msgid "No urgent shopper questions"
+msgstr "緊急の買い物客からの質問はありません"
+
+msgid "Exact matches"
+msgstr "完全一致"
+
+msgid "Smart product matches"
+msgstr "スマート商品マッチ"
+
+msgid "Exact match"
+msgstr "完全一致"
+
+msgid "Smart matches"
+msgstr "スマートマッチ"
+
+msgid "Natural search is active"
+msgstr "自然言語検索が有効です"
+
+msgid "Natural search needs tuning"
+msgstr "自然言語検索の調整が必要です"
+
+msgid "Conversations started"
+msgstr "開始された会話"
+
+msgid "Products opened"
+msgstr "開かれた商品"
+
+msgid "Products compared"
+msgstr "比較された商品"
+
+msgid "Added to cart"
+msgstr "カートに追加"
+
+msgid "AI sales assistant · connected to %s products"
+msgstr "AI 販売アシスタント · %s 件の商品に接続"
+
+msgid "Live on storefront"
+msgstr "ストアフロントで稼働中"
+
+msgid "Widget is off"
+msgstr "ウィジェットはオフです"
+
+msgid "Tune product intelligence"
+msgstr "商品インテリジェンスを調整"
+
+msgid "Review questions"
+msgstr "質問を確認"
+
+msgid "Open store"
+msgstr "ストアを開く"
+
+msgid "Connect WooCommerce"
+msgstr "WooCommerce を接続"
+
+msgid "Geeky Bot reads your live products, prices, stock and variations directly from WooCommerce."
+msgstr "Geeky Bot は、公開中の商品・価格・在庫・バリエーションを WooCommerce から直接読み取ります。"
+
+msgid "Without it the assistant has no catalog to answer from."
+msgstr "これがないと、アシスタントには回答の元となるカタログがありません。"
+
+msgid "Check WooCommerce"
+msgstr "WooCommerce を確認"
+
+msgid "Build the product search index"
+msgstr "商品検索インデックスを構築"
+
+msgid "Indexing lets shoppers search in their own words, like \"warm jacket under 60\", instead of exact product names."
+msgstr "インデックスを作成すると、買い物客は正確な商品名ではなく「60 以下の暖かいジャケット」のように自分の言葉で検索できます。"
+
+msgid "Until this runs, product questions return nothing."
+msgstr "これを実行するまで、商品に関する質問には何も返りません。"
+
+msgid "Index products"
+msgstr "商品をインデックス"
+
+msgid "Choose your policy pages"
+msgstr "ポリシーページを選択"
+
+msgid "Pick the published pages covering shipping, refunds and returns. The assistant quotes only these and never invents a policy."
+msgstr "配送・返金・返品について記載された公開済みのページを選んでください。アシスタントはこれらのみを引用し、ポリシーを創作することはありません。"
+
+msgid "Shoppers asking about returns or delivery get the fallback answer instead."
+msgstr "返品や配送について尋ねた買い物客には、代わりにフォールバックの回答が返されます。"
+
+msgid "Select pages"
+msgstr "ページを選択"
+
+msgid "Turn on the storefront widget"
+msgstr "ストアフロントウィジェットをオンにする"
+
+msgid "This puts the assistant on your public store pages. Do it last, once the steps above are done."
+msgstr "これにより、公開中の店舗ページにアシスタントが表示されます。上記のステップが完了した後、最後に行ってください。"
+
+msgid "Nobody can use the assistant until the widget is live."
+msgstr "ウィジェットを公開するまで、誰もアシスタントを利用できません。"
+
+msgid "Enable widget"
+msgstr "ウィジェットを有効化"
+
+msgid "vs %s previous 30 days"
+msgstr "前の 30 日間の %s と比較"
+
+msgid "Shopper questions"
+msgstr "買い物客からの質問"
+
+msgid "Answered from store data"
+msgstr "店舗データから回答"
+
+msgid "vs %s%% previous 30 days"
+msgstr "前の 30 日間の %s%% と比較"
+
+msgid "No history yet"
+msgstr "履歴はまだありません"
+
+msgid "Needs review"
+msgstr "要確認"
+
+msgid "Unanswered shopper phrases"
+msgstr "回答できなかった買い物客のフレーズ"
+
+msgid "Products indexed"
+msgstr "インデックス済み商品"
+
+msgid "Rebuilt %s"
+msgstr "%s に再構築"
+
+msgid "Assisted revenue"
+msgstr "アシスト経由の売上"
+
+msgid "%s order in 30 days"
+msgid_plural "%s orders in 30 days"
+msgstr[0] "30 日間で %s 件の注文"
+
+msgid "Performance"
+msgstr "パフォーマンス"
+
+msgid "Conversations over time"
+msgstr "会話数の推移"
+
+msgid "Last 30 days"
+msgstr "過去 30 日間"
+
+msgid "This period · %s"
+msgstr "今期 · %s"
+
+msgid "Previous 30 days · %s"
+msgstr "前の 30 日間 · %s"
+
+msgid "Daily conversations over the last 30 days"
+msgstr "過去 30 日間の日次会話数"
+
+msgid "What shoppers do next"
+msgstr "買い物客の次の行動"
+
+msgid "Comparison and cart steps appear once Commerce Pro is active, which adds buying actions to the assistant."
+msgstr "比較とカートのステップは、購入アクションをアシスタントに追加する Commerce Pro を有効にすると表示されます。"
+
+msgid "Revenue attribution arrives with Commerce Pro 2.0.2. Update the add-on to see what the assistant actually sold."
+msgstr "売上のアトリビューションは Commerce Pro 2.0.2 で利用可能になります。アドオンを更新して、アシスタントが実際に売り上げた内容をご確認ください。"
+
+msgid "Revenue from items added in chat"
+msgstr "チャットで追加された商品による売上"
+
+msgid "Across %1$s order worth %2$s"
+msgid_plural "Across %1$s orders worth %2$s"
+msgstr[0] "%2$s 相当の注文 %1$s 件にわたって"
+
+msgid "Only the lines the shopper added through the assistant are counted, not the whole order."
+msgstr "買い物客がアシスタント経由で追加した明細のみが対象で、注文全体は含まれません。"
+
+msgid "No orders in this period included an item added through the assistant."
+msgstr "この期間の注文には、アシスタント経由で追加された商品は含まれていませんでした。"
+
+msgid "Revenue appears here after the first order containing an item a shopper added through the assistant. Earlier orders cannot be attributed retroactively."
+msgstr "買い物客がアシスタント経由で追加した商品を含む最初の注文が発生すると、売上がここに表示されます。それ以前の注文をさかのぼって帰属させることはできません。"
+
+msgid "Needs action"
+msgstr "要対応"
+
+msgid "Next highest-impact actions"
+msgstr "次に効果が高いアクション"
+
+msgid "%s%% set up"
+msgstr "%s%% セットアップ済み"
+
+msgid "Turn repeated misses into better attributes, synonyms, selected policy pages, or Commerce Pro rules."
+msgstr "繰り返し発生する取りこぼしを、より良い属性・同義語・選択済みポリシーページ・Commerce Pro のルールに反映しましょう。"
+
+msgid "The current build is handling the latest reviewed shopper questions."
+msgstr "現在のビルドは、直近で確認された買い物客の質問に対応できています。"
+
+msgid "Open review"
+msgstr "レビューを開く"
+
+msgid "WooCommerce catalog connected"
+msgstr "WooCommerce のカタログが接続済み"
+
+msgid "The assistant reads live products, prices and stock from WooCommerce."
+msgstr "アシスタントは、公開中の商品・価格・在庫を WooCommerce から読み取ります。"
+
+msgid "Check"
+msgstr "確認"
+
+msgid "Buyer-language search turns shopper phrasing into catalog matches."
+msgstr "購入者の言葉による検索が、買い物客の言い回しをカタログの一致結果に変換します。"
+
+msgid "Tune search"
+msgstr "検索を調整"
+
+msgid "Policy answers grounded"
+msgstr "ポリシー回答の根拠あり"
+
+msgid "Shipping, refund and returns questions need a selected policy page, or the assistant sends the fallback answer."
+msgstr "配送・返金・返品に関する質問にはポリシーページの選択が必要です。選択しない場合、アシスタントはフォールバックの回答を返します。"
+
+msgid "Choose pages"
+msgstr "ページを選択"
+
+msgid "Storefront widget enabled"
+msgstr "ストアフロントウィジェットが有効"
+
+msgid "Shoppers only see the assistant once the widget is live on public store pages."
+msgstr "公開中の店舗ページでウィジェットが稼働して初めて、買い物客はアシスタントを見ることができます。"
+
+msgid "Open widget"
+msgstr "ウィジェットを開く"
+
+msgid "Why answers failed"
+msgstr "回答が失敗した理由"
+
+msgid "No failed answers recorded"
+msgstr "失敗した回答は記録されていません"
+
+msgid "When the assistant cannot ground an answer, the reason is logged here so you can fix the cause."
+msgstr "アシスタントが回答の根拠を見つけられない場合、原因を修正できるよう理由がここに記録されます。"
+
+msgid "Open conversation review"
+msgstr "会話レビューを開く"
+
+msgid "What shoppers ask"
+msgstr "買い物客が尋ねること"
+
+msgid "Latest unanswered questions"
+msgstr "最新の未回答の質問"
+
+msgid "Nothing unanswered right now"
+msgstr "現在、未回答のものはありません"
+
+msgid "Shopper phrases the assistant could not ground in your catalog or policy pages will appear here."
+msgstr "カタログやポリシーページで根拠を見つけられなかった買い物客のフレーズがここに表示されます。"
+
+msgid "Shopper asked"
+msgstr "買い物客の質問"
+
+msgid "Reason"
+msgstr "理由"
+
+msgid "When"
+msgstr "日時"
+
+msgid "Conversation review signal"
+msgstr "会話レビューのシグナル"
+
+msgid "Messages stored"
+msgstr "保存されたメッセージ"
+
+msgid "Now handled"
+msgstr "対応済み"
+
+msgid "Every unanswered shopper phrase becomes a signal for product data, synonyms, policy pages, or future sales rules."
+msgstr "未回答の買い物客のフレーズはすべて、商品データ・同義語・ポリシーページ・今後の販売ルールのためのシグナルになります。"
+
+msgid "Right now"
+msgstr "たった今"
+
+msgid "Recent conversations"
+msgstr "最近の会話"
+
+msgid "No conversations yet"
+msgstr "会話はまだありません"
+
+msgid "Shopper conversations appear here as soon as the widget is used on your store."
+msgstr "ウィジェットが店舗で利用されると、買い物客との会話がここに表示されます。"
+
+msgid "%s question went unanswered"
+msgid_plural "%s questions went unanswered"
+msgstr[0] "%s 件の質問が未回答でした"
+
+msgid "%s product opened"
+msgid_plural "%s products opened"
+msgstr[0] "%s 件の商品が開かれました"
+
+msgid "%s message"
+msgid_plural "%s messages"
+msgstr[0] "%s 件のメッセージ"
+
+msgid "(no shopper message stored)"
+msgstr "(買い物客のメッセージは保存されていません)"
+
+msgid "Products the assistant shows"
+msgstr "アシスタントが表示する商品"
+
+msgid "No product activity recorded"
+msgstr "商品のアクティビティは記録されていません"
+
+msgid "Once shoppers open products through the assistant, the most requested ones are listed here."
+msgstr "買い物客がアシスタント経由で商品を開くと、リクエストの多い商品がここに表示されます。"
+
+msgid "Per-product tracking is part of Commerce Pro, which records the buying actions shoppers take inside the chat."
+msgstr "商品ごとの追跡は、チャット内での購入アクションを記録する Commerce Pro の機能です。"
+
+msgid "Product"
+msgstr "商品"
+
+msgid "Requests"
+msgstr "リクエスト数"
+
+msgid "What shoppers see"
+msgstr "買い物客に表示される内容"
+
+msgid "Tune widget"
+msgstr "ウィジェットを調整"
+
+msgid "Open storefront"
+msgstr "ストアフロントを開く"
+
+msgid "Reference"
+msgstr "リファレンス"
+
+msgid "Product discovery signals"
+msgstr "商品発見のシグナル"
+
+msgid "Search uses WooCommerce product data first, then shopper-language synonyms and close-match rules."
+msgstr "検索ではまず WooCommerce の商品データを使用し、その後に買い物客の言葉の同義語と近似一致ルールを使用します。"
+
+msgid "Natural search"
+msgstr "自然言語検索"
+
+msgid "Match mode"
+msgstr "一致モード"
+
+msgid "Product name"
+msgstr "商品名"
+
+msgid "SKU"
+msgstr "SKU"
+
+msgid "Tags"
+msgstr "タグ"
+
+msgid "Price phrases"
+msgstr "価格の表現"
+
+msgid "Sale signals"
+msgstr "セールのシグナル"
+
+msgid "Beyond simple product search"
+msgstr "シンプルな商品検索を超えて"
+
+msgid "Commerce Pro extends the assistant into buying actions while keeping answers grounded in store data."
+msgstr "Commerce Pro は、回答を店舗データに基づいたまま保ちながら、アシスタントを購入アクションへと拡張します。"
+
+msgid "Natural product search"
+msgstr "自然言語による商品検索"
+
+msgid "Cart add, update and remove"
+msgstr "カートへの追加・更新・削除"
+
+msgid "Order history"
+msgstr "注文履歴"
+
+msgid "Coupons and deals"
+msgstr "クーポンとお得情報"
+
+msgid "See what Commerce Pro adds"
+msgstr "Commerce Pro で追加される機能を見る"
+
+msgid "Try examples from this store"
+msgstr "この店舗の例を試す"
+
+msgid "Guided Demo uses visible indexed products and approved policy pages, then labels which requests are free and which need Commerce Pro."
+msgstr "ガイド付きデモは、公開中のインデックス済み商品と承認済みポリシーページを使用し、どのリクエストが無料でどれに Commerce Pro が必要かを表示します。"
+
+msgid "Product names, prices, attributes and sale state"
+msgstr "商品名・価格・属性・セール状態"
+
+msgid "Selected shipping, refund and store pages"
+msgstr "選択した配送・返金・店舗ページ"
+
+msgid "Find, understand and choose products"
+msgstr "商品を見つけ、理解し、選ぶ"
+
+msgid "Variations, cart actions and checkout flow"
+msgstr "バリエーション・カートアクション・購入手続きフロー"
+
+msgid "Open Guided Demo"
+msgstr "ガイド付きデモを開く"
+
+msgid "Go to"
+msgstr "移動先"
+
+msgid "Geeky Bot admin sections"
+msgstr "Geeky Bot の管理セクション"
+
+msgid "Setup"
+msgstr "セットアップ"
+
+msgid "Widget"
+msgstr "ウィジェット"
+
+msgid "Product search"
+msgstr "商品検索"
+
+msgid "Store knowledge"
+msgstr "ストアナレッジ"
+
+msgid "Integrations"
+msgstr "連携"
+
+msgid "Guest conversations appear in the admin review center."
+msgstr "ゲストの会話は管理画面のレビューセンターに表示されます。"
+
+msgid "Guest conversations stay in the shopper browser and do not appear in admin."
+msgstr "ゲストの会話は買い物客のブラウザ内に留まり、管理画面には表示されません。"
+
+msgid "Prepare products"
+msgstr "商品を準備"
+
+msgid "Waiting for WooCommerce"
+msgstr "WooCommerce を待機中"
+
+msgid "Try real examples"
+msgstr "実際の例を試す"
+
+msgid "Waiting for product index"
+msgstr "商品インデックスを待機中"
+
+msgid "%s launch check ready"
+msgid_plural "%s launch checks ready"
+msgstr[0] "%s 件の公開前チェックが完了"
+
+msgid "%1$s ready · %2$s not configured · %3$s blocked · %4$s optional. The same live readiness score is used throughout Geeky Bot."
+msgstr "%1$s 件が準備完了 · %2$s 件が未設定 · %3$s 件がブロック · %4$s 件が任意。Geeky Bot 全体で同じ公開準備スコアが使用されます。"
+
+msgid "Current mode: %s. Local grounded mode is the default and calls no language model — answers are built from store data. Zywrap and OpenAI are optional and add generated wording."
+msgstr "現在のモード：%s。ローカルの根拠ベースモードが既定で、言語モデルを呼び出しません。回答は店舗データから構築されます。Zywrap と OpenAI は任意で、生成された文章を追加します。"
+
+msgid "Indexed products: %s. Rebuild after large imports or major catalog changes."
+msgstr "インデックス済み商品：%s。大量インポートやカタログの大幅な変更の後に再構築してください。"
+
+msgid "Blocked until WooCommerce is active. Product preparation and indexing cannot run without the store catalog."
+msgstr "WooCommerce が有効になるまでブロックされます。店舗カタログがないと、商品の準備とインデックス作成は実行できません。"
+
+msgid "Retention: %1$s days. %2$s"
+msgstr "保持期間：%1$s 日。%2$s"
+
+msgid "%1$s store-grounded Free examples and %2$s Commerce Pro examples are available."
+msgstr "店舗データに基づく無料の例が %1$s 件、Commerce Pro の例が %2$s 件利用できます。"
+
+msgid "Blocked until WooCommerce has at least one visible indexed product."
+msgstr "WooCommerce に公開中のインデックス済み商品が 1 件以上あるまでブロックされます。"
+
+msgid "Current status: %s. This does not disable any feature or remove settings."
+msgstr "現在のステータス：%s。これによって機能が無効になったり設定が削除されたりすることはありません。"
+
+msgid "Launch a useful WooCommerce shopping assistant through a resumable seven-step path. Every check uses the live store configuration, so you can leave and continue later without losing progress."
+msgstr "途中で再開できる 7 ステップの手順で、実用的な WooCommerce ショッピングアシスタントを公開します。各チェックは稼働中の店舗設定を使用するため、いったん離れても進捗を失わずに後から続けられます。"
+
+msgid "Guided launch"
+msgstr "ガイド付き公開"
+
+msgid "Welcome to Geeky Bot. Complete the important checks below, or leave this page and return from Geeky Bot → Setup Wizard at any time."
+msgstr "Geeky Bot へようこそ。以下の重要なチェックを完了するか、このページを離れて Geeky Bot → セットアップウィザードからいつでも戻ってきてください。"
+
+msgid "Setup review status updated."
+msgstr "セットアップのレビュー状況を更新しました。"
+
+msgid "Set up the assistant in dependency order"
+msgstr "依存関係の順序でアシスタントをセットアップ"
+
+msgid "All checks ready"
+msgstr "すべてのチェックが完了"
+
+msgid "Store system check"
+msgstr "店舗システムチェック"
+
+msgid "Confirm WooCommerce, WordPress, PHP and the local REST runtime before configuring shopper features."
+msgstr "買い物客向け機能を設定する前に、WooCommerce・WordPress・PHP・ローカル REST ランタイムを確認します。"
+
+msgid "Review system"
+msgstr "システムを確認"
+
+msgid "Answer mode"
+msgstr "回答モード"
+
+msgid "Review answer mode"
+msgstr "回答モードを確認"
+
+msgid "Product search index"
+msgstr "商品検索インデックス"
+
+msgid "Approve public shipping, returns, refunds, payment or warranty pages. Optional for product discovery — missing information stays unanswered rather than invented."
+msgstr "配送・返品・返金・支払い・保証に関する公開ページを承認します。商品検索には任意です。情報がない場合は、創作されるのではなく未回答のままになります。"
+
+msgid "Select policy pages"
+msgstr "ポリシーページを選択"
+
+msgid "Storefront widget"
+msgstr "ストアフロントウィジェット"
+
+msgid "Confirm the assistant name, welcome copy, launcher, mobile position and product-card volume."
+msgstr "アシスタント名・ウェルカム文・ランチャー・モバイルでの位置・商品カードの表示件数を確認します。"
+
+msgid "Configure widget"
+msgstr "ウィジェットを設定"
+
+msgid "Privacy and conversations"
+msgstr "プライバシーと会話"
+
+msgid "Review privacy"
+msgstr "プライバシーを確認"
+
+msgid "Launch progress"
+msgstr "公開の進捗"
+
+msgid "Ready for a full rehearsal"
+msgstr "本番同様のリハーサルの準備ができました"
+
+msgid "System checks"
+msgstr "システムチェック"
+
+msgid "Local only"
+msgstr "ローカルのみ"
+
+msgid "OK"
+msgstr "OK"
+
+msgid "Failed"
+msgstr "失敗"
+
+msgid "Review status"
+msgstr "レビュー状況"
+
+msgid "Finish setup review"
+msgstr "セットアップのレビューを完了"
+
+msgid "Skip for now"
+msgstr "今はスキップ"
+
+msgid "The Setup Wizard stays available from the Geeky Bot menu."
+msgstr "セットアップウィザードは Geeky Bot メニューからいつでも利用できます。"
+
+msgid "How this setup works"
+msgstr "このセットアップの仕組み"
+
+msgid "WooCommerce first"
+msgstr "まず WooCommerce"
+
+msgid "Products and the Guided Demo stay blocked until the store runtime is available."
+msgstr "店舗ランタイムが利用可能になるまで、商品とガイド付きデモはブロックされたままです。"
+
+msgid "No AI account required"
+msgstr "AI アカウントは不要"
+
+msgid "Local grounded mode is the default and works without an external provider or API key. It does not call a language model: answers are assembled from your catalog and selected policy pages. Add a provider key under Answer mode if you want generated, conversational wording."
+msgstr "ローカルの根拠ベースモードが既定で、外部プロバイダーや API キーなしで動作します。言語モデルは呼び出さず、回答はカタログと選択したポリシーページから組み立てられます。生成された会話調の文章が必要な場合は、回答モードでプロバイダーキーを追加してください。"
+
+msgid "You can stop anytime"
+msgstr "いつでも中断できます"
+
+msgid "Leave this page and return later. Progress is read from your live store, so nothing is lost."
+msgstr "このページを離れて後で戻ってこられます。進捗は稼働中の店舗から読み取られるため、何も失われません。"
+
+msgid "Try Geeky Bot with realistic shopper requests generated from this store’s own indexed products and approved policy pages. Refresh the board whenever you want a different catalog sample."
+msgstr "この店舗自身のインデックス済み商品と承認済みポリシーページから生成された、現実的な買い物客のリクエストで Geeky Bot を試せます。別のカタログサンプルが必要なときは、いつでもボードを更新してください。"
+
+msgid "Real-store rehearsal"
+msgstr "実店舗データでのリハーサル"
+
+msgid "Guided Demo examples regenerated from the current store data."
+msgstr "現在の店舗データからガイド付きデモの例を再生成しました。"
+
+msgid "The storefront widget is off. You can still copy examples, but turn the widget on before using Try on storefront."
+msgstr "ストアフロントウィジェットはオフです。例をコピーすることはできますが、「ストアフロントで試す」を使う前にウィジェットをオンにしてください。"
+
+msgid "Real-store examples"
+msgstr "実店舗データの例"
+
+msgid "Generated locally, with no AI usage"
+msgstr "ローカルで生成され、AI は使用していません"
+
+msgid "Free capabilities"
+msgstr "無料の機能"
+
+msgid "Commerce Pro examples"
+msgstr "Commerce Pro の例"
+
+msgid "Buying actions are unlocked"
+msgstr "購入アクションがアンロックされています"
+
+msgid "Preview of the paid buying journey"
+msgstr "有料版の購入フローのプレビュー"
+
+msgid "Examples from your catalog"
+msgstr "あなたのカタログからの例"
+
+msgid "Refresh examples"
+msgstr "例を更新"
+
+msgid "Connect the store catalog before generating examples"
+msgstr "例を生成する前に店舗カタログを接続してください"
+
+msgid "Guided Demo uses real, visible WooCommerce products. Activate WooCommerce, add or import products, then build the product search index."
+msgstr "ガイド付きデモは実在する公開中の WooCommerce 商品を使用します。WooCommerce を有効化し、商品を追加またはインポートしてから、商品検索インデックスを構築してください。"
+
+msgid "Add or import at least one visible product"
+msgstr "公開中の商品を 1 件以上追加またはインポートしてください"
+
+msgid "Examples are never generated from fake demo data. Add a real WooCommerce product, then build the product search index."
+msgstr "例が架空のデモデータから生成されることはありません。実際の WooCommerce 商品を追加してから、商品検索インデックスを構築してください。"
+
+msgid "Add a product"
+msgstr "商品を追加"
+
+msgid "Build the product index to generate real examples"
+msgstr "実際の例を生成するには商品インデックスを構築してください"
+
+msgid "%s published products are available, but none are ready in the Geeky Bot index yet."
+msgstr "公開済みの商品が %s 件ありますが、Geeky Bot のインデックスにはまだ 1 件も準備されていません。"
+
+msgid "Build the index"
+msgstr "インデックスを構築"
+
+msgid "Free"
+msgstr "無料"
+
+msgid "Runs as a short conversation, not a single question."
+msgstr "単発の質問ではなく、短い会話として実行されます。"
+
+msgid "%d turn"
+msgid_plural "%d turns"
+msgstr[0] "%d ターン"
+
+msgid "%d."
+msgstr "%d."
+
+msgid "Built from"
+msgstr "生成元"
+
+msgid "View Commerce Pro"
+msgstr "Commerce Pro を見る"
+
+msgid "Try on storefront"
+msgstr "ストアフロントで試す"
+
+msgid "This example uses a buying action available in Commerce Pro."
+msgstr "この例では Commerce Pro で利用できる購入アクションを使用します。"
+
+msgid "What each tier proves"
+msgstr "各プランで確認できること"
+
+msgid "Free proves product intelligence"
+msgstr "無料版は商品インテリジェンスを実証します"
+
+msgid "Shoppers find products, apply real constraints, ask product questions, receive grounded recommendations, and read approved store-policy answers."
+msgstr "買い物客は商品を見つけ、実際の条件を指定し、商品について質問し、根拠のあるおすすめを受け取り、承認済みの店舗ポリシーの回答を読むことができます。"
+
+msgid "Commerce Pro completes the sale"
+msgstr "Commerce Pro は販売を完結させます"
+
+msgid "Shoppers select variations, add products, manage the cart, and continue to checkout without leaving the assistant."
+msgstr "買い物客はアシスタントを離れることなく、バリエーションを選び、商品を追加し、カートを管理して、購入手続きに進めます。"
+
+msgid "Shape the live shopper panel: welcome copy, product-card volume, starter prompts, accent color, placement and mobile-ready preview."
+msgstr "公開中の買い物客向けパネルを設計します：ウェルカム文、商品カードの表示件数、スターター用の質問例、アクセントカラー、配置、モバイル対応プレビュー。"
+
+msgid "Shopper experience"
+msgstr "買い物客の体験"
+
+msgid "Widget settings saved."
+msgstr "ウィジェットの設定を保存しました。"
+
+msgid "Shopper-facing basics"
+msgstr "買い物客に表示される基本設定"
+
+msgid "Show the assistant on my store"
+msgstr "店舗にアシスタントを表示する"
+
+msgid "Adds the assistant button to your public store pages."
+msgstr "公開中の店舗ページにアシスタントのボタンを追加します。"
+
+msgid "Assistant name"
+msgstr "アシスタント名"
+
+msgid "Subtitle"
+msgstr "サブタイトル"
+
+msgid "Welcome message"
+msgstr "ウェルカムメッセージ"
+
+msgid "The first thing a shopper reads. Keep it short and inviting."
+msgstr "買い物客が最初に読む文章です。短く、親しみやすい内容にしてください。"
+
+msgid "When the assistant cannot answer"
+msgstr "アシスタントが回答できない場合"
+
+msgid "Sent when no catalog data or approved policy page covers the question."
+msgstr "カタログデータや承認済みポリシーページで質問をカバーできない場合に送信されます。"
+
+msgid "Accent color"
+msgstr "アクセントカラー"
+
+msgid "Position on screen"
+msgstr "画面上の位置"
+
+msgid "Right"
+msgstr "右"
+
+msgid "Left"
+msgstr "左"
+
+msgid "Products per answer"
+msgstr "1 回の回答あたりの商品数"
+
+msgid "Three or four keeps replies readable on a phone."
+msgstr "3〜4 件にすると、スマートフォンでも読みやすい返信になります。"
+
+msgid "Shopper invitation"
+msgstr "買い物客への呼びかけ"
+
+msgid "Shows one friendly prompt above the button after a shopper has been on the page a while. The chat stays closed until they open it."
+msgstr "買い物客がページに一定時間滞在すると、ボタンの上に親しみやすい呼びかけを 1 つ表示します。買い物客が開くまでチャットは閉じたままです。"
+
+msgid "Show the invitation"
+msgstr "呼びかけを表示する"
+
+msgid "Shown once per browser session, and never while the assistant is already open."
+msgstr "ブラウザーのセッションごとに 1 回だけ表示され、アシスタントがすでに開いている間は表示されません。"
+
+msgid "Show it after"
+msgstr "表示するまでの時間"
+
+msgid "Seconds after the page loads. Ten to fifteen works well."
+msgstr "ページ読み込み後の秒数。10〜15 秒が適しています。"
+
+msgid "Invitation message"
+msgstr "呼びかけメッセージ"
+
+msgid "Keep it short and focused on helping shoppers choose."
+msgstr "短く、買い物客が選ぶのを助けることに焦点を当ててください。"
+
+msgid "Launcher button"
+msgstr "ランチャーボタン"
+
+msgid "What shoppers see before they open the assistant."
+msgstr "買い物客がアシスタントを開く前に目にするものです。"
+
+msgid "Icon"
+msgstr "アイコン"
+
+msgid "Default GeekyBot icon"
+msgstr "既定の GeekyBot アイコン"
+
+msgid "Store logo"
+msgstr "店舗ロゴ"
+
+msgid "Custom image"
+msgstr "カスタム画像"
+
+msgid "Custom icon"
+msgstr "カスタムアイコン"
+
+msgid "Style"
+msgstr "スタイル"
+
+msgid "Icon only"
+msgstr "アイコンのみ"
+
+msgid "Icon and text"
+msgstr "アイコンとテキスト"
+
+msgid "Icon only is compact. Adding text can reassure first-time visitors."
+msgstr "アイコンのみはコンパクトです。テキストを追加すると、初めて訪れる方に安心感を与えられます。"
+
+msgid "Button text"
+msgstr "ボタンのテキスト"
+
+msgid "Used only when the style is Icon and text."
+msgstr "スタイルが「アイコンとテキスト」の場合にのみ使用されます。"
+
+msgid "Widget header"
+msgstr "ウィジェットのヘッダー"
+
+msgid "Keeps the opened assistant aligned with your store brand."
+msgstr "開いたアシスタントを店舗ブランドに合わせます。"
+
+msgid "Logo"
+msgstr "ロゴ"
+
+msgid "Same as launcher"
+msgstr "ランチャーと同じ"
+
+msgid "No logo"
+msgstr "ロゴなし"
+
+msgid "Custom header logo"
+msgstr "カスタムヘッダーロゴ"
+
+msgid "Colour mode"
+msgstr "カラーモード"
+
+msgid "Light"
+msgstr "ライト"
+
+msgid "Dark"
+msgstr "ダーク"
+
+msgid "Match the shopper device"
+msgstr "買い物客の端末に合わせる"
+
+msgid "Choose Match the shopper device if your storefront has a dark theme."
+msgstr "ストアフロントがダークテーマの場合は「買い物客の端末に合わせる」を選択してください。"
+
+msgid "Button shape"
+msgstr "ボタンの形状"
+
+msgid "Circle"
+msgstr "円形"
+
+msgid "Rounded square"
+msgstr "角丸の四角"
+
+msgid "Header style"
+msgstr "ヘッダーのスタイル"
+
+msgid "Gradient"
+msgstr "グラデーション"
+
+msgid "Solid accent"
+msgstr "単色のアクセント"
+
+msgid "Starter prompts"
+msgstr "スターター用の質問例"
+
+msgid "The buttons a shopper sees before typing anything. Write them the way a customer would ask."
+msgstr "買い物客が何も入力する前に目にするボタンです。お客様が尋ねるような言い回しで記述してください。"
+
+msgid "One per line. The first four appear in the widget. Leave it empty to restore the defaults."
+msgstr "1 行に 1 つ。最初の 4 つがウィジェットに表示されます。空欄にすると既定値に戻ります。"
+
+msgid "Shopper messages"
+msgstr "買い物客のメッセージ"
+
+msgid "Show an icon beside the shopper's messages"
+msgstr "買い物客のメッセージの横にアイコンを表示する"
+
+msgid "Off by default. The icon reserves space in every message to repeat what the alignment already shows."
+msgstr "既定ではオフです。このアイコンは、配置ですでに分かることを繰り返すために各メッセージで場所を取ります。"
+
+msgid "Save widget"
+msgstr "ウィジェットを保存"
+
+msgid "Live preview"
+msgstr "ライブプレビュー"
+
+msgid "Updates as you type"
+msgstr "入力に合わせて更新されます"
+
+msgid "Styles are scoped so your theme is untouched"
+msgstr "スタイルはスコープ化されているため、テーマには影響しません"
+
+msgid "Mobile-first panel"
+msgstr "モバイルファーストのパネル"
+
+msgid "Product cards ready"
+msgstr "商品カードの準備完了"
+
+msgid "Save before testing on the storefront — the preview shows unsaved changes."
+msgstr "ストアフロントでテストする前に保存してください。プレビューには未保存の変更が表示されます。"
+
+msgid "Test real shopper phrases, inspect match reasons, tune synonyms, rebuild the product index, and control product-match ranking."
+msgstr "実際の買い物客のフレーズをテストし、一致理由を確認し、同義語を調整し、商品インデックスを再構築して、商品一致のランキングを制御できます。"
+
+msgid "Product discovery"
+msgstr "商品の発見"
+
+msgid "Open products"
+msgstr "開かれた商品"
+
+msgid "Index status"
+msgstr "インデックスの状態"
+
+msgid "Last full index"
+msgstr "最後のフルインデックス"
+
+msgid "Rebuild after catalog changes"
+msgstr "カタログ変更後に再構築"
+
+msgid "Buyer search"
+msgstr "購入者の検索"
+
+msgid "Natural"
+msgstr "自然言語"
+
+msgid "Keyword"
+msgstr "キーワード"
+
+msgid "How shopper phrasing is read"
+msgstr "買い物客の言い回しの読み取り方"
+
+msgid "Product matches"
+msgstr "商品の一致"
+
+msgid "Exact"
+msgstr "完全一致"
+
+msgid "Smart"
+msgstr "スマート"
+
+msgid "How close a match must be"
+msgstr "一致の厳密さ"
+
+msgid "Test what shoppers type"
+msgstr "買い物客の入力をテスト"
+
+msgid "Shopper phrase test lab"
+msgstr "買い物客フレーズのテストラボ"
+
+msgid "Run real buyer language, see what Geeky Bot understood, then tune catalog data or synonyms before checking the storefront."
+msgstr "実際の購入者の言葉を実行して Geeky Bot が何を理解したかを確認し、ストアフロントを確認する前にカタログデータや同義語を調整しましょう。"
+
+msgid "Try: comfortable shoes size 42 red and white"
+msgstr "例：履き心地の良い靴 サイズ42 赤と白"
+
+msgid "Test search"
+msgstr "検索をテスト"
+
+msgid "Result mode: %s"
+msgstr "結果モード：%s"
+
+msgid "catalog search"
+msgstr "カタログ検索"
+
+msgid "%s match"
+msgid_plural "%s matches"
+msgstr[0] "%s 件の一致"
+
+msgid "No matching products found"
+msgstr "一致する商品が見つかりませんでした"
+
+msgid "Add product attributes, improve titles and tags, add a synonym below, or switch product matches back to Smart."
+msgstr "商品属性を追加する、タイトルやタグを改善する、以下に同義語を追加する、または商品一致を「スマート」に戻してください。"
+
+msgid "View"
+msgstr "表示"
+
+msgid "Edit"
+msgstr "編集"
+
+msgid "%d more close matches are available. Narrow the phrase, or check the storefront widget for the shopper view."
+msgstr "さらに %d 件の近い一致があります。フレーズを絞り込むか、買い物客の表示についてはストアフロントウィジェットをご確認ください。"
+
+msgid "1. Read the phrase"
+msgstr "1. フレーズを読み取る"
+
+msgid "Product terms, colour, size, price phrases and soft preferences."
+msgstr "商品に関する語句、色、サイズ、価格の表現、ゆるやかな好み。"
+
+msgid "2. Score the catalog"
+msgstr "2. カタログをスコアリングする"
+
+msgid "Names, categories, tags, attributes, stock and sale status."
+msgstr "名前、カテゴリー、タグ、属性、在庫、セール状態。"
+
+msgid "3. Close the gap"
+msgstr "3. ギャップを埋める"
+
+msgid "Add synonyms when your wording differs from your shoppers."
+msgstr "あなたの言い回しが買い物客と異なる場合は、同義語を追加してください。"
+
+msgid "Tune the index"
+msgstr "インデックスを調整"
+
+msgid "Product index"
+msgstr "商品インデックス"
+
+msgid "Rebuild after imports, category changes, product updates, attribute edits, or stock and sale changes."
+msgstr "インポート、カテゴリーの変更、商品の更新、属性の編集、在庫やセールの変更の後に再構築してください。"
+
+msgid "Rebuild search index"
+msgstr "検索インデックスを再構築"
+
+msgid "Product data"
+msgstr "商品データ"
+
+msgid "Name, SKU, category, tags, attributes"
+msgstr "名前、SKU、カテゴリー、タグ、属性"
+
+msgid "Buyer intent"
+msgstr "購入者の意図"
+
+msgid "Price, colour, size, recommendations"
+msgstr "価格、色、サイズ、おすすめ"
+
+msgid "Commerce signals"
+msgstr "コマースのシグナル"
+
+msgid "Stock, sale, ratings, popularity"
+msgstr "在庫、セール、評価、人気"
+
+msgid "Sale status"
+msgstr "セール状態"
+
+msgid "Rehearsal board"
+msgstr "リハーサルボード"
+
+msgid "Phrases worth re-testing"
+msgstr "再テストする価値のあるフレーズ"
+
+msgid "Click a phrase to load it into the test lab and confirm buyer language still maps to the right products."
+msgstr "フレーズをクリックするとテストラボに読み込まれ、購入者の言葉が引き続き適切な商品に対応しているかを確認できます。"
+
+msgid "Budget intent"
+msgstr "予算の意図"
+
+msgid "Price range"
+msgstr "価格帯"
+
+msgid "Colour attribute"
+msgstr "色の属性"
+
+msgid "Size attribute"
+msgstr "サイズの属性"
+
+msgid "Natural buyer query"
+msgstr "自然な購入者のクエリ"
+
+msgid "Soft preference"
+msgstr "ゆるやかな好み"
+
+msgid "Sale filter"
+msgstr "セールのフィルター"
+
+msgid "Recommendation"
+msgstr "おすすめ"
+
+msgid "Choose the public policy pages Geeky Bot may use for shipping, returns, refunds, payment and warranty answers. Selected pages are indexed locally and missing details produce a safe fallback instead of guesses."
+msgstr "配送・返品・返金・支払い・保証の回答に Geeky Bot が使用できる公開ポリシーページを選択します。選択したページはローカルでインデックス化され、詳細が不足している場合は推測ではなく安全なフォールバックが返されます。"
+
+msgid "Grounded policy answers"
+msgstr "根拠のあるポリシー回答"
+
+msgid "Create policy page"
+msgstr "ポリシーページを作成"
+
+msgid "Store knowledge saved and synchronized."
+msgstr "ストアナレッジを保存し、同期しました。"
+
+msgid "Knowledge refresh complete: %1$d indexed, %2$d unchanged, %3$d removed, %4$d failed."
+msgstr "ナレッジの更新が完了しました：インデックス済み %1$d 件、変更なし %2$d 件、削除 %3$d 件、失敗 %4$d 件。"
+
+msgid "These selected pages are not recognized as policy sources and will not answer specific policy questions: %s"
+msgstr "選択されたこれらのページはポリシーのソースとして認識されないため、具体的なポリシーの質問には回答しません：%s"
+
+msgid "Selected sources"
+msgstr "選択済みのソース"
+
+msgid "Only these pages can ground policy answers"
+msgstr "ポリシー回答の根拠にできるのはこれらのページのみです"
+
+msgid "Recognized sources"
+msgstr "認識済みのソース"
+
+msgid "Last refreshed %s"
+msgstr "最終更新 %s"
+
+msgid "Save or refresh to build the index"
+msgstr "保存または更新してインデックスを構築してください"
+
+msgid "Knowledge is current"
+msgstr "ナレッジは最新です"
+
+msgid "Sources need attention"
+msgstr "ソースに確認が必要です"
+
+msgid "Changed, missing or draft pages are never trusted silently"
+msgstr "変更された、存在しない、または下書きのページが黙って信頼されることはありません"
+
+msgid "Answer sources"
+msgstr "回答のソース"
+
+msgid "Choose public answer sources"
+msgstr "公開の回答ソースを選択"
+
+msgid "Pick a small set of accurate, shopper-facing pages. Geeky Bot reads the stored page text only — it never crawls arbitrary URLs or runs shortcodes."
+msgstr "正確で買い物客向けのページを少数選んでください。Geeky Bot は保存されたページのテキストのみを読み取り、任意の URL をクロールしたりショートコードを実行したりすることはありません。"
+
+msgid "No published pages found"
+msgstr "公開済みのページが見つかりません"
+
+msgid "Create a shipping, refund or returns page, then select it here so the assistant can answer policy questions."
+msgstr "配送・返金・返品のページを作成し、ここで選択すると、アシスタントがポリシーの質問に回答できるようになります。"
+
+msgid "Create a page"
+msgstr "ページを作成"
+
+msgid "Suggested policy page"
+msgstr "ポリシーページの候補"
+
+msgid "Public page"
+msgstr "公開ページ"
+
+msgid "Save and index pages"
+msgstr "ページを保存してインデックス化"
+
+msgid "Test a refund question"
+msgstr "返金に関する質問をテスト"
+
+msgid "Approved library"
+msgstr "承認済みライブラリ"
+
+msgid "%s page"
+msgid_plural "%s pages"
+msgstr[0] "%s ページ"
+
+msgid "%d suggested policy pages were detected. Only checked pages become approved sources."
+msgstr "ポリシーページの候補が %d 件検出されました。チェックを入れたページのみが承認済みソースになります。"
+
+msgid "Shipping, return, refund, exchange, warranty, payment and cancellation questions are checked here before product search or any external AI."
+msgstr "配送・返品・返金・交換・保証・支払い・キャンセルに関する質問は、商品検索や外部 AI より先にここで確認されます。"
+
+msgid "A source must actually answer the question, or the assistant says it is not confirmed"
+msgstr "ソースが実際に質問に答えている必要があります。そうでない場合、アシスタントは確認できていないと伝えます"
+
+msgid "Grounded answers show the page title and a link"
+msgstr "根拠のある回答にはページタイトルとリンクが表示されます"
+
+msgid "Index maintenance"
+msgstr "インデックスのメンテナンス"
+
+msgid "Refresh the knowledge index"
+msgstr "ナレッジインデックスを更新"
+
+msgid "Selected pages refresh automatically when you save. Use this after imports, page-builder migrations, or when a source shows as stale or missing above."
+msgstr "選択したページは保存時に自動で更新されます。インポート後、ページビルダーの移行後、または上でソースが古い・見つからないと表示された場合にご利用ください。"
+
+msgid "Refresh selected sources"
+msgstr "選択したソースを更新"
+
+msgid "See how shoppers use Geeky Bot, which products they open, and where catalog or policy data still needs attention. Free analytics stays focused on assistant quality rather than conversion attribution."
+msgstr "買い物客が Geeky Bot をどのように使い、どの商品を開き、カタログやポリシーのデータのどこに手を入れる必要があるかを確認できます。無料のアナリティクスは、コンバージョンの帰属ではなくアシスタントの品質に焦点を当てています。"
+
+msgid "Review conversations"
+msgstr "会話を確認"
+
+msgid "%s messages per conversation"
+msgstr "1 会話あたり %s 件のメッセージ"
+
+msgid "Product clicks"
+msgstr "商品クリック"
+
+msgid "Opened from product cards in chat"
+msgstr "チャット内の商品カードから開かれた回数"
+
+msgid "Grounded-answer gaps logged"
+msgstr "記録された根拠ある回答のギャップ"
+
+msgid "Conversation activity"
+msgstr "会話のアクティビティ"
+
+msgid "Daily shopper messages"
+msgstr "日次の買い物客メッセージ"
+
+msgid "Aggregate only — individual shoppers are not identified."
+msgstr "集計のみ — 個々の買い物客は特定されません。"
+
+msgid "Daily shopper messages over the last 30 days"
+msgstr "過去 30 日間の日次の買い物客メッセージ"
+
+msgid "Why answers were unavailable"
+msgstr "回答できなかった理由"
+
+msgid "No grounded-answer gaps"
+msgstr "根拠ある回答のギャップはありません"
+
+msgid "Keep monitoring after catalog and policy updates."
+msgstr "カタログやポリシーの更新後も引き続き監視してください。"
+
+msgid "Open unanswered questions"
+msgstr "未回答の質問を開く"
+
+msgid "Product interest"
+msgstr "商品への関心"
+
+msgid "Most-opened products"
+msgstr "最も多く開かれた商品"
+
+msgid "No product clicks yet"
+msgstr "商品クリックはまだありません"
+
+msgid "Product interest appears after shoppers open products from chat."
+msgstr "買い物客がチャットから商品を開くと、商品への関心が表示されます。"
+
+msgid "Clicks"
+msgstr "クリック数"
+
+msgid "Clicks are an interest signal, not conversion attribution. Cart and checkout tracking are Commerce Pro features."
+msgstr "クリックは関心のシグナルであり、コンバージョンの帰属ではありません。カートと購入手続きの追跡は Commerce Pro の機能です。"
+
+msgid "Insight without profiling"
+msgstr "プロファイリングなしのインサイト"
+
+msgid "This page uses conversation IDs and aggregate events. It never shows IP hashes, browser fingerprints, or API secrets."
+msgstr "このページは会話 ID と集計イベントを使用します。IP ハッシュ、ブラウザーフィンガープリント、API シークレットが表示されることはありません。"
+
+msgid "Conversations kept for %s days"
+msgstr "会話は %s 日間保持されます"
+
+msgid "WordPress personal-data export and erasure are supported."
+msgstr "WordPress の個人データのエクスポートと消去に対応しています。"
+
+msgid "Conversation records can be exported or deleted."
+msgstr "会話の記録はエクスポートまたは削除できます。"
+
+msgid "Product clicks are interest signals, not attribution."
+msgstr "商品クリックは関心のシグナルであり、帰属ではありません。"
+
+msgid "Privacy settings"
+msgstr "プライバシー設定"
+
+msgid "Manage data"
+msgstr "データを管理"
+
+msgid "Encrypted"
+msgstr "暗号化済み"
+
+msgid "Encrypted at rest, never shown again after saving"
+msgstr "保存時に暗号化され、保存後に再表示されることはありません"
+
+msgid "Cannot store"
+msgstr "保存できません"
+
+msgid "No libsodium or OpenSSL on this server"
+msgstr "このサーバーには libsodium も OpenSSL もありません"
+
+msgid "Unencrypted"
+msgstr "暗号化されていません"
+
+msgid "Saved before 2.1.0 — re-save the key to encrypt it"
+msgstr "2.1.0 より前に保存されました — 暗号化するにはキーを保存し直してください"
+
+msgid "None saved"
+msgstr "保存されていません"
+
+msgid "Encrypted at rest when you save one"
+msgstr "保存すると保管時に暗号化されます"
+
+msgid "Choose local grounded answers, Zywrap, or BYOK while keeping API keys server-side and answers grounded in store data."
+msgstr "API キーをサーバー側に保持し、回答を店舗データに基づかせたまま、ローカルの根拠ベース回答・Zywrap・BYOK のいずれかを選択できます。"
+
+msgid "Configure answer mode"
+msgstr "回答モードを設定"
+
+msgid "Current answer mode"
+msgstr "現在の回答モード"
+
+msgid "Used to generate grounded answers"
+msgstr "根拠のある回答の生成に使用されます"
+
+msgid "API keys"
+msgstr "API キー"
+
+msgid "Modes available"
+msgstr "利用可能なモード"
+
+msgid "Local mode is always available"
+msgstr "ローカルモードは常に利用できます"
+
+msgid "AI budget left today"
+msgstr "本日の残り AI 予算"
+
+msgid "Not used"
+msgstr "未使用"
+
+msgid "Local grounded mode makes no provider calls"
+msgstr "ローカルの根拠ベースモードはプロバイダーを呼び出しません"
+
+msgid "Of %1$s per day. %2$s left this month."
+msgstr "1 日あたり %1$s のうち。今月の残りは %2$s です。"
+
+msgid "Answer modes"
+msgstr "回答モード"
+
+msgid "Local grounded mode"
+msgstr "ローカル根拠ベースモード"
+
+msgid "The fastest and safest default, and what a new install runs on. No language model is called: answers are assembled from WooCommerce product data and your selected policy pages, so wording is consistent rather than conversational and nothing leaves your server. Add a provider key below for generated answers."
+msgstr "最も高速で安全な既定値であり、新規インストールはこのモードで動作します。言語モデルは呼び出されず、回答は WooCommerce の商品データと選択したポリシーページから組み立てられるため、会話調ではなく一貫した表現になり、データがサーバーの外に出ることもありません。生成された回答が必要な場合は、以下でプロバイダーキーを追加してください。"
+
+msgid "Available"
+msgstr "利用可能"
+
+msgid "No API key required"
+msgstr "API キーは不要"
+
+msgid "Grounded in your catalog"
+msgstr "あなたのカタログに基づく"
+
+msgid "Safe policy fallback"
+msgstr "安全なポリシーのフォールバック"
+
+msgid "Review active mode"
+msgstr "有効なモードを確認"
+
+msgid "Choose local mode"
+msgstr "ローカルモードを選択"
+
+msgid "Zywrap endpoint"
+msgstr "Zywrap エンドポイント"
+
+msgid "A hosted endpoint for store-grounded answers, when you want stronger response generation without exposing secrets to the storefront."
+msgstr "ストアフロントにシークレットを公開せずに、より強力な応答生成が必要な場合に使用する、店舗データに基づく回答向けのホスト型エンドポイントです。"
+
+msgid "Configured"
+msgstr "設定済み"
+
+msgid "Endpoint saved"
+msgstr "エンドポイントを保存しました"
+
+msgid "Endpoint missing"
+msgstr "エンドポイントがありません"
+
+msgid "API key stored"
+msgstr "API キーを保存済み"
+
+msgid "API key missing"
+msgstr "API キーがありません"
+
+msgid "Review Zywrap setup"
+msgstr "Zywrap の設定を確認"
+
+msgid "Configure Zywrap"
+msgstr "Zywrap を設定"
+
+msgid "OpenAI (your own key)"
+msgstr "OpenAI（ご自身のキー）"
+
+msgid "Optional bring-your-own-key mode. Geeky Bot sends only the shopper question and the grounded store context, from the server."
+msgstr "任意の BYOK（自分のキーを使う）モードです。Geeky Bot はサーバーから、買い物客の質問と根拠となる店舗コンテキストのみを送信します。"
+
+msgid "Model is controlled"
+msgstr "モデルは制御されています"
+
+msgid "Token limit enforced"
+msgstr "トークン上限が適用されます"
+
+msgid "Review OpenAI setup"
+msgstr "OpenAI の設定を確認"
+
+msgid "Configure your key"
+msgstr "キーを設定"
+
+msgid "Before you change it"
+msgstr "変更する前に"
+
+msgid "Confirm the mode before launch"
+msgstr "公開前にモードを確認"
+
+msgid "Keep local mode for the safest baseline, or configure Zywrap or your own OpenAI key from Settings when you want AI-generated grounded answers."
+msgstr "最も安全な既定値としてローカルモードを使い続けるか、AI が生成する根拠のある回答が必要な場合は設定から Zywrap またはご自身の OpenAI キーを構成してください。"
+
+msgid "After changing answer mode, run one product search and one policy question on the storefront to confirm the assistant is still grounded."
+msgstr "回答モードを変更した後は、ストアフロントで商品検索とポリシーの質問を 1 件ずつ実行し、アシスタントが引き続き根拠に基づいているかを確認してください。"
+
+msgid "Secrets stay behind WordPress"
+msgstr "シークレットは WordPress の内側に留まります"
+
+msgid "The storefront receives public widget settings and a REST nonce only. Provider secrets are saved server-side and never printed into JavaScript."
+msgstr "ストアフロントが受け取るのは、公開ウィジェット設定と REST ナンスのみです。プロバイダーのシークレットはサーバー側に保存され、JavaScript に出力されることはありません。"
+
+msgid "Saved API keys are not displayed after saving"
+msgstr "保存した API キーは保存後に表示されません"
+
+msgid "Admin changes require capability and nonce checks"
+msgstr "管理画面での変更には権限とナンスの確認が必要です"
+
+msgid "Public assistant requests are rate limited"
+msgstr "公開アシスタントへのリクエストにはレート制限が適用されます"
+
+msgid "No invented products, prices, coupons or policies"
+msgstr "商品・価格・クーポン・ポリシーを創作することはありません"
+
+msgid "Widget behavior, buyer-language search, grounded answers, provider security, privacy and rate limits."
+msgstr "ウィジェットの動作、購入者の言葉による検索、根拠のある回答、プロバイダーのセキュリティ、プライバシー、レート制限。"
+
+msgid "%s%% configured"
+msgstr "%s%% 設定済み"
+
+msgid "Live"
+msgstr "稼働中"
+
+msgid "storefront widget"
+msgstr "ストアフロントウィジェット"
+
+msgid "buyer language"
+msgstr "購入者の言葉"
+
+msgid "Grounded"
+msgstr "根拠あり"
+
+msgid "answer mode"
+msgstr "回答モード"
+
+msgid "conversation review"
+msgstr "会話レビュー"
+
+msgid "Settings saved."
+msgstr "設定を保存しました。"
+
+msgid "Your storefront assistant will use the updated configuration."
+msgstr "ストアフロントのアシスタントは、更新後の設定を使用します。"
+
+msgid "The API key was not saved."
+msgstr "API キーは保存されませんでした。"
+
+msgid "Geeky Bot stores provider keys encrypted, and this server has neither the libsodium nor the OpenSSL PHP extension available. Ask your host to enable one, then save the key again. Every other setting on this page was saved."
+msgstr "Geeky Bot はプロバイダーのキーを暗号化して保存しますが、このサーバーには libsodium も OpenSSL の PHP 拡張も利用できません。ホスティング事業者にいずれかの有効化を依頼し、その後キーを保存し直してください。このページの他の設定はすべて保存されました。"
+
+msgid "Settings sections"
+msgstr "設定セクション"
+
+msgid "01"
+msgstr "01"
+
+msgid "Storefront"
+msgstr "ストアフロント"
+
+msgid "02"
+msgstr "02"
+
+msgid "Search"
+msgstr "検索"
+
+msgid "03"
+msgstr "03"
+
+msgid "Knowledge"
+msgstr "ナレッジ"
+
+msgid "04"
+msgstr "04"
+
+msgid "05"
+msgstr "05"
+
+msgid "Privacy"
+msgstr "プライバシー"
+
+msgid "Storefront experience"
+msgstr "ストアフロントの体験"
+
+msgid "Assistant and widget"
+msgstr "アシスタントとウィジェット"
+
+msgid "Set the shopper-facing name, first message, safe fallback answer, accent color, and product-card volume."
+msgstr "買い物客に表示される名前、最初のメッセージ、安全なフォールバック回答、アクセントカラー、商品カードの表示件数を設定します。"
+
+msgid "products"
+msgstr "商品"
+
+msgid "Catalog intelligence"
+msgstr "カタログインテリジェンス"
+
+msgid "Buyer-language search"
+msgstr "購入者の言葉による検索"
+
+msgid "Tune buyer-language understanding, synonym expansion, product matches, and ranking boosts."
+msgstr "購入者の言葉の理解、同義語の展開、商品の一致、ランキングのブーストを調整します。"
+
+msgid "Natural search on"
+msgstr "自然言語検索がオン"
+
+msgid "Natural search off"
+msgstr "自然言語検索がオフ"
+
+msgid "Exact only"
+msgstr "完全一致のみ"
+
+msgid "boosts"
+msgstr "ブースト"
+
+msgid "Grounded answers"
+msgstr "根拠のある回答"
+
+msgid "Select safe public pages for shipping, refund, return, payment and warranty answers."
+msgstr "配送・返金・返品・支払い・保証の回答に使う安全な公開ページを選択します。"
+
+msgid "selected"
+msgstr "選択済み"
+
+msgid "Safe fallback answer"
+msgstr "安全なフォールバック回答"
+
+msgid "No public pages found."
+msgstr "公開ページが見つかりません。"
+
+msgid "Create shipping, returns, refund, payment, warranty or privacy pages before enabling policy answers."
+msgstr "ポリシー回答を有効にする前に、配送・返品・返金・支払い・保証・プライバシーのページを作成してください。"
+
+msgid "Likely policy page"
+msgstr "ポリシーページの可能性あり"
+
+msgid "Safe policy answer rule"
+msgstr "安全なポリシー回答のルール"
+
+msgid "If selected pages do not confirm the detail, Geeky Bot says it is not confirmed and directs the shopper to the source or store team."
+msgstr "選択したページで詳細を確認できない場合、Geeky Bot は確認できていないと伝え、買い物客をソースまたは店舗チームへ案内します。"
+
+msgid "Answer mode and security"
+msgstr "回答モードとセキュリティ"
+
+msgid "Choose local grounded mode, Zywrap, or BYOK while keeping secrets server-side."
+msgstr "シークレットをサーバー側に保ったまま、ローカル根拠ベースモード・Zywrap・BYOK のいずれかを選択します。"
+
+msgid "Keys hidden"
+msgstr "キーは非表示"
+
+msgid "Privacy and abuse protection"
+msgstr "プライバシーと不正利用対策"
+
+msgid "History, retention and rate limits"
+msgstr "履歴、保持期間、レート制限"
+
+msgid "Set conversation storage, retention, visitor rate limits, and uninstall cleanup behavior."
+msgstr "会話の保存、保持期間、訪問者のレート制限、アンインストール時のクリーンアップ動作を設定します。"
+
+msgid "days"
+msgstr "日"
+
+msgid "messages/window"
+msgstr "メッセージ/期間"
+
+msgid "Save Geeky Bot settings"
+msgstr "Geeky Bot の設定を保存"
+
+msgid "Changes apply to the storefront assistant after saving."
+msgstr "変更は保存後にストアフロントのアシスタントへ適用されます。"
+
+msgid "Save settings"
+msgstr "設定を保存"
+
+msgid "Conversation deleted."
+msgstr "会話を削除しました。"
+
+msgid "All Geeky Bot conversation and interaction data was deleted."
+msgstr "Geeky Bot のすべての会話とインタラクションのデータを削除しました。"
+
+msgid "Some conversation data could not be deleted. Check the database permissions and try again."
+msgstr "一部の会話データを削除できませんでした。データベースの権限を確認してもう一度お試しください。"
+
+msgid "Review stored shopper conversations, understand product interest, and turn unanswered questions into better catalog and policy data."
+msgstr "保存された買い物客との会話を確認し、商品への関心を把握し、未回答の質問をより良いカタログとポリシーのデータへとつなげましょう。"
+
+msgid "Privacy-safe review"
+msgstr "プライバシーに配慮したレビュー"
+
+msgid "Open analytics"
+msgstr "アナリティクスを開く"
+
+msgid "Questions and refinements"
+msgstr "質問と絞り込み"
+
+msgid "From chat product cards"
+msgstr "チャットの商品カードから"
+
+msgid "Unique grounded-answer gaps"
+msgstr "根拠ある回答のギャップ（ユニーク）"
+
+msgid "Conversation workspace"
+msgstr "会話ワークスペース"
+
+msgid "Conversation stream"
+msgstr "会話ストリーム"
+
+msgid "Search conversations"
+msgstr "会話を検索"
+
+msgid "Search shopper messages or conversation ID"
+msgstr "買い物客のメッセージまたは会話 ID を検索"
+
+msgid "Clear"
+msgstr "クリア"
+
+msgid "Export CSV"
+msgstr "CSV をエクスポート"
+
+msgid "Delete all Geeky Bot conversations, unanswered questions, and click events? This cannot be undone."
+msgstr "Geeky Bot のすべての会話・未回答の質問・クリックイベントを削除しますか？この操作は元に戻せません。"
+
+msgid "Delete all data"
+msgstr "すべてのデータを削除"
+
+msgid "Conversation #%d"
+msgstr "会話 #%d"
+
+msgid "Started %1$s · Last activity %2$s"
+msgstr "開始 %1$s · 最終アクティビティ %2$s"
+
+msgid "Back to list"
+msgstr "一覧に戻る"
+
+msgid "Export this conversation"
+msgstr "この会話をエクスポート"
+
+msgid "Delete this conversation and its analytics events?"
+msgstr "この会話とそのアナリティクスイベントを削除しますか？"
+
+msgid "Delete conversation"
+msgstr "会話を削除"
+
+msgid "No stored messages"
+msgstr "保存されたメッセージはありません"
+
+msgid "This conversation has no saved messages."
+msgstr "この会話には保存されたメッセージがありません。"
+
+msgid "Shopper"
+msgstr "買い物客"
+
+msgid "Shopper interactions"
+msgstr "買い物客のインタラクション"
+
+msgid "Product opened"
+msgstr "商品が開かれました"
+
+msgid "Policy source opened"
+msgstr "ポリシーのソースが開かれました"
+
+msgid "No conversations found"
+msgstr "会話が見つかりません"
+
+msgid "No conversation matches that search. Try a shorter phrase, or clear the search."
+msgstr "その検索に一致する会話はありません。より短いフレーズをお試しいただくか、検索をクリアしてください。"
+
+msgid "Storefront conversations appear here once shoppers use the assistant and history is enabled."
+msgstr "買い物客がアシスタントを使用し、履歴が有効になっていると、ストアフロントの会話がここに表示されます。"
+
+msgid "Conversation"
+msgstr "会話"
+
+msgid "Last shopper message"
+msgstr "最後の買い物客メッセージ"
+
+msgid "Messages"
+msgstr "メッセージ"
+
+msgid "Gaps"
+msgstr "ギャップ"
+
+msgid "Last activity"
+msgstr "最終アクティビティ"
+
+msgid "Registered shopper"
+msgstr "登録済みの買い物客"
+
+msgid "Guest shopper"
+msgstr "ゲストの買い物客"
+
+msgid "Previous"
+msgstr "前へ"
+
+msgid "Next"
+msgstr "次へ"
+
+msgid "Unanswered question workbench"
+msgstr "未回答の質問ワークベンチ"
+
+msgid "Search needs review"
+msgstr "検索に確認が必要です"
+
+msgid "Search questions, products, or policy areas"
+msgstr "質問・商品・ポリシー領域を検索"
+
+msgid "Handled"
+msgstr "対応済み"
+
+msgid "Ignored"
+msgstr "無視"
+
+msgid "All"
+msgstr "すべて"
+
+msgid "%1$s unique issue from %2$s unanswered message."
+msgid_plural "%1$s unique issues from %2$s unanswered messages."
+msgstr[0] "未回答メッセージ %2$s 件から %1$s 件のユニークな問題。"
+
+msgid "Catalog data"
+msgstr "カタログデータ"
+
+msgid "Unique product-data issues"
+msgstr "ユニークな商品データの問題"
+
+msgid "Policy coverage"
+msgstr "ポリシーのカバレッジ"
+
+msgid "Unique selected-page gaps"
+msgstr "選択済みページのユニークなギャップ"
+
+msgid "Shopper wording"
+msgstr "買い物客の言い回し"
+
+msgid "Unique wording gaps"
+msgstr "ユニークな言い回しのギャップ"
+
+msgid "Unique Commerce Pro intents"
+msgstr "ユニークな Commerce Pro の意図"
+
+msgid "No matching review issues"
+msgstr "一致するレビュー項目がありません"
+
+msgid "Try another filter or search phrase, or keep testing the storefront assistant."
+msgstr "別のフィルターや検索フレーズをお試しいただくか、ストアフロントのアシスタントのテストを続けてください。"
+
+msgid "Last asked %s ago"
+msgstr "最後に質問されたのは %s 前"
+
+msgid "Fix policy source"
+msgstr "ポリシーのソースを修正"
+
+msgid "Improve store data"
+msgstr "店舗データを改善"
+
+msgid "Handled now"
+msgstr "今すぐ対応済みにする"
+
+msgid "Asked %s time"
+msgid_plural "Asked %s times"
+msgstr[0] "%s 回質問されました"
+
+msgid "%s conversation"
+msgid_plural "%s conversations"
+msgstr[0] "%s 件の会話"
+
+msgid "Product: %s"
+msgstr "商品：%s"
+
+msgid "%s products affected"
+msgstr "%s 件の商品が影響を受けています"
+
+msgid "Policy area: %s"
+msgstr "ポリシー領域：%s"
+
+msgid "%s policy areas"
+msgstr "%s 件のポリシー領域"
+
+msgid "Recommended action"
+msgstr "推奨されるアクション"
+
+msgid "Retest only if this still fails in the storefront widget."
+msgstr "ストアフロントウィジェットでまだ失敗する場合にのみ再テストしてください。"
+
+msgid "Mark handled"
+msgstr "対応済みにする"
+
+msgid "Restore to review"
+msgstr "レビューに戻す"
+
+msgid "Retest phrase"
+msgstr "フレーズを再テスト"
+
+msgid "More review actions"
+msgstr "その他のレビュー操作"
+
+msgid "Test phrase"
+msgstr "フレーズをテスト"
+
+msgid "Ignore issue"
+msgstr "この項目を無視"
+
+msgid "Unanswered question pages"
+msgstr "未回答の質問のページ"
+
+msgid "You do not have permission to update the review queue."
+msgstr "レビューキューを更新する権限がありません。"
+
+msgid "You do not have permission to export Geeky Bot conversations."
+msgstr "Geeky Bot の会話をエクスポートする権限がありません。"
+
+msgid "Could not create the conversation export."
+msgstr "会話のエクスポートを作成できませんでした。"
+
+msgid "You do not have permission to delete Geeky Bot conversations."
+msgstr "Geeky Bot の会話を削除する権限がありません。"
+
+msgid "You do not have permission to delete Geeky Bot conversation data."
+msgstr "Geeky Bot の会話データを削除する権限がありません。"
+
+msgid "Installed and active"
+msgstr "インストール済みかつ有効"
+
+msgid "Installed, inactive"
+msgstr "インストール済み、無効"
+
+msgid "Not installed"
+msgstr "未インストール"
+
+msgid "Not applicable"
+msgstr "該当なし"
+
+msgid "Current"
+msgstr "最新"
+
+msgid "Commerce Pro license activated for this site."
+msgstr "このサイトで Commerce Pro のライセンスを有効化しました。"
+
+msgid "Commerce Pro license deactivated on this site."
+msgstr "このサイトで Commerce Pro のライセンスを無効化しました。"
+
+msgid "Commerce Pro license status refreshed."
+msgstr "Commerce Pro のライセンス状態を更新しました。"
+
+msgid "Commerce Pro installed and activated."
+msgstr "Commerce Pro をインストールして有効化しました。"
+
+msgid "Commerce Pro plugin activated."
+msgstr "Commerce Pro プラグインを有効化しました。"
+
+msgid "Commerce Pro update settings saved."
+msgstr "Commerce Pro の更新設定を保存しました。"
+
+msgid "Commerce Pro update status refreshed."
+msgstr "Commerce Pro の更新状態を更新しました。"
+
+msgid "Commerce Pro updated successfully."
+msgstr "Commerce Pro を正常に更新しました。"
+
+msgid "Commerce Pro updated successfully. Activate the add-on to enable Pro buying actions."
+msgstr "Commerce Pro を正常に更新しました。Pro の購入アクションを有効にするには、アドオンを有効化してください。"
+
+msgid "Commerce Pro updated and activated successfully."
+msgstr "Commerce Pro を正常に更新し、有効化しました。"
+
+msgid "Activate a license, connect this site to geekybot.com, install the protected Commerce Pro add-on, and keep buying actions locked to authorized sites."
+msgstr "ライセンスを有効化し、このサイトを geekybot.com に接続し、保護された Commerce Pro アドオンをインストールして、購入アクションを許可されたサイトのみに限定します。"
+
+msgid "Open geekybot.com"
+msgstr "geekybot.com を開く"
+
+msgid "Protected add-on access"
+msgstr "保護されたアドオンへのアクセス"
+
+msgid "Commerce Pro is authorized on this site"
+msgstr "このサイトで Commerce Pro が認可されています"
+
+msgid "Commerce Pro is not authorized on this site"
+msgstr "このサイトで Commerce Pro は認可されていません"
+
+msgid "Activate Commerce Pro for this site"
+msgstr "このサイトで Commerce Pro を有効化"
+
+msgid "The license is valid, but this site is beyond its included activation allowance. Commerce Pro remains unavailable here until an activation is freed or added."
+msgstr "ライセンスは有効ですが、このサイトは含まれる有効化数の上限を超えています。有効化枠が空くか追加されるまで、ここでは Commerce Pro を利用できません。"
+
+msgid "A copied ZIP is not enough. Commerce Pro buying actions require a valid license, an allowed site activation, and a live or cached entitlement check."
+msgstr "ZIP をコピーするだけでは不十分です。Commerce Pro の購入アクションには、有効なライセンス、許可されたサイトの有効化、そしてライブまたはキャッシュされた利用権の確認が必要です。"
+
+msgid "License"
+msgstr "ライセンス"
+
+msgid "Commerce Pro plugin"
+msgstr "Commerce Pro プラグイン"
+
+msgid "Update"
+msgstr "更新"
+
+msgid "Staging"
+msgstr "ステージング"
+
+msgid "Production"
+msgstr "本番"
+
+msgid "Site type"
+msgstr "サイトの種類"
+
+msgid "Key"
+msgstr "キー"
+
+msgid "Not checked yet"
+msgstr "未確認"
+
+msgid "License last checked"
+msgstr "ライセンスの最終確認"
+
+msgid "License activation"
+msgstr "ライセンスの有効化"
+
+msgid "Enter the Commerce Pro key from geekybot.com. The key is encrypted with this WordPress installation’s salts, masked after save, and never sent to storefront JavaScript."
+msgstr "geekybot.com で取得した Commerce Pro のキーを入力してください。キーはこの WordPress インストールのソルトで暗号化され、保存後はマスクされ、ストアフロントの JavaScript に送信されることはありません。"
+
+msgid "License key"
+msgstr "ライセンスキー"
+
+msgid "Activate license"
+msgstr "ライセンスを有効化"
+
+msgid "Find your key in your account on geekybot.com."
+msgstr "キーは geekybot.com のアカウントで確認できます。"
+
+msgid "This activation"
+msgstr "この有効化"
+
+msgid "Refresh status"
+msgstr "状態を更新"
+
+msgid "Deactivate Commerce Pro on this site? Buying actions will stop until it is activated again."
+msgstr "このサイトで Commerce Pro を無効化しますか？再度有効化するまで購入アクションは停止します。"
+
+msgid "Clear the saved license key from this site?"
+msgstr "このサイトから保存済みのライセンスキーを削除しますか？"
+
+msgid "Deactivate this site"
+msgstr "このサイトを無効化"
+
+msgid "Clear saved license"
+msgstr "保存済みライセンスを削除"
+
+msgid "Refreshing re-checks entitlement with geekybot.com. Deactivating frees this site's activation slot for another install."
+msgstr "更新すると geekybot.com で利用権を再確認します。無効化すると、このサイトの有効化枠が別のインストールのために解放されます。"
+
+msgid "Commerce Pro add-on"
+msgstr "Commerce Pro アドオン"
+
+msgid "Install, activate, and update Commerce Pro from a protected geekybot.com package after the site entitlement is valid."
+msgstr "サイトの利用権が有効になった後、保護された geekybot.com のパッケージから Commerce Pro をインストール・有効化・更新します。"
+
+msgid "Valid entitlement is available."
+msgstr "有効な利用権があります。"
+
+msgid "Valid entitlement is required before install or activation."
+msgstr "インストールまたは有効化の前に、有効な利用権が必要です。"
+
+msgid "This entitlement is bound to the current site installation."
+msgstr "この利用権は現在のサイトのインストールに紐づいています。"
+
+msgid "This site still needs a fresh entitlement binding."
+msgstr "このサイトには新しい利用権のバインディングが必要です。"
+
+msgid "The server-signed entitlement was verified."
+msgstr "サーバー署名付きの利用権を検証しました。"
+
+msgid "The configured signed-entitlement check has not passed."
+msgstr "設定された署名付き利用権のチェックに合格していません。"
+
+msgid "Entitlement uses standard HTTPS verification; signed-response mode is not configured."
+msgstr "利用権は標準の HTTPS 検証を使用します。署名付きレスポンスモードは設定されていません。"
+
+msgid "Installed version: %s"
+msgstr "インストール済みバージョン：%s"
+
+msgid "Commerce Pro is not installed yet."
+msgstr "Commerce Pro はまだインストールされていません。"
+
+msgid "Commerce Pro plugin is active."
+msgstr "Commerce Pro プラグインは有効です。"
+
+msgid "Commerce Pro plugin is not active."
+msgstr "Commerce Pro プラグインは有効ではありません。"
+
+msgid "Running on cached license verification grace period."
+msgstr "キャッシュされたライセンス検証の猶予期間で動作しています。"
+
+msgid "Live entitlement or normal cached check required."
+msgstr "ライブの利用権確認、または通常のキャッシュ確認が必要です。"
+
+msgid "Latest release: %s"
+msgstr "最新リリース：%s"
+
+msgid "Latest release has not been checked yet."
+msgstr "最新リリースはまだ確認されていません。"
+
+msgid "Updates are allowed for this license."
+msgstr "このライセンスでは更新が許可されています。"
+
+msgid "Updates require an active renewal entitlement."
+msgstr "更新には有効な更新（更新契約）の利用権が必要です。"
+
+msgid "Install Commerce Pro"
+msgstr "Commerce Pro をインストール"
+
+msgid "Activate Commerce Pro"
+msgstr "Commerce Pro を有効化"
+
+msgid "Update Commerce Pro"
+msgstr "Commerce Pro を更新"
+
+msgid "Check for update"
+msgstr "更新を確認"
+
+msgid "Open plugins"
+msgstr "プラグインを開く"
+
+msgid "Commerce Pro update channel"
+msgstr "Commerce Pro の更新チャンネル"
+
+msgid "Version metadata is checked from the CDN first. Protected ZIP downloads are requested from geekybot.com only when a valid update entitlement exists."
+msgstr "バージョン情報はまず CDN から確認されます。保護された ZIP のダウンロードは、有効な更新利用権がある場合にのみ geekybot.com にリクエストされます。"
+
+msgid "Update available"
+msgstr "更新があります"
+
+msgid "Commerce Pro %1$s is ready"
+msgstr "Commerce Pro %1$s の準備ができました"
+
+msgid "Installed version: %s. This update is served from geekybot.com after license verification."
+msgstr "インストール済みバージョン：%s。この更新はライセンス検証後に geekybot.com から配信されます。"
+
+msgid "Review update entitlement"
+msgstr "更新の利用権を確認"
+
+msgid "Open plugins page"
+msgstr "プラグインページを開く"
+
+msgid "Unknown"
+msgstr "不明"
+
+msgid "Latest CDN version"
+msgstr "最新の CDN バージョン"
+
+msgid "Channel"
+msgstr "チャンネル"
+
+msgid "Allowed"
+msgstr "許可"
+
+msgid "Renewal required"
+msgstr "更新契約が必要"
+
+msgid "Update entitlement"
+msgstr "更新の利用権"
+
+msgid "Yes"
+msgstr "はい"
+
+msgid "No"
+msgstr "いいえ"
+
+msgid "Critical flag"
+msgstr "重要フラグ"
+
+msgid "Release channel"
+msgstr "リリースチャンネル"
+
+msgid "Stable"
+msgstr "安定版"
+
+msgid "Beta"
+msgstr "ベータ"
+
+msgid "Dev"
+msgstr "開発版"
+
+msgid "Automatic updates"
+msgstr "自動更新"
+
+msgid "Manual updates only"
+msgstr "手動更新のみ"
+
+msgid "Critical security updates only"
+msgstr "重要なセキュリティ更新のみ"
+
+msgid "Patch releases only"
+msgstr "パッチリリースのみ"
+
+msgid "Patch and minor releases"
+msgstr "パッチおよびマイナーリリース"
+
+msgid "All stable releases"
+msgstr "すべての安定版リリース"
+
+msgid "Always allow critical security auto-updates"
+msgstr "重要なセキュリティ更新の自動適用を常に許可する"
+
+msgid "Recommended for live WooCommerce stores. The package still requires valid update entitlement from geekybot.com."
+msgstr "稼働中の WooCommerce ストアに推奨されます。パッケージには引き続き geekybot.com の有効な更新利用権が必要です。"
+
+msgid "Save update settings"
+msgstr "更新設定を保存"
+
+msgid "Site activation details"
+msgstr "サイトの有効化の詳細"
+
+msgid "These values are sent to geekybot.com during activation, refresh, protected download, and update checks."
+msgstr "これらの値は、有効化・状態更新・保護されたダウンロード・更新確認の際に geekybot.com へ送信されます。"
+
+msgid "Domain"
+msgstr "ドメイン"
+
+msgid "Site URL"
+msgstr "サイト URL"
+
+msgid "Production activations"
+msgstr "本番環境の有効化数"
+
+msgid "Allowed staging sites"
+msgstr "許可されたステージングサイト"
+
+msgid "None"
+msgstr "なし"
+
+msgid "Expires"
+msgstr "有効期限"
+
+msgid "Locked"
+msgstr "ロック中"
+
+msgid "Runtime entitlement"
+msgstr "ランタイムの利用権"
+
+msgid "Support entitlement"
+msgstr "サポートの利用権"
+
+msgid "Activate the Commerce Pro add-on"
+msgstr "Commerce Pro アドオンを有効化"
+
+msgid "Install the Commerce Pro add-on"
+msgstr "Commerce Pro アドオンをインストール"
+
+msgid "Get Commerce Pro"
+msgstr "Commerce Pro を入手"
+
+msgid "I already have a license"
+msgstr "すでにライセンスを持っています"
+
+msgid "Preview examples"
+msgstr "例をプレビュー"
+
+msgid "Let shoppers buy without leaving the chat"
+msgstr "チャットを離れずに買い物客が購入できるようにする"
+
+msgid "Commerce Pro finishes the sale: variations, cart control, checkout handoff, order help, comparisons, recommendations and coupons — grounded in your WooCommerce data."
+msgstr "Commerce Pro が販売を完結させます：バリエーション、カート操作、チェックアウトへの引き継ぎ、注文サポート、比較、おすすめ、クーポン — すべてあなたの WooCommerce データに基づいています。"
+
+msgid "18"
+msgstr "18"
+
+msgid "pro buying features"
+msgstr "件の Pro 購入機能"
+
+msgid "In-chat"
+msgstr "チャット内での"
+
+msgid "cart and checkout"
+msgstr "カートとチェックアウト"
+
+msgid "safe sales rules"
+msgstr "安全な販売ルール"
+
+msgid "From product finder to sales channel"
+msgstr "商品検索から販売チャネルへ"
+
+msgid "Why stores upgrade"
+msgstr "ストアがアップグレードする理由"
+
+msgid "Shoppers complete the purchase inside the assistant flow."
+msgstr "買い物客はアシスタントのフロー内で購入を完了できます。"
+
+msgid "Every buying action uses your live WooCommerce cart and orders."
+msgstr "すべての購入アクションは、稼働中の WooCommerce のカートと注文を使用します。"
+
+msgid "All controls stay in this dashboard, protected by safe guardrails."
+msgstr "すべての設定はこのダッシュボードに集約され、安全なガードレールで保護されています。"
+
+msgid "Your license is already active on this site. Install and activate the Commerce Pro add-on to unlock buying actions."
+msgstr "このサイトではライセンスがすでに有効です。Commerce Pro アドオンをインストールして有効化すると、購入アクションがアンロックされます。"
+
+msgid "Buying engine"
+msgstr "購入エンジン"
+
+msgid "What Commerce Pro unlocks"
+msgstr "Commerce Pro でアンロックされる機能"
+
+msgid "Every feature works inside the storefront assistant your shoppers already use — no extra widget, no theme changes."
+msgstr "すべての機能は、買い物客がすでに使っているストアフロントのアシスタント内で動作します。追加のウィジェットもテーマの変更も不要です。"
+
+msgid "Add to cart in chat"
+msgstr "チャット内でカートに追加"
+
+msgid "Simple products and variable products with option selection."
+msgstr "通常商品と、オプション選択に対応したバリエーション商品。"
+
+msgid "Cart control"
+msgstr "カートの操作"
+
+msgid "Shoppers review the cart, change quantities, and remove items by asking."
+msgstr "買い物客は尋ねるだけでカートを確認し、数量を変更し、商品を削除できます。"
+
+msgid "A checkout button appears as soon as the cart has items."
+msgstr "カートに商品が入るとすぐにチェックアウトボタンが表示されます。"
+
+msgid "Order help"
+msgstr "注文サポート"
+
+msgid "Logged-in customers ask about their own recent orders and status."
+msgstr "ログイン済みの顧客が自分の最近の注文や状況について尋ねられます。"
+
+msgid "Clear side-by-side answers when shoppers compare products."
+msgstr "買い物客が商品を比較するときに、分かりやすく並べて回答します。"
+
+msgid "Suggestions grounded in your own catalog, never invented."
+msgstr "あなた自身のカタログに基づく提案のみで、創作されることはありません。"
+
+msgid "Safe exposure of existing store coupons only."
+msgstr "既存の店舗クーポンのみを安全に提示します。"
+
+msgid "Leads and human handoff"
+msgstr "リードと担当者への引き継ぎ"
+
+msgid "Capture follow-up requests when a human touch is needed."
+msgstr "人の対応が必要なときにフォローアップのリクエストを獲得します。"
+
+msgid "Try before you buy"
+msgstr "購入前にお試し"
+
+msgid "See it on your own store data"
+msgstr "ご自身の店舗データで確認する"
+
+msgid "Guided Demo generates real shopper requests from your indexed products and labels the buying actions that Commerce Pro completes."
+msgstr "ガイド付きデモはインデックス済みの商品から実際の買い物客のリクエストを生成し、Commerce Pro が完結させる購入アクションを表示します。"
+
+msgid "Getting started"
+msgstr "はじめに"
+
+msgid "Live in three steps"
+msgstr "3 ステップで公開"
+
+msgid "No FTP and no manual ZIP handling — everything happens from this dashboard."
+msgstr "FTP も手動での ZIP 操作も不要 — すべてこのダッシュボードで完結します。"
+
+msgid "Get a license"
+msgstr "ライセンスを取得"
+
+msgid "Purchase Commerce Pro on geekybot.com."
+msgstr "geekybot.com で Commerce Pro を購入します。"
+
+msgid "Activate it here"
+msgstr "ここで有効化"
+
+msgid "Enter the key on the Add-ons page to authorize this site."
+msgstr "アドオンのページでキーを入力し、このサイトを認可します。"
+
+msgid "Install with one click"
+msgstr "ワンクリックでインストール"
+
+msgid "The protected add-on installs and updates from this dashboard."
+msgstr "保護されたアドオンは、このダッシュボードからインストールと更新ができます。"
+
+msgid "Open license page"
+msgstr "ライセンスページを開く"
+
+msgid "Rebuilding the product search index in the background (%1$s of %2$s products). Shoppers keep searching the current index until the new one is ready."
+msgstr "バックグラウンドで商品検索インデックスを再構築しています（%2$s 件中 %1$s 件）。新しいインデックスの準備ができるまで、買い物客は現在のインデックスで検索を続けられます。"
+
+msgid "Product search index rebuilt. Indexed: %1$s. Skipped: %2$s."
+msgstr "商品検索インデックスを再構築しました。インデックス済み：%1$s。スキップ：%2$s。"
+
+msgid "Buyer search settings saved."
+msgstr "購入者検索の設定を保存しました。"
+
+msgid "Default synonyms restored."
+msgstr "既定の同義語を復元しました。"
+
+msgid "Buyer search settings reset to defaults."
+msgstr "購入者検索の設定を既定値にリセットしました。"
+
+msgid "Draft"
+msgstr "下書き"
+
+msgid "Keyword search"
+msgstr "キーワード検索"
+
+msgid "Conversation review"
+msgstr "会話レビュー"
+
+msgid "conversations"
+msgstr "件の会話"
+
+msgid "messages stored"
+msgstr "件のメッセージを保存"
+
+msgid "need review"
+msgstr "件が要確認"
+
+msgid "Readiness"
+msgstr "準備状況"
+
+msgid "Indexed products"
+msgstr "インデックス済み商品"
+
+msgid "Policy sources"
+msgstr "ポリシーのソース"
+
+msgid "WooCommerce catalog is checked before launch."
+msgstr "公開前に WooCommerce のカタログを確認します。"
+
+msgid "Search index, policy pages, widget and privacy are reviewed."
+msgstr "検索インデックス、ポリシーページ、ウィジェット、プライバシーを確認します。"
+
+msgid "Final test links keep setup focused."
+msgstr "最後のテスト用リンクにより、セットアップの焦点がぶれません。"
+
+msgid "Products shown"
+msgstr "表示される商品"
+
+msgid "Placement"
+msgstr "配置"
+
+msgid "Widget preview follows the live storefront panel."
+msgstr "ウィジェットのプレビューは、公開中のストアフロントパネルに追従します。"
+
+msgid "Welcome copy, fallback text and product card volume are controlled here."
+msgstr "ウェルカム文、フォールバックのテキスト、商品カードの表示件数はここで制御します。"
+
+msgid "Scoped frontend CSS avoids theme layout changes."
+msgstr "スコープ化されたフロントエンド CSS により、テーマのレイアウトは変更されません。"
+
+msgid "Buyer language"
+msgstr "購入者の言葉"
+
+msgid "Search lab explains parsed buyer intent and match reasons."
+msgstr "検索ラボでは、解析された購入者の意図と一致理由を確認できます。"
+
+msgid "Synonyms, close matches and ranking boosts are configurable."
+msgstr "同義語、近い一致、ランキングのブーストを設定できます。"
+
+msgid "Product index tools stay separate from storefront behavior."
+msgstr "商品インデックスのツールは、ストアフロントの動作とは分離されています。"
+
+msgid "Safe answer sources"
+msgstr "安全な回答ソース"
+
+msgid "Selected pages"
+msgstr "選択したページ"
+
+msgid "Safe"
+msgstr "安全"
+
+msgid "Fallback"
+msgstr "フォールバック"
+
+msgid "Public only"
+msgstr "公開ページのみ"
+
+msgid "Source rule"
+msgstr "ソースのルール"
+
+msgid "Only selected public pages can ground policy answers."
+msgstr "ポリシー回答の根拠にできるのは、選択された公開ページのみです。"
+
+msgid "Missing policy details use the fallback message."
+msgstr "ポリシーの詳細が不足している場合は、フォールバックのメッセージが使用されます。"
+
+msgid "No shipping, refund or warranty policy is invented."
+msgstr "配送・返金・保証のポリシーが創作されることはありません。"
+
+msgid "Assistant performance"
+msgstr "アシスタントのパフォーマンス"
+
+msgid "Conversation counts show usage and learning volume."
+msgstr "会話数は、利用状況と学習のボリュームを示します。"
+
+msgid "Needs-review signals expose product, policy, and synonym issues."
+msgstr "要確認のシグナルにより、商品・ポリシー・同義語の問題が明らかになります。"
+
+msgid "Commerce Pro analytics are kept clearly separated."
+msgstr "Commerce Pro のアナリティクスは明確に分離されています。"
+
+msgid "Hidden"
+msgstr "非表示"
+
+msgid "Protected"
+msgstr "保護済み"
+
+msgid "REST requests"
+msgstr "REST リクエスト"
+
+msgid "API keys stay server-side and are never exposed to frontend JavaScript."
+msgstr "API キーはサーバー側に保持され、フロントエンドの JavaScript に公開されることはありません。"
+
+msgid "Admin changes use nonce and capability checks."
+msgstr "管理画面での変更では、ナンスと権限のチェックが行われます。"
+
+msgid "Grounded answering avoids invented products, prices, coupons and policies."
+msgstr "根拠に基づく回答により、商品・価格・クーポン・ポリシーの創作を防ぎます。"
+
+msgid "Buyer search controls"
+msgstr "購入者検索のコントロール"
+
+msgid "Tune how shopper wording is understood, without editing code. Rebuild the index after catalog changes."
+msgstr "コードを編集せずに、買い物客の言い回しの理解方法を調整できます。カタログを変更した後はインデックスを再構築してください。"
+
+msgid "Save search settings"
+msgstr "検索設定を保存"
+
+msgid "Reset actions"
+msgstr "リセット操作"
+
+msgid "Reset:"
+msgstr "リセット："
+
+msgid "Restore the default synonym examples? Your custom synonym text will be replaced."
+msgstr "既定の同義語の例を復元しますか？カスタムの同義語テキストは置き換えられます。"
+
+msgid "Default synonyms"
+msgstr "既定の同義語"
+
+msgid "Reset all buyer search settings to their defaults?"
+msgstr "購入者検索のすべての設定を既定値にリセットしますか？"
+
+msgid "All search settings"
+msgstr "すべての検索設定"
+
+msgid "Automatic indexing"
+msgstr "自動インデックス"
+
+msgid "Storefront intent checklist"
+msgstr "ストアフロントの意図チェックリスト"
+
+msgid "Try these grouped phrases in the storefront widget to confirm search, compare, cart, orders, deals and human handoff stay separated."
+msgstr "ストアフロントのウィジェットでこれらのグループ化されたフレーズを試し、検索・比較・カート・注文・お得情報・担当者への引き継ぎが分離されたままであることを確認してください。"
+
+msgid "Cart"
+msgstr "カート"
+
+msgid "Orders"
+msgstr "注文"
+
+msgid "Deals"
+msgstr "お得情報"
+
+msgid "Understand natural buyer language"
+msgstr "購入者の自然な言葉を理解する"
+
+msgid "Long phrases, price words, colour, size and soft preferences."
+msgstr "長いフレーズ、価格を表す語、色、サイズ、ゆるやかな好み。"
+
+msgid "Product match behaviour"
+msgstr "商品一致の動作"
+
+msgid "Exact matches only"
+msgstr "完全一致のみ"
+
+msgid "Minimum score"
+msgstr "最低スコア"
+
+msgid "Raise it only if weak results appear. Higher values hide close matches."
+msgstr "結果の精度が低い場合にのみ上げてください。値を高くすると、近い一致が表示されなくなります。"
+
+msgid "Ranking boosts"
+msgstr "ランキングのブースト"
+
+msgid "In-stock products"
+msgstr "在庫のある商品"
+
+msgid "Sale products"
+msgstr "セール商品"
+
+msgid "Well-rated products"
+msgstr "評価の高い商品"
+
+msgid "Popular products"
+msgstr "人気の商品"
+
+msgid "Custom synonyms"
+msgstr "カスタム同義語"
+
+msgid "One rule per line: what shoppers type = what your catalog calls it. For example: comfy = comfortable, soft, cushioned."
+msgstr "1 行に 1 ルール：買い物客が入力する語 = あなたのカタログでの呼び方。例：ふかふか = 快適, やわらかい, クッション性"
+
+msgid "Natural buyer search"
+msgstr "自然な購入者検索"
+
+msgid "Understand long buyer phrases instead of keyword-only search."
+msgstr "キーワードのみの検索ではなく、購入者の長いフレーズを理解します。"
+
+msgid "Product match behavior"
+msgstr "商品一致の動作"
+
+msgid "Smart product matches when exact color/size is not confirmed"
+msgstr "色やサイズが正確に確認できない場合はスマートな商品一致を使う"
+
+msgid "Minimum result score"
+msgstr "結果の最低スコア"
+
+msgid "Keep low unless you are seeing weak results. Higher values hide more close matches."
+msgstr "精度の低い結果が出ていない限り、低めのままにしてください。値を高くすると、近い一致がより多く非表示になります。"
+
+msgid "Boost in-stock products"
+msgstr "在庫のある商品を優先"
+
+msgid "Boost sale products"
+msgstr "セール商品を優先"
+
+msgid "Boost ratings"
+msgstr "評価を優先"
+
+msgid "Boost popularity"
+msgstr "人気を優先"
+
+msgid "One rule per line: shopper words = catalog words. Example: comfy = comfortable, soft, cushioned. Use words shoppers type on the left and catalog words/attributes on the right. These are added to the built-in search synonyms."
+msgstr "1 行に 1 ルール：買い物客の言葉 = カタログの言葉。例：ふかふか = 快適, やわらかい, クッション性。左側に買い物客が入力する語、右側にカタログの語や属性を書きます。これらは組み込みの検索同義語に追加されます。"
+
+msgid "Enable storefront widget"
+msgstr "ストアフロントウィジェットを有効にする"
+
+msgid "Show the floating assistant button on public store pages."
+msgstr "公開中の店舗ページにフローティングのアシスタントボタンを表示します。"
+
+msgid "Shown in the widget header."
+msgstr "ウィジェットのヘッダーに表示されます。"
+
+msgid "Assistant subtitle"
+msgstr "アシスタントのサブタイトル"
+
+msgid "Shown below the assistant name."
+msgstr "アシスタント名の下に表示されます。"
+
+msgid "Use shopper-friendly language that invites natural product questions."
+msgstr "自然な商品の質問を促す、買い物客に親しみやすい言葉を使ってください。"
+
+msgid "Shown when catalog data or selected policy pages cannot answer the shopper safely."
+msgstr "カタログデータや選択したポリシーページでは買い物客に安全に回答できない場合に表示されます。"
+
+msgid "Used for widget buttons and header accents."
+msgstr "ウィジェットのボタンとヘッダーのアクセントに使用されます。"
+
+msgid "Button position"
+msgstr "ボタンの位置"
+
+msgid "Floating widget placement on the storefront."
+msgstr "ストアフロントでのフローティングウィジェットの配置。"
+
+msgid "Recommended: 3–4 products for clean assistant replies."
+msgstr "推奨：アシスタントの返信を見やすく保つには 3〜4 件の商品。"
+
+msgid "Local grounded mode (default)"
+msgstr "ローカル根拠ベースモード（既定）"
+
+msgid "Calls no language model. Answers are assembled from your catalog and selected policy pages."
+msgstr "言語モデルを呼び出しません。回答はあなたのカタログと選択したポリシーページから組み立てられます。"
+
+msgid "Hosted AI endpoint for grounded answers."
+msgstr "根拠のある回答のためのホスト型 AI エンドポイント。"
+
+msgid "OpenAI BYOK"
+msgstr "OpenAI BYOK"
+
+msgid "Optional bring-your-own-key grounded answer mode."
+msgstr "任意の、自分のキーを使う根拠ベース回答モードです。"
+
+msgid "Only used when Zywrap mode is selected."
+msgstr "Zywrap モードが選択されている場合にのみ使用されます。"
+
+msgid "Zywrap API key"
+msgstr "Zywrap の API キー"
+
+msgid "Saved secret is not displayed after save."
+msgstr "保存されたシークレットは保存後に表示されません。"
+
+msgid "OpenAI API key"
+msgstr "OpenAI の API キー"
+
+msgid "OpenAI model"
+msgstr "OpenAI のモデル"
+
+msgid "Used only in OpenAI BYOK mode."
+msgstr "OpenAI BYOK モードでのみ使用されます。"
+
+msgid "AI answer token limit"
+msgstr "AI 回答のトークン上限"
+
+msgid "Keeps generated answers short and controlled."
+msgstr "生成される回答を短く、制御された状態に保ちます。"
+
+msgid "Daily AI call budget"
+msgstr "1 日あたりの AI 呼び出し予算"
+
+msgid "Site-wide ceiling on paid provider calls per day. Applies to everyone, including logged-in staff."
+msgstr "有料プロバイダーの呼び出しに対するサイト全体の 1 日の上限です。ログイン済みのスタッフを含むすべての利用者に適用されます。"
+
+msgid "Monthly AI call cap"
+msgstr "月あたりの AI 呼び出し上限"
+
+msgid "Hard stop for the calendar month. Past the cap, shoppers still get grounded local answers."
+msgstr "暦月での厳格な上限です。上限を超えた後も、買い物客にはローカルの根拠ベース回答が提供されます。"
+
+msgid "Security posture"
+msgstr "セキュリティの姿勢"
+
+msgid "API keys are encrypted at rest and remain server-side. The storefront receives public widget settings and REST nonce only."
+msgstr "API キーは保管時に暗号化され、サーバー側に留まります。ストアフロントが受け取るのは、公開ウィジェット設定と REST ナンスのみです。"
+
+msgid "Local grounded mode does not call a language model"
+msgstr "ローカル根拠ベースモードは言語モデルを呼び出しません"
+
+msgid "This is the shipped default. Replies are assembled from your WooCommerce data and selected policy pages, so there is no provider cost and no AI account to set up. Conversational, generated wording starts only after you select Zywrap or OpenAI and save a key."
+msgstr "これは出荷時の既定値です。返信はあなたの WooCommerce データと選択したポリシーページから組み立てられるため、プロバイダー費用も、用意すべき AI アカウントもありません。会話調の生成された表現が使われるのは、Zywrap または OpenAI を選択してキーを保存した後だけです。"
+
+msgid "AI spend ceiling"
+msgstr "AI 利用額の上限"
+
+msgid "Today: %1$s of %2$s calls used. This month: %3$s of %4$s."
+msgstr "本日：%2$s 回中 %1$s 回を使用。今月：%4$s 回中 %3$s 回。"
+
+msgid "%s calls were declined today after a budget was reached; those shoppers received local grounded answers."
+msgstr "予算に達した後、本日 %s 件の呼び出しが拒否されました。該当する買い物客にはローカルの根拠ベース回答が返されました。"
+
+msgid "API keys cannot be stored on this server."
+msgstr "このサーバーでは API キーを保存できません。"
+
+msgid "Geeky Bot encrypts provider keys at rest, and neither the libsodium nor the OpenSSL PHP extension is available here. Saving a key will be refused until your host enables one. Local grounded mode is unaffected."
+msgstr "Geeky Bot はプロバイダーのキーを保管時に暗号化しますが、このサーバーには libsodium も OpenSSL の PHP 拡張もありません。ホスティング事業者がいずれかを有効にするまで、キーの保存は拒否されます。ローカル根拠ベースモードには影響しません。"
+
+msgid "A provider key is still stored unencrypted."
+msgstr "プロバイダーのキーが暗号化されずに保存されています。"
+
+msgid "It was saved by an earlier version. Re-enter and save the key to store it encrypted."
+msgstr "以前のバージョンで保存されたものです。暗号化して保存するには、キーを入力し直して保存してください。"
+
+msgid "Key storage"
+msgstr "キーの保存"
+
+msgid "Provider keys are encrypted at rest with a key derived from this installation's WordPress salts. A copied database cannot decrypt them elsewhere."
+msgstr "プロバイダーのキーは、このインストールの WordPress ソルトから導出された鍵で保管時に暗号化されます。データベースをコピーしても、別の場所で復号することはできません。"
+
+msgid "Save conversation history"
+msgstr "会話履歴を保存する"
+
+msgid "Store shopper conversations for analytics and unanswered-question review."
+msgstr "アナリティクスと未回答の質問のレビューのために、買い物客との会話を保存します。"
+
+msgid "Save guest conversations"
+msgstr "ゲストの会話を保存する"
+
+msgid "When disabled, logged-out shoppers can still use Geeky Bot, but their server-side conversation history and click events are not stored."
+msgstr "無効にすると、ログアウト状態の買い物客も Geeky Bot を利用できますが、サーバー側の会話履歴とクリックイベントは保存されません。"
+
+msgid "Retention days"
+msgstr "保持日数"
+
+msgid "How long conversation data is retained."
+msgstr "会話データを保持する期間です。"
+
+msgid "Rate limit shopper messages"
+msgstr "買い物客のメッセージのレート制限"
+
+msgid "Maximum public shopper messages per window."
+msgstr "期間あたりの公開の買い物客メッセージの上限です。"
+
+msgid "Rate limit window minutes"
+msgstr "レート制限の期間（分）"
+
+msgid "Administrators, shop managers, and product or order editors are not subject to public visitor rate limits. Contributors and authors are."
+msgstr "管理者、ショップマネージャー、商品または注文の編集者は、公開訪問者のレート制限の対象外です。寄稿者と投稿者は対象です。"
+
+msgid "Trusted proxies in front of this site"
+msgstr "このサイトの前段にある信頼されたプロキシ"
+
+msgid "Leave at 0 unless a reverse proxy or CDN sits in front of the store. Set to 1 for a single CDN such as Cloudflare. X-Forwarded-For is only believed up to this many hops, because a visitor can otherwise forge it to get a fresh rate-limit bucket."
+msgstr "ストアの前段にリバースプロキシや CDN がない限り 0 のままにしてください。Cloudflare などの単一の CDN の場合は 1 に設定します。X-Forwarded-For はこのホップ数までしか信頼されません。そうしないと、訪問者がこれを偽装してレート制限の枠をリセットできてしまうためです。"
+
+msgid "Delete data on uninstall"
+msgstr "アンインストール時にデータを削除する"
+
+msgid "Remove conversations, review queue, product index, and Commerce Pro data when the plugin is uninstalled. Keep disabled on live stores unless intentional."
+msgstr "プラグインをアンインストールする際に、会話・レビューキュー・商品インデックス・Commerce Pro のデータを削除します。意図的な場合を除き、稼働中のストアでは無効のままにしてください。"
+
+msgid "Conversation data tools"
+msgstr "会話データのツール"
+
+msgid "Export individual or complete conversation records, inspect product-click signals, or delete stored conversation data from Geeky Bot → Conversations."
+msgstr "Geeky Bot → 会話から、個別または全体の会話記録をエクスポートしたり、商品クリックのシグナルを確認したり、保存された会話データを削除したりできます。"
+
+msgid "Open conversation data tools"
+msgstr "会話データのツールを開く"
+
+msgid "Activate WooCommerce"
+msgstr "WooCommerce を有効化"
+
+msgid "Install WooCommerce"
+msgstr "WooCommerce をインストール"
+
+msgid "Rebuilding %d%%"
+msgstr "再構築中 %d%%"
+
+msgid "Waiting"
+msgstr "待機中"
+
+msgid "Scheduled"
+msgstr "スケジュール済み"
+
+msgid "Pending"
+msgstr "保留中"
+
+msgid "Full index scheduled"
+msgstr "フルインデックスをスケジュール済み"
+
+msgid "Full index pending"
+msgstr "フルインデックスを保留中"
+
+msgid "Product changes sync automatically"
+msgstr "商品の変更は自動的に同期されます"
+
+msgid "Indexing starts automatically after WooCommerce is activated. Last full index:"
+msgstr "WooCommerce を有効化すると、インデックス作成が自動的に開始されます。最後のフルインデックス："
+
+msgid "A full product index is queued. Last full index:"
+msgstr "フル商品インデックスがキューに入っています。最後のフルインデックス："
+
+msgid "Product changes sync automatically. Last full index:"
+msgstr "商品の変更は自動的に同期されます。最後のフルインデックス："
+
+msgid "Strong match"
+msgstr "高い一致"
+
+msgid "Good match"
+msgstr "良好な一致"
+
+msgid "Close match"
+msgstr "近い一致"
+
+msgid "Not configured"
+msgstr "未設定"
+
+msgid "Blocked"
+msgstr "ブロック中"
+
+msgid "%1$s. %2$s"
+msgstr "%1$s。%2$s"
+
+msgid "Product terms"
+msgstr "商品に関する語句"
+
+msgid "Colors"
+msgstr "色"
+
+msgid "Sizes"
+msgstr "サイズ"
+
+msgid "Shopping mission"
+msgstr "買い物の目的"
+
+msgid "Gift discovery"
+msgstr "ギフト探し"
+
+msgid "Decision mode"
+msgstr "意思決定モード"
+
+msgid "Audience preference"
+msgstr "対象者の好み"
+
+msgid "Min %s"
+msgstr "最小 %s"
+
+msgid "Max %s"
+msgstr "最大 %s"
+
+msgid "What Geeky Bot understood"
+msgstr "Geeky Bot が理解した内容"
+
+msgid "Intent"
+msgstr "意図"
+
+msgid "Matched: %s"
+msgstr "一致：%s"
+
+msgid "Not confirmed: %s"
+msgstr "未確認：%s"
+
+msgid "Why this product matched"
+msgstr "この商品が一致した理由"
+
+msgid "Raw score: %s"
+msgstr "生スコア：%s"
+
+msgid "Added search terms: %s"
+msgstr "追加された検索語：%s"
+
+msgid "No image selected"
+msgstr "画像が選択されていません"
+
+msgid "Choose image"
+msgstr "画像を選択"
+
+msgid "Uses a Media Library image. PNG, JPG, WEBP, or GIF recommended."
+msgstr "メディアライブラリの画像を使用します。PNG、JPG、WEBP、GIF を推奨します。"
+
+msgid "Preview display"
+msgstr "プレビュー表示"
+
+msgid "Invitation & launcher"
+msgstr "呼びかけとランチャー"
+
+msgid "Open chat"
+msgstr "チャットを開く"
+
+msgid "Latest products"
+msgstr "新着商品"
+
+msgid "Top rated"
+msgstr "評価の高い商品"
+
+msgid "Blue hoodie"
+msgstr "ブルーのパーカー"
+
+msgid "Ask about products, size, colour, price…"
+msgstr "商品・サイズ・色・価格などについてお尋ねください…"
+
+msgid "Send"
+msgstr "送信"
+
+msgid "Selected"
+msgstr "選択済み"
+
+msgid "Suggested"
+msgstr "候補"
+
+msgid "No pages selected yet."
+msgstr "まだページが選択されていません。"
+
+msgid "No obvious policy pages found."
+msgstr "明らかなポリシーページが見つかりませんでした。"
+
+msgid "Returns"
+msgstr "返品"
+
+msgid "Refunds"
+msgstr "返金"
+
+msgid "Exchanges"
+msgstr "交換"
+
+msgid "Warranty"
+msgstr "保証"
+
+msgid "Cancellation"
+msgstr "キャンセル"
+
+msgid "Terms"
+msgstr "利用規約"
+
+msgid "Not recognized as a policy source"
+msgstr "ポリシーのソースとして認識されていません"
+
+msgid "Retest this phrase in the storefront widget. If it still fails, tune the Commerce Pro action wording or add a sales rule."
+msgstr "このフレーズをストアフロントのウィジェットで再テストしてください。それでも失敗する場合は、Commerce Pro のアクションの文言を調整するか、販売ルールを追加してください。"
+
+msgid "Select or improve the matching public policy page, then test the phrase again."
+msgstr "該当する公開ポリシーページを選択するか改善したうえで、もう一度フレーズをテストしてください。"
+
+msgid "Add or improve synonyms so shopper wording maps to catalog words, then run the phrase in Search Lab."
+msgstr "買い物客の言い回しがカタログの語に対応するよう同義語を追加または改善し、検索ラボでフレーズを実行してください。"
+
+msgid "Check product titles, categories, tags, price, stock and attributes, then rebuild the product index."
+msgstr "商品タイトル、カテゴリー、タグ、価格、在庫、属性を確認したうえで、商品インデックスを再構築してください。"
+
+msgid "Check whether this is a product, policy, synonym, or Commerce Pro wording issue before marking it handled."
+msgstr "対応済みにする前に、これが商品・ポリシー・同義語・Commerce Pro の文言のどの問題かを確認してください。"
+
+msgid "Review catalog terms, synonyms, policy pages or buying-action rules, then retest the shopper phrase."
+msgstr "カタログの語句、同義語、ポリシーページ、購入アクションのルールを見直したうえで、買い物客のフレーズを再テストしてください。"
+
+msgid "Review queue updated."
+msgstr "レビューキューを更新しました。"
+
+msgid "Review issue marked as handled."
+msgstr "レビュー項目を対応済みにしました。"
+
+msgid "Review issue ignored."
+msgstr "レビュー項目を無視しました。"
+
+msgid "Review issue restored to review."
+msgstr "レビュー項目をレビュー対象に戻しました。"
+
+msgid "Policy answer"
+msgstr "ポリシーの回答"
+
+msgid "Synonym / wording"
+msgstr "同義語 / 言い回し"
+
+msgid "Commerce action"
+msgstr "コマースのアクション"
+
+msgid "Zywrap enabled"
+msgstr "Zywrap 有効"
+
+msgid "Zywrap selected but not fully configured"
+msgstr "Zywrap が選択されていますが、設定が完了していません"
+
+msgid "OpenAI enabled"
+msgstr "OpenAI 有効"
+
+msgid "OpenAI selected but API key missing"
+msgstr "OpenAI が選択されていますが、API キーがありません"
+
+msgid "Glad to help. What would you like to check next?"
+msgstr "お役に立ててうれしいです。次は何をお調べしましょうか？"
+
+msgid "Got it. What would you like to check about %s next?"
+msgstr "承知しました。%s について、次は何をお調べしましょうか？"
+
+msgid "Got it. What would you like to check next?"
+msgstr "承知しました。次は何をお調べしましょうか？"
+
+msgid "I do not have a current product list to select from. Show some products first."
+msgstr "選択できる現在の商品リストがありません。まず商品を表示してください。"
+
+msgid "I only have %1$d product in the current results, so there is no product %2$d to select."
+msgid_plural "I only have %1$d products in the current results, so there is no product %2$d to select."
+msgstr[0] "現在の結果には商品が %1$d 件しかないため、%2$d 番目の商品は選択できません。"
+
+msgid "I could not match that position to the current product results."
+msgstr "その番号を現在の商品結果に対応付けられませんでした。"
+
+msgid "I do not have a current %s selected. Please use the product name or show matching products first."
+msgstr "現在選択されている %s がありません。商品名を使うか、まず該当する商品を表示してください。"
+
+msgid "Which product do you mean? Please use the product name or show some products first."
+msgstr "どの商品のことでしょうか？商品名を使うか、まず商品をいくつか表示してください。"
+
+msgid "Which other product do you mean—%s?"
+msgstr "もう一方の商品はどちらでしょうか — %s？"
+
+msgid "I do not have another current product to switch to. Please name the product you mean."
+msgstr "切り替えられる別の商品が現在ありません。ご希望の商品名をお知らせください。"
+
+msgid "You selected %s. What would you like to know about it?"
+msgstr "%s を選択しました。この商品について何をお知りになりたいですか？"
+
+msgid "You are looking at %s. What would you like to know about it?"
+msgstr "現在 %s をご覧になっています。この商品について何をお知りになりたいですか？"
+
+msgid "Which product do you mean—%s?"
+msgstr "どの商品のことでしょうか — %s？"
+
+msgid "Which product do you mean? Please use the product name."
+msgstr "どの商品のことでしょうか？商品名でお知らせください。"
+
+msgid "find products in this store and narrow them down"
+msgstr "この店舗の商品を探して絞り込む"
+
+msgid "answer questions about a product from its store details"
+msgstr "店舗の商品情報から、その商品に関する質問に答える"
+
+msgid "answer store questions such as shipping, returns and payment"
+msgstr "配送・返品・支払いなど、店舗に関する質問に答える"
+
+msgid "Ask me about anything in the store and I will do what I can."
+msgstr "店舗に関することは何でもお尋ねください。できる限りお手伝いします。"
+
+msgid "and"
+msgstr "と"
+
+msgid "I can %s. What would you like to start with?"
+msgstr "私は %s ができます。まずはどれから始めましょうか？"
+
+msgid "or"
+msgstr "または"
+
+msgid "Open shopping assistant"
+msgstr "ショッピングアシスタントを開く"
+
+msgid "Shopping assistant invitation"
+msgstr "ショッピングアシスタントからの呼びかけ"
+
+msgid "Dismiss shopping assistant invitation"
+msgstr "ショッピングアシスタントの呼びかけを閉じる"
+
+msgid "You"
+msgstr "あなた"
+
+msgid "Ask about products, size, color, price, or use case…"
+msgstr "商品・サイズ・色・価格・使い方などについてお尋ねください…"
+
+msgid "Let me check that"
+msgstr "確認いたします"
+
+msgid "I couldn't complete that request right now. Please try again."
+msgstr "そのリクエストを実行できませんでした。もう一度お試しください。"
+
+msgid "The store is taking longer than expected. Please try again."
+msgstr "店舗の応答に予想より時間がかかっています。もう一度お試しください。"
+
+msgid "Too many requests were sent. Please wait a moment and try again."
+msgstr "リクエストが多すぎます。少し待ってからもう一度お試しください。"
+
+msgid "Geeky Bot could not complete its database update. Please reload the page, then contact support if the notice remains."
+msgstr "Geeky Bot はデータベースの更新を完了できませんでした。ページを再読み込みし、それでも通知が残る場合はサポートにご連絡ください。"
+
+msgid "It's made from %1$s with %2$s."
+msgstr "素材は %1$s で、%2$s が使われています。"
+
+msgid "It's made from %s."
+msgstr "素材は %s です。"
+
+msgid "No—don't submerge it. It's %s, not waterproof."
+msgstr "いいえ、水に沈めないでください。%s であり、防水ではありません。"
+
+msgid "No—don't submerge it. It's not waterproof."
+msgstr "いいえ、水に沈めないでください。防水ではありません。"
+
+msgid "No. It's %s, not waterproof."
+msgstr "いいえ。%s であり、防水ではありません。"
+
+msgid "No. It's not waterproof."
+msgstr "いいえ。防水ではありません。"
+
+msgid "Yes. The store describes it as waterproof: %s."
+msgstr "はい。店舗は防水と説明しています：%s。"
+
+msgid "Yes. The store describes it as waterproof."
+msgstr "はい。店舗は防水と説明しています。"
+
+msgid "It's described as water-resistant, but the store does not confirm that it is waterproof."
+msgstr "撥水と説明されていますが、防水であることは店舗によって確認されていません。"
+
+msgid "It's described as %s, but the store does not confirm that it is waterproof."
+msgstr "%s と説明されていますが、防水であることは店舗によって確認されていません。"
+
+msgid "It's compatible with %s."
+msgstr "%s に対応しています。"
+
+msgid "Yes. The store lists it for %s."
+msgstr "はい。店舗は %s 向けとして記載しています。"
+
+msgid "The store does not specifically list it for %1$s. Its confirmed uses are %2$s."
+msgstr "店舗は %1$s 向けとして特に記載していません。確認できている用途は %2$s です。"
+
+msgid "Its listed uses are %s."
+msgstr "記載されている用途は %s です。"
+
+msgid "Yes. %s is listed as available."
+msgstr "はい。%s は利用可能と記載されています。"
+
+msgid "No. %s is listed as unavailable."
+msgstr "いいえ。%s は利用不可と記載されています。"
+
+msgid "%1$s: %2$s."
+msgstr "%1$s：%2$s。"
+
+msgid "It measures %1$s × %2$s × %3$s %4$s and weighs %5$s %6$s."
+msgstr "サイズは %1$s × %2$s × %3$s %4$s、重量は %5$s %6$s です。"
+
+msgid "It measures %1$s × %2$s × %3$s %4$s."
+msgstr "サイズは %1$s × %2$s × %3$s %4$s です。"
+
+msgid "It weighs %1$s %2$s."
+msgstr "重量は %1$s %2$s です。"
+
+msgid "It comes with %s."
+msgstr "%s が付属します。"
+
+msgid "It's currently %1$s, reduced from %2$s."
+msgstr "現在 %1$s で、%2$s から値下げされています。"
+
+msgid "It's currently %s."
+msgstr "現在 %s です。"
+
+msgid "It's currently out of stock, but you can still order it on backorder."
+msgstr "現在は在庫切れですが、取り寄せでご注文いただけます。"
+
+msgid "The item will be clearly marked as backordered before purchase."
+msgstr "ご購入前に、取り寄せ商品であることが明確に表示されます。"
+
+msgid "Yes, it's currently in stock."
+msgstr "はい、現在在庫があります。"
+
+msgid "No, it's currently out of stock."
+msgstr "いいえ、現在は在庫切れです。"
+
+msgid "Available %1$s: %2$s."
+msgstr "ご利用いただける %1$s：%2$s。"
+
+msgid "It isn't currently on sale."
+msgstr "現在セール対象ではありません。"
+
+msgid "Yes, a charging cable is included."
+msgstr "はい、充電ケーブルが付属します。"
+
+msgid "No, a charging cable isn't included."
+msgstr "いいえ、充電ケーブルは付属しません。"
+
+msgid "Included: %s."
+msgstr "付属品：%s。"
+
+msgid "Battery life: %s."
+msgstr "バッテリー駆動時間：%s。"
+
+msgid "Care instructions: %s."
+msgstr "お手入れ方法：%s。"
+
+msgid "The bottle body is dishwasher safe, but the lid should be hand washed."
+msgstr "ボトル本体は食洗機に対応していますが、ふたは手洗いをおすすめします。"
+
+msgid "No, it isn't dishwasher safe."
+msgstr "いいえ、食洗機には対応していません。"
+
+msgid "No, it isn't microwave safe."
+msgstr "いいえ、電子レンジには対応していません。"
+
+msgid "No. It's leak-resistant, not leak-proof."
+msgstr "いいえ。漏れにくい仕様であり、完全防漏ではありません。"
+
+msgid "Leak protection: %s."
+msgstr "漏れ対策：%s。"
+
+msgid "Yes, it has a backlight."
+msgstr "はい、バックライトがあります。"
+
+msgid "No, it doesn't have a backlight."
+msgstr "いいえ、バックライトはありません。"
+
+msgid "Available options: %s."
+msgstr "選択できるオプション：%s。"
+
+msgid "It's currently in stock."
+msgstr "現在在庫があります。"
+
+msgid "It's currently out of stock."
+msgstr "現在は在庫切れです。"
+
+msgid "I couldn't find that information in this product's store details."
+msgstr "この商品の店舗情報には、その内容が見つかりませんでした。"
+
+msgid "I couldn't find %s in this product's store details."
+msgstr "この商品の店舗情報には %s が見つかりませんでした。"
+
+msgid "I couldn't find %s in the store details."
+msgstr "店舗情報には %s が見つかりませんでした。"
+
+msgid "Yes, %s is in stock."
+msgstr "はい、%s は在庫があります。"
+
+msgid "%s is out of stock, but it can be ordered on backorder."
+msgstr "%s は在庫切れですが、取り寄せでご注文いただけます。"
+
+msgid "%s is currently out of stock."
+msgstr "%s は現在在庫切れです。"
+
+msgid "It is %1$s, reduced from %2$s."
+msgstr "%1$s で、%2$s から値下げされています。"
+
+msgid "It is %s."
+msgstr "%s です。"
+
+msgid "%1$s is on sale for %2$s, reduced from %3$s."
+msgstr "%1$s は %3$s から値下げされ、%2$s でセール中です。"
+
+msgid "%1$s is on sale at %2$s."
+msgstr "%1$s は %2$s でセール中です。"
+
+msgid "colors"
+msgstr "カラー"
+
+msgid "sizes"
+msgstr "サイズ"
+
+msgid "is"
+msgstr "が"
+
+msgid "are"
+msgstr "が"
+
+msgid "In %1$s, %2$s %3$s available."
+msgstr "%1$s では、%2$s %3$s ご利用いただけます。"
+
+msgid "%1$s %2$s currently out of stock."
+msgstr "%1$s %2$s は現在在庫切れです。"
+
+msgid "Available: %s."
+msgstr "在庫あり：%s。"
+
+msgid "Out of stock: %s."
+msgstr "在庫切れ：%s。"
+
+msgid "I couldn't find that exact option combination for this product."
+msgstr "この商品で、そのオプションの組み合わせは見つかりませんでした。"
+
+msgid "None of the matching options is currently on sale."
+msgstr "該当するオプションのうち、現在セール対象のものはありません。"
+
+msgid "I couldn't find matching options for that request."
+msgstr "そのリクエストに一致するオプションが見つかりませんでした。"
+
+msgid "Checked store details"
+msgstr "店舗情報を確認しました"
+
+msgid "From store details"
+msgstr "店舗情報より"
+
+msgid "the material"
+msgstr "素材"
+
+msgid "water-protection information"
+msgstr "防水に関する情報"
+
+msgid "compatibility details"
+msgstr "対応状況の詳細"
+
+msgid "suitability details"
+msgstr "適合に関する詳細"
+
+msgid "that product detail"
+msgstr "その商品の詳細"
+
+msgid "the dimensions"
+msgstr "寸法"
+
+msgid "the weight"
+msgstr "重量"
+
+msgid "warranty information"
+msgstr "保証に関する情報"
+
+msgid "the current price"
+msgstr "現在の価格"
+
+msgid "stock information"
+msgstr "在庫情報"
+
+msgid "available colors"
+msgstr "選択できるカラー"
+
+msgid "available sizes"
+msgstr "選択できるサイズ"
+
+msgid "sale information"
+msgstr "セール情報"
+
+msgid "included-item information"
+msgstr "付属品の情報"
+
+msgid "battery-life information"
+msgstr "バッテリー駆動時間の情報"
+
+msgid "care instructions"
+msgstr "お手入れ方法"
+
+msgid "leak-protection information"
+msgstr "漏れ対策の情報"
+
+msgid "backlight information"
+msgstr "バックライトの情報"
+
+msgid "capacity options"
+msgstr "容量のオプション"
+
+msgid "product options"
+msgstr "商品のオプション"
+
+msgid "a product summary"
+msgstr "商品の概要"
+
+msgid "the dimensions or weight"
+msgstr "寸法または重量"
+
+msgid "size %s"
+msgstr "サイズ %s"
+
+msgid "On sale: %s."
+msgstr "セール中：%s。"
+
+msgid "%1$s in size %2$s"
+msgstr "%1$s のサイズ %2$s"
+
+msgid "%1$s for %2$s"
+msgstr "%2$s の %1$s"
+
+msgid "%1$s in %2$s"
+msgstr "%2$s の %1$s"
+
+msgid "I'm not sure which product you mean. Please use the product name or ask about one of the products currently shown."
+msgstr "どの商品のことか分かりませんでした。商品名を使うか、現在表示されている商品のいずれかについてお尋ねください。"
+
+msgid "I couldn't access that product's store details."
+msgstr "その商品の店舗情報にアクセスできませんでした。"
+
+msgid "Are you asking about %s?"
+msgstr "%s についてのご質問でしょうか？"
+
+msgid "Which product are you asking about?"
+msgstr "どの商品についてのご質問でしょうか？"
+
+msgid "%1$s sale price; regular price %2$s"
+msgstr "%1$s のセール価格。通常価格 %2$s"
+
+msgid "This analytics event is not allowed."
+msgstr "このアナリティクスイベントは許可されていません。"
+
+msgid "Product search limit is too high."
+msgstr "商品検索の上限が大きすぎます。"
+
+msgid "Please keep your question shorter so I can search the store accurately."
+msgstr "店舗を正確に検索できるよう、ご質問はもう少し短くしてください。"
+
+msgid "Product search is temporarily unavailable. Please try again."
+msgstr "商品検索は一時的にご利用いただけません。もう一度お試しください。"
+
+msgid "Gift"
+msgstr "ギフト"
+
+msgid "The monthly AI answer budget for this store has been reached."
+msgstr "この店舗の月間 AI 回答予算に達しました。"
+
+msgid "The daily AI answer budget for this store has been reached."
+msgstr "この店舗の 1 日の AI 回答予算に達しました。"
+
+msgid "Please type a product or store question so I can help."
+msgstr "お手伝いできるよう、商品または店舗に関するご質問を入力してください。"
+
+msgid "I cleared the previous shopping request. Tell me what you would like to find next."
+msgstr "直前のショッピングのリクエストをクリアしました。次に何をお探しか教えてください。"
+
+msgid "What would you like to check next?"
+msgstr "次は何をお調べしましょうか？"
+
+msgid "Product assistance is temporarily unavailable. Please contact the store if you need help."
+msgstr "商品に関するサポートは一時的にご利用いただけません。お困りの場合は店舗までお問い合わせください。"
+
+msgid "I couldn't find an available product with that name."
+msgstr "その名前で購入可能な商品は見つかりませんでした。"
+
+msgid "Here is the product comparison."
+msgstr "商品の比較結果はこちらです。"
+
+msgid "Product comparison isn't available right now. You can still open the products below to review their details."
+msgstr "現在、商品の比較はご利用いただけません。以下の商品を開いて詳細をご確認いただけます。"
+
+msgid "Choose at least two shown products to compare."
+msgstr "比較するには、表示されている商品を 2 つ以上お選びください。"
+
+msgid "Here are the best matches for your request."
+msgstr "ご要望に最も近い商品はこちらです。"
+
+msgid "Choose two different result positions to compare, such as “compare the first and third.”"
+msgstr "「1 つ目と 3 つ目を比較して」のように、比較する 2 つの位置をお選びください。"
+
+msgid "I do not have a current product list to compare. Show some products first, or name the two products you would like to compare."
+msgstr "比較できる現在の商品リストがありません。まず商品を表示するか、比較したい 2 つの商品名をお知らせください。"
+
+msgid "I only have one product in the current results, so there is no %s product to compare. Show more products or name the two products you would like to compare."
+msgstr "現在の結果には商品が 1 件しかないため、比較する %s の商品がありません。商品をもっと表示するか、比較したい 2 つの商品名をお知らせください。"
+
+msgid "The current results contain only %1$d product, so there is no %2$s product to compare. Show more products or name the two products you would like to compare."
+msgid_plural "The current results contain only %1$d products, so there is no %2$s product to compare. Show more products or name the two products you would like to compare."
+msgstr[0] "現在の結果には商品が %1$d 件しかないため、比較する %2$s の商品がありません。商品をもっと表示するか、比較したい 2 つの商品名をお知らせください。"
+
+msgid "first"
+msgstr "1 つ目"
+
+msgid "second"
+msgstr "2 つ目"
+
+msgid "third"
+msgstr "3 つ目"
+
+msgid "fourth"
+msgstr "4 つ目"
+
+msgid "fifth"
+msgstr "5 つ目"
+
+msgid "sixth"
+msgstr "6 つ目"
+
+msgid "seventh"
+msgstr "7 つ目"
+
+msgid "eighth"
+msgstr "8 つ目"
+
+msgid "ninth"
+msgstr "9 つ目"
+
+msgid "tenth"
+msgstr "10 つ目"
+
+msgid "#%d"
+msgstr "#%d"
+
+msgid "I couldn't find two visible store products matching those names."
+msgstr "その名前に一致する公開中の店舗商品が 2 つ見つかりませんでした。"
+
+msgid "that product"
+msgstr "その商品"
+
+msgid "I found more than one visible product for “%1$s”: %2$s and %3$s. Please use the full product name."
+msgstr "「%1$s」に一致する公開中の商品が複数見つかりました：%2$s と %3$s。正式な商品名でお知らせください。"
+
+msgid "I couldn't find a visible store product matching “%s”."
+msgstr "「%s」に一致する公開中の店舗商品が見つかりませんでした。"
+
+msgid "I couldn't find another confirmed color for %s that also matches your remaining filters."
+msgstr "%s について、残りの条件にも一致する別の確認済みカラーは見つかりませんでした。"
+
+msgid "I couldn't find a close alternative to %s that also matches your remaining filters."
+msgstr "%s について、残りの条件にも一致する近い代替品は見つかりませんでした。"
+
+msgid "There isn't an earlier product list to restore in this conversation."
+msgstr "この会話には、復元できる以前の商品リストがありません。"
+
+msgid "I couldn't find products matching that change."
+msgstr "その変更に一致する商品は見つかりませんでした。"
+
+msgid "I couldn't find this information in the store’s published policies. Please contact the store for confirmation."
+msgstr "この情報は店舗の公開ポリシーには見つかりませんでした。ご確認のため店舗までお問い合わせください。"
+
+msgid "Here is %s."
+msgstr "%s はこちらです。"
+
+msgid "From the products shown, %s is the closest match to your request. Open it to review the price, stock, and available options."
+msgstr "表示されている商品の中では、%s がご要望に最も近い商品です。開いて価格・在庫・選択できるオプションをご確認ください。"
+
+msgid "%1$s has the largest confirmed discount among the products shown at about %2$d%% off. Open it to review the price, stock, and available options."
+msgstr "%1$s は、表示されている商品の中で最も確認できる割引率が大きく、約 %2$d%% オフです。開いて価格・在庫・選択できるオプションをご確認ください。"
+
+msgid "%s is the best discounted option I could confirm from the products shown."
+msgstr "表示されている商品の中で確認できた、最もお得な選択肢は %s です。"
+
+msgid "You selected %s. Open it to review the price, stock, and available options."
+msgstr "%s を選択しました。開いて価格・在庫・選択できるオプションをご確認ください。"
+
+msgid "%1$s is available in these colors: %2$s. Open the product to choose an available option."
+msgstr "%1$s は次のカラーでご用意があります：%2$s。商品を開いて、購入できるオプションをお選びください。"
+
+msgid "I couldn't find another confirmed color for that product."
+msgstr "その商品について、別の確認済みカラーは見つかりませんでした。"
+
+msgid "the selected product"
+msgstr "選択した商品"
+
+msgid "Here are some related alternatives to %s."
+msgstr "%s に関連する代替商品はこちらです。"
+
+msgid "I restored the previous product options."
+msgstr "以前の商品の条件を復元しました。"
+
+msgid "I removed those filters and updated the results."
+msgstr "それらの絞り込み条件を解除して、結果を更新しました。"
+
+msgid "I removed that filter and updated the results."
+msgstr "その絞り込み条件を解除して、結果を更新しました。"
+
+msgid "Here are some lower-priced options that still match your request."
+msgstr "ご要望に合う、より価格を抑えた選択肢はこちらです。"
+
+msgid "I narrowed the results using your latest preference."
+msgstr "最新のご希望に基づいて結果を絞り込みました。"
+
+msgid "Here are some more premium options that still match your request."
+msgstr "ご要望に合う、より上位の選択肢はこちらです。"
+
+msgid "I couldn't find %1$s %2$s. Here are other products in that price range."
+msgstr "%1$s %2$s は見つかりませんでした。その価格帯の他の商品はこちらです。"
+
+msgid "I couldn't find %s at that price. Here are other products that may fit your budget."
+msgstr "その価格の %s は見つかりませんでした。ご予算に合いそうな他の商品はこちらです。"
+
+msgid "I couldn't find anything for \"%1$s\", so I searched for \"%2$s\" instead. Here is what I found."
+msgstr "「%1$s」では見つからなかったため、代わりに「%2$s」で検索しました。結果はこちらです。"
+
+msgid "Here are the closest matches I could find."
+msgstr "見つかった中で最も近い商品はこちらです。"
+
+msgid "I couldn't find an exact match %s. Here are the closest available products."
+msgstr "%s に完全に一致する商品は見つかりませんでした。最も近い購入可能な商品はこちらです。"
+
+msgid "I couldn't find %1$s. Here are other %2$s options that may help."
+msgstr "%1$s は見つかりませんでした。お役に立ちそうな他の %2$s の選択肢はこちらです。"
+
+msgid "Here is %d product that matches your request."
+msgid_plural "Here are %d products that match your request."
+msgstr[0] "ご要望に一致する商品が %d 件あります。"
+
+msgid "Top matches: %s."
+msgstr "上位の一致：%s。"
+
+msgid "I marked any requested details that the store has not confirmed."
+msgstr "ご希望の詳細のうち、店舗が確認していないものには印を付けました。"
+
+msgid "Open a product to review its price, stock, and available options."
+msgstr "商品を開いて、価格・在庫・選択できるオプションをご確認ください。"
+
+msgid "I couldn't find a matching product. Try a different color, size, price, or product name."
+msgstr "一致する商品が見つかりませんでした。別の色・サイズ・価格・商品名をお試しください。"
+
+msgid "The store hasn't provided enough information for me to answer that."
+msgstr "それにお答えするための十分な情報が店舗から提供されていません。"
+
+msgid "I can't add items to your cart from here. You can add it from the product page and carry on shopping."
+msgstr "ここからカートに商品を追加することはできません。商品ページから追加して、そのままお買い物を続けられます。"
+
+msgid "I can't change your cart from here. You can remove it on the cart page."
+msgstr "ここからカートを変更することはできません。カートページで削除できます。"
+
+msgid "I can't change quantities from here. You can update the amount on the cart page."
+msgstr "ここから数量を変更することはできません。カートページで数量を更新できます。"
+
+msgid "I can't show your cart from here. The cart page has everything currently in it."
+msgstr "ここからカートを表示することはできません。カートページに現在の内容がすべて表示されます。"
+
+msgid "I can't take you through checkout. You can review your cart and check out as usual."
+msgstr "購入手続きへご案内することはできません。通常どおりカートを確認してお手続きいただけます。"
+
+msgid "I don't have discount codes to give out. Any current offers will be shown on the product or cart pages."
+msgstr "お渡しできる割引コードはありません。現在のお得情報は商品ページやカートページに表示されます。"
+
+msgid "I can't pass you to a person from here, and I'd rather say so than guess. The store's contact details are on its help pages."
+msgstr "ここから担当者にお繋ぎすることはできません。推測でお答えするより正直にお伝えします。店舗の連絡先はヘルプページに記載されています。"
+
+msgid "I understood that, but I can't carry it out from here."
+msgstr "内容は理解しましたが、ここから実行することはできません。"
+
+msgid "No matching product"
+msgstr "一致する商品なし"
+
+msgid "Review product titles, categories, attributes, stock, price, and common synonyms."
+msgstr "商品タイトル、カテゴリー、属性、在庫、価格、よく使われる同義語を見直してください。"
+
+msgid "Product detail missing"
+msgstr "商品の詳細が不足しています"
+
+msgid "Add the missing fact to the WooCommerce product description or attributes."
+msgstr "不足している情報を WooCommerce の商品説明または属性に追加してください。"
+
+msgid "Product reference unclear"
+msgstr "商品の指定が不明確です"
+
+msgid "Retest the selection flow and ensure product names are distinctive."
+msgstr "選択フローを再テストし、商品名が区別しやすいことを確認してください。"
+
+msgid "Policy source missing"
+msgstr "ポリシーのソースがありません"
+
+msgid "Select a published page for this policy area in Store Knowledge."
+msgstr "ストアナレッジで、このポリシー領域に対応する公開済みページを選択してください。"
+
+msgid "Policy detail missing"
+msgstr "ポリシーの詳細が不足しています"
+
+msgid "Add a clear answer to the selected policy page and refresh the knowledge index."
+msgstr "選択したポリシーページに明確な回答を追加し、ナレッジインデックスを更新してください。"
+
+msgid "No grounded answer"
+msgstr "根拠のある回答がありません"
+
+msgid "Check whether the phrase belongs to products, policy content, or a Commerce Pro action."
+msgstr "そのフレーズが商品・ポリシーの内容・Commerce Pro のアクションのどれに該当するかを確認してください。"
+
+msgid "Review the shopper phrase and improve the matching store data."
+msgstr "買い物客のフレーズを見直し、一致する店舗データを改善してください。"
+
+msgid "show me %s"
+msgstr "%s を見せて"
+
+msgid "Conversation memory"
+msgstr "会話の記憶"
+
+msgid "Ask a follow-up that names no product"
+msgstr "商品名を挙げずに追加の質問をする"
+
+msgid "which one is cheaper?"
+msgstr "どちらが安いですか？"
+
+msgid "The second question names nothing. It is answered against the results already on screen."
+msgstr "2 つ目の質問では何も名指ししていません。すでに画面に表示されている結果に対して回答されます。"
+
+msgid "Comparison"
+msgstr "比較"
+
+msgid "Compare by position, not by name"
+msgstr "名前ではなく位置で比較する"
+
+msgid "compare the first and second"
+msgstr "1 つ目と 2 つ目を比較して"
+
+msgid "Shoppers point at what they can see instead of retyping two product names."
+msgstr "買い物客は 2 つの商品名を打ち直す代わりに、見えているものを指し示します。"
+
+msgid "Ask a detail across the whole result set"
+msgstr "結果全体にわたる詳細を尋ねる"
+
+msgid "what material are they?"
+msgstr "これらの素材は何ですか？"
+
+msgid "Answered from stored product data for every result at once, naming any product the catalog does not record it for."
+msgstr "保存された商品データから、すべての結果について一度に回答し、カタログに記録がない商品は明示します。"
+
+msgid "Refinement"
+msgstr "絞り込み"
+
+msgid "Narrow the results without starting over"
+msgstr "最初からやり直さずに結果を絞り込む"
+
+msgid "only under %1$s%2$s"
+msgstr "%1$s%2$s 以下だけ"
+
+msgid "The budget arrives as a second thought, the way it does in a real conversation."
+msgstr "実際の会話と同じように、予算は後から付け加えられます。"
+
+msgid "Put two real products side by side"
+msgstr "実在する 2 つの商品を並べて比較する"
+
+msgid "Compare %1$s and %2$s"
+msgstr "%1$s と %2$s を比較して"
+
+msgid "Both products, and every value compared, come from this catalog."
+msgstr "両方の商品も、比較されるすべての値も、このカタログから取得されます。"
+
+msgid "Ask for a grounded best match"
+msgstr "根拠のあるベストマッチを尋ねる"
+
+msgid "Which %s on sale do you recommend?"
+msgstr "セール中の %s でおすすめはどれですか？"
+
+msgid "Which %s do you recommend?"
+msgstr "%s でおすすめはどれですか？"
+
+msgid "Uses a real product family with an active sale item."
+msgstr "セール中の商品がある実在の商品カテゴリーを使用します。"
+
+msgid "Uses a product family detected from this catalog."
+msgstr "このカタログから検出された商品カテゴリーを使用します。"
+
+msgid "Catalog family: %s"
+msgstr "カタログのカテゴリー：%s"
+
+msgid "Price intent"
+msgstr "価格の意図"
+
+msgid "Sort the whole catalog by price"
+msgstr "カタログ全体を価格で並べ替える"
+
+msgid "what is cheapest today"
+msgstr "今日いちばん安いのは何ですか"
+
+msgid "No product named at all, and the answer still comes from live WooCommerce prices."
+msgstr "商品名はまったく挙げられていませんが、回答は稼働中の WooCommerce の価格から得られます。"
+
+msgid "Whole catalog"
+msgstr "カタログ全体"
+
+msgid "Scope"
+msgstr "範囲"
+
+msgid "Ask the assistant what it covers"
+msgstr "アシスタントに対応範囲を尋ねる"
+
+msgid "What can you do?"
+msgstr "何ができますか？"
+
+msgid "Answers from what this install actually has switched on, not a stock script."
+msgstr "定型のスクリプトではなく、このインストールで実際に有効になっている機能から回答します。"
+
+msgid "Assistant capabilities"
+msgstr "アシスタントの機能"
+
+msgid "Knowing when to stop"
+msgstr "やめどきを知る"
+
+msgid "See it hand a complaint to a person"
+msgstr "苦情を担当者に引き継ぐ様子を見る"
+
+msgid "I want to complain"
+msgstr "苦情を伝えたい"
+
+msgid "A complaint is not a shopping request, so it stops selling instead of answering with products."
+msgstr "苦情はショッピングのリクエストではないため、商品で答えるのではなく販売を止めます。"
+
+msgid "Support handover"
+msgstr "サポートへの引き継ぎ"
+
+msgid "Exact product"
+msgstr "特定の商品"
+
+msgid "Open a real product by name"
+msgstr "実在の商品を名前で開く"
+
+msgid "Shows how shoppers can ask for one exact catalog product without browsing menus."
+msgstr "メニューをたどらずに、カタログ内の特定の商品をリクエストできることを示します。"
+
+msgid "Price filter"
+msgstr "価格フィルター"
+
+msgid "Test a real budget request"
+msgstr "実際の予算リクエストをテストする"
+
+msgid "%1$s under %2$s%3$s"
+msgstr "%2$s%3$s 以下の %1$s"
+
+msgid "Uses a confirmed current product price from this store."
+msgstr "この店舗で確認された現在の商品価格を使用します。"
+
+msgid "in %s"
+msgstr "%s の"
+
+msgid "Try color or size language"
+msgstr "色やサイズの言葉を試す"
+
+msgid "Uses attributes already indexed from this product."
+msgstr "この商品からすでにインデックス化されている属性を使用します。"
+
+msgid "Product Q&A"
+msgstr "商品 Q&A"
+
+msgid "Check a live stock fact"
+msgstr "リアルタイムの在庫情報を確認する"
+
+msgid "Is %s in stock?"
+msgstr "%s は在庫がありますか？"
+
+msgid "Uses the current WooCommerce stock state for this product."
+msgstr "この商品の現在の WooCommerce の在庫状態を使用します。"
+
+msgid "Check a confirmed product price"
+msgstr "確認済みの商品価格を確認する"
+
+msgid "How much does %s cost?"
+msgstr "%s はいくらですか？"
+
+msgid "Uses only the current WooCommerce product price."
+msgstr "現在の WooCommerce の商品価格のみを使用します。"
+
+msgid "Buying action"
+msgstr "購入アクション"
+
+msgid "Add a real product from chat"
+msgstr "チャットから実在の商品を追加する"
+
+msgid "Add %s to my cart"
+msgstr "%s をカートに追加して"
+
+msgid "Commerce Pro turns the product conversation into a cart action."
+msgstr "Commerce Pro は商品についての会話をカートのアクションへと変えます。"
+
+msgid "Variation buying"
+msgstr "バリエーションの購入"
+
+msgid "Select an option and buy in one sentence"
+msgstr "1 文でオプションを選んで購入する"
+
+msgid "Commerce Pro can select a real purchasable variation before adding it to the cart."
+msgstr "Commerce Pro は、カートに追加する前に購入可能な実際のバリエーションを選択できます。"
+
+msgid "Buying by reference"
+msgstr "参照による購入"
+
+msgid "Buy the one on screen, unnamed"
+msgstr "画面上のものを名前を挙げずに購入する"
+
+msgid "add the second one"
+msgstr "2 つ目を追加して"
+
+msgid "The shopper points at a position in the results and Commerce Pro carts that product."
+msgstr "買い物客は結果の中の位置を指し示し、Commerce Pro がその商品をカートに入れます。"
+
+msgid "Cart assistance"
+msgstr "カートのサポート"
+
+msgid "Change a quantity in conversation"
+msgstr "会話の中で数量を変更する"
+
+msgid "make it quantity 2"
+msgstr "数量を 2 にして"
+
+msgid "Commerce Pro updates the line it just created, without the shopper naming it again."
+msgstr "Commerce Pro は、買い物客が改めて商品名を挙げなくても、直前に作成した明細を更新します。"
+
+msgid "Take something back out of the cart"
+msgstr "カートから商品を取り出す"
+
+msgid "remove first product from cart"
+msgstr "カートから 1 つ目の商品を削除して"
+
+msgid "Positions are counted in the cart, not in the last search."
+msgstr "位置は直前の検索ではなく、カートの中で数えられます。"
+
+msgid "How long does shipping take?"
+msgstr "配送にはどのくらいかかりますか？"
+
+msgid "Can I return an opened product?"
+msgstr "開封済みの商品は返品できますか？"
+
+msgid "When will I receive my refund?"
+msgstr "返金はいつ受け取れますか？"
+
+msgid "Can I exchange an item for another size?"
+msgstr "別のサイズに交換できますか？"
+
+msgid "Does this store provide a warranty?"
+msgstr "この店舗は保証を提供していますか？"
+
+msgid "Which payment methods do you accept?"
+msgstr "どの支払い方法に対応していますか？"
+
+msgid "How do you use my personal data?"
+msgstr "個人データはどのように利用されますか？"
+
+msgid "Where can I read the store terms?"
+msgstr "店舗の利用規約はどこで読めますか？"
+
+msgid "Store policy"
+msgstr "店舗ポリシー"
+
+msgid "Test a grounded policy answer"
+msgstr "根拠のあるポリシー回答をテストする"
+
+msgid "Uses one of the public policy pages approved in Store Knowledge."
+msgstr "ストアナレッジで承認された公開ポリシーページのいずれかを使用します。"
+
+msgid "Policy page: %s"
+msgstr "ポリシーページ：%s"
+
+msgid "Choose an available option for %s and add it to my cart"
+msgstr "%s の購入できるオプションを選んでカートに追加して"
+
+msgid "Choose %1$s for %2$s and add it to my cart"
+msgstr "%2$s の %1$s を選んでカートに追加して"
+
+msgid "Product index table"
+msgstr "商品インデックステーブル"
+
+msgid "The product index table is present."
+msgstr "商品インデックステーブルは存在します。"
+
+msgid "The product index table is missing, so Geeky Bot cannot search your catalog. Deactivating and reactivating the plugin rebuilds it."
+msgstr "商品インデックステーブルが見つからないため、Geeky Bot はカタログを検索できません。プラグインを無効化してから再度有効化すると再構築されます。"
+
+msgid "The product search index is missing. Geeky Bot is falling back to slower matching with no relevance ranking. Reactivate the plugin to rebuild it."
+msgstr "商品検索インデックスが見つかりません。Geeky Bot は関連度のランキングがない、より遅い一致処理にフォールバックしています。プラグインを再度有効化して再構築してください。"
+
+msgid "The product search index covers the wrong columns, so every search silently falls back to slower matching with no relevance ranking. Found: %1$s. Expected: %2$s. Reactivating the plugin repairs it."
+msgstr "商品検索インデックスの対象カラムが正しくないため、すべての検索が関連度のランキングなしで、より遅い一致処理に静かにフォールバックしています。検出：%1$s。想定：%2$s。プラグインを再度有効化すると修復されます。"
+
+msgid "The index looks correct but the last product search failed in the database and fell back to slower matching. Error: %s"
+msgstr "インデックスは正しく見えますが、直近の商品検索がデータベースで失敗し、より遅い一致処理にフォールバックしました。エラー：%s"
+
+msgid "The product search index covers the expected columns."
+msgstr "商品検索インデックスは想定どおりのカラムを対象としています。"
+
+msgid "This store has no published products yet."
+msgstr "この店舗にはまだ公開済みの商品がありません。"
+
+msgid "None of your %d published products are indexed, so Geeky Bot cannot recommend anything. Rebuild the product index from the Geeky Bot settings."
+msgstr "公開済みの商品 %d 件のうち 1 件もインデックス化されていないため、Geeky Bot はおすすめを提示できません。Geeky Bot の設定から商品インデックスを再構築してください。"
+
+msgid "Only %1$d of %2$d published products are indexed. Rebuild the product index so recommendations cover your whole catalog."
+msgstr "公開済みの商品 %2$d 件のうち %1$d 件のみがインデックス化されています。おすすめがカタログ全体をカバーするよう、商品インデックスを再構築してください。"
+
+msgid "%1$d of %2$d published products are indexed."
+msgstr "公開済みの商品 %2$d 件のうち %1$d 件がインデックス化されています。"
+
+msgid "Store vocabulary"
+msgstr "店舗の語彙"
+
+msgid "WooCommerce categories are unavailable, so only the built-in vocabulary is used."
+msgstr "WooCommerce のカテゴリーを利用できないため、組み込みの語彙のみが使用されます。"
+
+msgid "No product categories have products in them, so Geeky Bot can only fall back to its built-in wording. Categorising your products teaches it the words your shoppers use."
+msgstr "商品が含まれる商品カテゴリーがないため、Geeky Bot は組み込みの表現に頼るしかありません。商品をカテゴリー分けすると、買い物客が使う言葉を学習できます。"
+
+msgid "Your product categories have not been read yet, so searches rely on built-in wording only. Rebuild the product index to learn them."
+msgstr "商品カテゴリーがまだ読み込まれていないため、検索は組み込みの表現のみに依存しています。商品インデックスを再構築して学習させてください。"
+
+msgid "%1$d product words learned from your %2$d categories."
+msgstr "%2$d 件のカテゴリーから %1$d 件の商品関連語を学習しました。"
+
+msgid "Store policy answers"
+msgstr "店舗ポリシーの回答"
+
+msgid "No policy pages are selected, so Geeky Bot cannot answer questions about shipping, returns or refunds. Choose your policy pages in the Geeky Bot settings."
+msgstr "ポリシーページが選択されていないため、Geeky Bot は配送・返品・返金に関する質問に回答できません。Geeky Bot の設定でポリシーページを選択してください。"
+
+msgid "Policy pages are selected but none are indexed, so policy questions fall back to \"please contact the store\". Re-sync your knowledge sources in the Geeky Bot settings."
+msgstr "ポリシーページは選択されていますが、いずれもインデックス化されていないため、ポリシーの質問は「店舗にお問い合わせください」にフォールバックします。Geeky Bot の設定でナレッジソースを再同期してください。"
+
+msgid "%1$d of %2$d selected policy pages are indexed. Re-sync your knowledge sources so every page can be quoted."
+msgstr "選択されたポリシーページ %2$d 件のうち %1$d 件がインデックス化されています。すべてのページを引用できるよう、ナレッジソースを再同期してください。"
+
+msgid "%d policy pages are indexed and available for answers."
+msgstr "%d 件のポリシーページがインデックス化され、回答に利用できます。"
+
+msgid "Assistant visibility"
+msgstr "アシスタントの表示"
+
+msgid "The storefront assistant is switched off, so shoppers cannot see Geeky Bot."
+msgstr "ストアフロントのアシスタントがオフになっているため、買い物客には Geeky Bot が表示されません。"
+
+msgid "WooCommerce is not active, so Geeky Bot cannot read your catalog."
+msgstr "WooCommerce が有効ではないため、Geeky Bot はカタログを読み取れません。"
+
+msgid "The storefront assistant is enabled and WooCommerce is active."
+msgstr "ストアフロントのアシスタントは有効で、WooCommerce も有効です。"
+
+msgid "Geeky Bot search health"
+msgstr "Geeky Bot 検索の健全性"
+
+msgid "Geeky Bot search is healthy"
+msgstr "Geeky Bot の検索は正常です"
+
+msgid "The product index, search index and policy sources are all working."
+msgstr "商品インデックス、検索インデックス、ポリシーソースはすべて正常に動作しています。"
+
+msgid "Geeky Bot search needs attention"
+msgstr "Geeky Bot の検索に確認が必要です"
+
+msgid "Geeky Bot search is degraded"
+msgstr "Geeky Bot の検索が低下しています"
+
+msgid "Geeky Bot is answering from a degraded state."
+msgstr "Geeky Bot は機能が低下した状態で回答しています。"
+
+msgid "The page is not an approved knowledge source."
+msgstr "このページは承認されたナレッジソースではありません。"
+
+msgid "The selected page is not public."
+msgstr "選択したページは公開されていません。"
+
+msgid "The selected page has no readable public text."
+msgstr "選択したページには読み取り可能な公開テキストがありません。"
+
+msgid "The policy page could not be indexed."
+msgstr "このポリシーページはインデックス化できませんでした。"
+
+msgid "According to the store’s “%1$s” page: %2$s"
+msgstr "店舗の「%1$s」ページによると：%2$s"
+
+msgid "store policy"
+msgstr "店舗ポリシー"
+
+msgid "I couldn't find this information in the store’s published %s pages. Please contact the store for confirmation."
+msgstr "この情報は店舗の公開済み %s ページには見つかりませんでした。ご確認のため店舗までお問い合わせください。"
+
+msgid "I couldn't find that detail in the store’s published %s information. Please review the page below or contact the store for confirmation."
+msgstr "その詳細は店舗の公開済み %s 情報には見つかりませんでした。以下のページをご確認いただくか、店舗までお問い合わせください。"
+
+msgid "Commerce Pro license storage requires the PHP OpenSSL or Sodium extension. Commerce Pro remains locked until secure local storage is available and the license is refreshed."
+msgstr "Commerce Pro のライセンス保存には PHP の OpenSSL または Sodium 拡張が必要です。安全なローカル保存が利用可能になり、ライセンスが更新されるまで Commerce Pro はロックされたままです。"
+
+msgid "Commerce Pro needs a fresh license verification before it can run on this site."
+msgstr "このサイトで動作させる前に、Commerce Pro には新しいライセンス検証が必要です。"
+
+msgid "Your Commerce Pro license has expired. Buying actions continue on this activated site, but updates, protected downloads, support, and new activations require renewal."
+msgstr "Commerce Pro のライセンスの有効期限が切れています。有効化済みのこのサイトでは購入アクションを引き続きご利用いただけますが、更新・保護されたダウンロード・サポート・新規の有効化には更新契約が必要です。"
+
+msgid "Your Commerce Pro subscription is cancelled but remains active until the paid period ends. Renew to keep updates, downloads, and support active after expiry."
+msgstr "Commerce Pro のサブスクリプションはキャンセル済みですが、支払い済み期間の終了まで有効です。期限後も更新・ダウンロード・サポートを継続するには更新してください。"
+
+msgid "Could not refresh the Commerce Pro license recently. Commerce Pro is running on cached verification until the grace period expires."
+msgstr "最近、Commerce Pro のライセンスを更新できませんでした。猶予期間が終了するまで、Commerce Pro はキャッシュされた検証で動作します。"
+
+msgid "Staging limit reached"
+msgstr "ステージングの上限に達しました"
+
+msgid "Production limit reached"
+msgstr "本番環境の上限に達しました"
+
+msgid "This server cannot securely store the Commerce Pro license key. Enable the PHP OpenSSL or Sodium extension, then try again."
+msgstr "このサーバーでは Commerce Pro のライセンスキーを安全に保存できません。PHP の OpenSSL または Sodium 拡張を有効にしてから、もう一度お試しください。"
+
+msgid "Please enter a license key."
+msgstr "ライセンスキーを入力してください。"
+
+msgid "No Commerce Pro license key is saved yet."
+msgstr "Commerce Pro のライセンスキーはまだ保存されていません。"
+
+msgid "License deactivated on this site."
+msgstr "このサイトでライセンスを無効化しました。"
+
+msgid "A valid Commerce Pro license with download access is required before installing the add-on."
+msgstr "アドオンをインストールする前に、ダウンロード権限を含む有効な Commerce Pro ライセンスが必要です。"
+
+msgid "The license server did not return a safe Commerce Pro package URL."
+msgstr "ライセンスサーバーから、安全な Commerce Pro パッケージの URL が返されませんでした。"
+
+msgid "Commerce Pro could not be installed."
+msgstr "Commerce Pro をインストールできませんでした。"
+
+msgid "Activate a valid Commerce Pro license before activating the add-on."
+msgstr "アドオンを有効化する前に、有効な Commerce Pro ライセンスを有効化してください。"
+
+msgid "You do not have permission to update plugins."
+msgstr "プラグインを更新する権限がありません。"
+
+msgid "Your Commerce Pro license must include update access before updating the add-on."
+msgstr "アドオンを更新する前に、Commerce Pro のライセンスに更新の権限が含まれている必要があります。"
+
+msgid "Commerce Pro is already on the latest available version."
+msgstr "Commerce Pro はすでに利用可能な最新バージョンです。"
+
+msgid "The license server did not return a valid Commerce Pro update package."
+msgstr "ライセンスサーバーから、有効な Commerce Pro の更新パッケージが返されませんでした。"
+
+msgid "Commerce Pro could not be updated."
+msgstr "Commerce Pro を更新できませんでした。"
+
+msgid "The Commerce Pro update package could not be downloaded."
+msgstr "Commerce Pro の更新パッケージをダウンロードできませんでした。"
+
+msgid "The Commerce Pro update package is empty or incomplete."
+msgstr "Commerce Pro の更新パッケージが空か不完全です。"
+
+msgid "The Commerce Pro update package is invalid. Please try again or contact Geeky Bot support."
+msgstr "Commerce Pro の更新パッケージが無効です。もう一度お試しいただくか、Geeky Bot サポートにお問い合わせください。"
+
+msgid "The downloaded Commerce Pro package is not a valid ZIP archive."
+msgstr "ダウンロードした Commerce Pro のパッケージは有効な ZIP アーカイブではありません。"
+
+msgid "The downloaded Commerce Pro package did not match the release checksum."
+msgstr "ダウンロードした Commerce Pro のパッケージがリリースのチェックサムと一致しませんでした。"
+
+msgid "Important Commerce Pro security update %1$s is available. Installed version: %2$s."
+msgstr "重要な Commerce Pro のセキュリティ更新 %1$s が利用可能です。インストール済みバージョン：%2$s。"
+
+msgid "Commerce Pro %1$s is available. Installed version: %2$s."
+msgstr "Commerce Pro %1$s が利用可能です。インストール済みバージョン：%2$s。"
+
+msgid "Review license"
+msgstr "ライセンスを確認"
+
+msgid "Open Add-ons"
+msgstr "アドオンを開く"
+
+msgid "CDN release metadata was too large."
+msgstr "CDN のリリースメタデータが大きすぎました。"
+
+msgid "CDN release metadata was not readable."
+msgstr "CDN のリリースメタデータを読み取れませんでした。"
+
+msgid "CDN release metadata was for a different product."
+msgstr "CDN のリリースメタデータは別の製品のものでした。"
+
+msgid "The requested license action is not allowed."
+msgstr "そのライセンス操作は許可されていません。"
+
+msgid "The license server response was too large."
+msgstr "ライセンスサーバーのレスポンスが大きすぎました。"
+
+msgid "The license server returned an invalid response."
+msgstr "ライセンスサーバーから無効なレスポンスが返されました。"
+
+msgid "The license server rejected the request."
+msgstr "ライセンスサーバーがリクエストを拒否しました。"
+
+msgid "Staging activation limit reached. This license already uses all included staging-site activations. Commerce Pro was not authorized for this site and cannot be installed or enabled from Geeky Bot. Deactivate an unused staging site at geekybot.com or contact support for another staging activation."
+msgstr "ステージングの有効化上限に達しました。このライセンスは、含まれるステージングサイトの有効化枠をすべて使用しています。Commerce Pro はこのサイトで認可されておらず、Geeky Bot からインストールまたは有効化できません。geekybot.com で使用していないステージングサイトを無効化するか、追加のステージング有効化についてサポートにお問い合わせください。"
+
+msgid "Production activation limit reached. This license already uses all included production-site activations. Commerce Pro was not authorized for this site and cannot be installed or enabled from Geeky Bot. Deactivate an unused production site at geekybot.com or upgrade the license."
+msgstr "本番環境の有効化上限に達しました。このライセンスは、含まれる本番サイトの有効化枠をすべて使用しています。Commerce Pro はこのサイトで認可されておらず、Geeky Bot からインストールまたは有効化できません。geekybot.com で使用していない本番サイトを無効化するか、ライセンスをアップグレードしてください。"
+
+msgid "License active."
+msgstr "ライセンスは有効です。"
+
+msgid "Commerce Pro was not authorized for this site. Review the license status and try again."
+msgstr "Commerce Pro はこのサイトで認可されませんでした。ライセンスの状態を確認して、もう一度お試しください。"
+
+msgid "The license server response could not be verified."
+msgstr "ライセンスサーバーのレスポンスを検証できませんでした。"
+
+msgid "This server cannot verify the Commerce Pro entitlement signature. Enable the PHP OpenSSL extension."
+msgstr "このサーバーでは Commerce Pro の利用権の署名を検証できません。PHP の OpenSSL 拡張を有効にしてください。"
+
+msgid "The Commerce Pro entitlement signature is invalid."
+msgstr "Commerce Pro の利用権の署名が無効です。"
+
+msgid "The Commerce Pro entitlement claims are invalid."
+msgstr "Commerce Pro の利用権のクレームが無効です。"
+
+msgid "This Commerce Pro entitlement belongs to a different site."
+msgstr "この Commerce Pro の利用権は別のサイトのものです。"
+
+msgid "The Commerce Pro entitlement response is incomplete."
+msgstr "Commerce Pro の利用権のレスポンスが不完全です。"
+
+msgid "The Commerce Pro entitlement response is stale. Please refresh the license."
+msgstr "Commerce Pro の利用権のレスポンスが古くなっています。ライセンスを更新してください。"
+
+msgid "The Commerce Pro entitlement response does not match this request."
+msgstr "Commerce Pro の利用権のレスポンスがこのリクエストと一致しません。"
+
+msgid "The Commerce Pro entitlement response has expired. Please refresh the license."
+msgstr "Commerce Pro の利用権のレスポンスの有効期限が切れています。ライセンスを更新してください。"
+
+msgid "Trial"
+msgstr "トライアル"
+
+msgid "Expired"
+msgstr "期限切れ"
+
+msgid "Cancelled"
+msgstr "キャンセル済み"
+
+msgid "Refunded"
+msgstr "返金済み"
+
+msgid "Disabled"
+msgstr "無効"
+
+msgid "Activation limit reached"
+msgstr "有効化の上限に達しました"
+
+msgid "Domain mismatch"
+msgstr "ドメインの不一致"
+
+msgid "Grace period"
+msgstr "猶予期間"
+
+msgid "WooCommerce runtime"
+msgstr "WooCommerce のランタイム"
+
+msgid "Products, prices and stock are available."
+msgstr "商品・価格・在庫を利用できます。"
+
+msgid "Activate WooCommerce before launching product assistance."
+msgstr "商品サポートを開始する前に WooCommerce を有効化してください。"
+
+msgid "WordPress REST API"
+msgstr "WordPress REST API"
+
+msgid "The storefront assistant can use the local REST API."
+msgstr "ストアフロントのアシスタントはローカルの REST API を利用できます。"
+
+msgid "The WordPress REST API is unavailable."
+msgstr "WordPress の REST API を利用できません。"
+
+msgid "PHP compatibility"
+msgstr "PHP の互換性"
+
+msgid "Running PHP %s."
+msgstr "PHP %s で動作しています。"
+
+msgid "WordPress compatibility"
+msgstr "WordPress の互換性"
+
+msgid "Running WordPress %s."
+msgstr "WordPress %s で動作しています。"
+
+msgid "Permalink mode"
+msgstr "パーマリンクのモード"
+
+msgid "Plain permalinks work, but a readable permalink structure is recommended."
+msgstr "基本のパーマリンクでも動作しますが、読みやすいパーマリンク構造を推奨します。"
+
+msgid "Readable permalinks are enabled."
+msgstr "読みやすいパーマリンクが有効です。"
+
+msgid "shipping and delivery"
+msgstr "配送とお届け"
+
+msgid "returns"
+msgstr "返品"
+
+msgid "refunds"
+msgstr "返金"
+
+msgid "exchanges"
+msgstr "交換"
+
+msgid "warranty"
+msgstr "保証"
+
+msgid "cancellation"
+msgstr "キャンセル"
+
+msgid "payment"
+msgstr "支払い"
+
+msgid "privacy"
+msgstr "プライバシー"
+
+msgid "terms"
+msgstr "利用規約"
+
+msgid "store information"
+msgstr "店舗情報"
+
+msgid "Geeky Bot conversations"
+msgstr "Geeky Bot の会話"
+
+msgid "Session key"
+msgstr "セッションキー"
+
+msgid "User ID"
+msgstr "ユーザー ID"
+
+msgid "Updated"
+msgstr "更新日時"
+
+msgid "Product and source clicks"
+msgstr "商品とソースのクリック"
+
+msgid "Geeky Bot conversation data was removed."
+msgstr "Geeky Bot の会話データを削除しました。"
+
+msgid "I removed those filters, but I still couldn't find a match for %s."
+msgstr "それらの絞り込み条件を解除しましたが、%s に一致するものは見つかりませんでした。"
+
+msgid "I removed that filter, but I still couldn't find a match for %s."
+msgstr "その絞り込み条件を解除しましたが、%s に一致するものは見つかりませんでした。"
+
+msgid "I removed those filters, but I still couldn't find a matching product."
+msgstr "それらの絞り込み条件を解除しましたが、一致する商品は見つかりませんでした。"
+
+msgid "I removed that filter, but I still couldn't find a matching product."
+msgstr "その絞り込み条件を解除しましたが、一致する商品は見つかりませんでした。"
+
+msgid "I couldn't find a match for %s."
+msgstr "%s に一致するものは見つかりませんでした。"
+
+msgid "I couldn't find a product that matches your request."
+msgstr "ご要望に一致する商品が見つかりませんでした。"
+
+msgid "I kept your original request unchanged."
+msgstr "元のご要望はそのままにしています。"
+
+msgid "not in %s"
+msgstr "%s 以外"
+
+msgid "in size %s"
+msgstr "サイズ %s"
+
+msgid "not in size %s"
+msgstr "サイズ %s 以外"
+
+msgid "currently on sale"
+msgstr "現在セール中"
+
+msgid "in stock"
+msgstr "在庫あり"
+
+msgid "with %s"
+msgstr "%s 付き"
+
+msgid "suitable as a gift"
+msgstr "ギフトに適した"
+
+msgid "Try removing the sale filter."
+msgstr "セールの絞り込みを解除してみてください。"
+
+msgid "Try a higher budget or remove the price limit."
+msgstr "予算を上げるか、価格の上限を解除してみてください。"
+
+msgid "Try another color or remove the color filter."
+msgstr "別の色を試すか、色の絞り込みを解除してみてください。"
+
+msgid "Try another size or remove the size filter."
+msgstr "別のサイズを試すか、サイズの絞り込みを解除してみてください。"
+
+msgid "Try including products that are not currently in stock."
+msgstr "現在在庫がない商品も含めてみてください。"
+
+msgid "Try removing one preference."
+msgstr "条件を 1 つ解除してみてください。"
+
+msgid "Try a broader product name or a different type of product."
+msgstr "より広い商品名や、別の種類の商品を試してみてください。"
+
+msgid "Try a broader product search."
+msgstr "より広い範囲で商品を検索してみてください。"
+
+msgid "%1$s, and %2$s"
+msgstr "%1$s、そして %2$s"
+
+msgid "Product/category matched: %s"
+msgstr "商品／カテゴリーの一致：%s"
+
+msgid "Color matched: %s"
+msgstr "色の一致：%s"
+
+msgid "Size matched: %s"
+msgstr "サイズの一致：%s"
+
+msgid "Price filter matched"
+msgstr "価格の絞り込みに一致"
+
+msgid "Soft preference matched: %s"
+msgstr "ゆるやかな好みの一致：%s"
+
+msgid "Soft preference requested: %s"
+msgstr "リクエストされたゆるやかな好み：%s"
+
+msgid "Recipient preference boost: %s"
+msgstr "贈る相手の好みによる加点：%s"
+
+msgid "Best-value ranking applied"
+msgstr "コストパフォーマンスによるランキングを適用"
+
+msgid "In-stock boost applied"
+msgstr "在庫ありによる加点を適用"
+
+msgid "Sale boost applied"
+msgstr "セールによる加点を適用"
+
+msgid "Rating boost: %s"
+msgstr "評価による加点：%s"
+
+msgid "Popularity boost: %d sales"
+msgstr "人気による加点：販売数 %d"
+
+msgid "My top match is %s."
+msgstr "最も適した商品は %s です。"
+
+msgid "It has the lowest current price among these matches at %s."
+msgstr "これらの一致商品の中で、現在の価格が最も安く %s です。"
+
+msgid "It has the largest confirmed discount among these matches at about %d%%."
+msgstr "これらの一致商品の中で、確認できる割引率が最も大きく、約 %d%% です。"
+
+msgid "It matches %s."
+msgstr "%s に一致します。"
+
+msgid "It is the closest overall match based on the available product details."
+msgstr "入手可能な商品情報に基づくと、全体として最も近い一致です。"
+
+msgid "It also matches %s."
+msgstr "%s にも一致します。"
+
+msgid "The other matching options are listed below for comparison."
+msgstr "比較のために、他の一致する選択肢を以下に掲載しています。"
+
+msgid "Open it to review the full price, stock, and available options."
+msgstr "開いて、価格・在庫・選択できるオプションの詳細をご確認ください。"
+
+msgid "the requested %s color"
+msgstr "ご希望の %s カラー"
+
+msgid "your price range"
+msgstr "ご希望の価格帯"
+
+msgid "the sale filter"
+msgstr "セールの絞り込み"
+
+msgid "in-stock availability"
+msgstr "在庫の有無"
+
+msgid "selectable options"
+msgstr "選択できるオプション"
+
+msgid "with %s preference"
+msgstr "%s の好み"
+
+msgid "%1$s or %2$s"
+msgstr "%1$s または %2$s"
+
+msgid "shoes"
+msgstr "シューズ"
+
+msgid "t-shirts"
+msgstr "Tシャツ"
+
+msgid "%1$s, or %2$s"
+msgstr "%1$s、または %2$s"
+
+msgid "Comfort"
+msgstr "快適さ"
+
+msgid "Budget friendly"
+msgstr "お手頃価格"
+
+msgid "Walking / sports"
+msgstr "ウォーキング / スポーツ"
+
+msgid "Party / event"
+msgstr "パーティー / イベント"
+
+msgid "School / college"
+msgstr "学校 / 大学"
+
+msgid "Premium quality"
+msgstr "上質なつくり"
+
+msgid "around %s"
+msgstr "%s 前後"
+
+msgid "between %1$s and %2$s"
+msgstr "%1$s から %2$s の間"
+
+msgid "under %s"
+msgstr "%s 以下"
+
+msgid "over %s"
+msgstr "%s 以上"
+
+msgid "Was %1$s, now %2$s"
+msgstr "%1$s → 現在 %2$s"
+
+msgid "Color: %s"
+msgstr "色：%s"
+
+msgid "Size: %s"
+msgstr "サイズ：%s"
+
+msgid "Price: %s"
+msgstr "価格：%s"
+
+msgid "On sale"
+msgstr "セール中"
+
+msgid "Close match details"
+msgstr "近い一致の詳細"
+
+msgid "Match details"
+msgstr "一致の詳細"
+
+msgid "Matched"
+msgstr "一致"
+
+msgid "Not confirmed"
+msgstr "未確認"
+
+msgid "Too many assistant messages. Please wait a few minutes and try again."
+msgstr "アシスタントへのメッセージが多すぎます。数分お待ちのうえ、もう一度お試しください。"
+
+msgid "Too many product searches. Please wait a few minutes and try again."
+msgstr "商品検索が多すぎます。数分お待ちのうえ、もう一度お試しください。"
+
+msgid "Too many assistant interaction events. Please wait a few minutes and try again."
+msgstr "アシスタントの操作イベントが多すぎます。数分お待ちのうえ、もう一度お試しください。"
+
+msgid "comfort"
+msgstr "快適さ"
+
+msgid "formal"
+msgstr "フォーマル"
+
+msgid "casual"
+msgstr "カジュアル"
+
+msgid "premium quality"
+msgstr "上質なつくり"
+
+msgid "budget-friendly"
+msgstr "お手頃価格"
+
+msgid "gift"
+msgstr "ギフト"
+
+msgid "popular"
+msgstr "人気"
+
+msgid "useful"
+msgstr "実用的"
+
+msgid "simple style"
+msgstr "シンプルなスタイル"
+
+msgid "quality"
+msgstr "品質"
+
+msgid "best value"
+msgstr "コストパフォーマンス"
+
+msgid "winter"
+msgstr "冬"
+
+msgid "summer"
+msgstr "夏"
+
+msgid "sports/walking"
+msgstr "スポーツ／ウォーキング"
+
+msgid "travel"
+msgstr "旅行"
+
+msgid "party/event"
+msgstr "パーティー／イベント"
+
+msgid "school/college"
+msgstr "学校／大学"
+
+msgid "WooCommerce shopping assistant"
+msgstr "WooCommerce ショッピングアシスタント"
+
+msgid "Hi! Ask me what you are looking for and I will help you find the right product."
+msgstr "こんにちは！お探しのものをお聞かせください。ぴったりの商品を見つけるお手伝いをします。"
+
+msgid "Ask about products"
+msgstr "商品について質問する"
+
+msgid "Need help choosing? Ask me about products, prices, or options."
+msgstr "選ぶのにお困りですか？商品・価格・オプションについてお尋ねください。"
+
+msgid "The store has not provided enough information for me to answer that. Please contact the store team for confirmation."
+msgstr "それにお答えするための十分な情報が店舗から提供されていません。ご確認のため店舗のチームまでお問い合わせください。"
+
+msgid "That request could not be completed."
+msgstr "そのリクエストは完了できませんでした。"
+
+msgid "I can't see your order history, so I can't tell you what you bought before. Your past orders are listed under your account."
+msgstr "ご注文履歴を確認できないため、以前ご購入いただいた内容はお伝えできません。過去のご注文はアカウントページに表示されています。"
+
+msgid "I can't look up orders or delivery tracking. You'll find the current status of your order under your account, and the store team can help if something looks wrong."
+msgstr "注文や配送状況の照会はできません。ご注文の現在の状況はアカウントページでご確認いただけます。不明な点があれば店舗のチームがお手伝いします。"
+
+msgid "I can't view or change your account details. You can manage those yourself under your account."
+msgstr "アカウント情報の閲覧や変更はできません。アカウントページでご自身で管理いただけます。"
+
+msgid "I can't add items to your cart or complete a purchase. You can add this from the product page and check out as usual."
+msgstr "カートへの商品追加や購入の完了はできません。商品ページから追加して、通常どおりお手続きいただけます。"
+
+msgid "I can't place an order or take a payment. You can add what you want to your cart and complete checkout yourself, and I'll help you decide what to buy before that."
+msgstr "ご注文の確定やお支払いの受け付けはできません。ご希望の商品をカートに追加して、ご自身で購入手続きを完了してください。その前の商品選びはお手伝いします。"
+
+msgid "%1$s You can open it here: %2$s"
+msgstr "%1$s こちらから開けます：%2$s"
+
+msgid "Ready to add"
+msgstr "追加の準備ができました"
+
+msgid "Choose options for %s before adding it to your cart."
+msgstr "カートに追加する前に、%s のオプションをお選びください。"
+
+msgid "Quantity"
+msgstr "数量"
+
+msgid "Unavailable"
+msgstr "利用できません"
+
+msgid "More actions"
+msgstr "その他の操作"
+
+msgid "Checking available coupon codes…"
+msgstr "利用できるクーポンコードを確認しています…"
+
+msgid "Please choose at least two different products to compare."
+msgstr "比較するには、異なる商品を 2 つ以上お選びください。"
+
+msgid "Search for a product first, then ask me to compare the first, second, third, cheapest, or other shown options."
+msgstr "まず商品を検索し、その後「1 つ目」「2 つ目」「3 つ目」「いちばん安いもの」など、表示された選択肢の比較をご依頼ください。"
+
+msgid "This product is already selected. Choose a different product to compare with it."
+msgstr "この商品はすでに選択されています。比較する別の商品をお選びください。"
+
+msgid "Building the product comparison…"
+msgstr "商品の比較を作成しています…"
+
+msgid "Selected for comparison. Open another product’s More menu and choose Compare with selected."
+msgstr "比較対象に選択しました。別の商品の「その他」メニューを開いて「選択した商品と比較」を選んでください。"
+
+msgid "Compare with selected"
+msgstr "選択した商品と比較"
+
+msgid "Clear conversation"
+msgstr "会話をクリア"
+
+msgid "Source:"
+msgstr "ソース："
+
+msgid "Store page"
+msgstr "店舗ページ"
+
+msgid "Show %s more product"
+msgid_plural "Show %s more products"
+msgstr[0] "さらに %s 件の商品を表示"
+
+msgid "Products under 50"
+msgstr "50 以下の商品"
+

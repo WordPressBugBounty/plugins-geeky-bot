@@ -57,12 +57,17 @@ class RateLimiter {
 
     private function is_trusted_tester() {
         if (is_user_logged_in()) {
+            /**
+             * Store staff testing the assistant. Deliberately excludes
+             * 'edit_posts': the default Contributor and Author roles hold it,
+             * so including it turned "trusted store staff" into "anyone who can
+             * draft a blog post" -- and every bypassed message is a paid call.
+             */
             $trusted_caps = array(
                 'manage_options',
                 'manage_woocommerce',
                 'edit_shop_orders',
                 'edit_products',
-                'edit_posts',
             );
 
             foreach ($trusted_caps as $cap) {
@@ -112,8 +117,69 @@ class RateLimiter {
             return hash_hmac('sha256', 'user:' . $user_id, wp_salt('auth'));
         }
 
-        $ip = isset($_SERVER['REMOTE_ADDR']) ? sanitize_text_field(wp_unslash($_SERVER['REMOTE_ADDR'])) : 'unknown';
+        $ip = self::visitor_ip();
         $ua = isset($_SERVER['HTTP_USER_AGENT']) ? sanitize_text_field(wp_unslash($_SERVER['HTTP_USER_AGENT'])) : 'unknown';
         return hash_hmac('sha256', $ip . '|' . $ua, wp_salt('auth'));
+    }
+
+    /**
+     * Best available client address.
+     *
+     * REMOTE_ADDR is the only address the server observes directly, so it is
+     * the default. X-Forwarded-For is attacker-controlled unless a proxy is
+     * genuinely in front of the site, and is therefore believed only when the
+     * merchant has declared how many proxies to trust -- the entry that many
+     * hops from the right is the one those proxies actually appended.
+     *
+     * Public and static because the add-on limits its own REST endpoints and
+     * has to reach the same answer. Two definitions of "who is this visitor"
+     * across one product is worse than none: with the proxy setting honoured
+     * here and ignored there, core counts each shopper while the add-on counts
+     * the proxy, and one shared bucket 429s an entire storefront.
+     *
+     * @return string
+     */
+    public static function visitor_ip() {
+        $remote_addr = isset($_SERVER['REMOTE_ADDR']) ? sanitize_text_field(wp_unslash($_SERVER['REMOTE_ADDR'])) : '';
+        $remote_addr = filter_var($remote_addr, FILTER_VALIDATE_IP) ? $remote_addr : '';
+
+        $trusted_proxies = min(10, absint(Settings::get('trusted_proxy_count', 0)));
+        if ($trusted_proxies < 1 || empty($_SERVER['HTTP_X_FORWARDED_FOR'])) {
+            return $remote_addr !== '' ? $remote_addr : 'unknown';
+        }
+
+        $forwarded = sanitize_text_field(wp_unslash($_SERVER['HTTP_X_FORWARDED_FOR']));
+        $hops = array_values(array_filter(array_map('trim', explode(',', $forwarded))));
+        if (empty($hops)) {
+            return $remote_addr !== '' ? $remote_addr : 'unknown';
+        }
+
+        // Anything further left than the declared proxy count was written by
+        // the client and is not evidence of anything.
+        $index = count($hops) - $trusted_proxies;
+        if ($index < 0) {
+            $index = 0;
+        }
+        if ($index > count($hops) - 1) {
+            $index = count($hops) - 1;
+        }
+
+        $candidate = trim((string) $hops[$index]);
+        if (filter_var($candidate, FILTER_VALIDATE_IP)) {
+            return $candidate;
+        }
+
+        // "1.2.3.4:5678" and "[2001:db8::1]:5678" both appear in the wild.
+        $unbracketed = preg_replace('/^\[(.+)\](?::\d+)?$/', '$1', $candidate);
+        if ($unbracketed !== $candidate && filter_var($unbracketed, FILTER_VALIDATE_IP)) {
+            return $unbracketed;
+        }
+
+        $unported = preg_replace('/:\d+$/', '', $candidate);
+        if (filter_var($unported, FILTER_VALIDATE_IP)) {
+            return $unported;
+        }
+
+        return $remote_addr !== '' ? $remote_addr : 'unknown';
     }
 }

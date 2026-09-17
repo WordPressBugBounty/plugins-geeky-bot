@@ -6,7 +6,131 @@ if (!defined('ABSPATH')) {
 }
 
 class ProductService {
+    /**
+     * Candidates scored for similarity in one request.
+     *
+     * The merge sources could contribute ~280 IDs, each of which was hydrated
+     * and term-queried individually. Staged broadening never needs that many to
+     * find a useful alternative.
+     */
+    const SIMILARITY_CANDIDATE_LIMIT = 120;
+
+    /**
+     * On-sale products examined before the search gives up.
+     *
+     * wc_get_product_ids_on_sale() returns the whole discounted catalog. On
+     * the 20k test store that is 4,025 IDs, and the four that get shown were
+     * being chosen by instantiating every one of them: ~23 KB per WC_Product,
+     * 89 MB in total, which is fatal on a 128 MB site. "Sale products" was the
+     * one starter prompt that answered with a 500 and no results.
+     *
+     * The bound is the same 120 available_products() uses, and has the same
+     * trade-off: if every one of the 120 newest discounted products is hidden
+     * or out of stock, an older one that qualifies is not reached.
+     */
+    const SALE_CANDIDATE_LIMIT = 120;
+
+    /**
+     * On-sale candidates hydrated per batch.
+     *
+     * Small enough that a request which fills its limit immediately -- the
+     * normal case -- pays for one batch instead of all 120.
+     */
+    const SALE_CANDIDATE_CHUNK = 20;
+
+    /**
+     * Variations primed alongside the candidate set.
+     *
+     * Generous enough to cover a realistic candidate pool in one pass, bounded
+     * so a catalog with very deep variation matrices cannot turn cache priming
+     * into its own memory problem.
+     */
+    const VARIATION_PRIME_LIMIT = 2000;
+
     private $last_search_context = array();
+
+    /**
+     * Load posts and their taxonomy terms for a whole ID set at once.
+     *
+     * @param array $product_ids Product IDs about to be hydrated.
+     * @return void
+     */
+    /**
+     * Term ids or names for a post, served from the object term cache.
+     *
+     * @param int    $post_id Post ID.
+     * @param string $taxonomy Taxonomy.
+     * @param string $field    ids|names
+     * @return array
+     */
+    private function cached_term_field($post_id, $taxonomy, $field) {
+        $terms = get_the_terms(absint($post_id), $taxonomy);
+        if (is_wp_error($terms) || empty($terms)) {
+            return array();
+        }
+
+        $out = array();
+        foreach ($terms as $term) {
+            $out[] = $field === 'ids' ? absint($term->term_id) : (string) $term->name;
+        }
+
+        return $out;
+    }
+
+    private function prime_product_caches($product_ids) {
+        $product_ids = array_values(array_filter(array_map('absint', (array) $product_ids)));
+        if (empty($product_ids)) {
+            return;
+        }
+
+        // Both flags on: the scoring loop reads product meta (price, stock,
+        // attributes) and product taxonomies (category, tag) for every
+        // candidate, so leaving either cache cold just moves the N+1.
+        _prime_post_caches($product_ids, true, true);
+        update_object_term_cache($product_ids, 'product');
+
+        $this->prime_variation_caches($product_ids);
+    }
+
+    /**
+     * Prime the variations belonging to a candidate set.
+     *
+     * Priming the candidates alone is not enough. Asking a variable product
+     * for its price or stock status walks its variations, and each variation
+     * is a separate post that the parent prime never touched -- so the N+1
+     * simply moves down one level. On a catalog that is half variable
+     * products this was measured at ~230 single-row post reads plus the same
+     * number of meta reads for one similarity lookup; two batch queries here
+     * replace all of them.
+     *
+     * @param array $product_ids Parent product IDs, already sanitized.
+     * @return void
+     */
+    private function prime_variation_caches($product_ids) {
+        global $wpdb;
+
+        $placeholders = implode(',', array_fill(0, count($product_ids), '%d'));
+        $sql = "SELECT ID FROM {$wpdb->posts} WHERE post_type = 'product_variation' AND post_parent IN ({$placeholders}) ORDER BY post_parent ASC, menu_order ASC LIMIT %d";
+        $params = $product_ids;
+        $params[] = self::VARIATION_PRIME_LIMIT;
+
+        // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery,WordPress.DB.DirectDatabaseQuery.NoCaching,WordPress.DB.PreparedSQL.NotPrepared -- Placeholders are generated from a sanitized integer list.
+        $variation_ids = $wpdb->get_col($wpdb->prepare($sql, $params));
+        $variation_ids = array_values(array_filter(array_map('absint', (array) $variation_ids)));
+
+        if (empty($variation_ids)) {
+            return;
+        }
+
+        _prime_post_caches($variation_ids, false, true);
+
+        // WooCommerce reads a variation's terms against the *product*
+        // taxonomy list, so the object term cache has to be primed under that
+        // same object type. Skipping it leaves WooCommerce priming one
+        // variation at a time, which is the whole N+1 again in term queries
+        // instead of post queries.
+        update_object_term_cache($variation_ids, 'product');
+    }
 
     public function is_woocommerce_ready() {
         return class_exists('WooCommerce') && function_exists('wc_get_product');
@@ -161,6 +285,20 @@ class ProductService {
             }
         }
 
+        // Last resort before telling the shopper we have nothing: the query may
+        // simply be misspelled. This runs only once every other path has
+        // already returned nothing, so a successful search never pays for it.
+        if (empty($product_ids)) {
+            $recovered = $this->spelling_recovery_ids($index, $query, $limit);
+            if (!empty($recovered['ids'])) {
+                $this->last_search_context = $this->search_context('spelling_recovery', $recovered['analysis']);
+                $this->last_search_context['correctedQuery'] = $recovered['query'];
+                $this->last_search_context['originalQuery'] = $this->clean_query($query);
+                $this->last_search_context['spellingCorrections'] = $recovered['corrections'];
+                return $this->hydrate_products($recovered['ids']);
+            }
+        }
+
         if (empty($product_ids) && !empty($analysis['price_range'])) {
             if (!$has_product_terms && !$has_structured_facets) {
                 $alternative_ids = $this->price_only_alternative_ids($analysis['price_range'], $limit);
@@ -180,6 +318,47 @@ class ProductService {
 
     public function last_search_context() {
         return (array) $this->last_search_context;
+    }
+
+    /**
+     * Re-run a zero-result search against the store's own spelling.
+     *
+     * Typo tolerance used to be a hand-written list of individual misspellings,
+     * so any typo the author had not personally anticipated dead-ended. This
+     * matches the query against words the catalog actually contains instead.
+     * Restricting it to the zero-result path keeps it off the hot path
+     * entirely, so it costs nothing on a search that already worked.
+     *
+     * @param ProductIndexService $index Index service.
+     * @param string              $query Raw shopper query.
+     * @param int                 $limit Result count.
+     * @return array{ids: array, query: string, corrections: array, analysis: array}
+     */
+    private function spelling_recovery_ids($index, $query, $limit) {
+        $empty = array('ids' => array(), 'query' => '', 'corrections' => array(), 'analysis' => array());
+
+        $query = $this->clean_query($query);
+        if ($query === '') {
+            return $empty;
+        }
+
+        $correction = (new SearchVocabularyService())->correct_query($query);
+        if (empty($correction['corrections']) || $correction['query'] === '') {
+            return $empty;
+        }
+
+        $corrected_analysis = $index->analyze_query($correction['query']);
+        $ids = $index->search_ids($correction['query'], $limit, $corrected_analysis);
+        if (empty($ids)) {
+            return $empty;
+        }
+
+        return array(
+            'ids' => $ids,
+            'query' => $correction['query'],
+            'corrections' => $correction['corrections'],
+            'analysis' => $corrected_analysis,
+        );
     }
 
     /**
@@ -693,6 +872,19 @@ class ProductService {
             array($source_product_id)
         ));
 
+        // The sources above are merged in descending order of signal --
+        // explicitly preferred IDs, then WooCommerce's related products, then
+        // same-category products, then a broad recency pool. array_unique keeps
+        // the first occurrence, so the array is already ordered by relevance and
+        // capping it here keeps the best candidates while removing the long
+        // tail that used to be hydrated in full and then thrown away.
+        $candidate_ids = array_slice($candidate_ids, 0, self::SIMILARITY_CANDIDATE_LIMIT);
+
+        // Every candidate below is put through wc_get_product() plus several
+        // taxonomy lookups. Priming both caches once for the whole set turns
+        // roughly 3-5 queries per candidate into a couple of queries in total.
+        $this->prime_product_caches($candidate_ids);
+
         $source_category_names = wp_get_post_terms($source_product_id, 'product_cat', array('fields' => 'names'));
         $source_tag_names = wp_get_post_terms($source_product_id, 'product_tag', array('fields' => 'names'));
         $source_category_names = is_wp_error($source_category_names) ? array() : array_map('wp_strip_all_tags', (array) $source_category_names);
@@ -858,12 +1050,14 @@ class ProductService {
     }
 
     private function similarity_relation($source, $candidate, $analysis, $source_category_ids, $source_tag_names, $source_text, $preferred) {
-        $candidate_category_ids = wp_get_post_terms($candidate->get_id(), 'product_cat', array('fields' => 'ids'));
-        $candidate_tag_names = wp_get_post_terms($candidate->get_id(), 'product_tag', array('fields' => 'names'));
-        $candidate_category_ids = is_wp_error($candidate_category_ids) ? array() : array_map('absint', (array) $candidate_category_ids);
-        $candidate_tag_names = is_wp_error($candidate_tag_names) ? array() : array_map('wp_strip_all_tags', (array) $candidate_tag_names);
-        $candidate_category_names = wp_get_post_terms($candidate->get_id(), 'product_cat', array('fields' => 'names'));
-        $candidate_category_names = is_wp_error($candidate_category_names) ? array() : (array) $candidate_category_names;
+        // get_the_terms() reads the object term cache primed for the whole
+        // candidate set; wp_get_post_terms() with a `fields` argument bypasses
+        // that cache and issued two term queries per candidate, which was the
+        // N+1 in this loop.
+        $candidate_id = $candidate->get_id();
+        $candidate_category_ids = $this->cached_term_field($candidate_id, 'product_cat', 'ids');
+        $candidate_category_names = $this->cached_term_field($candidate_id, 'product_cat', 'names');
+        $candidate_tag_names = array_map('wp_strip_all_tags', $this->cached_term_field($candidate_id, 'product_tag', 'names'));
         $candidate_text = $this->product_match_text($candidate, $candidate_category_names);
 
         $shared_categories = count(array_intersect($source_category_ids, $candidate_category_ids));
@@ -1063,8 +1257,7 @@ class ProductService {
             return false;
         }
 
-        $category_names = wp_get_post_terms($product->get_id(), 'product_cat', array('fields' => 'names'));
-        $category_names = is_wp_error($category_names) ? array() : (array) $category_names;
+        $category_names = $this->cached_term_field($product->get_id(), 'product_cat', 'names');
         $product_text = $this->product_match_text($product, $category_names);
         $family_identity_text = $this->product_family_identity_text($product, $category_names);
         if (!$this->product_matches_family_analysis($product_text, $analysis, $family_identity_text)) {
@@ -1119,8 +1312,7 @@ class ProductService {
 
     private function analysis_preference_score($product, $analysis) {
         $analysis = is_array($analysis) ? $analysis : array();
-        $category_names = wp_get_post_terms($product->get_id(), 'product_cat', array('fields' => 'names'));
-        $category_names = is_wp_error($category_names) ? array() : (array) $category_names;
+        $category_names = $this->cached_term_field($product->get_id(), 'product_cat', 'names');
         $text = $this->product_match_text($product, $category_names);
         $score = 0;
         if (!empty($analysis['product_family_term'])) {
@@ -1777,24 +1969,37 @@ class ProductService {
         }
 
         $limit = max(1, min(8, absint($limit)));
-        $ids = array_values(array_unique(array_map('absint', (array) wc_get_product_ids_on_sale())));
-        $ids = array_filter($ids, function ($id) {
-            $product = wc_get_product($id);
-            return CatalogVisibilityService::is_visible($product, 'sale_products') && CatalogAvailabilityService::is_available($product);
-        });
 
-        usort($ids, function ($a, $b) {
-            $pa = wc_get_product($a);
-            $pb = wc_get_product($b);
-            $sa = $pa && $pa->is_on_sale() ? 1 : 0;
-            $sb = $pb && $pb->is_on_sale() ? 1 : 0;
-            if ($sa === $sb) {
-                return $b <=> $a;
+        // Only the IDs, which is a cached list and costs nothing to hold.
+        $ids = array_values(array_unique(array_filter(array_map('absint', (array) wc_get_product_ids_on_sale()))));
+
+        // Newest first, decided on the integers alone. The comparator this
+        // replaces asked each product whether it was on sale before comparing
+        // -- but every ID here came from the on-sale list, so that arm never
+        // decided anything and the object was loaded for nothing.
+        rsort($ids, SORT_NUMERIC);
+        $ids = array_slice($ids, 0, self::SALE_CANDIDATE_LIMIT);
+
+        $sale_ids = array();
+        foreach (array_chunk($ids, self::SALE_CANDIDATE_CHUNK) as $chunk) {
+            // One batch of queries per chunk rather than per product, and no
+            // chunk is touched at all once the limit is filled.
+            $this->prime_product_caches($chunk);
+
+            foreach ($chunk as $product_id) {
+                $product = wc_get_product($product_id);
+                if (!CatalogVisibilityService::is_visible($product, 'sale_products')
+                    || !CatalogAvailabilityService::is_available($product)) {
+                    continue;
+                }
+                $sale_ids[] = $product_id;
+                if (count($sale_ids) >= $limit) {
+                    return $sale_ids;
+                }
             }
-            return $sb <=> $sa;
-        });
+        }
 
-        return array_slice($ids, 0, $limit);
+        return $sale_ids;
     }
 
     public function top_rated($limit = 4) {
@@ -2213,6 +2418,22 @@ class ProductService {
             return array_values(array_unique(array_map('absint', (array) $product_ids)));
         }
 
+        // Diversification re-searches each core term on its own, and a bare term
+        // search carries none of this query's constraints. Anything the shopper
+        // ruled out therefore comes back -- and comes back *first*, because these
+        // ids are prepended: "حذاء ليس أسود" (a shoe, not black) put the black
+        // shoe at the top. A query with a colour, size, price or stock
+        // constraint is not the "unstructured keyword search" this is for.
+        if (!empty($analysis['color_terms'])
+            || !empty($analysis['size_terms'])
+            || !empty($analysis['negative_color_terms'])
+            || !empty($analysis['negative_size_terms'])
+            || !empty($analysis['price_range'])
+            || !empty($analysis['in_stock_only'])
+            || $this->analysis_requires_sale($analysis)) {
+            return array_values(array_unique(array_map('absint', (array) $product_ids)));
+        }
+
         $core_terms = !empty($analysis['core_terms']) ? array_values(array_unique(array_filter((array) $analysis['core_terms']))) : array();
         if (count($core_terms) < 2) {
             return array_values(array_unique(array_map('absint', (array) $product_ids)));
@@ -2369,10 +2590,20 @@ class ProductService {
     }
 
     private function requested_label_from_analysis($analysis) {
+        // Everything below is built from normalised terms, and this label is
+        // quoted straight back at the shopper -- "I couldn't find a match for
+        // حقیبه" showed an Arabic reader their own word spelled with letters
+        // Arabic does not use. Same reason ChatService restores the corrected
+        // spelling before displaying it.
+        $language = isset($analysis['language']) ? (string) $analysis['language'] : '';
+        $restore = function ($label) use ($language) {
+            return $this->search_language()->restore_arabic_letterforms((string) $label, $language);
+        };
+
         if (!empty($analysis['product_phrase'])) {
             $phrase = trim(wp_strip_all_tags((string) $analysis['product_phrase']));
             if ($phrase !== '') {
-                return $this->humanize_product_label_term($phrase);
+                return $restore($this->humanize_product_label_term($phrase));
             }
         }
 
@@ -2398,15 +2629,15 @@ class ProductService {
         $clean = array_values(array_unique($clean));
         $clean = array_map(array($this, 'humanize_product_label_term'), $clean);
         if (count($clean) === 2) {
-            return sprintf(
+            return $restore(sprintf(
                 /* translators: 1: first product term, 2: second product term */
                 __('%1$s or %2$s', 'geeky-bot'),
                 $clean[0],
                 $clean[1]
-            );
+            ));
         }
         $label = trim(implode(' ', array_slice($clean, 0, 4)));
-        return $label !== '' ? $label : __('products', 'geeky-bot');
+        return $label !== '' ? $restore($label) : __('products', 'geeky-bot');
     }
 
     private function humanize_product_label_term($term) {
@@ -2857,10 +3088,7 @@ class ProductService {
     }
 
     private function product_match_text($product, $category_names) {
-        $tag_names = wp_get_post_terms($product->get_id(), 'product_tag', array('fields' => 'names'));
-        if (is_wp_error($tag_names)) {
-            $tag_names = array();
-        }
+        $tag_names = $this->cached_term_field($product->get_id(), 'product_tag', 'names');
 
         $chunks = array(
             $product->get_name(),

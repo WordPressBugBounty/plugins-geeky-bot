@@ -4,7 +4,7 @@ Tags: woocommerce, product search, product recommendations, ai chatbot, ecommerc
 Requires at least: 6.0
 Tested up to: 7.0
 Requires PHP: 7.4
-Stable tag: 2.0.2
+Stable tag: 2.1.0
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -117,6 +117,14 @@ The free plugin includes product discovery, grounded product and policy answers,
 
 Yes. Browser-side conversation history can persist across page loads and tabs on the same site. Server-side storage of guest conversations depends on the privacy settings chosen by the store owner.
 
+= Does Geeky Bot work with WPML or Polylang? =
+
+Yes. When either plugin is active Geeky Bot takes the shopper's language from it rather than guessing from the characters they typed. Each translation of a product is its own post in WPML and Polylang, so translations are indexed and searched separately with no extra setup — a Spanish product is found by a Spanish query. Buyer intent, not just the words, is understood in English, Spanish and Arabic; other languages still search by term and fall back to English intent. Cart and checkout commands are English-only in this release.
+
+= Can Geeky Bot run on a WordPress multisite network? =
+
+Yes, activated per site or across the network. Each site keeps its own product index, settings, conversations and AI budget, and a site installs its own tables the first time it loads — including sites added to the network later. Build the product index once per site from that site's Geeky Bot > Setup Wizard.
+
 == Screenshots ==
 
 1. Natural product discovery by budget, with grounded prices, stock, match details, and product cards. Commerce Pro variation selection is shown.
@@ -171,6 +179,45 @@ Terms: https://geekybot.com/terms-conditions/
 Privacy: https://geekybot.com/privacy-policy/
 
 == Changelog ==
+
+= 2.1.0 =
+
+Search
+
+* Rebuilding the product index no longer takes search offline, and an interrupted rebuild resumes instead of starting over.
+* Typos are resolved against your own catalog: "sunglases", "beenie" and "belst" now find the product, and the reply says which spelling was searched.
+* Repeat searches are cached, and the cache clears itself on product edits, rebuilds and search-setting changes.
+* Product tags now count towards what a product is, so a heel tagged "Party Shoes" is found by a search for shoes.
+* Fixed size codes being read out of ordinary words — "muslin scarf" is no longer restricted to size L.
+* Fixed synonyms narrowing a search instead of widening it.
+* Excluding something — "shoe not black" — is around 25 times faster.
+* Faster similar-product lookups, and repeated AI answers are no longer re-billed.
+
+Multilingual
+
+* Shoppers are understood in their own language rather than only term-matched. Packs ship for English, Arabic, Spanish, French, German, Italian, Portuguese, Dutch, Russian, Japanese, Korean and Chinese.
+* Search works across languages: an English shopper finds Arabic products, an Arabic shopper finds English ones, and the same holds for every shipped language.
+* Colour, size, price, stock and "not this" filters work in all twelve languages.
+* Sale, newest, popular and top-rated requests are understood in all twelve languages.
+* Around 2,000 product-word translations are built in, so most stores need no setup. Words specific to your catalog go under Settings → Custom synonyms.
+* The shopper's language is read from the question itself, and from WPML or Polylang when either is active.
+* Arabic now works the way Arabic is written: the definite article, broken plurals, Arabic-Indic digits, stretched letters and follow-up questions. Replies are shown in Arabic letters.
+* Added an Arabic translation of the shopper-facing replies, and a translation template for everything else.
+* Cart and checkout commands remain English-only in this release.
+
+Multisite
+
+* On a network-wide activation, every site now prompts its owner to finish setup instead of sitting with an unbuilt index.
+
+Security and cost control
+
+* Provider API keys are encrypted at rest, and existing keys are re-encrypted automatically on upgrade.
+* Saving a key is refused, with a clear message, on servers that cannot encrypt it — rather than storing it in plaintext.
+* Added a site-wide daily budget and monthly cap for AI calls, enforced server-side. Past the cap, shoppers still get local answers.
+* Added a trusted-proxy setting, so forwarded IP addresses are only trusted when you say how many proxies you run.
+* Contributors and authors are now subject to public rate limits.
+* Merchant catalog and policy text is filtered for prompt injection before it reaches a language model.
+* Onboarding and Answer Mode state plainly that the shipped local mode calls no language model.
 
 = 2.0.2 =
 
@@ -233,6 +280,10 @@ Widget
 * Added support for the separate Geeky Bot Commerce Pro add-on.
 
 == Upgrade Notice ==
+
+= 2.1.0 =
+
+Rebuilds product search: the index rebuild no longer takes search offline, typos resolve against your own catalog instead of a fixed list, repeat searches are cached, and shoppers are understood in twelve languages with search working across them. Also includes the security and cost work — provider API keys are encrypted at rest and re-encrypted automatically on upgrade, and a site-wide AI call budget is enforced. Back up and test on staging.
 
 = 2.0.2 =
 

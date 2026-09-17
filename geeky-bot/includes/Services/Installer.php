@@ -39,6 +39,20 @@ class Installer {
         update_option('geekybot_v2_version', GEEKYBOT_VERSION, false);
     }
 
+    /**
+     * Bring a site up to the current schema and settings on boot.
+     *
+     * This runs on every request, which is also what makes a network install
+     * work: the tables are named from `$wpdb->prefix` and the version markers
+     * are per-site options, so a site that never ran the activation hook --
+     * every site but one under a network-wide activation, and every site
+     * created after it -- installs itself the first time it boots. Of the work
+     * activate() does, the first index build was already covered on boot by
+     * ProductIndexService::maybe_schedule_initial_rebuild(); onboarding was
+     * not, so it is handled here rather than left to the main site alone.
+     *
+     * @return bool
+     */
     public static function maybe_upgrade() {
         if (!DatabaseMigrator::maybe_migrate()) {
             return false;
@@ -46,6 +60,7 @@ class Installer {
 
         $stored = get_option('geekybot_v2_version', '');
         if ($stored !== GEEKYBOT_VERSION) {
+            $is_new_install = !get_option(Settings::OPTION);
             $settings = wp_parse_args(Settings::all(), Settings::defaults());
 
             /**
@@ -63,6 +78,9 @@ class Installer {
             }
 
             update_option(Settings::OPTION, $settings, false);
+            if ($is_new_install && class_exists('GeekyBot\Services\OnboardingService')) {
+                OnboardingService::schedule_first_run();
+            }
             if (class_exists('GeekyBot\Services\KnowledgeIndexService')) {
                 KnowledgeIndexService::schedule_sync();
             }
@@ -143,22 +161,41 @@ class Installer {
             return false;
         }
 
-        $required = array(
-            $sessions,
-            $messages,
-            $unanswered,
+        return self::missing_tables() === array();
+    }
+
+    /**
+     * Every table the plugin cannot run without.
+     *
+     * @return string[]
+     */
+    public static function required_tables() {
+        global $wpdb;
+
+        return array(
+            $wpdb->prefix . 'geekybot_sessions',
+            $wpdb->prefix . 'geekybot_messages',
+            $wpdb->prefix . 'geekybot_unanswered',
             $wpdb->prefix . 'geekybot_product_index',
             $wpdb->prefix . 'geekybot_knowledge_index',
             $wpdb->prefix . 'geekybot_events',
         );
+    }
 
-        foreach ($required as $table) {
+    /**
+     * Which of the required tables are not in the database.
+     *
+     * @return string[]
+     */
+    public static function missing_tables() {
+        $missing = array();
+        foreach (self::required_tables() as $table) {
             if (!self::table_exists($table)) {
-                return false;
+                $missing[] = $table;
             }
         }
 
-        return true;
+        return $missing;
     }
 
     /**

@@ -23,6 +23,26 @@ final class BuyerIntentLibrary {
     private $rules = null;
     private $profile_cache = array();
 
+    /** @var string Query the rules were resolved for. */
+    private $last_query = '';
+
+    /** @var string Language pack actually loaded. */
+    private $loaded_language = 'en';
+
+    /** @var string Language the compiled rules belong to. */
+    private $last_query_language = '';
+
+    /**
+     * Language pack currently in use, for diagnostics and admin display.
+     *
+     * @return string
+     */
+    public function loaded_language() {
+        $this->rules();
+
+        return $this->loaded_language;
+    }
+
     public function __construct(SearchLanguageService $language) {
         $this->language = $language;
     }
@@ -32,12 +52,27 @@ final class BuyerIntentLibrary {
             return $this->empty_profile();
         }
 
+        // Detect on the raw query, before normalize_match_text() folds the
+        // Arabic letterforms. ي and ك are the only characters that separate
+        // Arabic from Urdu and Persian, and normalization rewrites both, so
+        // detecting on the normalized text asks for the pack of a language the
+        // shopper was not writing in.
+        $language = $this->language->language_code($query);
+
         $query = $this->normalize_match_text($query);
         if ($query === '') {
             return $this->empty_profile();
         }
 
-        $cache_key = $consumer . '|' . $query;
+        // The rules are language-specific, so a query in a different language
+        // must not reuse the previous query's compiled pack.
+        if ($language !== $this->last_query_language) {
+            $this->rules = null;
+            $this->last_query_language = $language;
+        }
+        $this->last_query = $query;
+
+        $cache_key = $language . '|' . $consumer . '|' . $query;
         if (isset($this->profile_cache[$cache_key])) {
             return $this->profile_cache[$cache_key];
         }
@@ -133,7 +168,7 @@ final class BuyerIntentLibrary {
         $phrases = !empty($profile['strip_phrases']) ? (array) $profile['strip_phrases'] : $this->profile($query)['strip_phrases'];
 
         foreach ((array) $phrases as $phrase) {
-            $phrase = $this->language->normalize_text($phrase);
+            $phrase = $this->normalize_match_text($phrase);
             if ($phrase === '') {
                 continue;
             }
@@ -159,13 +194,69 @@ final class BuyerIntentLibrary {
         return array_values(array_unique($clean));
     }
 
+    /**
+     * Language pack directory for a language code.
+     *
+     * @param string $language Two-letter code.
+     * @return string Absolute path, or '' when the plugin path is unknown.
+     */
+    private function pack_path($language) {
+        if (!defined('GEEKYBOT_PATH')) {
+            return '';
+        }
+
+        $language = preg_replace('/[^a-z]/', '', strtolower((string) $language));
+        if ($language === '' || strlen($language) !== 2) {
+            return '';
+        }
+
+        return GEEKYBOT_PATH . 'includes/Search/Data/' . $language . '/commerce.php';
+    }
+
+    /**
+     * Buyer-intent rules for the shopper's language.
+     *
+     * This file carries the richest shopper-facing signal in the system --
+     * comfort, gift intent, decision mode, recipient hints -- and it used to be
+     * loaded from the English path no matter who was asking, so a Spanish
+     * shopper got term matching but no intent understanding at all. The
+     * Data/{lang}/ layout was always implied by the directory naming; this
+     * wires it up, with English as the fallback whenever a pack is missing so
+     * an unsupported language is never worse off than before.
+     *
+     * @return array
+     */
     private function rules() {
         if ($this->rules !== null) {
             return $this->rules;
         }
 
-        $file = defined('GEEKYBOT_PATH') ? GEEKYBOT_PATH . 'includes/Search/Data/en/commerce.php' : '';
-        $raw = $file && is_readable($file) ? include $file : array();
+        // Resolved in profile() from the raw query. Re-detecting here would
+        // read the normalized text and pick the wrong pack for Arabic.
+        $language = $this->last_query_language !== ''
+            ? $this->last_query_language
+            : $this->language->language_code('');
+
+        /**
+         * Filters the language pack used for buyer-intent parsing.
+         *
+         * @param string $language Detected two-letter language code.
+         */
+        $language = (string) apply_filters('geekybot_buyer_intent_language', $language);
+
+        $raw = array();
+        foreach (array($language, 'en') as $candidate) {
+            $file = $this->pack_path($candidate);
+            if ($file !== '' && is_readable($file)) {
+                $loaded = include $file;
+                if (is_array($loaded) && !empty($loaded)) {
+                    $raw = $loaded;
+                    $this->loaded_language = $candidate;
+                    break;
+                }
+            }
+        }
+
         if (!is_array($raw)) {
             $raw = array();
         }
@@ -236,7 +327,7 @@ final class BuyerIntentLibrary {
 
         $clean = array();
         foreach ((array) $items as $item) {
-            $item = $this->language->normalize_text($item);
+            $item = $this->normalize_match_text($item);
             if ($item !== '') {
                 $clean[] = $item;
             }
@@ -260,14 +351,48 @@ final class BuyerIntentLibrary {
     private function contains_phrase($query, $phrase) {
         $query = (string) $query;
         $phrase = (string) $phrase;
-        return $query !== '' && $phrase !== '' && strpos(' ' . $query . ' ', ' ' . $phrase . ' ') !== false;
+        if ($query === '' || $phrase === '') {
+            return false;
+        }
+
+        // Whole-token matching is what keeps a commerce rule precise: a size "s"
+        // must not fire on "sale", and "new" must not fire on "newborn".
+        if (strpos(' ' . $query . ' ', ' ' . $phrase . ' ') !== false) {
+            return true;
+        }
+
+        // Japanese and Chinese write a sentence without spaces, so token
+        // matching can never fire: 「軽いバッグを探しています」 contains 軽い with no
+        // boundary on either side of it, and every rule in the ja and zh packs
+        // failed silently -- the packs loaded, matched nothing, and the shopper
+        // got no intent understanding at all. Substring matching is allowed
+        // only when the PHRASE itself is CJK, so it cannot loosen a Latin or
+        // Arabic rule, and mirrors what SearchLanguageService::contains_phrase()
+        // already does on the product-term side.
+        if (preg_match('/[\x{3040}-\x{30FF}\x{3400}-\x{9FFF}\x{AC00}-\x{D7AF}]/u', $phrase)) {
+            return strpos($query, $phrase) !== false;
+        }
+
+        return false;
     }
 
+    /**
+     * Normalise text for rule matching.
+     *
+     * The Arabic reduction is applied to the pack's phrases as well, in
+     * normalize_list() and longest_first(). Both sides must go through it or
+     * they stop meeting: 6 of 8 sampled Arabic intent phrases lost their signal
+     * the moment a shopper wrote the article, so "الحذاء المريح" was not a
+     * comfort request while "حذاء مريح" was.
+     *
+     * @param string $text Text to normalise.
+     * @return string
+     */
     private function normalize_match_text($text) {
         $text = $this->language->normalize_text($text);
         $text = preg_replace('/(?<!\d)\.(?!\d)/u', ' ', (string) $text);
         $text = preg_replace('/\s+/u', ' ', (string) $text);
-        return trim($text);
+        return $this->language->strip_arabic_clitic_text(trim($text));
     }
 
     private function longest_first($phrases) {

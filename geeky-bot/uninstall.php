@@ -27,25 +27,33 @@ foreach ($geekybot_tables as $geekybot_table) {
     $wpdb->query("DROP TABLE IF EXISTS {$geekybot_table}");
 }
 
-delete_option('geekybot_v2_settings');
-delete_option('geekybot_v2_version');
-delete_option('geekybot_db_version');
-delete_option('geekybot_db_migration_lock');
-delete_option('geekybot_last_cleanup');
-delete_option('geekybot_v2_rate_limit_dev19_upgraded');
-delete_option('geekybot_commerce_pro_license');
-delete_option('geekybot_installation_id_v2');
-delete_option('geekybot_commerce_pro_update_cache');
-delete_option('geekybot_commerce_pro_cdn_update_cache');
-delete_option('geekybot_commerce_pro_update_settings');
-delete_option('geekybot_product_index_needs_rebuild');
-delete_option('geekybot_product_index_last_rebuild');
-delete_option('geekybot_product_index_auto_index_version');
-delete_option('geekybot_knowledge_sync_pending');
-delete_option('geekybot_knowledge_last_sync_summary');
-delete_option('geekybot_review_manual_handled');
-delete_option('geekybot_review_ignored');
-delete_option('geekybot_onboarding_state');
-delete_option('geekybot_onboarding_redirect_pending');
-delete_option('geekybot_guided_demo_seed');
-delete_option('geekybot_delete_data_on_uninstall');
+// Every option and transient this plugin owns is prefixed `geekybot_`, so
+// sweeping the prefix cannot go stale the way the explicit list here did. That
+// list named 22 options and still left behind geekybot_family_vocabulary,
+// geekybot_fulltext_state, geekybot_product_index_rebuild_state,
+// geekybot_search_cache_version and geekybot_search_vocabulary -- plus every
+// _transient_geekybot_rate_* row, which is one per visitor on a busy store.
+// A merchant who ticks "delete my data" is entitled to have it all gone.
+$geekybot_patterns = array(
+    $wpdb->esc_like('geekybot_') . '%',
+    $wpdb->esc_like('_transient_geekybot_') . '%',
+    $wpdb->esc_like('_transient_timeout_geekybot_') . '%',
+    $wpdb->esc_like('_site_transient_geekybot_') . '%',
+    $wpdb->esc_like('_site_transient_timeout_geekybot_') . '%',
+);
+
+foreach ($geekybot_patterns as $geekybot_pattern) {
+    // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery,WordPress.DB.DirectDatabaseQuery.NoCaching,WordPress.DB.PreparedSQL.NotPrepared -- Removes the options this plugin owns, matched on its own prefix.
+    $wpdb->query($wpdb->prepare("DELETE FROM {$wpdb->options} WHERE option_name LIKE %s", $geekybot_pattern));
+}
+
+// Network installs keep site options in sitemeta rather than in wp_options.
+if (is_multisite()) {
+    foreach ($geekybot_patterns as $geekybot_pattern) {
+        // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery,WordPress.DB.DirectDatabaseQuery.NoCaching,WordPress.DB.PreparedSQL.NotPrepared -- Same prefix, network option store.
+        $wpdb->query($wpdb->prepare("DELETE FROM {$wpdb->sitemeta} WHERE meta_key LIKE %s", $geekybot_pattern));
+    }
+}
+
+// The dated geekybot_ai_calls_* counters are covered by the prefix sweep above.
+

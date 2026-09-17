@@ -19,6 +19,19 @@ final class LicenseVault {
             || (function_exists('openssl_encrypt') && function_exists('openssl_decrypt'));
     }
 
+    /**
+     * Whether a stored value is vault ciphertext rather than a plaintext
+     * value written before encryption was introduced.
+     *
+     * @param mixed $payload Stored value.
+     * @return bool
+     */
+    public static function is_encrypted($payload) {
+        $payload = (string) $payload;
+
+        return strpos($payload, self::SODIUM_PREFIX) === 0 || strpos($payload, self::OPENSSL_PREFIX) === 0;
+    }
+
     public static function encrypt($plain_text) {
         $plain_text = (string) $plain_text;
         if ($plain_text === '') {

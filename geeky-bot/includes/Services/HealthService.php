@@ -75,14 +75,29 @@ class HealthService {
      * @return array<int, array<string, string>>
      */
     public function checks() {
-        return array(
-            $this->check_product_index_table(),
-            $this->check_fulltext_index(),
-            $this->check_index_freshness(),
-            $this->check_store_vocabulary(),
-            $this->check_knowledge_sources(),
-            $this->check_assistant_reachable(),
-        );
+        global $wpdb;
+
+        $missing = Installer::missing_tables();
+        $checks = array($this->check_database_tables($missing));
+
+        // The remaining checks read those tables directly. Running them against
+        // a table that is not there does not produce a finding -- it produces a
+        // "doesn't exist" line in the error log per check, on every admin page
+        // load, saying the same thing the check above already said clearly.
+        if (!in_array($wpdb->prefix . 'geekybot_product_index', $missing, true)) {
+            $checks[] = $this->check_fulltext_index();
+            $checks[] = $this->check_index_freshness();
+        }
+
+        $checks[] = $this->check_store_vocabulary();
+
+        if (!in_array($wpdb->prefix . 'geekybot_knowledge_index', $missing, true)) {
+            $checks[] = $this->check_knowledge_sources();
+        }
+
+        $checks[] = $this->check_assistant_reachable();
+
+        return $checks;
     }
 
     /**
@@ -104,21 +119,41 @@ class HealthService {
         return $status;
     }
 
-    private function check_product_index_table() {
-        global $wpdb;
-
-        $table = $wpdb->prefix . 'geekybot_product_index';
-        // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery,WordPress.DB.DirectDatabaseQuery.NoCaching -- Reading own plugin schema for a health report.
-        $exists = (bool) $wpdb->get_var($wpdb->prepare('SHOW TABLES LIKE %s', $table));
-
-        return $exists
-            ? $this->result('product_index_table', __('Product index table', 'geeky-bot'), 'ok', __('The product index table is present.', 'geeky-bot'))
-            : $this->result(
+    /**
+     * Report any plugin table that is not in the database.
+     *
+     * Covers all six rather than the product index alone: a database that lost
+     * one has usually lost the lot, which is what a restore from a backup of
+     * only the core tables leaves behind.
+     *
+     * @param string[] $missing Tables already found to be absent.
+     * @return array<string,string>
+     */
+    private function check_database_tables($missing) {
+        if (empty($missing)) {
+            return $this->result(
                 'product_index_table',
-                __('Product index table', 'geeky-bot'),
-                'critical',
-                __('The product index table is missing, so Geeky Bot cannot search your catalog. Deactivating and reactivating the plugin rebuilds it.', 'geeky-bot')
+                __('Database tables', 'geeky-bot'),
+                'ok',
+                __('Every Geeky Bot table is present.', 'geeky-bot')
             );
+        }
+
+        return $this->result(
+            'product_index_table',
+            __('Database tables', 'geeky-bot'),
+            'critical',
+            sprintf(
+                _n(
+                    /* translators: %s: comma-separated list of database table names. */
+                    'A Geeky Bot database table is missing, so the assistant cannot search your catalog: %s. It is recreated automatically on the next page load; if this warning stays, the database user may not be allowed to create tables.',
+                    'Geeky Bot database tables are missing, so the assistant cannot search your catalog: %s. They are recreated automatically on the next page load; if this warning stays, the database user may not be allowed to create tables.',
+                    count($missing),
+                    'geeky-bot'
+                ),
+                implode(', ', $missing)
+            )
+        );
     }
 
     private function check_fulltext_index() {

@@ -13,6 +13,16 @@ if (!defined('ABSPATH')) {
  */
 class ShopperOutputService {
     /**
+     * Most product cards one reply may carry.
+     *
+     * The storefront widget pre-translates its "show the rest" label for every
+     * count this cap allows, so the two must agree: raising it here without
+     * raising Widget::PRODUCT_CARDS_VISIBLE's companion range leaves the last
+     * counts without a translated label.
+     */
+    const MAX_PUBLIC_PRODUCTS = 8;
+
+    /**
      * Register the public REST error boundary.
      */
     public function hooks() {
@@ -183,7 +193,7 @@ class ShopperOutputService {
             }
 
             $clean[] = $row;
-            if (count($clean) >= 8) {
+            if (count($clean) >= self::MAX_PUBLIC_PRODUCTS) {
                 break;
             }
         }

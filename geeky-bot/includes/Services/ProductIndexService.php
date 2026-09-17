@@ -19,8 +19,54 @@ class ProductIndexService {
     const REBUILD_PENDING_OPTION = 'geekybot_product_index_needs_rebuild';
     const LAST_REBUILD_OPTION = 'geekybot_product_index_last_rebuild';
     const AUTO_INDEX_VERSION_OPTION = 'geekybot_product_index_auto_index_version';
-    const AUTO_INDEX_VERSION = '1';
+    /**
+     * Bumped whenever indexed text changes shape, which forces one rebuild on
+     * upgrade. '2': StemmerService now stems Russian, so stem_text written by
+     * an earlier version holds raw case forms while the query side sends stems,
+     * and the two no longer meet.
+     */
+    const AUTO_INDEX_VERSION = '2';
+    const REBUILD_STATE_OPTION = 'geekybot_product_index_rebuild_state';
+    const REBUILD_BATCH_HOOK = 'geekybot_product_index_rebuild_batch';
 
+    /**
+     * Products indexed per batch. Small enough to finish inside a normal cron
+     * request on shared hosting, large enough that a big catalog still
+     * completes in a sensible number of passes.
+     */
+    const REBUILD_BATCH_SIZE = 200;
+
+    /**
+     * A running rebuild that has not written a batch in this long is assumed
+     * dead -- a killed cron worker or a fatal mid-run -- and may be replaced.
+     * Comfortably longer than any single batch, short enough that a merchant
+     * is not locked out of rebuilding for the rest of the day.
+     */
+    const STALE_REBUILD_SECONDS = 900;
+    const REBUILD_BATCH_LOCK_OPTION = 'geekybot_product_index_batch_lock';
+    const REBUILD_BATCH_LOCK_TTL = 300;
+    const SEARCH_CACHE_VERSION_OPTION = 'geekybot_search_cache_version';
+    const SEARCH_CACHE_PREFIX = 'geekybot_rank_';
+    const SEARCH_CACHE_TTL = 900;
+
+    /**
+     * Catalog hooks.
+     *
+     * Multilingual note: on WPML and Polylang each translation of a product is
+     * its own post, so these per-post hooks index every translation separately
+     * with no language-specific handling required, and each translation is
+     * matched in its own language. This is verified behaviour, not an
+     * assumption -- it is written down here because "translated products are
+     * probably not indexed" is an easy and wrong conclusion to draw from the
+     * absence of any translation code.
+     *
+     * Multisite note: the index table name is derived from $wpdb->prefix, and
+     * the database version is a per-site option, so each site in a network
+     * creates and migrates its own tables the first time it boots. A
+     * network-wide activation therefore needs no per-site loop.
+     *
+     * @return void
+     */
     public function hooks() {
         add_action('save_post_product', array($this, 'sync_product'), 20, 2);
         add_action('transition_post_status', array($this, 'sync_product_status_change'), 20, 3);
@@ -40,6 +86,7 @@ class ProductIndexService {
         add_action('wp_trash_post', array($this, 'delete_product'), 20, 1);
         add_action('untrashed_post', array($this, 'sync_untrashed_product'), 20, 1);
         add_action(self::REBUILD_HOOK, array($this, 'scheduled_rebuild'), 20, 0);
+        add_action(self::REBUILD_BATCH_HOOK, array($this, 'run_rebuild_batch'), 20, 0);
         add_action('activated_plugin', array($this, 'handle_plugin_activation'), 20, 2);
         add_action('woocommerce_init', array($this, 'maybe_schedule_initial_rebuild'), 20, 0);
     }
@@ -80,6 +127,7 @@ class ProductIndexService {
             search_text longtext NOT NULL,
             semantic_text longtext NOT NULL,
             stem_text longtext NULL,
+            facet_text longtext NULL,
             product_url text NULL,
             image_url text NULL,
             created_at datetime NOT NULL,
@@ -113,12 +161,19 @@ class ProductIndexService {
         return absint($wpdb->get_var("SELECT COUNT(*) FROM {$table}"));
     }
 
-    public function sync_product_by_id($product_id) {
+    /**
+     * @param int    $product_id Product to index.
+     * @param string $table Target table; defaults to the live index. A batched
+     *                      rebuild passes the shadow table so live search keeps
+     *                      serving the current index until the swap.
+     * @return bool
+     */
+    public function sync_product_by_id($product_id, $table = '') {
         $product = function_exists('wc_get_product') ? wc_get_product(absint($product_id)) : null;
         if (!$product) {
             return false;
         }
-        return $this->sync_wc_product($product);
+        return $this->sync_wc_product($product, $table);
     }
 
     public function sync_product($post_id, $post = null) {
@@ -208,6 +263,7 @@ class ProductIndexService {
     public static function request_rebuild($delay = 90) {
         $pending_marker = current_time('mysql') . '|' . microtime(true);
         update_option(self::REBUILD_PENDING_OPTION, $pending_marker, false);
+        self::flush_search_cache();
 
         if (!self::woocommerce_ready() || wp_next_scheduled(self::REBUILD_HOOK)) {
             return false;
@@ -238,6 +294,11 @@ class ProductIndexService {
     }
 
     public static function rebuild_status() {
+        $state = self::rebuild_state();
+        if ($state !== null && $state['status'] === 'running') {
+            return 'running';
+        }
+
         if (!get_option(self::REBUILD_PENDING_OPTION)) {
             return 'current';
         }
@@ -249,6 +310,28 @@ class ProductIndexService {
         return wp_next_scheduled(self::REBUILD_HOOK) ? 'scheduled' : 'pending';
     }
 
+    /**
+     * Human-facing progress for a batched rebuild.
+     *
+     * @return array{running: bool, processed: int, total: int, percent: int}
+     */
+    public static function rebuild_progress() {
+        $state = self::rebuild_state();
+        if ($state === null || $state['status'] !== 'running') {
+            return array('running' => false, 'processed' => 0, 'total' => 0, 'percent' => 0);
+        }
+
+        $processed = absint($state['processed']);
+        $total = absint($state['total']);
+
+        return array(
+            'running' => true,
+            'processed' => $processed,
+            'total' => $total,
+            'percent' => $total > 0 ? min(100, (int) round(($processed / $total) * 100)) : 0,
+        );
+    }
+
     private static function woocommerce_ready() {
         return function_exists('wc_get_product');
     }
@@ -258,7 +341,16 @@ class ProductIndexService {
             return;
         }
 
-        $this->rebuild();
+        // Start the batched run and let the batch hook carry it to completion,
+        // so no single cron request has to index the whole catalog.
+        $state = self::rebuild_state();
+        if ($state !== null && $state['status'] === 'running') {
+            $this->run_rebuild_batch();
+            return;
+        }
+
+        $this->start_batched_rebuild();
+        $this->run_rebuild_batch();
     }
 
     public function delete_product($post_id) {
@@ -267,6 +359,7 @@ class ProductIndexService {
         }
         global $wpdb;
         $wpdb->delete(self::table_name(), array('product_id' => absint($post_id)), array('%d'));
+        self::flush_search_cache();
     }
 
     /**
@@ -274,8 +367,434 @@ class ProductIndexService {
      *
      * @return array
      */
+    /**
+     * Relearn the store's own searchable word list.
+     *
+     * Kept beside rebuild_vocabulary() and driven by the same completed-rebuild
+     * event, so typo recovery always reflects the catalog that is searchable.
+     *
+     * @return array
+     */
+    public function rebuild_search_vocabulary() {
+        return (new SearchVocabularyService())->rebuild();
+    }
+
     public function rebuild_vocabulary() {
         return $this->vocabulary()->rebuild();
+    }
+
+    /**
+     * Shadow table a batched rebuild populates before the atomic swap.
+     *
+     * @return string
+     */
+    public static function shadow_table_name() {
+        return self::table_name() . '_new';
+    }
+
+    /**
+     * Build the shadow table with the live table's schema.
+     *
+     * @return bool
+     */
+    private static function create_shadow_table() {
+        global $wpdb;
+
+        $live = self::table_name();
+        $shadow = self::shadow_table_name();
+
+        // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery,WordPress.DB.DirectDatabaseQuery.NoCaching,WordPress.DB.DirectDatabaseQuery.SchemaChange,WordPress.DB.PreparedSQL.InterpolatedNotPrepared -- Plugin-owned table names.
+        $wpdb->query("DROP TABLE IF EXISTS {$shadow}");
+        // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery,WordPress.DB.DirectDatabaseQuery.NoCaching,WordPress.DB.DirectDatabaseQuery.SchemaChange,WordPress.DB.PreparedSQL.InterpolatedNotPrepared -- LIKE copies the live schema, including the FULLTEXT key.
+        $wpdb->query("CREATE TABLE {$shadow} LIKE {$live}");
+
+        // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery,WordPress.DB.DirectDatabaseQuery.NoCaching,WordPress.DB.PreparedSQL.InterpolatedNotPrepared -- Existence check on a plugin-owned table.
+        return $wpdb->get_var($wpdb->prepare('SHOW TABLES LIKE %s', $shadow)) === $shadow;
+    }
+
+    /**
+     * Current batched-rebuild state, or null when none is running.
+     *
+     * @return array|null
+     */
+    public static function rebuild_state() {
+        $state = get_option(self::REBUILD_STATE_OPTION, null);
+
+        return is_array($state) && !empty($state['status']) ? $state : null;
+    }
+
+    /**
+     * @param array $state State to persist.
+     * @return void
+     */
+    private static function save_rebuild_state($state) {
+        // Heartbeat, so a run that dies mid-flight can be told apart from one
+        // that is simply still working.
+        $state['updated_gmt'] = current_time('mysql', true);
+        update_option(self::REBUILD_STATE_OPTION, $state, false);
+    }
+
+    /**
+     * Whether a running rebuild has stopped making progress.
+     *
+     * @param array $state Rebuild state.
+     * @return bool
+     */
+    private static function rebuild_is_stale($state) {
+        $stamp = '';
+        foreach (array('updated_gmt', 'started_gmt') as $key) {
+            if (!empty($state[$key])) {
+                $stamp = (string) $state[$key];
+                break;
+            }
+        }
+
+        if ($stamp === '') {
+            // No heartbeat at all: written by an older version, so do not let
+            // it block a rebuild.
+            return true;
+        }
+
+        $last = strtotime($stamp . ' UTC');
+
+        return $last === false || (time() - $last) > self::STALE_REBUILD_SECONDS;
+    }
+
+    /**
+     * Begin a batched rebuild into the shadow table.
+     *
+     * Nothing is destroyed here. Live search keeps serving the existing table
+     * for the whole run, which is the entire point: the previous implementation
+     * truncated the live table first, so every concurrent shopper search
+     * returned nothing until the rebuild finished.
+     *
+     * A run already in progress is never restarted. Two overlapping runs would
+     * share one cursor: each reads the state, advances it, and writes it back,
+     * so the slower writer silently rewinds the faster one and the products in
+     * between never reach the shadow table -- which is then swapped in as if it
+     * were complete. That is reachable in practice, because an admin can press
+     * Rebuild while a cron batch is mid-flight. A run that has not progressed
+     * for STALE_REBUILD_SECONDS is treated as dead and may be replaced, so a
+     * process killed mid-run cannot block rebuilds forever.
+     *
+     * @return array
+     */
+    public function start_batched_rebuild() {
+        if (!self::woocommerce_ready()) {
+            return array('started' => false, 'reason' => 'woocommerce_unavailable');
+        }
+
+        $running = self::rebuild_state();
+        if ($running !== null && $running['status'] === 'running' && !self::rebuild_is_stale($running)) {
+            return array(
+                'started' => false,
+                'reason' => 'already_running',
+                'total' => absint($running['total']),
+            );
+        }
+
+        global $wpdb;
+        self::create_table();
+
+        if (!self::create_shadow_table()) {
+            return array('started' => false, 'reason' => 'shadow_table_failed');
+        }
+
+        // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery,WordPress.DB.DirectDatabaseQuery.NoCaching -- One counting query to report progress.
+        $total = absint($wpdb->get_var("SELECT COUNT(*) FROM {$wpdb->posts} WHERE post_type = 'product' AND post_status = 'publish'"));
+
+        self::save_rebuild_state(array(
+            'status' => 'running',
+            'cursor' => 0,
+            'processed' => 0,
+            'indexed' => 0,
+            'skipped' => 0,
+            'total' => $total,
+            'started_at' => current_time('mysql'),
+            'started_gmt' => current_time('mysql', true),
+            'pending_marker' => get_option(self::REBUILD_PENDING_OPTION, ''),
+        ));
+
+        if (!wp_next_scheduled(self::REBUILD_BATCH_HOOK)) {
+            wp_schedule_single_event(time() + 5, self::REBUILD_BATCH_HOOK);
+        }
+
+        return array('started' => true, 'total' => $total);
+    }
+
+    /**
+     * Cron entry point: index one batch, then queue the next.
+     *
+     * @return void
+     */
+    public function run_rebuild_batch() {
+        $result = $this->rebuild_batch();
+
+        if (!empty($result['complete']) || empty($result['running'])) {
+            return;
+        }
+
+        if (!wp_next_scheduled(self::REBUILD_BATCH_HOOK)) {
+            wp_schedule_single_event(time() + 5, self::REBUILD_BATCH_HOOK);
+        }
+    }
+
+    /**
+     * Claim the right to run one rebuild batch.
+     *
+     * Batch workers share a single cursor, so two of them running at once read
+     * the same position, index the same products and write the position back
+     * over each other. WordPress reaches this easily: run_rebuild_batch()
+     * re-queues itself every few seconds, and an admin pressing Rebuild while a
+     * cron batch is mid-flight adds a second worker. add_option() is a single
+     * INSERT on a unique key, so exactly one caller can create the row.
+     *
+     * @return bool True when this process owns the batch slot.
+     */
+    private static function acquire_batch_lock() {
+        $now = time();
+        if (add_option(self::REBUILD_BATCH_LOCK_OPTION, $now, '', 'no')) {
+            return true;
+        }
+
+        $locked_at = absint(get_option(self::REBUILD_BATCH_LOCK_OPTION, 0));
+        if ($locked_at > 0 && ($now - $locked_at) < self::REBUILD_BATCH_LOCK_TTL) {
+            return false;
+        }
+
+        // The holder died without releasing. Reclaim rather than stall forever.
+        delete_option(self::REBUILD_BATCH_LOCK_OPTION);
+
+        return (bool) add_option(self::REBUILD_BATCH_LOCK_OPTION, $now, '', 'no');
+    }
+
+    /**
+     * @return void
+     */
+    private static function release_batch_lock() {
+        delete_option(self::REBUILD_BATCH_LOCK_OPTION);
+    }
+
+    /**
+     * Index one batch of products into the shadow table.
+     *
+     * The cursor is a product ID, persisted after every batch, so an
+     * interrupted run resumes from where it stopped instead of restarting from
+     * zero.
+     *
+     * @param int $batch_size Products to process, 0 for the default.
+     * @return array
+     */
+    public function rebuild_batch($batch_size = 0) {
+        // Serialised against other workers: without this, two cron requests
+        // read the same cursor, index the same products twice and write the
+        // cursor back over each other -- and the swap can land while the other
+        // worker is still writing rows that then never reach the live table.
+        if (!self::acquire_batch_lock()) {
+            $running = self::rebuild_state();
+
+            return array(
+                'running' => $running !== null && $running['status'] === 'running',
+                'complete' => false,
+                'locked' => true,
+            );
+        }
+
+        try {
+            return $this->index_one_batch($batch_size);
+        } finally {
+            self::release_batch_lock();
+        }
+    }
+
+    /**
+     * Index one batch. Callers must hold the batch lock.
+     *
+     * @param int $batch_size Products to process, 0 for the default.
+     * @return array
+     */
+    private function index_one_batch($batch_size = 0) {
+        $state = self::rebuild_state();
+        if ($state === null || $state['status'] !== 'running') {
+            return array('running' => false, 'complete' => false);
+        }
+
+        if (!self::woocommerce_ready()) {
+            return array('running' => true, 'complete' => false);
+        }
+
+        global $wpdb;
+        $shadow = self::shadow_table_name();
+        // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery,WordPress.DB.DirectDatabaseQuery.NoCaching,WordPress.DB.PreparedSQL.InterpolatedNotPrepared -- Existence check on a plugin-owned table.
+        if ($wpdb->get_var($wpdb->prepare('SHOW TABLES LIKE %s', $shadow)) !== $shadow) {
+            // The shadow table vanished under us. Start over rather than
+            // swapping a partial index into place.
+            self::save_rebuild_state(array_merge($state, array('status' => 'failed')));
+            return array('running' => false, 'complete' => false);
+        }
+
+        $batch_size = $batch_size > 0 ? absint($batch_size) : self::REBUILD_BATCH_SIZE;
+        $cursor = absint($state['cursor']);
+
+        // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery,WordPress.DB.DirectDatabaseQuery.NoCaching -- Cursor paging over published products; ID order makes the run resumable.
+        $ids = $wpdb->get_col($wpdb->prepare(
+            "SELECT ID FROM {$wpdb->posts} WHERE post_type = 'product' AND post_status = 'publish' AND ID > %d ORDER BY ID ASC LIMIT %d",
+            $cursor,
+            $batch_size
+        ));
+
+        if (empty($ids)) {
+            return $this->finish_batched_rebuild($state);
+        }
+
+        foreach ($ids as $product_id) {
+            $product_id = absint($product_id);
+            $ok = $this->sync_product_by_id($product_id, $shadow);
+            $ok ? $state['indexed']++ : $state['skipped']++;
+            $state['processed']++;
+            $state['cursor'] = $product_id;
+        }
+
+        self::save_rebuild_state($state);
+
+        return array(
+            'running' => true,
+            'complete' => false,
+            'processed' => absint($state['processed']),
+            'total' => absint($state['total']),
+        );
+    }
+
+    /**
+     * Swap the finished shadow table into place.
+     *
+     * RENAME TABLE of both tables in one statement is atomic, so no request
+     * ever sees a missing or half-populated index.
+     *
+     * @param array $state Rebuild state.
+     * @return array
+     */
+    private function finish_batched_rebuild($state) {
+        global $wpdb;
+
+        $live = self::table_name();
+        $shadow = self::shadow_table_name();
+        $retired = $live . '_old';
+
+        // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery,WordPress.DB.DirectDatabaseQuery.NoCaching,WordPress.DB.DirectDatabaseQuery.SchemaChange,WordPress.DB.PreparedSQL.InterpolatedNotPrepared -- Plugin-owned tables.
+        $wpdb->query("DROP TABLE IF EXISTS {$retired}");
+        // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery,WordPress.DB.DirectDatabaseQuery.NoCaching,WordPress.DB.DirectDatabaseQuery.SchemaChange,WordPress.DB.PreparedSQL.InterpolatedNotPrepared -- Single-statement atomic swap.
+        $swapped = false !== $wpdb->query("RENAME TABLE {$live} TO {$retired}, {$shadow} TO {$live}");
+
+        if (!$swapped) {
+            self::save_rebuild_state(array_merge($state, array('status' => 'failed')));
+            return array('running' => false, 'complete' => false, 'swapped' => false);
+        }
+
+        // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery,WordPress.DB.DirectDatabaseQuery.NoCaching,WordPress.DB.DirectDatabaseQuery.SchemaChange,WordPress.DB.PreparedSQL.InterpolatedNotPrepared -- Plugin-owned table.
+        $wpdb->query("DROP TABLE IF EXISTS {$retired}");
+
+        // Product edits made while the rebuild was running went to the live
+        // table, which has just been replaced. Re-sync anything touched since
+        // the run started so no edit is lost to the swap.
+        $this->resync_products_modified_since(isset($state['started_gmt']) ? (string) $state['started_gmt'] : '');
+
+        update_option(self::LAST_REBUILD_OPTION, current_time('mysql'), false);
+        if (get_option(self::REBUILD_PENDING_OPTION, '') === (isset($state['pending_marker']) ? $state['pending_marker'] : '')) {
+            delete_option(self::REBUILD_PENDING_OPTION);
+        }
+
+        $this->rebuild_vocabulary();
+        $this->rebuild_search_vocabulary();
+        self::flush_search_cache();
+
+        self::save_rebuild_state(array_merge($state, array(
+            'status' => 'complete',
+            'finished_at' => current_time('mysql'),
+        )));
+
+        return array(
+            'running' => false,
+            'complete' => true,
+            'swapped' => true,
+            'indexed' => absint($state['indexed']),
+            'skipped' => absint($state['skipped']),
+        );
+    }
+
+    /**
+     * Re-index products edited while a batched rebuild was in flight.
+     *
+     * @param string $since_gmt MySQL GMT datetime.
+     * @return int Products re-synced.
+     */
+    private function resync_products_modified_since($since_gmt) {
+        if ($since_gmt === '') {
+            return 0;
+        }
+
+        global $wpdb;
+        // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery,WordPress.DB.DirectDatabaseQuery.NoCaching -- Bounded catch-up query for edits made during the rebuild.
+        $ids = $wpdb->get_col($wpdb->prepare(
+            "SELECT ID FROM {$wpdb->posts} WHERE post_type = 'product' AND post_status = 'publish' AND post_modified_gmt >= %s ORDER BY ID ASC LIMIT 500",
+            $since_gmt
+        ));
+
+        $count = 0;
+        foreach ((array) $ids as $product_id) {
+            if ($this->sync_product_by_id(absint($product_id))) {
+                $count++;
+            }
+        }
+
+        return $count;
+    }
+
+    /**
+     * Run a whole batched rebuild in this request.
+     *
+     * Reached only by a direct rebuild() call with no limit -- WP-CLI, an
+     * add-on, or a developer. The admin action deliberately does not use this:
+     * it runs a few batches within a time and memory budget and hands the rest
+     * to cron, because a full synchronous run measured 175s and 211MB on a 20k
+     * catalog. It still goes through the shadow table and the atomic swap, so
+     * even a long synchronous run never takes live search offline, and an
+     * interrupted one resumes from its saved cursor rather than restarting.
+     *
+     * @return array
+     */
+    private function rebuild_synchronously() {
+        $start = $this->start_batched_rebuild();
+        if (empty($start['started'])) {
+            // "Already running" is not a failure: a cron batch got there
+            // first, so carry that run to completion rather than starting a
+            // competing one or reporting nothing happened.
+            $reason = isset($start['reason']) ? $start['reason'] : '';
+            if ($reason !== 'already_running') {
+                return array('indexed' => 0, 'skipped' => 0, 'complete' => false);
+            }
+        }
+
+        // Bounded so a pathological catalog cannot spin forever in one request.
+        $max_batches = 10000;
+        $result = array('running' => true, 'complete' => false);
+
+        for ($i = 0; $i < $max_batches; $i++) {
+            $result = $this->rebuild_batch();
+            if (empty($result['running']) || !empty($result['complete'])) {
+                break;
+            }
+        }
+
+        $state = self::rebuild_state();
+        $indexed = is_array($state) ? absint($state['indexed']) : 0;
+        $skipped = is_array($state) ? absint($state['skipped']) : 0;
+
+        return array(
+            'indexed' => $indexed,
+            'skipped' => $skipped,
+            'complete' => !empty($result['complete']),
+        );
     }
 
     public function rebuild($limit = 0) {
@@ -283,44 +802,34 @@ class ProductIndexService {
             return array('indexed' => 0, 'skipped' => 0, 'complete' => false);
         }
 
-        $pending_marker = get_option(self::REBUILD_PENDING_OPTION, '');
-        global $wpdb;
         self::create_table();
-        $table = self::table_name();
-        $wpdb->query("TRUNCATE TABLE {$table}");
 
-        $args = array(
+        // A full rebuild goes through the shadow table and an atomic swap, so
+        // live search is never interrupted.
+        if (!$limit) {
+            return $this->rebuild_synchronously();
+        }
+
+        // Bounded warm-up, used only when the index is empty and there is
+        // nothing to protect. It tops the live table up rather than truncating
+        // it, so it can never remove rows a shopper is about to search.
+        $ids = get_posts(array(
             'post_type' => 'product',
             'post_status' => 'publish',
             'fields' => 'ids',
-            'posts_per_page' => $limit ? max(1, absint($limit)) : -1,
+            'posts_per_page' => max(1, absint($limit)),
             'no_found_rows' => true,
-        );
+        ));
 
-        $ids = get_posts($args);
         $indexed = 0;
         $skipped = 0;
-
         foreach ($ids as $product_id) {
-            $ok = $this->sync_product_by_id($product_id);
-            $ok ? $indexed++ : $skipped++;
+            $this->sync_product_by_id($product_id) ? $indexed++ : $skipped++;
         }
 
-        $complete = !$limit;
-        if ($complete) {
-            update_option(self::LAST_REBUILD_OPTION, current_time('mysql'), false);
-            if (get_option(self::REBUILD_PENDING_OPTION, '') === $pending_marker) {
-                delete_option(self::REBUILD_PENDING_OPTION);
-            }
-
-            // Relearn the store's own product words from the catalog that was
-            // just indexed. Tying it to a full rebuild keeps the vocabulary in
-            // step with the categories a merchant adds or renames, without
-            // paying for the scan on every partial sync.
-            $this->rebuild_vocabulary();
-        }
-
-        return array('indexed' => $indexed, 'skipped' => $skipped, 'complete' => $complete);
+        // A partial pass is never "the catalog is now indexed", so it does not
+        // clear the pending marker or relearn the vocabulary.
+        return array('indexed' => $indexed, 'skipped' => $skipped, 'complete' => false);
     }
 
     public function search_ids($query, $limit = 8, $analysis = null) {
@@ -341,9 +850,31 @@ class ProductIndexService {
         if (!is_array($analysis) || empty($analysis)) {
             $analysis = $this->analyze_query($query);
         }
+
+        // Ranking is ~200 lines of additive weights run across every candidate,
+        // and the same handful of phrases are typed by hundreds of shoppers.
+        // The cache is keyed on the analysed query, so an identical key really
+        // is an identical ranking problem, and it is namespaced by a version
+        // counter that every catalog write bumps -- so a stale list cannot
+        // outlive the product edit that invalidated it.
+        $cache_key = $this->search_cache_key($query, $limit, $analysis);
+        if ($cache_key !== '') {
+            $cached = get_transient($cache_key);
+            if (is_array($cached)) {
+                return CatalogVisibilityService::filter_ids(
+                    array_values(array_unique(array_map('absint', $cached))),
+                    $limit,
+                    'product_index_search'
+                );
+            }
+        }
+
         $candidate_limit = min(120, max(60, $limit * 12));
         $rows = $this->candidate_rows($analysis, $candidate_limit);
         if (empty($rows)) {
+            if ($cache_key !== '') {
+                set_transient($cache_key, array(), self::SEARCH_CACHE_TTL);
+            }
             return array();
         }
 
@@ -378,11 +909,91 @@ class ProductIndexService {
             }
         }
 
-        return CatalogVisibilityService::filter_ids(
-            array_values(array_unique(array_map('absint', $ids))),
-            $limit,
-            'product_index_search'
+        $ids = array_values(array_unique(array_map('absint', $ids)));
+
+        if ($cache_key !== '') {
+            // Visibility is deliberately applied after the cache, never baked
+            // into it, so a catalog-visibility change is respected immediately.
+            set_transient($cache_key, $ids, self::SEARCH_CACHE_TTL);
+        }
+
+        return CatalogVisibilityService::filter_ids($ids, $limit, 'product_index_search');
+    }
+
+    /**
+     * Cache key for a ranked result list.
+     *
+     * @param string $query Cleaned query.
+     * @param int    $limit Result count.
+     * @param array  $analysis Query analysis.
+     * @return string Empty when this query must not be cached.
+     */
+    private function search_cache_key($query, $limit, $analysis) {
+        if (!is_array($analysis) || empty($analysis)) {
+            return '';
+        }
+
+        // Only the parts of the analysis that can change the ordering.
+        $signature = array(
+            'q' => (string) $query,
+            // The same words rank differently per language now that buyer
+            // intent is loaded from a per-language pack, and the language is
+            // resolved from the WPML/Polylang page rather than from the query
+            // text -- so it is not implied by 'q' and has to be keyed
+            // explicitly. Without this, the same phrase typed on /es/ and /en/
+            // shares one cached ranking.
+            'lang' => $this->search_language()->language_code($query),
+            'limit' => absint($limit),
+            'boolean' => isset($analysis['boolean']) ? (string) $analysis['boolean'] : '',
+            'terms' => isset($analysis['core_terms']) ? (array) $analysis['core_terms'] : array(),
+            'colors' => isset($analysis['color_terms']) ? (array) $analysis['color_terms'] : array(),
+            'sizes' => isset($analysis['size_terms']) ? (array) $analysis['size_terms'] : array(),
+            'price' => isset($analysis['price_range']) ? (array) $analysis['price_range'] : array(),
+            'intent' => isset($analysis['intent']) ? (string) $analysis['intent'] : '',
+            'stock' => !empty($analysis['in_stock_only']) ? 1 : 0,
+            'sale' => $this->analysis_requires_sale($analysis) ? 1 : 0,
+            'gift' => !empty($analysis['is_gift_request']) ? 1 : 0,
+            'budget' => !empty($analysis['budget_sort']) ? 1 : 0,
+            'value' => !empty($analysis['value_sort']) ? 1 : 0,
+            'modes' => isset($analysis['decision_modes']) ? (array) $analysis['decision_modes'] : array(),
+            // Ranking boosts are merchant settings, so they belong in the key.
+            'boosts' => array(
+                Settings::get('search_boost_in_stock', 'yes'),
+                Settings::get('search_boost_sale', 'yes'),
+                Settings::get('search_boost_rating', 'yes'),
+                Settings::get('search_boost_popularity', 'yes'),
+                Settings::get('search_min_score', 1),
+                Settings::get('search_close_match_mode', 'smart'),
+            ),
         );
+
+        $encoded = wp_json_encode($signature);
+        if (!is_string($encoded)) {
+            return '';
+        }
+
+        return self::SEARCH_CACHE_PREFIX . self::search_cache_version() . '_' . md5($encoded);
+    }
+
+    /**
+     * Namespace counter for the ranking cache.
+     *
+     * @return int
+     */
+    public static function search_cache_version() {
+        return absint(get_option(self::SEARCH_CACHE_VERSION_OPTION, 1));
+    }
+
+    /**
+     * Invalidate every cached ranking.
+     *
+     * Bumping a namespace beats deleting keys: it is one write, it cannot miss
+     * a key, and the orphaned transients expire on their own.
+     *
+     * @return void
+     */
+    public static function flush_search_cache() {
+        update_option(self::SEARCH_CACHE_VERSION_OPTION, self::search_cache_version() + 1, false);
     }
 
     public function analyze_query($query) {
@@ -403,13 +1014,25 @@ class ProductIndexService {
         $modifier_terms = $language->buyer_modifier_terms($lower);
         $modifier_labels = $language->buyer_modifier_labels($lower);
 
+        // Detected once, from the shopper's own wording, and then threaded
+        // through every tokenising call below. The stripping that follows
+        // removes filler and modifier phrases, which is where a Latin-script
+        // language is recognisable -- re-detecting on the remains classified a
+        // French question as English and kept `des` as a required product term.
+        $query_language = $language->language_code($lower);
+
         $searchable = $language->strip_commerce_phrases($language->strip_price_filters($lower));
         $searchable = $language->strip_negative_facets($searchable);
-        $searchable = $language->strip_buyer_modifier_phrases($searchable);
-        $base_terms = $this->remove_weak_shopper_terms($language->remove_intent_terms($language->query_terms($searchable), $intent));
+        $searchable = $language->strip_buyer_modifier_phrases($searchable, $buyer_profile);
+        $base_terms = $this->remove_weak_shopper_terms($language->remove_intent_terms($language->query_terms($searchable, $query_language), $intent));
         $base_terms = $language->remove_buyer_intent_tokens($base_terms, $buyer_profile);
-        $expanded = $language->expand_synonyms($searchable);
-        $terms = $this->remove_weak_shopper_terms($language->query_terms($expanded));
+        $expansion = method_exists($language, 'expand_synonyms_map')
+            ? (array) $language->expand_synonyms_map($searchable)
+            : array('text' => $language->expand_synonyms($searchable), 'sources' => array(), 'alternates' => array());
+        $expanded = isset($expansion['text']) ? (string) $expansion['text'] : '';
+        $expansion_sources = isset($expansion['sources']) ? (array) $expansion['sources'] : array();
+        $expansion_alternates = isset($expansion['alternates']) ? (array) $expansion['alternates'] : array();
+        $terms = $this->remove_weak_shopper_terms($language->query_terms($expanded, $query_language));
         $terms = $this->remove_weak_shopper_terms($language->remove_intent_terms($terms, $intent));
         $terms = $language->remove_buyer_intent_tokens($terms, $buyer_profile);
         $negated_price_terms = method_exists($language, 'negated_price_terms_from_query') ? $language->negated_price_terms_from_query($lower) : array();
@@ -437,8 +1060,16 @@ class ProductIndexService {
             $negative_color_terms,
             $negative_size_terms,
             $modifier_terms,
-            $lower
+            $lower,
+            $query_language
         );
+        // A family and its gate are read out of an English vocabulary, so an
+        // Arabic product could satisfy the fulltext pass and still be rejected
+        // by row_matches_product_phrase(): "mug" is not in طقم أكواب سيراميك.
+        // Folding the family's own translations into its alias lists keeps the
+        // gate exactly as strict -- it is an OR over surface forms of one
+        // concept, and a translation is another such surface form.
+        $product_phrase = $this->translate_family_aliases($product_phrase, $expansion_alternates);
         $core_terms = array_values(array_unique(array_filter(array_merge(
             (array) ($product_phrase['search_terms'] ?? array()),
             $this->core_product_terms($terms, $color_terms, $size_terms, $negative_color_terms, $negative_size_terms, $modifier_terms)
@@ -448,7 +1079,7 @@ class ProductIndexService {
             $this->core_product_terms($base_terms, $color_terms, $size_terms, $negative_color_terms, $negative_size_terms, $modifier_terms)
         ))));
         $boolean_terms = array_values(array_unique(array_filter(array_merge($core_terms, $color_terms, $size_terms))));
-        $boolean_groups = $this->boolean_term_groups($product_phrase, $core_terms, $display_core_terms, $color_terms, $size_terms);
+        $boolean_groups = $this->boolean_term_groups($product_phrase, $core_terms, $display_core_terms, $color_terms, $size_terms, $expansion_sources);
         $budget_sort = $language->contains_budget_signal($lower);
         $value_sort = $language->contains_value_signal($lower);
 
@@ -457,6 +1088,12 @@ class ProductIndexService {
             'lower' => $lower,
             'searchable' => $searchable,
             'expanded' => $expanded,
+            // Shopper token => the alternates synonym expansion produced for it.
+            // Read by the phrase gate so a qualifier can be satisfied in the
+            // language the catalog is actually written in. Absent from an
+            // analysis saved by an earlier release, which simply gates on the
+            // typed wording as it did then.
+            'expansion_alternates' => $expansion_alternates,
             'terms' => $terms,
             'core_terms' => $core_terms,
             'display_core_terms' => $display_core_terms,
@@ -497,12 +1134,12 @@ class ProductIndexService {
             'sale_required' => $sale_required,
             'budget_sort' => $budget_sort,
             'value_sort' => $value_sort,
-            'language' => $language->language_code($lower),
+            'language' => $query_language,
             'in_stock_only' => $language->is_in_stock_query($lower),
         );
     }
 
-    private function sync_wc_product($product) {
+    private function sync_wc_product($product, $target_table = '') {
         if (!$product || !CatalogVisibilityService::is_visible($product, 'product_index')) {
             if ($product && $product->get_id()) {
                 $this->delete_product($product->get_id());
@@ -549,6 +1186,30 @@ class ProductIndexService {
             $attributes,
         ))));
 
+        // The identity fields again, normalized this time. `title`, `categories`,
+        // `tags`, `attributes`, `color_terms` and `size_terms` are all stored as
+        // the merchant typed them, but every shopper term reaching the WHERE
+        // clause has been through normalize_text() -- so for any script the
+        // normalizer actually rewrites, the two sides could never meet. Arabic
+        // is where it bites: a query for أسود is folded to اسود and matched
+        // against a raw اسود/أسود column that still holds the hamza form, so
+        // colour and size filters returned nothing at all. Latin scripts hid it
+        // because utf8mb4 collation already folds case and accents.
+        //
+        // Descriptions are deliberately excluded. This column is the haystack
+        // for the core-term gate, whose whole job is to require a hit in the
+        // product's identity rather than somewhere in its prose; search_text
+        // already covers the wider match.
+        $facet_text = $this->normalize_index_text(implode(' ', array(
+            $title,
+            $sku,
+            implode(' ', $categories),
+            implode(' ', $tags),
+            $attributes,
+            $color_terms,
+            $size_terms,
+        )));
+
         $semantic_text = $this->normalize_index_text(implode('. ', array_filter(array(
             'Product: ' . $title,
             $sku ? 'SKU: ' . $sku : '',
@@ -562,7 +1223,7 @@ class ProductIndexService {
         ))));
 
         global $wpdb;
-        $table = self::table_name();
+        $table = $target_table !== '' ? $target_table : self::table_name();
         $data = array(
             'product_id' => $product_id,
             'title' => $title,
@@ -585,18 +1246,59 @@ class ProductIndexService {
             'search_text' => $search_text,
             'semantic_text' => $semantic_text,
             'stem_text' => $stem_text,
+            'facet_text' => $facet_text,
             'product_url' => get_permalink($product_id),
             'image_url' => $image ? esc_url_raw($image) : '',
             'created_at' => get_post_time('Y-m-d H:i:s', false, $product_id) ?: $now,
             'updated_at' => $now,
         );
 
-        $formats = array('%d', '%s', '%s', '%s', '%f', '%f', '%f', '%d', '%s', '%f', '%d', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s');
+        // One format per column, in $data order. wpdb does not pad a short
+        // list -- it silently reuses the first format for every column past
+        // the end, so a missing entry here writes the wrong type rather than
+        // failing. Keep this in step with $data above when adding a column.
+        $formats = array(
+            '%d', // product_id
+            '%s', // title
+            '%s', // sku
+            '%s', // product_type
+            '%f', // price
+            '%f', // regular_price
+            '%f', // sale_price
+            '%d', // is_on_sale
+            '%s', // stock_status
+            '%f', // rating
+            '%d', // total_sales
+            '%s', // categories
+            '%s', // tags
+            '%s', // attributes
+            '%s', // color_terms
+            '%s', // size_terms
+            '%s', // short_description
+            '%s', // full_description
+            '%s', // search_text
+            '%s', // semantic_text
+            '%s', // stem_text
+            '%s', // facet_text
+            '%s', // product_url
+            '%s', // image_url
+            '%s', // created_at
+            '%s', // updated_at
+        );
         $exists = $wpdb->get_var($wpdb->prepare("SELECT id FROM {$table} WHERE product_id = %d", $product_id));
         if ($exists) {
-            return false !== $wpdb->update($table, $data, array('product_id' => $product_id), $formats, array('%d'));
+            $written = false !== $wpdb->update($table, $data, array('product_id' => $product_id), $formats, array('%d'));
+        } else {
+            $written = false !== $wpdb->insert($table, $data, $formats);
         }
-        return false !== $wpdb->insert($table, $data, $formats);
+
+        // A write to the shadow table changes nothing a shopper can see yet,
+        // so only live writes invalidate rankings. The swap flushes once.
+        if ($written && $target_table === '') {
+            self::flush_search_cache();
+        }
+
+        return $written;
     }
 
     private function candidate_rows($analysis, $limit) {
@@ -1322,8 +2024,14 @@ class ProductIndexService {
             $stem = $this->stemmer()->stem($term);
             $stem_like = '%' . $wpdb->esc_like($stem) . '%';
 
-            $core_clauses[] = '(title LIKE %s OR sku LIKE %s OR categories LIKE %s OR tags LIKE %s OR attributes LIKE %s OR stem_text LIKE %s)';
-            array_push($core_params, $like, $like, $like, $like, $like, $stem_like);
+            // facet_text is the normalized copy of title, sku, categories,
+            // tags and the attribute/colour/size terms, so one clause now
+            // covers what five raw-column comparisons used to -- and, unlike
+            // them, it is in the same normalized form as $term. sku stays as a
+            // separate raw comparison because normalization splits a SKU on its
+            // punctuation, and a shopper pasting a SKU types it verbatim.
+            $core_clauses[] = '(facet_text LIKE %s OR sku LIKE %s OR stem_text LIKE %s)';
+            array_push($core_params, $like, $like, $stem_like);
         }
         if (!empty($core_clauses)) {
             $where[] = '(' . implode(' OR ', $core_clauses) . ')';
@@ -1340,8 +2048,8 @@ class ProductIndexService {
                 continue;
             }
             $like = '%' . $wpdb->esc_like($term) . '%';
-            $color_clauses[] = '(color_terms LIKE %s OR attributes LIKE %s OR title LIKE %s OR tags LIKE %s)';
-            array_push($color_params, $like, $like, $like, $like);
+            $color_clauses[] = '(facet_text LIKE %s)';
+            $color_params[] = $like;
         }
         if (!empty($color_clauses)) {
             $where[] = '(' . implode(' OR ', $color_clauses) . ')';
@@ -1358,8 +2066,8 @@ class ProductIndexService {
                 continue;
             }
             $like = '%' . $wpdb->esc_like($term) . '%';
-            $size_clauses[] = '(size_terms LIKE %s OR attributes LIKE %s OR title LIKE %s OR tags LIKE %s)';
-            array_push($size_params, $like, $like, $like, $like);
+            $size_clauses[] = '(facet_text LIKE %s)';
+            $size_params[] = $like;
         }
         if (!empty($size_clauses)) {
             $where[] = '(' . implode(' OR ', $size_clauses) . ')';
@@ -1374,8 +2082,8 @@ class ProductIndexService {
                 continue;
             }
             $like = '%' . $wpdb->esc_like($term) . '%';
-            $where[] = '(color_terms NOT LIKE %s AND attributes NOT LIKE %s AND title NOT LIKE %s AND tags NOT LIKE %s)';
-            array_push($params, $like, $like, $like, $like);
+            $where[] = '(facet_text NOT LIKE %s)';
+            $params[] = $like;
         }
 
         foreach (array_slice((array) ($analysis['negative_size_terms'] ?? array()), 0, 6) as $term) {
@@ -1384,8 +2092,8 @@ class ProductIndexService {
                 continue;
             }
             $like = '%' . $wpdb->esc_like($term) . '%';
-            $where[] = '(size_terms NOT LIKE %s AND attributes NOT LIKE %s AND title NOT LIKE %s AND tags NOT LIKE %s)';
-            array_push($params, $like, $like, $like, $like);
+            $where[] = '(facet_text NOT LIKE %s)';
+            $params[] = $like;
         }
 
         return array('where' => $where, 'params' => $params);
@@ -1489,11 +2197,16 @@ class ProductIndexService {
             : (!empty($analysis['required_family_aliases'])
                 ? (array) $analysis['required_family_aliases']
                 : $family_aliases);
-        // Family identity must come from the product's identifying catalog
-        // fields. Descriptive copy such as "bottle pocket" on a backpack must
-        // never make that backpack eligible for a water-bottle search.
-        $family_identity_text = (string) $row->title . ' ' . (string) $row->sku . ' ' . (string) $row->categories;
-        $product_text = $family_identity_text . ' ' . (string) $row->tags . ' ' . (string) $row->attributes . ' ' . (string) $row->search_text;
+        // Family identity must come from the fields that say what a product
+        // *is*: its name, SKU, categories and tags. Tags belong here because a
+        // tag is a label the merchant chose for that product, which is how the
+        // gate reads the store's own vocabulary -- a black heel filed under
+        // "Footwear" but tagged "Party Shoes" is still a shoe. Descriptive copy
+        // does not: "bottle pocket" on a backpack must never make that backpack
+        // eligible for a water-bottle search, which is why attributes and
+        // search_text widen $product_text below but never the gate.
+        $family_identity_text = (string) $row->title . ' ' . (string) $row->sku . ' ' . (string) $row->categories . ' ' . (string) $row->tags;
+        $product_text = $family_identity_text . ' ' . (string) $row->attributes . ' ' . (string) $row->search_text;
         if (!$this->row_matches_any_term($family_identity_text, $required_aliases)) {
             return false;
         }
@@ -1507,7 +2220,7 @@ class ProductIndexService {
             if ($declared === '' || $declared === $family) {
                 continue;
             }
-            if (!$this->row_text_has_term($product_text, $declared)) {
+            if (!$this->row_text_has_qualifier($product_text, $declared, $analysis)) {
                 return false;
             }
         }
@@ -1520,12 +2233,109 @@ class ProductIndexService {
             if ($term === '' || in_array($term, $family_aliases, true) || in_array($term, $required_aliases, true) || $term === $family) {
                 continue;
             }
-            if (!$this->row_text_has_term($product_text, $term)) {
+            if (!$this->row_text_has_qualifier($product_text, $term, $analysis)) {
                 return false;
             }
         }
 
         return true;
+    }
+
+    /**
+     * Whether a row satisfies a required qualifier, in the shopper's wording or
+     * in any wording synonym expansion offered for that same word.
+     *
+     * A qualifier is a hard requirement, and it has to stay one -- "tote bag"
+     * must not return a pouch. But requiring the shopper's literal token also
+     * requires their language: "ceramic mug" demanded the English `ceramic` of a
+     * catalog whose cups say سيراميك, so the phrase gate threw the row away
+     * after the fulltext pass had correctly found it. Accepting the alternates
+     * of THIS word only -- never of some other word in the query -- keeps the
+     * requirement exactly as narrow while letting it be met in the language the
+     * products are written in.
+     *
+     * @param string $product_text Row text the qualifier may appear in.
+     * @param string $term         Normalised qualifier.
+     * @param array  $analysis     Query analysis, for expansion_alternates.
+     * @return bool
+     */
+    private function row_text_has_qualifier($product_text, $term, $analysis) {
+        if ($this->row_text_has_term($product_text, $term)) {
+            return true;
+        }
+
+        $alternates = isset($analysis['expansion_alternates']) ? (array) $analysis['expansion_alternates'] : array();
+        if (empty($alternates[$term])) {
+            return false;
+        }
+
+        foreach ((array) $alternates[$term] as $alternate) {
+            $alternate = $this->normalize_index_text($alternate);
+            if ($alternate !== '' && $this->row_text_has_term($product_text, $alternate)) {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    /**
+     * Adds the family's own translations to its alias lists.
+     *
+     * `canonical_product_family()` and the learned vocabulary are both written
+     * in the merchant's language, so `family_gate_aliases` for a query about a
+     * mug is `mug | cup` and nothing else. row_matches_product_phrase() then
+     * gates on title/sku/categories/tags, which for طقم أكواب سيراميك contains
+     * neither -- the row passed the fulltext pass and was dropped here. The
+     * alias lists are already OR sets of surface forms for one concept, so a
+     * translation is exactly what they are for; widening them changes no
+     * same-language behaviour because a translation of an English noun is not a
+     * word an English catalog carries.
+     *
+     * @param array $product_phrase Result of product_phrase_profile().
+     * @param array $alternates     Shopper token => alternates, from expansion.
+     * @return array Product phrase with translated aliases folded in.
+     */
+    private function translate_family_aliases($product_phrase, $alternates) {
+        $product_phrase = is_array($product_phrase) ? $product_phrase : array();
+        $alternates = is_array($alternates) ? $alternates : array();
+        if (empty($product_phrase['family']) || empty($alternates)) {
+            return $product_phrase;
+        }
+
+        $seeds = array_values(array_unique(array_filter(array_map(
+            array($this, 'normalize_index_text'),
+            array_merge(
+                array((string) $product_phrase['family']),
+                array((string) ($product_phrase['family_source'] ?? '')),
+                (array) ($product_phrase['required_family_aliases'] ?? array()),
+                (array) ($product_phrase['family_aliases'] ?? array()),
+                (array) ($product_phrase['family_gate_aliases'] ?? array())
+            )
+        ))));
+
+        $translations = array();
+        foreach ($seeds as $seed) {
+            foreach ((array) ($alternates[$seed] ?? array()) as $alternate) {
+                $alternate = $this->normalize_index_text($alternate);
+                if ($alternate !== '' && !in_array($alternate, $seeds, true) && !in_array($alternate, $translations, true)) {
+                    $translations[] = $alternate;
+                }
+            }
+        }
+
+        if (empty($translations)) {
+            return $product_phrase;
+        }
+
+        foreach (array('family_aliases', 'required_family_aliases', 'family_gate_aliases') as $key) {
+            $product_phrase[$key] = array_values(array_unique(array_filter(array_merge(
+                (array) ($product_phrase[$key] ?? array()),
+                $translations
+            ))));
+        }
+
+        return $product_phrase;
     }
 
     private function count_matching_terms($text, $terms) {
@@ -1559,10 +2369,12 @@ class ProductIndexService {
         return array_values(array_unique($core));
     }
 
-    private function product_phrase_profile($query, $color_terms, $size_terms, $negative_color_terms, $negative_size_terms, $modifier_terms, $raw_query = '') {
+    private function product_phrase_profile($query, $color_terms, $size_terms, $negative_color_terms, $negative_size_terms, $modifier_terms, $raw_query = '', $query_language = '') {
         $language = $this->search_language();
         $normalized = $language->normalize_text($query);
-        $terms = $language->query_terms($normalized);
+        // $query is the stripped text; $query_language was detected from the
+        // shopper's original wording. See analyze_query().
+        $terms = $language->query_terms($normalized, $query_language);
 
         // Sale words describe a commerce constraint, not product identity.
         // Without removing them here, `sale keyboards` becomes a hard phrase
@@ -2323,10 +3135,14 @@ class ProductIndexService {
      * @param array $display_core_terms  The same list before expansion.
      * @param array $color_terms         Normalised colour facets.
      * @param array $size_terms          Normalised size facets.
+     * @param array $expansion_sources   Alternate token => shopper tokens that
+     *                                   produced it, from expand_synonyms_map().
      * @return array<int, array<int, string>>
      */
-    private function boolean_term_groups($product_phrase, $core_terms, $display_core_terms, $color_terms, $size_terms) {
+    private function boolean_term_groups($product_phrase, $core_terms, $display_core_terms, $color_terms, $size_terms, $expansion_sources = array()) {
         $product_phrase = is_array($product_phrase) ? $product_phrase : array();
+
+        $expansion_sources = is_array($expansion_sources) ? $expansion_sources : array();
 
         $typed = array_fill_keys(array_filter(array_map(
             array($this, 'normalize_index_text'),
@@ -2351,13 +3167,37 @@ class ProductIndexService {
         $claimed = array_fill_keys(array_merge($family_group, array_filter($facets)), true);
 
         $groups = array();
+        // Which group each typed word owns, so an alternate can be filed against
+        // the word it is an alternate OF. Every family surface form points at
+        // the family group: a translation of `mug` belongs there whether the
+        // shopper typed `mug` or `cup`.
+        $group_of_term = array();
         if (!empty($family_group)) {
             $groups[] = $family_group;
+            foreach ($family_group as $family_term) {
+                $group_of_term[$family_term] = 0;
+            }
         }
 
         // Qualifiers the shopper typed stay individually required. Anything only
-        // a synonym expansion contributed joins the family alternates instead,
-        // or forms one shared alternates group when no family was detected.
+        // a synonym expansion contributed joins the alternates of the group for
+        // the word it came from -- an expansion is another way of saying a word
+        // the shopper already typed, so it must widen that requirement, never
+        // add one, and never widen a different one.
+        //
+        // That distinction is invisible in English, where a family is almost
+        // always detected and the expansions landed in the family group anyway.
+        // It is the whole story across languages. A query for حذاء finds no
+        // family, and the English translation `shoe` that expand_synonyms()
+        // contributes used to become a second required group: `+حذاء* +shoe*`
+        // asks for a product containing both an Arabic and an English word for
+        // shoe, which nothing does. Filing every expansion in the FIRST group
+        // instead then broke the mirror image, an English query against an
+        // Arabic catalog: "ceramic mug" compiled to
+        // `+(mug* کوب* اکواب* سیرامیک*) +ceramic*`, where the translation of the
+        // qualifier widened the noun -- which needed no widening -- and left
+        // `+ceramic*` demanding an English word the catalog does not contain.
+        // Provenance is what tells the two cases apart.
         $expanded_only = array();
         foreach ((array) $core_terms as $term) {
             $term = $this->normalize_index_text($term);
@@ -2368,19 +3208,40 @@ class ProductIndexService {
 
             if (isset($typed[$term])) {
                 $groups[] = array($term);
+                $group_of_term[$term] = count($groups) - 1;
                 continue;
             }
 
             $expanded_only[] = $term;
         }
 
-        if (!empty($expanded_only)) {
-            if (!empty($groups) && !empty($family_group)) {
-                $groups[0] = array_values(array_unique(array_merge($groups[0], $expanded_only)));
-            } else {
-                $groups[] = $expanded_only;
+        foreach ($expanded_only as $term) {
+            $target = null;
+            foreach ((array) ($expansion_sources[$term] ?? array()) as $source) {
+                $source = $this->normalize_index_text($source);
+                if ($source !== '' && isset($group_of_term[$source])) {
+                    $target = $group_of_term[$source];
+                    break;
+                }
             }
+
+            if ($target === null) {
+                // No provenance -- an alternate from a saved analysis, or a
+                // token the per-language rules spelled differently on the two
+                // sides. The first group is where these have always gone.
+                if (empty($groups)) {
+                    $groups[] = array();
+                }
+                $target = 0;
+            }
+
+            $groups[$target][] = $term;
         }
+
+        foreach ($groups as $index => $group) {
+            $groups[$index] = array_values(array_unique(array_filter((array) $group)));
+        }
+        $groups = array_values(array_filter($groups));
 
         foreach (array((array) $color_terms, (array) $size_terms) as $facet_group) {
             $facet_group = array_values(array_unique(array_filter(array_map(

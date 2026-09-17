@@ -861,8 +861,8 @@ class ChatService {
         }
 
         return sprintf(
-            /* translators: 1: number of visible products, 2: missing ordinal position such as third. */
             _n(
+                /* translators: 1: number of visible products, 2: missing ordinal position such as third. */
                 'The current results contain only %1$d product, so there is no %2$s product to compare. Show more products or name the two products you would like to compare.',
                 'The current results contain only %1$d products, so there is no %2$s product to compare. Show more products or name the two products you would like to compare.',
                 $available_count,
@@ -1120,6 +1120,30 @@ class ChatService {
                         __("I couldn't find %s at that price. Here are other products that may fit your budget.", 'geeky-bot'),
                         $requested_label
                     );
+            } elseif ($note === 'spelling_recovery') {
+                // Say what was searched instead. A shopper who mistyped needs to
+                // see the correction to trust the results -- and to notice when
+                // the correction was not what they meant.
+                $typed = !empty($product_search_context['originalQuery']) ? (string) $product_search_context['originalQuery'] : '';
+                $searched = !empty($product_search_context['correctedQuery']) ? (string) $product_search_context['correctedQuery'] : '';
+
+                // The corrected term comes from the normalised vocabulary, and
+                // quoting it back verbatim shows an Arabic shopper a word spelled
+                // with letters their language does not use. What they typed is
+                // left exactly as they typed it.
+                $search_language = new SearchLanguageService();
+                $searched = $search_language->restore_arabic_letterforms(
+                    $searched,
+                    $search_language->language_code($typed !== '' ? $typed : $searched)
+                );
+                $reply = ($typed !== '' && $searched !== '')
+                    ? sprintf(
+                        /* translators: 1: what the shopper typed, 2: the corrected spelling actually searched. */
+                        __('I couldn\'t find anything for "%1$s", so I searched for "%2$s" instead. Here is what I found.', 'geeky-bot'),
+                        $typed,
+                        $searched
+                    )
+                    : __('Here are the closest matches I could find.', 'geeky-bot');
             } elseif ($note === 'facet_alternatives') {
                 $constraint_text = !empty($product_search_context['constraintText']) ? $product_search_context['constraintText'] : '';
                 $search_label = trim($requested_label . ($constraint_text ? ' ' . $constraint_text : '') . ($price_text ? ' ' . $price_text : ''));

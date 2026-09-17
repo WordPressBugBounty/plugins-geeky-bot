@@ -30,6 +30,16 @@ final class Plugin {
     private function __construct() {}
 
     public function boot() {
+        // The plugin header declares `Domain Path: /languages` and now ships a
+        // translation there. Modern WordPress finds it on its own -- verified on
+        // 7.1 -- but the header also declares `Requires at least: 6.0`, and the
+        // just-in-time loader did not always scan a plugin's own directory on
+        // those releases. Registering the path keeps the bundled translation
+        // working across every version the plugin claims to support, and is a
+        // no-op where WordPress already loaded it.
+        // phpcs:ignore PluginCheck.CodeAnalysis.DiscouragedFunctions.load_plugin_textdomainFound -- Bundled translations must load on the oldest supported release, not only where just-in-time loading covers them.
+        load_plugin_textdomain('geeky-bot', false, dirname(GEEKYBOT_BASENAME) . '/languages');
+
         if (!Installer::maybe_upgrade()) {
             if (is_admin()) {
                 add_action('admin_notices', array($this, 'database_upgrade_notice'));
