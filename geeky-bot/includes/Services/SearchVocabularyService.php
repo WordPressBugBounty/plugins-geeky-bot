@@ -201,6 +201,9 @@ class SearchVocabularyService {
     public function correct_query($query) {
         $result = array('query' => (string) $query, 'corrections' => array());
         if ($this->count_terms() < 1) {
+            $this->heal();
+        }
+        if ($this->count_terms() < 1) {
             return $result;
         }
 
@@ -333,7 +336,10 @@ class SearchVocabularyService {
 
         $table = ProductIndexService::table_name();
         // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery,WordPress.DB.DirectDatabaseQuery.NoCaching,WordPress.DB.PreparedSQL.InterpolatedNotPrepared -- Own plugin table, read in full to derive the word list.
-        $rows = $wpdb->get_results("SELECT title, categories, tags, attributes, color_terms, size_terms FROM {$table}");
+        // ai_terms joins the list so a real shopper word the store now knows
+        // through Smart Catalog -- "shades" -- is never "corrected" into the
+        // nearest catalog word -- "shoes".
+        $rows = $wpdb->get_results("SELECT title, categories, tags, attributes, color_terms, size_terms, ai_terms FROM {$table}");
         if (!is_array($rows) || empty($rows)) {
             return $this->store(array());
         }
@@ -350,6 +356,7 @@ class SearchVocabularyService {
                 (string) $row->attributes,
                 (string) $row->color_terms,
                 (string) $row->size_terms,
+                str_replace(',', ' ', (string) ($row->ai_terms ?? '')),
             )));
 
             $tokens = preg_split('/\s+/u', $language->normalize_text($text), -1, PREG_SPLIT_NO_EMPTY);
@@ -377,6 +384,25 @@ class SearchVocabularyService {
         arsort($frequency);
 
         return $this->store(array_slice($frequency, 0, self::MAX_TERMS, true));
+    }
+
+    /**
+     * Build an empty word list on the spot, at most once an hour.
+     *
+     * Runs only on the zero-result path, so it is the shopper who just typed a
+     * typo who pays the single rebuild, and gets a corrected answer for it,
+     * instead of waiting for a scheduled relearn.
+     *
+     * @return void
+     */
+    private function heal() {
+        $guard = self::OPTION . '_heal';
+        if (get_transient($guard)) {
+            return;
+        }
+        set_transient($guard, 1, HOUR_IN_SECONDS);
+
+        $this->rebuild();
     }
 
     /**

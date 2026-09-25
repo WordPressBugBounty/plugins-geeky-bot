@@ -16,12 +16,19 @@ use GeekyBot\Services\AnalyticsEventService;
 use GeekyBot\Services\GuidedDemoService;
 use GeekyBot\Services\OnboardingService;
 use GeekyBot\Services\AiBudgetService;
+use GeekyBot\Services\SmartCatalogService;
+use GeekyBot\Services\SearchRescueService;
+use GeekyBot\Services\SearchLearningService;
 
 class Menu {
     public function hooks() {
         add_action('admin_menu', array($this, 'menu'));
+        // After Commerce Pro, which the add-on registers at priority 99.
+        add_action('admin_menu', array($this, 'menu_license'), 100);
         add_action('admin_init', array($this, 'handle_save'));
         add_action('admin_post_geekybot_rebuild_product_index', array($this, 'handle_rebuild_product_index'));
+        add_action('admin_post_geekybot_smart_catalog_action', array($this, 'handle_smart_catalog_action'));
+        add_action('admin_post_geekybot_search_learning_action', array($this, 'handle_search_learning_action'));
         add_action('admin_post_geekybot_refresh_knowledge_index', array($this, 'handle_refresh_knowledge_index'));
         add_action('admin_post_geekybot_refresh_guided_demo', array($this, 'handle_refresh_guided_demo'));
         add_action('admin_post_geekybot_onboarding_action', array($this, 'handle_onboarding_action'));
@@ -65,20 +72,51 @@ class Menu {
          * "Catalog intelligence". Clicking one name and landing on another
          * makes one product read as several.
          */
+        /*
+         * 2.1.1 admin structure: every setting lives on exactly one page.
+         * Settings used to repeat eight widget fields, eight search fields and
+         * the policy-page picker, and "Answer Mode" explained a switch that sat
+         * on Settings. Settings is now "AI & Privacy" (answer mode, provider
+         * keys, AI limits, data), and the Answer Mode URL redirects there.
+         */
         add_submenu_page('geekybot', __('Dashboard', 'geeky-bot'), __('Dashboard', 'geeky-bot'), 'manage_options', 'geekybot', array($this, 'dashboard'));
-        add_submenu_page('geekybot', __('Setup Wizard', 'geeky-bot'), __('Setup Wizard', 'geeky-bot'), 'manage_options', 'geekybot-setup', array($this, 'setup_wizard'));
-        add_submenu_page('geekybot', __('Storefront Widget', 'geeky-bot'), __('Storefront Widget', 'geeky-bot'), 'manage_options', 'geekybot-widget', array($this, 'chat_widget'));
-        add_submenu_page('geekybot', __('Product Search', 'geeky-bot'), __('Product Search', 'geeky-bot'), 'manage_options', 'geekybot-product-assistant', array($this, 'product_assistant'));
-        add_submenu_page('geekybot', __('Store Knowledge', 'geeky-bot'), __('Store Knowledge', 'geeky-bot'), 'manage_options', 'geekybot-store-knowledge', array($this, 'store_knowledge'));
+        add_submenu_page('geekybot', __('Setup', 'geeky-bot'), __('Setup', 'geeky-bot'), 'manage_options', 'geekybot-setup', array($this, 'setup_wizard'));
         add_submenu_page('geekybot', __('Conversations', 'geeky-bot'), __('Conversations', 'geeky-bot'), 'manage_options', 'geekybot-conversations', array($this, 'conversations'));
         add_submenu_page('geekybot', __('Analytics', 'geeky-bot'), __('Analytics', 'geeky-bot'), 'manage_options', 'geekybot-analytics', array($this, 'analytics'));
+        add_submenu_page('geekybot', __('Product Search', 'geeky-bot'), __('Product Search', 'geeky-bot'), 'manage_options', 'geekybot-product-assistant', array($this, 'product_assistant'));
+        add_submenu_page('geekybot', __('Store Knowledge', 'geeky-bot'), __('Store Knowledge', 'geeky-bot'), 'manage_options', 'geekybot-store-knowledge', array($this, 'store_knowledge'));
+        add_submenu_page('geekybot', __('Storefront Widget', 'geeky-bot'), __('Storefront Widget', 'geeky-bot'), 'manage_options', 'geekybot-widget', array($this, 'chat_widget'));
+        add_submenu_page('geekybot', __('AI & Privacy', 'geeky-bot'), __('AI & Privacy', 'geeky-bot'), 'manage_options', 'geekybot-settings', array($this, 'settings'));
         add_submenu_page('geekybot', __('Guided Demo', 'geeky-bot'), __('Guided Demo', 'geeky-bot'), 'manage_options', 'geekybot-guided-demo', array($this, 'guided_demo'));
-        add_submenu_page('geekybot', __('Answer Mode', 'geeky-bot'), __('Answer Mode', 'geeky-bot'), 'manage_options', 'geekybot-integrations', array($this, 'integrations'));
-        add_submenu_page('geekybot', __('Settings', 'geeky-bot'), __('Settings', 'geeky-bot'), 'manage_options', 'geekybot-settings', array($this, 'settings'));
-        add_submenu_page('geekybot', __('Add-ons', 'geeky-bot'), __('Add-ons', 'geeky-bot'), 'manage_options', 'geekybot-addons', array($this, 'pro'));
         if (!defined('GBCP_VERSION')) {
             add_submenu_page('geekybot', __('Commerce Pro', 'geeky-bot'), __('Commerce Pro', 'geeky-bot'), 'manage_options', 'geekybot-commerce-pro', array($this, 'commerce_pro_promo'));
         }
+    }
+
+    /**
+     * License sits last, after Commerce Pro, which the add-on re-registers on
+     * the default priority. It is plumbing, not a daily page.
+     *
+     * @return void
+     */
+    public function menu_license() {
+        add_submenu_page('geekybot', __('License', 'geeky-bot'), __('License', 'geeky-bot'), 'manage_options', 'geekybot-addons', array($this, 'pro'));
+
+        // Answer Mode merged into AI & Privacy. The slug stays registered but
+        // hidden (WordPress refuses unregistered pages before any hook could
+        // redirect), and its load hook sends old links and bookmarks on.
+        $hook = add_submenu_page('', __('Answer Mode', 'geeky-bot'), '', 'manage_options', 'geekybot-integrations', '__return_null');
+        if ($hook) {
+            add_action('load-' . $hook, array($this, 'redirect_retired_pages'));
+        }
+    }
+
+    /**
+     * @return void
+     */
+    public function redirect_retired_pages() {
+        wp_safe_redirect(admin_url('admin.php?page=geekybot-settings#gb-settings-ai'));
+        exit;
     }
 
     /**
@@ -338,7 +376,39 @@ class Menu {
         check_admin_referer('geekybot_license_action');
         $key = isset($_POST['license_key']) ? sanitize_text_field(wp_unslash($_POST['license_key'])) : '';
         $result = LicenseService::activate($key);
-        $this->redirect_license_result($result, 'activated');
+        if (is_wp_error($result)) {
+            $this->redirect_license_result($result, 'activated');
+        }
+
+        // "I entered the key -- what now?" The next steps are always the same,
+        // so carry on with them instead of leaving the merchant to find two
+        // more buttons: install the add-on if it is missing, then switch it on.
+        // Each step needs its own WordPress capability; without one, the page
+        // shows that step as the next thing to do.
+        $plugin = LicenseService::commerce_pro_plugin_status();
+        $license = LicenseService::status_summary();
+        $notice = 'activated';
+        if (!$plugin['installed'] && current_user_can('install_plugins') && !empty($license['downloadsAllowed'])) {
+            $installed = LicenseService::install_commerce_pro();
+            if (is_wp_error($installed)) {
+                $this->redirect_license_result(new \WP_Error(
+                    'geekybot_install_after_activation',
+                    sprintf(
+                        /* translators: %s: installer error message. */
+                        __('Your license is active, but Commerce Pro could not be installed: %s', 'geeky-bot'),
+                        $installed->get_error_message()
+                    )
+                ), 'activated');
+            }
+            $notice = LicenseService::commerce_pro_plugin_status()['active'] ? 'ready' : 'installed';
+        } elseif ($plugin['installed'] && !$plugin['active'] && current_user_can('activate_plugins')) {
+            $switched_on = LicenseService::activate_commerce_pro_plugin();
+            $notice = is_wp_error($switched_on) ? 'activated' : 'ready';
+        } elseif ($plugin['active']) {
+            $notice = 'ready';
+        }
+
+        $this->redirect_license_result(true, $notice);
     }
 
     public function handle_license_deactivate() {
@@ -365,7 +435,8 @@ class Menu {
         }
         check_admin_referer('geekybot_license_action');
         $result = LicenseService::install_commerce_pro();
-        $this->redirect_license_result($result, 'installed');
+        // Installing also switches the add-on on when the user may activate plugins.
+        $this->redirect_license_result($result, !is_wp_error($result) && LicenseService::commerce_pro_plugin_status()['active'] ? 'ready' : 'installed');
     }
 
     public function handle_activate_commerce_pro() {
@@ -374,7 +445,7 @@ class Menu {
         }
         check_admin_referer('geekybot_license_action');
         $result = LicenseService::activate_commerce_pro_plugin();
-        $this->redirect_license_result($result, 'plugin_activated');
+        $this->redirect_license_result($result, 'ready');
     }
 
     public function handle_save_commerce_pro_updates() {
@@ -578,10 +649,20 @@ class Menu {
             <?php $this->admin_notice_indexed(); ?>
 
             <?php
+            $level_names = array(
+                'standard' => __('Standard search', 'geeky-bot'),
+                'catalog' => __('Smart Catalog', 'geeky-bot'),
+                'rescue' => __('Smart Catalog + Rescue', 'geeky-bot'),
+            );
+            $search_level = isset($settings['search_ai_level'], $level_names[$settings['search_ai_level']]) ? $settings['search_ai_level'] : 'standard';
             Components::page_header(array(
-                'title' => __('Geeky Bot', 'geeky-bot'),
-                /* translators: %s: number of indexed products. */
-                'description' => sprintf(__('AI sales assistant · connected to %s products', 'geeky-bot'), number_format_i18n($ctx['indexed_count'])),
+                'title' => __('Dashboard', 'geeky-bot'),
+                'description' => sprintf(
+                    /* translators: 1: number of searchable products, 2: search level name. */
+                    __('%1$s products searchable · %2$s', 'geeky-bot'),
+                    number_format_i18n($ctx['indexed_count']),
+                    $level_names[$search_level]
+                ),
                 'brand' => array($this, 'brand_mark_svg'),
                 'status' => array(
                     'label' => $widget_ready ? __('Live on storefront', 'geeky-bot') : __('Widget is off', 'geeky-bot'),
@@ -593,13 +674,9 @@ class Menu {
                 'signals' => array(),
                 'actions' => array(
                     array(
-                        'label' => __('Tune product intelligence', 'geeky-bot'),
-                        'url' => admin_url('admin.php?page=geekybot-product-assistant'),
+                        'label' => __('Test a shopper phrase', 'geeky-bot'),
+                        'url' => admin_url('admin.php?page=geekybot-product-assistant#gb-test-lab'),
                         'variant' => 'primary',
-                    ),
-                    array(
-                        'label' => __('Review questions', 'geeky-bot'),
-                        'url' => admin_url('admin.php?page=geekybot-conversations'),
                     ),
                     array(
                         'label' => __('Open store', 'geeky-bot'),
@@ -611,56 +688,6 @@ class Menu {
             ?>
 
             <div class="gb2-main">
-
-                <?php
-                // Renders only while a step is outstanding; once every step is
-                // done the panel disappears and the dashboard becomes purely
-                // reporting. Ordered by dependency: nothing works without
-                // WooCommerce, and the widget goes last so shoppers never meet
-                // an assistant that cannot answer them yet.
-                Components::setup_guide(array(
-                    array(
-                        'title' => __('Connect WooCommerce', 'geeky-bot'),
-                        'description' => __('Geeky Bot reads your live products, prices, stock and variations directly from WooCommerce.', 'geeky-bot'),
-                        'consequence' => __('Without it the assistant has no catalog to answer from.', 'geeky-bot'),
-                        'done' => (bool) $ctx['wc_ready'],
-                        'action' => array(
-                            'label' => __('Check WooCommerce', 'geeky-bot'),
-                            'url' => admin_url('admin.php?page=geekybot-setup'),
-                        ),
-                    ),
-                    array(
-                        'title' => __('Build the product search index', 'geeky-bot'),
-                        'description' => __('Indexing lets shoppers search in their own words, like "warm jacket under 60", instead of exact product names.', 'geeky-bot'),
-                        'consequence' => __('Until this runs, product questions return nothing.', 'geeky-bot'),
-                        'done' => $ctx['indexed_count'] > 0,
-                        'action' => array(
-                            'label' => __('Index products', 'geeky-bot'),
-                            'url' => admin_url('admin.php?page=geekybot-product-assistant'),
-                        ),
-                    ),
-                    array(
-                        'title' => __('Choose your policy pages', 'geeky-bot'),
-                        'description' => __('Pick the published pages covering shipping, refunds and returns. The assistant quotes only these and never invents a policy.', 'geeky-bot'),
-                        'consequence' => __('Shoppers asking about returns or delivery get the fallback answer instead.', 'geeky-bot'),
-                        'done' => $ctx['policy_count'] > 0,
-                        'action' => array(
-                            'label' => __('Select pages', 'geeky-bot'),
-                            'url' => admin_url('admin.php?page=geekybot-store-knowledge'),
-                        ),
-                    ),
-                    array(
-                        'title' => __('Turn on the storefront widget', 'geeky-bot'),
-                        'description' => __('This puts the assistant on your public store pages. Do it last, once the steps above are done.', 'geeky-bot'),
-                        'consequence' => __('Nobody can use the assistant until the widget is live.', 'geeky-bot'),
-                        'done' => (bool) $widget_ready,
-                        'action' => array(
-                            'label' => __('Enable widget', 'geeky-bot'),
-                            'url' => admin_url('admin.php?page=geekybot-widget'),
-                        ),
-                    ),
-                ));
-                ?>
 
                 <?php
                 $dashboard_metrics = array(
@@ -729,7 +756,123 @@ class Menu {
                 }
 
                 Components::metrics($dashboard_metrics);
+
+                // One list of everything that needs the merchant, most urgent
+                // first. It replaces the setup guide and the "Needs action"
+                // readiness list, which reported the same unfinished steps in
+                // two places; finished steps no longer take a row.
+                $waiting = array();
+                $setup_steps = array(
+                    array((bool) $ctx['wc_ready'], __('Connect WooCommerce', 'geeky-bot'), __('Without it the assistant has no catalog to answer from.', 'geeky-bot'), __('Check WooCommerce', 'geeky-bot'), 'geekybot-setup'),
+                    array($ctx['indexed_count'] > 0 && $natural_search_ready, __('Build the product search index', 'geeky-bot'), __('Until this runs, product questions return nothing.', 'geeky-bot'), __('Index products', 'geeky-bot'), 'geekybot-product-assistant'),
+                    array($ctx['policy_count'] > 0, __('Choose your policy pages', 'geeky-bot'), __('Shoppers asking about returns or delivery get the fallback answer until you do.', 'geeky-bot'), __('Choose pages', 'geeky-bot'), 'geekybot-store-knowledge'),
+                    array((bool) $widget_ready, __('Turn on the storefront widget', 'geeky-bot'), __('Nobody can use the assistant until the widget is live.', 'geeky-bot'), __('Enable widget', 'geeky-bot'), 'geekybot-widget'),
+                );
+                foreach ($setup_steps as $step) {
+                    if (!$step[0]) {
+                        $waiting[] = array('title' => $step[1], 'description' => $step[2], 'severity' => 'high', 'action' => array('label' => $step[3], 'url' => admin_url('admin.php?page=' . $step[4]), 'variant' => 'primary'));
+                    }
+                }
+                if ($review_count > 0) {
+                    $waiting[] = array('title' => $priority_heading, 'description' => __('Turn repeated misses into better attributes, synonyms, selected policy pages, or Commerce Pro rules.', 'geeky-bot'), 'severity' => 'critical', 'action' => array('label' => __('Review questions', 'geeky-bot'), 'url' => admin_url('admin.php?page=geekybot-conversations')));
+                }
+                $learning = SearchLearningService::suggestions();
+                $open_suggestions = array_filter($learning, function ($s) {
+                    return ($s['status'] ?? '') === 'new';
+                });
+                $not_sold = array_filter($learning, function ($s) {
+                    return ($s['status'] ?? '') === 'not_sold';
+                });
+                if (!empty($open_suggestions)) {
+                    $examples = array();
+                    foreach (array_slice($open_suggestions, 0, 2, true) as $key => $suggestion) {
+                        $examples[] = '“' . $key . '” → ' . implode(', ', array_slice((array) $suggestion['maps_to'], 0, 2));
+                    }
+                    $waiting[] = array(
+                        /* translators: %s: number of synonym suggestions. */
+                        'title' => sprintf(_n('%s synonym suggestion', '%s synonym suggestions', count($open_suggestions), 'geeky-bot'), number_format_i18n(count($open_suggestions))),
+                        'description' => implode(' · ', $examples),
+                        'severity' => 'medium',
+                        'action' => array('label' => __('Review', 'geeky-bot'), 'url' => admin_url('admin.php?page=geekybot-product-assistant#gb-search-learning')),
+                    );
+                }
+                if (!empty($not_sold)) {
+                    $waiting[] = array(
+                        'title' => __('Shoppers wanted things you don’t sell', 'geeky-bot'),
+                        'description' => implode(' · ', array_slice(array_keys($not_sold), 0, 5)),
+                        'severity' => 'medium',
+                        'action' => array('label' => __('See demand', 'geeky-bot'), 'url' => admin_url('admin.php?page=geekybot-product-assistant#gb-search-learning')),
+                    );
+                }
+
+                $sc_counts = SmartCatalogService::counts();
+                $sc_searchable = max(0, $sc_counts['total'] - $sc_counts['off'] - $sc_counts['skipped']);
+                $sc_state = SmartCatalogService::state();
+                $rescue_counts = (array) (SearchRescueService::state()['counts'] ?? array());
+
+                // Before the first shopper uses the chat, the performance, questions
+                // and "right now" rows are seven empty states in a row. Show one
+                // card instead; the full rows return with the first conversation.
+                $has_activity = absint($now_summary['sessions']) > 0
+                    || absint($prev_summary['sessions']) > 0
+                    || $messages_count > 0
+                    || !empty($recent_rows)
+                    || !empty($recent_unanswered);
                 ?>
+
+                <div class="gb2-grid">
+                    <div class="gb2-col-8">
+                        <?php Components::card_open(__('Waiting for you', 'geeky-bot'), empty($waiting) ? '' : sprintf(
+                            /* translators: %s: number of items. */
+                            _n('%s item', '%s items', count($waiting), 'geeky-bot'),
+                            number_format_i18n(count($waiting))
+                        ), true, 'gb2-fill'); ?>
+                            <?php if (empty($waiting)) : ?>
+                                <?php Components::empty_state(
+                                    __('Nothing needs you right now', 'geeky-bot'),
+                                    __('Setup is complete and there is nothing to review. New questions and suggestions will appear here.', 'geeky-bot')
+                                ); ?>
+                            <?php else : ?>
+                                <ul class="gb2-tasks">
+                                    <?php foreach ($waiting as $task) {
+                                        Components::task($task);
+                                    } ?>
+                                </ul>
+                            <?php endif; ?>
+                        <?php Components::card_close(); ?>
+                    </div>
+
+                    <div class="gb2-col-4">
+                        <?php Components::card_open(__('Search health', 'geeky-bot'), '', false, 'gb2-fill'); ?>
+                            <div class="gb2-keyvalues">
+                                <div class="gb2-keyvalue"><span><?php esc_html_e('Search level', 'geeky-bot'); ?></span><strong><?php echo esc_html($level_names[$search_level]); ?></strong></div>
+                                <?php if ($search_level !== 'standard') : ?>
+                                    <div class="gb2-keyvalue"><span><?php esc_html_e('AI model', 'geeky-bot'); ?></span><strong><?php echo esc_html(SmartCatalogService::model()); ?></strong></div>
+                                    <div class="gb2-keyvalue"><span><?php esc_html_e('Products with AI words', 'geeky-bot'); ?></span><strong><?php echo esc_html(sprintf('%s / %s', number_format_i18n($sc_counts['done']), number_format_i18n($sc_searchable))); ?></strong></div>
+                                <?php endif; ?>
+                                <?php if ($search_level === 'rescue') : ?>
+                                    <div class="gb2-keyvalue"><span><?php esc_html_e('Searches rescued', 'geeky-bot'); ?></span><strong><?php echo esc_html(number_format_i18n(absint($rescue_counts['rescued'] ?? 0) + absint($rescue_counts['cached'] ?? 0))); ?></strong></div>
+                                <?php endif; ?>
+                                <?php if (!empty($sc_state['usage']['calls']) || !empty($sc_state['rescue_usage']['calls'])) : ?>
+                                    <div class="gb2-keyvalue"><span><?php esc_html_e('AI calls by search', 'geeky-bot'); ?></span><strong><?php echo esc_html(number_format_i18n(absint($sc_state['usage']['calls'] ?? 0) + absint($sc_state['rescue_usage']['calls'] ?? 0) + absint($sc_state['learning_usage']['calls'] ?? 0))); ?></strong></div>
+                                <?php endif; ?>
+                                <div class="gb2-keyvalue"><span><?php esc_html_e('Last index rebuild', 'geeky-bot'); ?></span><strong><?php echo esc_html($this->compact_datetime_label($ctx['last_rebuild'])); ?></strong></div>
+                            </div>
+                            <a class="gb2-link" href="<?php echo esc_url(admin_url('admin.php?page=geekybot-product-assistant')); ?>"><?php esc_html_e('Open Product Search', 'geeky-bot'); ?></a>
+                        <?php Components::card_close(); ?>
+                    </div>
+                </div>
+
+                <?php if (!$has_activity) : ?>
+                    <?php Components::rule(__('Shopper activity', 'geeky-bot')); ?>
+                    <?php Components::card_open(__('Conversations, questions and buying steps', 'geeky-bot'), __('Last 30 days', 'geeky-bot')); ?>
+                        <?php Components::empty_state(
+                            __('No shopper conversations yet', 'geeky-bot'),
+                            __('Charts, unanswered questions and recent conversations appear here after the first shopper uses the chat.', 'geeky-bot'),
+                            array('label' => __('Try the chat on your store', 'geeky-bot'), 'url' => home_url('/'))
+                        ); ?>
+                    <?php Components::card_close(); ?>
+                <?php else : ?>
 
                 <?php Components::rule(__('Performance', 'geeky-bot')); ?>
 
@@ -793,95 +936,18 @@ class Menu {
                     </div>
                 </div>
 
-                <?php Components::rule(__('Needs action', 'geeky-bot')); ?>
-
-                <div class="gb2-grid">
-                    <div class="gb2-col-8">
                 <?php
-                Components::card_open(
-                    __('Next highest-impact actions', 'geeky-bot'),
-                    /* translators: %s: setup completion percentage. */
-                    sprintf(__('%s%% set up', 'geeky-bot'), number_format_i18n($completion)),
-                    true
-                );
+                // Rendered here, shown beside the unanswered questions below:
+                // "why answers failed" is about the same misses.
+                ob_start();
                 ?>
-                <ul class="gb2-tasks">
-                    <?php
-                    Components::task(array(
-                        'title' => $priority_heading,
-                        'description' => $review_count > 0
-                            ? __('Turn repeated misses into better attributes, synonyms, selected policy pages, or Commerce Pro rules.', 'geeky-bot')
-                            : __('The current build is handling the latest reviewed shopper questions.', 'geeky-bot'),
-                        'severity' => $review_count > 0 ? 'critical' : 'done',
-                        'action' => array(
-                            'label' => $review_count > 0 ? __('Review questions', 'geeky-bot') : __('Open review', 'geeky-bot'),
-                            'url' => admin_url('admin.php?page=geekybot-conversations'),
-                            'variant' => $review_count > 0 ? 'primary' : 'default',
-                        ),
-                    ));
-
-                    // The 2.0.1 page showed these facts twice — once as the
-                    // "task matrix" and again as the readiness aside. One list
-                    // now, carrying the task matrix's wording as descriptions.
-                    $readiness_checks = array(
-                        array(
-                            'ready' => (bool) $ctx['wc_ready'],
-                            'title' => __('WooCommerce catalog connected', 'geeky-bot'),
-                            'description' => __('The assistant reads live products, prices and stock from WooCommerce.', 'geeky-bot'),
-                            'url' => admin_url('admin.php?page=geekybot-setup'),
-                            'action' => __('Check', 'geeky-bot'),
-                        ),
-                        array(
-                            'ready' => $ctx['indexed_count'] > 0 && $natural_search_ready,
-                            'title' => $search_status_label,
-                            'description' => __('Buyer-language search turns shopper phrasing into catalog matches.', 'geeky-bot'),
-                            'url' => admin_url('admin.php?page=geekybot-product-assistant'),
-                            'action' => __('Tune search', 'geeky-bot'),
-                        ),
-                        array(
-                            'ready' => $ctx['policy_count'] > 0,
-                            'title' => __('Policy answers grounded', 'geeky-bot'),
-                            'description' => __('Shipping, refund and returns questions need a selected policy page, or the assistant sends the fallback answer.', 'geeky-bot'),
-                            'url' => admin_url('admin.php?page=geekybot-store-knowledge'),
-                            'action' => __('Choose pages', 'geeky-bot'),
-                        ),
-                        array(
-                            'ready' => (bool) $widget_ready,
-                            'title' => __('Storefront widget enabled', 'geeky-bot'),
-                            'description' => __('Shoppers only see the assistant once the widget is live on public store pages.', 'geeky-bot'),
-                            'url' => admin_url('admin.php?page=geekybot-widget'),
-                            'action' => __('Open widget', 'geeky-bot'),
-                        ),
-                    );
-
-                    foreach ($readiness_checks as $check) {
-                        Components::task(array(
-                            'title' => $check['title'],
-                            'description' => $check['description'],
-                            'severity' => $check['ready'] ? 'done' : 'high',
-                            'action' => $check['ready'] ? array() : array(
-                                'label' => $check['action'],
-                                'url' => $check['url'],
-                            ),
-                            'status' => $check['ready'] ? array(
-                                'label' => __('Ready', 'geeky-bot'),
-                                'state' => 'ok',
-                            ) : array(),
-                        ));
-                    }
-                    ?>
-                </ul>
-                        <?php Components::card_close(); ?>
-                    </div>
-
-                    <div class="gb2-col-4">
                         <?php
                         $reason_total = array_sum(wp_list_pluck($reasons, 'total'));
                         Components::card_open(
                             __('Why answers failed', 'geeky-bot'),
                             $reason_total > 0 ? number_format_i18n($reason_total) : '',
                             false,
-                            'gb2-fill'
+                            ''
                         );
                         ?>
                             <?php if (empty($reasons)) : ?>
@@ -913,8 +979,7 @@ class Menu {
                                     esc_html_e('Open conversation review', 'geeky-bot'); ?></a>
                             <?php endif; ?>
                         <?php Components::card_close(); ?>
-                    </div>
-                </div>
+                <?php $why_answers_failed_card = ob_get_clean(); ?>
 
                 <?php Components::rule(__('What shoppers ask', 'geeky-bot')); ?>
 
@@ -956,8 +1021,12 @@ class Menu {
                         <?php Components::card_close(); ?>
                     </div>
 
-                    <div class="gb2-col-4">
-                        <?php Components::card_open(__('Conversation review signal', 'geeky-bot'), '', false, 'gb2-fill'); ?>
+                    <div class="gb2-col-4 gb2-stack">
+                        <?php
+                        // Built by this method above from escaped values only.
+                        echo $why_answers_failed_card; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+                        ?>
+                        <?php Components::card_open(__('Conversation review signal', 'geeky-bot'), '', false); ?>
                             <div class="gb2-keyvalues">
                                 <div class="gb2-keyvalue">
                                     <span><?php esc_html_e('Messages stored', 'geeky-bot'); ?></span>
@@ -972,7 +1041,6 @@ class Menu {
                                     <strong><?php echo esc_html(number_format_i18n($review_count)); ?></strong>
                                 </div>
                             </div>
-                            <p class="gb2-note"><?php esc_html_e('Every unanswered shopper phrase becomes a signal for product data, synonyms, policy pages, or future sales rules.', 'geeky-bot'); ?></p>
                             <a class="gb2-link" href="<?php echo esc_url(admin_url('admin.php?page=geekybot-conversations')); ?>"><?php
                                 esc_html_e('Open conversation review', 'geeky-bot'); ?></a>
                         <?php Components::card_close(); ?>
@@ -982,7 +1050,7 @@ class Menu {
                 <?php Components::rule(__('Right now', 'geeky-bot')); ?>
 
                 <div class="gb2-grid">
-                    <div class="gb2-col-4">
+                    <div class="gb2-col-6">
                         <?php Components::card_open(__('Recent conversations', 'geeky-bot'), '', true, 'gb2-fill'); ?>
                             <?php if (empty($recent_rows)) : ?>
                                 <?php Components::empty_state(
@@ -1024,7 +1092,7 @@ class Menu {
                         <?php Components::card_close(); ?>
                     </div>
 
-                    <div class="gb2-col-4">
+                    <div class="gb2-col-6">
                         <?php Components::card_open(__('Products the assistant shows', 'geeky-bot'), '', true, 'gb2-fill'); ?>
                             <?php if (!$pro_active || empty($pro_products)) : ?>
                                 <?php Components::empty_state(
@@ -1055,7 +1123,14 @@ class Menu {
                             <?php endif; ?>
                         <?php Components::card_close(); ?>
                     </div>
+                </div>
 
+                <?php endif; ?>
+
+                <details class="gb2-card gb2-details gb2-details--card gb2-details--spaced">
+                    <summary><?php esc_html_e('What shoppers see, and how the assistant works', 'geeky-bot'); ?></summary>
+
+                <div class="gb2-grid">
                     <div class="gb2-col-4">
                         <?php Components::card_open(__('What shoppers see', 'geeky-bot'), '', false, 'gb2-fill'); ?>
                             <?php $this->widget_preview($settings, 'open'); ?>
@@ -1080,14 +1155,10 @@ class Menu {
                             </div>
                         <?php Components::card_close(); ?>
                     </div>
-                </div>
 
-                <?php Components::rule(__('Reference', 'geeky-bot')); ?>
-
-                <div class="gb2-grid">
-                    <div class="gb2-col-4">
-                        <?php Components::card_open(__('Product discovery signals', 'geeky-bot'), '', false, 'gb2-fill'); ?>
-                            <p style="margin:0 0 12px;font-size:12px;color:var(--gb2-mute)"><?php
+                    <div class="gb2-col-8 gb2-stack">
+                        <?php Components::card_open(__('Product discovery signals', 'geeky-bot'), '', false); ?>
+                            <p style="margin:0 0 12px;font-size:var(--gb2-t-sm);color:var(--gb2-mute)"><?php
                                 esc_html_e('Search uses WooCommerce product data first, then shopper-language synonyms and close-match rules.', 'geeky-bot'); ?></p>
                             <div class="gb2-keyvalues">
                                 <div class="gb2-keyvalue">
@@ -1096,7 +1167,7 @@ class Menu {
                                 </div>
                                 <div class="gb2-keyvalue">
                                     <span><?php esc_html_e('Match mode', 'geeky-bot'); ?></span>
-                                    <strong style="font-size:13px"><?php echo esc_html($fallback_mode); ?></strong>
+                                    <strong style="font-size:var(--gb2-t-md)"><?php echo esc_html($fallback_mode); ?></strong>
                                 </div>
                             </div>
                             <div class="gb2-chips" style="margin-top:12px">
@@ -1110,11 +1181,11 @@ class Menu {
                                 <span><?php esc_html_e('Sale signals', 'geeky-bot'); ?></span>
                             </div>
                         <?php Components::card_close(); ?>
-                    </div>
 
-                    <div class="gb2-col-4">
+                        <div class="gb2-grid">
+                        <div class="gb2-col-6">
                         <?php Components::card_open(__('Beyond simple product search', 'geeky-bot'), $pro_active ? __('Active', 'geeky-bot') : __('Commerce Pro', 'geeky-bot'), false, 'gb2-fill'); ?>
-                            <p style="margin:0 0 12px;font-size:12px;color:var(--gb2-mute)"><?php
+                            <p style="margin:0 0 12px;font-size:var(--gb2-t-sm);color:var(--gb2-mute)"><?php
                                 esc_html_e('Commerce Pro extends the assistant into buying actions while keeping answers grounded in store data.', 'geeky-bot'); ?></p>
                             <ul class="gb2-checklist">
                                 <li><?php esc_html_e('Natural product search', 'geeky-bot'); ?></li>
@@ -1129,11 +1200,11 @@ class Menu {
                                     esc_html_e('See what Commerce Pro adds', 'geeky-bot'); ?></a>
                             <?php endif; ?>
                         <?php Components::card_close(); ?>
-                    </div>
+                        </div>
 
-                    <div class="gb2-col-4">
+                        <div class="gb2-col-6">
                         <?php Components::card_open(__('Try examples from this store', 'geeky-bot'), '', false, 'gb2-fill'); ?>
-                            <p style="margin:0 0 12px;font-size:12px;color:var(--gb2-mute)"><?php
+                            <p style="margin:0 0 12px;font-size:var(--gb2-t-sm);color:var(--gb2-mute)"><?php
                                 esc_html_e('Guided Demo uses visible indexed products and approved policy pages, then labels which requests are free and which need Commerce Pro.', 'geeky-bot'); ?></p>
                             <ul class="gb2-checklist">
                                 <li><?php esc_html_e('Product names, prices, attributes and sale state', 'geeky-bot'); ?></li>
@@ -1149,23 +1220,13 @@ class Menu {
                                 )); ?>
                             </div>
                         <?php Components::card_close(); ?>
+                        </div>
+                        </div>
                     </div>
                 </div>
+                </details>
 
-                <?php Components::rule(__('Go to', 'geeky-bot')); ?>
-
-                <nav class="gb2-quicknav" aria-label="<?php esc_attr_e('Geeky Bot admin sections', 'geeky-bot'); ?>">
-                    <a href="<?php echo esc_url(admin_url('admin.php?page=geekybot-setup')); ?>"><?php esc_html_e('Setup', 'geeky-bot'); ?></a>
-                    <a href="<?php echo esc_url(admin_url('admin.php?page=geekybot-guided-demo')); ?>"><?php esc_html_e('Guided Demo', 'geeky-bot'); ?></a>
-                    <a href="<?php echo esc_url(admin_url('admin.php?page=geekybot-widget')); ?>"><?php esc_html_e('Widget', 'geeky-bot'); ?></a>
-                    <a href="<?php echo esc_url(admin_url('admin.php?page=geekybot-product-assistant')); ?>"><?php esc_html_e('Product search', 'geeky-bot'); ?></a>
-                    <a href="<?php echo esc_url(admin_url('admin.php?page=geekybot-store-knowledge')); ?>"><?php esc_html_e('Store knowledge', 'geeky-bot'); ?></a>
-                    <a href="<?php echo esc_url(admin_url('admin.php?page=geekybot-conversations')); ?>"><?php esc_html_e('Conversations', 'geeky-bot'); ?></a>
-                    <a href="<?php echo esc_url(admin_url('admin.php?page=geekybot-analytics')); ?>"><?php esc_html_e('Analytics', 'geeky-bot'); ?></a>
-                    <a href="<?php echo esc_url(admin_url('admin.php?page=geekybot-integrations')); ?>"><?php esc_html_e('Integrations', 'geeky-bot'); ?></a>
-                </nav>
             </div>
-
         </div>
         <?php
     }
@@ -1234,7 +1295,7 @@ class Menu {
         );
         $provider_detail = sprintf(
             /* translators: %s: active answer-provider mode. */
-            __('Current mode: %s. Local grounded mode is the default and calls no language model — answers are built from store data. Zywrap and OpenAI are optional and add generated wording.', 'geeky-bot'),
+            __('Current mode: %s. Local grounded mode is the default and calls no language model — answers are built from store data. OpenAI is optional and adds generated wording.', 'geeky-bot'),
             $this->provider_label($ctx['settings'])
         );
         $index_detail = $ctx['wc_ready']
@@ -1265,7 +1326,7 @@ class Menu {
         );
         ?>
         <div class="wrap geekybot-admin-wrap geekybot-setup-wizard geekybot-first-run-v2">
-            <?php $this->page_hero(__('Setup Wizard', 'geeky-bot'), __('Launch a useful WooCommerce shopping assistant through a resumable seven-step path. Every check uses the live store configuration, so you can leave and continue later without losing progress.', 'geeky-bot'), __('Guided launch', 'geeky-bot'), $hero_action_url, $hero_action_label); ?>
+            <?php $this->page_hero(__('Setup', 'geeky-bot'), __('Launch a useful WooCommerce shopping assistant through a resumable seven-step path. Every check uses the live store configuration, so you can leave and continue later without losing progress.', 'geeky-bot'), __('Guided launch', 'geeky-bot'), $hero_action_url, $hero_action_label); ?>
             <?php // phpcs:ignore WordPress.Security.NonceVerification.Recommended -- Read-only first-run notice flag. ?>
             <?php if (!empty($_GET['gb_first_run'])) : ?>
                 <div class="notice notice-info"><p><?php esc_html_e('Welcome to Geeky Bot. Complete the important checks below, or leave this page and return from Geeky Bot → Setup Wizard at any time.', 'geeky-bot'); ?></p></div>
@@ -1289,7 +1350,7 @@ class Menu {
                         <ul class="gb2-tasks">
                             <?php
                             $this->setup_task_card(__('Store system check', 'geeky-bot'), $readiness['steps']['system'], __('Confirm WooCommerce, WordPress, PHP and the local REST runtime before configuring shopper features.', 'geeky-bot'), $ctx['wc_ready'] ? admin_url('admin.php?page=geekybot-setup#gb-system-checks') : $woocommerce_action['url'], $ctx['wc_ready'] ? __('Review system', 'geeky-bot') : $woocommerce_action['label'], '01');
-                            $this->setup_task_card(__('Answer mode', 'geeky-bot'), $readiness['steps']['provider'], $provider_detail, admin_url('admin.php?page=geekybot-integrations'), __('Review answer mode', 'geeky-bot'), '02');
+                            $this->setup_task_card(__('Answer mode', 'geeky-bot'), $readiness['steps']['provider'], $provider_detail, admin_url('admin.php?page=geekybot-settings#gb-settings-ai'), __('Review answer mode', 'geeky-bot'), '02');
                             $this->setup_task_card(__('Product search index', 'geeky-bot'), $readiness['steps']['index'], $index_detail, $product_action_url, $product_action_label, '03');
                             $this->setup_task_card(__('Store knowledge', 'geeky-bot'), $readiness['steps']['knowledge'], __('Approve public shipping, returns, refunds, payment or warranty pages. Optional for product discovery — missing information stays unanswered rather than invented.', 'geeky-bot'), admin_url('admin.php?page=geekybot-store-knowledge'), __('Select policy pages', 'geeky-bot'), '04');
                             $this->setup_task_card(__('Storefront widget', 'geeky-bot'), $readiness['steps']['widget'], __('Confirm the assistant name, welcome copy, launcher, mobile position and product-card volume.', 'geeky-bot'), admin_url('admin.php?page=geekybot-widget'), __('Configure widget', 'geeky-bot'), '05');
@@ -1313,9 +1374,9 @@ class Menu {
                                         transform="rotate(-90 26 26)" />
                                 </svg>
                                 <div style="min-width:0">
-                                    <div style="font-size:20px;font-weight:640;line-height:1.1"><?php
+                                    <div style="font-size:var(--gb2-t-xl);font-weight:640;line-height:1.1"><?php
                                         echo esc_html(number_format_i18n($readiness['score'])); ?>%</div>
-                                    <div style="font-size:11.5px;color:var(--gb2-mute)"><?php
+                                    <div style="font-size:var(--gb2-t-sm);color:var(--gb2-mute)"><?php
                                         echo esc_html($readiness['score'] >= 100 ? __('Ready for a full rehearsal', 'geeky-bot') : $ready_count_label); ?></div>
                                 </div>
                             </div>
@@ -1355,7 +1416,7 @@ class Menu {
                         <div style="height:14px"></div>
 
                         <?php Components::card_open(__('Review status', 'geeky-bot'), '', false); ?>
-                            <p style="margin:0 0 12px;font-size:12.5px;line-height:1.55;color:var(--gb2-mute)"><?php
+                            <p style="margin:0 0 12px;font-size:var(--gb2-t-sm);line-height:1.55;color:var(--gb2-mute)"><?php
                                 echo esc_html($setup_status_detail); ?></p>
                             <form method="post" action="<?php echo esc_url(admin_url('admin-post.php')); ?>">
                                 <?php wp_nonce_field('geekybot_onboarding_action'); ?>
@@ -1378,19 +1439,19 @@ class Menu {
                 <div class="gb2-grid">
                     <div class="gb2-col-4">
                         <?php Components::card_open(__('WooCommerce first', 'geeky-bot'), '', false); ?>
-                            <p style="margin:0;font-size:12.5px;line-height:1.55;color:var(--gb2-mute)"><?php
+                            <p style="margin:0;font-size:var(--gb2-t-sm);line-height:1.55;color:var(--gb2-mute)"><?php
                                 esc_html_e('Products and the Guided Demo stay blocked until the store runtime is available.', 'geeky-bot'); ?></p>
                         <?php Components::card_close(); ?>
                     </div>
                     <div class="gb2-col-4">
                         <?php Components::card_open(__('No AI account required', 'geeky-bot'), '', false); ?>
-                            <p style="margin:0;font-size:12.5px;line-height:1.55;color:var(--gb2-mute)"><?php
+                            <p style="margin:0;font-size:var(--gb2-t-sm);line-height:1.55;color:var(--gb2-mute)"><?php
                                 esc_html_e('Local grounded mode is the default and works without an external provider or API key. It does not call a language model: answers are assembled from your catalog and selected policy pages. Add a provider key under Answer mode if you want generated, conversational wording.', 'geeky-bot'); ?></p>
                         <?php Components::card_close(); ?>
                     </div>
                     <div class="gb2-col-4">
                         <?php Components::card_open(__('You can stop anytime', 'geeky-bot'), '', false); ?>
-                            <p style="margin:0;font-size:12.5px;line-height:1.55;color:var(--gb2-mute)"><?php
+                            <p style="margin:0;font-size:var(--gb2-t-sm);line-height:1.55;color:var(--gb2-mute)"><?php
                                 esc_html_e('Leave this page and return later. Progress is read from your live store, so nothing is lost.', 'geeky-bot'); ?></p>
                         <?php Components::card_close(); ?>
                     </div>
@@ -1411,7 +1472,7 @@ class Menu {
         $woocommerce_action = $this->woocommerce_setup_action();
         ?>
         <div class="wrap geekybot-admin-wrap geekybot-guided-demo">
-            <?php $this->page_hero(__('Guided Demo', 'geeky-bot'), __('Try Geeky Bot with realistic shopper requests generated from this store’s own indexed products and approved policy pages. Refresh the board whenever you want a different catalog sample.', 'geeky-bot'), __('Real-store rehearsal', 'geeky-bot'), home_url('/'), __('Open storefront', 'geeky-bot'), true); ?>
+            <?php $this->page_hero(__('Guided Demo', 'geeky-bot'), __('Real shopper requests built from your own products and policy pages. Try any of them on your storefront.', 'geeky-bot'), __('Real-store rehearsal', 'geeky-bot'), home_url('/'), __('Open storefront', 'geeky-bot'), true); ?>
             <?php // phpcs:ignore WordPress.Security.NonceVerification.Recommended -- Read-only status notice flag. ?>
             <?php if (!empty($_GET['gb_demo_refreshed'])) : ?>
                 <div class="notice notice-success is-dismissible"><p><?php esc_html_e('Guided Demo examples regenerated from the current store data.', 'geeky-bot'); ?></p></div>
@@ -1441,8 +1502,6 @@ class Menu {
                             : __('Preview of the paid buying journey', 'geeky-bot'),
                     ),
                 )); ?>
-
-                <div class="gb2-rule"><b><?php esc_html_e('Examples from your catalog', 'geeky-bot'); ?></b></div>
 
                 <div class="gb2-inline" style="justify-content:flex-end;margin-bottom:14px">
                     <form method="post" action="<?php echo esc_url(admin_url('admin-post.php')); ?>">
@@ -1482,117 +1541,147 @@ class Menu {
 
                     Components::card_close();
                     ?>
-                <?php else : ?>
-                    <div class="gb2-grid">
-                        <?php foreach ($examples as $example) :
-                            $is_pro = $example['tier'] === 'pro';
-                            $locked = !empty($example['locked']);
-                            $steps = !empty($example['steps']) ? (array) $example['steps'] : array($example['query']);
-                            $demo_args = array('geekybot_demo' => $steps[0]);
-                            if (count($steps) > 1) {
-                                // The storefront sends the opener, then hands the
-                                // merchant each remaining turn once the previous
-                                // one has been answered.
-                                $demo_args['geekybot_demo_steps'] = wp_json_encode(array_slice($steps, 1));
-                            }
-                            $try_url = add_query_arg($demo_args, home_url('/'));
-                            ?>
-                            <div class="gb2-col-4">
-                                <?php Components::card_open('', '', false, 'gb2-fill'); ?>
-                                    <div class="gb2-inline" style="margin-bottom:10px">
-                                        <?php Components::pill(
-                                            $is_pro ? __('Commerce Pro', 'geeky-bot') : __('Free', 'geeky-bot'),
-                                            $is_pro ? 'neutral' : 'ok',
-                                            false
-                                        ); ?>
-                                        <span style="font-size:11.5px;color:var(--gb2-faint)"><?php
-                                            echo esc_html($example['feature']); ?></span>
-                                        <?php if (!empty($example['isConversation'])) : ?>
-                                            <span style="font-size:11.5px;color:var(--gb2-faint)" title="<?php
-                                                esc_attr_e('Runs as a short conversation, not a single question.', 'geeky-bot'); ?>">&middot; <?php
-                                                printf(
-                                                    /* translators: %d: number of turns in the demo conversation. */
-                                                    esc_html(_n('%d turn', '%d turns', count($steps), 'geeky-bot')),
-                                                    (int) count($steps)
-                                                ); ?></span>
-                                        <?php endif; ?>
-                                    </div>
-
-                                    <h3 style="margin:0 0 4px;font-size:14px;font-weight:600;line-height:1.35"><?php
-                                        echo esc_html($example['title']); ?></h3>
-                                    <p style="margin:0 0 10px;font-size:12px;line-height:1.5;color:var(--gb2-mute)"><?php
-                                        echo esc_html($example['description']); ?></p>
-
-                                    <div class="gb2-code-list" style="margin-bottom:10px">
-                                        <?php foreach ($steps as $step_index => $step) : ?>
-                                            <code><?php
-                                                if (count($steps) > 1) {
-                                                    /* translators: %d: turn number in a demo conversation. */
-                                                    echo esc_html(sprintf(__('%d.', 'geeky-bot'), $step_index + 1)) . ' ';
-                                                }
-                                                echo esc_html($step);
-                                            ?></code>
-                                        <?php endforeach; ?>
-                                    </div>
-
-                                    <p style="margin:0 0 10px;font-size:11.5px;color:var(--gb2-faint)">
-                                        <?php esc_html_e('Built from', 'geeky-bot'); ?>
-                                        <?php if (!empty($example['sourceUrl'])) : ?>
-                                            <a class="gb2-link" style="margin:0" href="<?php echo esc_url($example['sourceUrl']); ?>"><?php
-                                                echo esc_html($example['sourceLabel']); ?></a>
-                                        <?php else : ?>
-                                            <strong style="color:var(--gb2-mute)"><?php echo esc_html($example['sourceLabel']); ?></strong>
-                                        <?php endif; ?>
-                                    </p>
-
-                                    <div class="gb2-inline">
-                                        <?php if ($locked) : ?>
-                                            <?php Components::action_link(array(
-                                                'label' => __('View Commerce Pro', 'geeky-bot'),
-                                                'url' => admin_url('admin.php?page=geekybot-addons'),
-                                                'variant' => 'primary',
-                                            )); ?>
-                                        <?php elseif ($widget_enabled) : ?>
-                                            <?php Components::action_link(array(
-                                                'label' => __('Try on storefront', 'geeky-bot'),
-                                                'url' => $try_url,
-                                                'variant' => 'primary',
-                                                'external' => true,
-                                            )); ?>
-                                        <?php else : ?>
-                                            <span class="gb2-btn" aria-disabled="true" style="opacity:.5"><?php
-                                                esc_html_e('Widget is off', 'geeky-bot'); ?></span>
-                                        <?php endif; ?>
-                                        <?php // data-gb-copy-demo is the hook assets/js/admin.js binds to. ?>
-                                        <button class="gb2-btn" type="button" data-gb-copy-demo="<?php echo esc_attr($example['query']); ?>"><?php
-                                            esc_html_e('Copy', 'geeky-bot'); ?></button>
-                                    </div>
-
-                                    <?php if ($locked) : ?>
-                                        <p class="gb2-note"><?php esc_html_e('This example uses a buying action available in Commerce Pro.', 'geeky-bot'); ?></p>
+                <?php else :
+                    // One card per example. Kept as a closure so the free and
+                    // Commerce Pro groups below render identical cards.
+                    $render_example = function ($example) use ($widget_enabled) {
+                        $is_pro = $example['tier'] === 'pro';
+                        $locked = !empty($example['locked']);
+                        $steps = !empty($example['steps']) ? (array) $example['steps'] : array($example['query']);
+                        $demo_args = array('geekybot_demo' => $steps[0]);
+                        if (count($steps) > 1) {
+                            // The storefront sends the opener, then hands the
+                            // merchant each remaining turn once the previous
+                            // one has been answered.
+                            $demo_args['geekybot_demo_steps'] = wp_json_encode(array_slice($steps, 1));
+                        }
+                        $try_url = add_query_arg($demo_args, home_url('/'));
+                        ?>
+                        <div class="gb2-col-4">
+                            <?php Components::card_open('', '', false, 'gb2-fill'); ?>
+                                <div class="gb2-inline" style="margin-bottom:10px">
+                                    <?php Components::pill(
+                                        $is_pro ? __('Commerce Pro', 'geeky-bot') : __('Free', 'geeky-bot'),
+                                        $is_pro ? 'neutral' : 'ok',
+                                        false
+                                    ); ?>
+                                    <span style="font-size:var(--gb2-t-sm);color:var(--gb2-faint)"><?php
+                                        echo esc_html($example['feature']); ?></span>
+                                    <?php if (!empty($example['isConversation'])) : ?>
+                                        <span style="font-size:var(--gb2-t-sm);color:var(--gb2-faint)" title="<?php
+                                            esc_attr_e('Runs as a short conversation, not a single question.', 'geeky-bot'); ?>">&middot; <?php
+                                            printf(
+                                                /* translators: %d: number of turns in the demo conversation. */
+                                                esc_html(_n('%d turn', '%d turns', count($steps), 'geeky-bot')),
+                                                (int) count($steps)
+                                            ); ?></span>
                                     <?php endif; ?>
-                                <?php Components::card_close(); ?>
-                            </div>
-                        <?php endforeach; ?>
-                    </div>
+                                </div>
+
+                                <h3 style="margin:0 0 4px;font-size:16px;font-weight:600;line-height:1.35"><?php
+                                    echo esc_html($example['title']); ?></h3>
+                                <p style="margin:0 0 10px;font-size:var(--gb2-t-sm);line-height:1.5;color:var(--gb2-mute)"><?php
+                                    echo esc_html($example['description']); ?></p>
+
+                                <div class="gb2-code-list" style="margin-bottom:10px">
+                                    <?php foreach ($steps as $step_index => $step) : ?>
+                                        <code><?php
+                                            if (count($steps) > 1) {
+                                                /* translators: %d: turn number in a demo conversation. */
+                                                echo esc_html(sprintf(__('%d.', 'geeky-bot'), $step_index + 1)) . ' ';
+                                            }
+                                            echo esc_html($step);
+                                        ?></code>
+                                    <?php endforeach; ?>
+                                </div>
+
+                                <p style="margin:0 0 10px;font-size:var(--gb2-t-sm);color:var(--gb2-faint)">
+                                    <?php esc_html_e('Built from', 'geeky-bot'); ?>
+                                    <?php if (!empty($example['sourceUrl'])) : ?>
+                                        <a class="gb2-link" style="margin:0" href="<?php echo esc_url($example['sourceUrl']); ?>"><?php
+                                            echo esc_html($example['sourceLabel']); ?></a>
+                                    <?php else : ?>
+                                        <strong style="color:var(--gb2-mute)"><?php echo esc_html($example['sourceLabel']); ?></strong>
+                                    <?php endif; ?>
+                                </p>
+
+                                <div class="gb2-inline">
+                                    <?php if ($locked) : ?>
+                                        <?php Components::action_link(array(
+                                            'label' => __('View Commerce Pro', 'geeky-bot'),
+                                            'url' => admin_url('admin.php?page=geekybot-addons'),
+                                            'variant' => 'primary',
+                                        )); ?>
+                                    <?php elseif ($widget_enabled) : ?>
+                                        <?php Components::action_link(array(
+                                            'label' => __('Try on storefront', 'geeky-bot'),
+                                            'url' => $try_url,
+                                            'variant' => 'primary',
+                                            'external' => true,
+                                        )); ?>
+                                    <?php else : ?>
+                                        <span class="gb2-btn" aria-disabled="true" style="opacity:.5"><?php
+                                            esc_html_e('Widget is off', 'geeky-bot'); ?></span>
+                                    <?php endif; ?>
+                                    <?php // data-gb-copy-demo is the hook assets/js/admin.js binds to. ?>
+                                    <button class="gb2-btn" type="button" data-gb-copy-demo="<?php echo esc_attr($example['query']); ?>"><?php
+                                        esc_html_e('Copy', 'geeky-bot'); ?></button>
+                                </div>
+
+                                <?php if ($locked) : ?>
+                                    <p class="gb2-note"><?php esc_html_e('This example uses a buying action available in Commerce Pro.', 'geeky-bot'); ?></p>
+                                <?php endif; ?>
+                            <?php Components::card_close(); ?>
+                        </div>
+                    <?php
+                    };
+
+                    $groups = array(
+                        array(
+                            'label' => __('Free: find, understand and choose products', 'geeky-bot'),
+                            'items' => array_values(array_filter($examples, function ($example) {
+                                return $example['tier'] !== 'pro';
+                            })),
+                        ),
+                        array(
+                            'label' => __('Commerce Pro: cart, variations and checkout', 'geeky-bot'),
+                            'items' => array_values(array_filter($examples, function ($example) {
+                                return $example['tier'] === 'pro';
+                            })),
+                        ),
+                    );
+
+                    foreach ($groups as $group) :
+                        if (empty($group['items'])) {
+                            continue;
+                        }
+                        // Three cards per group on show; the rest one click away.
+                        $shown = array_slice($group['items'], 0, 3);
+                        $more = array_slice($group['items'], 3);
+                        ?>
+                        <div class="gb2-rule"><b><?php echo esc_html($group['label']); ?></b></div>
+                        <div class="gb2-grid">
+                            <?php foreach ($shown as $example) {
+                                $render_example($example);
+                            } ?>
+                        </div>
+                        <?php if (!empty($more)) : ?>
+                            <details class="gb2-showmore">
+                                <summary><?php
+                                    printf(
+                                        /* translators: %s: number of further demo examples. */
+                                        esc_html(_n('Show %s more example', 'Show %s more examples', count($more), 'geeky-bot')),
+                                        esc_html(number_format_i18n(count($more)))
+                                    ); ?></summary>
+                                <div class="gb2-grid">
+                                    <?php foreach ($more as $example) {
+                                        $render_example($example);
+                                    } ?>
+                                </div>
+                            </details>
+                        <?php endif; ?>
+                    <?php endforeach; ?>
                 <?php endif; ?>
-
-                <div class="gb2-rule"><b><?php esc_html_e('What each tier proves', 'geeky-bot'); ?></b></div>
-
-                <div class="gb2-grid">
-                    <div class="gb2-col-6">
-                        <?php Components::card_open(__('Free proves product intelligence', 'geeky-bot'), '', false, 'gb2-fill'); ?>
-                            <p style="margin:0;font-size:12.5px;line-height:1.55;color:var(--gb2-mute)"><?php
-                                esc_html_e('Shoppers find products, apply real constraints, ask product questions, receive grounded recommendations, and read approved store-policy answers.', 'geeky-bot'); ?></p>
-                        <?php Components::card_close(); ?>
-                    </div>
-                    <div class="gb2-col-6">
-                        <?php Components::card_open(__('Commerce Pro completes the sale', 'geeky-bot'), '', false, 'gb2-fill'); ?>
-                            <p style="margin:0;font-size:12.5px;line-height:1.55;color:var(--gb2-mute)"><?php
-                                esc_html_e('Shoppers select variations, add products, manage the cart, and continue to checkout without leaving the assistant.', 'geeky-bot'); ?></p>
-                        <?php Components::card_close(); ?>
-                    </div>
-                </div>
             </div>
         </div>
         <?php
@@ -1603,7 +1692,7 @@ class Menu {
         $settings = $ctx['settings'];
         ?>
         <div class="wrap geekybot-admin-wrap geekybot-admin-widget">
-            <?php $this->page_hero(__('Storefront Widget', 'geeky-bot'), __('Shape the live shopper panel: welcome copy, product-card volume, starter prompts, accent color, placement and mobile-ready preview.', 'geeky-bot'), __('Shopper experience', 'geeky-bot'), home_url('/'), __('Open storefront', 'geeky-bot'), true); ?>
+            <?php $this->page_hero(__('Storefront Widget', 'geeky-bot'), __('Name, messages, look and invitation for the chat on your store.', 'geeky-bot'), __('Shopper experience', 'geeky-bot'), home_url('/'), __('Open storefront', 'geeky-bot'), true); ?>
             <?php // phpcs:ignore WordPress.Security.NonceVerification.Recommended -- Read-only status notice flag. ?>
             <?php if (!empty($_GET['updated'])) : ?><div class="notice notice-success is-dismissible"><p><?php esc_html_e('Widget settings saved.', 'geeky-bot'); ?></p></div><?php endif; ?>
             <div class="gb2-main">
@@ -1615,7 +1704,7 @@ class Menu {
                             <input type="hidden" name="geekybot_settings_scope" value="partial" />
                             <input type="hidden" name="geekybot_redirect" value="<?php echo esc_url(admin_url('admin.php?page=geekybot-widget')); ?>" />
 
-                            <?php Components::card_open(__('Shopper-facing basics', 'geeky-bot'), '', false); ?>
+                            <?php Components::card_open(__('Basics', 'geeky-bot'), '', false); ?>
                                 <div class="gb2-switch-row" style="padding-top:0">
                                     <input type="hidden" name="widget_enabled" value="no" />
                                     <input type="checkbox" id="gb2-widget-enabled" name="widget_enabled" value="yes" <?php checked($settings['widget_enabled'], 'yes'); ?> />
@@ -1650,6 +1739,16 @@ class Menu {
                                     <p class="gb2-field__help"><?php esc_html_e('Sent when no catalog data or approved policy page covers the question.', 'geeky-bot'); ?></p>
                                 </div>
 
+                                <div class="gb2-field">
+                                    <label for="gb2-max-products"><?php esc_html_e('Products per answer', 'geeky-bot'); ?></label>
+                                    <input class="gb2-input" id="gb2-max-products" name="max_products" type="number" min="1" max="8" value="<?php echo esc_attr(absint($settings['max_products'])); ?>" />
+                                    <p class="gb2-field__help"><?php esc_html_e('Three or four keeps replies readable on a phone.', 'geeky-bot'); ?></p>
+                                </div>
+                            <?php Components::card_close(); ?>
+
+                            <div style="height:14px"></div>
+
+                            <?php Components::card_open(__('Look and branding', 'geeky-bot'), '', false); ?>
                                 <div class="gb2-field-row">
                                     <div class="gb2-field">
                                         <label for="gb2-accent"><?php esc_html_e('Accent color', 'geeky-bot'); ?></label>
@@ -1664,48 +1763,24 @@ class Menu {
                                     </div>
                                 </div>
 
-                                <div class="gb2-field">
-                                    <label for="gb2-max-products"><?php esc_html_e('Products per answer', 'geeky-bot'); ?></label>
-                                    <input class="gb2-input" id="gb2-max-products" name="max_products" type="number" min="1" max="8" value="<?php echo esc_attr(absint($settings['max_products'])); ?>" />
-                                    <p class="gb2-field__help"><?php esc_html_e('Three or four keeps replies readable on a phone.', 'geeky-bot'); ?></p>
+                                <div class="gb2-field-row">
+                                    <div class="gb2-field">
+                                        <label for="gb2-color-mode"><?php esc_html_e('Colour mode', 'geeky-bot'); ?></label>
+                                        <select class="gb2-input" id="gb2-color-mode" name="widget_color_mode">
+                                            <option value="light" <?php selected(isset($settings['widget_color_mode']) ? $settings['widget_color_mode'] : 'light', 'light'); ?>><?php esc_html_e('Light', 'geeky-bot'); ?></option>
+                                            <option value="dark" <?php selected(isset($settings['widget_color_mode']) ? $settings['widget_color_mode'] : 'light', 'dark'); ?>><?php esc_html_e('Dark', 'geeky-bot'); ?></option>
+                                            <option value="auto" <?php selected(isset($settings['widget_color_mode']) ? $settings['widget_color_mode'] : 'light', 'auto'); ?>><?php esc_html_e('Match the shopper device', 'geeky-bot'); ?></option>
+                                        </select>
+                                        <p class="gb2-field__help"><?php esc_html_e('Choose Match the shopper device if your storefront has a dark theme.', 'geeky-bot'); ?></p>
+                                    </div>
+                                    <div class="gb2-field">
+                                        <label for="gb2-launcher-shape"><?php esc_html_e('Button shape', 'geeky-bot'); ?></label>
+                                        <select class="gb2-input" id="gb2-launcher-shape" name="launcher_shape">
+                                            <option value="round" <?php selected(isset($settings['launcher_shape']) ? $settings['launcher_shape'] : 'round', 'round'); ?>><?php esc_html_e('Circle', 'geeky-bot'); ?></option>
+                                            <option value="rounded" <?php selected(isset($settings['launcher_shape']) ? $settings['launcher_shape'] : 'round', 'rounded'); ?>><?php esc_html_e('Rounded square', 'geeky-bot'); ?></option>
+                                        </select>
+                                    </div>
                                 </div>
-                            <?php Components::card_close(); ?>
-
-                            <div style="height:14px"></div>
-
-                            <?php Components::card_open(__('Shopper invitation', 'geeky-bot'), '', false); ?>
-                                <p style="margin:0 0 12px;font-size:12.5px;line-height:1.55;color:var(--gb2-mute)"><?php
-                                    esc_html_e('Shows one friendly prompt above the button after a shopper has been on the page a while. The chat stays closed until they open it.', 'geeky-bot'); ?></p>
-
-                                <div class="gb2-switch-row" style="padding-top:0">
-                                    <input type="hidden" name="shopper_invitation_enabled" value="no" />
-                                    <input type="checkbox" id="gb2-invitation-enabled" name="shopper_invitation_enabled" value="yes" <?php checked($settings['shopper_invitation_enabled'], 'yes'); ?> />
-                                    <span class="gb2-switch-row__text">
-                                        <label for="gb2-invitation-enabled"><strong><?php esc_html_e('Show the invitation', 'geeky-bot'); ?></strong></label>
-                                        <span><?php esc_html_e('Shown once per browser session, and never while the assistant is already open.', 'geeky-bot'); ?></span>
-                                    </span>
-                                </div>
-
-                                <div style="height:14px"></div>
-
-                                <div class="gb2-field">
-                                    <label for="gb2-invitation-delay"><?php esc_html_e('Show it after', 'geeky-bot'); ?></label>
-                                    <input class="gb2-input" id="gb2-invitation-delay" name="shopper_invitation_delay" type="number" min="3" max="60" value="<?php echo esc_attr(absint($settings['shopper_invitation_delay'])); ?>" />
-                                    <p class="gb2-field__help"><?php esc_html_e('Seconds after the page loads. Ten to fifteen works well.', 'geeky-bot'); ?></p>
-                                </div>
-
-                                <div class="gb2-field">
-                                    <label for="gb2-invitation-message"><?php esc_html_e('Invitation message', 'geeky-bot'); ?></label>
-                                    <textarea class="gb2-input" id="gb2-invitation-message" name="shopper_invitation_message" rows="3" maxlength="160"><?php echo esc_textarea($settings['shopper_invitation_message']); ?></textarea>
-                                    <p class="gb2-field__help"><?php esc_html_e('Keep it short and focused on helping shoppers choose.', 'geeky-bot'); ?></p>
-                                </div>
-                            <?php Components::card_close(); ?>
-
-                            <div style="height:14px"></div>
-
-                            <?php Components::card_open(__('Launcher button', 'geeky-bot'), '', false); ?>
-                                <p style="margin:0 0 12px;font-size:12.5px;line-height:1.55;color:var(--gb2-mute)"><?php
-                                    esc_html_e('What shoppers see before they open the assistant.', 'geeky-bot'); ?></p>
 
                                 <div class="gb2-field-row">
                                     <div class="gb2-field">
@@ -1736,13 +1811,6 @@ class Menu {
                                         <p class="gb2-field__help"><?php esc_html_e('Used only when the style is Icon and text.', 'geeky-bot'); ?></p>
                                     </div>
                                 </div>
-                            <?php Components::card_close(); ?>
-
-                            <div style="height:14px"></div>
-
-                            <?php Components::card_open(__('Widget header', 'geeky-bot'), '', false); ?>
-                                <p style="margin:0 0 12px;font-size:12.5px;line-height:1.55;color:var(--gb2-mute)"><?php
-                                    esc_html_e('Keeps the opened assistant aligned with your store brand.', 'geeky-bot'); ?></p>
 
                                 <div class="gb2-field-row">
                                     <div class="gb2-field">
@@ -1759,24 +1827,6 @@ class Menu {
                                     </div>
                                 </div>
 
-                                <div class="gb2-field-row">
-                                    <div class="gb2-field">
-                                        <label for="gb2-color-mode"><?php esc_html_e('Colour mode', 'geeky-bot'); ?></label>
-                                        <select class="gb2-input" id="gb2-color-mode" name="widget_color_mode">
-                                            <option value="light" <?php selected(isset($settings['widget_color_mode']) ? $settings['widget_color_mode'] : 'light', 'light'); ?>><?php esc_html_e('Light', 'geeky-bot'); ?></option>
-                                            <option value="dark" <?php selected(isset($settings['widget_color_mode']) ? $settings['widget_color_mode'] : 'light', 'dark'); ?>><?php esc_html_e('Dark', 'geeky-bot'); ?></option>
-                                            <option value="auto" <?php selected(isset($settings['widget_color_mode']) ? $settings['widget_color_mode'] : 'light', 'auto'); ?>><?php esc_html_e('Match the shopper device', 'geeky-bot'); ?></option>
-                                        </select>
-                                        <p class="gb2-field__help"><?php esc_html_e('Choose Match the shopper device if your storefront has a dark theme.', 'geeky-bot'); ?></p>
-                                    </div>
-                                    <div class="gb2-field">
-                                        <label for="gb2-launcher-shape"><?php esc_html_e('Button shape', 'geeky-bot'); ?></label>
-                                        <select class="gb2-input" id="gb2-launcher-shape" name="launcher_shape">
-                                            <option value="round" <?php selected(isset($settings['launcher_shape']) ? $settings['launcher_shape'] : 'round', 'round'); ?>><?php esc_html_e('Circle', 'geeky-bot'); ?></option>
-                                            <option value="rounded" <?php selected(isset($settings['launcher_shape']) ? $settings['launcher_shape'] : 'round', 'rounded'); ?>><?php esc_html_e('Rounded square', 'geeky-bot'); ?></option>
-                                        </select>
-                                    </div>
-                                </div>
                                 <div class="gb2-field">
                                     <label for="gb2-header-style"><?php esc_html_e('Header style', 'geeky-bot'); ?></label>
                                     <select class="gb2-input" id="gb2-header-style" name="header_style">
@@ -1784,26 +1834,7 @@ class Menu {
                                         <option value="solid" <?php selected($settings['header_style'], 'solid'); ?>><?php esc_html_e('Solid accent', 'geeky-bot'); ?></option>
                                     </select>
                                 </div>
-                            <?php Components::card_close(); ?>
 
-                            <div style="height:14px"></div>
-
-                            <?php Components::card_open(__('Starter prompts', 'geeky-bot'), '', false); ?>
-                                <p style="margin:0 0 12px;font-size:12.5px;line-height:1.55;color:var(--gb2-mute)"><?php
-                                    esc_html_e('The buttons a shopper sees before typing anything. Write them the way a customer would ask.', 'geeky-bot'); ?></p>
-                                <div class="gb2-field">
-                                    <label for="gb2-starter-prompts" class="gb2-screen-reader-text"><?php
-                                        esc_html_e('Starter prompts', 'geeky-bot'); ?></label>
-                                    <textarea class="gb2-input" id="gb2-starter-prompts" name="starter_prompts" rows="5"><?php
-                                        echo esc_textarea(isset($settings['starter_prompts']) ? $settings['starter_prompts'] : ''); ?></textarea>
-                                    <p class="gb2-field__help"><?php
-                                        esc_html_e('One per line. The first four appear in the widget. Leave it empty to restore the defaults.', 'geeky-bot'); ?></p>
-                                </div>
-                            <?php Components::card_close(); ?>
-
-                            <div style="height:14px"></div>
-
-                            <?php Components::card_open(__('Shopper messages', 'geeky-bot'), '', false); ?>
                                 <div class="gb2-switch-row" style="padding-top:0">
                                     <input type="hidden" name="user_avatar_enabled" value="no" />
                                     <input type="checkbox" id="gb2-user-avatar" name="user_avatar_enabled" value="yes" <?php checked(isset($settings['user_avatar_enabled']) ? $settings['user_avatar_enabled'] : 'no', 'yes'); ?> />
@@ -1811,6 +1842,46 @@ class Menu {
                                         <label for="gb2-user-avatar"><strong><?php esc_html_e('Show an icon beside the shopper\'s messages', 'geeky-bot'); ?></strong></label>
                                         <span><?php esc_html_e('Off by default. The icon reserves space in every message to repeat what the alignment already shows.', 'geeky-bot'); ?></span>
                                     </span>
+                                </div>
+                            <?php Components::card_close(); ?>
+
+                            <div style="height:14px"></div>
+
+                            <?php Components::card_open(__('Shopper invitation', 'geeky-bot'), '', false); ?>
+                                <div class="gb2-switch-row" style="padding-top:0">
+                                    <input type="hidden" name="shopper_invitation_enabled" value="no" />
+                                    <input type="checkbox" id="gb2-invitation-enabled" name="shopper_invitation_enabled" value="yes" <?php checked($settings['shopper_invitation_enabled'], 'yes'); ?> />
+                                    <span class="gb2-switch-row__text">
+                                        <label for="gb2-invitation-enabled"><strong><?php esc_html_e('Show the invitation', 'geeky-bot'); ?></strong></label>
+                                        <span><?php esc_html_e('One short prompt above the button after a delay, once per session. The chat stays closed until the shopper opens it.', 'geeky-bot'); ?></span>
+                                    </span>
+                                </div>
+
+                                <div style="height:14px"></div>
+
+                                <div class="gb2-field">
+                                    <label for="gb2-invitation-delay"><?php esc_html_e('Show it after', 'geeky-bot'); ?></label>
+                                    <input class="gb2-input" id="gb2-invitation-delay" name="shopper_invitation_delay" type="number" min="3" max="60" value="<?php echo esc_attr(absint($settings['shopper_invitation_delay'])); ?>" />
+                                    <p class="gb2-field__help"><?php esc_html_e('Seconds after the page loads. Ten to fifteen works well.', 'geeky-bot'); ?></p>
+                                </div>
+
+                                <div class="gb2-field">
+                                    <label for="gb2-invitation-message"><?php esc_html_e('Invitation message', 'geeky-bot'); ?></label>
+                                    <textarea class="gb2-input" id="gb2-invitation-message" name="shopper_invitation_message" rows="3" maxlength="160"><?php echo esc_textarea($settings['shopper_invitation_message']); ?></textarea>
+                                    <p class="gb2-field__help"><?php esc_html_e('Keep it short and focused on helping shoppers choose.', 'geeky-bot'); ?></p>
+                                </div>
+                            <?php Components::card_close(); ?>
+
+                            <div style="height:14px"></div>
+
+                            <?php Components::card_open(__('Starter prompts', 'geeky-bot'), '', false); ?>
+                                <div class="gb2-field">
+                                    <label for="gb2-starter-prompts" class="gb2-screen-reader-text"><?php
+                                        esc_html_e('Starter prompts', 'geeky-bot'); ?></label>
+                                    <textarea class="gb2-input" id="gb2-starter-prompts" name="starter_prompts" rows="5"><?php
+                                        echo esc_textarea(isset($settings['starter_prompts']) ? $settings['starter_prompts'] : ''); ?></textarea>
+                                    <p class="gb2-field__help"><?php
+                                        esc_html_e('One per line, written the way a customer would ask. The first four appear as buttons; leave empty for the defaults.', 'geeky-bot'); ?></p>
                                 </div>
                             <?php Components::card_close(); ?>
                             <div class="gb2-inline" style="margin-top:14px">
@@ -1821,14 +1892,9 @@ class Menu {
                         </form>
                     </div>
 
-                    <div class="gb2-col-5">
+                    <div class="gb2-col-5 gb2-sticky-col">
                         <?php Components::card_open(__('Live preview', 'geeky-bot'), __('Updates as you type', 'geeky-bot'), false); ?>
                             <?php $this->widget_preview($settings); ?>
-                            <ul class="gb2-checklist" style="margin-top:12px">
-                                <li><?php esc_html_e('Styles are scoped so your theme is untouched', 'geeky-bot'); ?></li>
-                                <li><?php esc_html_e('Mobile-first panel', 'geeky-bot'); ?></li>
-                                <li><?php esc_html_e('Product cards ready', 'geeky-bot'); ?></li>
-                            </ul>
                             <p class="gb2-note"><?php esc_html_e('Save before testing on the storefront — the preview shows unsaved changes.', 'geeky-bot'); ?></p>
                         <?php Components::card_close(); ?>
 
@@ -1869,13 +1935,17 @@ class Menu {
                     array(
                         'label' => __('Products indexed', 'geeky-bot'),
                         'value' => number_format_i18n($ctx['indexed_count']),
-                        'base' => $this->product_index_status_title($ctx),
+                        'base' => $this->product_index_status_text($ctx['index_status']),
                     ),
                     array(
                         'label' => __('Index status', 'geeky-bot'),
                         'value' => $this->product_index_status_label($ctx),
                         'base' => $ctx['index_status'] === 'current'
-                            ? __('Last full index', 'geeky-bot')
+                            ? sprintf(
+                                /* translators: %s: date of the last full index rebuild. */
+                                __('Rebuilt %s', 'geeky-bot'),
+                                strtotime((string) $ctx['last_rebuild']) ? date_i18n('M j, Y', strtotime((string) $ctx['last_rebuild'])) : __('never', 'geeky-bot')
+                            )
                             : __('Rebuild after catalog changes', 'geeky-bot'),
                     ),
                     array(
@@ -1890,18 +1960,48 @@ class Menu {
                     ),
                 )); ?>
 
+                <?php
+                $open_suggestion_count = count(array_filter(SearchLearningService::suggestions(), function ($s) {
+                    return ($s['status'] ?? '') === 'new';
+                }));
+                ?>
+                <nav class="gb2-jumpnav" aria-label="<?php esc_attr_e('On this page', 'geeky-bot'); ?>">
+                    <a href="#gb-test-lab"><?php esc_html_e('Test a phrase', 'geeky-bot'); ?></a>
+                    <a href="#gb-smart-catalog"><?php esc_html_e('Search level', 'geeky-bot'); ?></a>
+                    <a href="#gb-search-learning"><?php esc_html_e('Missed searches', 'geeky-bot'); ?><?php if ($open_suggestion_count > 0) : ?> <span class="gb2-jumpnav__count"><?php echo esc_html(number_format_i18n($open_suggestion_count)); ?></span><?php endif; ?></a>
+                    <a href="#gb-tune"><?php esc_html_e('Synonyms & ranking', 'geeky-bot'); ?></a>
+                </nav>
+
+                <span id="gb-test-lab" class="gb2-anchor"></span>
                 <?php Components::rule(__('Test what shoppers type', 'geeky-bot')); ?>
 
                 <?php Components::card_open(__('Shopper phrase test lab', 'geeky-bot'), '', false); ?>
-                    <p style="margin:0 0 12px;font-size:12.5px;line-height:1.55;color:var(--gb2-mute)"><?php
-                        esc_html_e('Run real buyer language, see what Geeky Bot understood, then tune catalog data or synonyms before checking the storefront.', 'geeky-bot'); ?></p>
-
                     <form method="get" class="gb2-inline" style="flex-wrap:nowrap;gap:8px">
                         <input type="hidden" name="page" value="geekybot-product-assistant" />
                         <input class="gb2-input" type="search" name="gb_test_query" value="<?php echo esc_attr($test_query); ?>" placeholder="<?php esc_attr_e('Try: comfortable shoes size 42 red and white', 'geeky-bot'); ?>" />
                         <button class="gb2-btn gb2-btn--primary" type="submit" style="flex:none"><?php
                             esc_html_e('Test search', 'geeky-bot'); ?></button>
                     </form>
+                    <?php
+                    // One click loads a phrase into the lab. These were a separate
+                    // "Rehearsal board" section further down the page.
+                    $rehearsal = array(
+                        'budget hoodie' => __('Budget intent', 'geeky-bot'),
+                        'hoodie between 30 and 60' => __('Price range', 'geeky-bot'),
+                        'blue hoodie' => __('Colour attribute', 'geeky-bot'),
+                        'shoes size 42' => __('Size attribute', 'geeky-bot'),
+                        'not too expensive walking shoes in black size 9' => __('Soft preference', 'geeky-bot'),
+                        'hoodies on sale' => __('Sale filter', 'geeky-bot'),
+                        'something to keep warm' => __('Descriptive request', 'geeky-bot'),
+                        'which hoodie do you recommend' => __('Recommendation', 'geeky-bot'),
+                    );
+                    ?>
+                    <div class="gb2-trychips">
+                        <span><?php esc_html_e('Try:', 'geeky-bot'); ?></span>
+                        <?php foreach ($rehearsal as $phrase => $label) : ?>
+                            <a href="<?php echo esc_url(add_query_arg(array('page' => 'geekybot-product-assistant', 'gb_test_query' => rawurlencode($phrase)), admin_url('admin.php'))); ?>" title="<?php echo esc_attr($label); ?>"><?php echo esc_html($phrase); ?></a>
+                        <?php endforeach; ?>
+                    </div>
 
                     <?php if ($test_query !== '') : ?>
                         <div class="gb2-inline" style="margin-top:12px">
@@ -1965,34 +2065,23 @@ class Menu {
                                 )); ?></p>
                             <?php endif; ?>
                         <?php endif; ?>
-                    <?php else : ?>
-                        <div class="gb2-grid" style="margin-top:14px">
-                            <div class="gb2-col-4">
-                                <p class="gb2-note" style="margin:0"><strong style="color:var(--gb2-ink)"><?php
-                                    esc_html_e('1. Read the phrase', 'geeky-bot'); ?></strong><br><?php
-                                    esc_html_e('Product terms, colour, size, price phrases and soft preferences.', 'geeky-bot'); ?></p>
-                            </div>
-                            <div class="gb2-col-4">
-                                <p class="gb2-note" style="margin:0"><strong style="color:var(--gb2-ink)"><?php
-                                    esc_html_e('2. Score the catalog', 'geeky-bot'); ?></strong><br><?php
-                                    esc_html_e('Names, categories, tags, attributes, stock and sale status.', 'geeky-bot'); ?></p>
-                            </div>
-                            <div class="gb2-col-4">
-                                <p class="gb2-note" style="margin:0"><strong style="color:var(--gb2-ink)"><?php
-                                    esc_html_e('3. Close the gap', 'geeky-bot'); ?></strong><br><?php
-                                    esc_html_e('Add synonyms when your wording differs from your shoppers.', 'geeky-bot'); ?></p>
-                            </div>
-                        </div>
                     <?php endif; ?>
                 <?php Components::card_close(); ?>
 
+                <?php
+                // Order follows what a merchant does: test a phrase, choose how
+                // much AI search uses, act on missed searches, then fine-tune.
+                // Captured here and printed after Missed searches.
+                ob_start();
+                ?>
+                <span id="gb-tune" class="gb2-anchor"></span>
                 <?php Components::rule(__('Tune the index', 'geeky-bot')); ?>
 
                 <div class="gb2-grid">
                     <div class="gb2-col-5">
                         <?php Components::card_open(__('Product index', 'geeky-bot'), '', false); ?>
-                            <p style="margin:0 0 12px;font-size:12.5px;line-height:1.55;color:var(--gb2-mute)"><?php
-                                esc_html_e('Rebuild after imports, category changes, product updates, attribute edits, or stock and sale changes.', 'geeky-bot'); ?></p>
+                            <p style="margin:0 0 12px;font-size:var(--gb2-t-sm);line-height:1.55;color:var(--gb2-mute)"><?php
+                                esc_html_e('Product edits update the index automatically. Rebuild only after a large import, or if results look out of date.', 'geeky-bot'); ?></p>
 
                             <form method="post" action="<?php echo esc_url(admin_url('admin-post.php')); ?>">
                                 <?php wp_nonce_field('geekybot_rebuild_product_index'); ?>
@@ -2001,28 +2090,7 @@ class Menu {
                                     esc_html_e('Rebuild search index', 'geeky-bot'); ?></button>
                             </form>
 
-                            <div class="gb2-keyvalues" style="margin-top:14px">
-                                <div class="gb2-keyvalue"><span><?php esc_html_e('Product data', 'geeky-bot'); ?></span>
-                                    <strong style="font-size:12px;font-weight:500;color:var(--gb2-mute)"><?php
-                                        esc_html_e('Name, SKU, category, tags, attributes', 'geeky-bot'); ?></strong></div>
-                                <div class="gb2-keyvalue"><span><?php esc_html_e('Buyer intent', 'geeky-bot'); ?></span>
-                                    <strong style="font-size:12px;font-weight:500;color:var(--gb2-mute)"><?php
-                                        esc_html_e('Price, colour, size, recommendations', 'geeky-bot'); ?></strong></div>
-                                <div class="gb2-keyvalue"><span><?php esc_html_e('Commerce signals', 'geeky-bot'); ?></span>
-                                    <strong style="font-size:12px;font-weight:500;color:var(--gb2-mute)"><?php
-                                        esc_html_e('Stock, sale, ratings, popularity', 'geeky-bot'); ?></strong></div>
-                            </div>
-
-                            <div class="gb2-chips" style="margin-top:12px">
-                                <span><?php esc_html_e('Product name', 'geeky-bot'); ?></span>
-                                <span><?php esc_html_e('SKU', 'geeky-bot'); ?></span>
-                                <span><?php esc_html_e('Categories', 'geeky-bot'); ?></span>
-                                <span><?php esc_html_e('Tags', 'geeky-bot'); ?></span>
-                                <span><?php esc_html_e('Attributes', 'geeky-bot'); ?></span>
-                                <span><?php esc_html_e('Price phrases', 'geeky-bot'); ?></span>
-                                <span><?php esc_html_e('Sale status', 'geeky-bot'); ?></span>
-                                <span><?php esc_html_e('Stock', 'geeky-bot'); ?></span>
-                            </div>
+                            <p class="gb2-note"><?php echo esc_html($this->product_index_status_text(ProductIndexService::rebuild_status())); ?></p>
                         <?php Components::card_close(); ?>
                     </div>
 
@@ -2030,35 +2098,25 @@ class Menu {
                         <?php $this->product_search_controls($settings); ?>
                     </div>
                 </div>
+                <?php $tune_section = ob_get_clean(); ?>
 
-                <?php Components::rule(__('Rehearsal board', 'geeky-bot')); ?>
+                <?php Components::rule(__('Search level', 'geeky-bot')); ?>
 
-                <?php Components::card_open(__('Phrases worth re-testing', 'geeky-bot'), '', false); ?>
-                    <p style="margin:0 0 12px;font-size:12.5px;line-height:1.55;color:var(--gb2-mute)"><?php
-                        esc_html_e('Click a phrase to load it into the test lab and confirm buyer language still maps to the right products.', 'geeky-bot'); ?></p>
-                    <div class="gb2-inline">
-                        <?php
-                        $rehearsal = array(
-                            'budget hoodie' => __('Budget intent', 'geeky-bot'),
-                            'hoodie between 30 and 60' => __('Price range', 'geeky-bot'),
-                            'blue hoodie' => __('Colour attribute', 'geeky-bot'),
-                            'shoes size 42' => __('Size attribute', 'geeky-bot'),
-                            'comfortable shoes size 42 red and white' => __('Natural buyer query', 'geeky-bot'),
-                            'not too expensive walking shoes in black size 9' => __('Soft preference', 'geeky-bot'),
-                            'hoodies on sale' => __('Sale filter', 'geeky-bot'),
-                            'which hoodie do you recommend' => __('Recommendation', 'geeky-bot'),
-                        );
-                        foreach ($rehearsal as $phrase => $label) :
-                            $url = add_query_arg(array('page' => 'geekybot-product-assistant', 'gb_test_query' => rawurlencode($phrase)), admin_url('admin.php'));
-                            ?>
-                            <a class="gb2-btn" href="<?php echo esc_url($url); ?>" title="<?php echo esc_attr($label); ?>">
-                                <code style="font-family:var(--gb2-mono);font-size:11px"><?php echo esc_html($phrase); ?></code>
-                            </a>
-                        <?php endforeach; ?>
-                    </div>
-                <?php Components::card_close(); ?>
+                <?php $this->smart_catalog_section($settings); ?>
 
-                <div style="margin-top:14px"><?php $this->nlp_action_examples(); ?></div>
+                <?php Components::rule(__('Missed searches', 'geeky-bot')); ?>
+
+                <?php $this->search_learning_section(); ?>
+
+                <?php
+                // Rendered by this method above; every value inside was escaped there.
+                echo $tune_section; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+                ?>
+
+                <details class="gb2-card gb2-details gb2-details--card">
+                    <summary><?php esc_html_e('More phrases to try in the chat', 'geeky-bot'); ?></summary>
+                    <?php $this->nlp_action_examples(); ?>
+                </details>
             </div>
         </div>
         <?php
@@ -2163,7 +2221,7 @@ class Menu {
                     <div class="gb2-grid">
                         <div class="gb2-col-7">
                             <?php Components::card_open(__('Choose public answer sources', 'geeky-bot'), '', false); ?>
-                                <p style="margin:0 0 12px;font-size:12.5px;line-height:1.55;color:var(--gb2-mute)"><?php
+                                <p style="margin:0 0 12px;font-size:var(--gb2-t-sm);line-height:1.55;color:var(--gb2-mute)"><?php
                                     esc_html_e('Pick a small set of accurate, shopper-facing pages. Geeky Bot reads the stored page text only — it never crawls arbitrary URLs or runs shortcodes.', 'geeky-bot'); ?></p>
 
                                 <?php if (empty($pages)) : ?>
@@ -2210,7 +2268,7 @@ class Menu {
                                 ),
                                 false
                             ); ?>
-                                <p style="margin:0 0 12px;font-size:12.5px;line-height:1.55;color:var(--gb2-mute)"><?php
+                                <p style="margin:0 0 12px;font-size:var(--gb2-t-sm);line-height:1.55;color:var(--gb2-mute)"><?php
                                     printf(
                                         /* translators: %d: number of suggested policy pages. */
                                         esc_html__('%d suggested policy pages were detected. Only checked pages become approved sources.', 'geeky-bot'),
@@ -2232,7 +2290,7 @@ class Menu {
                 <?php Components::rule(__('Index maintenance', 'geeky-bot')); ?>
 
                 <?php Components::card_open(__('Refresh the knowledge index', 'geeky-bot'), '', false); ?>
-                    <p style="margin:0 0 12px;font-size:12.5px;line-height:1.55;color:var(--gb2-mute)"><?php
+                    <p style="margin:0 0 12px;font-size:var(--gb2-t-sm);line-height:1.55;color:var(--gb2-mute)"><?php
                         esc_html_e('Selected pages refresh automatically when you save. Use this after imports, page-builder migrations, or when a source shows as stale or missing above.', 'geeky-bot'); ?></p>
                     <form method="post" action="<?php echo esc_url(admin_url('admin-post.php')); ?>">
                         <?php wp_nonce_field('geekybot_refresh_knowledge_index'); ?>
@@ -2424,7 +2482,7 @@ class Menu {
 
                     <div class="gb2-col-4">
                         <?php Components::card_open(__('Insight without profiling', 'geeky-bot'), '', false, 'gb2-fill'); ?>
-                            <p style="margin:0 0 12px;font-size:12px;color:var(--gb2-mute)"><?php
+                            <p style="margin:0 0 12px;font-size:var(--gb2-t-sm);color:var(--gb2-mute)"><?php
                                 esc_html_e('This page uses conversation IDs and aggregate events. It never shows IP hashes, browser fingerprints, or API secrets.', 'geeky-bot'); ?></p>
                             <ul class="gb2-checklist">
                                 <li><?php echo esc_html(sprintf(
@@ -2457,226 +2515,37 @@ class Menu {
     }
 
 
-    public function integrations() {
-        $ctx = $this->context();
-        $settings = $ctx['settings'];
-        $mode = isset($settings['provider_mode']) ? (string) $settings['provider_mode'] : 'local';
-        $zywrap_key_saved = Settings::has_secret('zywrap_api_key');
-        $openai_key_saved = Settings::has_secret('openai_api_key');
-        $zywrap_endpoint_saved = !empty($settings['zywrap_endpoint']);
-        $local_active = $mode === 'local';
-        $zywrap_ready = $mode === 'zywrap' && $zywrap_key_saved && $zywrap_endpoint_saved;
-        $openai_ready = $mode === 'openai' && $openai_key_saved;
-        $configured_count = 1 + ($zywrap_key_saved && $zywrap_endpoint_saved ? 1 : 0) + ($openai_key_saved ? 1 : 0);
-        $budget = AiBudgetService::status();
-        $key_storage_state = Settings::secret_storage_state();
-        $key_storage_value = __('Encrypted', 'geeky-bot');
-        $key_storage_base = __('Encrypted at rest, never shown again after saving', 'geeky-bot');
-        if ($key_storage_state === 'unavailable') {
-            $key_storage_value = __('Cannot store', 'geeky-bot');
-            $key_storage_base = __('No libsodium or OpenSSL on this server', 'geeky-bot');
-        } elseif ($key_storage_state === 'plaintext') {
-            $key_storage_value = __('Unencrypted', 'geeky-bot');
-            $key_storage_base = __('Saved before 2.1.0 — re-save the key to encrypt it', 'geeky-bot');
-        } elseif ($key_storage_state === 'none') {
-            $key_storage_value = __('None saved', 'geeky-bot');
-            $key_storage_base = __('Encrypted at rest when you save one', 'geeky-bot');
-        }
-        ?>
-        <div class="wrap geekybot-admin-wrap geekybot-integrations">
-            <?php $this->page_hero(__('Answer Mode', 'geeky-bot'), __('Choose local grounded answers, Zywrap, or BYOK while keeping API keys server-side and answers grounded in store data.', 'geeky-bot'), __('Answer mode', 'geeky-bot'), admin_url('admin.php?page=geekybot-settings#gb-settings-ai'), __('Configure answer mode', 'geeky-bot')); ?>
-
-            <div class="gb2-main">
-
-                <?php Components::metrics(array(
-                    array(
-                        'label' => __('Current answer mode', 'geeky-bot'),
-                        'value' => $this->provider_label($settings),
-                        'base' => __('Used to generate grounded answers', 'geeky-bot'),
-                    ),
-                    array(
-                        'label' => __('API keys', 'geeky-bot'),
-                        'value' => $key_storage_value,
-                        'base' => $key_storage_base,
-                    ),
-                    array(
-                        'label' => __('Modes available', 'geeky-bot'),
-                        'value' => number_format_i18n($configured_count) . '/3',
-                        'base' => __('Local mode is always available', 'geeky-bot'),
-                    ),
-                    array(
-                        'label' => __('AI budget left today', 'geeky-bot'),
-                        'value' => $local_active
-                            ? __('Not used', 'geeky-bot')
-                            : number_format_i18n($budget['daily']['remaining']),
-                        'base' => $local_active
-                            ? __('Local grounded mode makes no provider calls', 'geeky-bot')
-                            : sprintf(
-                                /* translators: 1: daily cap, 2: monthly calls remaining. */
-                                __('Of %1$s per day. %2$s left this month.', 'geeky-bot'),
-                                number_format_i18n($budget['daily']['cap']),
-                                number_format_i18n($budget['monthly']['remaining'])
-                            ),
-                    ),
-                )); ?>
-
-                <?php Components::rule(__('Answer modes', 'geeky-bot')); ?>
-
-                <div class="gb2-grid">
-                    <?php
-                    $providers = array(
-                        array(
-                            'title' => __('Local grounded mode', 'geeky-bot'),
-                            'description' => __('The fastest and safest default, and what a new install runs on. No language model is called: answers are assembled from WooCommerce product data and your selected policy pages, so wording is consistent rather than conversational and nothing leaves your server. Add a provider key below for generated answers.', 'geeky-bot'),
-                            'active' => $local_active,
-                            'state_label' => $local_active ? __('Active', 'geeky-bot') : __('Available', 'geeky-bot'),
-                            'state' => $local_active ? 'ok' : 'neutral',
-                            'checks' => array(
-                                array('label' => __('No API key required', 'geeky-bot'), 'ok' => true),
-                                array('label' => __('Grounded in your catalog', 'geeky-bot'), 'ok' => true),
-                                array('label' => __('Safe policy fallback', 'geeky-bot'), 'ok' => true),
-                            ),
-                            'action' => $local_active ? __('Review active mode', 'geeky-bot') : __('Choose local mode', 'geeky-bot'),
-                        ),
-                        array(
-                            'title' => __('Zywrap endpoint', 'geeky-bot'),
-                            'description' => __('A hosted endpoint for store-grounded answers, when you want stronger response generation without exposing secrets to the storefront.', 'geeky-bot'),
-                            'active' => $zywrap_ready,
-                            'state_label' => $zywrap_ready ? __('Configured', 'geeky-bot') : __('Available', 'geeky-bot'),
-                            'state' => $zywrap_ready ? 'ok' : 'neutral',
-                            'checks' => array(
-                                array('label' => $zywrap_endpoint_saved ? __('Endpoint saved', 'geeky-bot') : __('Endpoint missing', 'geeky-bot'), 'ok' => $zywrap_endpoint_saved),
-                                array('label' => $zywrap_key_saved ? __('API key stored', 'geeky-bot') : __('API key missing', 'geeky-bot'), 'ok' => $zywrap_key_saved),
-                            ),
-                            'action' => $zywrap_ready ? __('Review Zywrap setup', 'geeky-bot') : __('Configure Zywrap', 'geeky-bot'),
-                        ),
-                        array(
-                            'title' => __('OpenAI (your own key)', 'geeky-bot'),
-                            'description' => __('Optional bring-your-own-key mode. Geeky Bot sends only the shopper question and the grounded store context, from the server.', 'geeky-bot'),
-                            'active' => $openai_ready,
-                            'state_label' => $openai_ready ? __('Configured', 'geeky-bot') : __('Available', 'geeky-bot'),
-                            'state' => $openai_ready ? 'ok' : 'neutral',
-                            'checks' => array(
-                                array('label' => $openai_key_saved ? __('API key stored', 'geeky-bot') : __('API key missing', 'geeky-bot'), 'ok' => $openai_key_saved),
-                                array('label' => __('Model is controlled', 'geeky-bot'), 'ok' => true),
-                                array('label' => __('Token limit enforced', 'geeky-bot'), 'ok' => true),
-                            ),
-                            'action' => $openai_ready ? __('Review OpenAI setup', 'geeky-bot') : __('Configure your key', 'geeky-bot'),
-                        ),
-                    );
-
-                    foreach ($providers as $provider) : ?>
-                        <div class="gb2-col-4">
-                            <?php Components::card_open('', '', false, 'gb2-fill'); ?>
-                                <div class="gb2-inline" style="margin-bottom:10px">
-                                    <?php Components::pill($provider['state_label'], $provider['state']); ?>
-                                </div>
-                                <h3 style="margin:0 0 5px;font-size:14px;font-weight:600"><?php
-                                    echo esc_html($provider['title']); ?></h3>
-                                <p style="margin:0 0 12px;font-size:12px;line-height:1.55;color:var(--gb2-mute)"><?php
-                                    echo esc_html($provider['description']); ?></p>
-
-                                <ul class="gb2-checklist" style="margin-bottom:12px">
-                                    <?php foreach ($provider['checks'] as $check) : ?>
-                                        <li<?php echo $check['ok'] ? '' : ' class="gb2-checklist__missing"'; ?>><?php
-                                            echo esc_html($check['label']); ?></li>
-                                    <?php endforeach; ?>
-                                </ul>
-
-                                <?php Components::action_link(array(
-                                    'label' => $provider['action'],
-                                    'url' => admin_url('admin.php?page=geekybot-settings#gb-settings-ai'),
-                                    'variant' => $provider['active'] ? 'primary' : 'default',
-                                )); ?>
-                            <?php Components::card_close(); ?>
-                        </div>
-                    <?php endforeach; ?>
-                </div>
-
-                <?php Components::rule(__('Before you change it', 'geeky-bot')); ?>
-
-                <div class="gb2-grid">
-                    <div class="gb2-col-6">
-                        <?php Components::card_open(__('Confirm the mode before launch', 'geeky-bot'), '', false, 'gb2-fill'); ?>
-                            <p style="margin:0 0 12px;font-size:12.5px;line-height:1.55;color:var(--gb2-mute)"><?php
-                                esc_html_e('Keep local mode for the safest baseline, or configure Zywrap or your own OpenAI key from Settings when you want AI-generated grounded answers.', 'geeky-bot'); ?></p>
-                            <p class="gb2-note"><?php
-                                esc_html_e('After changing answer mode, run one product search and one policy question on the storefront to confirm the assistant is still grounded.', 'geeky-bot'); ?></p>
-                            <div style="margin-top:12px">
-                                <?php Components::action_link(array(
-                                    'label' => __('Test on storefront', 'geeky-bot'),
-                                    'url' => home_url('/'),
-                                    'variant' => 'primary',
-                                    'external' => true,
-                                )); ?>
-                            </div>
-                        <?php Components::card_close(); ?>
-                    </div>
-
-                    <div class="gb2-col-6">
-                        <?php Components::card_open(__('Secrets stay behind WordPress', 'geeky-bot'), '', false, 'gb2-fill'); ?>
-                            <p style="margin:0 0 12px;font-size:12.5px;line-height:1.55;color:var(--gb2-mute)"><?php
-                                esc_html_e('The storefront receives public widget settings and a REST nonce only. Provider secrets are saved server-side and never printed into JavaScript.', 'geeky-bot'); ?></p>
-                            <ul class="gb2-checklist">
-                                <li><?php esc_html_e('Saved API keys are not displayed after saving', 'geeky-bot'); ?></li>
-                                <li><?php esc_html_e('Admin changes require capability and nonce checks', 'geeky-bot'); ?></li>
-                                <li><?php esc_html_e('Public assistant requests are rate limited', 'geeky-bot'); ?></li>
-                                <li><?php esc_html_e('No invented products, prices, coupons or policies', 'geeky-bot'); ?></li>
-                            </ul>
-                        <?php Components::card_close(); ?>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <?php
-    }
-
     public function settings() {
         $settings = Settings::all();
-        $pages = get_pages(array('post_status' => 'publish', 'sort_column' => 'post_title'));
-        $selected_pages = array_map('absint', (array) $settings['policy_page_ids']);
-        $widget_enabled = isset($settings['widget_enabled']) && $settings['widget_enabled'] === 'yes';
-        $natural_enabled = isset($settings['natural_search_enabled']) && $settings['natural_search_enabled'] === 'yes';
-        $history_enabled = isset($settings['chat_history_enabled']) && $settings['chat_history_enabled'] === 'yes';
         $provider_label = $this->provider_label($settings);
-        $selected_policy_count = count($selected_pages);
-        $boost_count = 0;
-        foreach (array('search_boost_in_stock', 'search_boost_sale', 'search_boost_rating', 'search_boost_popularity') as $boost_key) {
-            $boost_count += (isset($settings[$boost_key]) && $settings[$boost_key] === 'yes') ? 1 : 0;
-        }
-        $configuration_score = 25 + ($widget_enabled ? 25 : 0) + ($natural_enabled ? 25 : 0) + ($history_enabled ? 25 : 0);
+        $budget = AiBudgetService::status();
+        $key_state = Settings::secret_storage_state();
+        $key_labels = array(
+            'encrypted' => __('Encrypted', 'geeky-bot'),
+            'unavailable' => __('Cannot store', 'geeky-bot'),
+            'plaintext' => __('Unencrypted', 'geeky-bot'),
+            'none' => __('None saved', 'geeky-bot'),
+        );
+        $level_labels = array(
+            'standard' => __('Standard', 'geeky-bot'),
+            'catalog' => __('Smart Catalog', 'geeky-bot'),
+            'rescue' => __('Smart Catalog + Rescue', 'geeky-bot'),
+        );
+        $search_level = isset($settings['search_ai_level']) ? $settings['search_ai_level'] : 'standard';
         ?>
-        <div class="wrap geekybot-admin-wrap geekybot-admin-settings-modern geekybot-admin-settings-cockpit geekybot-settings-premium-v2">
+        <div class="wrap geekybot-admin-wrap geekybot-ai-privacy">
             <?php
-            // The 2.0.1 readiness aside listed widget / natural search /
-            // provider / history — the same four facts as the signal row beside
-            // it. Collapsed into one fact row here; nothing is lost.
+            // Settings used to repeat the widget, search and policy fields that
+            // their own pages already own, so the same value could be edited in
+            // two places. This page keeps only what has no other home: how
+            // answers and search use AI, where keys are kept, and shopper data.
             Components::page_header(array(
-                'title' => __('Settings', 'geeky-bot'),
+                'title' => __('AI & Privacy', 'geeky-bot'),
                 'brand' => array($this, 'brand_mark_svg'),
-                'description' => __('Widget behavior, buyer-language search, grounded answers, provider security, privacy and rate limits.', 'geeky-bot'),
+                'description' => __('How answers and search use AI, where your API keys are kept, and what shopper data is stored.', 'geeky-bot'),
                 'status' => array(
-                    /* translators: %s: configuration completeness percentage. */
-                    'label' => sprintf(__('%s%% configured', 'geeky-bot'), number_format_i18n($configuration_score)),
-                    'state' => $configuration_score >= 100 ? 'ok' : 'warn',
-                ),
-                'signals' => array(
-                    array(
-                        'value' => $widget_enabled ? __('Live', 'geeky-bot') : __('Off', 'geeky-bot'),
-                        'label' => __('storefront widget', 'geeky-bot'),
-                    ),
-                    array(
-                        'value' => $natural_enabled ? __('Natural', 'geeky-bot') : __('Keyword', 'geeky-bot'),
-                        'label' => __('buyer language', 'geeky-bot'),
-                    ),
-                    array(
-                        'value' => $settings['provider_mode'] === 'local' ? __('Grounded', 'geeky-bot') : $provider_label,
-                        'label' => __('answer mode', 'geeky-bot'),
-                    ),
-                    array(
-                        'value' => $history_enabled ? __('On', 'geeky-bot') : __('Off', 'geeky-bot'),
-                        'label' => __('conversation review', 'geeky-bot'),
-                    ),
+                    'label' => $settings['provider_mode'] === 'local' ? __('No AI in answers', 'geeky-bot') : $provider_label,
+                    'state' => 'ok',
                 ),
                 'actions' => array(
                     array(
@@ -2685,17 +2554,37 @@ class Menu {
                         'variant' => 'primary',
                         'external' => true,
                     ),
-                    array(
-                        'label' => __('Product Search', 'geeky-bot'),
-                        'url' => admin_url('admin.php?page=geekybot-product-assistant'),
-                    ),
-                    array(
-                        'label' => __('Dashboard', 'geeky-bot'),
-                        'url' => admin_url('admin.php?page=geekybot'),
-                    ),
                 ),
             ));
             ?>
+            <div class="gb2-main">
+            <?php Components::metrics(array(
+                array(
+                    'label' => __('Chat answers', 'geeky-bot'),
+                    'value' => $provider_label,
+                    'base' => $settings['provider_mode'] === 'local' ? __('Built from your store data, no AI', 'geeky-bot') : __('Written by AI from your store data', 'geeky-bot'),
+                ),
+                array(
+                    'label' => __('Product search', 'geeky-bot'),
+                    'value' => isset($level_labels[$search_level]) ? $level_labels[$search_level] : $level_labels['standard'],
+                    'base' => __('Change it on Product Search', 'geeky-bot'),
+                ),
+                array(
+                    'label' => __('API keys', 'geeky-bot'),
+                    'value' => isset($key_labels[$key_state]) ? $key_labels[$key_state] : $key_labels['none'],
+                    'base' => __('Never shown again after saving', 'geeky-bot'),
+                ),
+                array(
+                    'label' => __('AI calls left today', 'geeky-bot'),
+                    'value' => number_format_i18n($budget['daily']['remaining']),
+                    'base' => sprintf(
+                        /* translators: %s: daily AI call limit. */
+                        __('of %s per day', 'geeky-bot'),
+                        number_format_i18n($budget['daily']['cap'])
+                    ),
+                ),
+            )); ?>
+            </div>
             <?php // phpcs:ignore WordPress.Security.NonceVerification.Recommended -- Read-only status notice flag. ?>
             <?php // phpcs:ignore WordPress.Security.NonceVerification.Recommended -- Read-only status notice flag. ?>
             <?php $gb_secret_refused = isset($_GET['gb_notice']) && sanitize_key(wp_unslash($_GET['gb_notice'])) === 'secret_refused'; ?>
@@ -2707,47 +2596,17 @@ class Menu {
             <form method="post" class="gb2-settings">
                 <?php wp_nonce_field('geekybot_save_settings'); ?>
                 <input type="hidden" name="geekybot_settings_action" value="save" />
-                <nav class="gb2-rail" aria-label="<?php esc_attr_e('Settings sections', 'geeky-bot'); ?>">
-                    <a href="#gb-settings-assistant"><span><?php esc_html_e('01', 'geeky-bot'); ?></span><?php esc_html_e('Storefront', 'geeky-bot'); ?></a>
-                    <a href="#gb-settings-search"><span><?php esc_html_e('02', 'geeky-bot'); ?></span><?php esc_html_e('Search', 'geeky-bot'); ?></a>
-                    <a href="#gb-settings-knowledge"><span><?php esc_html_e('03', 'geeky-bot'); ?></span><?php esc_html_e('Knowledge', 'geeky-bot'); ?></a>
-                    <a href="#gb-settings-ai"><span><?php esc_html_e('04', 'geeky-bot'); ?></span><?php esc_html_e('Answer mode', 'geeky-bot'); ?></a>
-                    <a href="#gb-settings-privacy"><span><?php esc_html_e('05', 'geeky-bot'); ?></span><?php esc_html_e('Privacy', 'geeky-bot'); ?></a>
+                <?php // Partial: this form no longer carries the widget, search or policy fields, and a full save would reset them. Every checkbox here posts an explicit "no". ?>
+                <input type="hidden" name="geekybot_settings_scope" value="partial" />
+                <nav class="gb2-rail" aria-label="<?php esc_attr_e('Page sections', 'geeky-bot'); ?>">
+                    <a href="#gb-settings-ai"><span><?php esc_html_e('01', 'geeky-bot'); ?></span><?php esc_html_e('AI connection', 'geeky-bot'); ?></a>
+                    <a href="#gb-settings-privacy"><span><?php esc_html_e('02', 'geeky-bot'); ?></span><?php esc_html_e('Privacy', 'geeky-bot'); ?></a>
                 </nav>
                 <div class="gb2-settings__main">
-                    <section id="gb-settings-assistant" class="gb2-card gb2-scard">
-                        <div class="gb2-scard__head"><div><p class="gb2-eyebrow"><?php esc_html_e('Storefront experience', 'geeky-bot'); ?></p><h2><?php esc_html_e('Assistant and widget', 'geeky-bot'); ?></h2><p><?php esc_html_e('Set the shopper-facing name, first message, safe fallback answer, accent color, and product-card volume.', 'geeky-bot'); ?></p></div><div class="gb2-scard__meta"><span><?php echo esc_html($widget_enabled ? __('Live', 'geeky-bot') : __('Off', 'geeky-bot')); ?></span><span><?php echo esc_html(absint($settings['max_products'])); ?> <?php esc_html_e('products', 'geeky-bot'); ?></span><span><?php echo esc_html(ucfirst($settings['button_position'])); ?></span></div></div>
-                        <?php $this->settings_table_assistant($settings); ?>
-                    </section>
-
-                    <section id="gb-settings-search" class="gb2-card gb2-scard">
-                        <div class="gb2-scard__head"><div><p class="gb2-eyebrow"><?php esc_html_e('Catalog intelligence', 'geeky-bot'); ?></p><h2><?php esc_html_e('Buyer-language search', 'geeky-bot'); ?></h2><p><?php esc_html_e('Tune buyer-language understanding, synonym expansion, product matches, and ranking boosts.', 'geeky-bot'); ?></p></div><div class="gb2-scard__meta"><span><?php echo esc_html($natural_enabled ? __('Natural search on', 'geeky-bot') : __('Natural search off', 'geeky-bot')); ?></span><span><?php echo esc_html($settings['search_close_match_mode'] === 'strict' ? __('Exact only', 'geeky-bot') : __('Smart matches', 'geeky-bot')); ?></span><span><?php echo esc_html($boost_count); ?> <?php esc_html_e('boosts', 'geeky-bot'); ?></span></div></div>
-                        <?php $this->settings_table_search($settings, 'compact'); ?>
-                    </section>
-
-                    <section id="gb-settings-knowledge" class="gb2-card gb2-scard">
-                        <div class="gb2-scard__head"><div><p class="gb2-eyebrow"><?php esc_html_e('Grounded answers', 'geeky-bot'); ?></p><h2><?php esc_html_e('Store knowledge', 'geeky-bot'); ?></h2><p><?php esc_html_e('Select safe public pages for shipping, refund, return, payment and warranty answers.', 'geeky-bot'); ?></p></div><div class="gb2-scard__meta"><span><?php echo esc_html(number_format_i18n($selected_policy_count)); ?> <?php esc_html_e('selected', 'geeky-bot'); ?></span><span><?php esc_html_e('Safe fallback answer', 'geeky-bot'); ?></span></div></div>
-                        <div class="gb2-sgrid">
-                            <?php if (empty($pages)) : ?>
-                                <div class="gb2-snote"><strong><?php esc_html_e('No public pages found.', 'geeky-bot'); ?></strong><span><?php esc_html_e('Create shipping, returns, refund, payment, warranty or privacy pages before enabling policy answers.', 'geeky-bot'); ?></span></div>
-                            <?php else : foreach ($pages as $page) :
-                                $page_id = absint($page->ID);
-                                $is_selected = in_array($page_id, $selected_pages, true);
-                                $title = strtolower((string) $page->post_title);
-                                $looks_policy = preg_match('/shipping|return|refund|privacy|terms|warranty|policy|delivery|payment/', $title);
-                                ?>
-                                <label class="gb2-pagecard <?php echo esc_attr($is_selected ? 'is-selected' : ''); ?> <?php echo esc_attr($looks_policy ? 'is-suggested' : ''); ?>">
-                                    <input type="checkbox" name="policy_page_ids[]" value="<?php echo esc_attr($page_id); ?>" <?php checked($is_selected); ?> />
-                                    <span><strong><?php echo esc_html($page->post_title); ?></strong><em><?php echo esc_html($looks_policy ? __('Likely policy page', 'geeky-bot') : __('Public page', 'geeky-bot')); ?></em></span>
-                                </label>
-                            <?php endforeach; endif; ?>
-                        </div>
-                        <div class="gb2-snote"><strong><?php esc_html_e('Safe policy answer rule', 'geeky-bot'); ?></strong><span><?php esc_html_e('If selected pages do not confirm the detail, Geeky Bot says it is not confirmed and directs the shopper to the source or store team.', 'geeky-bot'); ?></span></div>
-                    </section>
-
                     <section id="gb-settings-ai" class="gb2-card gb2-scard">
-                        <div class="gb2-scard__head"><div><p class="gb2-eyebrow"><?php esc_html_e('Answer mode and security', 'geeky-bot'); ?></p><h2><?php esc_html_e('Answer mode', 'geeky-bot'); ?></h2><p><?php esc_html_e('Choose local grounded mode, Zywrap, or BYOK while keeping secrets server-side.', 'geeky-bot'); ?></p></div><div class="gb2-scard__meta"><span><?php echo esc_html($provider_label); ?></span><span><?php esc_html_e('Keys hidden', 'geeky-bot'); ?></span></div></div>
+                        <div class="gb2-scard__head"><div><p class="gb2-eyebrow"><?php esc_html_e('Answers and AI', 'geeky-bot'); ?></p><h2><?php esc_html_e('AI connection', 'geeky-bot'); ?></h2><p><?php esc_html_e('Choose how chat answers are written, and save the key Smart Catalog and Rescue use. Keys stay on your server.', 'geeky-bot'); ?></p></div><div class="gb2-scard__meta"><span><?php echo esc_html($provider_label); ?></span><span><?php esc_html_e('Keys hidden', 'geeky-bot'); ?></span></div></div>
                         <?php $this->settings_table_ai($settings); ?>
+                        <div class="gb2-snote"><strong><?php esc_html_e('After changing the answer mode', 'geeky-bot'); ?></strong><span><?php esc_html_e('Ask one product and one policy question on your storefront to check the answers.', 'geeky-bot'); ?></span></div>
                     </section>
 
                     <section id="gb-settings-privacy" class="gb2-card gb2-scard">
@@ -2991,7 +2850,7 @@ class Menu {
                     </div>
 
                     <?php if (!empty($session_detail['events'])) : ?>
-                        <h3 style="margin:18px 0 8px;font-size:12.5px;font-weight:600"><?php esc_html_e('Shopper interactions', 'geeky-bot'); ?></h3>
+                        <h3 style="margin:18px 0 8px;font-size:var(--gb2-t-sm);font-weight:600"><?php esc_html_e('Shopper interactions', 'geeky-bot'); ?></h3>
                         <ul class="gb2-feed" style="border:1px solid var(--gb2-line);border-radius:var(--gb2-r-sm)">
                             <?php foreach ($session_detail['events'] as $event) : ?>
                                 <?php Components::feed_item(array(
@@ -3039,7 +2898,7 @@ class Menu {
                                         <td>
                                             <a class="gb2-link" style="margin:0" href="<?php echo esc_url(add_query_arg(array('page' => 'geekybot-conversations', 'gb_session' => absint($row['id'])), admin_url('admin.php'))); ?>"><strong><?php
                                                 echo esc_html($row_conversation_label); ?></strong></a>
-                                            <div style="font-size:11px;color:var(--gb2-faint)"><?php
+                                            <div style="font-size:var(--gb2-t-xs);color:var(--gb2-faint)"><?php
                                                 echo esc_html(absint($row['user_id']) > 0 ? __('Registered shopper', 'geeky-bot') : __('Guest shopper', 'geeky-bot')); ?></div>
                                         </td>
                                         <td><?php echo esc_html(wp_trim_words((string) $row['last_shopper_message'], 14)); ?></td>
@@ -3100,7 +2959,7 @@ class Menu {
                     </div>
                 </div>
 
-                <p style="margin:0 0 14px;font-size:12.5px;color:var(--gb2-mute)">
+                <p style="margin:0 0 14px;font-size:var(--gb2-t-sm);color:var(--gb2-mute)">
                     <?php
                     echo esc_html(
                         sprintf(
@@ -3181,7 +3040,7 @@ class Menu {
                                         Components::pill($status_label, $handled_now ? 'ok' : ($is_ignored ? 'neutral' : 'warn'));
                                         ?>
                                     </div>
-                                    <h3 style="margin:0 0 6px;font-size:14px;font-weight:600;line-height:1.4"><?php
+                                    <h3 style="margin:0 0 6px;font-size:16px;font-weight:600;line-height:1.4"><?php
                                         echo esc_html(wp_trim_words($question->question, 24)); ?></h3>
                                     <div class="gb2-review__meta">
                                         <span><?php echo esc_html(sprintf(
@@ -3476,236 +3335,298 @@ class Menu {
         $update_settings = LicenseService::update_settings();
         $can_install = current_user_can('install_plugins');
         $can_activate = current_user_can('activate_plugins');
-        $status_class = $license['active'] ? 'is-ready' : 'is-warning';
-        $plugin_label = $plugin['active']
-            ? __('Installed and active', 'geeky-bot')
-            : ($plugin['installed'] ? __('Installed, inactive', 'geeky-bot') : __('Not installed', 'geeky-bot'));
-        $update_label = !$plugin['installed']
-            ? __('Not applicable', 'geeky-bot')
-            : (!empty($update['update_available']) ? __('Available', 'geeky-bot') : __('Current', 'geeky-bot'));
         $limit_reached = $license['status'] === 'activation_limit_reached';
+        $has_key = $license['maskedKey'] !== '';
         // phpcs:disable WordPress.Security.NonceVerification.Recommended -- These sanitized values only render a status notice.
         $notice = isset($_GET['gb_license_notice']) ? sanitize_key(wp_unslash($_GET['gb_license_notice'])) : '';
         $error = isset($_GET['gb_license_error']) ? sanitize_text_field(wp_unslash($_GET['gb_license_error'])) : '';
         // phpcs:enable WordPress.Security.NonceVerification.Recommended
         $notice_messages = array(
-            'activated' => __('Commerce Pro license activated for this site.', 'geeky-bot'),
-            'deactivated' => __('Commerce Pro license deactivated on this site.', 'geeky-bot'),
-            'refreshed' => __('Commerce Pro license status refreshed.', 'geeky-bot'),
-            'installed' => __('Commerce Pro installed and activated.', 'geeky-bot'),
-            'plugin_activated' => __('Commerce Pro plugin activated.', 'geeky-bot'),
-            'update_settings_saved' => __('Commerce Pro update settings saved.', 'geeky-bot'),
-            'update_refreshed' => __('Commerce Pro update status refreshed.', 'geeky-bot'),
+            'activated' => __('License activated for this site.', 'geeky-bot'),
+            'ready' => __('Commerce Pro is installed and switched on. You are all set.', 'geeky-bot'),
+            'deactivated' => __('License deactivated on this site.', 'geeky-bot'),
+            'refreshed' => __('License status refreshed.', 'geeky-bot'),
+            'installed' => __('Commerce Pro is installed. Switch it on to finish.', 'geeky-bot'),
+            'plugin_activated' => __('Commerce Pro is switched on.', 'geeky-bot'),
+            'update_settings_saved' => __('Update settings saved.', 'geeky-bot'),
+            'update_refreshed' => __('Checked for updates.', 'geeky-bot'),
             'updated' => __('Commerce Pro updated successfully.', 'geeky-bot'),
-            'updated_inactive' => __('Commerce Pro updated successfully. Activate the add-on to enable Pro buying actions.', 'geeky-bot'),
-            'updated_activated' => __('Commerce Pro updated and activated successfully.', 'geeky-bot'),
+            'updated_inactive' => __('Commerce Pro updated. Switch it on to use the buying actions again.', 'geeky-bot'),
+            'updated_activated' => __('Commerce Pro updated and switched on.', 'geeky-bot'),
         );
+
+        // The three steps every merchant goes through, in order. Each is done,
+        // the current one, or waiting on the one before it.
+        $step1_done = $license['active'];
+        $step2_done = $plugin['installed'];
+        $step3_done = $plugin['active'] && $license['active'];
+        $all_done = $step1_done && $step2_done && $step3_done;
+        $current = !$step1_done ? 1 : (!$step2_done ? 2 : (!$step3_done ? 3 : 0));
+        $step_state = function ($number, $done) use ($current) {
+            return $done ? 'done' : ($number === $current ? 'current' : 'waiting');
+        };
         ?>
         <div class="wrap geekybot-admin-wrap geekybot-admin-pro geekybot-license-admin">
             <?php $this->page_hero(
-                __('Add-ons', 'geeky-bot'),
-                __('Activate a license, connect this site to geekybot.com, install the protected Commerce Pro add-on, and keep buying actions locked to authorized sites.', 'geeky-bot'),
+                __('License', 'geeky-bot'),
+                __('Unlock Commerce Pro on this site: enter your key, and Geeky Bot installs and switches on the add-on for you.', 'geeky-bot'),
                 __('Commerce Pro', 'geeky-bot'),
                 'https://geekybot.com/',
-                __('Open geekybot.com', 'geeky-bot'),
+                __('Your account on geekybot.com', 'geeky-bot'),
                 true
             ); ?>
 
+            <div class="gb2-main">
+
             <?php if ($notice && isset($notice_messages[$notice])) : ?>
-                <div class="gb2-snote gb2-snote--ok"><span aria-hidden="true">✓</span><p><?php echo esc_html($notice_messages[$notice]); ?></p></div>
+                <div class="gb2-snote gb2-snote--ok" role="status"><span aria-hidden="true">✓</span><p><?php echo esc_html($notice_messages[$notice]); ?></p></div>
             <?php endif; ?>
             <?php if ($error) : ?>
-                <div class="gb2-snote gb2-snote--error"><span aria-hidden="true">!</span><p><?php echo esc_html($error); ?></p></div>
+                <div class="gb2-snote gb2-snote--error" role="alert"><span aria-hidden="true">!</span><p><?php echo esc_html($error); ?></p></div>
             <?php endif; ?>
 
-            <section class="gb2-card gb2-scard gb2-license-hero <?php echo esc_attr($status_class); ?>">
-                <div class="gb2-license-hero__main">
-                    <p class="gb2-eyebrow"><?php esc_html_e('Protected add-on access', 'geeky-bot'); ?></p>
-                    <h2><?php echo esc_html($license['active']
-                        ? __('Commerce Pro is authorized on this site', 'geeky-bot')
-                        : ($limit_reached ? __('Commerce Pro is not authorized on this site', 'geeky-bot') : __('Activate Commerce Pro for this site', 'geeky-bot'))
-                    ); ?></h2>
-                    <p><?php echo esc_html($limit_reached
-                        ? __('The license is valid, but this site is beyond its included activation allowance. Commerce Pro remains unavailable here until an activation is freed or added.', 'geeky-bot')
-                        : __('A copied ZIP is not enough. Commerce Pro buying actions require a valid license, an allowed site activation, and a live or cached entitlement check.', 'geeky-bot')
-                    ); ?></p>
-                    <div class="gb2-license-strip">
-                        <span><strong><?php echo esc_html($license['label']); ?></strong><em><?php esc_html_e('License', 'geeky-bot'); ?></em></span>
-                        <span><strong><?php echo esc_html($plugin_label); ?></strong><em><?php esc_html_e('Commerce Pro plugin', 'geeky-bot'); ?></em></span>
-                        <span><strong><?php echo esc_html($update_label); ?></strong><em><?php esc_html_e('Update', 'geeky-bot'); ?></em></span>
-                        <span><strong><?php echo esc_html($license['isStaging'] === 'yes' ? __('Staging', 'geeky-bot') : __('Production', 'geeky-bot')); ?></strong><em><?php esc_html_e('Site type', 'geeky-bot'); ?></em></span>
-                        <span><strong><?php echo esc_html($license['maskedKey'] ? $license['maskedKey'] : __('No key', 'geeky-bot')); ?></strong><em><?php esc_html_e('Key', 'geeky-bot'); ?></em></span>
-                        <span><strong><?php echo esc_html($license['lastCheckedAt'] ? $license['lastCheckedAt'] : __('Not checked yet', 'geeky-bot')); ?></strong><em><?php esc_html_e('License last checked', 'geeky-bot'); ?></em></span>
-                    </div>
-                    <?php if (!empty($license['lastError'])) : ?>
-                        <p class="gb2-snote gb2-snote--error"><span aria-hidden="true">!</span><?php echo esc_html($license['lastError']); ?></p>
-                    <?php elseif (!$error && !$license['active'] && $license['status'] !== 'inactive' && !empty($license['message'])) : ?>
-                        <p class="gb2-snote gb2-snote--error"><span aria-hidden="true">!</span><?php echo esc_html($license['message']); ?></p>
-                    <?php endif; ?>
-                </div>
-            </section>
-
-            <section class="gb2-sgrid gb2-sgrid--top">
-                <div class="gb2-card gb2-scard">
-                    <div class="gb2-scard__head"><h2><?php esc_html_e('License activation', 'geeky-bot'); ?></h2><p><?php esc_html_e('Enter the Commerce Pro key from geekybot.com. The key is encrypted with this WordPress installation’s salts, masked after save, and never sent to storefront JavaScript.', 'geeky-bot'); ?></p></div>
-                    <?php
-                    // Entering a key and managing an existing activation are two
-                    // different jobs. They were previously one undifferentiated
-                    // row of WordPress buttons, so the destructive action looked
-                    // identical to the harmless one.
-                    ?>
-                    <form method="post" action="<?php echo esc_url(admin_url('admin-post.php')); ?>" class="gb2-license-form">
-                        <?php wp_nonce_field('geekybot_license_action'); ?>
-                        <input type="hidden" name="action" value="geekybot_license_activate" />
-                        <div class="gb2-field" style="margin-bottom:0">
-                            <label for="gb2-license-key"><?php esc_html_e('License key', 'geeky-bot'); ?></label>
-                            <div class="gb2-license-form__row">
-                                <input class="gb2-input gb2-input--mono" type="text" id="gb2-license-key" name="license_key" value="" placeholder="GB-XXXX-XXXX-XXXX" autocomplete="off" spellcheck="false" />
-                                <button type="submit" class="gb2-btn gb2-btn--primary"><?php esc_html_e('Activate license', 'geeky-bot'); ?></button>
-                            </div>
-                            <p class="gb2-field__help"><?php esc_html_e('Find your key in your account on geekybot.com.', 'geeky-bot'); ?></p>
+            <?php if ($all_done) : ?>
+                <section class="gb2-card gb2-license-ready">
+                    <div class="gb2-license-ready__head">
+                        <span class="gb2-license-ready__icon" aria-hidden="true">✓</span>
+                        <div>
+                            <h2><?php esc_html_e('Commerce Pro is active on this site', 'geeky-bot'); ?></h2>
+                            <p><?php echo esc_html(sprintf(
+                                /* translators: 1: installed version, 2: masked license key. */
+                                __('Version %1$s · license %2$s', 'geeky-bot'),
+                                $plugin['version'] ? $plugin['version'] : '—',
+                                $license['maskedKey']
+                            )); ?></p>
                         </div>
-                    </form>
+                    </div>
+                    <p class="gb2-license-ready__lead"><?php esc_html_e('What you can do now:', 'geeky-bot'); ?></p>
+                    <div class="gb2-license-next">
+                        <a href="<?php echo esc_url(admin_url('admin.php?page=geekybot-commerce-pro')); ?>"><strong><?php esc_html_e('Set up buying actions', 'geeky-bot'); ?></strong><span><?php esc_html_e('Add to cart, order lookup, comparison and checkout handoff.', 'geeky-bot'); ?></span></a>
+                        <?php if (Settings::get('search_ai_level', 'standard') !== 'rescue') : ?>
+                            <a href="<?php echo esc_url(admin_url('admin.php?page=geekybot-product-assistant#gb-smart-catalog')); ?>"><strong><?php esc_html_e('Turn on search Rescue', 'geeky-bot'); ?></strong><span><?php esc_html_e('Let AI answer searches that find nothing.', 'geeky-bot'); ?></span></a>
+                        <?php else : ?>
+                            <a href="<?php echo esc_url(admin_url('admin.php?page=geekybot-commerce-pro')); ?>"><strong><?php esc_html_e('Set sales rules', 'geeky-bot'); ?></strong><span><?php esc_html_e('Tone, guardrails and what the assistant may promise.', 'geeky-bot'); ?></span></a>
+                        <?php endif; ?>
+                        <a href="<?php echo esc_url(home_url('/')); ?>" target="_blank" rel="noopener noreferrer"><strong><?php esc_html_e('Try it on your store', 'geeky-bot'); ?></strong><span><?php esc_html_e('Ask the assistant to add something to your cart.', 'geeky-bot'); ?></span></a>
+                    </div>
+                </section>
+            <?php else : ?>
+                <section class="gb2-card gb2-lsteps" aria-label="<?php esc_attr_e('Set up Commerce Pro', 'geeky-bot'); ?>">
+                    <h2><?php esc_html_e('Set up Commerce Pro in three steps', 'geeky-bot'); ?></h2>
+                    <ol>
+                        <li class="gb2-lstep is-<?php echo esc_attr($step_state(1, $step1_done)); ?>">
+                            <span class="gb2-lstep__num" aria-hidden="true"><?php echo $step1_done ? '✓' : '1'; ?></span>
+                            <div class="gb2-lstep__body">
+                                <h3><?php esc_html_e('Enter your license key', 'geeky-bot'); ?></h3>
+                                <?php if ($step1_done) : ?>
+                                    <p><?php echo esc_html(sprintf(
+                                        /* translators: %s: masked license key. */
+                                        __('Active: %s', 'geeky-bot'),
+                                        $license['maskedKey']
+                                    )); ?></p>
+                                <?php else : ?>
+                                    <?php if ($limit_reached) : ?>
+                                        <p class="gb2-lstep__problem"><?php esc_html_e('This key is already used on as many sites as it allows. Deactivate it on a site you no longer use (from that site’s License page, or your account on geekybot.com), then try again here.', 'geeky-bot'); ?></p>
+                                    <?php elseif ($has_key && !empty($license['message']) && $license['status'] !== 'inactive') : ?>
+                                        <p class="gb2-lstep__problem"><?php echo esc_html($license['message']); ?></p>
+                                    <?php else : ?>
+                                        <p><?php esc_html_e('You will find it in your account on geekybot.com. After you activate it, Geeky Bot installs and switches on Commerce Pro for you.', 'geeky-bot'); ?></p>
+                                    <?php endif; ?>
+                                    <form method="post" action="<?php echo esc_url(admin_url('admin-post.php')); ?>" class="gb2-license-form">
+                                        <?php wp_nonce_field('geekybot_license_action'); ?>
+                                        <input type="hidden" name="action" value="geekybot_license_activate" />
+                                        <label for="gb2-license-key" class="screen-reader-text"><?php esc_html_e('License key', 'geeky-bot'); ?></label>
+                                        <div class="gb2-license-form__row">
+                                            <input class="gb2-input gb2-input--mono" type="text" id="gb2-license-key" name="license_key" value="" placeholder="GB-XXXX-XXXX-XXXX" autocomplete="off" spellcheck="false" required />
+                                            <button type="submit" class="gb2-btn gb2-btn--primary" data-gb-busy="<?php esc_attr_e('Activating and installing…', 'geeky-bot'); ?>"><?php
+                                                echo esc_html($can_install || $can_activate ? __('Activate and install', 'geeky-bot') : __('Activate license', 'geeky-bot')); ?></button>
+                                        </div>
+                                        <p class="gb2-field__help"><?php esc_html_e('This can take up to a minute while Commerce Pro downloads. The key is stored encrypted and never shown to shoppers.', 'geeky-bot'); ?></p>
+                                    </form>
+                                <?php endif; ?>
+                            </div>
+                        </li>
 
-                    <div class="gb2-license-manage">
-                        <span class="gb2-license-manage__title"><?php esc_html_e('This activation', 'geeky-bot'); ?></span>
-                        <div class="gb2-inline">
+                        <li class="gb2-lstep is-<?php echo esc_attr($step_state(2, $step2_done)); ?>">
+                            <span class="gb2-lstep__num" aria-hidden="true"><?php echo $step2_done ? '✓' : '2'; ?></span>
+                            <div class="gb2-lstep__body">
+                                <h3><?php esc_html_e('Install Commerce Pro', 'geeky-bot'); ?></h3>
+                                <?php if ($step2_done) : ?>
+                                    <p><?php echo esc_html(sprintf(
+                                        /* translators: %s: installed version. */
+                                        __('Installed, version %s', 'geeky-bot'),
+                                        $plugin['version'] ? $plugin['version'] : '—'
+                                    )); ?></p>
+                                <?php elseif ($current !== 2) : ?>
+                                    <p><?php esc_html_e('Happens automatically once your key is active.', 'geeky-bot'); ?></p>
+                                <?php elseif (!$can_install) : ?>
+                                    <p class="gb2-lstep__problem"><?php esc_html_e('Your WordPress account cannot install plugins. Ask a site administrator to open this page and click Install.', 'geeky-bot'); ?></p>
+                                <?php elseif (empty($license['downloadsAllowed'])) : ?>
+                                    <p class="gb2-lstep__problem"><?php esc_html_e('Your license does not currently include downloads, usually because it needs renewing. Renew on geekybot.com, then click “Check my license again”.', 'geeky-bot'); ?></p>
+                                <?php else : ?>
+                                    <p><?php esc_html_e('Downloads the add-on securely from geekybot.com and switches it on.', 'geeky-bot'); ?></p>
+                                    <form method="post" action="<?php echo esc_url(admin_url('admin-post.php')); ?>">
+                                        <?php wp_nonce_field('geekybot_license_action'); ?>
+                                        <input type="hidden" name="action" value="geekybot_install_commerce_pro" />
+                                        <button type="submit" class="gb2-btn gb2-btn--primary" data-gb-busy="<?php esc_attr_e('Installing…', 'geeky-bot'); ?>"><?php esc_html_e('Install Commerce Pro', 'geeky-bot'); ?></button>
+                                    </form>
+                                <?php endif; ?>
+                            </div>
+                        </li>
+
+                        <li class="gb2-lstep is-<?php echo esc_attr($step_state(3, $step3_done)); ?>">
+                            <span class="gb2-lstep__num" aria-hidden="true"><?php echo $step3_done ? '✓' : '3'; ?></span>
+                            <div class="gb2-lstep__body">
+                                <h3><?php esc_html_e('Switch it on', 'geeky-bot'); ?></h3>
+                                <?php if ($current !== 3) : ?>
+                                    <p><?php esc_html_e('Happens automatically after installing.', 'geeky-bot'); ?></p>
+                                <?php elseif (!$can_activate) : ?>
+                                    <p class="gb2-lstep__problem"><?php esc_html_e('Your WordPress account cannot activate plugins. Ask a site administrator to open this page and click Switch on.', 'geeky-bot'); ?></p>
+                                <?php else : ?>
+                                    <p><?php esc_html_e('Turns on buying actions: cart, orders, comparison and checkout handoff.', 'geeky-bot'); ?></p>
+                                    <form method="post" action="<?php echo esc_url(admin_url('admin-post.php')); ?>">
+                                        <?php wp_nonce_field('geekybot_license_action'); ?>
+                                        <input type="hidden" name="action" value="geekybot_activate_commerce_pro" />
+                                        <button type="submit" class="gb2-btn gb2-btn--primary"><?php esc_html_e('Switch on Commerce Pro', 'geeky-bot'); ?></button>
+                                    </form>
+                                <?php endif; ?>
+                            </div>
+                        </li>
+                    </ol>
+                </section>
+            <?php endif; ?>
+
+            <div class="gb2-grid">
+                <div class="gb2-col-6">
+                    <?php Components::card_open(__('Your license', 'geeky-bot'), $license['label'], false, 'gb2-fill'); ?>
+                        <div class="gb2-keyvalues">
+                            <div class="gb2-keyvalue"><span><?php esc_html_e('Key', 'geeky-bot'); ?></span><strong><?php echo esc_html($has_key ? $license['maskedKey'] : __('Not entered yet', 'geeky-bot')); ?></strong></div>
+                            <?php if ($license['plan'] !== '') : ?>
+                                <div class="gb2-keyvalue"><span><?php esc_html_e('Plan', 'geeky-bot'); ?></span><strong><?php echo esc_html($license['plan']); ?></strong></div>
+                            <?php endif; ?>
+                            <div class="gb2-keyvalue"><span><?php esc_html_e('Renews or expires', 'geeky-bot'); ?></span><strong><?php echo esc_html($license['expiresAt'] ? $license['expiresAt'] : __('Never', 'geeky-bot')); ?></strong></div>
+                            <div class="gb2-keyvalue"><span><?php esc_html_e('Sites using it', 'geeky-bot'); ?></span><strong><?php echo esc_html(sprintf(
+                                /* translators: 1: sites activated, 2: sites allowed. */
+                                __('%1$s of %2$s', 'geeky-bot'),
+                                number_format_i18n($license['activationCount']),
+                                number_format_i18n($license['allowedSites'])
+                            )); ?></strong></div>
+                            <div class="gb2-keyvalue"><span><?php esc_html_e('Last checked', 'geeky-bot'); ?></span><strong><?php echo esc_html($license['lastCheckedAt'] ? $license['lastCheckedAt'] : __('Not yet', 'geeky-bot')); ?></strong></div>
+                        </div>
+                        <?php if (!empty($license['isGrace'])) : ?>
+                            <p class="gb2-note"><?php esc_html_e('geekybot.com could not be reached, so Commerce Pro is running on its last confirmed check. Nothing to do unless this lasts more than a few days.', 'geeky-bot'); ?></p>
+                        <?php endif; ?>
+                        <div class="gb2-inline" style="margin-top:14px">
                             <form method="post" action="<?php echo esc_url(admin_url('admin-post.php')); ?>">
                                 <?php wp_nonce_field('geekybot_license_action'); ?>
                                 <input type="hidden" name="action" value="geekybot_license_refresh" />
-                                <button type="submit" class="gb2-btn"><?php esc_html_e('Refresh status', 'geeky-bot'); ?></button>
+                                <button type="submit" class="gb2-btn"><?php esc_html_e('Check my license again', 'geeky-bot'); ?></button>
                             </form>
-                            <form method="post" action="<?php echo esc_url(admin_url('admin-post.php')); ?>">
-                                <?php wp_nonce_field('geekybot_license_action'); ?>
-                                <input type="hidden" name="action" value="geekybot_license_deactivate" />
-                                <?php // Removes this site's activation, so it confirms like the other destructive actions. ?>
-                                <button type="submit" class="gb2-btn gb2-btn--danger" data-gb-confirm="<?php echo esc_attr($license['active'] ? __('Deactivate Commerce Pro on this site? Buying actions will stop until it is activated again.', 'geeky-bot') : __('Clear the saved license key from this site?', 'geeky-bot')); ?>"><?php
-                                    echo esc_html($license['active'] ? __('Deactivate this site', 'geeky-bot') : __('Clear saved license', 'geeky-bot')); ?></button>
-                            </form>
-                        </div>
-                        <p class="gb2-field__help"><?php esc_html_e('Refreshing re-checks entitlement with geekybot.com. Deactivating frees this site\'s activation slot for another install.', 'geeky-bot'); ?></p>
-                    </div>
-                </div>
-
-                <div class="gb2-card gb2-scard">
-                    <div class="gb2-scard__head"><h2><?php esc_html_e('Commerce Pro add-on', 'geeky-bot'); ?></h2><p><?php esc_html_e('Install, activate, and update Commerce Pro from a protected geekybot.com package after the site entitlement is valid.', 'geeky-bot'); ?></p></div>
-                    <ul class="gb2-checklist">
-                        <li><?php echo esc_html($license['active'] ? __('Valid entitlement is available.', 'geeky-bot') : __('Valid entitlement is required before install or activation.', 'geeky-bot')); ?></li>
-                        <li><?php echo esc_html(!empty($license['bindingValid']) ? __('This entitlement is bound to the current site installation.', 'geeky-bot') : __('This site still needs a fresh entitlement binding.', 'geeky-bot')); ?></li>
-                        <li><?php echo esc_html(!empty($license['signatureRequired']) ? (!empty($license['signatureVerified']) ? __('The server-signed entitlement was verified.', 'geeky-bot') : __('The configured signed-entitlement check has not passed.', 'geeky-bot')) : __('Entitlement uses standard HTTPS verification; signed-response mode is not configured.', 'geeky-bot')); ?></li>
-                        <li><?php echo esc_html($plugin['installed'] ? sprintf(
-                            /* translators: %s: installed Commerce Pro version. */
-                            __('Installed version: %s', 'geeky-bot'),
-                            $plugin['version'] ? $plugin['version'] : __('unknown', 'geeky-bot')
-                        ) : __('Commerce Pro is not installed yet.', 'geeky-bot')); ?></li>
-                        <li><?php echo esc_html($plugin['active'] ? __('Commerce Pro plugin is active.', 'geeky-bot') : __('Commerce Pro plugin is not active.', 'geeky-bot')); ?></li>
-                        <li><?php echo esc_html($license['isGrace'] ? __('Running on cached license verification grace period.', 'geeky-bot') : __('Live entitlement or normal cached check required.', 'geeky-bot')); ?></li>
-                        <li><?php echo esc_html(!empty($update['latest_version']) ? sprintf(
-                            /* translators: %s: latest available Commerce Pro version. */
-                            __('Latest release: %s', 'geeky-bot'),
-                            $update['latest_version']
-                        ) : __('Latest release has not been checked yet.', 'geeky-bot')); ?></li>
-                        <li><?php echo esc_html(!empty($license['updatesAllowed']) ? __('Updates are allowed for this license.', 'geeky-bot') : __('Updates require an active renewal entitlement.', 'geeky-bot')); ?></li>
-                    </ul>
-                    <div class="gb2-inline">
-                        <?php if (!$plugin['installed'] && $can_install) : ?>
-                            <form method="post" action="<?php echo esc_url(admin_url('admin-post.php')); ?>">
-                                <?php wp_nonce_field('geekybot_license_action'); ?>
-                                <input type="hidden" name="action" value="geekybot_install_commerce_pro" />
-                                <button type="submit" class="gb2-btn gb2-btn--primary" <?php disabled(empty($license['downloadsAllowed'])); ?>><?php esc_html_e('Install Commerce Pro', 'geeky-bot'); ?></button>
-                            </form>
-                        <?php endif; ?>
-                        <?php if ($plugin['installed'] && !$plugin['active'] && $can_activate) : ?>
-                            <form method="post" action="<?php echo esc_url(admin_url('admin-post.php')); ?>">
-                                <?php wp_nonce_field('geekybot_license_action'); ?>
-                                <input type="hidden" name="action" value="geekybot_activate_commerce_pro" />
-                                <button type="submit" class="gb2-btn gb2-btn--primary" <?php disabled(!$license['active']); ?>><?php esc_html_e('Activate Commerce Pro', 'geeky-bot'); ?></button>
-                            </form>
-                        <?php endif; ?>
-                        <?php if (!empty($update['update_available']) && !empty($update['can_update']) && current_user_can('update_plugins')) : ?>
-                            <form method="post" action="<?php echo esc_url(admin_url('admin-post.php')); ?>">
-                                <?php wp_nonce_field('geekybot_license_action'); ?>
-                                <input type="hidden" name="action" value="geekybot_update_commerce_pro" />
-                                <button type="submit" class="gb2-btn gb2-btn--primary"><?php esc_html_e('Update Commerce Pro', 'geeky-bot'); ?></button>
-                            </form>
-                        <?php endif; ?>
-                        <form method="post" action="<?php echo esc_url(admin_url('admin-post.php')); ?>">
-                            <?php wp_nonce_field('geekybot_license_action'); ?>
-                            <input type="hidden" name="action" value="geekybot_refresh_commerce_pro_update" />
-                            <button type="submit" class="gb2-btn"><?php esc_html_e('Check for update', 'geeky-bot'); ?></button>
-                        </form>
-                        <a class="button" href="<?php echo esc_url(admin_url('plugins.php')); ?>"><?php esc_html_e('Open plugins', 'geeky-bot'); ?></a>
-                    </div>
-                </div>
-            </section>
-
-            <section class="gb2-card gb2-scard">
-                <div class="gb2-scard__head"><h2><?php esc_html_e('Commerce Pro update channel', 'geeky-bot'); ?></h2><p><?php esc_html_e('Version metadata is checked from the CDN first. Protected ZIP downloads are requested from geekybot.com only when a valid update entitlement exists.', 'geeky-bot'); ?></p></div>
-                <?php if (!empty($update['update_available'])) : ?>
-                    <div class="gb2-card gb2-update">
-                        <div class="gb2-update__icon" aria-hidden="true">↻</div>
-                        <div class="gb2-update__body">
-                            <p class="gb2-eyebrow"><?php esc_html_e('Update available', 'geeky-bot'); ?></p>
-                            <h3><?php echo esc_html(sprintf(
-                                /* translators: %1$s: latest available Commerce Pro version. */
-                                __('Commerce Pro %1$s is ready', 'geeky-bot'),
-                                $update['latest_version']
-                            )); ?></h3>
-                            <p><?php echo esc_html(sprintf(
-                                /* translators: %s: installed Commerce Pro version. */
-                                __('Installed version: %s. This update is served from geekybot.com after license verification.', 'geeky-bot'),
-                                $update['installed_version']
-                            )); ?></p>
-                            <?php if (!empty($update['metadata']['changelog'])) : ?>
-                                <div class="gb2-note"><?php echo wp_kses_post($update['metadata']['changelog']); ?></div>
-                            <?php endif; ?>
-                        </div>
-                        <div class="gb2-inline">
-                            <?php if (!empty($update['can_update']) && current_user_can('update_plugins')) : ?>
+                            <?php if ($has_key) : ?>
                                 <form method="post" action="<?php echo esc_url(admin_url('admin-post.php')); ?>">
                                     <?php wp_nonce_field('geekybot_license_action'); ?>
-                                    <input type="hidden" name="action" value="geekybot_update_commerce_pro" />
-                                    <button type="submit" class="gb2-btn gb2-btn--primary"><?php esc_html_e('Update Commerce Pro', 'geeky-bot'); ?></button>
+                                    <input type="hidden" name="action" value="geekybot_license_deactivate" />
+                                    <?php // Removes this site's activation, so it confirms like the other destructive actions. ?>
+                                    <button type="submit" class="gb2-btn gb2-btn--danger" data-gb-confirm="<?php echo esc_attr($license['active'] ? __('Deactivate Commerce Pro on this site? Buying actions stop until it is activated again, and the site slot is freed for another install.', 'geeky-bot') : __('Clear the saved license key from this site?', 'geeky-bot')); ?>"><?php
+                                        echo esc_html($license['active'] ? __('Move license to another site', 'geeky-bot') : __('Clear saved key', 'geeky-bot')); ?></button>
                                 </form>
-                            <?php else : ?>
-                                <a class="button button-primary" href="<?php echo esc_url(admin_url('admin.php?page=geekybot-addons')); ?>"><?php esc_html_e('Review update entitlement', 'geeky-bot'); ?></a>
                             <?php endif; ?>
-                            <a class="button" href="<?php echo esc_url(admin_url('plugins.php')); ?>"><?php esc_html_e('Open plugins page', 'geeky-bot'); ?></a>
                         </div>
-                    </div>
-                <?php endif; ?>
-                <div class="gb2-factgrid">
-                    <span><strong><?php echo esc_html(!empty($update['latest_version']) ? $update['latest_version'] : __('Unknown', 'geeky-bot')); ?></strong><em><?php esc_html_e('Latest CDN version', 'geeky-bot'); ?></em></span>
-                    <span><strong><?php echo esc_html(!empty($update['metadata']['channel']) ? strtoupper($update['metadata']['channel']) : strtoupper($update_settings['update_channel'])); ?></strong><em><?php esc_html_e('Channel', 'geeky-bot'); ?></em></span>
-                    <span><strong><?php echo esc_html(!empty($license['updatesAllowed']) ? __('Allowed', 'geeky-bot') : __('Renewal required', 'geeky-bot')); ?></strong><em><?php esc_html_e('Update entitlement', 'geeky-bot'); ?></em></span>
-                    <span><strong><?php echo esc_html(!empty($update['metadata']['critical']) && $update['metadata']['critical'] === 'yes' ? __('Yes', 'geeky-bot') : __('No', 'geeky-bot')); ?></strong><em><?php esc_html_e('Critical flag', 'geeky-bot'); ?></em></span>
+                    <?php Components::card_close(); ?>
                 </div>
-                <form method="post" action="<?php echo esc_url(admin_url('admin-post.php')); ?>" class="gb2-license-form">
-                    <?php wp_nonce_field('geekybot_license_action'); ?>
-                    <input type="hidden" name="action" value="geekybot_save_commerce_pro_updates" />
-                    <div class="gb2-sgrid">
-                        <label class="gb2-sfield"><span><?php esc_html_e('Release channel', 'geeky-bot'); ?></span><select name="commerce_pro_updates[update_channel]"><option value="stable" <?php selected($update_settings['update_channel'], 'stable'); ?>><?php esc_html_e('Stable', 'geeky-bot'); ?></option><option value="beta" <?php selected($update_settings['update_channel'], 'beta'); ?>><?php esc_html_e('Beta', 'geeky-bot'); ?></option><option value="dev" <?php selected($update_settings['update_channel'], 'dev'); ?>><?php esc_html_e('Dev', 'geeky-bot'); ?></option></select></label>
-                        <label class="gb2-sfield"><span><?php esc_html_e('Automatic updates', 'geeky-bot'); ?></span><select name="commerce_pro_updates[auto_update_mode]"><option value="manual" <?php selected($update_settings['auto_update_mode'], 'manual'); ?>><?php esc_html_e('Manual updates only', 'geeky-bot'); ?></option><option value="critical" <?php selected($update_settings['auto_update_mode'], 'critical'); ?>><?php esc_html_e('Critical security updates only', 'geeky-bot'); ?></option><option value="patch" <?php selected($update_settings['auto_update_mode'], 'patch'); ?>><?php esc_html_e('Patch releases only', 'geeky-bot'); ?></option><option value="minor" <?php selected($update_settings['auto_update_mode'], 'minor'); ?>><?php esc_html_e('Patch and minor releases', 'geeky-bot'); ?></option><option value="stable" <?php selected($update_settings['auto_update_mode'], 'stable'); ?>><?php esc_html_e('All stable releases', 'geeky-bot'); ?></option></select></label>
-                    </div>
-                    <label class="gb2-stoggle"><input type="hidden" name="commerce_pro_updates[auto_update_critical]" value="no" /><input type="checkbox" name="commerce_pro_updates[auto_update_critical]" value="yes" <?php checked($update_settings['auto_update_critical'], 'yes'); ?> /> <span><strong><?php esc_html_e('Always allow critical security auto-updates', 'geeky-bot'); ?></strong><em><?php esc_html_e('Recommended for live WooCommerce stores. The package still requires valid update entitlement from geekybot.com.', 'geeky-bot'); ?></em></span></label>
-                    <button type="submit" class="gb2-btn gb2-btn--primary"><?php esc_html_e('Save update settings', 'geeky-bot'); ?></button>
-                </form>
-            </section>
 
-            <section class="gb2-card gb2-scard">
-                <div class="gb2-scard__head"><h2><?php esc_html_e('Site activation details', 'geeky-bot'); ?></h2><p><?php esc_html_e('These values are sent to geekybot.com during activation, refresh, protected download, and update checks.', 'geeky-bot'); ?></p></div>
+                <div class="gb2-col-6">
+                    <?php Components::card_open(__('Updates', 'geeky-bot'), !empty($update['update_available']) ? __('Update available', 'geeky-bot') : '', false, 'gb2-fill'); ?>
+                        <?php if (!$plugin['installed']) : ?>
+                            <p class="gb2-note" style="margin:0"><?php esc_html_e('Updates appear here once Commerce Pro is installed.', 'geeky-bot'); ?></p>
+                        <?php else : ?>
+                            <div class="gb2-keyvalues">
+                                <div class="gb2-keyvalue"><span><?php esc_html_e('Installed', 'geeky-bot'); ?></span><strong><?php echo esc_html($plugin['version'] ? $plugin['version'] : '—'); ?></strong></div>
+                                <div class="gb2-keyvalue"><span><?php esc_html_e('Latest', 'geeky-bot'); ?></span><strong><?php echo esc_html(!empty($update['latest_version']) ? $update['latest_version'] : __('Not checked yet', 'geeky-bot')); ?></strong></div>
+                                <div class="gb2-keyvalue"><span><?php esc_html_e('Updates included', 'geeky-bot'); ?></span><strong><?php echo esc_html(!empty($license['updatesAllowed']) ? __('Yes', 'geeky-bot') : __('Renewal needed', 'geeky-bot')); ?></strong></div>
+                            </div>
+                            <?php if (!empty($update['update_available']) && !empty($update['metadata']['changelog'])) : ?>
+                                <div class="gb2-note" style="margin-top:10px"><?php echo wp_kses_post($update['metadata']['changelog']); ?></div>
+                            <?php endif; ?>
+                            <div class="gb2-inline" style="margin-top:14px">
+                                <?php if (!empty($update['update_available']) && !empty($update['can_update']) && current_user_can('update_plugins')) : ?>
+                                    <form method="post" action="<?php echo esc_url(admin_url('admin-post.php')); ?>">
+                                        <?php wp_nonce_field('geekybot_license_action'); ?>
+                                        <input type="hidden" name="action" value="geekybot_update_commerce_pro" />
+                                        <button type="submit" class="gb2-btn gb2-btn--primary" data-gb-busy="<?php esc_attr_e('Updating…', 'geeky-bot'); ?>"><?php echo esc_html(sprintf(
+                                            /* translators: %s: version to update to. */
+                                            __('Update to %s', 'geeky-bot'),
+                                            $update['latest_version']
+                                        )); ?></button>
+                                    </form>
+                                <?php elseif (!empty($update['update_available'])) : ?>
+                                    <p class="gb2-note" style="margin:0"><?php esc_html_e('A new version is out, but your license needs renewing on geekybot.com before it can be installed.', 'geeky-bot'); ?></p>
+                                <?php endif; ?>
+                                <form method="post" action="<?php echo esc_url(admin_url('admin-post.php')); ?>">
+                                    <?php wp_nonce_field('geekybot_license_action'); ?>
+                                    <input type="hidden" name="action" value="geekybot_refresh_commerce_pro_update" />
+                                    <button type="submit" class="gb2-btn"><?php esc_html_e('Check for updates', 'geeky-bot'); ?></button>
+                                </form>
+                            </div>
+                            <details class="gb2-details">
+                                <summary><?php esc_html_e('Automatic update settings', 'geeky-bot'); ?></summary>
+                                <form method="post" action="<?php echo esc_url(admin_url('admin-post.php')); ?>" class="gb2-license-form">
+                                    <?php wp_nonce_field('geekybot_license_action'); ?>
+                                    <input type="hidden" name="action" value="geekybot_save_commerce_pro_updates" />
+                                    <div class="gb2-sgrid">
+                                        <label class="gb2-sfield"><span><?php esc_html_e('Release channel', 'geeky-bot'); ?></span><select name="commerce_pro_updates[update_channel]"><option value="stable" <?php selected($update_settings['update_channel'], 'stable'); ?>><?php esc_html_e('Stable', 'geeky-bot'); ?></option><option value="beta" <?php selected($update_settings['update_channel'], 'beta'); ?>><?php esc_html_e('Beta', 'geeky-bot'); ?></option><option value="dev" <?php selected($update_settings['update_channel'], 'dev'); ?>><?php esc_html_e('Dev', 'geeky-bot'); ?></option></select></label>
+                                        <label class="gb2-sfield"><span><?php esc_html_e('Automatic updates', 'geeky-bot'); ?></span><select name="commerce_pro_updates[auto_update_mode]"><option value="manual" <?php selected($update_settings['auto_update_mode'], 'manual'); ?>><?php esc_html_e('Manual updates only', 'geeky-bot'); ?></option><option value="critical" <?php selected($update_settings['auto_update_mode'], 'critical'); ?>><?php esc_html_e('Critical security updates only', 'geeky-bot'); ?></option><option value="patch" <?php selected($update_settings['auto_update_mode'], 'patch'); ?>><?php esc_html_e('Patch releases only', 'geeky-bot'); ?></option><option value="minor" <?php selected($update_settings['auto_update_mode'], 'minor'); ?>><?php esc_html_e('Patch and minor releases', 'geeky-bot'); ?></option><option value="stable" <?php selected($update_settings['auto_update_mode'], 'stable'); ?>><?php esc_html_e('All stable releases', 'geeky-bot'); ?></option></select></label>
+                                    </div>
+                                    <label class="gb2-stoggle"><input type="hidden" name="commerce_pro_updates[auto_update_critical]" value="no" /><input type="checkbox" name="commerce_pro_updates[auto_update_critical]" value="yes" <?php checked($update_settings['auto_update_critical'], 'yes'); ?> /> <span><strong><?php esc_html_e('Always allow critical security auto-updates', 'geeky-bot'); ?></strong><em><?php esc_html_e('Recommended for live stores.', 'geeky-bot'); ?></em></span></label>
+                                    <button type="submit" class="gb2-btn gb2-btn--primary"><?php esc_html_e('Save update settings', 'geeky-bot'); ?></button>
+                                </form>
+                            </details>
+                        <?php endif; ?>
+                    <?php Components::card_close(); ?>
+                </div>
+            </div>
+
+            <details class="gb2-card gb2-details gb2-details--card">
+                <summary><?php esc_html_e('Technical details', 'geeky-bot'); ?></summary>
+                <p class="gb2-note"><?php esc_html_e('What geekybot.com confirmed for this site. Useful when contacting support.', 'geeky-bot'); ?></p>
                 <div class="gb2-factgrid">
                     <span><strong><?php echo esc_html($license['domain']); ?></strong><em><?php esc_html_e('Domain', 'geeky-bot'); ?></em></span>
                     <span><strong><?php echo esc_html($license['siteUrl']); ?></strong><em><?php esc_html_e('Site URL', 'geeky-bot'); ?></em></span>
-                    <span><strong><?php echo esc_html(number_format_i18n($license['activationCount'])); ?> / <?php echo esc_html(number_format_i18n($license['allowedSites'])); ?></strong><em><?php esc_html_e('Production activations', 'geeky-bot'); ?></em></span>
+                    <span><strong><?php echo esc_html($license['isStaging'] === 'yes' ? __('Staging', 'geeky-bot') : __('Production', 'geeky-bot')); ?></strong><em><?php esc_html_e('Site type', 'geeky-bot'); ?></em></span>
                     <span><strong><?php echo esc_html(number_format_i18n($license['allowedStagingSites'])); ?></strong><em><?php esc_html_e('Allowed staging sites', 'geeky-bot'); ?></em></span>
-                    <span><strong><?php echo esc_html($license['expiresAt'] ? $license['expiresAt'] : __('None', 'geeky-bot')); ?></strong><em><?php esc_html_e('Expires', 'geeky-bot'); ?></em></span>
+                    <span><strong><?php echo esc_html(!empty($license['bindingValid']) ? __('Bound to this site', 'geeky-bot') : __('Needs a fresh check', 'geeky-bot')); ?></strong><em><?php esc_html_e('Site binding', 'geeky-bot'); ?></em></span>
+                    <span><strong><?php echo esc_html(!empty($license['signatureRequired']) ? (!empty($license['signatureVerified']) ? __('Verified', 'geeky-bot') : __('Not verified', 'geeky-bot')) : __('HTTPS only', 'geeky-bot')); ?></strong><em><?php esc_html_e('Signed entitlement', 'geeky-bot'); ?></em></span>
                     <span><strong><?php echo esc_html(!empty($license['runtimeAllowed']) ? __('Allowed', 'geeky-bot') : __('Locked', 'geeky-bot')); ?></strong><em><?php esc_html_e('Runtime entitlement', 'geeky-bot'); ?></em></span>
-                    <span><strong><?php echo esc_html(!empty($license['supportAllowed']) ? __('Allowed', 'geeky-bot') : __('Renewal required', 'geeky-bot')); ?></strong><em><?php esc_html_e('Support entitlement', 'geeky-bot'); ?></em></span>
+                    <span><strong><?php echo esc_html(!empty($license['downloadsAllowed']) ? __('Allowed', 'geeky-bot') : __('Not included', 'geeky-bot')); ?></strong><em><?php esc_html_e('Downloads', 'geeky-bot'); ?></em></span>
+                    <span><strong><?php echo esc_html(!empty($license['supportAllowed']) ? __('Allowed', 'geeky-bot') : __('Renewal required', 'geeky-bot')); ?></strong><em><?php esc_html_e('Support', 'geeky-bot'); ?></em></span>
+                    <span><strong><?php echo esc_html(!empty($update['metadata']['channel']) ? strtoupper($update['metadata']['channel']) : strtoupper($update_settings['update_channel'])); ?></strong><em><?php esc_html_e('Update channel', 'geeky-bot'); ?></em></span>
+                    <span><strong><?php echo esc_html($license['isGrace'] ? __('Grace period', 'geeky-bot') : __('Normal', 'geeky-bot')); ?></strong><em><?php esc_html_e('Verification', 'geeky-bot'); ?></em></span>
+                    <span><strong><?php echo esc_html($license['status'] !== '' ? $license['status'] : '—'); ?></strong><em><?php esc_html_e('Raw status', 'geeky-bot'); ?></em></span>
                 </div>
-            </section>
+                <?php if (!empty($license['lastError'])) : ?>
+                    <p class="gb2-note"><?php echo esc_html(sprintf(
+                        /* translators: %s: last error from the license server. */
+                        __('Last server message: %s', 'geeky-bot'),
+                        $license['lastError']
+                    )); ?></p>
+                <?php endif; ?>
+                <a class="gb2-link" href="<?php echo esc_url(admin_url('plugins.php')); ?>"><?php esc_html_e('Open the Plugins page', 'geeky-bot'); ?></a>
+            </details>
 
+            </div>
         </div>
+        <script>
+        (function () {
+            // Long-running actions (download, install) give no feedback while the
+            // server works; say what is happening and stop double submits.
+            document.querySelectorAll('.geekybot-license-admin [data-gb-busy]').forEach(function (button) {
+                button.form && button.form.addEventListener('submit', function () {
+                    button.textContent = button.getAttribute('data-gb-busy');
+                    button.disabled = true;
+                });
+            });
+        })();
+        </script>
         <?php
     }
 
@@ -3912,15 +3833,11 @@ class Menu {
      * @return void
      */
     private function page_hero($title, $description, $kicker, $action_url = '', $action_label = '', $external = false, $brand = false) {
-        $monitor = $this->page_monitor_data($kicker, $title);
-
+        // Headers carry no figure row since the 2.1.1 "Refined" pass. Each page
+        // opens with its own key-numbers strip right below, so the header row
+        // repeated it ("115 products indexed" twice, 40px apart) or showed
+        // numbers unrelated to the page (conversation counts on License).
         $signals = array();
-        foreach ((array) $monitor['signals'] as $signal) {
-            if (!isset($signal[0], $signal[1])) {
-                continue;
-            }
-            $signals[] = array('value' => $signal[0], 'label' => $signal[1]);
-        }
 
         $actions = array();
         if ($action_url && $action_label) {
@@ -3930,10 +3847,8 @@ class Menu {
                 'variant' => 'primary',
                 'external' => (bool) $external,
             );
-            $actions[] = array(
-                'label' => __('Settings', 'geeky-bot'),
-                'url' => admin_url('admin.php?page=geekybot-settings'),
-            );
+            // No generic "Settings" button any more: each setting now lives on
+            // its own page, so a shared Settings link mostly led elsewhere.
         }
 
         $settings = Settings::all();
@@ -3954,144 +3869,6 @@ class Menu {
         ));
     }
 
-    private function page_monitor_data($kicker, $title) {
-        $ctx = $this->context();
-        $settings = $ctx['settings'];
-        $key = strtolower(trim(wp_strip_all_tags((string) $kicker)));
-        $widget_status = !empty($settings['widget_enabled']) && $settings['widget_enabled'] === 'yes' ? __('Live', 'geeky-bot') : __('Draft', 'geeky-bot');
-        $search_status = !empty($settings['natural_search_enabled']) && $settings['natural_search_enabled'] === 'yes' ? __('Natural search', 'geeky-bot') : __('Keyword search', 'geeky-bot');
-        $provider_status = $this->provider_label($settings);
-        $policy_count = absint($ctx['policy_count']);
-        $indexed_count = absint($ctx['indexed_count']);
-        $stats = $ctx['stats'];
-
-        // No signals by default. The 2.0.1 fallback printed "Guided / Admin
-        // flow", "Grounded / Store data", "Scoped / Plugin UI" — labels that
-        // carry no store data and appeared on every page that matched none of
-        // the branches below. An empty row is better than filler.
-        $default = array(
-            'title' => $title,
-            'signals' => array(),
-            'checks' => array(),
-        );
-
-        // Checked before 'safe', because the Conversations kicker is
-        // "Privacy-safe review" and would otherwise match the policy branch
-        // and show policy-page counts on a conversations page.
-        if (strpos($key, 'review') !== false || strpos($key, 'privacy') !== false) {
-            return array(
-                'title' => __('Conversation review', 'geeky-bot'),
-                'signals' => array(
-                    array(number_format_i18n($stats['sessions']), __('conversations', 'geeky-bot')),
-                    array(number_format_i18n($stats['messages']), __('messages stored', 'geeky-bot')),
-                    array(number_format_i18n($stats['review_needed']), __('need review', 'geeky-bot')),
-                ),
-                'checks' => array(),
-            );
-        }
-
-        if (strpos($key, 'guided') !== false) {
-            return array(
-                'title' => __('Guided launch', 'geeky-bot'),
-                'signals' => array(
-                    array(absint($ctx['completion']) . '%', __('Readiness', 'geeky-bot')),
-                    array(number_format_i18n($indexed_count), __('Indexed products', 'geeky-bot')),
-                    array(number_format_i18n($policy_count), __('Policy sources', 'geeky-bot')),
-                ),
-                'checks' => array(
-                    __('WooCommerce catalog is checked before launch.', 'geeky-bot'),
-                    __('Search index, policy pages, widget and privacy are reviewed.', 'geeky-bot'),
-                    __('Final test links keep setup focused.', 'geeky-bot'),
-                ),
-            );
-        }
-
-        if (strpos($key, 'shopper') !== false) {
-            return array(
-                'title' => __('Shopper experience', 'geeky-bot'),
-                'signals' => array(
-                    array($widget_status, __('Storefront widget', 'geeky-bot')),
-                    array(absint($settings['max_products']), __('Products shown', 'geeky-bot')),
-                    array(ucfirst((string) $settings['button_position']), __('Placement', 'geeky-bot')),
-                ),
-                'checks' => array(
-                    __('Widget preview follows the live storefront panel.', 'geeky-bot'),
-                    __('Welcome copy, fallback text and product card volume are controlled here.', 'geeky-bot'),
-                    __('Scoped frontend CSS avoids theme layout changes.', 'geeky-bot'),
-                ),
-            );
-        }
-
-        if (strpos($key, 'product') !== false) {
-            $fallback = !empty($settings['search_close_match_mode']) && $settings['search_close_match_mode'] === 'strict' ? __('Exact matches', 'geeky-bot') : __('Smart matches', 'geeky-bot');
-            return array(
-                'title' => __('Product discovery', 'geeky-bot'),
-                'signals' => array(
-                    array(number_format_i18n($indexed_count), __('Products indexed', 'geeky-bot')),
-                    array($search_status, __('Buyer language', 'geeky-bot')),
-                    array($fallback, __('Match mode', 'geeky-bot')),
-                ),
-                'checks' => array(
-                    __('Search lab explains parsed buyer intent and match reasons.', 'geeky-bot'),
-                    __('Synonyms, close matches and ranking boosts are configurable.', 'geeky-bot'),
-                    __('Product index tools stay separate from storefront behavior.', 'geeky-bot'),
-                ),
-            );
-        }
-
-        // 'policy' included so Store Knowledge ("Grounded policy answers")
-        // gets these signals instead of falling through to none.
-        if (strpos($key, 'safe') !== false || strpos($key, 'policy') !== false) {
-            return array(
-                'title' => __('Safe answer sources', 'geeky-bot'),
-                'signals' => array(
-                    array(number_format_i18n($policy_count), __('Selected pages', 'geeky-bot')),
-                    array(__('Safe', 'geeky-bot'), __('Fallback', 'geeky-bot')),
-                    array(__('Public only', 'geeky-bot'), __('Source rule', 'geeky-bot')),
-                ),
-                'checks' => array(
-                    __('Only selected public pages can ground policy answers.', 'geeky-bot'),
-                    __('Missing policy details use the fallback message.', 'geeky-bot'),
-                    __('No shipping, refund or warranty policy is invented.', 'geeky-bot'),
-                ),
-            );
-        }
-
-        if (strpos($key, 'commerce') !== false) {
-            return array(
-                'title' => __('Assistant performance', 'geeky-bot'),
-                'signals' => array(
-                    array(number_format_i18n($stats['sessions']), __('Conversations', 'geeky-bot')),
-                    array(number_format_i18n($stats['messages']), __('Messages', 'geeky-bot')),
-                    array(number_format_i18n($stats['review_needed']), __('Needs review', 'geeky-bot')),
-                ),
-                'checks' => array(
-                    __('Conversation counts show usage and learning volume.', 'geeky-bot'),
-                    __('Needs-review signals expose product, policy, and synonym issues.', 'geeky-bot'),
-                    __('Commerce Pro analytics are kept clearly separated.', 'geeky-bot'),
-                ),
-            );
-        }
-
-        if (strpos($key, 'ai') !== false) {
-            return array(
-                'title' => __('Answer mode', 'geeky-bot'),
-                'signals' => array(
-                    array($provider_status, __('Answer mode', 'geeky-bot')),
-                    array(__('Hidden', 'geeky-bot'), __('API keys', 'geeky-bot')),
-                    array(__('Protected', 'geeky-bot'), __('REST requests', 'geeky-bot')),
-                ),
-                'checks' => array(
-                    __('API keys stay server-side and are never exposed to frontend JavaScript.', 'geeky-bot'),
-                    __('Admin changes use nonce and capability checks.', 'geeky-bot'),
-                    __('Grounded answering avoids invented products, prices, coupons and policies.', 'geeky-bot'),
-                ),
-            );
-        }
-
-        return $default;
-    }
-
     private function product_search_controls($settings) {
         $index_service = new ProductIndexService();
         $indexed_count = $index_service->count_indexed();
@@ -4099,7 +3876,7 @@ class Menu {
         $index_status = ProductIndexService::rebuild_status();
         ?>
         <?php Components::card_open(__('Buyer search controls', 'geeky-bot'), '', false, 'gb2-fill'); ?>
-            <p style="margin:0 0 12px;font-size:12.5px;line-height:1.55;color:var(--gb2-mute)"><?php
+            <p style="margin:0 0 12px;font-size:var(--gb2-t-sm);line-height:1.55;color:var(--gb2-mute)"><?php
                 esc_html_e('Tune how shopper wording is understood, without editing code. Rebuild the index after catalog changes.', 'geeky-bot'); ?></p>
             <form method="post">
                 <?php wp_nonce_field('geekybot_save_settings'); ?>
@@ -4115,24 +3892,515 @@ class Menu {
 
                 <div class="gb2-inline" style="margin-top:12px;padding-top:12px;border-top:1px solid var(--gb2-line-soft)"
                      aria-label="<?php esc_attr_e('Reset actions', 'geeky-bot'); ?>">
-                    <span style="font-size:11.5px;color:var(--gb2-faint)"><?php esc_html_e('Reset:', 'geeky-bot'); ?></span>
+                    <span style="font-size:var(--gb2-t-sm);color:var(--gb2-faint)"><?php esc_html_e('Reset:', 'geeky-bot'); ?></span>
                     <button type="submit" name="geekybot_reset_search" value="synonyms" class="gb2-btn gb2-btn--danger" data-gb-confirm="<?php esc_attr_e('Restore the default synonym examples? Your custom synonym text will be replaced.', 'geeky-bot'); ?>"><?php esc_html_e('Default synonyms', 'geeky-bot'); ?></button>
                     <button type="submit" name="geekybot_reset_search" value="all" class="gb2-btn gb2-btn--danger" data-gb-confirm="<?php esc_attr_e('Reset all buyer search settings to their defaults?', 'geeky-bot'); ?>"><?php esc_html_e('All search settings', 'geeky-bot'); ?></button>
                 </div>
             </form>
 
-            <div class="gb2-keyvalues" style="margin-top:14px;padding-top:12px;border-top:1px solid var(--gb2-line-soft)">
-                <div class="gb2-keyvalue"><span><?php esc_html_e('Products indexed', 'geeky-bot'); ?></span>
-                    <strong><?php echo esc_html(number_format_i18n($indexed_count)); ?></strong></div>
-                <div class="gb2-keyvalue"><span><?php esc_html_e('Last full index', 'geeky-bot'); ?></span>
-                    <strong style="font-size:12px;font-weight:500;color:var(--gb2-mute)"><?php
-                        echo esc_html($last_rebuild ? $last_rebuild : __('Never', 'geeky-bot')); ?></strong></div>
-                <div class="gb2-keyvalue"><span><?php esc_html_e('Automatic indexing', 'geeky-bot'); ?></span>
-                    <strong style="font-size:12px;font-weight:500;color:var(--gb2-mute)"><?php
-                        echo esc_html($this->product_index_status_text($index_status)); ?></strong></div>
-            </div>
         <?php Components::card_close(); ?>
     <?php }
+
+    /**
+     * Search level choice and Smart Catalog progress.
+     *
+     * @param array $settings Current settings.
+     * @return void
+     */
+    private function smart_catalog_section($settings) {
+        $level = isset($settings['search_ai_level']) ? $settings['search_ai_level'] : 'standard';
+        $chosen_languages = (array) (isset($settings['search_ai_languages']) ? $settings['search_ai_languages'] : array());
+        $store_language = SmartCatalogService::store_language();
+        $connection = SmartCatalogService::connection();
+        $enabled = in_array($level, array('catalog', 'rescue'), true);
+        $rescue_licensed = SearchRescueService::licensed();
+        $rescue_state = SearchRescueService::state();
+        $counts = SmartCatalogService::counts();
+        $state = SmartCatalogService::state();
+        $searchable = max(0, $counts['total'] - $counts['off'] - $counts['skipped']);
+        $percent = $searchable > 0 ? (int) floor(($counts['done'] / $searchable) * 100) : 0;
+        $calls = (int) ceil($counts['waiting'] / SmartCatalogService::BATCH_SIZE);
+        // phpcs:ignore WordPress.Security.NonceVerification.Recommended -- Read-only result flag from our own redirect.
+        $notice = isset($_GET['gb_sc']) ? sanitize_key(wp_unslash($_GET['gb_sc'])) : '';
+
+        if (!$enabled) {
+            $pill = array(__('Off', 'geeky-bot'), 'neutral');
+        } elseif ($connection === null) {
+            $pill = array(__('Needs an AI connection', 'geeky-bot'), 'warn');
+        } elseif (isset($state['status']) && $state['status'] === 'error') {
+            $pill = array(__('Paused after an error', 'geeky-bot'), 'crit');
+        } elseif (isset($state['status']) && $state['status'] === 'paused_budget') {
+            $pill = array(__('Paused: AI limit', 'geeky-bot'), 'warn');
+        } elseif ($counts['waiting'] > 0) {
+            $pill = array(__('Writing words', 'geeky-bot'), 'ok');
+        } elseif ($counts['failed'] > 0) {
+            $pill = array(__('Done, some products failed', 'geeky-bot'), 'warn');
+        } else {
+            $pill = array(__('Up to date', 'geeky-bot'), 'ok');
+        }
+        ?>
+        <div class="gb2-grid" id="gb-smart-catalog">
+            <div class="gb2-col-7">
+                <?php Components::card_open(__('How product search finds products', 'geeky-bot'), '', false, 'gb2-fill'); ?>
+                    <?php if ($notice === 'saved') : ?>
+                        <div class="notice notice-success inline" style="margin:0 0 12px"><p><?php esc_html_e('Search level saved. The product index is being rebuilt.', 'geeky-bot'); ?></p></div>
+                    <?php endif; ?>
+                    <form method="post">
+                        <?php wp_nonce_field('geekybot_save_settings'); ?>
+                        <input type="hidden" name="geekybot_settings_action" value="save" />
+                        <input type="hidden" name="geekybot_settings_scope" value="partial" />
+                        <input type="hidden" name="geekybot_redirect" value="<?php echo esc_url(admin_url('admin.php?page=geekybot-product-assistant&gb_sc=saved#gb-smart-catalog')); ?>" />
+                        <input type="hidden" name="search_ai_languages[]" value="" />
+
+                        <div class="gb2-radios gb2-radios--stack" role="radiogroup" aria-label="<?php esc_attr_e('Search level', 'geeky-bot'); ?>">
+                            <label class="gb2-radio <?php echo esc_attr(!$enabled ? 'is-selected' : ''); ?>">
+                                <input type="radio" name="search_ai_level" value="standard" <?php checked(!$enabled); ?> />
+                                <span><strong><?php esc_html_e('Standard', 'geeky-bot'); ?></strong><em><?php
+                                    esc_html_e('Your product names, categories, tags and attributes, with typo fixing. No AI.', 'geeky-bot'); ?></em></span>
+                            </label>
+                            <label class="gb2-radio <?php echo esc_attr($level === 'catalog' ? 'is-selected' : ''); ?>">
+                                <input type="radio" name="search_ai_level" value="catalog" <?php checked($level, 'catalog'); ?> />
+                                <span><strong><?php esc_html_e('Smart Catalog', 'geeky-bot'); ?></strong><em><?php
+                                    esc_html_e('AI adds the other names shoppers use for each product (sneakers, trainers, kicks). Searches never wait for AI.', 'geeky-bot'); ?></em></span>
+                            </label>
+                            <label class="gb2-radio <?php echo esc_attr($level === 'rescue' ? 'is-selected' : ''); ?><?php echo $rescue_licensed ? '' : ' is-locked'; ?>">
+                                <input type="radio" name="search_ai_level" value="rescue" <?php checked($level, 'rescue'); ?> <?php disabled(!$rescue_licensed && $level !== 'rescue'); ?> />
+                                <span><strong><?php esc_html_e('Smart Catalog + Rescue', 'geeky-bot'); ?> <?php if (!$rescue_licensed) : ?><span class="gb2-pill"><?php esc_html_e('Commerce Pro', 'geeky-bot'); ?></span><?php endif; ?></strong><em><?php
+                                    esc_html_e('Also asks AI when a search finds nothing (“something to keep warm”), and remembers the answer for everyone.', 'geeky-bot'); ?></em></span>
+                            </label>
+                        </div>
+
+                        <p style="margin:0 0 6px;font-size:var(--gb2-t-sm);font-weight:600"><?php esc_html_e('Also add words in these languages', 'geeky-bot'); ?></p>
+                        <div class="gb2-sc-langs">
+                            <?php foreach (SmartCatalogService::languages() as $code => $name) :
+                                if ($code === $store_language) {
+                                    continue;
+                                } ?>
+                                <label><input type="checkbox" name="search_ai_languages[]" value="<?php echo esc_attr($code); ?>" <?php checked(in_array($code, $chosen_languages, true)); ?> /> <?php echo esc_html($this->smart_catalog_language_label($code, $name)); ?></label>
+                            <?php endforeach; ?>
+                        </div>
+                        <p class="gb2-note" style="margin:6px 0 0"><?php esc_html_e('Your store language is always included. Each extra language adds to the AI cost.', 'geeky-bot'); ?></p>
+
+                        <div class="gb2-snote">
+                            <?php if ($connection !== null) : ?>
+                                <strong><?php echo esc_html(sprintf(
+                                    /* translators: %s: AI provider and model, e.g. "OpenAI gpt-4o-mini". */
+                                    __('Uses your AI connection: %s', 'geeky-bot'),
+                                    $connection['label']
+                                )); ?></strong>
+                                <span><?php esc_html_e('Only product details are sent, never shopper messages.', 'geeky-bot'); ?></span>
+                            <?php else : ?>
+                                <strong><?php esc_html_e('Smart Catalog needs an AI connection', 'geeky-bot'); ?></strong>
+                                <span><?php
+                                    printf(
+                                        /* translators: %s: link to the Settings page. */
+                                        esc_html__('Save an OpenAI key in %s. Chat answers can stay in local mode.', 'geeky-bot'),
+                                        '<a href="' . esc_url(admin_url('admin.php?page=geekybot-settings')) . '">' . esc_html__('Settings', 'geeky-bot') . '</a>'
+                                    ); ?></span>
+                            <?php endif; ?>
+                        </div>
+
+                        <?php if ($connection !== null && $connection['provider'] === 'openai') : ?>
+                            <label class="gb2-sfield" style="display:block;margin-top:14px"><span><?php esc_html_e('OpenAI model for search words', 'geeky-bot'); ?></span>
+                                <input id="search_ai_model" name="search_ai_model" type="text" value="<?php echo esc_attr(isset($settings['search_ai_model']) ? $settings['search_ai_model'] : ''); ?>" placeholder="<?php echo esc_attr(isset($settings['openai_model']) ? $settings['openai_model'] : 'gpt-4o-mini'); ?>" />
+                                <em><?php esc_html_e('Blank uses your chat model. gpt-4o-mini gave the best search words in testing; smaller models such as gpt-4.1-nano cost about the same overall because they write more, weaker words.', 'geeky-bot'); ?></em>
+                            </label>
+                        <?php endif; ?>
+
+                        <div class="gb2-inline" style="margin-top:14px">
+                            <button type="submit" class="gb2-btn gb2-btn--primary"><?php esc_html_e('Save search level', 'geeky-bot'); ?></button>
+                        </div>
+                    </form>
+                <?php Components::card_close(); ?>
+            </div>
+
+            <div class="gb2-col-5">
+                <?php Components::card_open(__('Smart Catalog progress', 'geeky-bot'), '', false, 'gb2-fill'); ?>
+                    <div style="margin-bottom:12px"><?php Components::pill($pill[0], $pill[1]); ?></div>
+
+                    <?php if ($notice !== '' && $notice !== 'saved') : ?>
+                        <div class="notice notice-info inline" style="margin:0 0 12px"><p><?php echo esc_html($this->smart_catalog_notice_text($notice)); ?></p></div>
+                    <?php endif; ?>
+
+                    <div class="gb2-bar">
+                        <div class="gb2-bar__top">
+                            <span class="gb2-bar__label"><?php esc_html_e('Products with search words', 'geeky-bot'); ?></span>
+                            <span class="gb2-bar__value"><?php echo esc_html(sprintf('%s / %s', number_format_i18n($counts['done']), number_format_i18n($searchable))); ?></span>
+                        </div>
+                        <div class="gb2-bar__track"><div class="gb2-bar__fill gb2-bar__fill--accent" style="width: <?php echo esc_attr($percent); ?>%"></div></div>
+                    </div>
+
+                    <div class="gb2-keyvalues" style="margin-top:14px">
+                        <div class="gb2-keyvalue"><span><?php esc_html_e('Waiting', 'geeky-bot'); ?></span><strong><?php echo esc_html(number_format_i18n($counts['waiting'])); ?></strong></div>
+                        <div class="gb2-keyvalue"><span><?php esc_html_e('Failed', 'geeky-bot'); ?></span><strong><?php echo esc_html(number_format_i18n($counts['failed'])); ?></strong></div>
+                        <div class="gb2-keyvalue"><span><?php esc_html_e('Turned off per product', 'geeky-bot'); ?></span><strong><?php echo esc_html(number_format_i18n($counts['off'])); ?></strong></div>
+                        <?php if (!empty($state['usage']['calls'])) : ?>
+                            <div class="gb2-keyvalue"><span><?php esc_html_e('AI used so far', 'geeky-bot'); ?></span><strong style="font-size:var(--gb2-t-sm);font-weight:500"><?php echo esc_html(sprintf(
+                                /* translators: 1: AI calls, 2: input tokens, 3: output tokens. */
+                                __('%1$s calls · %2$s tokens in · %3$s out', 'geeky-bot'),
+                                number_format_i18n($state['usage']['calls']),
+                                number_format_i18n($state['usage']['input']),
+                                number_format_i18n($state['usage']['output'])
+                            )); ?></strong></div>
+                        <?php endif; ?>
+                        <?php if ($enabled && $counts['waiting'] > 0) : ?>
+                            <div class="gb2-keyvalue"><span><?php esc_html_e('AI calls to finish', 'geeky-bot'); ?></span><strong><?php echo esc_html(sprintf(
+                                /* translators: 1: number of AI calls, 2: products per call. */
+                                __('about %1$s (%2$d products each)', 'geeky-bot'),
+                                number_format_i18n($calls),
+                                SmartCatalogService::BATCH_SIZE
+                            )); ?></strong></div>
+                        <?php endif; ?>
+                    </div>
+
+                    <?php if (!empty($state['status']) && $state['status'] === 'error' && !empty($state['message'])) : ?>
+                        <p class="gb2-note" style="margin:10px 0 0;color:var(--gb2-crit)"><?php echo esc_html(sprintf(
+                            /* translators: %s: error message from the AI provider. */
+                            __('Last attempt failed: %s. It retries automatically in 15 minutes.', 'geeky-bot'),
+                            $state['message']
+                        )); ?></p>
+                    <?php elseif (!empty($state['status']) && $state['status'] === 'paused_budget') : ?>
+                        <p class="gb2-note" style="margin:10px 0 0"><?php esc_html_e('Paused to keep part of your daily AI limit free for shopper chat. It continues automatically.', 'geeky-bot'); ?></p>
+                    <?php endif; ?>
+
+                    <?php if ($enabled && $connection !== null) : ?>
+                        <form method="post" action="<?php echo esc_url(admin_url('admin-post.php')); ?>" class="gb2-inline" style="margin-top:14px">
+                            <?php wp_nonce_field('geekybot_smart_catalog_action'); ?>
+                            <input type="hidden" name="action" value="geekybot_smart_catalog_action" />
+                            <?php if ($counts['waiting'] > 0) : ?>
+                                <button type="submit" name="op" value="run" class="gb2-btn gb2-btn--primary"><?php esc_html_e('Write the next 20 now', 'geeky-bot'); ?></button>
+                            <?php endif; ?>
+                            <?php if ($counts['failed'] > 0) : ?>
+                                <button type="submit" name="op" value="retry" class="gb2-btn"><?php esc_html_e('Retry failed', 'geeky-bot'); ?></button>
+                            <?php endif; ?>
+                            <?php if ($counts['done'] > 0) : ?>
+                                <button type="submit" name="op" value="regenerate" class="gb2-btn gb2-btn--danger" data-gb-confirm="<?php esc_attr_e('Rewrite the search words for every product? Words you removed by hand come back, and each product costs AI calls again.', 'geeky-bot'); ?>"><?php esc_html_e('Rewrite all', 'geeky-bot'); ?></button>
+                            <?php endif; ?>
+                        </form>
+                    <?php endif; ?>
+
+                    <?php if ($level === 'rescue') :
+                        $rescue_counts = isset($rescue_state['counts']) ? (array) $rescue_state['counts'] : array();
+                        $sc_state_usage = isset($state['rescue_usage']) ? (array) $state['rescue_usage'] : array(); ?>
+                        <div class="gb2-keyvalues" style="margin-top:14px;padding-top:12px;border-top:1px solid var(--gb2-line-soft)">
+                            <div class="gb2-keyvalue"><span><?php esc_html_e('Searches rescued', 'geeky-bot'); ?></span><strong><?php echo esc_html(number_format_i18n(absint($rescue_counts['rescued'] ?? 0))); ?></strong></div>
+                            <div class="gb2-keyvalue"><span><?php esc_html_e('Nothing in the store fitted', 'geeky-bot'); ?></span><strong><?php echo esc_html(number_format_i18n(absint($rescue_counts['nothing_fits'] ?? 0))); ?></strong></div>
+                            <div class="gb2-keyvalue"><span><?php esc_html_e('Answered from memory (free)', 'geeky-bot'); ?></span><strong><?php echo esc_html(number_format_i18n(absint($rescue_counts['cached'] ?? 0))); ?></strong></div>
+                            <?php if (!empty($sc_state_usage['calls'])) : ?>
+                                <div class="gb2-keyvalue"><span><?php esc_html_e('Rescue AI used', 'geeky-bot'); ?></span><strong style="font-size:var(--gb2-t-sm);font-weight:500"><?php echo esc_html(sprintf(
+                                    /* translators: 1: AI calls, 2: input tokens, 3: output tokens. */
+                                    __('%1$s calls · %2$s tokens in · %3$s out', 'geeky-bot'),
+                                    number_format_i18n($sc_state_usage['calls']),
+                                    number_format_i18n($sc_state_usage['input']),
+                                    number_format_i18n($sc_state_usage['output'])
+                                )); ?></strong></div>
+                            <?php endif; ?>
+                        </div>
+                    <?php endif; ?>
+
+                    <?php $this->smart_catalog_samples(); ?>
+                <?php Components::card_close(); ?>
+            </div>
+        </div>
+        <?php
+    }
+
+    /**
+     * The language name in the admin's own language when WordPress knows it.
+     *
+     * @param string $code ISO 639-1 code.
+     * @param string $name English name.
+     * @return string
+     */
+    private function smart_catalog_language_label($code, $name) {
+        $labels = array(
+            'en' => __('English', 'geeky-bot'),
+            'es' => __('Spanish', 'geeky-bot'),
+            'fr' => __('French', 'geeky-bot'),
+            'de' => __('German', 'geeky-bot'),
+            'it' => __('Italian', 'geeky-bot'),
+            'pt' => __('Portuguese', 'geeky-bot'),
+            'nl' => __('Dutch', 'geeky-bot'),
+            'ru' => __('Russian', 'geeky-bot'),
+            'ar' => __('Arabic', 'geeky-bot'),
+            'zh' => __('Chinese', 'geeky-bot'),
+            'ja' => __('Japanese', 'geeky-bot'),
+            'ko' => __('Korean', 'geeky-bot'),
+        );
+
+        return isset($labels[$code]) ? $labels[$code] : $name;
+    }
+
+    /**
+     * The three most recently written products, so the merchant sees real output.
+     *
+     * @return void
+     */
+    private function smart_catalog_samples() {
+        $recent = get_posts(array(
+            'post_type' => 'product',
+            'post_status' => 'publish',
+            'posts_per_page' => 3,
+            'meta_key' => SmartCatalogService::META_STATUS, // phpcs:ignore WordPress.DB.SlowDBQuery.slow_query_meta_key -- Three rows on an admin screen.
+            'meta_value' => 'done', // phpcs:ignore WordPress.DB.SlowDBQuery.slow_query_meta_value -- Three rows on an admin screen.
+            'orderby' => 'modified',
+            'no_found_rows' => true,
+        ));
+        if (empty($recent)) {
+            return;
+        }
+        ?>
+        <div style="margin-top:14px;padding-top:12px;border-top:1px solid var(--gb2-line-soft)">
+            <p style="margin:0 0 8px;font-size:var(--gb2-t-sm);font-weight:600"><?php esc_html_e('Examples', 'geeky-bot'); ?></p>
+            <?php foreach ($recent as $post) :
+                $terms = array_slice(SmartCatalogService::effective_terms($post->ID), 0, 8); ?>
+                <div style="margin-bottom:10px">
+                    <a class="gb2-link" style="margin:0;font-size:var(--gb2-t-sm)" href="<?php echo esc_url(get_edit_post_link($post->ID)); ?>"><?php echo esc_html(get_the_title($post)); ?></a>
+                    <div class="gb2-chips" style="margin-top:5px">
+                        <?php foreach ($terms as $term) : ?><span><?php echo esc_html($term); ?></span><?php endforeach; ?>
+                    </div>
+                </div>
+            <?php endforeach; ?>
+        </div>
+        <?php
+    }
+
+    /**
+     * @param string $notice Result code from handle_smart_catalog_action().
+     * @return string
+     */
+    private function smart_catalog_notice_text($notice) {
+        // phpcs:disable WordPress.Security.NonceVerification.Recommended -- Read-only result counts from our own redirect.
+        $count = isset($_GET['gb_sc_count']) ? absint($_GET['gb_sc_count']) : 0;
+        $failed = isset($_GET['gb_sc_failed']) ? absint($_GET['gb_sc_failed']) : 0;
+        // phpcs:enable WordPress.Security.NonceVerification.Recommended
+        switch ($notice) {
+            case 'ran':
+                /* translators: 1: products given words, 2: products that failed. */
+                return sprintf(__('Words written for %1$d products (%2$d failed). The rest continue in the background.', 'geeky-bot'), $count, $failed);
+            case 'error':
+                return __('The AI call failed. The details are shown below; nothing was changed.', 'geeky-bot');
+            case 'paused':
+                return __('Paused to keep part of your daily AI limit free for shopper chat.', 'geeky-bot');
+            case 'retry':
+            case 'regenerate':
+                /* translators: %d: number of products queued. */
+                return sprintf(__('%d products queued. Words are written in the background.', 'geeky-bot'), $count);
+        }
+
+        return '';
+    }
+
+    /**
+     * Suggestions learned from missed and rescued searches.
+     *
+     * @return void
+     */
+    private function search_learning_section() {
+        $licensed = SearchLearningService::licensed();
+        $active = SearchLearningService::active();
+        $suggestions = SearchLearningService::suggestions();
+        $last_run = get_option(SearchLearningService::OPTION . '_last_run', array());
+        // phpcs:ignore WordPress.Security.NonceVerification.Recommended -- Read-only result flag from our own redirect.
+        $notice = isset($_GET['gb_learn']) ? sanitize_key(wp_unslash($_GET['gb_learn'])) : '';
+
+        $open = array_filter($suggestions, function ($s) {
+            return ($s['status'] ?? '') === 'new';
+        });
+        $not_sold = array_filter($suggestions, function ($s) {
+            return ($s['status'] ?? '') === 'not_sold';
+        });
+        $accepted = count(array_filter($suggestions, function ($s) {
+            return ($s['status'] ?? '') === 'accepted';
+        }));
+        $by_count = function ($a, $b) {
+            return (int) $b['count'] <=> (int) $a['count'];
+        };
+        uasort($open, $by_count);
+        uasort($not_sold, $by_count);
+        ?>
+        <div class="gb2-grid" id="gb-search-learning">
+            <div class="gb2-col-7">
+                <?php Components::card_open(__('Suggested synonyms', 'geeky-bot'), $accepted ? sprintf(
+                    /* translators: %d: number of approved suggestions. */
+                    _n('%d approved', '%d approved', $accepted, 'geeky-bot'),
+                    $accepted
+                ) : '', false, 'gb2-fill'); ?>
+                    <?php if ($notice !== '') : ?>
+                        <div class="notice notice-info inline" style="margin:0 0 12px"><p><?php echo esc_html($this->search_learning_notice($notice)); ?></p></div>
+                    <?php endif; ?>
+
+                    <?php if (!$licensed) : ?>
+                        <?php Components::empty_state(
+                            __('Learn from missed searches with Commerce Pro', 'geeky-bot'),
+                            __('Commerce Pro reads the searches that found nothing and suggests the synonyms that would have found your products. You approve each one.', 'geeky-bot'),
+                            array('label' => __('See Commerce Pro', 'geeky-bot'), 'url' => admin_url('admin.php?page=geekybot-addons'))
+                        ); ?>
+                    <?php elseif (empty($open)) : ?>
+                        <?php Components::empty_state(
+                            __('No suggestions waiting', 'geeky-bot'),
+                            $active
+                                ? __('Missed searches are checked once a day. New suggestions appear here for your approval.', 'geeky-bot')
+                                : (SmartCatalogService::connection() === null
+                                    ? __('Save an OpenAI key in AI & Privacy to check missed searches.', 'geeky-bot')
+                                    : __('Choose Smart Catalog or Smart Catalog + Rescue under Search level to check missed searches.', 'geeky-bot'))
+                        ); ?>
+                    <?php else : ?>
+                        <p style="margin:0 0 12px;font-size:var(--gb2-t-sm);line-height:1.55;color:var(--gb2-mute)"><?php
+                            esc_html_e('Shoppers searched these words and found nothing. Approving one adds it to your custom synonyms, so the next search finds your products without any AI call.', 'geeky-bot'); ?></p>
+                        <div class="gb2-scroll">
+                            <table class="gb2-table">
+                                <thead><tr>
+                                    <th><?php esc_html_e('Shoppers typed', 'geeky-bot'); ?></th>
+                                    <th><?php esc_html_e('Search your products for', 'geeky-bot'); ?></th>
+                                    <th><?php esc_html_e('Times', 'geeky-bot'); ?></th>
+                                    <th></th>
+                                </tr></thead>
+                                <tbody>
+                                <?php foreach (array_slice($open, 0, 25, true) as $key => $suggestion) : ?>
+                                    <tr>
+                                        <td><strong><?php echo esc_html($key); ?></strong>
+                                            <?php if (!empty($suggestion['examples'][0]) && $suggestion['examples'][0] !== $key) : ?>
+                                                <div class="gb2-note" style="margin:3px 0 0">“<?php echo esc_html($suggestion['examples'][0]); ?>”</div>
+                                            <?php endif; ?></td>
+                                        <td><div class="gb2-chips"><?php foreach ((array) $suggestion['maps_to'] as $word) : ?><span><?php echo esc_html($word); ?></span><?php endforeach; ?></div></td>
+                                        <td><?php echo esc_html(number_format_i18n((int) $suggestion['count'])); ?></td>
+                                        <td style="text-align:right;white-space:nowrap">
+                                            <form method="post" action="<?php echo esc_url(admin_url('admin-post.php')); ?>" style="display:inline">
+                                                <?php wp_nonce_field('geekybot_search_learning_action'); ?>
+                                                <input type="hidden" name="action" value="geekybot_search_learning_action" />
+                                                <input type="hidden" name="key" value="<?php echo esc_attr($key); ?>" />
+                                                <button type="submit" name="op" value="accept" class="gb2-btn gb2-btn--primary"><?php esc_html_e('Add synonym', 'geeky-bot'); ?></button>
+                                                <button type="submit" name="op" value="dismiss" class="gb2-btn"><?php esc_html_e('Dismiss', 'geeky-bot'); ?></button>
+                                            </form>
+                                        </td>
+                                    </tr>
+                                <?php endforeach; ?>
+                                </tbody>
+                            </table>
+                        </div>
+                    <?php endif; ?>
+
+                    <?php if ($active) : ?>
+                        <form method="post" action="<?php echo esc_url(admin_url('admin-post.php')); ?>" class="gb2-inline" style="margin-top:14px">
+                            <?php wp_nonce_field('geekybot_search_learning_action'); ?>
+                            <input type="hidden" name="action" value="geekybot_search_learning_action" />
+                            <button type="submit" name="op" value="run" class="gb2-btn"><?php esc_html_e('Check missed searches now', 'geeky-bot'); ?></button>
+                            <?php if (!empty($last_run['at'])) : ?>
+                                <span class="gb2-note" style="margin:0"><?php echo esc_html(sprintf(
+                                    /* translators: %s: date and time of the last check. */
+                                    __('Last checked %s', 'geeky-bot'),
+                                    mysql2date(get_option('date_format') . ' ' . get_option('time_format'), $last_run['at'])
+                                )); ?></span>
+                            <?php endif; ?>
+                        </form>
+                    <?php endif; ?>
+                <?php Components::card_close(); ?>
+            </div>
+
+            <div class="gb2-col-5">
+                <?php Components::card_open(__('Wanted, but not in your store', 'geeky-bot'), '', false, 'gb2-fill'); ?>
+                    <p style="margin:0 0 12px;font-size:var(--gb2-t-sm);line-height:1.55;color:var(--gb2-mute)"><?php
+                        esc_html_e('Shoppers asked for these and nothing you sell fits. They are not synonyms, but they may be worth stocking.', 'geeky-bot'); ?></p>
+                    <?php if (empty($not_sold)) : ?>
+                        <p class="gb2-note" style="margin:0"><?php esc_html_e('Nothing yet.', 'geeky-bot'); ?></p>
+                    <?php else : ?>
+                        <div class="gb2-keyvalues">
+                            <?php foreach (array_slice($not_sold, 0, 12, true) as $key => $suggestion) : ?>
+                                <div class="gb2-keyvalue"><span><?php echo esc_html($key); ?></span><strong><?php echo esc_html(sprintf(
+                                    /* translators: %s: number of searches. */
+                                    _n('%s search', '%s searches', (int) $suggestion['count'], 'geeky-bot'),
+                                    number_format_i18n((int) $suggestion['count'])
+                                )); ?></strong></div>
+                            <?php endforeach; ?>
+                        </div>
+                    <?php endif; ?>
+                <?php Components::card_close(); ?>
+            </div>
+        </div>
+        <?php
+    }
+
+    /**
+     * @param string $notice Result code.
+     * @return string
+     */
+    private function search_learning_notice($notice) {
+        // phpcs:disable WordPress.Security.NonceVerification.Recommended -- Read-only counts from our own redirect.
+        $new = isset($_GET['gb_learn_new']) ? absint($_GET['gb_learn_new']) : 0;
+        $not_sold = isset($_GET['gb_learn_not_sold']) ? absint($_GET['gb_learn_not_sold']) : 0;
+        // phpcs:enable WordPress.Security.NonceVerification.Recommended
+        switch ($notice) {
+            case 'ran':
+                /* translators: 1: new suggestions, 2: phrases for products not sold. */
+                return sprintf(__('Checked. %1$d new suggestions and %2$d requests for products you do not sell.', 'geeky-bot'), $new, $not_sold);
+            case 'error':
+                return __('The AI check failed. Nothing was changed; it runs again tomorrow.', 'geeky-bot');
+            case 'accepted':
+                return __('Synonym added. Shoppers who search that word now find your products.', 'geeky-bot');
+            case 'full':
+                return __('Your custom synonyms are full (6,000 characters). Remove some in the search settings, then try again.', 'geeky-bot');
+            case 'dismissed':
+                return __('Suggestion dismissed.', 'geeky-bot');
+        }
+
+        return '';
+    }
+
+    public function handle_search_learning_action() {
+        if (!current_user_can('manage_options')) {
+            wp_die(esc_html__('You do not have permission to manage search suggestions.', 'geeky-bot'));
+        }
+
+        check_admin_referer('geekybot_search_learning_action');
+
+        $op = isset($_POST['op']) ? sanitize_key(wp_unslash($_POST['op'])) : '';
+        $key = isset($_POST['key']) ? sanitize_text_field(wp_unslash($_POST['key'])) : '';
+        $args = array('page' => 'geekybot-product-assistant');
+
+        if ($op === 'run') {
+            $result = (new SearchLearningService())->run();
+            $args['gb_learn'] = $result['status'] === 'error' ? 'error' : 'ran';
+            $args['gb_learn_new'] = $result['from_ai'] + $result['from_rescue'];
+            $args['gb_learn_not_sold'] = $result['not_sold'];
+        } elseif ($op === 'accept' && $key !== '') {
+            $args['gb_learn'] = SearchLearningService::accept($key) ? 'accepted' : 'full';
+        } elseif ($op === 'dismiss' && $key !== '') {
+            SearchLearningService::dismiss($key);
+            $args['gb_learn'] = 'dismissed';
+        }
+
+        wp_safe_redirect(add_query_arg($args, admin_url('admin.php')) . '#gb-search-learning');
+        exit;
+    }
+
+    public function handle_smart_catalog_action() {
+        if (!current_user_can('manage_options')) {
+            wp_die(esc_html__('You do not have permission to manage Smart Catalog.', 'geeky-bot'));
+        }
+
+        check_admin_referer('geekybot_smart_catalog_action');
+
+        $op = isset($_POST['op']) ? sanitize_key(wp_unslash($_POST['op'])) : '';
+        $args = array('page' => 'geekybot-product-assistant');
+
+        if ($op === 'run') {
+            $result = (new SmartCatalogService())->run_batch();
+            $map = array('error' => 'error', 'paused_budget' => 'paused');
+            $args['gb_sc'] = isset($map[$result['status']]) ? $map[$result['status']] : 'ran';
+            $args['gb_sc_count'] = $result['processed'];
+            $args['gb_sc_failed'] = $result['failed'];
+        } elseif ($op === 'retry') {
+            $args['gb_sc'] = 'retry';
+            $args['gb_sc_count'] = SmartCatalogService::retry_failed();
+        } elseif ($op === 'regenerate') {
+            $args['gb_sc'] = 'regenerate';
+            $args['gb_sc_count'] = SmartCatalogService::regenerate_all();
+        }
+
+        wp_safe_redirect(add_query_arg($args, admin_url('admin.php')) . '#gb-smart-catalog');
+        exit;
+    }
 
     /**
      * Example phrases an admin types into the widget to check intent routing.
@@ -4147,9 +4415,9 @@ class Menu {
      * whether it matches, not in the .pot.
      */
     private function nlp_action_examples() { ?>
-        <?php Components::card_open(__('Storefront intent checklist', 'geeky-bot'), '', false); ?>
-            <p style="margin:0 0 12px;font-size:12.5px;line-height:1.55;color:var(--gb2-mute)"><?php
-                esc_html_e('Try these grouped phrases in the storefront widget to confirm search, compare, cart, orders, deals and human handoff stay separated.', 'geeky-bot'); ?></p>
+            <?php // Shown inside a collapsed section on Product Search, so no card of its own. ?>
+            <p class="gb2-note" style="margin-top:0"><?php
+                esc_html_e('Type these into the chat on your store to check each kind of request is understood.', 'geeky-bot'); ?></p>
             <div class="gb2-grid">
                 <?php $this->nlp_action_group(__('Search', 'geeky-bot'), array('comfortable shoes size 42 red and white', 'blue hoodie under 60', 'not too expensive walking shoes')); ?>
                 <?php $this->nlp_action_group(__('Compare', 'geeky-bot'), array('compare first and third', 'what is difference between hoodie and hoodie with logo', 'compare cheaper one and second')); ?>
@@ -4158,12 +4426,11 @@ class Menu {
                 <?php $this->nlp_action_group(__('Deals', 'geeky-bot'), array('any promo code', 'cheapest today', 'show sale items')); ?>
                 <?php $this->nlp_action_group(__('Human handoff', 'geeky-bot'), array('problem with my order', 'I want to complain', 'talk to human')); ?>
             </div>
-        <?php Components::card_close(); ?>
     <?php }
 
     private function nlp_action_group($title, $phrases) { ?>
         <div class="gb2-col-4">
-            <strong style="display:block;margin-bottom:6px;font-size:12px;font-weight:600"><?php echo esc_html($title); ?></strong>
+            <strong style="display:block;margin-bottom:6px;font-size:var(--gb2-t-sm);font-weight:600"><?php echo esc_html($title); ?></strong>
             <div class="gb2-code-list">
                 <?php foreach ((array) $phrases as $phrase) : ?><code><?php echo esc_html($phrase); ?></code><?php endforeach; ?>
             </div>
@@ -4255,25 +4522,31 @@ class Menu {
         </div>
     <?php }
 
-    private function settings_table_ai($settings) { ?>
+    private function settings_table_ai($settings) {
+        // Per-mode readiness, carried over from the retired Answer Mode page.
+        $zywrap_ready = Settings::has_secret('zywrap_api_key') && !empty($settings['zywrap_endpoint']);
+        $openai_ready = Settings::has_secret('openai_api_key');
+        ?>
         <div class="gb2-radios" role="radiogroup" aria-label="<?php esc_attr_e('Answer mode', 'geeky-bot'); ?>">
-            <label class="gb2-radio <?php echo esc_attr($settings['provider_mode'] === 'local' ? 'is-selected' : ''); ?>"><input type="radio" name="provider_mode" value="local" <?php checked($settings['provider_mode'], 'local'); ?> /><span><strong><?php esc_html_e('Local grounded mode (default)', 'geeky-bot'); ?></strong><em><?php esc_html_e('Calls no language model. Answers are assembled from your catalog and selected policy pages.', 'geeky-bot'); ?></em></span></label>
-            <label class="gb2-radio <?php echo esc_attr($settings['provider_mode'] === 'zywrap' ? 'is-selected' : ''); ?>"><input type="radio" name="provider_mode" value="zywrap" <?php checked($settings['provider_mode'], 'zywrap'); ?> /><span><strong><?php esc_html_e('Zywrap endpoint', 'geeky-bot'); ?></strong><em><?php esc_html_e('Hosted AI endpoint for grounded answers.', 'geeky-bot'); ?></em></span></label>
-            <label class="gb2-radio <?php echo esc_attr($settings['provider_mode'] === 'openai' ? 'is-selected' : ''); ?>"><input type="radio" name="provider_mode" value="openai" <?php checked($settings['provider_mode'], 'openai'); ?> /><span><strong><?php esc_html_e('OpenAI BYOK', 'geeky-bot'); ?></strong><em><?php esc_html_e('Optional bring-your-own-key grounded answer mode.', 'geeky-bot'); ?></em></span></label>
+            <label class="gb2-radio <?php echo esc_attr($settings['provider_mode'] === 'local' ? 'is-selected' : ''); ?>"><input type="radio" name="provider_mode" value="local" <?php checked($settings['provider_mode'], 'local'); ?> /><span><strong><?php esc_html_e('Local grounded mode (default)', 'geeky-bot'); ?></strong><em><?php esc_html_e('Calls no language model. Answers are assembled from your catalog and selected policy pages.', 'geeky-bot'); ?></em><em class="gb2-radio__status is-ok"><?php esc_html_e('Always available', 'geeky-bot'); ?></em></span></label>
+            <?php if (Settings::zywrap_visible()) : ?>
+            <label class="gb2-radio <?php echo esc_attr($settings['provider_mode'] === 'zywrap' ? 'is-selected' : ''); ?>"><input type="radio" name="provider_mode" value="zywrap" <?php checked($settings['provider_mode'], 'zywrap'); ?> /><span><strong><?php esc_html_e('Zywrap endpoint', 'geeky-bot'); ?></strong><em><?php esc_html_e('Hosted AI endpoint for grounded answers.', 'geeky-bot'); ?></em><em class="gb2-radio__status<?php echo $zywrap_ready ? ' is-ok' : ''; ?>"><?php echo esc_html($zywrap_ready ? __('Endpoint and key saved', 'geeky-bot') : __('Needs an endpoint and key', 'geeky-bot')); ?></em></span></label>
+            <?php endif; ?>
+            <label class="gb2-radio <?php echo esc_attr($settings['provider_mode'] === 'openai' ? 'is-selected' : ''); ?>"><input type="radio" name="provider_mode" value="openai" <?php checked($settings['provider_mode'], 'openai'); ?> /><span><strong><?php esc_html_e('OpenAI BYOK', 'geeky-bot'); ?></strong><em><?php esc_html_e('Optional bring-your-own-key grounded answer mode.', 'geeky-bot'); ?></em><em class="gb2-radio__status<?php echo $openai_ready ? ' is-ok' : ''; ?>"><?php echo esc_html($openai_ready ? __('Key saved', 'geeky-bot') : __('Needs an API key', 'geeky-bot')); ?></em></span></label>
         </div>
         <div class="gb2-sgrid">
+            <?php if (Settings::zywrap_visible()) : ?>
             <label class="gb2-sfield gb2-sfield--wide"><span><?php esc_html_e('Zywrap endpoint', 'geeky-bot'); ?></span><input id="zywrap_endpoint" name="zywrap_endpoint" type="url" value="<?php echo esc_attr($settings['zywrap_endpoint']); ?>" placeholder="https://api.example.com/..." /><em><?php esc_html_e('Only used when Zywrap mode is selected.', 'geeky-bot'); ?></em></label>
             <label class="gb2-sfield"><span><?php esc_html_e('Zywrap API key', 'geeky-bot'); ?></span><input id="zywrap_api_key" name="zywrap_api_key" type="password" value="<?php echo esc_attr($settings['zywrap_api_key'] ? '••••••••' : ''); ?>" autocomplete="new-password" /><em><?php esc_html_e('Saved secret is not displayed after save.', 'geeky-bot'); ?></em></label>
+            <?php endif; ?>
             <label class="gb2-sfield"><span><?php esc_html_e('OpenAI API key', 'geeky-bot'); ?></span><input id="openai_api_key" name="openai_api_key" type="password" value="<?php echo esc_attr($settings['openai_api_key'] ? '••••••••' : ''); ?>" autocomplete="new-password" /><em><?php esc_html_e('Saved secret is not displayed after save.', 'geeky-bot'); ?></em></label>
             <label class="gb2-sfield"><span><?php esc_html_e('OpenAI model', 'geeky-bot'); ?></span><input id="openai_model" name="openai_model" type="text" value="<?php echo esc_attr($settings['openai_model']); ?>" /><em><?php esc_html_e('Used only in OpenAI BYOK mode.', 'geeky-bot'); ?></em></label>
             <label class="gb2-sfield"><span><?php esc_html_e('AI answer token limit', 'geeky-bot'); ?></span><input id="ai_max_tokens" name="ai_max_tokens" type="number" min="120" max="1200" value="<?php echo esc_attr(absint($settings['ai_max_tokens'])); ?>" /><em><?php esc_html_e('Keeps generated answers short and controlled.', 'geeky-bot'); ?></em></label>
-            <label class="gb2-sfield"><span><?php esc_html_e('Daily AI call budget', 'geeky-bot'); ?></span><input id="ai_daily_call_cap" name="ai_daily_call_cap" type="number" min="<?php echo esc_attr(AiBudgetService::DAILY_MIN); ?>" max="<?php echo esc_attr(AiBudgetService::DAILY_MAX); ?>" value="<?php echo esc_attr(AiBudgetService::daily_cap()); ?>" /><em><?php esc_html_e('Site-wide ceiling on paid provider calls per day. Applies to everyone, including logged-in staff.', 'geeky-bot'); ?></em></label>
-            <label class="gb2-sfield"><span><?php esc_html_e('Monthly AI call cap', 'geeky-bot'); ?></span><input id="ai_monthly_call_cap" name="ai_monthly_call_cap" type="number" min="<?php echo esc_attr(AiBudgetService::MONTHLY_MIN); ?>" max="<?php echo esc_attr(AiBudgetService::MONTHLY_MAX); ?>" value="<?php echo esc_attr(AiBudgetService::monthly_cap()); ?>" /><em><?php esc_html_e('Hard stop for the calendar month. Past the cap, shoppers still get grounded local answers.', 'geeky-bot'); ?></em></label>
+            <label class="gb2-sfield"><span><?php esc_html_e('Daily AI call budget', 'geeky-bot'); ?></span><input id="ai_daily_call_cap" name="ai_daily_call_cap" type="number" min="<?php echo esc_attr(AiBudgetService::DAILY_MIN); ?>" max="<?php echo esc_attr(AiBudgetService::DAILY_MAX); ?>" value="<?php echo esc_attr(AiBudgetService::daily_cap()); ?>" /><em><?php esc_html_e('Site-wide limit on paid AI calls per day, staff included.', 'geeky-bot'); ?></em></label>
+            <label class="gb2-sfield"><span><?php esc_html_e('Monthly AI call cap', 'geeky-bot'); ?></span><input id="ai_monthly_call_cap" name="ai_monthly_call_cap" type="number" min="<?php echo esc_attr(AiBudgetService::MONTHLY_MIN); ?>" max="<?php echo esc_attr(AiBudgetService::MONTHLY_MAX); ?>" value="<?php echo esc_attr(AiBudgetService::monthly_cap()); ?>" /><em><?php esc_html_e('Hard stop for the month. After it, shoppers get local answers.', 'geeky-bot'); ?></em></label>
         </div>
         <?php $this->ai_budget_note(); ?>
         <?php $this->ai_secret_storage_note(); ?>
-        <div class="gb2-snote"><strong><?php esc_html_e('Security posture', 'geeky-bot'); ?></strong><span><?php esc_html_e('API keys are encrypted at rest and remain server-side. The storefront receives public widget settings and REST nonce only.', 'geeky-bot'); ?></span></div>
-        <div class="gb2-snote"><strong><?php esc_html_e('Local grounded mode does not call a language model', 'geeky-bot'); ?></strong><span><?php esc_html_e('This is the shipped default. Replies are assembled from your WooCommerce data and selected policy pages, so there is no provider cost and no AI account to set up. Conversational, generated wording starts only after you select Zywrap or OpenAI and save a key.', 'geeky-bot'); ?></span></div>
     <?php }
 
     /**
@@ -4326,22 +4599,22 @@ class Menu {
 
         if ($state === 'encrypted') {
             ?>
-            <div class="gb2-snote"><strong><?php esc_html_e('Key storage', 'geeky-bot'); ?></strong><span><?php esc_html_e('Provider keys are encrypted at rest with a key derived from this installation\'s WordPress salts. A copied database cannot decrypt them elsewhere.', 'geeky-bot'); ?></span></div>
+            <div class="gb2-snote"><strong><?php esc_html_e('Key storage', 'geeky-bot'); ?></strong><span><?php esc_html_e('Encrypted with this site\'s WordPress salts and never sent to the storefront. A copied database cannot read them.', 'geeky-bot'); ?></span></div>
             <?php
         }
     }
 
     private function settings_table_privacy($settings) { ?>
         <div class="gb2-sgrid">
-            <label class="gb2-stoggle"><input type="hidden" name="chat_history_enabled" value="no" /><input type="checkbox" name="chat_history_enabled" value="yes" <?php checked($settings['chat_history_enabled'], 'yes'); ?> /> <span><strong><?php esc_html_e('Save conversation history', 'geeky-bot'); ?></strong><em><?php esc_html_e('Store shopper conversations for analytics and unanswered-question review.', 'geeky-bot'); ?></em></span></label>
-            <label class="gb2-stoggle"><input type="hidden" name="allow_guest_sessions" value="no" /><input type="checkbox" name="allow_guest_sessions" value="yes" <?php checked($settings['allow_guest_sessions'], 'yes'); ?> /> <span><strong><?php esc_html_e('Save guest conversations', 'geeky-bot'); ?></strong><em><?php esc_html_e('When disabled, logged-out shoppers can still use Geeky Bot, but their server-side conversation history and click events are not stored.', 'geeky-bot'); ?></em></span></label>
-            <label class="gb2-sfield"><span><?php esc_html_e('Retention days', 'geeky-bot'); ?></span><input id="retention_days" name="retention_days" type="number" min="1" max="365" value="<?php echo esc_attr(absint($settings['retention_days'])); ?>" /><em><?php esc_html_e('How long conversation data is retained.', 'geeky-bot'); ?></em></label>
-            <label class="gb2-sfield"><span><?php esc_html_e('Rate limit shopper messages', 'geeky-bot'); ?></span><input id="rate_limit_messages" name="rate_limit_messages" type="number" min="20" max="1000" value="<?php echo esc_attr(absint($settings['rate_limit_messages'])); ?>" /><em><?php esc_html_e('Maximum public shopper messages per window.', 'geeky-bot'); ?></em></label>
-            <label class="gb2-sfield"><span><?php esc_html_e('Rate limit window minutes', 'geeky-bot'); ?></span><input id="rate_limit_window_minutes" name="rate_limit_window_minutes" type="number" min="1" max="60" value="<?php echo esc_attr(absint($settings['rate_limit_window_minutes'])); ?>" /><em><?php esc_html_e('Administrators, shop managers, and product or order editors are not subject to public visitor rate limits. Contributors and authors are.', 'geeky-bot'); ?></em></label>
-            <label class="gb2-sfield"><span><?php esc_html_e('Trusted proxies in front of this site', 'geeky-bot'); ?></span><input id="trusted_proxy_count" name="trusted_proxy_count" type="number" min="0" max="10" value="<?php echo esc_attr(min(10, absint(isset($settings['trusted_proxy_count']) ? $settings['trusted_proxy_count'] : 0))); ?>" /><em><?php esc_html_e('Leave at 0 unless a reverse proxy or CDN sits in front of the store. Set to 1 for a single CDN such as Cloudflare. X-Forwarded-For is only believed up to this many hops, because a visitor can otherwise forge it to get a fresh rate-limit bucket.', 'geeky-bot'); ?></em></label>
-            <label class="gb2-stoggle gb2-stoggle--danger"><input type="hidden" name="delete_data_on_uninstall" value="no" /><input type="checkbox" name="delete_data_on_uninstall" value="yes" <?php checked(isset($settings['delete_data_on_uninstall']) ? $settings['delete_data_on_uninstall'] : get_option('geekybot_delete_data_on_uninstall', 'no'), 'yes'); ?> /> <span><strong><?php esc_html_e('Delete data on uninstall', 'geeky-bot'); ?></strong><em><?php esc_html_e('Remove conversations, review queue, product index, and Commerce Pro data when the plugin is uninstalled. Keep disabled on live stores unless intentional.', 'geeky-bot'); ?></em></span></label>
+            <label class="gb2-stoggle"><input type="hidden" name="chat_history_enabled" value="no" /><input type="checkbox" name="chat_history_enabled" value="yes" <?php checked($settings['chat_history_enabled'], 'yes'); ?> /> <span><strong><?php esc_html_e('Save conversation history', 'geeky-bot'); ?></strong><em><?php esc_html_e('Needed for analytics and the unanswered-question review.', 'geeky-bot'); ?></em></span></label>
+            <label class="gb2-stoggle"><input type="hidden" name="allow_guest_sessions" value="no" /><input type="checkbox" name="allow_guest_sessions" value="yes" <?php checked($settings['allow_guest_sessions'], 'yes'); ?> /> <span><strong><?php esc_html_e('Save guest conversations', 'geeky-bot'); ?></strong><em><?php esc_html_e('When off, guests can still chat, but nothing they send is stored.', 'geeky-bot'); ?></em></span></label>
+            <label class="gb2-sfield"><span><?php esc_html_e('Retention days', 'geeky-bot'); ?></span><input id="retention_days" name="retention_days" type="number" min="1" max="365" value="<?php echo esc_attr(absint($settings['retention_days'])); ?>" /><em><?php esc_html_e('Older conversations are deleted automatically.', 'geeky-bot'); ?></em></label>
+            <label class="gb2-sfield"><span><?php esc_html_e('Rate limit shopper messages', 'geeky-bot'); ?></span><input id="rate_limit_messages" name="rate_limit_messages" type="number" min="20" max="1000" value="<?php echo esc_attr(absint($settings['rate_limit_messages'])); ?>" /><em><?php esc_html_e('Per visitor, per window.', 'geeky-bot'); ?></em></label>
+            <label class="gb2-sfield"><span><?php esc_html_e('Rate limit window minutes', 'geeky-bot'); ?></span><input id="rate_limit_window_minutes" name="rate_limit_window_minutes" type="number" min="1" max="60" value="<?php echo esc_attr(absint($settings['rate_limit_window_minutes'])); ?>" /><em><?php esc_html_e('Admins, shop managers and editors are never limited.', 'geeky-bot'); ?></em></label>
+            <label class="gb2-sfield"><span><?php esc_html_e('Trusted proxies in front of this site', 'geeky-bot'); ?></span><input id="trusted_proxy_count" name="trusted_proxy_count" type="number" min="0" max="10" value="<?php echo esc_attr(min(10, absint(isset($settings['trusted_proxy_count']) ? $settings['trusted_proxy_count'] : 0))); ?>" /><em><?php esc_html_e('Leave at 0 unless a CDN such as Cloudflare sits in front of the store (then 1). Too high lets visitors fake their address to dodge limits.', 'geeky-bot'); ?></em></label>
+            <label class="gb2-stoggle gb2-stoggle--danger"><input type="hidden" name="delete_data_on_uninstall" value="no" /><input type="checkbox" name="delete_data_on_uninstall" value="yes" <?php checked(isset($settings['delete_data_on_uninstall']) ? $settings['delete_data_on_uninstall'] : get_option('geekybot_delete_data_on_uninstall', 'no'), 'yes'); ?> /> <span><strong><?php esc_html_e('Delete data on uninstall', 'geeky-bot'); ?></strong><em><?php esc_html_e('Removes conversations, the product index and Commerce Pro data. Leave off on live stores.', 'geeky-bot'); ?></em></span></label>
         </div>
-        <div class="gb2-snote"><strong><?php esc_html_e('Conversation data tools', 'geeky-bot'); ?></strong><span><?php esc_html_e('Export individual or complete conversation records, inspect product-click signals, or delete stored conversation data from Geeky Bot → Conversations.', 'geeky-bot'); ?> <a href="<?php echo esc_url(admin_url('admin.php?page=geekybot-conversations')); ?>"><?php esc_html_e('Open conversation data tools', 'geeky-bot'); ?></a></span></div>
+        <div class="gb2-snote"><strong><?php esc_html_e('Conversation data tools', 'geeky-bot'); ?></strong><span><?php esc_html_e('Export or delete stored conversations on the Conversations page.', 'geeky-bot'); ?> <a href="<?php echo esc_url(admin_url('admin.php?page=geekybot-conversations')); ?>"><?php esc_html_e('Open conversation data tools', 'geeky-bot'); ?></a></span></div>
     <?php }
 
     private function setup_completion($wc_ready, $indexed_count, $policy_count, $provider_ready, $settings) {
@@ -4440,7 +4713,7 @@ class Menu {
             return __('Pending', 'geeky-bot');
         }
 
-        return $this->compact_datetime_label(isset($context['last_rebuild']) ? $context['last_rebuild'] : '');
+        return __('Up to date', 'geeky-bot');
     }
 
     private function product_index_status_text($status) {
@@ -4455,20 +4728,6 @@ class Menu {
         }
 
         return __('Product changes sync automatically', 'geeky-bot');
-    }
-
-    private function product_index_status_title($context) {
-        $status = isset($context['index_status']) ? (string) $context['index_status'] : 'current';
-        $last_rebuild = !empty($context['last_rebuild']) ? (string) $context['last_rebuild'] : __('Never', 'geeky-bot');
-
-        if ($status === 'waiting_for_woocommerce') {
-            return __('Indexing starts automatically after WooCommerce is activated. Last full index:', 'geeky-bot') . ' ' . $last_rebuild;
-        }
-        if ($status === 'scheduled' || $status === 'pending') {
-            return __('A full product index is queued. Last full index:', 'geeky-bot') . ' ' . $last_rebuild;
-        }
-
-        return __('Product changes sync automatically. Last full index:', 'geeky-bot') . ' ' . $last_rebuild;
     }
 
     private function compact_datetime_label($datetime) {

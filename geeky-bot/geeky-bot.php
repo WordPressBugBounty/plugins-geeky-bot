@@ -3,7 +3,7 @@
  * Plugin Name: Geeky Bot
  * Plugin URI: https://geekybot.com/
  * Description: AI Sales Assistant for WooCommerce. Helps shoppers find products, understand options, and move toward purchase from a lightweight storefront widget.
- * Version: 2.1.0
+ * Version: 2.1.1
  * Author: Geeky Bot
  * Author URI: https://geekybot.com/
  * Text Domain: geeky-bot
@@ -11,6 +11,7 @@
  * Requires at least: 6.0
  * Requires PHP: 7.4
  * WC requires at least: 7.0
+ * WC tested up to: 11.1
  * License: GPLv2 or later
  */
 
@@ -18,8 +19,8 @@ if (!defined('ABSPATH')) {
     exit;
 }
 
-define('GEEKYBOT_VERSION', '2.1.0');
-define('GEEKYBOT_DB_VERSION', '2.1.0');
+define('GEEKYBOT_VERSION', '2.1.1');
+define('GEEKYBOT_DB_VERSION', '2.1.1');
 define('GEEKYBOT_FILE', __FILE__);
 define('GEEKYBOT_PATH', plugin_dir_path(__FILE__));
 define('GEEKYBOT_URL', plugin_dir_url(__FILE__));
@@ -27,6 +28,7 @@ define('GEEKYBOT_BASENAME', plugin_basename(__FILE__));
 
 require_once GEEKYBOT_PATH . 'includes/Plugin.php';
 require_once GEEKYBOT_PATH . 'includes/Services/Settings.php';
+require_once GEEKYBOT_PATH . 'includes/Services/StoreVisibilityService.php';
 require_once GEEKYBOT_PATH . 'includes/Services/ShopperOutputService.php';
 require_once GEEKYBOT_PATH . 'includes/Services/Installer.php';
 require_once GEEKYBOT_PATH . 'includes/Services/DatabaseMigrator.php';
@@ -58,6 +60,9 @@ require_once GEEKYBOT_PATH . 'includes/ProductExpert/ProductAnswerService.php';
 require_once GEEKYBOT_PATH . 'includes/ProductExpert/ProductExpertService.php';
 require_once GEEKYBOT_PATH . 'includes/Services/SearchLanguageService.php';
 require_once GEEKYBOT_PATH . 'includes/Services/ProductIndexService.php';
+require_once GEEKYBOT_PATH . 'includes/Services/SmartCatalogService.php';
+require_once GEEKYBOT_PATH . 'includes/Services/SearchRescueService.php';
+require_once GEEKYBOT_PATH . 'includes/Services/SearchLearningService.php';
 require_once GEEKYBOT_PATH . 'includes/Services/ProductService.php';
 require_once GEEKYBOT_PATH . 'includes/Services/ProductDiscoveryRecoveryService.php';
 require_once GEEKYBOT_PATH . 'includes/Services/ProductRecommendationService.php';
@@ -79,6 +84,20 @@ require_once GEEKYBOT_PATH . 'includes/REST/Api.php';
 
 register_activation_hook(__FILE__, array('GeekyBot\\Services\\Installer', 'activate'));
 register_deactivation_hook(__FILE__, array('GeekyBot\\Services\\Installer', 'deactivate'));
+
+/*
+ * Declare WooCommerce feature compatibility. Without a declaration, a store
+ * with High-Performance Order Storage on shows "some of your active plugins
+ * are incompatible" for this plugin. The declarations are accurate: Geeky Bot
+ * never reads or writes orders (order help is Commerce Pro, which declares
+ * its own), and the chat widget does not touch the cart or checkout pages.
+ */
+add_action('before_woocommerce_init', function () {
+    if (class_exists('\\Automattic\\WooCommerce\\Utilities\\FeaturesUtil')) {
+        \Automattic\WooCommerce\Utilities\FeaturesUtil::declare_compatibility('custom_order_tables', __FILE__, true);
+        \Automattic\WooCommerce\Utilities\FeaturesUtil::declare_compatibility('cart_checkout_blocks', __FILE__, true);
+    }
+});
 
 add_action('plugins_loaded', function () {
     GeekyBot\Plugin::instance()->boot();

@@ -11,6 +11,7 @@ use GeekyBot\Services\Settings;
 use GeekyBot\Services\RateLimiter;
 use GeekyBot\Services\AnalyticsEventService;
 use GeekyBot\Services\ShopperOutputService;
+use GeekyBot\Services\StoreVisibilityService;
 use WP_REST_Request;
 use WP_REST_Response;
 use WP_Error;
@@ -64,6 +65,11 @@ class Api {
             return new WP_Error('geekybot_bad_nonce', __('Security check failed. Please refresh the page and try again.', 'geeky-bot'), array('status' => 403));
         }
 
+        $closed = StoreVisibilityService::rest_error();
+        if ($closed) {
+            return $closed;
+        }
+
         $limited = (new RateLimiter())->check_chat_limit();
         if (is_wp_error($limited)) {
             return $limited;
@@ -76,6 +82,11 @@ class Api {
         $nonce = $request->get_header('X-WP-Nonce');
         if (!$nonce || !wp_verify_nonce($nonce, 'wp_rest')) {
             return new WP_Error('geekybot_bad_nonce', __('Security check failed. Please refresh the page and try again.', 'geeky-bot'), array('status' => 403));
+        }
+
+        $closed = StoreVisibilityService::rest_error();
+        if ($closed) {
+            return $closed;
         }
 
         $event_type = sanitize_key((string) $request->get_param('eventType'));
@@ -92,6 +103,11 @@ class Api {
     }
 
     public function catalog_permission(WP_REST_Request $request) {
+        $closed = StoreVisibilityService::rest_error();
+        if ($closed) {
+            return $closed;
+        }
+
         $limit = $request->get_param('limit') ? absint($request->get_param('limit')) : absint(Settings::get('max_products', 4));
         if ($limit > 8) {
             return new WP_Error('geekybot_bad_limit', __('Product search limit is too high.', 'geeky-bot'), array('status' => 400));

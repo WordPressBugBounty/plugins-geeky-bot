@@ -55,6 +55,29 @@ class RateLimiter {
         );
     }
 
+    /**
+     * Paid AI search Rescue calls per visitor.
+     *
+     * Far tighter than the chat limit: every rescue of a new phrase is a paid
+     * call, and a bot sending a stream of nonsense phrases would otherwise buy
+     * one per message. Cached phrases never reach this check.
+     *
+     * @return true|\WP_Error
+     */
+    public function check_rescue_limit() {
+        if ($this->is_trusted_tester()) {
+            return true;
+        }
+
+        return $this->check_public_limit(
+            'geekybot_rescue_rate_v1_',
+            20,
+            HOUR_IN_SECONDS,
+            'geekybot_rescue_rate_limited',
+            __('Too many searches. Please wait a little and try again.', 'geeky-bot')
+        );
+    }
+
     private function is_trusted_tester() {
         if (is_user_logged_in()) {
             /**

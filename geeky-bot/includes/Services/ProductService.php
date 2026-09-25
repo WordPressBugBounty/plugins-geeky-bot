@@ -269,6 +269,28 @@ class ProductService {
             $product_ids = $this->prioritize_exact_query_phrases($product_ids, $query);
         }
 
+        // Results that share no whole word with the request -- not in the
+        // product's own text, not in its Smart Catalog words -- are noise from
+        // part-of-word matching: "car tyres" reaching a "scarf", "rainy day"
+        // reaching an "everyday" tumbler. Let Rescue read the request instead.
+        // A Smart Catalog match ("sweatpants" -> joggers) is a real answer and
+        // never triggers this.
+        $rescue_tried = false;
+        if (!empty($product_ids) && $this->weak_match_strength($index, $analysis, $product_ids) === 'none') {
+            $rescue_tried = true;
+            $rescued = $this->rescue_ids($index, $query, $analysis, $limit);
+            if (!empty($rescued['ids'])) {
+                return $this->rescued_products($rescued, $analysis, $query);
+            }
+            if (!empty($rescued['answered'])) {
+                // Rescue read the request and found nothing the store sells
+                // that fits. That verdict is final: running the typo fixer
+                // now would "correct" car to cap and show hats.
+                $this->last_search_context = $this->search_context('product_no_match', $analysis);
+                return array();
+            }
+        }
+
         if (empty($product_ids) && !$has_product_terms && $intent === 'sale' && !$has_structured_facets && empty($analysis['price_range'])) {
             $sale_ids = $this->sale_product_ids($limit);
             if (!empty($sale_ids)) {
@@ -299,6 +321,14 @@ class ProductService {
             }
         }
 
+        // Rescue: the one paid step, and only after every free path failed.
+        if (empty($product_ids) && !$rescue_tried && ($has_product_terms || !empty($analysis['modifier_terms']))) {
+            $rescued = $this->rescue_ids($index, $query, $analysis, $limit);
+            if (!empty($rescued['ids'])) {
+                return $this->rescued_products($rescued, $analysis, $query);
+            }
+        }
+
         if (empty($product_ids) && !empty($analysis['price_range'])) {
             if (!$has_product_terms && !$has_structured_facets) {
                 $alternative_ids = $this->price_only_alternative_ids($analysis['price_range'], $limit);
@@ -318,6 +348,97 @@ class ProductService {
 
     public function last_search_context() {
         return (array) $this->last_search_context;
+    }
+
+    /**
+     * How well results support the request, when Rescue could improve them.
+     *
+     * Only asked when Rescue is on, the request names product words, and no
+     * product family was recognised -- a family search is already gated to
+     * the right kind of product.
+     *
+     * @param ProductIndexService $index       Index.
+     * @param array               $analysis    Query analysis.
+     * @param array               $product_ids Result IDs.
+     * @return string own|ai|none (see ProductIndexService::whole_word_match_strength()).
+     */
+    private function weak_match_strength($index, $analysis, $product_ids) {
+        if (!SearchRescueService::active() || !empty($analysis['product_family_term']) || empty($analysis['core_terms'])) {
+            return 'own';
+        }
+
+        return $index->whole_word_match_strength($product_ids, (array) $analysis['core_terms']);
+    }
+
+    /**
+     * Ask Rescue for store words that fit the request and search them.
+     *
+     * The shopper's price, stock and sale constraints are carried over to
+     * every rescued search, so "something warm under 30" stays under 30.
+     *
+     * @param ProductIndexService $index    Index.
+     * @param string              $query    Shopper query.
+     * @param array               $analysis Original analysis.
+     * @param int                 $limit    Result count.
+     * @return array{ids: array, queries: array, answered: bool}
+     */
+    private function rescue_ids($index, $query, $analysis, $limit) {
+        $empty = array('ids' => array(), 'queries' => array(), 'answered' => false);
+        if (!SearchRescueService::active()) {
+            return $empty;
+        }
+
+        $rewrite = (new SearchRescueService())->rewrite($this->clean_query($query));
+        $queries = $rewrite['queries'];
+        if (empty($queries)) {
+            return array('ids' => array(), 'queries' => array(), 'answered' => $rewrite['answered']);
+        }
+
+        $carry = array('price_range', 'in_stock_only', 'sale_required');
+        $lists = array();
+        foreach ($queries as $rescued_query) {
+            $rescued_analysis = $index->analyze_query($rescued_query);
+            foreach ($carry as $key) {
+                if (!empty($analysis[$key])) {
+                    $rescued_analysis[$key] = $analysis[$key];
+                }
+            }
+            $ids = $index->search_ids($rescued_query, $limit, $rescued_analysis);
+            $ids = $this->enforce_hard_runtime_filters($ids, $rescued_analysis, $limit);
+            if (!empty($ids)) {
+                $lists[] = array_values($ids);
+            }
+        }
+
+        // Take the best of each rescued search in turn, so "hoodie, scarf,
+        // beanie" shows a mix instead of four hoodies.
+        $merged = array();
+        for ($position = 0; count($merged) < $limit && $position < $limit; $position++) {
+            foreach ($lists as $ids) {
+                if (isset($ids[$position]) && !in_array($ids[$position], $merged, true)) {
+                    $merged[] = $ids[$position];
+                    if (count($merged) >= $limit) {
+                        break;
+                    }
+                }
+            }
+        }
+
+        return array('ids' => $merged, 'queries' => $queries, 'answered' => true);
+    }
+
+    /**
+     * @param array  $rescued  rescue_ids() result.
+     * @param array  $analysis Original analysis.
+     * @param string $query    Shopper query.
+     * @return array Hydrated products.
+     */
+    private function rescued_products($rescued, $analysis, $query) {
+        $this->last_search_context = $this->search_context('search_rescue', $analysis);
+        $this->last_search_context['originalQuery'] = $this->clean_query($query);
+        $this->last_search_context['rescueQueries'] = $rescued['queries'];
+
+        return $this->hydrate_products($rescued['ids']);
     }
 
     /**
@@ -2120,11 +2241,15 @@ class ProductService {
     public function context_for_ai($products) {
         $lines = array();
         foreach ((array) $products as $product) {
+            // "On sale" is stated outright: a variable product on sale shows a
+            // plain price range, so the model told shoppers asking for sale
+            // products that the store had none while the cards showed four.
             $line = sprintf(
-                'Product #%d: %s | Price: %s | Stock: %s | Type: %s | Rating: %s | Categories: %s | Short description: %s | URL: %s',
+                'Product #%d: %s | Price: %s | On sale: %s | Stock: %s | Type: %s | Rating: %s | Categories: %s | Short description: %s | URL: %s',
                 absint($product['id']),
                 $product['name'],
                 isset($product['priceText']) ? $product['priceText'] : wp_strip_all_tags($product['priceHtml']),
+                !empty($product['isOnSale']) ? 'yes' : 'no',
                 $product['stockLabel'],
                 $product['type'],
                 $product['rating'] ? $product['rating'] : 'not rated',
@@ -2845,6 +2970,9 @@ class ProductService {
                 'isPurchasable' => $product->is_purchasable(),
                 'isInStock' => in_array($stock_status, array('instock', 'onbackorder'), true),
                 'requiresOptions' => $product->is_type('variable') || $product->is_type('grouped') || $product->is_type('external'),
+                // For the AI context only; ShopperOutputService does not pass
+                // it to the storefront.
+                'isOnSale' => $product->is_on_sale(),
             );
 
             $product_data['searchMatch'] = $this->search_match_payload($product, $category_names, $product_data);

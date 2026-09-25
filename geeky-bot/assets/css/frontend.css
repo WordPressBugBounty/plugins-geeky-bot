@@ -72,7 +72,7 @@
   padding: 6px 42px 6px 6px;
   border: 1px solid var(--gb-border);
   border-radius: 18px;
-  background: #fff;
+  background: var(--gb-bg, #fff);
   box-shadow: 0 18px 48px rgba(15, 23, 42, .18);
   opacity: 0;
   transform: translateY(8px) scale(.98);
@@ -100,7 +100,7 @@
   height: 12px;
   border-right: 1px solid var(--gb-border);
   border-bottom: 1px solid var(--gb-border);
-  background: #fff;
+  background: var(--gb-bg, #fff);
   transform: rotate(45deg);
 }
 
@@ -241,7 +241,7 @@
 }
 
 #geekybot-sales-assistant .gb-message--bot {
-  background: #fff;
+  background: var(--gb-bg, #fff);
   border: 1px solid var(--gb-border);
   border-top-left-radius: 6px;
 }
@@ -350,7 +350,7 @@
   padding: 10px;
   border: 1px solid var(--gb-border);
   border-radius: 14px;
-  background: #fff;
+  background: var(--gb-bg, #fff);
 }
 
 #geekybot-sales-assistant .gb-product-card__image {
@@ -380,7 +380,7 @@
 #geekybot-sales-assistant .gb-product-card__price {
   margin-top: 4px;
   font-weight: 700;
-  color: var(--gb-accent);
+  color: var(--gb-price, var(--gb-accent));
 }
 
 #geekybot-sales-assistant .gb-product-card p {
@@ -442,7 +442,7 @@
   gap: 8px;
   padding: 12px;
   border-top: 1px solid var(--gb-border);
-  background: #fff;
+  background: var(--gb-bg, #fff);
 }
 
 #geekybot-sales-assistant .gb-input {
@@ -453,7 +453,7 @@
   border-radius: 999px;
   padding: 0 14px;
   color: var(--gb-text);
-  background: #fff;
+  background: var(--gb-bg, #fff);
 }
 
 #geekybot-sales-assistant .gb-input:focus {
@@ -547,7 +547,7 @@
   padding: 7px 11px;
   border: 1px solid var(--gb-border);
   border-radius: 999px;
-  background: #fff;
+  background: var(--gb-bg, #fff);
   color: var(--gb-text);
   cursor: pointer;
   font-size: 12px;
@@ -597,7 +597,7 @@
 
 #geekybot-sales-assistant .gb-product-card__button--secondary {
   border: 1px solid var(--gb-border);
-  background: #fff;
+  background: var(--gb-bg, #fff);
   color: var(--gb-text);
 }
 
@@ -686,7 +686,7 @@
   padding: 7px 12px;
   border: 1px solid var(--gb-border);
   border-radius: 999px;
-  background: #fff;
+  background: var(--gb-bg, #fff);
   color: var(--gb-text);
   cursor: pointer;
   font-size: 12px;
@@ -786,8 +786,8 @@
   margin-top: 7px;
   padding: 7px;
   border-style: solid;
-  border-color: #edf2f7;
-  background: #fbfdff;
+  border-color: var(--gb-match-border, #edf2f7);
+  background: var(--gb-match-bg, #fbfdff);
 }
 
 #geekybot-sales-assistant .gb-product-card__match-chip {
@@ -980,7 +980,7 @@
 #geekybot-sales-assistant .gb-empty-shopper-state__examples button:hover,
 #geekybot-sales-assistant .gb-empty-shopper-state__examples button:focus-visible {
   border-color: var(--gb-accent);
-  background: #fff;
+  background: var(--gb-bg, #fff);
   outline: 0;
 }
 
@@ -1062,7 +1062,7 @@
   padding: 8px;
   border: 1px solid var(--gb-border);
   border-radius: 14px;
-  background: #fff;
+  background: var(--gb-bg, #fff);
   box-shadow: 0 18px 42px rgba(15, 23, 42, .18);
 }
 
@@ -1073,8 +1073,8 @@
   padding: 9px 12px;
   border: 0;
   border-radius: 10px;
-  background: #f8fafc;
-  color: #334155;
+  background: var(--gb-soft, #f8fafc);
+  color: var(--gb-text-strong-muted, #334155);
   cursor: pointer;
   font-size: 13px;
   font-weight: 800;
@@ -1084,7 +1084,7 @@
 
 #geekybot-sales-assistant .gb-clear-conversation:hover,
 #geekybot-sales-assistant .gb-clear-conversation:focus-visible {
-  background: #eef2ff;
+  background: var(--gb-hover-bg, #eef2ff);
   color: var(--gb-accent);
   outline: 0;
 }
@@ -1307,6 +1307,13 @@
 	--gb-soft: #15171c;
 	--gb-shadow: 0 1px 2px rgba(0, 0, 0, .4), 0 12px 32px rgba(0, 0, 0, .5);
 	--gb-shadow-sm: 0 1px 2px rgba(0, 0, 0, .35), 0 6px 18px rgba(0, 0, 0, .4);
+	/* Surfaces that stay a light tint in light mode. */
+	--gb-match-bg: #1f232b;
+	--gb-match-border: #2a2e38;
+	--gb-text-strong-muted: #cbd2df;
+	--gb-hover-bg: #232a3a;
+	/* The accent on a dark panel read at 3.3:1; lighten it for text. */
+	--gb-price: color-mix(in srgb, var(--gb-accent) 55%, #ffffff);
 }
 
 @media (prefers-color-scheme: dark) {
@@ -1318,6 +1325,11 @@
 		--gb-soft: #15171c;
 		--gb-shadow: 0 1px 2px rgba(0, 0, 0, .4), 0 12px 32px rgba(0, 0, 0, .5);
 		--gb-shadow-sm: 0 1px 2px rgba(0, 0, 0, .35), 0 6px 18px rgba(0, 0, 0, .4);
+		--gb-match-bg: #1f232b;
+		--gb-match-border: #2a2e38;
+		--gb-text-strong-muted: #cbd2df;
+		--gb-hover-bg: #232a3a;
+		--gb-price: color-mix(in srgb, var(--gb-accent) 55%, #ffffff);
 	}
 }
 

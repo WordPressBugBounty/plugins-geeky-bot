@@ -36,6 +36,13 @@ class Installer {
             ProductIndexService::request_rebuild(30);
         }
 
+        // Picks up any Smart Catalog words still queued when the plugin was
+        // deactivated; deactivate() clears the batch job. A no-op unless Smart
+        // Catalog is on and connected.
+        if (class_exists('GeekyBot\\Services\\SmartCatalogService')) {
+            SmartCatalogService::schedule_batch(60);
+        }
+
         update_option('geekybot_v2_version', GEEKYBOT_VERSION, false);
     }
 
@@ -94,6 +101,22 @@ class Installer {
         // Keep data by default. Store owners should not lose chat history/settings on deactivate.
         if (class_exists('GeekyBot\\Services\\LicenseService')) {
             LicenseService::clear_scheduled_license_check();
+        }
+
+        // Stop the background jobs while the plugin is off, so none are left
+        // firing into nothing -- the daily learning run included. Nothing is
+        // lost: activate() requests an index rebuild, which resumes one that
+        // was interrupted and rewrites the typo vocabulary, and schedules the
+        // Smart Catalog batch; the learning run reschedules itself on init.
+        $hooks = array(
+            ProductIndexService::REBUILD_HOOK,
+            ProductIndexService::REBUILD_BATCH_HOOK,
+            ProductIndexService::VOCABULARY_REFRESH_HOOK,
+            SmartCatalogService::BATCH_HOOK,
+            SearchLearningService::HOOK,
+        );
+        foreach ($hooks as $hook) {
+            wp_clear_scheduled_hook($hook);
         }
     }
 

@@ -181,6 +181,13 @@ class LicenseService {
     }
 
     public static function maybe_schedule_update_check() {
+        // Commerce Pro release checks only matter once Commerce Pro is here.
+        // Free sites make no update calls to geekybot.com at all.
+        if (!self::commerce_pro_files_present()) {
+            wp_clear_scheduled_hook(self::UPDATE_CHECK_HOOK);
+            return;
+        }
+
         if (!wp_next_scheduled(self::UPDATE_CHECK_HOOK)) {
             wp_schedule_event(time() + 2 * HOUR_IN_SECONDS, 'daily', self::UPDATE_CHECK_HOOK);
         }
@@ -900,7 +907,25 @@ class LicenseService {
         return $page === 'geekybot-addons';
     }
 
+    /**
+     * Whether the Commerce Pro plugin files are installed, active or not.
+     *
+     * Update checks for Commerce Pro are gated on this. Without the gate every
+     * free site fetched the Commerce Pro release file from cdn.geekybot.com on
+     * a daily job and on admin page loads, sending its address in the
+     * user-agent, for an add-on it does not have.
+     *
+     * @return bool
+     */
+    private static function commerce_pro_files_present() {
+        return file_exists(WP_PLUGIN_DIR . '/' . self::PRO_BASENAME);
+    }
+
     private static function cached_update_info($force = false) {
+        if (!self::commerce_pro_files_present()) {
+            return array();
+        }
+
         $cache = get_option(self::UPDATE_OPTION, array());
         if (!$force && is_array($cache) && !empty($cache['checked_at']) && (time() - absint($cache['checked_at'])) < 6 * HOUR_IN_SECONDS) {
             return isset($cache['update']) && is_array($cache['update']) ? $cache['update'] : array();
@@ -956,6 +981,10 @@ class LicenseService {
     }
 
     private static function cached_cdn_metadata($force = false) {
+        if (!self::commerce_pro_files_present()) {
+            return array();
+        }
+
         $cache = get_option(self::CDN_UPDATE_OPTION, array());
         if (!$force && is_array($cache) && !empty($cache['checked_at']) && (time() - absint($cache['checked_at'])) < 6 * HOUR_IN_SECONDS) {
             return isset($cache['metadata']) && is_array($cache['metadata']) ? $cache['metadata'] : array();

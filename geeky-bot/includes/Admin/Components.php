@@ -57,7 +57,9 @@ class Components {
         // The product name sits above the page title on every screen except the
         // Dashboard, where the title already is the product name. Repeating it
         // there would just read as a stutter.
-        $show_product_label = strcasecmp(trim($args['title']), $product) !== 0;
+        // No "GEEKY BOT" label above page titles since 2.1.1: the menu and the
+        // brand tile already say where you are, on every page.
+        $show_product_label = false;
         ?>
         <div class="gb2-header">
             <?php if (is_callable($args['brand'])) : ?>

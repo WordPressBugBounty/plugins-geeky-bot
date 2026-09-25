@@ -2,9 +2,9 @@
 Contributors: ahmadgb
 Tags: woocommerce, product search, product recommendations, ai chatbot, ecommerce
 Requires at least: 6.0
-Tested up to: 7.0
+Tested up to: 7.1
 Requires PHP: 7.4
-Stable tag: 2.1.0
+Stable tag: 2.1.1
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -99,7 +99,7 @@ WooCommerce is required for product discovery and shopping assistance. Geeky Bot
 
 = Does Geeky Bot require an external AI service? =
 
-No. Local grounded product discovery and policy routing can work without an external AI provider. Zywrap and OpenAI are optional for supported AI-assisted answer modes.
+No. Local grounded product discovery and policy routing can work without an external AI provider. OpenAI is optional, for AI-written answers and for the Smart Catalog and Rescue search levels; each is off until you choose it.
 
 = What information can Geeky Bot use? =
 
@@ -140,7 +140,7 @@ Depending on the settings chosen by the store owner, Geeky Bot may store convers
 
 The plugin provides retention settings, conversation deletion tools, and integration with the WordPress personal-data export and erasure system. Store owners are responsible for describing their configuration and data practices in their own privacy policy.
 
-Shopper questions are sent to an external AI provider only when the administrator has selected and configured that provider.
+Shopper questions are sent to an external AI provider only when the administrator has selected and configured that provider. With the Rescue search level or learning from missed searches switched on, the wording of searches that found nothing is also sent to that provider, as described under External services.
 
 == External services ==
 
@@ -149,6 +149,14 @@ Geeky Bot can operate in local grounded mode without sending shopper questions t
 = OpenAI =
 
 When OpenAI mode is selected and an API key is saved, Geeky Bot sends the shopper's question, a grounding instruction, relevant visible-product summaries, and relevant excerpts from approved policy pages to the OpenAI API to generate the requested answer.
+
+The product search levels also use the OpenAI API with the saved key. Each is off until the administrator selects it under Geeky Bot → Product Search, and the Standard level makes no external requests.
+
+* Smart Catalog: for each visible product, Geeky Bot sends the product title, categories, tags, attributes and a short summary of up to 240 characters taken from the product description, and asks for the words shoppers use for that product. It is sent when Smart Catalog is switched on, when a product is added or changed, and when the administrator asks for words to be rewritten. No shopper data is sent.
+* Rescue (requires Commerce Pro): when a shopper's search finds nothing, Geeky Bot sends the wording of that search and a list of the store's category and product-type words, and asks which of those words fit. Each answer is stored for 30 days and reused, so the same search is not sent again during that time.
+* Learning from missed searches (requires Commerce Pro, and the Smart Catalog or Rescue level): once a day, Geeky Bot sends the text of recent shopper messages that found no products, with the same list of store words, and asks for synonym suggestions. Suggestions are shown to the administrator and only used after they are accepted.
+
+A site-wide daily and monthly limit on AI calls applies to all of these, and can be set under Geeky Bot → AI & Privacy.
 
 Service: https://api.openai.com/
 
@@ -172,6 +180,11 @@ Privacy: https://www.zywrap.com/privacy
 
 When an administrator chooses to view information about Commerce Pro or follow support, documentation, purchase, account, or upgrade links, the browser connects to geekybot.com.
 
+The free plugin makes no server-side requests to geekybot.com. Only when the separate Commerce Pro add-on is installed:
+
+* Once a day, and when an administrator opens the admin after six hours, Geeky Bot reads the public Commerce Pro release file from cdn.geekybot.com to see whether an update exists. The request carries the site address in its standard WordPress user-agent.
+* When a Commerce Pro license key is entered, Geeky Bot sends it to geekybot.com with the site address, the WordPress, PHP, Geeky Bot and Commerce Pro versions, and an anonymous installation ID, to activate the license, re-check it once a day, and fetch Commerce Pro updates.
+
 Service: https://geekybot.com/
 
 Terms: https://geekybot.com/terms-conditions/
@@ -179,6 +192,47 @@ Terms: https://geekybot.com/terms-conditions/
 Privacy: https://geekybot.com/privacy-policy/
 
 == Changelog ==
+
+= 2.1.1 =
+
+Search
+
+* New search levels under Product Search: Standard, Smart Catalog, and Smart Catalog + Rescue.
+* Smart Catalog asks AI once per product for the words shoppers really use (trainers for sneakers, beanie for woolly hat), stores them on your server, and searches them with no AI call per search. Products are refreshed automatically when they change.
+* With Commerce Pro, Rescue asks AI only when a search finds nothing, such as "something to keep warm", and remembers the answer for everyone.
+* With Commerce Pro and Smart Catalog or Rescue switched on, missed searches are reviewed daily and turned into synonym suggestions you accept or dismiss, plus a list of things shoppers wanted that you don't sell.
+* Typo tolerance now learns new product words as soon as products change, and repairs itself on sites where the word list was saved empty.
+* Fixed a search for one thing matching a product that only mentions it in passing ("pants belt" no longer returns pants).
+* Fixed saved API keys being encrypted twice by a partial settings save, and model names containing dots being rejected.
+* Search results no longer change order after an index rebuild when nothing in the catalog changed.
+* "Do you sell …?" questions are no longer spell-corrected ("sell" was read as "shell"), and "keep" no longer matches product names, so "something to keep warm" finds warm clothing.
+
+Chat
+
+* AI-written answers are now one short plain-text paragraph above the product cards. Before, shoppers could see raw formatting such as asterisks, list numbers and bracketed links.
+* The two new shopper-facing messages in this release are translated into all twelve shipped languages. Other new wording shows in English until translated; the translation template is now included as languages/geeky-bot.pot.
+* AI-written answers now know which products are on sale. Asked for sale products, the answer had said the store had none while showing four sale products below it.
+* AI-written answers no longer end with a copy of the internal product data line ("Product #83: … | Price: … | URL: …").
+* Arabic, Hebrew and other right-to-left messages now read right to left, in both the shopper's messages and the replies.
+* Escape now closes the chat and returns focus to the launcher; an open menu closes first.
+* Dark mode: buttons, match details, the menu and prices inside the chat were light on light or faint. They now follow the dark palette, including "Match the shopper device".
+* The chat is hidden, and its catalog closed, for visitors WooCommerce "Coming soon" mode hides the store from. Guests had been able to browse product names and prices through the chat before launch. Store managers and visitors with the private preview link still see it.
+
+Admin
+
+* Redesigned admin screens: shorter pages, larger text, and one page per job.
+* Settings and Answer Mode are merged into AI & Privacy.
+* The License page walks through entering the key, installing Commerce Pro and switching it on.
+* The Dashboard shows what is waiting for you and how search is doing, and collapses to one card until the first shopper conversation.
+* The Storefront Widget preview now stays in view while you edit, and the image pickers are laid out correctly.
+* Deactivating the plugin now stops its background jobs; they resume when it is reactivated.
+* Declares compatibility with WooCommerce High-Performance Order Storage and the Cart and Checkout blocks, so stores using them no longer see an "incompatible plugins" warning for Geeky Bot.
+
+Privacy
+
+* The External services section now describes exactly what Smart Catalog, Rescue and learning from missed searches send to OpenAI.
+* Learning from missed searches runs only when Smart Catalog or Rescue is chosen. A saved OpenAI key alone no longer starts sending shopper messages.
+* Sites without Commerce Pro no longer check cdn.geekybot.com for Commerce Pro updates. The free plugin now makes no server-side requests to geekybot.com.
 
 = 2.1.0 =
 
@@ -280,6 +334,10 @@ Widget
 * Added support for the separate Geeky Bot Commerce Pro add-on.
 
 == Upgrade Notice ==
+
+= 2.1.1 =
+
+Adds AI search levels (Smart Catalog, and Rescue with Commerce Pro), learning from missed searches, and redesigned admin screens. Adds one database column to the product index. Back up and test on staging.
 
 = 2.1.0 =
 

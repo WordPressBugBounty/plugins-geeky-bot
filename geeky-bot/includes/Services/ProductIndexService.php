@@ -50,6 +50,21 @@ class ProductIndexService {
     const SEARCH_CACHE_TTL = 900;
 
     /**
+     * Relearning the two word lists (family + typo) after single product edits.
+     *
+     * Both lists used to be relearned only when a full rebuild finished. A store
+     * that installed Geeky Bot before adding products therefore kept them empty
+     * forever -- the install-time rebuild ran on an empty catalog, and every
+     * product added afterwards was indexed one at a time, a path that never
+     * relearned anything. Typo recovery silently did nothing on such a store.
+     * Edits are debounced into one deferred relearn so a bulk import costs one
+     * pass, not one per product.
+     */
+    const VOCABULARY_REFRESH_HOOK = 'geekybot_vocabulary_refresh';
+    const VOCABULARY_REFRESH_DELAY = 120;
+    const VOCABULARY_HEAL_GUARD = 'geekybot_vocabulary_heal_attempt';
+
+    /**
      * Catalog hooks.
      *
      * Multilingual note: on WPML and Polylang each translation of a product is
@@ -87,6 +102,7 @@ class ProductIndexService {
         add_action('untrashed_post', array($this, 'sync_untrashed_product'), 20, 1);
         add_action(self::REBUILD_HOOK, array($this, 'scheduled_rebuild'), 20, 0);
         add_action(self::REBUILD_BATCH_HOOK, array($this, 'run_rebuild_batch'), 20, 0);
+        add_action(self::VOCABULARY_REFRESH_HOOK, array($this, 'refresh_vocabularies'), 20, 0);
         add_action('activated_plugin', array($this, 'handle_plugin_activation'), 20, 2);
         add_action('woocommerce_init', array($this, 'maybe_schedule_initial_rebuild'), 20, 0);
     }
@@ -122,6 +138,7 @@ class ProductIndexService {
             attributes text NULL,
             color_terms text NULL,
             size_terms text NULL,
+            ai_terms text NULL,
             short_description text NULL,
             full_description longtext NULL,
             search_text longtext NOT NULL,
@@ -358,8 +375,67 @@ class ProductIndexService {
             return;
         }
         global $wpdb;
-        $wpdb->delete(self::table_name(), array('product_id' => absint($post_id)), array('%d'));
+        $deleted = $wpdb->delete(self::table_name(), array('product_id' => absint($post_id)), array('%d'));
         self::flush_search_cache();
+
+        // Hidden products are "deleted" on every stock sync, so only a row that
+        // actually left the index can change the word lists.
+        if ($deleted) {
+            self::request_vocabulary_refresh();
+        }
+    }
+
+    /**
+     * Schedule one deferred relearn of both word lists.
+     *
+     * A no-op while a full rebuild is scheduled or running, because finishing a
+     * rebuild relearns both lists anyway.
+     *
+     * @param int $delay Seconds to wait, so a burst of edits shares one pass.
+     * @return bool Whether a relearn was scheduled.
+     */
+    public static function request_vocabulary_refresh($delay = self::VOCABULARY_REFRESH_DELAY) {
+        if (!self::woocommerce_ready() || wp_next_scheduled(self::VOCABULARY_REFRESH_HOOK) || wp_next_scheduled(self::REBUILD_HOOK)) {
+            return false;
+        }
+
+        $state = self::rebuild_state();
+        if ($state !== null && $state['status'] === 'running' && !self::rebuild_is_stale($state)) {
+            return false;
+        }
+
+        return (bool) wp_schedule_single_event(time() + max(5, absint($delay)), self::VOCABULARY_REFRESH_HOOK);
+    }
+
+    /**
+     * Relearn the family and typo word lists from the live index.
+     *
+     * @return array{families: array, search: array}
+     */
+    public function refresh_vocabularies() {
+        $families = $this->rebuild_vocabulary();
+        $search = $this->rebuild_search_vocabulary();
+        self::flush_search_cache();
+
+        return array('families' => $families, 'search' => $search);
+    }
+
+    /**
+     * Recover a store whose word lists are empty although products are indexed.
+     *
+     * Covers installs made before 2.1.1, where the lists were saved empty and
+     * nothing ever refilled them. The guard keeps a store that genuinely has no
+     * learnable words from asking again on every search.
+     *
+     * @return bool Whether a relearn was scheduled.
+     */
+    public static function heal_vocabularies() {
+        if (get_transient(self::VOCABULARY_HEAL_GUARD)) {
+            return false;
+        }
+        set_transient(self::VOCABULARY_HEAL_GUARD, 1, HOUR_IN_SECONDS);
+
+        return self::request_vocabulary_refresh(5);
     }
 
     /**
@@ -681,6 +757,16 @@ class ProductIndexService {
         $shadow = self::shadow_table_name();
         $retired = $live . '_old';
 
+        // InnoDB updates FULLTEXT word statistics lazily, so a freshly filled
+        // table scored the same row differently from one rebuild to the next
+        // (5.1 vs 9.0 for "shoes" on identical data). ft_score is weighted x15
+        // in score_row(), so the order -- and which four products were shown --
+        // changed on every rebuild. OPTIMIZE (a recreate + analyze on InnoDB)
+        // settles the statistics. It runs on the shadow table, before the swap,
+        // so the live index is never locked. A failure only costs stability.
+        // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery,WordPress.DB.DirectDatabaseQuery.NoCaching,WordPress.DB.DirectDatabaseQuery.SchemaChange,WordPress.DB.PreparedSQL.InterpolatedNotPrepared -- Plugin-owned table.
+        $wpdb->query("OPTIMIZE TABLE {$shadow}");
+
         // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery,WordPress.DB.DirectDatabaseQuery.NoCaching,WordPress.DB.DirectDatabaseQuery.SchemaChange,WordPress.DB.PreparedSQL.InterpolatedNotPrepared -- Plugin-owned tables.
         $wpdb->query("DROP TABLE IF EXISTS {$retired}");
         // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery,WordPress.DB.DirectDatabaseQuery.NoCaching,WordPress.DB.DirectDatabaseQuery.SchemaChange,WordPress.DB.PreparedSQL.InterpolatedNotPrepared -- Single-statement atomic swap.
@@ -839,6 +925,10 @@ class ProductIndexService {
 
         if (!$this->count_indexed()) {
             $this->rebuild(300);
+        } elseif (!$this->vocabulary()->has_terms()) {
+            // The family map is already loaded by analyze_query(), so this
+            // costs nothing on a store whose lists are healthy.
+            self::heal_vocabularies();
         }
 
         $query = $this->clean_query($query);
@@ -1162,6 +1252,19 @@ class ProductIndexService {
         $image = $image_id ? wp_get_attachment_image_url($image_id, 'woocommerce_thumbnail') : '';
         $now = current_time('mysql');
 
+        // Smart Catalog words an AI wrote for this product, plus any the
+        // merchant added. Names, misspellings and translations say what the
+        // product IS: they get their own column, which ranks like a tag and
+        // counts for the family gate. Uses ("gym", "keep warm") say what it is
+        // FOR, so they only widen matching. Both are folded into the search,
+        // stem and facet text so full-text matching, the core-term gate and
+        // plural handling see them with no change to the FULLTEXT key.
+        // SmartCatalogService never lets a colour or size word through,
+        // because facet_text also gates colour and size filters.
+        $ai_groups = SmartCatalogService::effective_term_groups($product_id);
+        $ai_terms = implode(', ', $ai_groups['identity']);
+        $ai_terms_text = implode(' ', array_merge($ai_groups['identity'], $ai_groups['uses']));
+
         $search_text = $this->normalize_index_text(implode(' ', array(
             $title,
             $sku,
@@ -1170,6 +1273,7 @@ class ProductIndexService {
             $attributes,
             $color_terms,
             $size_terms,
+            $ai_terms_text,
             $short,
             $full,
         )));
@@ -1184,6 +1288,7 @@ class ProductIndexService {
             implode(' ', $categories),
             implode(' ', $tags),
             $attributes,
+            $ai_terms_text,
         ))));
 
         // The identity fields again, normalized this time. `title`, `categories`,
@@ -1208,6 +1313,7 @@ class ProductIndexService {
             $attributes,
             $color_terms,
             $size_terms,
+            $ai_terms_text,
         )));
 
         $semantic_text = $this->normalize_index_text(implode('. ', array_filter(array(
@@ -1247,6 +1353,7 @@ class ProductIndexService {
             'semantic_text' => $semantic_text,
             'stem_text' => $stem_text,
             'facet_text' => $facet_text,
+            'ai_terms' => $ai_terms,
             'product_url' => get_permalink($product_id),
             'image_url' => $image ? esc_url_raw($image) : '',
             'created_at' => get_post_time('Y-m-d H:i:s', false, $product_id) ?: $now,
@@ -1280,12 +1387,27 @@ class ProductIndexService {
             '%s', // semantic_text
             '%s', // stem_text
             '%s', // facet_text
+            '%s', // ai_terms
             '%s', // product_url
             '%s', // image_url
             '%s', // created_at
             '%s', // updated_at
         );
-        $exists = $wpdb->get_var($wpdb->prepare("SELECT id FROM {$table} WHERE product_id = %d", $product_id));
+        $vocabulary_fields = array('title', 'categories', 'tags', 'attributes', 'color_terms', 'size_terms', 'ai_terms');
+        $existing = $wpdb->get_row($wpdb->prepare("SELECT id, title, categories, tags, attributes, color_terms, size_terms, ai_terms FROM {$table} WHERE product_id = %d", $product_id));
+        $exists = $existing ? $existing->id : null;
+
+        // Stock, price and rating syncs are by far the most frequent writes and
+        // never change a word shoppers can type, so only a new product or a
+        // change to its identity text relearns the word lists.
+        $words_changed = !$existing;
+        foreach ($existing ? $vocabulary_fields : array() as $field) {
+            if ((string) $existing->$field !== (string) $data[$field]) {
+                $words_changed = true;
+                break;
+            }
+        }
+
         if ($exists) {
             $written = false !== $wpdb->update($table, $data, array('product_id' => $product_id), $formats, array('%d'));
         } else {
@@ -1296,6 +1418,15 @@ class ProductIndexService {
         // so only live writes invalidate rankings. The swap flushes once.
         if ($written && $target_table === '') {
             self::flush_search_cache();
+            if ($words_changed) {
+                self::request_vocabulary_refresh();
+            }
+        }
+
+        // Queue fresh Smart Catalog words when the identity text changed since
+        // they were written. One meta read when nothing changed.
+        if ($written && SmartCatalogService::enabled()) {
+            SmartCatalogService::maybe_queue($product_id, SmartCatalogService::identity_hash($title, $categories, $tags, $attributes));
         }
 
         return $written;
@@ -1410,30 +1541,34 @@ class ProductIndexService {
     }
 
     private function candidate_order_sql($analysis, $with_fulltext = false) {
+        // Every order ends on product_id, not updated_at: updated_at is when the
+        // index row was written, so a rebuild reshuffled it by the second each
+        // batch happened to land in, and changed which tied products made the
+        // LIMIT. Newer products have higher IDs, so ties still lean newest.
         $prefix = $with_fulltext ? 'ft_score DESC, ' : '';
         $stock = "CASE WHEN stock_status = 'instock' THEN 0 ELSE 1 END";
 
         if (!empty($analysis['value_sort'])) {
-            return $prefix . $stock . ", is_on_sale DESC, rating DESC, total_sales DESC, CASE WHEN price BETWEEN 20 AND 90 THEN 0 ELSE 1 END, updated_at DESC";
+            return $prefix . $stock . ", is_on_sale DESC, rating DESC, total_sales DESC, CASE WHEN price BETWEEN 20 AND 90 THEN 0 ELSE 1 END, product_id DESC";
         }
 
         if (!empty($analysis['is_gift_request'])) {
-            return $prefix . $stock . ", rating DESC, total_sales DESC, is_on_sale DESC, CASE WHEN price BETWEEN 12 AND 120 THEN 0 ELSE 1 END, updated_at DESC";
+            return $prefix . $stock . ", rating DESC, total_sales DESC, is_on_sale DESC, CASE WHEN price BETWEEN 12 AND 120 THEN 0 ELSE 1 END, product_id DESC";
         }
 
         if (!empty($analysis['budget_sort'])) {
-            return $prefix . $stock . ", is_on_sale DESC, rating DESC, total_sales DESC, CASE WHEN price BETWEEN 10 AND 80 THEN 0 ELSE 1 END, CASE WHEN price IS NULL OR price <= 0 THEN 1 ELSE 0 END, price ASC, updated_at DESC";
+            return $prefix . $stock . ", is_on_sale DESC, rating DESC, total_sales DESC, CASE WHEN price BETWEEN 10 AND 80 THEN 0 ELSE 1 END, CASE WHEN price IS NULL OR price <= 0 THEN 1 ELSE 0 END, price ASC, product_id DESC";
         }
 
         if (!empty($analysis['intent']) && $analysis['intent'] === 'popular') {
-            return $prefix . $stock . ", total_sales DESC, rating DESC, is_on_sale DESC, updated_at DESC";
+            return $prefix . $stock . ", total_sales DESC, rating DESC, is_on_sale DESC, product_id DESC";
         }
 
         if (!empty($analysis['intent']) && $analysis['intent'] === 'top_rated') {
-            return $prefix . $stock . ", rating DESC, total_sales DESC, updated_at DESC";
+            return $prefix . $stock . ", rating DESC, total_sales DESC, product_id DESC";
         }
 
-        return $prefix . $stock . ", rating DESC, total_sales DESC, is_on_sale DESC, updated_at DESC";
+        return $prefix . $stock . ", rating DESC, total_sales DESC, is_on_sale DESC, product_id DESC";
     }
 
     private function score_row($row, $analysis) {
@@ -1459,7 +1594,7 @@ class ProductIndexService {
 
         $matched_core_count = 0;
         foreach ((array) ($analysis['core_terms'] ?? array()) as $core_term) {
-            $identity_text = (string) $row->title . ' ' . (string) $row->sku . ' ' . (string) $row->categories . ' ' . (string) $row->tags . ' ' . (string) $row->attributes;
+            $identity_text = (string) $row->title . ' ' . (string) $row->sku . ' ' . (string) $row->categories . ' ' . (string) $row->tags . ' ' . (string) $row->attributes . ' ' . (string) ($row->ai_terms ?? '');
             if ($this->row_has_term_or_stem($row, $identity_text, $core_term)) {
                 $matched_core_count++;
             }
@@ -1491,6 +1626,12 @@ class ProductIndexService {
             }
             if (preg_match('/\b' . preg_quote($term, '/') . '\b/u', (string) $row->tags)) {
                 $score += 14;
+            }
+            // Smart Catalog words rank like a tag: enough to surface a product
+            // the shopper named differently, never enough to outrank a product
+            // whose own name or category says the same thing.
+            if (!empty($row->ai_terms) && preg_match('/\b' . preg_quote($term, '/') . '\b/u', (string) $row->ai_terms)) {
+                $score += 12;
             }
             if (preg_match('/\b' . preg_quote($term, '/') . '\b/u', (string) $row->attributes)) {
                 $score += 16;
@@ -1813,6 +1954,20 @@ class ProductIndexService {
             );
         }
 
+        $matched_ai = array();
+        foreach ($core_display as $term) {
+            if (!in_array($term, $matched_core, true) && !empty($row->ai_terms) && $this->row_text_has_term((string) $row->ai_terms, $term)) {
+                $matched_ai[] = $term;
+            }
+        }
+        if (!empty($matched_ai)) {
+            $reasons[] = sprintf(
+                /* translators: %s: comma-separated shopper words matched through Smart Catalog. */
+                __('Smart Catalog word matched: %s', 'geeky-bot'),
+                implode(', ', array_slice(array_values(array_unique($matched_ai)), 0, 4))
+            );
+        }
+
         $matched_colors = array();
         foreach ((array) ($analysis['color_terms'] ?? array()) as $term) {
             if ($this->row_text_has_term((string) $row->color_terms . ' ' . (string) $row->attributes . ' ' . (string) $row->title . ' ' . (string) $row->tags, $term)) {
@@ -1926,6 +2081,72 @@ class ProductIndexService {
     private function term_names($product_id, $taxonomy) {
         $terms = wp_get_post_terms($product_id, $taxonomy, array('fields' => 'names'));
         return is_wp_error($terms) ? array() : array_map('wp_strip_all_tags', (array) $terms);
+    }
+
+    /**
+     * How strongly results support the shopper's words, as whole words.
+     *
+     * Ordinary matching accepts part of a word, so "car" reaches "scarf" and
+     * "day" reaches "everyday" -- useful for compounds like "earbuds", but it
+     * means a result can look like a match while sharing no real word with
+     * the request. This asks the stricter question.
+     *
+     * @param array $product_ids Products.
+     * @param array $terms       Normalised shopper terms.
+     * @return string 'own' when a product's own name, SKU, categories, tags or
+     *                attributes contain a term as a whole word (or its stem);
+     *                'ai' when only Smart Catalog words do; 'none' otherwise.
+     */
+    public function whole_word_match_strength($product_ids, $terms) {
+        global $wpdb;
+
+        $product_ids = array_values(array_filter(array_map('absint', (array) $product_ids)));
+        $terms = array_values(array_filter(array_map(array($this, 'normalize_index_text'), (array) $terms)));
+        if (empty($product_ids) || empty($terms)) {
+            return 'own';
+        }
+
+        $table = self::table_name();
+        $placeholders = implode(', ', array_fill(0, count($product_ids), '%d'));
+        $rows = $wpdb->get_results($wpdb->prepare("SELECT title, sku, categories, tags, attributes, ai_terms FROM {$table} WHERE product_id IN ({$placeholders})", $product_ids));
+
+        $strength = 'none';
+        foreach ((array) $rows as $row) {
+            $own = ' ' . $this->normalize_index_text($row->title . ' ' . $row->sku . ' ' . $row->categories . ' ' . $row->tags . ' ' . $row->attributes) . ' ';
+            $own_stems = ' ' . $this->stemmer()->unique_stem_text(trim($own)) . ' ';
+            $ai = ' ' . $this->normalize_index_text(str_replace(',', ' ', (string) ($row->ai_terms ?? ''))) . ' ';
+            $ai_stems = ' ' . $this->stemmer()->unique_stem_text(trim($ai)) . ' ';
+            foreach ($terms as $term) {
+                $stem = $this->stemmer()->stem($term);
+                if (strpos($own, ' ' . $term . ' ') !== false || ($stem !== '' && strpos($own_stems, ' ' . $stem . ' ') !== false)) {
+                    return 'own';
+                }
+                if (strpos($ai, ' ' . $term . ' ') !== false || ($stem !== '' && strpos($ai_stems, ' ' . $stem . ' ') !== false)) {
+                    $strength = 'ai';
+                }
+            }
+        }
+
+        return $strength;
+    }
+
+    /**
+     * Smart Catalog fingerprint of a product's identity text, built from the
+     * exact values this index stores.
+     *
+     * @param \WC_Product $product Product.
+     * @return string
+     */
+    public function identity_hash_for($product) {
+        $product_id = $product->get_id();
+        $attribute_data = $this->attribute_data($product);
+
+        return SmartCatalogService::identity_hash(
+            wp_strip_all_tags($product->get_name()),
+            $this->term_names($product_id, 'product_cat'),
+            $this->term_names($product_id, 'product_tag'),
+            $attribute_data['text']
+        );
     }
 
     private function attribute_data($product) {
@@ -2205,7 +2426,11 @@ class ProductIndexService {
         // does not: "bottle pocket" on a backpack must never make that backpack
         // eligible for a water-bottle search, which is why attributes and
         // search_text widen $product_text below but never the gate.
-        $family_identity_text = (string) $row->title . ' ' . (string) $row->sku . ' ' . (string) $row->categories . ' ' . (string) $row->tags;
+        // Smart Catalog names count here like a tag: they are what shoppers
+        // call this product, which is exactly what a family gate asks. Only
+        // names and translations reach ai_terms -- "uses" such as "gym" never
+        // do, so a use can never pass a product off as a family.
+        $family_identity_text = (string) $row->title . ' ' . (string) $row->sku . ' ' . (string) $row->categories . ' ' . (string) $row->tags . ' ' . $this->ai_term_heads((string) ($row->ai_terms ?? ''));
         $product_text = $family_identity_text . ' ' . (string) $row->attributes . ' ' . (string) $row->search_text;
         if (!$this->row_matches_any_term($family_identity_text, $required_aliases)) {
             return false;
@@ -3312,6 +3537,29 @@ class ProductIndexService {
         }
 
         return implode(' ', $groups);
+    }
+
+    /**
+     * The last word of each Smart Catalog name, for the family gate.
+     *
+     * A model names a belt "pants belt"; letting every word count made the
+     * belt a "pants" result. The final word is the one that says what the
+     * thing is -- "pants belt", "wireless headphones", "winter hat" -- so it
+     * alone decides the family. Every word still matches in ordinary search.
+     *
+     * @param string $ai_terms Comma-separated ai_terms column.
+     * @return string
+     */
+    private function ai_term_heads($ai_terms) {
+        $heads = array();
+        foreach (explode(',', $ai_terms) as $name) {
+            $words = preg_split('/\s+/u', trim($name), -1, PREG_SPLIT_NO_EMPTY);
+            if (!empty($words)) {
+                $heads[] = end($words);
+            }
+        }
+
+        return implode(' ', array_unique($heads));
     }
 
     private function query_terms($query) {

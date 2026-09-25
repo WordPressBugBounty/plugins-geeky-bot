@@ -170,7 +170,33 @@ class DatabaseMigrator {
             '2.0.3' => array(__CLASS__, 'migrate_203_product_index_stem_text'),
             '2.0.4' => array(__CLASS__, 'migrate_204_encrypt_provider_secrets'),
             '2.1.0' => array(__CLASS__, 'migrate_210_product_index_facet_text'),
+            '2.1.1' => array(__CLASS__, 'migrate_211_product_index_ai_terms'),
         );
+    }
+
+    /**
+     * Add `ai_terms` (Smart Catalog words) to the product index.
+     *
+     * No rebuild is queued: the column starts empty, which is correct until
+     * the merchant turns Smart Catalog on, and each product's row is rewritten
+     * as its words arrive.
+     *
+     * @return bool
+     */
+    public static function migrate_211_product_index_ai_terms() {
+        global $wpdb;
+
+        $table = $wpdb->prefix . 'geekybot_product_index';
+
+        // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery,WordPress.DB.DirectDatabaseQuery.NoCaching,WordPress.DB.PreparedSQL.InterpolatedNotPrepared -- Own plugin table.
+        if (!$wpdb->get_var($wpdb->prepare('SHOW TABLES LIKE %s', $table))) {
+            return true;
+        }
+
+        ProductIndexService::create_table();
+
+        // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery,WordPress.DB.DirectDatabaseQuery.NoCaching,WordPress.DB.PreparedSQL.InterpolatedNotPrepared -- Own plugin table.
+        return $wpdb->get_var($wpdb->prepare("SHOW COLUMNS FROM {$table} LIKE %s", 'ai_terms')) === 'ai_terms';
     }
 
     /**

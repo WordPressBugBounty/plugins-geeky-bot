@@ -6,6 +6,10 @@ if (!defined('WP_UNINSTALL_PLUGIN')) {
 wp_clear_scheduled_hook('geekybot_commerce_pro_license_check');
 wp_clear_scheduled_hook('geekybot_commerce_pro_version_check');
 wp_clear_scheduled_hook('geekybot_product_index_scheduled_rebuild');
+wp_clear_scheduled_hook('geekybot_product_index_rebuild_batch');
+wp_clear_scheduled_hook('geekybot_vocabulary_refresh');
+wp_clear_scheduled_hook('geekybot_smart_catalog_batch');
+wp_clear_scheduled_hook('geekybot_search_learning_run');
 
 $geekybot_delete_data = get_option('geekybot_delete_data_on_uninstall', 'no');
 if ($geekybot_delete_data !== 'yes') {
@@ -19,6 +23,10 @@ $geekybot_tables = array(
     $wpdb->prefix . 'geekybot_unanswered',
     $wpdb->prefix . 'geekybot_events',
     $wpdb->prefix . 'geekybot_product_index',
+    // The batched rebuild fills a shadow table and swaps it in, briefly keeping
+    // the old one; either is left behind if a rebuild was interrupted.
+    $wpdb->prefix . 'geekybot_product_index_new',
+    $wpdb->prefix . 'geekybot_product_index_old',
     $wpdb->prefix . 'geekybot_knowledge_index',
 );
 
@@ -56,4 +64,8 @@ if (is_multisite()) {
 }
 
 // The dated geekybot_ai_calls_* counters are covered by the prefix sweep above.
+
+// Smart Catalog keeps its words on each product.
+// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery,WordPress.DB.DirectDatabaseQuery.NoCaching -- Removes the product meta this plugin owns, matched on its own prefix.
+$wpdb->query($wpdb->prepare("DELETE FROM {$wpdb->postmeta} WHERE meta_key LIKE %s", $wpdb->esc_like('_geekybot_ai_terms') . '%'));
 

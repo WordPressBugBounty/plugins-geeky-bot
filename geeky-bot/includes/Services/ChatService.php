@@ -1120,6 +1120,19 @@ class ChatService {
                         __("I couldn't find %s at that price. Here are other products that may fit your budget.", 'geeky-bot'),
                         $requested_label
                     );
+            } elseif ($note === 'search_rescue') {
+                // Say what was searched instead, as with a spelling correction:
+                // the shopper asked for an idea, and needs to see how it was read.
+                $typed = !empty($product_search_context['originalQuery']) ? (string) $product_search_context['originalQuery'] : '';
+                $searched = !empty($product_search_context['rescueQueries']) ? implode(', ', array_slice((array) $product_search_context['rescueQueries'], 0, 4)) : '';
+                $reply = ($typed !== '' && $searched !== '')
+                    ? sprintf(
+                        /* translators: 1: what the shopper asked for, 2: comma-separated product types searched instead. */
+                        __('I didn\'t find an exact match for "%1$s", so I looked for %2$s. Here are some options.', 'geeky-bot'),
+                        $typed,
+                        $searched
+                    )
+                    : __('Here are the closest matches I could find.', 'geeky-bot');
             } elseif ($note === 'spelling_recovery') {
                 // Say what was searched instead. A shopper who mistyped needs to
                 // see the correction to trust the results -- and to notice when

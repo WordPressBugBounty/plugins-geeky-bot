@@ -295,11 +295,13 @@ class HealthService {
         }
 
         if ($learned === 0) {
+            ProductIndexService::heal_vocabularies();
+
             return $this->result(
                 'store_vocabulary',
                 __('Store vocabulary', 'geeky-bot'),
                 'warning',
-                __('Your product categories have not been read yet, so searches rely on built-in wording only. Rebuild the product index to learn them.', 'geeky-bot')
+                __('Your product categories have not been read yet, so searches rely on built-in wording only. Geeky Bot is learning them now; check again in a few minutes, or rebuild the product index.', 'geeky-bot')
             );
         }
 

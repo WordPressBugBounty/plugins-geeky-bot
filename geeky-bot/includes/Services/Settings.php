@@ -187,6 +187,15 @@ class Settings {
             'search_custom_synonyms' => "comfortable = soft, cushioned, walking
 not expensive = budget, affordable, low price
 trainers = sneakers, shoes",
+            // Search level. 'standard' calls no AI. 'catalog' (Smart Catalog)
+            // asks the AI connection once per product for the words shoppers
+            // use, and searches them locally.
+            'search_ai_level' => 'standard',
+            // Extra languages Smart Catalog adds words in, besides the store's own.
+            'search_ai_languages' => array(),
+            // OpenAI model for Smart Catalog. Blank uses the chat model, so a
+            // store can keep a stronger model for answers and a cheap one here.
+            'search_ai_model' => '',
             'delete_data_on_uninstall' => get_option('geekybot_delete_data_on_uninstall', 'no') === 'yes' ? 'yes' : 'no',
             'last_updated' => '',
         );
@@ -307,10 +316,14 @@ trainers = sneakers, shoes",
         $clean['allow_guest_sessions'] = isset($input['allow_guest_sessions']) && $input['allow_guest_sessions'] === 'yes' ? 'yes' : 'no';
         $clean['provider_mode'] = isset($input['provider_mode']) && in_array($input['provider_mode'], array('local', 'zywrap', 'openai'), true) ? $input['provider_mode'] : 'local';
         $clean['zywrap_endpoint'] = isset($input['zywrap_endpoint']) ? self::sanitize_provider_endpoint($input['zywrap_endpoint']) : $current['zywrap_endpoint'];
-        $clean['openai_model'] = isset($input['openai_model']) ? sanitize_key($input['openai_model']) : $current['openai_model'];
+        $clean['openai_model'] = isset($input['openai_model']) ? self::sanitize_model_id($input['openai_model']) : $current['openai_model'];
         if ($clean['openai_model'] === '') {
             $clean['openai_model'] = self::defaults()['openai_model'];
         }
+        // Blank means "same model as chat answers".
+        $clean['search_ai_model'] = isset($input['search_ai_model'])
+            ? self::sanitize_model_id($input['search_ai_model'])
+            : (isset($current['search_ai_model']) ? $current['search_ai_model'] : '');
         $clean['ai_max_tokens'] = isset($input['ai_max_tokens']) ? max(120, min(1200, absint($input['ai_max_tokens']))) : 450;
         $clean['rate_limit_messages'] = isset($input['rate_limit_messages']) ? max(20, min(1000, absint($input['rate_limit_messages']))) : 120;
         $clean['rate_limit_window_minutes'] = isset($input['rate_limit_window_minutes']) ? max(1, min(60, absint($input['rate_limit_window_minutes']))) : 5;
@@ -332,6 +345,12 @@ trainers = sneakers, shoes",
         $clean['search_boost_popularity'] = isset($input['search_boost_popularity']) ? ($input['search_boost_popularity'] === 'yes' ? 'yes' : 'no') : $current['search_boost_popularity'];
         $clean['search_min_score'] = isset($input['search_min_score']) ? max(1, min(200, absint($input['search_min_score']))) : absint($current['search_min_score']);
         $clean['search_custom_synonyms'] = isset($input['search_custom_synonyms']) ? substr(sanitize_textarea_field((string) $input['search_custom_synonyms']), 0, 6000) : $current['search_custom_synonyms'];
+        $clean['search_ai_level'] = isset($input['search_ai_level']) && in_array($input['search_ai_level'], array('standard', 'catalog', 'rescue'), true)
+            ? $input['search_ai_level']
+            : (isset($current['search_ai_level']) ? $current['search_ai_level'] : 'standard');
+        $clean['search_ai_languages'] = isset($input['search_ai_languages'])
+            ? array_values(array_intersect(array_map('sanitize_key', (array) $input['search_ai_languages']), array_keys(SmartCatalogService::languages())))
+            : (isset($current['search_ai_languages']) ? (array) $current['search_ai_languages'] : array());
         $clean['delete_data_on_uninstall'] = isset($input['delete_data_on_uninstall']) && $input['delete_data_on_uninstall'] === 'yes' ? 'yes' : 'no';
         update_option('geekybot_delete_data_on_uninstall', $clean['delete_data_on_uninstall'], false);
 
@@ -362,7 +381,38 @@ trainers = sneakers, shoes",
             }
         }
 
+        // Turning Smart Catalog on or off changes what every index row holds,
+        // so the index is rebuilt; turning it on also starts writing words.
+        // New languages change every product's fingerprint, so each product is
+        // requeued as the rebuild rewrites it.
+        // Moving between Smart Catalog and Rescue changes nothing in the index,
+        // so only crossing the Standard boundary rebuilds.
+        $old_catalog = in_array(isset($current['search_ai_level']) ? $current['search_ai_level'] : 'standard', array('catalog', 'rescue'), true);
+        $new_catalog = in_array($clean['search_ai_level'], array('catalog', 'rescue'), true);
+        $old_languages = isset($current['search_ai_languages']) ? (array) $current['search_ai_languages'] : array();
+        if ($old_catalog !== $new_catalog || ($new_catalog && $old_languages != $clean['search_ai_languages'])) {
+            ProductIndexService::request_rebuild(30);
+            if ($new_catalog) {
+                SmartCatalogService::schedule_batch(10);
+            }
+        }
+
         return $clean;
+    }
+
+    /**
+     * A provider model ID such as "gpt-4.1-nano".
+     *
+     * sanitize_key() was used here and strips dots, which silently turned
+     * "gpt-4.1-mini" into the non-existent "gpt-41-mini".
+     *
+     * @param mixed $value Raw input.
+     * @return string
+     */
+    private static function sanitize_model_id($value) {
+        $value = strtolower(trim((string) $value));
+
+        return substr(preg_replace('/[^a-z0-9._:\-]/', '', $value), 0, 80);
     }
 
     private static function sanitize_provider_endpoint($value) {
@@ -443,6 +493,14 @@ trainers = sneakers, shoes",
     private static function sanitize_secret($value, $current) {
         $value = trim((string) $value);
         if ($value === '' || $value === '••••••••') {
+            return $current;
+        }
+
+        // A partial save fills missing fields from Settings::all(), which holds
+        // the stored, already-encrypted secret. Encrypting that again made
+        // secret() return ciphertext, so every provider call failed with
+        // "Incorrect API key". No real provider key looks like vault output.
+        if ($value === (string) $current || LicenseVault::is_encrypted($value)) {
             return $current;
         }
 
@@ -576,6 +634,24 @@ trainers = sneakers, shoes",
             'retentionDays' => absint($settings['retention_days']),
             'hasPolicySources' => !empty(array_filter(array_map('absint', (array) $settings['policy_page_ids']))),
         );
+    }
+
+    /**
+     * Whether Zywrap is offered as an AI connection.
+     *
+     * Hidden for now: the hosted wrappers it needs are not published yet. A
+     * site already answering through Zywrap keeps seeing it, so hiding it can
+     * never silently change how that store answers. The integration code stays.
+     *
+     * @return bool
+     */
+    public static function zywrap_visible() {
+        /**
+         * Show Zywrap as an AI connection.
+         *
+         * @param bool $visible True only while Zywrap is the saved answer mode.
+         */
+        return (bool) apply_filters('geekybot_zywrap_enabled', self::get('provider_mode', 'local') === 'zywrap');
     }
 
     public static function has_secret($key) {

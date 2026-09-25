@@ -16,6 +16,8 @@ use GeekyBot\Services\ProductIndexService;
 use GeekyBot\Services\PrivacyService;
 use GeekyBot\Services\OnboardingService;
 use GeekyBot\Services\ShopperOutputService;
+use GeekyBot\Services\SmartCatalogService;
+use GeekyBot\Services\SearchLearningService;
 
 final class Plugin {
     private static $instance = null;
@@ -58,6 +60,8 @@ final class Plugin {
         (new ShopperOutputService())->hooks();
         (new Api())->hooks();
         (new ProductIndexService())->hooks();
+        (new SmartCatalogService())->hooks();
+        (new SearchLearningService())->hooks();
         (new KnowledgeIndexService())->hooks();
         (new PrivacyService())->hooks();
         (new OnboardingService())->hooks();

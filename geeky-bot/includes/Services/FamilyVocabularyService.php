@@ -101,6 +101,17 @@ class FamilyVocabularyService {
     }
 
     /**
+     * Whether any family has been learned from the store yet.
+     *
+     * @return bool
+     */
+    public function has_terms() {
+        $map = $this->map();
+
+        return !empty($map['terms']);
+    }
+
+    /**
      * Gate tokens for a shopper term.
      *
      * @param string $term Normalised token.

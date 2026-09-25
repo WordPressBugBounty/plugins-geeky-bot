@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: Geeky Bot\n"
 "Report-Msgid-Bugs-To: https://geekybot.com/\n"
 "POT-Creation-Date: 2026-09-16 11:20+0500\n"
-"PO-Revision-Date: 2026-09-16 13:20+0500\n"
+"PO-Revision-Date: 2026-09-25 04:31+0000\n"
 "Last-Translator: \n"
 "Language-Team: Italian\n"
 "Language: it_IT\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Domain: geeky-bot\n"
-"X-Generator: geeky-bot/tools/make-translation-file.sh\n"
+"X-Generator: geekybot-tests/make-translations.php\n"
 "X-Poedit-Basepath: .\n"
 "X-Poedit-KeywordsList: __;_e;esc_html__;esc_html_e;esc_attr__;esc_attr_e;esc_xml__;_x:1,2c;_ex:1,2c;esc_html_x:1,2c;esc_attr_x:1,2c;_n:1,2;_nx:1,2,4c;_n_noop:1,2;_nx_noop:1,2,3c\n"
 "X-Poedit-SearchPath-0: geeky-bot\n"
@@ -5897,3 +5897,1032 @@ msgstr[1] "Mostra ancora %s prodotti"
 
 msgid "Products under 50"
 msgstr "Prodotti a meno di 50"
+
+msgid "%1$s calls · %2$s tokens in · %3$s out"
+msgstr ""
+
+msgid "%1$s of %2$s"
+msgstr ""
+
+msgid "%1$s products searchable · %2$s"
+msgstr ""
+
+msgid "%d approved"
+msgid_plural "%d approved"
+msgstr[0] ""
+msgstr[1] ""
+
+msgid "%d products queued. Words are written in the background."
+msgstr ""
+
+msgid "%s item"
+msgid_plural "%s items"
+msgstr[0] ""
+msgstr[1] ""
+
+msgid "%s search"
+msgid_plural "%s searches"
+msgstr[0] ""
+msgstr[1] ""
+
+msgid "%s synonym suggestion"
+msgid_plural "%s synonym suggestions"
+msgstr[0] ""
+msgstr[1] ""
+
+msgid "A Geeky Bot database table is missing, so the assistant cannot search your catalog: %s. It is recreated automatically on the next page load; if this warning stays, the database user may not be allowed to create tables."
+msgid_plural "Geeky Bot database tables are missing, so the assistant cannot search your catalog: %s. They are recreated automatically on the next page load; if this warning stays, the database user may not be allowed to create tables."
+msgstr[0] ""
+msgstr[1] ""
+
+msgid "A checkout button once the cart has items."
+msgstr ""
+
+msgid "A new version is out, but your license needs renewing on geekybot.com before it can be installed."
+msgstr ""
+
+msgid "AI & Privacy"
+msgstr ""
+
+msgid "AI adds the other names shoppers use for each product (sneakers, trainers, kicks). Searches never wait for AI."
+msgstr ""
+
+msgid "AI calls by search"
+msgstr ""
+
+msgid "AI calls left today"
+msgstr ""
+
+msgid "AI calls to finish"
+msgstr ""
+
+msgid "AI connection"
+msgstr ""
+
+msgid "AI model"
+msgstr ""
+
+msgid "AI used so far"
+msgstr ""
+
+msgid "AI words are turned off for this product."
+msgstr ""
+
+msgid "Activate and install"
+msgstr ""
+
+msgid "Activating and installing…"
+msgstr ""
+
+msgid "Active: %s"
+msgstr ""
+
+msgid "Add synonym"
+msgstr ""
+
+msgid "Add to cart, order lookup, comparison and checkout handoff."
+msgstr ""
+
+msgid "Add-to-cart buttons for simple products, option pickers for variable ones."
+msgstr ""
+
+msgid "Admins, shop managers and editors are never limited."
+msgstr ""
+
+msgid "After changing the answer mode"
+msgstr ""
+
+msgid "Also add words in these languages"
+msgstr ""
+
+msgid "Also asks AI when a search finds nothing (“something to keep warm”), and remembers the answer for everyone."
+msgstr ""
+
+msgid "Always available"
+msgstr ""
+
+msgid "Answered from memory (free)"
+msgstr ""
+
+msgid "Answers and AI"
+msgstr ""
+
+msgid "Applies to the chat on your store straight away."
+msgstr ""
+
+msgid "Approved guidance"
+msgstr ""
+
+msgid "Arabic"
+msgstr ""
+
+msgid "Ask one product and one policy question on your storefront to check the answers."
+msgstr ""
+
+msgid "Ask the assistant to add something to your cart."
+msgstr ""
+
+msgid "Automatic update settings"
+msgstr ""
+
+msgid "Basics"
+msgstr ""
+
+msgid "Between 15 and 600."
+msgstr ""
+
+msgid "Blank uses your chat model. gpt-4o-mini gave the best search words in testing; smaller models such as gpt-4.1-nano cost about the same overall because they write more, weaker words."
+msgstr ""
+
+msgid "Bound to this site"
+msgstr ""
+
+msgid "Built from your store data, no AI"
+msgstr ""
+
+msgid "Buying"
+msgstr ""
+
+msgid "Buying actions in the last 30 days"
+msgstr ""
+
+msgid "Cart reminders"
+msgstr ""
+
+msgid "Change it on Product Search"
+msgstr ""
+
+msgid "Changes the style of AI answers, never the product facts."
+msgstr ""
+
+msgid "Charts, unanswered questions and recent conversations appear here after the first shopper uses the chat."
+msgstr ""
+
+msgid "Chat answers"
+msgstr ""
+
+msgid "Check for updates"
+msgstr ""
+
+msgid "Check missed searches now"
+msgstr ""
+
+msgid "Check my license again"
+msgstr ""
+
+msgid "Checked for updates."
+msgstr ""
+
+msgid "Checked. %1$d new suggestions and %2$d requests for products you do not sell."
+msgstr ""
+
+msgid "Checkouts started"
+msgstr ""
+
+msgid "Chinese"
+msgstr ""
+
+msgid "Choose Smart Catalog or Smart Catalog + Rescue under Search level to check missed searches."
+msgstr ""
+
+msgid "Choose how chat answers are written, and save the key Smart Catalog and Rescue use. Keys stay on your server."
+msgstr ""
+
+msgid "Choose size, colour and other options inside the chat."
+msgstr ""
+
+msgid "Clear saved key"
+msgstr ""
+
+msgid "Commerce Pro is active on this site"
+msgstr ""
+
+msgid "Commerce Pro is installed and switched on. You are all set."
+msgstr ""
+
+msgid "Commerce Pro is installed. Switch it on to finish."
+msgstr ""
+
+msgid "Commerce Pro is switched on."
+msgstr ""
+
+msgid "Commerce Pro reads the searches that found nothing and suggests the synonyms that would have found your products. You approve each one."
+msgstr ""
+
+msgid "Commerce Pro updated and switched on."
+msgstr ""
+
+msgid "Commerce Pro updated. Switch it on to use the buying actions again."
+msgstr ""
+
+msgid "Commerce Pro: cart, variations and checkout"
+msgstr ""
+
+msgid "Common misspellings"
+msgstr ""
+
+msgid "Compare products side by side in the chat."
+msgstr ""
+
+msgid "Contact requests shoppers leave in the chat appear here."
+msgstr ""
+
+msgid "Conversations, questions and buying steps"
+msgstr ""
+
+msgid "Copy settings to another site"
+msgstr ""
+
+msgid "Counts comparisons, cart actions, order lookups and leads (no personal data)."
+msgstr ""
+
+msgid "Current mode: %s. Local grounded mode is the default and calls no language model — answers are built from store data. OpenAI is optional and adds generated wording."
+msgstr ""
+
+msgid "Customers checking orders"
+msgstr ""
+
+msgid "Database tables"
+msgstr ""
+
+msgid "Deactivate Commerce Pro on this site? Buying actions stop until it is activated again, and the site slot is freed for another install."
+msgstr ""
+
+msgid "Descriptive request"
+msgstr ""
+
+msgid "Dismiss"
+msgstr ""
+
+msgid "Do not use AI words for this product"
+msgstr ""
+
+msgid "Done, some products failed"
+msgstr ""
+
+msgid "Download settings file"
+msgstr ""
+
+msgid "Downloads"
+msgstr ""
+
+msgid "Downloads the add-on securely from geekybot.com and switches it on."
+msgstr ""
+
+msgid "Dutch"
+msgstr ""
+
+msgid "Empty uses the WordPress admin email."
+msgstr ""
+
+msgid "Encrypted with this site's WordPress salts and never sent to the storefront. A copied database cannot read them."
+msgstr ""
+
+msgid "Endpoint and key saved"
+msgstr ""
+
+msgid "English"
+msgstr ""
+
+msgid "Enter your license key"
+msgstr ""
+
+msgid "Every Geeky Bot table is present."
+msgstr ""
+
+msgid "Examples"
+msgstr ""
+
+msgid "Export or delete stored conversations on the Conversations page."
+msgstr ""
+
+msgid "Extra guardrails"
+msgstr ""
+
+msgid "For example English, Arabic or Spanish."
+msgstr ""
+
+msgid "For moving from staging to live. Keys and secrets are never included."
+msgstr ""
+
+msgid "Force one language"
+msgstr ""
+
+msgid "Free: find, understand and choose products"
+msgstr ""
+
+msgid "French"
+msgstr ""
+
+msgid "From the assistant"
+msgstr ""
+
+msgid "Geeky Bot search words"
+msgstr ""
+
+msgid "Geeky Bot → Product Search"
+msgstr ""
+
+msgid "German"
+msgstr ""
+
+msgid "Good for"
+msgstr ""
+
+msgid "HTTPS only"
+msgstr ""
+
+msgid "Happens automatically after installing."
+msgstr ""
+
+msgid "Happens automatically once your key is active."
+msgstr ""
+
+msgid "Hard stop for the month. After it, shoppers get local answers."
+msgstr ""
+
+msgid "How answers and search use AI, where your API keys are kept, and what shopper data is stored."
+msgstr ""
+
+msgid "How product search finds products"
+msgstr ""
+
+msgid "I didn't find an exact match for \"%1$s\", so I looked for %2$s. Here are some options."
+msgstr "Non ho trovato una corrispondenza esatta per \"%1$s\", quindi ho cercato %2$s. Ecco alcune opzioni."
+
+msgid "Import"
+msgstr ""
+
+msgid "Installed"
+msgstr ""
+
+msgid "Installed, version %s"
+msgstr ""
+
+msgid "Installing…"
+msgstr ""
+
+msgid "Italian"
+msgstr ""
+
+msgid "Japanese"
+msgstr ""
+
+msgid "Key saved"
+msgstr ""
+
+msgid "Korean"
+msgstr ""
+
+msgid "Language"
+msgstr ""
+
+msgid "Last attempt failed: %s. It retries automatically in 15 minutes."
+msgstr ""
+
+msgid "Last checked"
+msgstr ""
+
+msgid "Last checked %s"
+msgstr ""
+
+msgid "Last index rebuild"
+msgstr ""
+
+msgid "Last server message: %s"
+msgstr ""
+
+msgid "Latest"
+msgstr ""
+
+msgid "Learn from missed searches with Commerce Pro"
+msgstr ""
+
+msgid "Leave at 0 unless a CDN such as Cloudflare sits in front of the store (then 1). Too high lets visitors fake their address to dodge limits."
+msgstr ""
+
+msgid "Let AI answer searches that find nothing."
+msgstr ""
+
+msgid "License activated for this site."
+msgstr ""
+
+msgid "License status refreshed."
+msgstr ""
+
+msgid "Logged-in customers can check their own recent orders."
+msgstr ""
+
+msgid "Look and branding"
+msgstr ""
+
+msgid "Match the shopper"
+msgstr ""
+
+msgid "Missed searches"
+msgstr ""
+
+msgid "Missed searches are checked once a day. New suggestions appear here for your approval."
+msgstr ""
+
+msgid "More phrases to try in the chat"
+msgstr ""
+
+msgid "Move license to another site"
+msgstr ""
+
+msgid "Name, messages, look and invitation for the chat on your store."
+msgstr ""
+
+msgid "Needed for analytics and the unanswered-question review."
+msgstr ""
+
+msgid "Needs a fresh check"
+msgstr ""
+
+msgid "Needs an AI connection"
+msgstr ""
+
+msgid "Needs an API key"
+msgstr ""
+
+msgid "Needs an OpenAI key. Local mode does not generate text."
+msgstr ""
+
+msgid "Needs an endpoint and key"
+msgstr ""
+
+msgid "Never shown again after saving"
+msgstr ""
+
+msgid "New words are queued because the product changed."
+msgstr ""
+
+msgid "No AI in answers"
+msgstr ""
+
+msgid "No leads yet"
+msgstr ""
+
+msgid "No product activity yet"
+msgstr ""
+
+msgid "No shopper conversations yet"
+msgstr ""
+
+msgid "No suggestions waiting"
+msgstr ""
+
+msgid "Normal"
+msgstr ""
+
+msgid "Not entered yet"
+msgstr ""
+
+msgid "Not included"
+msgstr ""
+
+msgid "Not verified"
+msgstr ""
+
+msgid "Not yet"
+msgstr ""
+
+msgid "Notes the assistant mentions for products, categories or the whole store."
+msgstr ""
+
+msgid "Nothing in the store fitted"
+msgstr ""
+
+msgid "Nothing needs you right now"
+msgstr ""
+
+msgid "Nothing yet."
+msgstr ""
+
+msgid "Offer a contact form when the assistant cannot help."
+msgstr ""
+
+msgid "Older conversations are deleted automatically."
+msgstr ""
+
+msgid "On this page"
+msgstr ""
+
+msgid "Once per visit, remind a shopper with items in their cart that checkout is ready."
+msgstr ""
+
+msgid "One code per line. Only valid, published, unexpired coupons are shown."
+msgstr ""
+
+msgid "One per line, e.g. \"category:shoes | Mention that sizes run small\" or \"global | Free shipping over $50\"."
+msgstr ""
+
+msgid "One per line, e.g. medical benefits."
+msgstr ""
+
+msgid "One per line, written the way a customer would ask. The first four appear as buttons; leave empty for the defaults."
+msgstr ""
+
+msgid "One short prompt above the button after a delay, once per session. The chat stays closed until the shopper opens it."
+msgstr ""
+
+msgid "Only codes you list below are ever shown; none are invented."
+msgstr ""
+
+msgid "Only product details are sent, never shopper messages."
+msgstr ""
+
+msgid "Open Product Search"
+msgstr ""
+
+msgid "Open the Plugins page"
+msgstr ""
+
+msgid "Open your store"
+msgstr ""
+
+msgid "OpenAI model for search words"
+msgstr ""
+
+msgid "Optional facts the assistant may use, such as size advice."
+msgstr ""
+
+msgid "Other languages"
+msgstr ""
+
+msgid "Page sections"
+msgstr ""
+
+msgid "Paused after an error"
+msgstr ""
+
+msgid "Paused to keep part of your daily AI limit free for shopper chat."
+msgstr ""
+
+msgid "Paused to keep part of your daily AI limit free for shopper chat. It continues automatically."
+msgstr ""
+
+msgid "Paused: AI limit"
+msgstr ""
+
+msgid "Per visitor, per window."
+msgstr ""
+
+msgid "Plan"
+msgstr ""
+
+msgid "Plus, minus and remove buttons in the chat cart."
+msgstr ""
+
+msgid "Portuguese"
+msgstr ""
+
+msgid "Product activity analytics"
+msgstr ""
+
+msgid "Product edits update the index automatically. Rebuild only after a large import, or if results look out of date."
+msgstr ""
+
+msgid "Products shoppers click, compare or add to cart through the assistant appear here."
+msgstr ""
+
+msgid "Products with AI words"
+msgstr ""
+
+msgid "Products with search words"
+msgstr ""
+
+msgid "Quantity and removals"
+msgstr ""
+
+msgid "Raw status"
+msgstr ""
+
+msgid "Real shopper requests built from your own products and policy pages. Try any of them on your storefront."
+msgstr ""
+
+msgid "Recommended for live stores."
+msgstr ""
+
+msgid "Related, upsell and cross-sell products from WooCommerce."
+msgstr ""
+
+msgid "Reminder delay (seconds)"
+msgstr ""
+
+msgid "Removes conversations, the product index and Commerce Pro data. Leave off on live stores."
+msgstr ""
+
+msgid "Renewal needed"
+msgstr ""
+
+msgid "Renews or expires"
+msgstr ""
+
+msgid "Reply in the shopper’s language; product names, SKUs and coupons stay unchanged."
+msgstr ""
+
+msgid "Rescue AI used"
+msgstr ""
+
+msgid "Retry failed"
+msgstr ""
+
+msgid "Rewrite all"
+msgstr ""
+
+msgid "Rewrite the search words for every product? Words you removed by hand come back, and each product costs AI calls again."
+msgstr ""
+
+msgid "Rules"
+msgstr ""
+
+msgid "Russian"
+msgstr ""
+
+msgid "Sales help"
+msgstr ""
+
+msgid "Sales rules are on, but none are written yet."
+msgstr ""
+
+msgid "Save an OpenAI key in %s. Chat answers can stay in local mode."
+msgstr ""
+
+msgid "Save an OpenAI key in AI & Privacy to check missed searches."
+msgstr ""
+
+msgid "Save search level"
+msgstr ""
+
+msgid "Search health"
+msgstr ""
+
+msgid "Search level"
+msgstr ""
+
+msgid "Search level saved. The product index is being rebuilt."
+msgstr ""
+
+msgid "Search your products for"
+msgstr ""
+
+msgid "Searches rescued"
+msgstr ""
+
+msgid "See Commerce Pro"
+msgstr ""
+
+msgid "See demand"
+msgstr ""
+
+msgid "Send leads to"
+msgstr ""
+
+msgid "Separate words with commas. Colours and sizes are ignored; they come from the product attributes."
+msgstr ""
+
+msgid "Set sales rules"
+msgstr ""
+
+msgid "Set up Commerce Pro"
+msgstr ""
+
+msgid "Set up Commerce Pro in three steps"
+msgstr ""
+
+msgid "Set up buying actions"
+msgstr ""
+
+msgid "Settings file"
+msgstr ""
+
+msgid "Setup is complete and there is nothing to review. New questions and suggestions will appear here."
+msgstr ""
+
+msgid "Shopper activity"
+msgstr ""
+
+msgid "Shoppers also call this"
+msgstr ""
+
+msgid "Shoppers asked for these and nothing you sell fits. They are not synonyms, but they may be worth stocking."
+msgstr ""
+
+msgid "Shoppers asking about returns or delivery get the fallback answer until you do."
+msgstr ""
+
+msgid "Shoppers can ask to see or change their cart."
+msgstr ""
+
+msgid "Shoppers can leave their name, email and question for follow-up."
+msgstr ""
+
+msgid "Shoppers searched these words and found nothing. Approving one adds it to your custom synonyms, so the next search finds your products without any AI call."
+msgstr ""
+
+msgid "Shoppers typed"
+msgstr ""
+
+msgid "Shoppers wanted things you don’t sell"
+msgstr ""
+
+msgid "Show %s more example"
+msgid_plural "Show %s more examples"
+msgstr[0] ""
+msgstr[1] ""
+
+msgid "Signed entitlement"
+msgstr ""
+
+msgid "Site binding"
+msgstr ""
+
+msgid "Site-wide limit on paid AI calls per day, staff included."
+msgstr ""
+
+msgid "Sites using it"
+msgstr ""
+
+msgid "Smart Catalog"
+msgstr ""
+
+msgid "Smart Catalog + Rescue"
+msgstr ""
+
+msgid "Smart Catalog is off, so search does not use these words. Turn it on in %s."
+msgstr ""
+
+msgid "Smart Catalog needs an AI connection"
+msgstr ""
+
+msgid "Smart Catalog progress"
+msgstr ""
+
+msgid "Smart Catalog word matched: %s"
+msgstr ""
+
+msgid "Spanish"
+msgstr ""
+
+msgid "Standard"
+msgstr ""
+
+msgid "Standard search"
+msgstr ""
+
+msgid "Stricter rules against unsupported claims, invented offers and guarantees."
+msgstr ""
+
+msgid "Suggested synonyms"
+msgstr ""
+
+msgid "Suggestion dismissed."
+msgstr ""
+
+msgid "Suggestions are on, but no codes are listed yet, so there is nothing to offer."
+msgstr ""
+
+msgid "Support"
+msgstr ""
+
+msgid "Switch it on"
+msgstr ""
+
+msgid "Switch on Commerce Pro"
+msgstr ""
+
+msgid "Synonym added. Shoppers who search that word now find your products."
+msgstr ""
+
+msgid "Synonyms & ranking"
+msgstr ""
+
+msgid "Technical details"
+msgstr ""
+
+msgid "Test a phrase"
+msgstr ""
+
+msgid "Test a shopper phrase"
+msgstr ""
+
+msgid "The AI call failed. The details are shown below; nothing was changed."
+msgstr ""
+
+msgid "The AI call limit was reached."
+msgstr ""
+
+msgid "The AI check failed. Nothing was changed; it runs again tomorrow."
+msgstr ""
+
+msgid "The AI could not write words for this product. Tick \"Write new words\" to try again."
+msgstr ""
+
+msgid "The AI reply was cut off before it finished."
+msgstr ""
+
+msgid "The AI reply was not in the expected format."
+msgstr ""
+
+msgid "This can take up to a minute while Commerce Pro downloads. The key is stored encrypted and never shown to shoppers."
+msgstr ""
+
+msgid "This key is already used on as many sites as it allows. Deactivate it on a site you no longer use (from that site’s License page, or your account on geekybot.com), then try again here."
+msgstr ""
+
+msgid "Times"
+msgstr ""
+
+msgid "Tone"
+msgstr ""
+
+msgid "Tone, guardrails and what the assistant may promise."
+msgstr ""
+
+msgid "Too many searches. Please wait a little and try again."
+msgstr "Troppe ricerche. Attendi un momento e riprova."
+
+msgid "Top products in the assistant"
+msgstr ""
+
+msgid "Topics to avoid claims on"
+msgstr ""
+
+msgid "Try it on your store"
+msgstr ""
+
+msgid "Try the buying journey"
+msgstr ""
+
+msgid "Try the chat on your store"
+msgstr ""
+
+msgid "Try:"
+msgstr ""
+
+msgid "Turn on search Rescue"
+msgstr ""
+
+msgid "Turned off per product"
+msgstr ""
+
+msgid "Turns on buying actions: cart, orders, comparison and checkout handoff."
+msgstr ""
+
+msgid "Type these into the chat on your store to check each kind of request is understood."
+msgstr ""
+
+msgid "Type these into the chat on your store:"
+msgstr ""
+
+msgid "Unlock Commerce Pro on this site: enter your key, and Geeky Bot installs and switches on the add-on for you."
+msgstr ""
+
+msgid "Up to date"
+msgstr ""
+
+msgid "Update channel"
+msgstr ""
+
+msgid "Update settings saved."
+msgstr ""
+
+msgid "Update to %s"
+msgstr ""
+
+msgid "Updates"
+msgstr ""
+
+msgid "Updates appear here once Commerce Pro is installed."
+msgstr ""
+
+msgid "Updates included"
+msgstr ""
+
+msgid "Use the site language"
+msgstr ""
+
+msgid "Uses your AI connection: %s"
+msgstr ""
+
+msgid "Verification"
+msgstr ""
+
+msgid "Verified"
+msgstr ""
+
+msgid "Version %1$s · license %2$s"
+msgstr ""
+
+msgid "Waiting for you"
+msgstr ""
+
+msgid "Wanted, but not in your store"
+msgstr ""
+
+msgid "What geekybot.com confirmed for this site. Useful when contacting support."
+msgstr ""
+
+msgid "What shoppers see, and how the assistant works"
+msgstr ""
+
+msgid "What you can do now:"
+msgstr ""
+
+msgid "What’s switched on (%1$s of %2$s)"
+msgstr ""
+
+msgid "When off, guests can still chat, but nothing they send is stored."
+msgstr ""
+
+msgid "Words for this product are queued and usually appear within a few minutes."
+msgstr ""
+
+msgid "Words written for %1$d products (%2$d failed). The rest continue in the background."
+msgstr ""
+
+msgid "Write new words when I save"
+msgstr ""
+
+msgid "Write the next 20 now"
+msgstr ""
+
+msgid "Writing words"
+msgstr ""
+
+msgid "Written %1$s by %2$s. Untick a word to stop search using it."
+msgstr ""
+
+msgid "Written by AI from your store data"
+msgstr ""
+
+msgid "You do not have permission to manage Smart Catalog."
+msgstr ""
+
+msgid "You do not have permission to manage search suggestions."
+msgstr ""
+
+msgid "You will find it in your account on geekybot.com. After you activate it, Geeky Bot installs and switches on Commerce Pro for you."
+msgstr ""
+
+msgid "Your WordPress account cannot activate plugins. Ask a site administrator to open this page and click Switch on."
+msgstr ""
+
+msgid "Your WordPress account cannot install plugins. Ask a site administrator to open this page and click Install."
+msgstr ""
+
+msgid "Your account on geekybot.com"
+msgstr ""
+
+msgid "Your custom synonyms are full (6,000 characters). Remove some in the search settings, then try again."
+msgstr ""
+
+msgid "Your license"
+msgstr ""
+
+msgid "Your license does not currently include downloads, usually because it needs renewing. Renew on geekybot.com, then click “Check my license again”."
+msgstr ""
+
+msgid "Your license is active, but Commerce Pro could not be installed: %s"
+msgstr ""
+
+msgid "Your own words"
+msgstr ""
+
+msgid "Your product categories have not been read yet, so searches rely on built-in wording only. Geeky Bot is learning them now; check again in a few minutes, or rebuild the product index."
+msgstr ""
+
+msgid "Your product names, categories, tags and attributes, with typo fixing. No AI."
+msgstr ""
+
+msgid "Your store language is always included. Each extra language adds to the AI cost."
+msgstr ""
+
+msgid "about %1$s (%2$d products each)"
+msgstr ""
+
+msgid "e.g. gym shoes, trail runners"
+msgstr ""
+
+msgid "geekybot.com could not be reached, so Commerce Pro is running on its last confirmed check. Nothing to do unless this lasts more than a few days."
+msgstr ""
+
+msgid "needs review"
+msgstr ""
+
+msgid "never"
+msgstr ""
+
+msgid "of %s per day"
+msgstr ""
+
+msgid "ready"
+msgstr ""
+
+msgid "“Force” uses the language named below."
+msgstr ""
+
+msgid "This store is not open yet."
+msgstr ""

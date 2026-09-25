@@ -247,7 +247,7 @@ class ShopperOutputService {
      * @return string Empty string when unsafe.
      */
     public function guarded_ai_text($text) {
-        $text = $this->clean_message($text, 1800);
+        $text = $this->clean_message($this->without_markdown($this->without_context_echo((string) $text)), 1800);
         if ($text === '') {
             return '';
         }
@@ -276,6 +276,66 @@ class ShopperOutputService {
         foreach ($patterns as $pattern) {
             if (preg_match($pattern, $scannable)) {
                 return '';
+            }
+        }
+
+        return $text;
+    }
+
+    /**
+     * Remove product-context lines a model copied into its answer.
+     *
+     * The model is given each product as one line in a fixed format
+     * ("Product #83: Black Zip Hoodie | Price: … | URL: …"). An Arabic answer
+     * came back with that whole line pasted after the prose, so the shopper saw
+     * the internal format, field labels and all. The context markers are
+     * removed for the same reason.
+     *
+     * @param string $text Model output.
+     * @return string
+     */
+    private function without_context_echo($text) {
+        $rules = array(
+            // A whole product line, up to its URL field or the end of the line.
+            '/Product #\d+:[^\n]*?(?:\|\s*URL:\s*\S+|(?=\n)|$)/u' => '',
+            '/<<<CONTEXT|^\s*CONTEXT\s*$/mu' => '',
+        );
+        foreach ($rules as $pattern => $replacement) {
+            $result = preg_replace($pattern, $replacement, $text);
+            if (is_string($result)) {
+                $text = $result;
+            }
+        }
+
+        return trim($text);
+    }
+
+    /**
+     * Markdown a model wrote anyway, reduced to the plain text the chat bubble
+     * shows. The bubble renders escaped text and flattens line breaks, so
+     * "**Hoodie** - [View Product](https://…)" reached shoppers verbatim.
+     *
+     * A Markdown link keeps its label and loses the address, since the product
+     * cards under the reply already link to every product. A bare address is
+     * left alone: it may be one the shopper needs, such as their account page.
+     *
+     * @param string $text Model output.
+     * @return string
+     */
+    private function without_markdown($text) {
+        $rules = array(
+            '/!?\[([^\]\n]*)\]\([^)\s]*\)/u' => '$1',                              // [label](url), ![alt](src)
+            '/(\*\*|__)(?=\S)(.+?)(?<=\S)\1/u' => '$2',                             // **bold**, __bold__
+            '/(?<![\w*])\*(?=\S)([^*\n]+?)(?<=\S)\*(?![\w*])/u' => '$1',            // *italic*
+            '/^[ \t]{0,3}#{1,6}[ \t]+/mu' => '',                                    // # headings
+            '/^[ \t]*(?:[-*+•]|\d{1,2}[.)])[ \t]+/mu' => '',                        // list markers
+            '/`([^`\n]*)`/u' => '$1',                                               // `code`
+        );
+        foreach ($rules as $pattern => $replacement) {
+            $result = preg_replace($pattern, $replacement, $text);
+            // preg_replace returns null on invalid UTF-8; keep the text as it was.
+            if (is_string($result)) {
+                $text = $result;
             }
         }
 

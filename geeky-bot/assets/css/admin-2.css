@@ -37,7 +37,7 @@
 	/* Ink */
 	--gb2-ink: #14161c;
 	--gb2-mute: #5c6273;
-	--gb2-faint: #8b90a0;
+	--gb2-faint: #676d80; /* 4.9:1 on white. #8b90a0 was 3.3:1, below WCAG AA for text. */
 
 	/* Brand — one accent, spent on the primary action only. */
 	--gb2-accent: #5b3df5;
@@ -61,14 +61,16 @@
 	--gb2-sh-xs: 0 1px 2px rgba(20, 22, 28, .06);
 	--gb2-sh-sm: 0 1px 3px rgba(20, 22, 28, .08), 0 1px 2px rgba(20, 22, 28, .04);
 
-	/* Type scale — 7 sizes. The 2.0.1 sheet shipped 68. */
-	--gb2-t-xs: 11px;
-	--gb2-t-sm: 12px;
-	--gb2-t-md: 13px;
-	--gb2-t-lg: 16px;
-	--gb2-t-xl: 20px;
-	--gb2-t-2xl: 26px;
-	--gb2-t-num: 22px;
+	/* Type scale — 7 sizes. The 2.0.1 sheet shipped 68. Body text is 14px
+	   and helper text 13px, one step above WordPress admin (13px), so the
+	   plugin reads comfortably; nothing is set below 13px. */
+	--gb2-t-xs: 13px;
+	--gb2-t-sm: 14px;
+	--gb2-t-md: 15px;
+	--gb2-t-lg: 18px;
+	--gb2-t-xl: 24px;
+	--gb2-t-2xl: 28px;
+	--gb2-t-num: 26px;
 
 	/* Space */
 	--gb2-s1: 4px;
@@ -96,7 +98,7 @@
 	--gb2-line-soft: #21242d;
 	--gb2-ink: #e7e9ee;
 	--gb2-mute: #a2a8b8;
-	--gb2-faint: #757b8b;
+	--gb2-faint: #9197a7;
 	--gb2-accent: #8b74ff;
 	--gb2-accent-hover: #9d8aff;
 	--gb2-accent-soft: #221d3d;
@@ -157,10 +159,8 @@
 	   runs edge to edge inside #wpbody-content and reads as page chrome. */
 	margin: -10px -20px 0 -2px;
 	background: var(--gb2-surface);
-	/* A faint wash toward the brand hue on the left. Enough to make the bar read
-	   as product chrome rather than another white card, without becoming the
-	   gradient hero this replaced. */
-	background-image: linear-gradient(100deg, var(--gb2-accent-soft) 0%, transparent 38%);
+	/* Plain since the 2.1.1 "Refined" pass: the brand wash competed with the
+	   page content for attention. The brand tile carries the identity. */
 	border-bottom: 1px solid var(--gb2-line);
 	box-shadow: var(--gb2-sh-xs);
 }
@@ -191,7 +191,7 @@
 .gb2-header__product {
 	display: block;
 	margin-bottom: 1px;
-	font-size: 10.5px;
+	font-size: var(--gb2-t-xs);
 	font-weight: 700;
 	letter-spacing: .1em;
 	text-transform: uppercase;
@@ -202,10 +202,12 @@
 	min-width: 0;
 }
 
+/* ".wrap h1" in WordPress core outranks a single class and forced 23px/400. */
+.wrap .gb2-header__title,
 .gb2-header__title {
 	margin: 0;
 	padding: 0;
-	font-size: 22px;
+	font-size: var(--gb2-t-num);
 	font-weight: 650;
 	line-height: 1.2;
 	letter-spacing: -.015em;
@@ -490,7 +492,7 @@
 .gb2-card__head h2 {
 	margin: 0;
 	padding: 0;
-	font-size: 13.5px;
+	font-size: var(--gb2-t-md);
 	font-weight: 600;
 	line-height: 1.4;
 	color: var(--gb2-ink);
@@ -539,7 +541,7 @@
 .gb2-metric__label {
 	display: block;
 	margin-bottom: 3px;
-	font-size: 11.5px;
+	font-size: var(--gb2-t-sm);
 	color: var(--gb2-mute);
 }
 
@@ -556,7 +558,7 @@
 }
 
 .gb2-metric__delta {
-	font-size: 11.5px;
+	font-size: var(--gb2-t-sm);
 	font-weight: 600;
 	font-style: normal;
 }
@@ -616,6 +618,7 @@
 	margin-bottom: 2px;
 	font-size: var(--gb2-t-md);
 	font-weight: 600;
+	color: var(--gb2-ink);
 }
 
 .gb2-task__text span {
@@ -671,7 +674,7 @@
 .gb2-table code {
 	padding: 0;
 	font-family: var(--gb2-mono);
-	font-size: 11.5px;
+	font-size: var(--gb2-t-sm);
 	color: var(--gb2-mute);
 	background: none;
 }
@@ -702,7 +705,7 @@
 
 .gb2-field__help {
 	margin: 5px 0 0;
-	font-size: 11.5px;
+	font-size: var(--gb2-t-sm);
 	line-height: 1.45;
 	color: var(--gb2-faint);
 }
@@ -727,7 +730,7 @@
 
 .gb2-input--mono {
 	font-family: var(--gb2-mono);
-	font-size: 11.5px;
+	font-size: var(--gb2-t-sm);
 	line-height: 1.6;
 }
 
@@ -735,6 +738,17 @@
 	display: grid;
 	grid-template-columns: 1fr 1fr;
 	gap: 14px;
+	margin-bottom: 14px;
+}
+
+/* The row spaces its own fields; a field margin inside it only spaced the
+   left column, and left two stacked rows touching on narrow screens. */
+.gb2-field-row > .gb2-field {
+	margin-bottom: 0;
+}
+
+.gb2-field-row:last-child {
+	margin-bottom: 0;
 }
 
 @media (max-width: 782px) {
@@ -763,7 +777,7 @@
 }
 
 .gb2-switch-row__text span {
-	font-size: 11.5px;
+	font-size: var(--gb2-t-sm);
 	color: var(--gb2-mute);
 }
 
@@ -884,7 +898,7 @@
 
 .gb2-setup__now {
 	padding: 1px 7px;
-	font-size: 10px;
+	font-size: var(--gb2-t-xs);
 	font-style: normal;
 	font-weight: 700;
 	letter-spacing: .06em;
@@ -896,7 +910,7 @@
 
 .gb2-setup__risk {
 	margin-top: 3px;
-	font-size: 11.5px;
+	font-size: var(--gb2-t-sm);
 	color: var(--gb2-warn);
 }
 
@@ -1089,7 +1103,7 @@
 
 .gb2-msg__meta code {
 	font-family: var(--gb2-mono);
-	font-size: 10.5px;
+	font-size: var(--gb2-t-xs);
 	color: var(--gb2-mute);
 }
 
@@ -1333,7 +1347,7 @@
 .gb2-picker__option--suggested .gb2-picker__text strong::after {
 	content: "★";
 	margin-left: 5px;
-	font-size: 10px;
+	font-size: var(--gb2-t-xs);
 	color: var(--gb2-accent);
 }
 
@@ -1364,7 +1378,7 @@
 }
 
 .gb2-sfield > em {
-	font-size: 11.5px;
+	font-size: var(--gb2-t-sm);
 	font-style: normal;
 	line-height: 1.45;
 	color: var(--gb2-faint);
@@ -1434,7 +1448,7 @@
 }
 
 .gb2-stoggle em {
-	font-size: 11.5px;
+	font-size: var(--gb2-t-sm);
 	font-style: normal;
 	line-height: 1.45;
 	color: var(--gb2-mute);
@@ -1485,7 +1499,7 @@
 }
 
 .gb2-radio em {
-	font-size: 11.5px;
+	font-size: var(--gb2-t-sm);
 	font-style: normal;
 	line-height: 1.45;
 	color: var(--gb2-mute);
@@ -1508,7 +1522,7 @@
 .gb2-snote {
 	margin-top: 14px;
 	padding: 10px 12px;
-	font-size: 11.5px;
+	font-size: var(--gb2-t-sm);
 	line-height: 1.5;
 	color: var(--gb2-mute);
 	background: var(--gb2-surface-2);
@@ -1547,7 +1561,7 @@
 }
 
 .gb2-debug__grid span {
-	font-size: 11.5px;
+	font-size: var(--gb2-t-sm);
 	color: var(--gb2-ink);
 }
 
@@ -1606,7 +1620,7 @@
 }
 
 .gb2-chart__axis {
-	font-size: 9.5px;
+	font-size: var(--gb2-t-xs);
 	fill: var(--gb2-faint);
 }
 
@@ -1622,7 +1636,7 @@
 	display: inline-flex;
 	align-items: center;
 	gap: 6px;
-	font-size: 11.5px;
+	font-size: var(--gb2-t-sm);
 	color: var(--gb2-mute);
 }
 
@@ -1690,7 +1704,7 @@
 .gb2-funnel__value {
 	flex: none;
 	margin-left: auto;
-	font-size: 14px;
+	font-size: 16px;
 	font-weight: 600;
 	font-variant-numeric: tabular-nums;
 }
@@ -1707,7 +1721,7 @@
 .gb2-funnel__drop {
 	margin: 0;
 	padding: 1px var(--gb2-s3);
-	font-size: 10.5px;
+	font-size: var(--gb2-t-xs);
 	color: var(--gb2-faint);
 }
 
@@ -1824,7 +1838,7 @@
 	flex: none;
 	width: 22px;
 	height: 22px;
-	font-size: 11px;
+	font-size: var(--gb2-t-xs);
 	font-weight: 700;
 	border-radius: var(--gb2-r-sm);
 }
@@ -1866,7 +1880,7 @@
 
 .gb2-feed__when {
 	flex: none;
-	font-size: 10.5px;
+	font-size: var(--gb2-t-xs);
 	color: var(--gb2-faint);
 	font-variant-numeric: tabular-nums;
 }
@@ -1978,7 +1992,7 @@
 
 .gb2-keyvalue strong {
 	margin-left: auto;
-	font-size: var(--gb2-t-lg);
+	font-size: var(--gb2-t-md); /* Values sat above card titles (17px vs 14px). */
 	font-weight: 600;
 	color: var(--gb2-ink);
 	font-variant-numeric: tabular-nums;
@@ -2001,7 +2015,7 @@
 .gb2-note {
 	margin: var(--gb2-s3) 0 0;
 	padding: var(--gb2-s2) var(--gb2-s3);
-	font-size: 11.5px;
+	font-size: var(--gb2-t-sm);
 	line-height: 1.5;
 	color: var(--gb2-mute);
 	background: var(--gb2-surface-2);
@@ -2018,7 +2032,7 @@
 .gb2-code-list code {
 	padding: 6px 10px;
 	font-family: var(--gb2-mono);
-	font-size: 11.5px;
+	font-size: var(--gb2-t-sm);
 	color: var(--gb2-ink);
 	background: var(--gb2-surface-2);
 	border: 1px solid var(--gb2-line);
@@ -2219,7 +2233,7 @@
   border-radius: 9px;
   background: transparent;
   color: #64748b;
-  font-size: 11px;
+  font-size: var(--gb2-t-xs);
   font-weight: 800;
   line-height: 1.2;
   cursor: pointer;
@@ -2373,7 +2387,7 @@
 .gb2-rail a > span {
 	flex: none;
 	min-width: 20px;
-	font-size: 10.5px;
+	font-size: var(--gb2-t-xs);
 	font-weight: 700;
 	text-align: center;
 	color: var(--gb2-faint);
@@ -2520,7 +2534,7 @@
 .gb2-pagecard.is-suggested strong::after {
 	content: "\2605";
 	margin-left: 5px;
-	font-size: 10px;
+	font-size: var(--gb2-t-xs);
 	color: var(--gb2-accent);
 }
 
@@ -2575,7 +2589,7 @@
 
 .gb2-sfield__help {
 	margin: 5px 0 0;
-	font-size: 11.5px;
+	font-size: var(--gb2-t-sm);
 	line-height: 1.45;
 	color: var(--gb2-faint);
 }
@@ -2818,4 +2832,409 @@
 	background: var(--gb2-accent);
 	border-color: var(--gb2-accent);
 	color: #fff;
+}
+/* Smart Catalog: search level and language choice */
+.gb2-radios--stack {
+	grid-template-columns: 1fr;
+}
+
+.gb2-radio:has(input:checked) {
+	background: var(--gb2-accent-soft);
+	border-color: var(--gb2-accent);
+}
+
+.gb2-sc-langs {
+	display: grid;
+	grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+	gap: 6px 12px;
+	font-size: var(--gb2-t-sm);
+}
+
+.gb2-sc-langs label {
+	display: flex;
+	align-items: center;
+	gap: 6px;
+	cursor: pointer;
+}
+
+/* AI & Privacy: readiness under each answer mode (from the retired Answer Mode page) */
+.gb2-radio .gb2-radio__status {
+	display: block;
+	margin-top: 4px;
+	font-weight: 600;
+	color: var(--gb2-mute);
+}
+
+.gb2-radio .gb2-radio__status.is-ok {
+	color: var(--gb2-ok);
+}
+
+/* Dashboard: two cards stacked in one grid column */
+.gb2-stack {
+	display: flex;
+	flex-direction: column;
+	gap: var(--gb2-s4, 16px);
+}
+
+/* Product Search: jump links to the page's sections (in-page anchors, not tabs) */
+.gb2-jumpnav {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 22px;
+	margin: 0 0 4px;
+	border-bottom: 1px solid var(--gb2-line);
+	font-size: var(--gb2-t-sm);
+}
+
+.gb2-jumpnav a {
+	padding: 0 0 10px;
+	color: var(--gb2-mute);
+	text-decoration: none;
+	border-bottom: 2px solid transparent;
+	margin-bottom: -1px;
+}
+
+.gb2-jumpnav a:hover,
+.gb2-jumpnav a:focus-visible {
+	color: var(--gb2-accent);
+	border-bottom-color: var(--gb2-accent);
+}
+
+.gb2-jumpnav__count {
+	display: inline-block;
+	min-width: 18px;
+	padding: 1px 6px;
+	border-radius: var(--gb2-r-full);
+	background: var(--gb2-accent-soft);
+	color: var(--gb2-accent);
+	font-size: var(--gb2-t-xs);
+	font-weight: 600;
+	text-align: center;
+}
+
+/* Clear the sticky page header when jumping to a section. */
+.gb2-anchor,
+#gb-smart-catalog,
+#gb-search-learning {
+	scroll-margin-top: calc(var(--gb2-adminbar) + 96px);
+}
+
+.gb2-anchor {
+	display: block;
+	height: 0;
+}
+
+/* License: three-step setup (key → install → switch on) */
+.gb2-lsteps {
+	padding: 20px 22px;
+}
+
+.gb2-lsteps > h2 {
+	margin: 0 0 14px;
+	font-size: var(--gb2-t-lg);
+	font-weight: 600;
+}
+
+.gb2-lsteps ol {
+	margin: 0;
+	padding: 0;
+	list-style: none;
+	display: grid;
+	gap: 0;
+}
+
+.gb2-lstep {
+	display: grid;
+	grid-template-columns: 32px minmax(0, 1fr);
+	gap: 14px;
+	padding: 14px 0;
+	margin: 0;
+	border-top: 1px solid var(--gb2-line-soft);
+}
+
+.gb2-lstep:first-child {
+	border-top: 0;
+	padding-top: 4px;
+}
+
+.gb2-lstep__num {
+	width: 30px;
+	height: 30px;
+	border-radius: 50%;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	font-weight: 700;
+	font-size: var(--gb2-t-md);
+	background: var(--gb2-surface-2);
+	border: 1px solid var(--gb2-line);
+	color: var(--gb2-mute);
+}
+
+.gb2-lstep.is-current .gb2-lstep__num {
+	background: var(--gb2-accent);
+	border-color: var(--gb2-accent);
+	color: #fff;
+}
+
+.gb2-lstep.is-done .gb2-lstep__num {
+	background: var(--gb2-ok-soft);
+	border-color: var(--gb2-ok-soft);
+	color: var(--gb2-ok);
+}
+
+.gb2-lstep__body h3 {
+	margin: 4px 0 4px;
+	font-size: var(--gb2-t-md);
+	font-weight: 600;
+}
+
+.gb2-lstep.is-waiting .gb2-lstep__body h3 {
+	color: var(--gb2-mute);
+}
+
+.gb2-lstep__body p {
+	margin: 0 0 10px;
+	font-size: var(--gb2-t-sm);
+	line-height: 1.55;
+	color: var(--gb2-mute);
+}
+
+.gb2-lstep__body p.gb2-lstep__problem {
+	padding: 8px 10px;
+	border-radius: var(--gb2-r-sm);
+	background: var(--gb2-warn-soft);
+	color: var(--gb2-warn);
+}
+
+/* License: finished state */
+.gb2-license-ready {
+	padding: 20px 22px;
+}
+
+.gb2-license-ready__head {
+	display: flex;
+	gap: 14px;
+	align-items: center;
+}
+
+.gb2-license-ready__head h2 {
+	margin: 0;
+	font-size: var(--gb2-t-lg);
+	font-weight: 600;
+}
+
+.gb2-license-ready__head p {
+	margin: 2px 0 0;
+	font-size: var(--gb2-t-sm);
+	color: var(--gb2-mute);
+}
+
+.gb2-license-ready__icon {
+	width: 38px;
+	height: 38px;
+	flex: none;
+	border-radius: 50%;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	font-weight: 700;
+	background: var(--gb2-ok-soft);
+	color: var(--gb2-ok);
+}
+
+.gb2-license-ready__lead {
+	margin: 16px 0 8px;
+	font-size: var(--gb2-t-sm);
+	font-weight: 600;
+}
+
+.gb2-license-next {
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+	gap: 10px;
+}
+
+.gb2-license-next a {
+	display: flex;
+	flex-direction: column;
+	gap: 3px;
+	padding: 12px 14px;
+	border: 1px solid var(--gb2-line);
+	border-radius: var(--gb2-r-md);
+	text-decoration: none;
+	color: var(--gb2-ink);
+}
+
+.gb2-license-next a:hover,
+.gb2-license-next a:focus-visible {
+	border-color: var(--gb2-accent);
+}
+
+.gb2-license-next strong {
+	font-size: var(--gb2-t-md);
+	color: var(--gb2-accent);
+}
+
+.gb2-license-next span {
+	font-size: var(--gb2-t-sm);
+	color: var(--gb2-mute);
+	line-height: 1.45;
+}
+
+/* Collapsible sections for details most people never need */
+.gb2-details {
+	margin-top: 14px;
+}
+
+.gb2-details > summary {
+	cursor: pointer;
+	font-size: var(--gb2-t-md);
+	font-weight: 600;
+	color: var(--gb2-ink);
+}
+
+.gb2-details[open] > summary {
+	margin-bottom: 12px;
+}
+
+.gb2-details--card {
+	padding: 14px 20px;
+}
+
+/* 2.1.1 "Refined": the key-numbers strip sat flush against the next row. */
+.gb2-metrics + .gb2-grid,
+.gb2-metrics + .gb2-card,
+.gb2-metrics + .gb2-jumpnav,
+.gb2-metrics + .gb2-rule {
+	margin-top: 16px;
+}
+
+/* Storefront Widget: nothing to remove until an image is chosen (admin.js
+   toggles .is-empty), so the greyed-out Remove button only added noise. */
+.gb-media-field.is-empty .button-link-delete {
+	display: none;
+}
+
+/* Product Search: one-click example phrases under the test box. */
+.gb2-trychips {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	gap: 6px;
+	margin-top: 10px;
+}
+
+.gb2-trychips > span {
+	font-size: var(--gb2-t-sm);
+	color: var(--gb2-mute);
+	margin-right: 2px;
+}
+
+.gb2-trychips a {
+	padding: 4px 10px;
+	border: 1px solid var(--gb2-line);
+	border-radius: var(--gb2-r-full);
+	background: var(--gb2-surface-2);
+	font-family: var(--gb2-mono);
+	font-size: var(--gb2-t-xs);
+	color: var(--gb2-ink);
+	text-decoration: none;
+}
+
+.gb2-trychips a:hover,
+.gb2-trychips a:focus-visible {
+	border-color: var(--gb2-accent);
+	color: var(--gb2-accent);
+}
+
+/* 2.1.1: the Dashboard's reference cards and widget preview fold into one
+   section at the foot of the page, spaced like a rule-led section. */
+.gb2-details--spaced {
+	margin-top: var(--gb2-s5);
+}
+
+/* Storefront Widget: the live preview stays in view while the form scrolls,
+   so an edit near the bottom of the form is visible as it is typed. */
+@media (min-width: 1101px) {
+	.gb2-grid > .gb2-sticky-col > .gb2-card:only-child {
+		position: sticky;
+		top: calc(var(--gb2-adminbar) + 96px);
+		flex: none;
+	}
+}
+
+/* Guided Demo: the rest of a group's examples, one click away. */
+.gb2-showmore {
+	margin-top: var(--gb2-s3);
+}
+
+.gb2-showmore > summary {
+	display: inline-block;
+	cursor: pointer;
+	font-size: var(--gb2-t-sm);
+	font-weight: 600;
+	color: var(--gb2-accent);
+}
+
+.gb2-showmore[open] > summary {
+	margin-bottom: var(--gb2-s3);
+}
+
+/* Media Library picker (launcher icon, header logo). It is a <label>, so it
+   picked up the bold field-label style and ran its label, status and hint
+   together on one line. Laid out here like any other gb2 field. */
+.gb2-field > label.gb-media-field {
+	display: flex;
+	flex-direction: column;
+	gap: 5px;
+	margin-bottom: 0;
+	font-weight: 400;
+}
+
+.gb-media-field > span:first-child {
+	font-size: var(--gb2-t-sm);
+	font-weight: 600;
+	color: var(--gb2-ink);
+}
+
+.gb-media-field__row {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	gap: 10px;
+}
+
+.gb-media-field__preview {
+	display: grid;
+	place-items: center;
+	color: var(--gb2-faint);
+	font-size: var(--gb2-t-sm);
+}
+
+.gb-media-field__preview.has-image {
+	width: 40px;
+	height: 40px;
+	overflow: hidden;
+	border: 1px solid var(--gb2-line);
+	border-radius: var(--gb2-r-sm);
+	background: var(--gb2-surface-2);
+}
+
+.gb-media-field__preview img {
+	width: 100%;
+	height: 100%;
+	object-fit: contain;
+}
+
+.gb-media-field__actions {
+	display: flex;
+	gap: 8px;
+}
+
+.gb-media-field > em {
+	font-size: var(--gb2-t-sm);
+	font-style: normal;
+	line-height: 1.45;
+	color: var(--gb2-faint);
 }

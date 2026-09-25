@@ -3627,8 +3627,14 @@ class SearchLanguageService {
     }
 
     public function stop_words($language = 'en') {
+        // "keep" says what a product should do ("something to keep warm", "keep
+        // my drinks cold"), never what it is. As a search word it matched Smart
+        // Catalog names such as "time keeper", so a watch outranked the miss
+        // that should have gone to Rescue. "sell" and "carry" frame the question
+        // ("do you sell hairdryers?"); left in, typo recovery read "sell" as
+        // "shell" and answered with a shell jacket.
         $base = array(
-            'a', 'an', 'any', 'don', 'dont', 't', 'and', 'are', 'as', 'at', 'be', 'best', 'better', 'buy', 'can', 'could', 'do', 'does', 'find', 'for', 'from', 'get', 'give', 'got', 'have', 'has', 'i', 'im', "i'm", 'in', 'is', 'it', 'if', 'like', 'looking', 'look', 'maybe', 'may', 'might', 'me', 'my', 'need', 'needs', 'nice', 'no', 'not', 'of', 'on', 'one', 'ones', 'option', 'options', 'or', 'perhaps', 'please', 'kindly', 'also', 'prefer', 'preferably', 'preferred', 'product', 'products', 'search', 'show', 'should', 'some', 'something', 'suggest', 'the', 'there', 'that', 'this', 'these', 'those', 'then', 'to', 'too', 'u', 'want', 'wants', 'we', 'what', 'which', 'would', 'will', 'with', 'without', 'you', 'your', 'but', 'only', 'actually', 'currently', 'current', 'right', 'now', 'good', 'useful', 'simple',
+            'a', 'an', 'any', 'don', 'dont', 't', 'and', 'are', 'as', 'at', 'be', 'best', 'better', 'buy', 'can', 'could', 'do', 'does', 'find', 'for', 'from', 'get', 'give', 'got', 'have', 'has', 'i', 'im', "i'm", 'in', 'is', 'it', 'if', 'like', 'looking', 'look', 'maybe', 'may', 'might', 'me', 'my', 'need', 'needs', 'nice', 'no', 'not', 'of', 'on', 'one', 'ones', 'option', 'options', 'or', 'perhaps', 'please', 'kindly', 'keep', 'keeps', 'keeping', 'sell', 'sells', 'selling', 'carry', 'carries', 'also', 'prefer', 'preferably', 'preferred', 'product', 'products', 'search', 'show', 'should', 'some', 'something', 'suggest', 'the', 'there', 'that', 'this', 'these', 'those', 'then', 'to', 'too', 'u', 'want', 'wants', 'we', 'what', 'which', 'would', 'will', 'with', 'without', 'you', 'your', 'but', 'only', 'actually', 'currently', 'current', 'right', 'now', 'good', 'useful', 'simple',
             'price', 'priced', 'cost', 'costing', 'budget', 'range', 'under', 'below', 'less', 'than', 'max', 'maximum', 'up', 'over', 'above', 'more', 'min', 'minimum', 'between', 'around', 'about', 'near', 'approximately', 'approx', 'roughly', 'color', 'colour', 'colors', 'colours', 'size', 'sizes', 'sized', 'category', 'categories', 'still', 'possible', 'possibility', 'quality', 'expensive', 'costly', 'pricey', 'luxury', 'cheapest', 'lowest', 'rs', 'pkr', 'usd', 'eur', 'gbp', 'aed', 'sar', 'qar', 'kwd', 'inr', 'dollar', 'dollars',
         );
 

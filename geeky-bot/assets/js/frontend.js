@@ -63,7 +63,7 @@
       '</header>' +
       '<div class="gb-messages" role="log"></div>' +
       '<form class="gb-form">' +
-        '<input class="gb-input" type="text" autocomplete="off" maxlength="1000" placeholder="' + escapeHtml(i18n.placeholder || 'Ask about products…') + '" />' +
+        '<input class="gb-input" type="text" dir="auto" autocomplete="off" maxlength="1000" placeholder="' + escapeHtml(i18n.placeholder || 'Ask about products…') + '" />' +
         '<button class="gb-send" type="submit">' + escapeHtml(i18n.send || 'Send') + '</button>' +
       '</form>' +
     '</section>';
@@ -97,6 +97,26 @@
     });
   }
   closeBtn.addEventListener('click', closeWidget);
+  // Escape closes the chat and returns focus to the launcher, as keyboard and
+  // screen-reader users expect of a chat window. An open menu -- the header's
+  // "More actions" or a product card's -- closes first, on its own Escape.
+  windowEl.addEventListener('keydown', function (event) {
+    if (event.key !== 'Escape' || !root.classList.contains('gb-widget--open')) {
+      return;
+    }
+    var openMenus = windowEl.querySelectorAll('details[open]');
+    if (openMenus.length) {
+      openMenus.forEach(function (menu) {
+        menu.removeAttribute('open');
+      });
+      var summary = openMenus[0].querySelector('summary');
+      if (summary) {
+        summary.focus();
+      }
+      return;
+    }
+    closeWidget();
+  });
   if (clearBtn) {
     clearBtn.addEventListener('click', clearConversation);
   }
@@ -671,6 +691,10 @@
   function addUserMessage(text) {
     const item = document.createElement('div');
     item.className = 'gb-message gb-message--user';
+    // dir="auto" takes the direction from the text itself, so an Arabic or
+    // Hebrew message reads right to left with its punctuation in place, and an
+    // English one on the same page still reads left to right.
+    item.setAttribute('dir', 'auto');
     item.appendChild(document.createTextNode(text));
     addUserAvatar(item, text);
     messagesEl.appendChild(item);
@@ -736,6 +760,7 @@
       item.appendChild(label);
       item.appendChild(dots);
     } else {
+      item.setAttribute('dir', 'auto');
       item.textContent = messageText;
     }
 
@@ -751,7 +776,7 @@
     item.removeAttribute('aria-atomic');
     item.removeAttribute('aria-label');
     item.className = 'gb-message gb-message--bot' + (products && products.length ? ' gb-message--with-products' : '');
-    item.innerHTML = '<div class="gb-message__text">' + escapeHtml(text) + '</div>';
+    item.innerHTML = '<div class="gb-message__text" dir="auto">' + escapeHtml(text) + '</div>';
 
     if (productExpert && productExpert.verified) {
       const sourceProductId = String(productExpert.productId || '');

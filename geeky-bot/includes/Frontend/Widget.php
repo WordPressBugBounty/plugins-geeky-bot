@@ -7,6 +7,7 @@ if (!defined('ABSPATH')) {
 
 use GeekyBot\Services\Settings;
 use GeekyBot\Services\ShopperOutputService;
+use GeekyBot\Services\StoreVisibilityService;
 
 class Widget {
     /**
@@ -129,6 +130,10 @@ class Widget {
 
     private function should_render() {
         if (is_admin() || wp_doing_ajax() || wp_is_json_request()) {
+            return false;
+        }
+        // Not on a WooCommerce "Coming soon" store the visitor cannot see yet.
+        if (StoreVisibilityService::store_hidden_from_visitor()) {
             return false;
         }
         return Settings::get('widget_enabled', 'yes') === 'yes';
