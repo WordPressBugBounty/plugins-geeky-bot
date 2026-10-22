@@ -102,6 +102,9 @@ class Installer {
         if (class_exists('GeekyBot\\Services\\LicenseService')) {
             LicenseService::clear_scheduled_license_check();
         }
+        // Installed translations stay; only the daily check stops.
+        wp_clear_scheduled_hook('geekybot_translations_daily');
+        wp_clear_scheduled_hook('geekybot_translations_soon');
 
         // Stop the background jobs while the plugin is off, so none are left
         // firing into nothing -- the daily learning run included. Nothing is

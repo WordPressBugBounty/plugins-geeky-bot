@@ -11,6 +11,7 @@ use GeekyBot\Services\ProductIndexService;
 use GeekyBot\Services\KnowledgeIndexService;
 use GeekyBot\Services\KnowledgeService;
 use GeekyBot\Services\LicenseService;
+use GeekyBot\Services\TranslationService;
 use GeekyBot\Services\ConversationInsightsService;
 use GeekyBot\Services\AnalyticsEventService;
 use GeekyBot\Services\GuidedDemoService;
@@ -100,6 +101,7 @@ class Menu {
      * @return void
      */
     public function menu_license() {
+        add_submenu_page('geekybot', __('Languages', 'geeky-bot'), __('Languages', 'geeky-bot'), 'manage_options', TranslationService::PAGE, array($this, 'languages'));
         add_submenu_page('geekybot', __('License', 'geeky-bot'), __('License', 'geeky-bot'), 'manage_options', 'geekybot-addons', array($this, 'pro'));
 
         // Answer Mode merged into AI & Privacy. The slug stays registered but
@@ -3328,6 +3330,194 @@ class Menu {
         return $value;
     }
 
+    /**
+     * Languages: which languages Geeky Bot is installed in on this site, and
+     * every translation on offer with its files. The installing itself happens
+     * without anyone opening this screen (TranslationService).
+     */
+    public function languages() {
+        $tr = TranslationService::rows();
+        $site_rows = array_filter($tr['rows'], function ($row) {
+            return $row['site'];
+        });
+        $offered = array_filter($tr['rows'], function ($row) {
+            return !empty($row['entry']) && $row['entry']['locale'] === $row['locale'];
+        });
+        // phpcs:disable WordPress.Security.NonceVerification.Recommended -- The outcome of a nonce-checked action, only shown.
+        $result = isset($_GET['gb_tr']) ? sanitize_key(wp_unslash($_GET['gb_tr'])) : '';
+        $added = isset($_GET['gb_trl']) ? sanitize_text_field(wp_unslash($_GET['gb_trl'])) : '';
+        // phpcs:enable WordPress.Security.NonceVerification.Recommended
+        $can_install = current_user_can('install_languages') && TranslationService::can_write();
+        $date = function ($version) {
+            $time = strtotime((string) $version);
+            return $time ? wp_date(get_option('date_format'), $time) : (string) $version;
+        };
+        ?>
+        <div class="wrap geekybot-admin-wrap geekybot-languages">
+            <?php $this->page_hero(
+                __('Languages', 'geeky-bot'),
+                __('Geeky Bot installs the translation for your site\'s language by itself, and keeps it up to date. Shoppers see the assistant in your store\'s language.', 'geeky-bot'),
+                __('Translations', 'geeky-bot')
+            ); ?>
+
+            <div class="gb2-main">
+            <?php if (($result === 'added' || $result === 'addednowp') && $added !== '') : ?>
+                <div class="gb2-snote gb2-snote--ok" role="status"><span aria-hidden="true">✓</span><p><?php
+                    echo esc_html(sprintf(
+                        /* translators: %s: a language name, e.g. Français */
+                        __('%s is installed.', 'geeky-bot'),
+                        TranslationService::language_name($added, TranslationService::entry_for($added, get_site_transient(TranslationService::T_MANIFEST)), true)
+                    ));
+                    echo ' ';
+                    echo esc_html($result === 'added'
+                        ? __('Choose it for the whole site under Settings > General, or for yourself with "Use it for me".', 'geeky-bot')
+                        : __('WordPress itself has no language pack for it, so it cannot be chosen as the site language yet.', 'geeky-bot')); ?></p></div>
+            <?php elseif ($result === 'useme') : ?>
+                <div class="gb2-snote gb2-snote--ok" role="status"><span aria-hidden="true">✓</span><p><?php esc_html_e('Your own language is changed. The rest of the site keeps its language.', 'geeky-bot'); ?></p></div>
+            <?php elseif ($result === 'done') : ?>
+                <div class="gb2-snote gb2-snote--ok" role="status"><span aria-hidden="true">✓</span><p><?php esc_html_e('Translations are up to date.', 'geeky-bot'); ?></p></div>
+            <?php elseif ($result === 'failed') : ?>
+                <div class="gb2-snote gb2-snote--error" role="alert"><span aria-hidden="true">!</span><p><?php esc_html_e('Not every translation could be installed. The reason is shown beside it below.', 'geeky-bot'); ?></p></div>
+            <?php endif; ?>
+
+            <?php if ($tr['list_error'] !== '') : ?>
+                <div class="gb2-snote gb2-snote--error" role="alert"><span aria-hidden="true">!</span><p><?php echo esc_html($tr['list_error']); ?></p></div>
+            <?php endif; ?>
+            <?php if (!TranslationService::can_write()) : ?>
+                <div class="gb2-snote" role="status"><span aria-hidden="true">i</span><p><?php esc_html_e('This site does not allow plugins to install language files (DISALLOW_FILE_MODS). Download the files below and upload them to wp-content/languages/plugins/.', 'geeky-bot'); ?></p></div>
+            <?php elseif (!TranslationService::automatic()) : ?>
+                <div class="gb2-snote" role="status"><span aria-hidden="true">i</span><p><?php esc_html_e('Automatic installation is switched off on this site (GEEKYBOT_TRANSLATIONS_AUTO). Use Install or Update now to install a language.', 'geeky-bot'); ?></p></div>
+            <?php endif; ?>
+
+            <?php Components::card_open(__('This site\'s languages', 'geeky-bot'), $tr['checked'] ? sprintf(
+                /* translators: %s: a date and time */
+                __('Last checked %s', 'geeky-bot'),
+                wp_date(get_option('date_format') . ' ' . get_option('time_format'), $tr['checked'])
+            ) : ''); ?>
+                <p class="gb2-note" style="margin-top:0"><?php esc_html_e('Geeky Bot installs the translation for your site\'s language, and for every language WordPress has installed for your users - when it is installed or updated, when the site language changes, and once a day for improvements. Commerce Pro uses the same translation.', 'geeky-bot'); ?></p>
+                <?php if (empty($site_rows)) : ?>
+                    <p class="gb2-note"><?php esc_html_e('This site is in English, so no translation is needed. To use another language, change the Site Language under Settings > General.', 'geeky-bot'); ?></p>
+                <?php else : ?>
+                    <table class="gb2-table">
+                        <thead><tr>
+                            <th><?php esc_html_e('Language', 'geeky-bot'); ?></th>
+                            <th><?php esc_html_e('Status', 'geeky-bot'); ?></th>
+                            <th><?php esc_html_e('Translation', 'geeky-bot'); ?></th>
+                            <th></th>
+                        </tr></thead>
+                        <tbody>
+                        <?php foreach ($site_rows as $row) :
+                            $entry = $row['entry'];
+                            $states = array(
+                                'current' => array(__('Installed', 'geeky-bot'), 'ok'),
+                                'update' => array(__('Update available', 'geeky-bot'), 'warn'),
+                                'missing' => array(__('Not installed yet', 'geeky-bot'), 'warn'),
+                                'failed' => array(__('Could not be installed', 'geeky-bot'), 'crit'),
+                                'own' => array(__('Your own file', 'geeky-bot'), 'ok'),
+                                'none' => array(__('No translation yet', 'geeky-bot'), 'neutral'),
+                            );
+                            $state = isset($states[$row['status']]) ? $states[$row['status']] : $states['none'];
+                            ?>
+                            <tr>
+                                <td><strong><?php echo esc_html($row['name']); ?></strong> <code><?php echo esc_html($row['locale']); ?></code></td>
+                                <td><?php Components::pill($state[0], $state[1]); ?>
+                                    <?php if ($row['error'] !== '' && $row['status'] !== 'current') : ?>
+                                        <div class="gb2-note" style="margin:6px 0 0"><?php echo esc_html($row['error']); ?></div>
+                                    <?php endif; ?></td>
+                                <td><?php
+                                    if ($entry) {
+                                        echo esc_html(sprintf(
+                                            /* translators: 1: a percentage, 2: a date */
+                                            __('%1$d%% translated, updated %2$s', 'geeky-bot'),
+                                            $entry['percent'],
+                                            $date($entry['version'])
+                                        ));
+                                        if ($entry['locale'] !== $row['locale']) {
+                                            echo '<div class="gb2-note" style="margin:4px 0 0">' . esc_html(sprintf(
+                                                /* translators: %s: a language name, e.g. French (France) */
+                                                __('Using the %s translation, the nearest there is.', 'geeky-bot'),
+                                                TranslationService::language_name($entry['locale'], $entry, true)
+                                            )) . '</div>';
+                                        }
+                                    } elseif ($row['status'] === 'own') {
+                                        esc_html_e('A file someone added to wp-content/languages/plugins/. It is used as it is.', 'geeky-bot');
+                                    } else {
+                                        esc_html_e('Nobody has translated Geeky Bot into this language yet.', 'geeky-bot');
+                                    } ?></td>
+                                <td style="text-align:end"><?php
+                                    if ($entry && $can_install && $row['status'] !== 'current') : ?>
+                                        <a class="gb2-btn gb2-btn--primary" href="<?php echo esc_url(TranslationService::action_url('install', $row['locale'])); ?>"><?php
+                                            echo esc_html($row['status'] === 'missing' || $row['status'] === 'failed' ? __('Install now', 'geeky-bot') : __('Update now', 'geeky-bot')); ?></a>
+                                    <?php elseif (get_user_locale() === $row['locale']) : ?>
+                                        <span class="gb2-note"><?php esc_html_e('Your language', 'geeky-bot'); ?></span>
+                                    <?php elseif (in_array($row['locale'], get_available_languages(), true)) : ?>
+                                        <a class="gb2-btn" href="<?php echo esc_url(TranslationService::action_url('useme', $row['locale'])); ?>"><?php esc_html_e('Use it for me', 'geeky-bot'); ?></a>
+                                    <?php endif; ?></td>
+                            </tr>
+                        <?php endforeach; ?>
+                        </tbody>
+                    </table>
+                <?php endif; ?>
+                <div class="gb2-inline" style="margin-top:14px">
+                    <?php if (current_user_can('install_languages')) : ?>
+                        <a class="gb2-btn" href="<?php echo esc_url(TranslationService::action_url('sync')); ?>"><?php esc_html_e('Check for updates', 'geeky-bot'); ?></a>
+                    <?php endif; ?>
+                    <?php if (get_user_locale() !== 'en_US') : ?>
+                        <a class="gb2-btn gb2-btn--ghost" href="<?php echo esc_url(TranslationService::action_url('useme', 'en_US')); ?>"><?php esc_html_e('Use English for me', 'geeky-bot'); ?></a>
+                    <?php endif; ?>
+                </div>
+            <?php Components::card_close(); ?>
+
+            <?php if (!empty($offered)) : ?>
+                <?php Components::card_open(__('All translations', 'geeky-bot'), sprintf(
+                    /* translators: %d: number of languages */
+                    _n('%d language', '%d languages', count($offered), 'geeky-bot'),
+                    count($offered)
+                ), true); ?>
+                    <p class="gb2-note" style="margin:14px 16px"><?php esc_html_e('Install adds a language to this site - WordPress\'s own and Geeky Bot\'s - so it can be chosen for the whole site or for one person. The files are for a site that cannot download by itself, or to change the wording: the .po file is the one you edit (with Poedit or Loco Translate), the .mo file is what WordPress reads. Both go in wp-content/languages/plugins/.', 'geeky-bot'); ?></p>
+                    <table class="gb2-table">
+                        <thead><tr>
+                            <th><?php esc_html_e('Language', 'geeky-bot'); ?></th>
+                            <th><?php esc_html_e('Translated', 'geeky-bot'); ?></th>
+                            <th><?php esc_html_e('Updated', 'geeky-bot'); ?></th>
+                            <th><?php esc_html_e('Files', 'geeky-bot'); ?></th>
+                            <th></th>
+                        </tr></thead>
+                        <tbody>
+                        <?php foreach ($offered as $row) :
+                            $entry = $row['entry']; ?>
+                            <tr>
+                                <td><strong><?php echo esc_html($row['name']); ?></strong> <code><?php echo esc_html($row['locale']); ?></code></td>
+                                <td class="gb2-table__num"><?php echo esc_html($entry['percent'] . '%'); ?></td>
+                                <td><?php echo esc_html($date($entry['version'])); ?></td>
+                                <td>
+                                    <?php if ($entry['po'] !== '') : ?><a class="gb2-link" href="<?php echo esc_url($entry['po']); ?>" download>.po</a><?php endif; ?>
+                                    <?php if ($entry['mo'] !== '') : ?> <a class="gb2-link" href="<?php echo esc_url($entry['mo']); ?>" download>.mo</a><?php endif; ?>
+                                    <a class="gb2-link" href="<?php echo esc_url($entry['package']); ?>">.zip</a>
+                                </td>
+                                <td style="text-align:end"><?php
+                                    if ($row['site'] && $row['status'] === 'current') :
+                                        Components::pill(__('Installed', 'geeky-bot'), 'ok');
+                                    elseif ($can_install) : ?>
+                                        <a class="gb2-btn<?php echo $row['site'] ? ' gb2-btn--primary' : ''; ?>" href="<?php echo esc_url(TranslationService::action_url($row['site'] ? 'install' : 'add', $row['locale'])); ?>"><?php
+                                            echo esc_html($row['site'] && $row['status'] === 'update' ? __('Update now', 'geeky-bot') : __('Install', 'geeky-bot')); ?></a>
+                                    <?php endif; ?></td>
+                            </tr>
+                        <?php endforeach; ?>
+                        </tbody>
+                    </table>
+                <?php Components::card_close(); ?>
+            <?php endif; ?>
+
+            <?php Components::card_open(__('Changing the wording', 'geeky-bot')); ?>
+                <p class="gb2-note" style="margin-top:0"><?php esc_html_e('A newer translation replaces the files in wp-content/languages/plugins/, so wording you change there is lost at the next update. To keep your own wording, save it with Loco Translate in its Custom location, which updates never touch, or switch automatic updates off by adding define(\'GEEKYBOT_TRANSLATIONS_AUTO\', false); to wp-config.php.', 'geeky-bot'); ?></p>
+                <p class="gb2-note" style="margin-bottom:0"><?php esc_html_e('Your language is missing, or a word is wrong? Tell us at geekybot.com - corrections go into the next update for everyone.', 'geeky-bot'); ?></p>
+            <?php Components::card_close(); ?>
+            </div>
+        </div>
+        <?php
+    }
+
     public function pro() {
         $license = LicenseService::status_summary();
         $plugin = LicenseService::commerce_pro_plugin_status();
@@ -3337,6 +3527,15 @@ class Menu {
         $can_activate = current_user_can('activate_plugins');
         $limit_reached = $license['status'] === 'activation_limit_reached';
         $has_key = $license['maskedKey'] !== '';
+        // Stored in UTC; shown in the site's own date format and time zone.
+        $license_date = function ($utc, $with_time) {
+            $time = strtotime($utc . ' UTC');
+            if (!$time) {
+                return $utc;
+            }
+            $format = get_option('date_format') . ($with_time ? ' ' . get_option('time_format') : '');
+            return wp_date($format, $time);
+        };
         // phpcs:disable WordPress.Security.NonceVerification.Recommended -- These sanitized values only render a status notice.
         $notice = isset($_GET['gb_license_notice']) ? sanitize_key(wp_unslash($_GET['gb_license_notice'])) : '';
         $error = isset($_GET['gb_license_error']) ? sanitize_text_field(wp_unslash($_GET['gb_license_error'])) : '';
@@ -3437,7 +3636,7 @@ class Menu {
                                         <input type="hidden" name="action" value="geekybot_license_activate" />
                                         <label for="gb2-license-key" class="screen-reader-text"><?php esc_html_e('License key', 'geeky-bot'); ?></label>
                                         <div class="gb2-license-form__row">
-                                            <input class="gb2-input gb2-input--mono" type="text" id="gb2-license-key" name="license_key" value="" placeholder="GB-XXXX-XXXX-XXXX" autocomplete="off" spellcheck="false" required />
+                                            <input class="gb2-input gb2-input--mono" type="text" id="gb2-license-key" name="license_key" value="" placeholder="XXXXX-XXXXX-XXXXX-XXXXX-XXXXX" autocomplete="off" spellcheck="false" required />
                                             <button type="submit" class="gb2-btn gb2-btn--primary" data-gb-busy="<?php esc_attr_e('Activating and installing…', 'geeky-bot'); ?>"><?php
                                                 echo esc_html($can_install || $can_activate ? __('Activate and install', 'geeky-bot') : __('Activate license', 'geeky-bot')); ?></button>
                                         </div>
@@ -3504,14 +3703,19 @@ class Menu {
                             <?php if ($license['plan'] !== '') : ?>
                                 <div class="gb2-keyvalue"><span><?php esc_html_e('Plan', 'geeky-bot'); ?></span><strong><?php echo esc_html($license['plan']); ?></strong></div>
                             <?php endif; ?>
-                            <div class="gb2-keyvalue"><span><?php esc_html_e('Renews or expires', 'geeky-bot'); ?></span><strong><?php echo esc_html($license['expiresAt'] ? $license['expiresAt'] : __('Never', 'geeky-bot')); ?></strong></div>
+                            <div class="gb2-keyvalue"><span><?php esc_html_e('Renews or expires', 'geeky-bot'); ?></span><strong><?php echo esc_html($license['expiresAt'] ? $license_date($license['expiresAt'], false) : __('Never', 'geeky-bot')); ?></strong></div>
                             <div class="gb2-keyvalue"><span><?php esc_html_e('Sites using it', 'geeky-bot'); ?></span><strong><?php echo esc_html(sprintf(
                                 /* translators: 1: sites activated, 2: sites allowed. */
                                 __('%1$s of %2$s', 'geeky-bot'),
                                 number_format_i18n($license['activationCount']),
                                 number_format_i18n($license['allowedSites'])
                             )); ?></strong></div>
-                            <div class="gb2-keyvalue"><span><?php esc_html_e('Last checked', 'geeky-bot'); ?></span><strong><?php echo esc_html($license['lastCheckedAt'] ? $license['lastCheckedAt'] : __('Not yet', 'geeky-bot')); ?></strong></div>
+                            <?php if (in_array($license['kind'], array('staging', 'development'), true)) : ?>
+                                <p class="gb2-note"><?php echo esc_html($license['kind'] === 'staging'
+                                    ? __('This is a staging site, so it does not use one of those sites.', 'geeky-bot')
+                                    : __('This is a development copy, so it does not use one of those sites.', 'geeky-bot')); ?></p>
+                            <?php endif; ?>
+                            <div class="gb2-keyvalue"><span><?php esc_html_e('Last checked', 'geeky-bot'); ?></span><strong><?php echo esc_html($license['lastCheckedAt'] ? $license_date($license['lastCheckedAt'], true) : __('Not yet', 'geeky-bot')); ?></strong></div>
                         </div>
                         <?php if (!empty($license['isGrace'])) : ?>
                             <p class="gb2-note"><?php esc_html_e('geekybot.com could not be reached, so Commerce Pro is running on its last confirmed check. Nothing to do unless this lasts more than a few days.', 'geeky-bot'); ?></p>
@@ -3574,7 +3778,7 @@ class Menu {
                                     <?php wp_nonce_field('geekybot_license_action'); ?>
                                     <input type="hidden" name="action" value="geekybot_save_commerce_pro_updates" />
                                     <div class="gb2-sgrid">
-                                        <label class="gb2-sfield"><span><?php esc_html_e('Release channel', 'geeky-bot'); ?></span><select name="commerce_pro_updates[update_channel]"><option value="stable" <?php selected($update_settings['update_channel'], 'stable'); ?>><?php esc_html_e('Stable', 'geeky-bot'); ?></option><option value="beta" <?php selected($update_settings['update_channel'], 'beta'); ?>><?php esc_html_e('Beta', 'geeky-bot'); ?></option><option value="dev" <?php selected($update_settings['update_channel'], 'dev'); ?>><?php esc_html_e('Dev', 'geeky-bot'); ?></option></select></label>
+                                        <label class="gb2-sfield"><span><?php esc_html_e('Release channel', 'geeky-bot'); ?></span><select name="commerce_pro_updates[update_channel]"><option value="stable" <?php selected($update_settings['update_channel'], 'stable'); ?>><?php esc_html_e('Stable', 'geeky-bot'); ?></option><option value="beta" <?php selected($update_settings['update_channel'], 'beta'); ?>><?php esc_html_e('Beta', 'geeky-bot'); ?></option></select></label>
                                         <label class="gb2-sfield"><span><?php esc_html_e('Automatic updates', 'geeky-bot'); ?></span><select name="commerce_pro_updates[auto_update_mode]"><option value="manual" <?php selected($update_settings['auto_update_mode'], 'manual'); ?>><?php esc_html_e('Manual updates only', 'geeky-bot'); ?></option><option value="critical" <?php selected($update_settings['auto_update_mode'], 'critical'); ?>><?php esc_html_e('Critical security updates only', 'geeky-bot'); ?></option><option value="patch" <?php selected($update_settings['auto_update_mode'], 'patch'); ?>><?php esc_html_e('Patch releases only', 'geeky-bot'); ?></option><option value="minor" <?php selected($update_settings['auto_update_mode'], 'minor'); ?>><?php esc_html_e('Patch and minor releases', 'geeky-bot'); ?></option><option value="stable" <?php selected($update_settings['auto_update_mode'], 'stable'); ?>><?php esc_html_e('All stable releases', 'geeky-bot'); ?></option></select></label>
                                     </div>
                                     <label class="gb2-stoggle"><input type="hidden" name="commerce_pro_updates[auto_update_critical]" value="no" /><input type="checkbox" name="commerce_pro_updates[auto_update_critical]" value="yes" <?php checked($update_settings['auto_update_critical'], 'yes'); ?> /> <span><strong><?php esc_html_e('Always allow critical security auto-updates', 'geeky-bot'); ?></strong><em><?php esc_html_e('Recommended for live stores.', 'geeky-bot'); ?></em></span></label>
@@ -3592,7 +3796,9 @@ class Menu {
                 <div class="gb2-factgrid">
                     <span><strong><?php echo esc_html($license['domain']); ?></strong><em><?php esc_html_e('Domain', 'geeky-bot'); ?></em></span>
                     <span><strong><?php echo esc_html($license['siteUrl']); ?></strong><em><?php esc_html_e('Site URL', 'geeky-bot'); ?></em></span>
-                    <span><strong><?php echo esc_html($license['isStaging'] === 'yes' ? __('Staging', 'geeky-bot') : __('Production', 'geeky-bot')); ?></strong><em><?php esc_html_e('Site type', 'geeky-bot'); ?></em></span>
+                    <span><strong><?php
+                        $site_types = array('production' => __('Production', 'geeky-bot'), 'staging' => __('Staging', 'geeky-bot'), 'development' => __('Development', 'geeky-bot'));
+                        echo esc_html(isset($site_types[$license['kind']]) ? $site_types[$license['kind']] : ($license['isStaging'] === 'yes' ? __('Staging', 'geeky-bot') : __('Production', 'geeky-bot'))); ?></strong><em><?php esc_html_e('Site type', 'geeky-bot'); ?></em></span>
                     <span><strong><?php echo esc_html(number_format_i18n($license['allowedStagingSites'])); ?></strong><em><?php esc_html_e('Allowed staging sites', 'geeky-bot'); ?></em></span>
                     <span><strong><?php echo esc_html(!empty($license['bindingValid']) ? __('Bound to this site', 'geeky-bot') : __('Needs a fresh check', 'geeky-bot')); ?></strong><em><?php esc_html_e('Site binding', 'geeky-bot'); ?></em></span>
                     <span><strong><?php echo esc_html(!empty($license['signatureRequired']) ? (!empty($license['signatureVerified']) ? __('Verified', 'geeky-bot') : __('Not verified', 'geeky-bot')) : __('HTTPS only', 'geeky-bot')); ?></strong><em><?php esc_html_e('Signed entitlement', 'geeky-bot'); ?></em></span>

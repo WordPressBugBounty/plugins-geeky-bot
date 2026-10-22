@@ -224,7 +224,7 @@ class ProductIndexService {
             return false;
         }
 
-        if (method_exists($product, 'is_type') && $product->is_type('variation')) {
+        if (method_exists($product, 'is_type') && ($product instanceof \WC_Product_Variation)) {
             return $this->sync_parent_from_variation($product->get_id());
         }
 
@@ -2187,7 +2187,7 @@ class ProductIndexService {
             }
         }
 
-        if ($product->is_type('variable')) {
+        if (($product instanceof \WC_Product_Variable)) {
             foreach ((array) $product->get_children() as $variation_id) {
                 $variation = function_exists('wc_get_product') ? wc_get_product($variation_id) : null;
                 if (!$variation) {

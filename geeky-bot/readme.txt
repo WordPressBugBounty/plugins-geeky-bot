@@ -1,14 +1,14 @@
-=== Geeky Bot – AI Sales Assistant for WooCommerce ===
+=== Geeky Bot – AI Chatbot & Sales Assistant for WooCommerce ===
 Contributors: ahmadgb
 Tags: woocommerce, product search, product recommendations, ai chatbot, ecommerce
 Requires at least: 6.0
 Tested up to: 7.1
 Requires PHP: 7.4
-Stable tag: 2.1.1
+Stable tag: 2.1.2
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
-WooCommerce AI sales assistant for natural product discovery, grounded answers, recommendations, and guided shopping.
+AI chatbot for WooCommerce that answers product and policy questions, finds products in plain language, and recommends what to buy.
 
 == Description ==
 
@@ -180,10 +180,15 @@ Privacy: https://www.zywrap.com/privacy
 
 When an administrator chooses to view information about Commerce Pro or follow support, documentation, purchase, account, or upgrade links, the browser connects to geekybot.com.
 
-The free plugin makes no server-side requests to geekybot.com. Only when the separate Commerce Pro add-on is installed:
+Translations. Geeky Bot does not ship its translations; it downloads the one for your site's language from geekybot.com, the way WordPress installs its own language packs. This happens only on a site that is not in English (or whose users have chosen another language): when Geeky Bot is installed or updated, when the site language changes, and once a day to pick up improved translations. The request reads a public list (https://geekybot.com/translations/v2/index.json) and downloads a .zip holding a .po and a .mo file, checked against the SHA-256 the list gives. Nothing about the site is sent: no address, no key, no content, and the user-agent names only Geeky Bot and its version. Turn it off with define('GEEKYBOT_TRANSLATIONS_AUTO', false); in wp-config.php; the files can then be downloaded from Geeky Bot > Languages and installed by hand.
 
-* Once a day, and when an administrator opens the admin after six hours, Geeky Bot reads the public Commerce Pro release file from cdn.geekybot.com to see whether an update exists. The request carries the site address in its standard WordPress user-agent.
-* When a Commerce Pro license key is entered, Geeky Bot sends it to geekybot.com with the site address, the WordPress, PHP, Geeky Bot and Commerce Pro versions, and an anonymous installation ID, to activate the license, re-check it once a day, and fetch Commerce Pro updates.
+Commerce Pro license. The free plugin sends nothing else to geekybot.com until an administrator enters a Commerce Pro license key under Geeky Bot > License. After that:
+
+* To activate the license, and to re-check it about once a week, Geeky Bot sends the key to geekybot.com with the site address, the WordPress, PHP and Geeky Bot versions, the site language and whether the site is a multisite. geekybot.com answers with a signed statement of what the license covers.
+* When the administrator installs or updates Commerce Pro, Geeky Bot asks geekybot.com for a one-time download link and downloads the add-on from geekybot.com.
+* While Commerce Pro is installed, Geeky Bot asks geekybot.com twice a day whether a newer Commerce Pro exists, sending the key, the site address and the installed Geeky Bot and Commerce Pro versions.
+
+Deactivating the license on the License page tells geekybot.com to free this site's slot and deletes the key from the site.
 
 Service: https://geekybot.com/
 
@@ -192,6 +197,23 @@ Terms: https://geekybot.com/terms-conditions/
 Privacy: https://geekybot.com/privacy-policy/
 
 == Changelog ==
+
+= 2.1.2 =
+
+
+Languages
+
+* Translations are no longer bundled. Geeky Bot installs the translation for your site's language from geekybot.com by itself, into wp-content/languages/plugins/ where updates cannot delete it, and keeps it up to date daily - corrected wording arrives without a plugin update. The plugin download shrinks from 4.8 MB to 0.6 MB.
+* 19 languages: Arabic, Chinese (Simplified), Czech, Dutch, French, German, Greek, Hebrew, Indonesian, Italian, Japanese, Korean, Polish, Portuguese (Brazil), Romanian, Russian, Spanish, Turkish, and English. Czech, Greek, Hebrew, Indonesian, Polish, Romanian and Turkish are new. A regional variant gets the nearest translation (Swiss German gets German).
+* New Geeky Bot > Languages screen: which languages are installed, Install / Update now, every translation's .po and .mo for download, and "Use it for me" to switch your own admin language.
+* A translation whose download does not match its published checksum is refused. A file you placed in wp-content/languages/plugins/ yourself is kept beside the new one, never lost.
+
+Other
+
+* WooCommerce Subscriptions products are recognised as the simple and variable products they are built on, so Commerce Pro 2.1.2 can offer Add to cart for them in the chat.
+* Commerce Pro 2.1.2 can open its contact form under a reply when a shopper asks for a person.
+* The chat's saved conversation, open state and session are kept per site. Two Geeky Bot sites on one domain (localhost/site-a and localhost/site-b, or shops in a subfolder multisite network) no longer show each other's conversation; a site at the top of its domain keeps its visitors' existing conversation.
+* Geeky Bot no longer rewrites errors from other plugins' REST routes that share the geekybot/v1 namespace.
 
 = 2.1.1 =
 
@@ -334,6 +356,10 @@ Widget
 * Added support for the separate Geeky Bot Commerce Pro add-on.
 
 == Upgrade Notice ==
+
+= 2.1.2 =
+
+Translations are now installed from geekybot.com instead of being bundled: a site not in English downloads its language automatically within a minute of updating (see Geeky Bot > Languages). Commerce Pro licensing moves to geekybot.com's new license server: if you use Commerce Pro, open Geeky Bot > License after updating and enter your license key again.
 
 = 2.1.1 =
 

@@ -1545,7 +1545,7 @@ class ProductService {
         if (!$product) {
             return 0;
         }
-        if ($product->is_type('variable')) {
+        if (($product instanceof \WC_Product_Variable)) {
             $min = (float) $product->get_variation_price('min', true);
             $max = (float) $product->get_variation_price('max', true);
             if ($min > 0 && $max > 0) {
@@ -1789,7 +1789,7 @@ class ProductService {
             }
         }
 
-        if ($product->is_type('variable')) {
+        if (($product instanceof \WC_Product_Variable)) {
             foreach ((array) $product->get_children() as $variation_id) {
                 $variation = wc_get_product($variation_id);
                 if (!$variation || !$variation->exists()) {
@@ -1812,14 +1812,14 @@ class ProductService {
     }
 
     private function variation_color_values($product) {
-        if (!$product || !$product->is_type('variable')) {
+        if (!$product || !($product instanceof \WC_Product_Variable)) {
             return array();
         }
 
         $colors = array();
         foreach ((array) $product->get_children() as $variation_id) {
             $variation = wc_get_product($variation_id);
-            if (!$variation || !$variation->is_type('variation')) {
+            if (!$variation || !($variation instanceof \WC_Product_Variation)) {
                 continue;
             }
             foreach ((array) $variation->get_variation_attributes() as $attribute_name => $value) {
@@ -1857,7 +1857,7 @@ class ProductService {
             return 0;
         }
 
-        if ($product->is_type('variable')) {
+        if (($product instanceof \WC_Product_Variable)) {
             $best = 0;
             foreach ((array) $product->get_children() as $variation_id) {
                 $variation = wc_get_product($variation_id);
@@ -2396,7 +2396,7 @@ class ProductService {
      * the requested exact variation exists only out of stock.
      */
     private function product_matches_requested_variation($product, $analysis) {
-        if (!$product || !$product->is_type('variable')) {
+        if (!$product || !($product instanceof \WC_Product_Variable)) {
             return true;
         }
 
@@ -2907,7 +2907,7 @@ class ProductService {
             return html_entity_decode(wp_strip_all_tags(wc_price((float) $amount)), ENT_QUOTES, get_bloginfo('charset'));
         };
 
-        if ($product->is_type('variable')) {
+        if (($product instanceof \WC_Product_Variable)) {
             $min = $product->get_variation_price('min', true);
             $max = $product->get_variation_price('max', true);
 
@@ -2963,13 +2963,13 @@ class ProductService {
                 'image' => esc_url_raw($image),
                 'stockStatus' => $stock_status,
                 'stockLabel' => $this->stock_label($stock_status),
-                'type' => $product->get_type(),
+                'type' => self::purchase_type($product),
                 'rating' => (float) $product->get_average_rating(),
                 'categories' => array_map('wp_strip_all_tags', (array) $category_names),
                 'sku' => $product->get_sku(),
                 'isPurchasable' => $product->is_purchasable(),
                 'isInStock' => in_array($stock_status, array('instock', 'onbackorder'), true),
-                'requiresOptions' => $product->is_type('variable') || $product->is_type('grouped') || $product->is_type('external'),
+                'requiresOptions' => ($product instanceof \WC_Product_Variable) || $product->is_type('grouped') || $product->is_type('external'),
                 // For the AI context only; ShopperOutputService does not pass
                 // it to the storefront.
                 'isOnSale' => $product->is_on_sale(),
@@ -3245,7 +3245,7 @@ class ProductService {
             $chunks[] = $label . ' ' . $attribute_name . ' ' . implode(' ', array_map('wp_strip_all_tags', (array) $values));
         }
 
-        if ($product->is_type('variable')) {
+        if (($product instanceof \WC_Product_Variable)) {
             foreach ((array) $product->get_children() as $variation_id) {
                 $variation = function_exists('wc_get_product') ? wc_get_product($variation_id) : null;
                 if (!$variation) {
@@ -3296,7 +3296,7 @@ class ProductService {
         $min_price = null;
         $max_price = null;
 
-        if ($product->is_type('variable')) {
+        if (($product instanceof \WC_Product_Variable)) {
             $min = $product->get_variation_price('min', true);
             $max = $product->get_variation_price('max', true);
             $min_price = $min === '' ? null : (float) $min;
@@ -3370,7 +3370,7 @@ class ProductService {
         if (!$product || !$product->is_on_sale()) {
             return false;
         }
-        if ($product->is_type('variable')) {
+        if (($product instanceof \WC_Product_Variable)) {
             return $this->product_matches_requested_variation($product, $analysis);
         }
         return true;
@@ -3382,5 +3382,35 @@ class ProductService {
             $language = new SearchLanguageService();
         }
         return $language;
+    }
+
+    /**
+     * How a product is bought, as the storefront needs to know it: simple,
+     * variable, variation, grouped or external.
+     *
+     * WooCommerce Subscriptions' types ("subscription", "variable-subscription",
+     * "subscription_variation") extend WooCommerce's own classes, and are
+     * bought the same way. Reported by their own names, they matched nothing
+     * the widget knows: a yearly plan showed no Add to cart button, and the
+     * public payload dropped the type altogether.
+     *
+     * @param WC_Product $product Product.
+     * @return string
+     */
+    public static function purchase_type($product) {
+        if (!$product || !is_object($product)) {
+            return '';
+        }
+        if ($product instanceof \WC_Product_Variation) {
+            return 'variation';
+        }
+        if ($product instanceof \WC_Product_Variable) {
+            return 'variable';
+        }
+        if ($product instanceof \WC_Product_Simple) {
+            return 'simple';
+        }
+
+        return method_exists($product, 'get_type') ? (string) $product->get_type() : '';
     }
 }

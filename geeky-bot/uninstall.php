@@ -10,6 +10,8 @@ wp_clear_scheduled_hook('geekybot_product_index_rebuild_batch');
 wp_clear_scheduled_hook('geekybot_vocabulary_refresh');
 wp_clear_scheduled_hook('geekybot_smart_catalog_batch');
 wp_clear_scheduled_hook('geekybot_search_learning_run');
+wp_clear_scheduled_hook('geekybot_translations_daily');
+wp_clear_scheduled_hook('geekybot_translations_soon');
 
 $geekybot_delete_data = get_option('geekybot_delete_data_on_uninstall', 'no');
 if ($geekybot_delete_data !== 'yes') {

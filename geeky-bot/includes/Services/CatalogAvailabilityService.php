@@ -21,7 +21,7 @@ final class CatalogAvailabilityService {
         }
 
         $status = sanitize_key((string) $product->get_stock_status());
-        if (!$product->is_type('variable') || !method_exists($product, 'get_children')) {
+        if (!($product instanceof \WC_Product_Variable) || !method_exists($product, 'get_children')) {
             return $status !== '' ? $status : 'outofstock';
         }
 
@@ -29,7 +29,7 @@ final class CatalogAvailabilityService {
         foreach ((array) $product->get_children() as $variation_id) {
             $variation = function_exists('wc_get_product') ? wc_get_product(absint($variation_id)) : null;
             if (!$variation
-                || !$variation->is_type('variation')
+                || !($variation instanceof \WC_Product_Variation)
                 || $variation->get_status() !== 'publish') {
                 continue;
             }

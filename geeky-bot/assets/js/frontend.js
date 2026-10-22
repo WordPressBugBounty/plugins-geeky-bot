@@ -23,8 +23,16 @@
   let historySaveTimer = null;
   let invitationTimer = null;
   const productExpertSourcesSeen = new Set();
+  // What the widget saves in the browser is named per site, not per host.
+  // Browsers keep it per host, so two WordPress sites at localhost/a and
+  // localhost/b -- or two shops in a subfolder multisite network -- used to
+  // restore each other's conversation and open state.
+  const LEGACY_SESSION_KEY = 'geekybot_session_key';
+  const siteScope = buildSiteScope();
   const storageKeys = buildStorageKeys();
-  let sessionKey = window.localStorage ? localStorage.getItem('geekybot_session_key') || '' : '';
+  const sessionKeyName = 'geekybot_session_key_' + siteScope.id;
+  migrateHostWideStorage();
+  let sessionKey = readSessionKey();
   const launcherStyle = settings.launcherStyle === 'pill' ? 'pill' : 'icon';
   const headerStyle = settings.headerStyle === 'solid' ? 'solid' : 'gradient';
   // Merchant-chosen appearance. 'auto' hands the decision to the shopper's own
@@ -324,7 +332,8 @@
     clearStoredConversation();
     if (window.localStorage) {
       try {
-        localStorage.removeItem('geekybot_session_key');
+        localStorage.removeItem(sessionKeyName);
+        localStorage.removeItem(LEGACY_SESSION_KEY);
       } catch (error) {}
     }
     document.dispatchEvent(new CustomEvent('geekybot:conversationCleared', {
@@ -429,7 +438,10 @@
         if (data.sessionKey) {
           sessionKey = data.sessionKey;
           if (window.localStorage) {
-            localStorage.setItem('geekybot_session_key', sessionKey);
+            try {
+              localStorage.setItem(sessionKeyName, sessionKey);
+              localStorage.setItem(LEGACY_SESSION_KEY, sessionKey);
+            } catch (error) {}
           }
         }
         const responseEvent = new CustomEvent('geekybot:chatResponse', {
@@ -487,14 +499,91 @@
   }
 
 
+  function hostStorageBase() {
+    return 'geekybot_widget_' + String(location.host || 'site').replace(/[^a-z0-9._-]/gi, '_');
+  }
+
+  // This site, as its REST address names it: host plus any folder WordPress
+  // is installed in (example.com, localhost/shop-a). "isRoot" when WordPress
+  // is at the top of the host, the only case the host-wide names could
+  // belong to.
+  function buildSiteScope() {
+    const site = String(config.restUrl || location.host || 'site')
+      .replace(/^[a-z][a-z0-9+.-]*:\/\//i, '')
+      .replace(/[?#].*$/, '')
+      .replace(/\/wp-json(\/.*)?$/i, '')
+      .replace(/\/+$/, '')
+      .toLowerCase();
+    let hash = 5381;
+    for (let i = 0; i < site.length; i++) {
+      hash = ((hash * 33) + site.charCodeAt(i)) >>> 0;
+    }
+    return { id: hash.toString(36), isRoot: site.indexOf('/') === -1 };
+  }
+
   function buildStorageKeys() {
-    const base = 'geekybot_widget_' + String(location.host || 'site').replace(/[^a-z0-9._-]/gi, '_');
+    const base = hostStorageBase() + '_' + siteScope.id;
     return {
       history: base + '_history_v1',
       timestamp: base + '_history_saved_at',
       open: base + '_open',
       invitation: base + '_invitation_seen_v1'
     };
+  }
+
+  // Before 2.1.2 these names held only the host. A site at the top of its
+  // host keeps its visitor's conversation by moving them over once; a site
+  // in a folder never reads them, since they may be another site's.
+  function migrateHostWideStorage() {
+    const base = hostStorageBase();
+    const moves = [
+      [window.localStorage, base + '_history_v1', storageKeys.history],
+      [window.localStorage, base + '_history_saved_at', storageKeys.timestamp],
+      [window.localStorage, base + '_open', storageKeys.open],
+      [window.sessionStorage, base + '_invitation_seen_v1', storageKeys.invitation]
+    ];
+    moves.forEach(function (move) {
+      const store = move[0];
+      if (!store) {
+        return;
+      }
+      try {
+        const value = store.getItem(move[1]);
+        if (value === null) {
+          return;
+        }
+        if (siteScope.isRoot && store.getItem(move[2]) === null) {
+          store.setItem(move[2], value);
+        }
+        store.removeItem(move[1]);
+      } catch (error) {}
+    });
+  }
+
+  // The chat session of this site. Commerce Pro 2.1.2 and earlier read the
+  // session from the old host-wide name when their script starts, which is
+  // after this one, so that name is kept holding this site's session.
+  function readSessionKey() {
+    if (!window.localStorage) {
+      return '';
+    }
+    try {
+      let key = localStorage.getItem(sessionKeyName) || '';
+      if (!key && siteScope.isRoot) {
+        key = localStorage.getItem(LEGACY_SESSION_KEY) || '';
+        if (key) {
+          localStorage.setItem(sessionKeyName, key);
+        }
+      }
+      if (key) {
+        localStorage.setItem(LEGACY_SESSION_KEY, key);
+      } else {
+        localStorage.removeItem(LEGACY_SESSION_KEY);
+      }
+      return key;
+    } catch (error) {
+      return '';
+    }
   }
 
   function historyEnabled() {

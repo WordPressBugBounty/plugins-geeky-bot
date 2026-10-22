@@ -28,7 +28,7 @@ class ProductFactsService {
         $tags = is_wp_error($tags) ? array() : array_map('wp_strip_all_tags', (array) $tags);
 
         $attributes = $this->attributes($product);
-        $variations = $product->is_type('variable') ? $this->variations($product) : array();
+        $variations = ($product instanceof \WC_Product_Variable) ? $this->variations($product) : array();
 
         // WooCommerce getters are authoritative. The allowlisted meta and
         // attribute fallbacks make Product Expert resilient immediately after
@@ -180,7 +180,7 @@ class ProductFactsService {
         $rows = array();
         foreach ((array) $parent->get_children() as $variation_id) {
             $variation = wc_get_product(absint($variation_id));
-            if (!$variation || !$variation->is_type('variation') || $variation->get_status() !== 'publish') {
+            if (!$variation || !($variation instanceof \WC_Product_Variation) || $variation->get_status() !== 'publish') {
                 continue;
             }
 

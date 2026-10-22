@@ -46,6 +46,9 @@ class ShopperOutputService {
         if (!$response instanceof \WP_REST_Response || $response->get_status() < 400) {
             return $response;
         }
+        if (!$this->is_own_route($request)) {
+            return $response;
+        }
 
         $data = $response->get_data();
         $internal_code = is_array($data) && !empty($data['code']) ? sanitize_key((string) $data['code']) : '';
@@ -78,6 +81,39 @@ class ShopperOutputService {
 
         return $response;
     }
+
+    /**
+     * Whether the matched route is one Geeky Bot or its add-on registered.
+     *
+     * The namespace alone is not ownership. geekybot.com serves its licence
+     * API under geekybot/v1 as well, and once the chatbot was installed there
+     * every licence refusal -- unknown key, refunded licence, no free site
+     * slot -- was rewritten to "I couldn't complete that request right now".
+     * Clients then read a refused key as an unreachable server, and a refunded
+     * licence kept running. Only errors from Geeky Bot's own handlers carry
+     * internal detail worth hiding from shoppers.
+     *
+     * @param \WP_REST_Request $request Request, with the matched handler attached.
+     * @return bool
+     */
+    private function is_own_route($request) {
+        $handler = $request->get_attributes();
+        $callback = is_array($handler) && isset($handler['callback']) ? $handler['callback'] : null;
+
+        $class = '';
+        if (is_array($callback) && isset($callback[0])) {
+            $class = is_object($callback[0]) ? get_class($callback[0]) : (string) $callback[0];
+        } elseif (is_string($callback) && strpos($callback, '::') !== false) {
+            $class = substr($callback, 0, strpos($callback, '::'));
+        } elseif ($callback instanceof \Closure) {
+            $scope = (new \ReflectionFunction($callback))->getClosureScopeClass();
+            $class = $scope ? $scope->getName() : '';
+        }
+
+        // GeekyBot\ and GeekyBotCommercePro\ both start with "GeekyBot".
+        return $class !== '' && strpos(ltrim($class, '\\'), 'GeekyBot') === 0;
+    }
+
     /**
      * Build the public chat response sent to the browser.
      *
@@ -106,6 +142,14 @@ class ShopperOutputService {
             if (!empty($comparison)) {
                 $public['comparison'] = $comparison;
             }
+        }
+
+        // A commerce command's extras arrive under "commerce".
+        $lead_form = $this->public_lead_form(isset($payload['leadForm'])
+            ? $payload['leadForm']
+            : (isset($payload['commerce']['leadForm']) ? $payload['commerce']['leadForm'] : null));
+        if (!empty($lead_form)) {
+            $public['leadForm'] = $lead_form;
         }
 
         /**
@@ -146,7 +190,35 @@ class ShopperOutputService {
             }
         }
 
+        $lead_form = $this->public_lead_form(isset($filtered['leadForm']) ? $filtered['leadForm'] : null);
+        if (!empty($lead_form)) {
+            $safe['leadForm'] = $lead_form;
+        }
+
         return $safe;
+    }
+
+    /**
+     * A request from a commerce add-on to show its contact form under the
+     * reply, with the shopper's words to start the message from.
+     *
+     * "I want to speak to someone" is answered by a form the store receives;
+     * without a way to ask for it, the reply could only claim the request had
+     * been noted.
+     *
+     * @param mixed $lead_form Internal value.
+     * @return array Empty, or {message: string}.
+     */
+    private function public_lead_form($lead_form) {
+        // Internal shape {show, message}, or this method's own public output
+        // {message} when the response is rebuilt after the filter.
+        if (!is_array($lead_form) || (empty($lead_form['show']) && !array_key_exists('message', $lead_form))) {
+            return array();
+        }
+
+        return array(
+            'message' => $this->clean_message(isset($lead_form['message']) ? (string) $lead_form['message'] : '', 500),
+        );
     }
 
     /**

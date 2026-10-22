@@ -18,6 +18,7 @@ use GeekyBot\Services\OnboardingService;
 use GeekyBot\Services\ShopperOutputService;
 use GeekyBot\Services\SmartCatalogService;
 use GeekyBot\Services\SearchLearningService;
+use GeekyBot\Services\TranslationService;
 
 final class Plugin {
     private static $instance = null;
@@ -32,15 +33,19 @@ final class Plugin {
     private function __construct() {}
 
     public function boot() {
-        // The plugin header declares `Domain Path: /languages` and now ships a
-        // translation there. Modern WordPress finds it on its own -- verified on
-        // 7.1 -- but the header also declares `Requires at least: 6.0`, and the
-        // just-in-time loader did not always scan a plugin's own directory on
-        // those releases. Registering the path keeps the bundled translation
-        // working across every version the plugin claims to support, and is a
-        // no-op where WordPress already loaded it.
-        // phpcs:ignore PluginCheck.CodeAnalysis.DiscouragedFunctions.load_plugin_textdomainFound -- Bundled translations must load on the oldest supported release, not only where just-in-time loading covers them.
+        // Since 2.1.2 translations are not bundled: TranslationService installs
+        // the site's language into wp-content/languages/plugins/, where
+        // WordPress looks first on every version this plugin supports. The
+        // plugin's own languages/ folder (`Domain Path`) now holds only the
+        // template; registering it keeps a translation someone put there by
+        // hand working on WordPress releases whose just-in-time loader did not
+        // scan a plugin's own directory.
+        // phpcs:ignore PluginCheck.CodeAnalysis.DiscouragedFunctions.load_plugin_textdomainFound -- A hand-placed translation in the plugin folder must load on the oldest supported release too.
         load_plugin_textdomain('geeky-bot', false, dirname(GEEKYBOT_BASENAME) . '/languages');
+
+        // Before the database check: a site whose upgrade is pending still
+        // needs its language.
+        TranslationService::hooks();
 
         if (!Installer::maybe_upgrade()) {
             if (is_admin()) {

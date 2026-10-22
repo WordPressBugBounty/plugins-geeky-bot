@@ -339,7 +339,7 @@ class ProductRecommendationService {
             return null;
         }
 
-        if ($product->is_type('variable')) {
+        if (($product instanceof \WC_Product_Variable)) {
             $price = $product->get_variation_price('min', true);
             return $price === '' ? null : (float) $price;
         }
@@ -361,7 +361,7 @@ class ProductRecommendationService {
             return 0;
         }
 
-        if ($product->is_type('variable')) {
+        if (($product instanceof \WC_Product_Variable)) {
             $best = 0;
             foreach ((array) $product->get_children() as $variation_id) {
                 $variation = wc_get_product(absint($variation_id));

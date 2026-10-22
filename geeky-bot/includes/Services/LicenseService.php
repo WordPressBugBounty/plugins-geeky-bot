@@ -7,22 +7,50 @@ if (!defined('ABSPATH')) {
 
 use WP_Error;
 
+/**
+ * Commerce Pro licence, install and update client.
+ *
+ * Talks to the License Manager on geekybot.com (REST namespace geekybot/v1):
+ * - POST /activate      claim this site's slot, or confirm it (idempotent); the
+ *                       answer carries a statement signed with Ed25519;
+ * - POST /deactivate    free the slot;
+ * - POST /install       a one-time download link for Commerce Pro, for a site
+ *                       holding a current activation token;
+ * - POST /update-check  the newest build, its SHA-256 and, when the licence is
+ *                       current, a one-time download link.
+ *
+ * Commerce Pro runs only on a statement geekybot.com signed for this key and
+ * this site, checked against includes/license-public-key.php. What this site
+ * stores itself (status, dates) is shown on the License page but decides
+ * nothing: it could be written by anybody, or copied in with the database.
+ *
+ * Network calls happen only from WP-Cron or when an administrator presses a
+ * button. A shopper's page load never waits on geekybot.com.
+ */
 class LicenseService {
     const OPTION = 'geekybot_commerce_pro_license';
     const UPDATE_OPTION = 'geekybot_commerce_pro_update_cache';
+    /** Release metadata from the old CDN file; no longer used, deleted on sight. */
     const CDN_UPDATE_OPTION = 'geekybot_commerce_pro_cdn_update_cache';
     const UPDATE_SETTINGS_OPTION = 'geekybot_commerce_pro_update_settings';
-    const PRODUCT = 'commerce-pro';
+    /** The product slug on geekybot.com: Commerce Pro's plugin folder. */
+    const PRODUCT = 'geeky-bot-commerce-pro';
     const PRO_BASENAME = 'geeky-bot-commerce-pro/geeky-bot-commerce-pro.php';
-    const DEFAULT_SERVER = 'https://geekybot.com/wp-json/geekybot-license/v1';
-    const DEFAULT_CDN_METADATA_URL = 'https://cdn.geekybot.com/releases/commerce-pro/stable.json';
+    const DEFAULT_SERVER = 'https://geekybot.com/wp-json/geekybot/v1';
+    const PROTOCOL = 1;
     const CHECK_HOOK = 'geekybot_commerce_pro_license_check';
     const UPDATE_CHECK_HOOK = 'geekybot_commerce_pro_version_check';
     const INSTALLATION_ID_OPTION = 'geekybot_installation_id_v2';
-    const BINDING_VERSION = '2';
+    /** 3 = License Manager statements (Geeky Bot 2.1.2). 2 and older were the old server. */
+    const BINDING_VERSION = '3';
     const LEGACY_BINDING_ATTEMPT_TRANSIENT = 'geekybot_license_binding_upgrade_attempt';
+    /** How often an active licence is confirmed. A signed statement lasts 30 days. */
+    const CHECK_INTERVAL = WEEK_IN_SECONDS;
+    /** A renewal is charged on the expiry date; give the payment time to land. */
+    const RENEWAL_TOLERANCE = 3 * DAY_IN_SECONDS;
 
     private static $data_cache = null;
+    private static $active_cache = null;
 
     public static function hooks() {
         add_filter('geekybot_commerce_pro_license_active', array(__CLASS__, 'filter_license_active'));
@@ -45,32 +73,27 @@ class LicenseService {
             'status' => 'inactive',
             'message' => '',
             'plan' => '',
-            'customer_email' => '',
-            'site_id' => '',
             'site_url' => self::normalized_site_url(),
             'domain' => self::site_domain(),
             'installation_id' => '',
             'site_fingerprint' => '',
             'binding_version' => '',
             'is_staging' => self::is_staging_site() ? 'yes' : 'no',
+            'kind' => '',
             'allowed_sites' => 0,
             'allowed_staging_sites' => 0,
             'activation_count' => 0,
             'expires_at' => '',
             'valid_until' => '',
-            'grace_until' => '',
             'last_checked_at' => '',
             'last_successful_check_at' => '',
+            'next_check' => 0,
             'last_error' => '',
-            'runtime_allowed' => 'no',
+            'grace' => 'no',
             'updates_allowed' => 'no',
-            'downloads_allowed' => 'no',
-            'new_activations_allowed' => 'no',
-            'support_allowed' => 'no',
-            'notice_level' => '',
-            'signed_payload' => '',
-            'signed_payload_signature' => '',
-            'signature_verified' => 'no',
+            'token' => '',
+            'token_expires' => 0,
+            'signed' => array(),
             'server_url' => self::server_url(),
         );
     }
@@ -90,6 +113,9 @@ class LicenseService {
         $encrypted = isset($saved['license_key_encrypted']) ? (string) $saved['license_key_encrypted'] : '';
         $decrypted = $encrypted !== '' ? self::sanitize_license_key(LicenseVault::decrypt($encrypted)) : '';
         $data['license_key'] = $decrypted !== '' ? $decrypted : $legacy_key;
+        if (!is_array($data['signed'])) {
+            $data['signed'] = array();
+        }
 
         if ($legacy_key !== '' && $encrypted === '' && LicenseVault::available()) {
             $encrypted = LicenseVault::encrypt($legacy_key);
@@ -123,12 +149,14 @@ class LicenseService {
             }
         } else {
             $clean['license_key'] = '';
+            $clean['license_key_encrypted'] = '';
         }
         update_option(self::OPTION, $clean, false);
 
         $runtime = $clean;
         $runtime['license_key'] = $plain_key;
         self::$data_cache = $runtime;
+        self::$active_cache = null;
         return $runtime;
     }
 
@@ -146,7 +174,12 @@ class LicenseService {
         if (!is_array($saved)) {
             $saved = array();
         }
-        return wp_parse_args($saved, self::update_settings_defaults());
+        $settings = wp_parse_args($saved, self::update_settings_defaults());
+        // geekybot.com publishes stable and beta builds; "dev" was never served.
+        if (!in_array($settings['update_channel'], array('stable', 'beta'), true)) {
+            $settings['update_channel'] = $settings['update_channel'] === 'dev' ? 'beta' : 'stable';
+        }
+        return $settings;
     }
 
     public static function save_update_settings($data) {
@@ -157,7 +190,7 @@ class LicenseService {
         }
 
         $channel = isset($data['update_channel']) ? sanitize_key((string) $data['update_channel']) : 'stable';
-        if (!in_array($channel, array('stable', 'beta', 'dev'), true)) {
+        if (!in_array($channel, array('stable', 'beta'), true)) {
             $channel = 'stable';
         }
 
@@ -170,7 +203,6 @@ class LicenseService {
 
         update_option(self::UPDATE_SETTINGS_OPTION, $clean, false);
         delete_option(self::UPDATE_OPTION);
-        delete_option(self::CDN_UPDATE_OPTION);
         return $clean;
     }
 
@@ -189,7 +221,7 @@ class LicenseService {
         }
 
         if (!wp_next_scheduled(self::UPDATE_CHECK_HOOK)) {
-            wp_schedule_event(time() + 2 * HOUR_IN_SECONDS, 'daily', self::UPDATE_CHECK_HOOK);
+            wp_schedule_event(time() + 2 * HOUR_IN_SECONDS, 'twicedaily', self::UPDATE_CHECK_HOOK);
         }
     }
 
@@ -198,21 +230,30 @@ class LicenseService {
         wp_clear_scheduled_hook(self::UPDATE_CHECK_HOOK);
     }
 
+    /**
+     * Daily cron: confirm the licence weekly, and daily around the renewal date
+     * or when the signed statement is about to run out.
+     */
     public static function scheduled_refresh() {
         $data = self::data();
-        $license_key = self::sanitize_license_key($data['license_key']);
-        $status = sanitize_key((string) $data['status']);
-
-        if ($license_key === '' || !in_array($status, array('active', 'trial', 'expired', 'cancelled'), true)) {
+        if (self::sanitize_license_key($data['license_key']) === '') {
             return;
         }
 
-        self::refresh();
+        $now = time();
+        $expires = self::datetime_to_timestamp($data['expires_at']);
+        $valid_until = self::datetime_to_timestamp($data['valid_until']);
+        $due = absint($data['next_check']) <= $now
+            || ($expires && $expires < $now + DAY_IN_SECONDS)
+            || ($valid_until && $valid_until < $now + 7 * DAY_IN_SECONDS);
+
+        if ($due) {
+            self::refresh();
+        }
     }
 
     public static function scheduled_update_refresh() {
         delete_option(self::UPDATE_OPTION);
-        delete_option(self::CDN_UPDATE_OPTION);
         self::cached_update_info(true);
     }
 
@@ -226,9 +267,11 @@ class LicenseService {
             echo '<div class="notice notice-error"><p>' . esc_html__('Commerce Pro license storage requires the PHP OpenSSL or Sodium extension. Commerce Pro remains locked until secure local storage is available and the license is refreshed.', 'geeky-bot') . '</p></div>';
             return;
         }
-        $status = sanitize_key((string) $data['status']);
+        if (empty($data['license_key'])) {
+            return;
+        }
 
-        if (!empty($data['license_key']) && !self::runtime_binding_valid($data)) {
+        if (!self::runtime_binding_valid($data)) {
             $url = admin_url('admin.php?page=geekybot-addons');
             echo '<div class="notice notice-warning"><p>'
                 . esc_html__('Commerce Pro needs a fresh license verification before it can run on this site.', 'geeky-bot')
@@ -236,13 +279,14 @@ class LicenseService {
             return;
         }
 
-        if ($status === 'expired' && self::truthy($data['runtime_allowed'])) {
+        $status = sanitize_key((string) $data['status']);
+        if ($status === 'expired' && self::is_commerce_pro_active()) {
             echo '<div class="notice notice-warning"><p>' . esc_html__('Your Commerce Pro license has expired. Buying actions continue on this activated site, but updates, protected downloads, support, and new activations require renewal.', 'geeky-bot') . '</p></div>';
             return;
         }
 
-        if ($status === 'cancelled' && self::truthy($data['runtime_allowed'])) {
-            echo '<div class="notice notice-warning"><p>' . esc_html__('Your Commerce Pro subscription is cancelled but remains active until the paid period ends. Renew to keep updates, downloads, and support active after expiry.', 'geeky-bot') . '</p></div>';
+        if ($status === 'suspended' && self::is_commerce_pro_active()) {
+            echo '<div class="notice notice-warning"><p>' . esc_html__('Your Commerce Pro renewal payment is on hold. Buying actions keep working; update the payment method in your account on geekybot.com.', 'geeky-bot') . '</p></div>';
             return;
         }
 
@@ -271,8 +315,11 @@ class LicenseService {
                 : __('Production limit reached', 'geeky-bot');
         }
 
+        $active = self::is_commerce_pro_active();
+        $current = $active && $status === 'active';
+
         return array(
-            'active' => self::is_commerce_pro_active(),
+            'active' => $active,
             'status' => $status,
             'label' => $label,
             'message' => (string) $data['message'],
@@ -280,94 +327,84 @@ class LicenseService {
             'plan' => (string) $data['plan'],
             'expiresAt' => (string) $data['expires_at'],
             'validUntil' => (string) $data['valid_until'],
-            'graceUntil' => (string) $data['grace_until'],
+            'graceUntil' => (string) $data['valid_until'],
             'lastCheckedAt' => (string) $data['last_checked_at'],
             'lastSuccessfulCheckAt' => (string) $data['last_successful_check_at'],
             'bindingValid' => self::runtime_binding_valid($data),
-            'signatureVerified' => self::truthy($data['signature_verified']),
-            'signatureRequired' => self::public_key_configured(),
+            'signatureVerified' => self::verified_claims($data['signed']) !== null,
+            'signatureRequired' => true,
             'lastError' => (string) $data['last_error'],
             'isGrace' => self::is_running_on_grace($data),
             'siteUrl' => (string) $data['site_url'],
             'domain' => (string) $data['domain'],
             'isStaging' => (string) $data['is_staging'],
+            'kind' => (string) $data['kind'],
             'allowedSites' => absint($data['allowed_sites']),
             'allowedStagingSites' => absint($data['allowed_staging_sites']),
             'activationCount' => absint($data['activation_count']),
-            'runtimeAllowed' => self::truthy($data['runtime_allowed']),
-            'updatesAllowed' => self::truthy($data['updates_allowed']),
-            'downloadsAllowed' => self::truthy($data['downloads_allowed']),
-            'newActivationsAllowed' => self::truthy($data['new_activations_allowed']),
-            'supportAllowed' => self::truthy($data['support_allowed']),
-            'noticeLevel' => sanitize_key((string) $data['notice_level']),
+            'runtimeAllowed' => $active,
+            'updatesAllowed' => $current && self::truthy($data['updates_allowed']),
+            // Installing needs a current licence; an expired one keeps running
+            // what is installed but is not handed new files.
+            'downloadsAllowed' => $current && self::truthy($data['updates_allowed']),
+            'newActivationsAllowed' => $current,
+            'supportAllowed' => $current,
+            'noticeLevel' => '',
         );
     }
 
+    /**
+     * Whether Commerce Pro may run on this site. Reads stored state only.
+     *
+     * Active runs Pro. Suspended (a renewal payment on hold) and expired keep
+     * running on a site that was already activated: geekybot.com promises the
+     * installed version keeps working, and only updates, downloads, support and
+     * new activations stop. Revoked (refunded), unknown, replaced, removed or
+     * never activated: off.
+     *
+     * @return bool
+     */
     public static function is_commerce_pro_active() {
+        if (self::$active_cache !== null) {
+            return self::$active_cache;
+        }
+
         $data = self::data();
-
-        if (!self::runtime_binding_valid($data)) {
-            return false;
+        $key = self::sanitize_license_key($data['license_key']);
+        if ($key === '' || !self::runtime_binding_valid($data)) {
+            return self::$active_cache = false;
         }
 
-        $entitlement = self::entitlement_data($data);
-        if (!$entitlement) {
-            return false;
-        }
-
-        $status = sanitize_key((string) $entitlement['status']);
-
-        if (in_array($status, array('refunded', 'disabled', 'domain_mismatch', 'activation_limit_reached', 'inactive'), true)) {
-            return false;
-        }
-
-        $runtime_allowed = self::truthy(isset($entitlement['runtime_allowed']) ? $entitlement['runtime_allowed'] : 'no');
-        if (!$runtime_allowed) {
-            return false;
-        }
-
-        // Expired licenses may intentionally retain runtime access on a site
-        // that was already verified, while updates/downloads/support remain
-        // disabled by separate entitlements. All other temporary states must
-        // stay inside the server-issued verification/grace window.
-        if ($status === 'expired') {
-            return true;
-        }
-
-        if (!in_array($status, array('active', 'trial', 'cancelled'), true)) {
-            return false;
-        }
-
+        $claims = self::verified_claims($data['signed']);
         $now = time();
-        $valid_until = self::datetime_to_timestamp(isset($entitlement['valid_until']) ? $entitlement['valid_until'] : '');
-        $grace_until = self::datetime_to_timestamp(isset($entitlement['grace_until']) ? $entitlement['grace_until'] : '');
 
-        return ($valid_until && $valid_until >= $now) || ($grace_until && $grace_until >= $now);
+        return self::$active_cache = $claims !== null
+            && (int) ($claims['v'] ?? 0) === 1
+            && hash_equals((string) ($claims['key_fp'] ?? ''), self::key_fingerprint($key))
+            && self::normalize_url((string) ($claims['site_url'] ?? '')) === self::normalize_url(self::normalized_site_url())
+            && in_array(self::PRODUCT, (array) ($claims['products'] ?? array()), true)
+            && in_array((string) ($claims['status'] ?? ''), array('active', 'suspended', 'expired'), true)
+            && (int) ($claims['valid_until'] ?? 0) >= $now
+            && (int) ($claims['issued_at'] ?? PHP_INT_MAX) <= $now + 600;
     }
 
     public static function can_receive_updates() {
-        $data = self::data();
-        $entitlement = self::entitlement_data($data);
-        return self::is_commerce_pro_active() && !empty($entitlement) && self::truthy(isset($entitlement['updates_allowed']) ? $entitlement['updates_allowed'] : 'no');
+        $summary = self::status_summary();
+        return !empty($summary['updatesAllowed']);
     }
 
     public static function can_download_packages() {
-        $data = self::data();
-        $entitlement = self::entitlement_data($data);
-        return self::is_commerce_pro_active() && !empty($entitlement) && self::truthy(isset($entitlement['downloads_allowed']) ? $entitlement['downloads_allowed'] : 'no');
+        $summary = self::status_summary();
+        return !empty($summary['downloadsAllowed']);
     }
 
+    /**
+     * Running on the last signed statement because geekybot.com could not be
+     * reached at the last check.
+     */
     public static function is_running_on_grace($data = null) {
         $data = is_array($data) ? $data : self::data();
-        $entitlement = self::entitlement_data($data);
-        if (!$entitlement) {
-            return false;
-        }
-        $now = time();
-        $valid_until = self::datetime_to_timestamp(isset($entitlement['valid_until']) ? $entitlement['valid_until'] : '');
-        $grace_until = self::datetime_to_timestamp(isset($entitlement['grace_until']) ? $entitlement['grace_until'] : '');
-
-        return $grace_until && $grace_until >= $now && (!$valid_until || $valid_until < $now);
+        return self::truthy($data['grace']) && self::is_commerce_pro_active();
     }
 
     public static function activate($license_key) {
@@ -380,19 +417,24 @@ class LicenseService {
             return new WP_Error('geekybot_license_missing', __('Please enter a license key.', 'geeky-bot'));
         }
 
-        $response = self::request('activate', array('license_key' => $license_key));
-        if (is_wp_error($response)) {
-            return $response;
+        $previous = self::sanitize_license_key(self::data()['license_key']);
+        $result = self::check_with_server($license_key, false);
+
+        // A different key replaced the old one, so the old one's slot is freed.
+        // Not when the server could not be reached: then nothing was replaced.
+        $unreachable = is_wp_error($result) && $result->get_error_code() === 'geekybot_license_unreachable';
+        if ($previous !== '' && $previous !== $license_key && !$unreachable) {
+            self::request('deactivate', array('license_key' => $previous, 'site_url' => self::normalized_site_url()));
         }
 
-        $result = self::apply_server_response($response, $license_key, __('Commerce Pro license activated for this site.', 'geeky-bot'));
-        if (is_wp_error($result)) {
-            return $result;
-        }
-
-        return self::authorization_result($result);
+        return $result;
     }
 
+    /**
+     * Confirm the licence with geekybot.com. /activate is idempotent: for a
+     * site already on the licence it confirms the slot and returns the licence
+     * as it stands, with a fresh signed statement.
+     */
     public static function refresh() {
         $data = self::data();
         $license_key = self::sanitize_license_key($data['license_key']);
@@ -400,27 +442,14 @@ class LicenseService {
             return new WP_Error('geekybot_license_missing', __('No Commerce Pro license key is saved yet.', 'geeky-bot'));
         }
 
-        $response = self::request('check', array('license_key' => $license_key));
-        if (is_wp_error($response)) {
-            $data['last_error'] = $response->get_error_message();
-            $data['last_checked_at'] = current_time('mysql');
-            self::save($data);
-            return $response;
-        }
-
-        $result = self::apply_server_response($response, $license_key, __('Commerce Pro license status refreshed.', 'geeky-bot'));
-        if (is_wp_error($result)) {
-            return $result;
-        }
-
-        return self::authorization_result($result);
+        return self::check_with_server($license_key, true);
     }
 
     public static function deactivate() {
         $data = self::data();
         $license_key = self::sanitize_license_key($data['license_key']);
         if ($license_key !== '') {
-            self::request('deactivate', array('license_key' => $license_key));
+            self::request('deactivate', array('license_key' => $license_key, 'site_url' => self::normalized_site_url()));
         }
 
         $clean = self::defaults();
@@ -429,28 +458,56 @@ class LicenseService {
         $clean['last_checked_at'] = current_time('mysql');
         self::save($clean);
         delete_option(self::UPDATE_OPTION);
-        do_action('geekybot_commerce_pro_license_deactivated');
+        do_action('geekybot_commerce_pro_license_deactivated', $clean);
         return $clean;
     }
 
-    public static function download_package_url() {
+    /**
+     * A one-time download link for Commerce Pro, with the SHA-256 it must match.
+     *
+     * @return array|WP_Error ['url' => string, 'sha256' => string, 'version' => string]
+     */
+    private static function install_package() {
         $data = self::data();
-        $license_key = self::sanitize_license_key($data['license_key']);
-        if ($license_key === '' || !self::can_download_packages()) {
+        if (self::sanitize_license_key($data['license_key']) === '' || !self::can_download_packages()) {
             return new WP_Error('geekybot_license_required', __('A valid Commerce Pro license with download access is required before installing the add-on.', 'geeky-bot'));
         }
 
-        $response = self::request('download', array('license_key' => $license_key));
+        // The activation token proves this site holds a slot. It lasts a while;
+        // when it has run out, a fresh check issues a new one.
+        if ($data['token'] === '' || absint($data['token_expires']) < time() + MINUTE_IN_SECONDS) {
+            $refreshed = self::refresh();
+            if (is_wp_error($refreshed)) {
+                return $refreshed;
+            }
+            $data = self::data();
+        }
+
+        $response = self::request('install', array(
+            'token' => (string) $data['token'],
+            'site_url' => self::normalized_site_url(),
+            'product' => self::PRODUCT,
+            'channel' => self::update_settings()['update_channel'],
+            'core_version' => defined('GEEKYBOT_VERSION') ? GEEKYBOT_VERSION : '',
+        ));
         if (is_wp_error($response)) {
             return $response;
         }
-
-        $url = isset($response['download_url']) ? esc_url_raw((string) $response['download_url'], array('https')) : '';
-        if ($url === '' || !self::is_allowed_package_url($url)) {
-            return new WP_Error('geekybot_bad_package_url', __('The license server did not return a safe Commerce Pro package URL.', 'geeky-bot'));
+        if (empty($response['answered']) || empty($response['body']['ok'])) {
+            return new WP_Error('geekybot_install_refused', self::refusal_message($response['body'], $response['message']));
         }
 
-        return $url;
+        return self::package_from($response['body']);
+    }
+
+    /**
+     * Public for compatibility: a fresh, short-lived Commerce Pro download URL.
+     *
+     * @return string|WP_Error
+     */
+    public static function download_package_url() {
+        $package = self::install_package();
+        return is_wp_error($package) ? $package : $package['url'];
     }
 
     public static function install_commerce_pro() {
@@ -458,9 +515,13 @@ class LicenseService {
             return new WP_Error('geekybot_no_install_capability', __('You do not have permission to install plugins.', 'geeky-bot'));
         }
 
-        $package_url = self::download_package_url();
-        if (is_wp_error($package_url)) {
-            return $package_url;
+        $package = self::install_package();
+        if (is_wp_error($package)) {
+            return $package;
+        }
+        $file = self::download_verified($package);
+        if (is_wp_error($file)) {
+            return $file;
         }
 
         require_once ABSPATH . 'wp-admin/includes/file.php';
@@ -470,7 +531,11 @@ class LicenseService {
 
         $skin = new \Automatic_Upgrader_Skin();
         $upgrader = new \Plugin_Upgrader($skin);
-        $result = $upgrader->install($package_url);
+        // A local, already verified file: the upgrader installs it as is.
+        $result = $upgrader->install($file);
+        if (file_exists($file)) {
+            wp_delete_file($file);
+        }
 
         if (is_wp_error($result)) {
             return $result;
@@ -480,6 +545,11 @@ class LicenseService {
             $messages = method_exists($skin, 'get_upgrade_messages') ? implode(' ', (array) $skin->get_upgrade_messages()) : '';
             return new WP_Error('geekybot_install_failed', $messages ? wp_strip_all_tags($messages) : __('Commerce Pro could not be installed.', 'geeky-bot'));
         }
+
+        if (function_exists('wp_clean_plugins_cache')) {
+            wp_clean_plugins_cache(true);
+        }
+        self::maybe_schedule_update_check();
 
         if (current_user_can('activate_plugins') && file_exists(WP_PLUGIN_DIR . '/' . self::PRO_BASENAME)) {
             $activate = activate_plugin(self::PRO_BASENAME, admin_url('admin.php?page=geekybot-addons'), false, true);
@@ -520,14 +590,29 @@ class LicenseService {
             return new WP_Error('geekybot_license_required', __('Your Commerce Pro license must include update access before updating the add-on.', 'geeky-bot'));
         }
 
-        $summary = self::update_summary(true);
-        if (empty($summary['update_available'])) {
+        // A fresh check: download links last minutes and are never stored.
+        $answer = self::update_check();
+        if (is_wp_error($answer)) {
+            return $answer;
+        }
+        $entry = $answer['entry'];
+        if (empty($entry['update_available'])) {
             return new WP_Error('geekybot_no_update_available', __('Commerce Pro is already on the latest available version.', 'geeky-bot'));
         }
-
-        $update = isset($summary['update']) && is_array($summary['update']) ? $summary['update'] : array();
-        if (empty($update['package']) || empty($update['latest_version'])) {
+        if (($entry['blocked_by'] ?? '') === 'requires_core') {
+            return new WP_Error('geekybot_update_requires_core', sprintf(
+                /* translators: %s: Geeky Bot version the update needs. */
+                __('This Commerce Pro update needs Geeky Bot %s or newer. Update Geeky Bot first.', 'geeky-bot'),
+                sanitize_text_field((string) ($entry['requires_core'] ?? ''))
+            ));
+        }
+        if (empty($entry['package'])) {
             return new WP_Error('geekybot_update_package_missing', __('The license server did not return a valid Commerce Pro update package.', 'geeky-bot'));
+        }
+
+        $file = self::download_verified(self::package_from($entry));
+        if (is_wp_error($file)) {
+            return $file;
         }
 
         require_once ABSPATH . 'wp-admin/includes/file.php';
@@ -536,7 +621,9 @@ class LicenseService {
         require_once ABSPATH . 'wp-admin/includes/update.php';
 
         $was_active = is_plugin_active(self::PRO_BASENAME);
+        $installed = self::commerce_pro_plugin_status()['version'];
 
+        // Hand the upgrader the verified local file as the package.
         $transient = get_site_transient('update_plugins');
         if (!is_object($transient)) {
             $transient = new \stdClass();
@@ -544,19 +631,27 @@ class LicenseService {
         if (empty($transient->checked) || !is_array($transient->checked)) {
             $transient->checked = array();
         }
-        $transient->checked[self::PRO_BASENAME] = (string) $summary['installed_version'];
+        $transient->checked[self::PRO_BASENAME] = (string) $installed;
         if (empty($transient->response) || !is_array($transient->response)) {
             $transient->response = array();
         }
-        $transient->response[self::PRO_BASENAME] = self::update_transient_item($update);
+        $transient->response[self::PRO_BASENAME] = self::update_transient_item(array(
+            'latest_version' => (string) $entry['version'],
+            'package' => $file,
+            'tested' => (string) ($entry['tested_wp'] ?? ''),
+            'requires' => (string) ($entry['requires_wp'] ?? ''),
+            'requires_php' => (string) ($entry['requires_php'] ?? ''),
+        ));
         set_site_transient('update_plugins', $transient);
 
         $skin = new \Automatic_Upgrader_Skin();
         $upgrader = new \Plugin_Upgrader($skin);
         $result = $upgrader->upgrade(self::PRO_BASENAME);
+        if (file_exists($file)) {
+            wp_delete_file($file);
+        }
 
         delete_option(self::UPDATE_OPTION);
-        delete_option(self::CDN_UPDATE_OPTION);
         delete_site_transient('update_plugins');
         if (function_exists('wp_clean_plugins_cache')) {
             wp_clean_plugins_cache(true);
@@ -578,13 +673,6 @@ class LicenseService {
                 return $activate;
             }
             $reactivated = true;
-        }
-
-        delete_option(self::UPDATE_OPTION);
-        delete_option(self::CDN_UPDATE_OPTION);
-        delete_site_transient('update_plugins');
-        if (function_exists('wp_clean_plugins_cache')) {
-            wp_clean_plugins_cache(true);
         }
 
         return array(
@@ -614,6 +702,10 @@ class LicenseService {
         );
     }
 
+    /**
+     * For WordPress' own upgrader: swap a Commerce Pro package for a fresh,
+     * verified download. Kept public for integrations that hook it.
+     */
     public static function fresh_pro_package_for_update($reply, $package, $upgrader, $hook_extra) {
         if ($reply !== false) {
             return $reply;
@@ -632,137 +724,67 @@ class LicenseService {
         if (!in_array(self::PRO_BASENAME, $plugins, true)) {
             return $reply;
         }
+        // A file this class already verified (update_commerce_pro()).
+        if (is_string($package) && $package !== '' && file_exists($package)) {
+            return $reply;
+        }
 
         if (!self::can_receive_updates()) {
             return new WP_Error('geekybot_license_required', __('Your Commerce Pro license must include update access before updating the add-on.', 'geeky-bot'));
         }
 
-        $fresh_url = self::download_package_url();
-        if (is_wp_error($fresh_url)) {
-            return $fresh_url;
+        $answer = self::update_check();
+        if (is_wp_error($answer) || empty($answer['entry']['package'])) {
+            return new WP_Error('geekybot_update_package_missing', __('The license server did not return a valid Commerce Pro update package.', 'geeky-bot'));
         }
 
-        require_once ABSPATH . 'wp-admin/includes/file.php';
-        $download = download_url($fresh_url, 300);
-        if (is_wp_error($download)) {
-            return $download;
-        }
-
-        $summary = self::update_summary(false);
-        $update = isset($summary['update']) && is_array($summary['update']) ? $summary['update'] : array();
-        $checksum = isset($update['checksum']) ? (string) $update['checksum'] : '';
-        $valid = self::validate_downloaded_zip($download, $checksum);
-        if (is_wp_error($valid)) {
-            wp_delete_file($download);
-            return $valid;
-        }
-
-        return $download;
+        return self::download_verified(self::package_from($answer['entry']));
     }
-
-    private static function validate_downloaded_zip($path, $checksum = '') {
-        if (!is_string($path) || $path === '' || !file_exists($path) || !is_readable($path)) {
-            return new WP_Error('geekybot_update_zip_missing', __('The Commerce Pro update package could not be downloaded.', 'geeky-bot'));
-        }
-
-        $size = filesize($path);
-        if (!$size || $size < 22) {
-            return new WP_Error('geekybot_update_zip_empty', __('The Commerce Pro update package is empty or incomplete.', 'geeky-bot'));
-        }
-
-        // Direct streaming avoids loading a potentially large ZIP into memory; WP_Filesystem does not expose a partial-read API.
-        // phpcs:ignore WordPress.WP.AlternativeFunctions.file_system_operations_fopen
-        $handle = fopen($path, 'rb');
-        // phpcs:ignore WordPress.WP.AlternativeFunctions.file_system_operations_fread
-        $signature = $handle ? fread($handle, 4) : '';
-        if ($handle) {
-            // phpcs:ignore WordPress.WP.AlternativeFunctions.file_system_operations_fclose
-            fclose($handle);
-        }
-
-        if (!in_array($signature, array("PK\x03\x04", "PK\x05\x06", "PK\x07\x08"), true)) {
-            /**
-             * Fires when a downloaded Commerce Pro package is not a ZIP file.
-             *
-             * Only the binary signature is provided to trusted server-side
-             * logging integrations. Response-body samples are never displayed
-             * or stored by Geeky Bot because they may contain private server
-             * details.
-             */
-            do_action('geekybot_internal_update_package_error', 'invalid_zip_signature', bin2hex((string) $signature));
-
-            return new WP_Error(
-                'geekybot_update_zip_invalid',
-                __('The Commerce Pro update package is invalid. Please try again or contact Geeky Bot support.', 'geeky-bot')
-            );
-        }
-
-        if (class_exists('ZipArchive')) {
-            $zip = new \ZipArchive();
-            $opened = $zip->open($path, \ZipArchive::CHECKCONS);
-            if ($opened !== true) {
-                return new WP_Error('geekybot_update_zip_corrupt', __('The downloaded Commerce Pro package is not a valid ZIP archive.', 'geeky-bot'));
-            }
-            $zip->close();
-        }
-
-        $checksum = sanitize_text_field((string) $checksum);
-        if ($checksum !== '' && strlen($checksum) === 64) {
-            $actual = hash_file('sha256', $path);
-            if (!hash_equals(strtolower($checksum), strtolower($actual))) {
-                return new WP_Error('geekybot_update_checksum_failed', __('The downloaded Commerce Pro package did not match the release checksum.', 'geeky-bot'));
-            }
-        }
-
-        return true;
-    }
-
 
     public static function inject_pro_update($transient) {
         if (!is_object($transient) || empty($transient->checked) || !isset($transient->checked[self::PRO_BASENAME])) {
             return $transient;
         }
         $update = self::cached_update_info();
-        if (!$update || empty($update['latest_version']) || empty($update['package'])) {
+        if (!$update || empty($update['latest_version'])) {
             return $transient;
         }
 
-        $installed = isset($transient->checked[self::PRO_BASENAME]) ? (string) $transient->checked[self::PRO_BASENAME] : '';
+        $installed = (string) $transient->checked[self::PRO_BASENAME];
         if ($installed === '' || version_compare($update['latest_version'], $installed, '<=')) {
             return $transient;
         }
 
-        $transient->response[self::PRO_BASENAME] = self::update_transient_item($update);
+        $item = $update;
+        // The real link is fetched at download time by fresh_pro_package_for_update().
+        $item['package'] = self::can_receive_updates() ? 'geekybot-commerce-pro://' . rawurlencode($update['latest_version']) : '';
+        $transient->response[self::PRO_BASENAME] = self::update_transient_item($item);
         return $transient;
     }
 
     public static function update_summary($force = false) {
         $plugin = self::commerce_pro_plugin_status();
-        $metadata = self::cached_cdn_metadata($force);
         $update = self::cached_update_info($force);
         $installed = isset($plugin['version']) ? (string) $plugin['version'] : '';
-        $latest = '';
-        if (is_array($metadata) && !empty($metadata['latest_version'])) {
-            $latest = (string) $metadata['latest_version'];
-        } elseif (is_array($update) && !empty($update['latest_version'])) {
-            $latest = (string) $update['latest_version'];
-        }
+        $latest = is_array($update) && !empty($update['latest_version']) ? (string) $update['latest_version'] : '';
+        $blocked = is_array($update) && !empty($update['blocked_by']);
 
         return array(
             'installed_version' => $installed,
             'latest_version' => $latest,
             'update_available' => $installed !== '' && $latest !== '' && version_compare($latest, $installed, '>'),
-            'metadata' => is_array($metadata) ? $metadata : array(),
+            'blocked_by' => $blocked ? (string) $update['blocked_by'] : '',
+            'requires_core' => is_array($update) ? (string) ($update['requires_core'] ?? '') : '',
+            'metadata' => is_array($update) ? $update : array(),
             'update' => is_array($update) ? $update : array(),
             'settings' => self::update_settings(),
             'cdn_url' => self::cdn_metadata_url(),
-            'can_update' => self::can_receive_updates(),
+            'can_update' => self::can_receive_updates() && !$blocked,
         );
     }
 
     public static function refresh_update_status() {
         delete_option(self::UPDATE_OPTION);
-        delete_option(self::CDN_UPDATE_OPTION);
         return self::update_summary(true);
     }
 
@@ -848,12 +870,13 @@ class LicenseService {
         }
 
         $summary = self::update_summary(false);
-        if (empty($summary['update_available'])) {
+        if (empty($summary['update_available']) || empty($summary['can_update'])) {
             return false;
         }
 
         $metadata = isset($summary['metadata']) && is_array($summary['metadata']) ? $summary['metadata'] : array();
-        $critical = !empty($metadata['critical']) || !empty($metadata['security']);
+        $critical = !empty($metadata['critical']) && $metadata['critical'] === 'yes'
+            || !empty($metadata['security']) && $metadata['security'] === 'yes';
         if ($critical && !empty($settings['auto_update_critical']) && $settings['auto_update_critical'] === 'yes') {
             return true;
         }
@@ -910,10 +933,8 @@ class LicenseService {
     /**
      * Whether the Commerce Pro plugin files are installed, active or not.
      *
-     * Update checks for Commerce Pro are gated on this. Without the gate every
-     * free site fetched the Commerce Pro release file from cdn.geekybot.com on
-     * a daily job and on admin page loads, sending its address in the
-     * user-agent, for an add-on it does not have.
+     * Update checks for Commerce Pro are gated on this, so a free site makes
+     * no calls to geekybot.com for an add-on it does not have.
      *
      * @return bool
      */
@@ -921,9 +942,19 @@ class LicenseService {
         return file_exists(WP_PLUGIN_DIR . '/' . self::PRO_BASENAME);
     }
 
+    /**
+     * The last update check, refreshed at most every 6 hours (or when forced).
+     * Download links are never cached: they last minutes.
+     *
+     * @return array
+     */
     private static function cached_update_info($force = false) {
         if (!self::commerce_pro_files_present()) {
             return array();
+        }
+        // Left behind by Geeky Bot 2.1.1 and older.
+        if (get_option(self::CDN_UPDATE_OPTION) !== false) {
+            delete_option(self::CDN_UPDATE_OPTION);
         }
 
         $cache = get_option(self::UPDATE_OPTION, array());
@@ -931,134 +962,83 @@ class LicenseService {
             return isset($cache['update']) && is_array($cache['update']) ? $cache['update'] : array();
         }
 
-        $plugin = self::commerce_pro_plugin_status();
-        $installed = isset($plugin['version']) ? (string) $plugin['version'] : '';
-        $metadata = self::cached_cdn_metadata($force);
-        $latest = is_array($metadata) && !empty($metadata['latest_version']) ? (string) $metadata['latest_version'] : '';
-
-        if ($installed !== '' && $latest !== '' && version_compare($latest, $installed, '<=')) {
-            update_option(self::UPDATE_OPTION, array('checked_at' => time(), 'update' => array(), 'metadata' => $metadata), false);
+        if (self::sanitize_license_key(self::data()['license_key']) === '') {
+            update_option(self::UPDATE_OPTION, array('checked_at' => time(), 'update' => array()), false);
             return array();
         }
 
-        $data = self::data();
-        $license_key = self::sanitize_license_key($data['license_key']);
-        if ($license_key === '' || !self::can_receive_updates()) {
-            update_option(self::UPDATE_OPTION, array('checked_at' => time(), 'update' => array(), 'metadata' => $metadata), false);
-            return array();
+        $answer = self::update_check();
+        if (is_wp_error($answer)) {
+            // Keep what was known; try again in about an hour.
+            $kept = is_array($cache) && isset($cache['update']) && is_array($cache['update']) ? $cache['update'] : array();
+            update_option(self::UPDATE_OPTION, array('checked_at' => time() - 5 * HOUR_IN_SECONDS, 'update' => $kept, 'error' => $answer->get_error_message()), false);
+            return $kept;
         }
 
-        $request_body = array(
-            'license_key' => $license_key,
-            'update_channel' => isset(self::update_settings()['update_channel']) ? self::update_settings()['update_channel'] : 'stable',
-            'current_version' => $installed,
-            'cdn_latest_version' => $latest,
-        );
-
-        $response = self::request('update-check', $request_body, 10);
-        if (is_wp_error($response)) {
-            update_option(self::UPDATE_OPTION, array('checked_at' => time(), 'update' => array(), 'metadata' => $metadata, 'error' => $response->get_error_message()), false);
-            return array();
-        }
-
-        $update = isset($response['update']) && is_array($response['update']) ? $response['update'] : $response;
+        $entry = $answer['entry'];
+        $changelog = (string) ($entry['changelog'] ?? '');
         $clean = array(
-            'latest_version' => isset($update['latest_version']) ? sanitize_text_field((string) $update['latest_version']) : '',
-            'package' => isset($update['package']) && self::is_allowed_package_url((string) $update['package']) ? esc_url_raw((string) $update['package'], array('https')) : '',
-            'tested' => isset($update['tested']) ? sanitize_text_field((string) $update['tested']) : '',
-            'requires' => isset($update['requires']) ? sanitize_text_field((string) $update['requires']) : '',
-            'requires_php' => isset($update['requires_php']) ? sanitize_text_field((string) $update['requires_php']) : '',
-            'requires_woocommerce' => isset($update['requires_woocommerce']) ? sanitize_text_field((string) $update['requires_woocommerce']) : '',
-            'requires_core' => isset($update['requires_core']) ? sanitize_text_field((string) $update['requires_core']) : '',
-            'checksum' => isset($update['checksum']) ? sanitize_text_field((string) $update['checksum']) : '',
-            'critical' => !empty($update['critical']) ? 'yes' : 'no',
-            'security' => !empty($update['security']) ? 'yes' : 'no',
-            'changelog' => isset($update['changelog']) ? wp_kses_post((string) $update['changelog']) : '',
+            'latest_version' => sanitize_text_field((string) ($entry['version'] ?? '')),
+            'channel' => sanitize_key((string) ($entry['channel'] ?? 'stable')),
+            'tested' => sanitize_text_field((string) ($entry['tested_wp'] ?? '')),
+            'requires' => sanitize_text_field((string) ($entry['requires_wp'] ?? '')),
+            'requires_php' => sanitize_text_field((string) ($entry['requires_php'] ?? '')),
+            'requires_core' => sanitize_text_field((string) ($entry['requires_core'] ?? '')),
+            'blocked_by' => sanitize_key((string) ($entry['blocked_by'] ?? '')),
+            'checksum' => strtolower((string) preg_replace('/[^a-f0-9]/i', '', (string) ($entry['sha256'] ?? ''))),
+            'released_at' => self::sanitize_datetime((string) ($entry['released_at'] ?? '')),
+            'critical' => 'no',
+            'security' => !empty($entry['security']) ? 'yes' : 'no',
+            'changelog' => $changelog !== '' ? wp_kses_post(wpautop($changelog)) : '',
+            'may_download' => !empty($answer['may_download']) ? 'yes' : 'no',
         );
+        $manifest = isset($answer['manifest']) ? esc_url_raw((string) $answer['manifest']) : '';
 
-        update_option(self::UPDATE_OPTION, array('checked_at' => time(), 'update' => $clean, 'metadata' => $metadata), false);
+        update_option(self::UPDATE_OPTION, array('checked_at' => time(), 'update' => $clean, 'manifest' => $manifest), false);
         return $clean;
     }
 
-    private static function cached_cdn_metadata($force = false) {
-        if (!self::commerce_pro_files_present()) {
-            return array();
+    /**
+     * POST /update-check for Commerce Pro.
+     *
+     * @return array|WP_Error ['entry' => array, 'may_download' => bool, 'manifest' => string]
+     */
+    private static function update_check() {
+        $key = self::sanitize_license_key(self::data()['license_key']);
+        $plugin = self::commerce_pro_plugin_status();
+        if ($key === '') {
+            return new WP_Error('geekybot_license_missing', __('No Commerce Pro license key is saved yet.', 'geeky-bot'));
         }
 
-        $cache = get_option(self::CDN_UPDATE_OPTION, array());
-        if (!$force && is_array($cache) && !empty($cache['checked_at']) && (time() - absint($cache['checked_at'])) < 6 * HOUR_IN_SECONDS) {
-            return isset($cache['metadata']) && is_array($cache['metadata']) ? $cache['metadata'] : array();
-        }
-
-        $url = self::cdn_metadata_url();
-        if ($url === '') {
-            return array();
-        }
-
-        $response = wp_remote_get($url, array(
-            'timeout' => 8,
-            'redirection' => 0,
-            'sslverify' => true,
-            'reject_unsafe_urls' => true,
-            'limit_response_size' => 256 * 1024,
-            'headers' => array('Accept' => 'application/json'),
+        $response = self::request('update-check', array(
+            'license_key' => $key,
+            'site_url' => self::normalized_site_url(),
+            'channel' => self::update_settings()['update_channel'],
+            'products' => array(self::PRODUCT => $plugin['version'] !== '' ? $plugin['version'] : '0.0.0'),
+            'core_version' => defined('GEEKYBOT_VERSION') ? GEEKYBOT_VERSION : '',
         ));
-
         if (is_wp_error($response)) {
-            update_option(self::CDN_UPDATE_OPTION, array('checked_at' => time(), 'metadata' => array(), 'error' => $response->get_error_message()), false);
-            return array();
+            return $response;
+        }
+        if (empty($response['answered']) || empty($response['body']['ok'])) {
+            return new WP_Error('geekybot_update_check_refused', self::refusal_message($response['body'], $response['message']));
         }
 
-        $code = absint(wp_remote_retrieve_response_code($response));
-        $raw = (string) wp_remote_retrieve_body($response);
-        if (strlen($raw) > 256 * 1024) {
-            update_option(self::CDN_UPDATE_OPTION, array('checked_at' => time(), 'metadata' => array(), 'error' => __('CDN release metadata was too large.', 'geeky-bot')), false);
-            return array();
-        }
-        $json = json_decode($raw, true);
-        if ($code < 200 || $code >= 300 || !is_array($json)) {
-            update_option(self::CDN_UPDATE_OPTION, array('checked_at' => time(), 'metadata' => array(), 'error' => __('CDN release metadata was not readable.', 'geeky-bot')), false);
-            return array();
-        }
-
-        $product = isset($json['product']) ? sanitize_key((string) $json['product']) : '';
-        if ($product !== self::PRODUCT) {
-            update_option(self::CDN_UPDATE_OPTION, array('checked_at' => time(), 'metadata' => array(), 'error' => __('CDN release metadata was for a different product.', 'geeky-bot')), false);
-            return array();
-        }
-
-        $metadata = array(
-            'product' => self::PRODUCT,
-            'latest_version' => isset($json['latest_version']) ? sanitize_text_field((string) $json['latest_version']) : '',
-            'channel' => isset($json['channel']) ? sanitize_key((string) $json['channel']) : 'stable',
-            'released_at' => isset($json['released_at']) ? self::sanitize_datetime((string) $json['released_at']) : '',
-            'requires_core' => isset($json['requires_core']) ? sanitize_text_field((string) $json['requires_core']) : '',
-            'requires_wp' => isset($json['requires_wp']) ? sanitize_text_field((string) $json['requires_wp']) : '',
-            'requires_php' => isset($json['requires_php']) ? sanitize_text_field((string) $json['requires_php']) : '',
-            'requires_woocommerce' => isset($json['requires_woocommerce']) ? sanitize_text_field((string) $json['requires_woocommerce']) : '',
-            'checksum' => isset($json['checksum']) ? sanitize_text_field((string) $json['checksum']) : '',
-            'critical' => !empty($json['critical']) ? 'yes' : 'no',
-            'security' => !empty($json['security']) ? 'yes' : 'no',
-            'changelog' => isset($json['changelog']) ? wp_kses_post((string) $json['changelog']) : '',
+        $body = $response['body'];
+        $entry = isset($body['updates'][self::PRODUCT]) && is_array($body['updates'][self::PRODUCT]) ? $body['updates'][self::PRODUCT] : array();
+        return array(
+            'entry' => $entry,
+            'may_download' => !empty($body['license']['updates']),
+            'manifest' => isset($body['manifest']) ? (string) $body['manifest'] : '',
         );
-
-        update_option(self::CDN_UPDATE_OPTION, array('checked_at' => time(), 'metadata' => $metadata), false);
-        return $metadata;
     }
 
+    /**
+     * The public version list geekybot.com last pointed this site to, if any.
+     */
     public static function cdn_metadata_url() {
-        if (defined('GEEKYBOT_COMMERCE_PRO_VERSION_CDN_URL') && GEEKYBOT_COMMERCE_PRO_VERSION_CDN_URL) {
-            $url = (string) GEEKYBOT_COMMERCE_PRO_VERSION_CDN_URL;
-        } else {
-            $settings = self::update_settings();
-            $channel = isset($settings['update_channel']) ? sanitize_key($settings['update_channel']) : 'stable';
-            if (!in_array($channel, array('stable', 'beta', 'dev'), true)) {
-                $channel = 'stable';
-            }
-            $url = str_replace('/stable.json', '/' . $channel . '.json', self::DEFAULT_CDN_METADATA_URL);
-        }
-
-        return esc_url_raw((string) $url, array('https'));
+        $cache = get_option(self::UPDATE_OPTION, array());
+        return is_array($cache) && !empty($cache['manifest']) ? esc_url_raw((string) $cache['manifest']) : '';
     }
 
     private static function classify_update($installed, $latest) {
@@ -1079,106 +1059,141 @@ class LicenseService {
         return array_pad(array_slice($parts, 0, 3), 3, 0);
     }
 
-    private static function request($endpoint, $body, $timeout = 15) {
-        $endpoint = sanitize_key($endpoint);
-        $allowed = array('activate', 'check', 'deactivate', 'download', 'update-check', 'staging-request');
-        if (!in_array($endpoint, $allowed, true)) {
-            return new WP_Error('geekybot_license_endpoint_invalid', __('The requested license action is not allowed.', 'geeky-bot'));
-        }
-
-        $url = trailingslashit(self::server_url()) . $endpoint;
-        $payload = wp_parse_args((array) $body, self::site_payload());
-        $payload['request_id'] = wp_generate_uuid4();
-        $payload['request_time'] = time();
-
-        $response = wp_remote_post($url, array(
-            'timeout' => max(5, min(30, absint($timeout))),
-            'redirection' => 0,
-            'sslverify' => true,
-            'reject_unsafe_urls' => true,
-            'limit_response_size' => 1024 * 1024,
-            'headers' => array(
-                'Accept' => 'application/json',
-                'Content-Type' => 'application/json; charset=utf-8',
-                'User-Agent' => 'GeekyBot/' . (defined('GEEKYBOT_VERSION') ? GEEKYBOT_VERSION : 'unknown') . '; ' . self::site_domain(),
+    /**
+     * POST /activate and record what geekybot.com answered.
+     *
+     * @param string $license_key Licence key.
+     * @param bool   $allow_grace Keep running on the last signed statement if the server cannot be reached.
+     * @return array|WP_Error Saved licence data, or why this site is not licensed.
+     */
+    private static function check_with_server($license_key, $allow_grace) {
+        $payload = array(
+            'license_key' => $license_key,
+            'site_url' => self::normalized_site_url(),
+            'products' => array(self::PRODUCT),
+            'environment' => array(
+                'wp_version' => get_bloginfo('version'),
+                'php_version' => PHP_VERSION,
+                'plugin_version' => defined('GEEKYBOT_VERSION') ? GEEKYBOT_VERSION : '',
+                'locale' => get_locale(),
+                'multisite' => is_multisite() ? '1' : '0',
             ),
-            'body' => wp_json_encode($payload),
-        ));
-
-        if (is_wp_error($response)) {
-            return $response;
+        );
+        // A recognised staging host says so, so it uses a staging slot and not
+        // a production one. Local and development hosts are detected by the server.
+        if (self::is_staging_site() && !self::is_local_site()) {
+            $payload['kind'] = 'staging';
         }
 
-        $code = absint(wp_remote_retrieve_response_code($response));
-        $raw = (string) wp_remote_retrieve_body($response);
-        if (strlen($raw) > 1024 * 1024) {
-            return new WP_Error('geekybot_license_response_too_large', __('The license server response was too large.', 'geeky-bot'));
-        }
-
-        $data = json_decode($raw, true);
-        if (!is_array($data)) {
-            return new WP_Error('geekybot_license_bad_response', __('The license server returned an invalid response.', 'geeky-bot'), array('status' => $code));
-        }
-
-        if ($code < 200 || $code >= 300 || (isset($data['success']) && !$data['success'])) {
-            $message = isset($data['message']) ? sanitize_text_field((string) $data['message']) : __('The license server rejected the request.', 'geeky-bot');
-            return new WP_Error('geekybot_license_server_rejected', $message, array('status' => $code));
-        }
-
-        // Internal correlation value used only while verifying an optional
-        // signed response. It is never persisted or exposed publicly.
-        $data['_request_id'] = $payload['request_id'];
-        return $data;
-    }
-
-    private static function apply_server_response($response, $license_key, $default_message) {
-        $signed = self::verified_signed_response($response);
-        if (is_wp_error($signed)) {
-            return $signed;
-        }
-
+        $response = self::request('activate', $payload);
         $data = self::data();
-        if (is_array($signed) && !empty($signed['_signature_verified'])) {
-            $license = !empty($signed['license']) && is_array($signed['license']) ? $signed['license'] : $signed;
-        } else {
-            $license = isset($response['license']) && is_array($response['license']) ? $response['license'] : $response;
-        }
-        $status = isset($license['status']) ? sanitize_key((string) $license['status']) : 'inactive';
-        $message = isset($response['message']) ? sanitize_text_field((string) $response['message']) : $default_message;
+        $now_mysql = current_time('mysql');
 
-        $data['license_key'] = self::sanitize_license_key($license_key);
-        $data['license_key_masked'] = self::mask_license_key($data['license_key']);
-        $data['license_key_hash'] = hash('sha256', $data['license_key'] . '|' . wp_salt('auth'));
-        $data['status'] = $status;
-        $data['message'] = $message;
-        $data['plan'] = isset($license['plan']) ? sanitize_text_field((string) $license['plan']) : '';
-        $data['customer_email'] = isset($license['customer_email']) ? sanitize_email((string) $license['customer_email']) : '';
-        $data['site_id'] = isset($license['site_id']) ? sanitize_text_field((string) $license['site_id']) : '';
+        if (is_wp_error($response) || empty($response['answered'])) {
+            // Network error, rate limit or server error: not the server saying no.
+            $message = is_wp_error($response) ? $response->get_error_message() : $response['message'];
+            $data['last_checked_at'] = $now_mysql;
+            $data['last_error'] = $message;
+            $data['next_check'] = time() + 6 * HOUR_IN_SECONDS;
+            if ($allow_grace && self::sanitize_license_key($data['license_key']) === $license_key && self::is_commerce_pro_active()) {
+                $data['grace'] = 'yes';
+                self::save($data);
+                return new WP_Error('geekybot_license_unreachable', $message);
+            }
+            if (self::sanitize_license_key($data['license_key']) !== $license_key) {
+                // A new key that could not be checked is not saved over a working one.
+                return new WP_Error('geekybot_license_unreachable', $message);
+            }
+            self::save($data);
+            return new WP_Error('geekybot_license_unreachable', $message);
+        }
+
+        $body = $response['body'];
+        $data['license_key'] = $license_key;
+        $data['license_key_masked'] = self::mask_license_key($license_key);
+        $data['license_key_hash'] = hash('sha256', $license_key . '|' . wp_salt('auth'));
         $data['site_url'] = self::normalized_site_url();
         $data['domain'] = self::site_domain();
         $data['installation_id'] = self::installation_id();
         $data['site_fingerprint'] = self::current_site_fingerprint();
         $data['binding_version'] = self::BINDING_VERSION;
         $data['is_staging'] = self::is_staging_site() ? 'yes' : 'no';
-        $data['allowed_sites'] = isset($license['allowed_sites']) ? absint($license['allowed_sites']) : 0;
-        $data['allowed_staging_sites'] = isset($license['allowed_staging_sites']) ? absint($license['allowed_staging_sites']) : 0;
-        $data['activation_count'] = isset($license['activation_count']) ? absint($license['activation_count']) : 0;
-        $data['expires_at'] = isset($license['expires_at']) ? self::sanitize_datetime((string) $license['expires_at']) : '';
-        $data['valid_until'] = isset($license['valid_until']) ? self::sanitize_datetime((string) $license['valid_until']) : gmdate('Y-m-d H:i:s', time() + DAY_IN_SECONDS);
-        $data['grace_until'] = isset($license['grace_until']) ? self::sanitize_datetime((string) $license['grace_until']) : gmdate('Y-m-d H:i:s', time() + 14 * DAY_IN_SECONDS);
-        $data['runtime_allowed'] = self::entitlement_value($license, 'runtime_allowed', in_array($status, array('active', 'trial'), true));
-        $data['updates_allowed'] = self::entitlement_value($license, 'updates_allowed', in_array($status, array('active', 'trial'), true));
-        $data['downloads_allowed'] = self::entitlement_value($license, 'downloads_allowed', in_array($status, array('active', 'trial'), true));
-        $data['new_activations_allowed'] = self::entitlement_value($license, 'new_activations_allowed', in_array($status, array('active', 'trial'), true));
-        $data['support_allowed'] = self::entitlement_value($license, 'support_allowed', in_array($status, array('active', 'trial'), true));
-        $data['notice_level'] = isset($license['notice_level']) ? sanitize_key((string) $license['notice_level']) : '';
-        $data['last_checked_at'] = current_time('mysql');
-        $data['last_successful_check_at'] = current_time('mysql');
+        $data['last_checked_at'] = $now_mysql;
         $data['last_error'] = '';
+        $data['grace'] = 'no';
         $data['server_url'] = self::server_url();
-        $data['signed_payload'] = isset($response['signed_payload']) ? sanitize_textarea_field((string) $response['signed_payload']) : '';
-        $data['signed_payload_signature'] = isset($response['signature']) ? sanitize_text_field((string) $response['signature']) : '';
-        $data['signature_verified'] = is_array($signed) && !empty($signed['_signature_verified']) ? 'yes' : 'no';
+
+        if (empty($body['ok'])) {
+            // The server answered and said no: unknown or replaced key, revoked,
+            // expired or on hold for a new site, or every slot in use.
+            $reason = sanitize_key((string) ($body['reason'] ?? ''));
+            $map = array(
+                'no_production_slots' => 'activation_limit_reached',
+                'no_staging_slots' => 'activation_limit_reached',
+                'no_development_slots' => 'activation_limit_reached',
+                'license_expired' => 'expired',
+                'license_suspended' => 'suspended',
+                'license_revoked' => 'revoked',
+                'license_not_found' => 'invalid',
+                'key_replaced' => 'replaced',
+            );
+            $data['status'] = isset($map[$reason]) ? $map[$reason] : 'disabled';
+            if ($reason === 'no_staging_slots') {
+                $data['is_staging'] = 'yes';
+            }
+            $data['message'] = self::refusal_message($body, '');
+            $data['signed'] = array();
+            $data['token'] = '';
+            $data['token_expires'] = 0;
+            $data['valid_until'] = '';
+            $data['updates_allowed'] = 'no';
+            $data['next_check'] = time() + DAY_IN_SECONDS;
+            $saved = self::save($data);
+            delete_option(self::UPDATE_OPTION);
+            do_action('geekybot_commerce_pro_license_deactivated', $saved);
+            return self::authorization_result($saved);
+        }
+
+        $license = isset($body['license']) && is_array($body['license']) ? $body['license'] : array();
+        $status = sanitize_key((string) ($license['status'] ?? ''));
+        $products = array_map('sanitize_key', (array) ($body['products'] ?? array()));
+
+        $data['status'] = in_array($status, array('active', 'suspended', 'expired'), true) ? $status : 'disabled';
+        $data['plan'] = self::plan_label((string) ($license['plan'] ?? ''));
+        $data['expires_at'] = self::sanitize_datetime((string) ($license['expires_at'] ?? ''));
+        $data['updates_allowed'] = !empty($license['updates']) ? 'yes' : 'no';
+        $data['kind'] = sanitize_key((string) ($body['activation']['kind'] ?? ''));
+        if (!empty($body['slots']['production']) && is_array($body['slots']['production'])) {
+            $data['allowed_sites'] = absint($body['slots']['production']['allowed'] ?? 0);
+            $data['activation_count'] = absint($body['slots']['production']['used'] ?? 0);
+        }
+        if (!empty($body['slots']['staging']) && is_array($body['slots']['staging'])) {
+            $data['allowed_staging_sites'] = absint($body['slots']['staging']['allowed'] ?? 0);
+        }
+        if (!empty($body['token'])) {
+            $data['token'] = substr(preg_replace('/[^A-Za-z0-9._~+\/=-]/', '', (string) $body['token']), 0, 4096);
+            $data['token_expires'] = time() + absint($body['token_ttl'] ?? 0);
+        }
+        $data['signed'] = !empty($body['signed']) && is_array($body['signed'])
+            ? array_intersect_key($body['signed'], array_flip(array('alg', 'kid', 'payload', 'signature')))
+            : array();
+        $claims = self::verified_claims($data['signed']);
+        $data['valid_until'] = $claims !== null && !empty($claims['valid_until']) ? gmdate('Y-m-d H:i:s', (int) $claims['valid_until']) : '';
+        $data['last_successful_check_at'] = $now_mysql;
+        $data['next_check'] = time() + ($data['status'] === 'active' ? self::CHECK_INTERVAL : DAY_IN_SECONDS);
+
+        if (!in_array(self::PRODUCT, $products, true)) {
+            $data['status'] = 'disabled';
+            $data['message'] = __('This license does not include Commerce Pro.', 'geeky-bot');
+        } elseif ($claims === null) {
+            $data['message'] = __('The license server response could not be verified.', 'geeky-bot');
+        } elseif ($data['status'] === 'expired') {
+            $data['message'] = __('Your Commerce Pro license has expired. Buying actions continue on this activated site, but updates, protected downloads, support, and new activations require renewal.', 'geeky-bot');
+        } elseif ($data['status'] === 'suspended') {
+            $data['message'] = __('Your Commerce Pro renewal payment is on hold. Buying actions keep working; update the payment method in your account on geekybot.com.', 'geeky-bot');
+        } else {
+            $data['message'] = __('Commerce Pro license activated for this site.', 'geeky-bot');
+        }
 
         delete_option(self::UPDATE_OPTION);
         $saved = self::save($data);
@@ -1187,15 +1202,11 @@ class LicenseService {
         } else {
             do_action('geekybot_commerce_pro_license_deactivated', $saved);
         }
-        return $saved;
+        return self::authorization_result($saved);
     }
 
     /**
-     * Convert a verified but denied entitlement into an admin-facing error.
-     *
-     * The license server intentionally signs denied entitlement states and may
-     * return them over HTTP 200. A valid response transport must not be treated
-     * as a successful site authorization.
+     * Turn a saved state that does not license this site into an admin-facing error.
      *
      * @param array $data Saved license data.
      * @return array|WP_Error
@@ -1206,49 +1217,207 @@ class LicenseService {
         }
 
         $status = isset($data['status']) ? sanitize_key((string) $data['status']) : 'inactive';
-        if ($status === 'activation_limit_reached') {
-            if (self::truthy(isset($data['is_staging']) ? $data['is_staging'] : 'no')) {
-                $message = __('Staging activation limit reached. This license already uses all included staging-site activations. Commerce Pro was not authorized for this site and cannot be installed or enabled from Geeky Bot. Deactivate an unused staging site at geekybot.com or contact support for another staging activation.', 'geeky-bot');
-            } else {
-                $message = __('Production activation limit reached. This license already uses all included production-site activations. Commerce Pro was not authorized for this site and cannot be installed or enabled from Geeky Bot. Deactivate an unused production site at geekybot.com or upgrade the license.', 'geeky-bot');
-            }
-        } else {
-            $message = isset($data['message']) ? sanitize_text_field((string) $data['message']) : '';
-            if ($message === '' || $message === __('License active.', 'geeky-bot')) {
-                $message = __('Commerce Pro was not authorized for this site. Review the license status and try again.', 'geeky-bot');
-            }
+        $message = isset($data['message']) ? sanitize_text_field((string) $data['message']) : '';
+        if ($message === '') {
+            $message = __('Commerce Pro was not authorized for this site. Review the license status and try again.', 'geeky-bot');
         }
-
-        $data['message'] = $message;
-        self::save($data);
 
         return new WP_Error('geekybot_license_' . $status, $message);
     }
 
-    private static function site_payload() {
-        $pro = self::commerce_pro_plugin_status();
+    /**
+     * Download a package and check it against its published SHA-256.
+     *
+     * @param array|WP_Error $package ['url', 'sha256', 'version'].
+     * @return string|WP_Error Local file path.
+     */
+    private static function download_verified($package) {
+        if (is_wp_error($package)) {
+            return $package;
+        }
+        $url = (string) ($package['url'] ?? '');
+        $expected = (string) ($package['sha256'] ?? '');
+        if ($url === '' || !self::is_allowed_package_url($url) || strlen($expected) !== 64) {
+            return new WP_Error('geekybot_bad_package_url', __('The license server did not return a safe Commerce Pro package URL.', 'geeky-bot'));
+        }
+
+        require_once ABSPATH . 'wp-admin/includes/file.php';
+        $file = wp_tempnam('geeky-bot-commerce-pro.zip');
+        if (!$file) {
+            return new WP_Error('geekybot_update_zip_missing', __('The Commerce Pro update package could not be downloaded.', 'geeky-bot'));
+        }
+        $response = wp_remote_get($url, array(
+            'timeout' => 300,
+            'redirection' => 0,
+            'stream' => true,
+            'filename' => $file,
+            // A development copy of geekybot.com on this machine is allowed.
+            'reject_unsafe_urls' => !self::is_local_host((string) wp_parse_url($url, PHP_URL_HOST)),
+        ));
+        if (is_wp_error($response) || (int) wp_remote_retrieve_response_code($response) !== 200) {
+            wp_delete_file($file);
+            return new WP_Error('geekybot_update_zip_missing', __('The Commerce Pro update package could not be downloaded.', 'geeky-bot'));
+        }
+
+        $valid = self::validate_downloaded_zip($file, $expected);
+        if (is_wp_error($valid)) {
+            wp_delete_file($file);
+            return $valid;
+        }
+        return $file;
+    }
+
+    /**
+     * @param array $source An /install answer or an /update-check entry.
+     * @return array|WP_Error
+     */
+    private static function package_from($source) {
+        $url = isset($source['package']) ? (string) $source['package'] : '';
+        $sha = strtolower((string) preg_replace('/[^a-f0-9]/i', '', (string) ($source['sha256'] ?? '')));
+        if ($url === '' || strlen($sha) !== 64) {
+            return new WP_Error('geekybot_bad_package_url', __('The license server did not return a safe Commerce Pro package URL.', 'geeky-bot'));
+        }
         return array(
-            'product' => self::PRODUCT,
-            'site_url' => self::normalized_site_url(),
-            'home_url' => esc_url_raw(home_url('/')),
-            'domain' => self::site_domain(),
-            'site_hash' => self::current_site_fingerprint(),
-            'installation_id' => self::installation_id(),
-            'site_fingerprint' => self::current_site_fingerprint(),
-            'binding_version' => self::BINDING_VERSION,
-            'is_staging' => self::is_staging_site(),
-            'wp_version' => get_bloginfo('version'),
-            'php_version' => PHP_VERSION,
-            'core_version' => defined('GEEKYBOT_VERSION') ? GEEKYBOT_VERSION : '',
-            'pro_version' => isset($pro['version']) ? $pro['version'] : '',
-            'locale' => get_locale(),
-            'update_channel' => isset(self::update_settings()['update_channel']) ? self::update_settings()['update_channel'] : 'stable',
+            'url' => $url,
+            'sha256' => $sha,
+            'version' => sanitize_text_field((string) ($source['version'] ?? '')),
         );
     }
 
+    private static function validate_downloaded_zip($path, $checksum) {
+        if (!is_string($path) || $path === '' || !file_exists($path) || !is_readable($path)) {
+            return new WP_Error('geekybot_update_zip_missing', __('The Commerce Pro update package could not be downloaded.', 'geeky-bot'));
+        }
+
+        $size = filesize($path);
+        if (!$size || $size < 22) {
+            return new WP_Error('geekybot_update_zip_empty', __('The Commerce Pro update package is empty or incomplete.', 'geeky-bot'));
+        }
+
+        if (!hash_equals(strtolower((string) $checksum), strtolower((string) hash_file('sha256', $path)))) {
+            return new WP_Error('geekybot_update_checksum_failed', __('The downloaded Commerce Pro package did not match the release checksum.', 'geeky-bot'));
+        }
+
+        if (class_exists('ZipArchive')) {
+            $zip = new \ZipArchive();
+            $opened = $zip->open($path, \ZipArchive::CHECKCONS);
+            if ($opened !== true) {
+                return new WP_Error('geekybot_update_zip_corrupt', __('The downloaded Commerce Pro package is not a valid ZIP archive.', 'geeky-bot'));
+            }
+            $zip->close();
+        }
+
+        return true;
+    }
+
+    /**
+     * POST JSON to the licence server.
+     *
+     * 'answered' is true when the server gave a decision (2xx, or a 4xx refusal
+     * with a reason); false for rate limits and server errors, which must never
+     * lock a store. Network failures come back as WP_Error.
+     *
+     * @return array|WP_Error ['answered' => bool, 'code' => int, 'message' => string, 'body' => array]
+     */
+    private static function request($endpoint, $body, $timeout = 15) {
+        $allowed = array('activate', 'deactivate', 'install', 'update-check');
+        if (!in_array($endpoint, $allowed, true)) {
+            return new WP_Error('geekybot_license_endpoint_invalid', __('The requested license action is not allowed.', 'geeky-bot'));
+        }
+
+        $payload = (array) $body;
+        $payload['protocol'] = self::PROTOCOL;
+        $local_server = self::is_local_host((string) wp_parse_url(self::server_url(), PHP_URL_HOST));
+
+        $response = wp_remote_post(self::server_url() . '/' . $endpoint, array(
+            'timeout' => max(5, min(30, absint($timeout))),
+            'redirection' => 0,
+            'sslverify' => true,
+            // A development copy of geekybot.com on this machine is allowed.
+            'reject_unsafe_urls' => !$local_server,
+            'limit_response_size' => 1024 * 1024,
+            'headers' => array(
+                'Accept' => 'application/json',
+                'Content-Type' => 'application/json; charset=utf-8',
+                'User-Agent' => 'GeekyBot/' . (defined('GEEKYBOT_VERSION') ? GEEKYBOT_VERSION : 'unknown'),
+            ),
+            'body' => wp_json_encode($payload),
+        ));
+
+        if (is_wp_error($response)) {
+            return new WP_Error('geekybot_license_unreachable', __('Could not connect to the license server.', 'geeky-bot'));
+        }
+
+        $code = absint(wp_remote_retrieve_response_code($response));
+        $decoded = json_decode((string) wp_remote_retrieve_body($response), true);
+        $data = is_array($decoded) ? $decoded : array();
+        $refusal = $code >= 400 && $code < 500 && $code !== 429 && !empty($data['reason']);
+
+        if (($code >= 200 && $code < 300) || $refusal) {
+            return array(
+                'answered' => true,
+                'code' => $code,
+                'message' => sanitize_text_field((string) ($data['message'] ?? '')),
+                'body' => $data,
+            );
+        }
+
+        return array(
+            'answered' => false,
+            'code' => $code,
+            'message' => $code === 429
+                ? __('The license server is busy. Please try again in a few minutes.', 'geeky-bot')
+                : __('Could not connect to the license server.', 'geeky-bot'),
+            'body' => $data,
+        );
+    }
+
+    private static function refusal_message($body, $fallback) {
+        $reason = is_array($body) ? (string) ($body['reason'] ?? '') : '';
+        $messages = array(
+            'license_not_found' => __('That license key was not recognised. Check it against your purchase email.', 'geeky-bot'),
+            'key_replaced' => __('This license key has been replaced. The new key is in your account on geekybot.com.', 'geeky-bot'),
+            'license_revoked' => __('This license has been withdrawn.', 'geeky-bot'),
+            'license_expired' => __('This license has expired. Renew it on geekybot.com to activate a site.', 'geeky-bot'),
+            'license_suspended' => __('This license is on hold, usually a failed renewal payment. Update the payment method in your account on geekybot.com.', 'geeky-bot'),
+            'no_production_slots' => __('Production activation limit reached. This license already uses all included production-site activations. Commerce Pro was not authorized for this site and cannot be installed or enabled from Geeky Bot. Deactivate an unused production site at geekybot.com or upgrade the license.', 'geeky-bot'),
+            'no_staging_slots' => __('Staging activation limit reached. This license already uses all included staging-site activations. Commerce Pro was not authorized for this site and cannot be installed or enabled from Geeky Bot. Deactivate an unused staging site at geekybot.com or contact support for another staging activation.', 'geeky-bot'),
+            'no_development_slots' => __('Every development site on this license is in use.', 'geeky-bot'),
+            'invalid_site' => __('The license server could not read this site’s address.', 'geeky-bot'),
+            'invalid_token' => __('This site needs a fresh license check. Click “Check my license again”, then try again.', 'geeky-bot'),
+            'not_entitled' => __('Your license does not include Commerce Pro downloads.', 'geeky-bot'),
+            'not_published' => __('Commerce Pro is not available for download right now. Please try again later.', 'geeky-bot'),
+            'requires_core' => __('This Commerce Pro version needs a newer Geeky Bot. Update Geeky Bot first.', 'geeky-bot'),
+            'rate_limited' => __('The license server is busy. Please try again in a few minutes.', 'geeky-bot'),
+        );
+        if (isset($messages[$reason])) {
+            return $messages[$reason];
+        }
+        $message = is_array($body) ? sanitize_text_field((string) ($body['message'] ?? '')) : '';
+        if ($message !== '') {
+            return $message;
+        }
+        return $fallback !== '' ? $fallback : __('Commerce Pro was not authorized for this site. Review the license status and try again.', 'geeky-bot');
+    }
+
+    /**
+     * The plan as the shop names it.
+     */
+    private static function plan_label($slug) {
+        $slug = sanitize_key((string) $slug);
+        $labels = array(
+            'single' => __('Commerce Pro - Single Site', 'geeky-bot'),
+            'five' => __('Commerce Pro - 5 Sites', 'geeky-bot'),
+            'twentyfive' => __('Commerce Pro - 25 Sites', 'geeky-bot'),
+        );
+        return isset($labels[$slug]) ? $labels[$slug] : ($slug !== '' ? ucwords(str_replace(array('-', '_'), ' ', $slug)) : '');
+    }
+
     public static function server_url() {
-        $url = defined('GEEKYBOT_LICENSE_SERVER_URL') ? GEEKYBOT_LICENSE_SERVER_URL : self::DEFAULT_SERVER;
-        $url = esc_url_raw((string) $url, array('https'));
+        $url = defined('GEEKYBOT_LICENSE_SERVER_URL') ? (string) GEEKYBOT_LICENSE_SERVER_URL : self::DEFAULT_SERVER;
+        $host = (string) wp_parse_url($url, PHP_URL_HOST);
+        // HTTPS always, except a development copy on this machine.
+        $url = esc_url_raw($url, self::is_local_host($host) ? array('http', 'https') : array('https'));
         return $url ? untrailingslashit($url) : self::DEFAULT_SERVER;
     }
 
@@ -1273,6 +1442,12 @@ class LicenseService {
         return hash('sha256', implode('|', $parts));
     }
 
+    /**
+     * Whether the stored licence was checked on this very installation.
+     *
+     * A database copied to another domain, or with its URLs search-replaced,
+     * fails here and needs a fresh check from geekybot.com.
+     */
     public static function runtime_binding_valid($data = null) {
         $data = is_array($data) ? $data : self::data();
 
@@ -1280,10 +1455,6 @@ class LicenseService {
             return false;
         }
 
-        // Never self-bind a legacy license from local database values. A copied
-        // database may have had its URLs search-replaced. Legacy installations
-        // must receive a fresh server verification before the current site is
-        // trusted and bound.
         if (empty($data['installation_id']) || empty($data['site_fingerprint']) || (string) $data['binding_version'] !== self::BINDING_VERSION) {
             return false;
         }
@@ -1305,22 +1476,91 @@ class LicenseService {
         }
 
         $expected_key_hash = hash('sha256', self::sanitize_license_key($data['license_key']) . '|' . wp_salt('auth'));
-        if (empty($data['license_key_hash']) || !hash_equals((string) $data['license_key_hash'], $expected_key_hash)) {
-            return false;
+        return !empty($data['license_key_hash']) && hash_equals((string) $data['license_key_hash'], $expected_key_hash);
+    }
+
+    /**
+     * Geeky Bot 2.1.1 and older stored a licence from the old licence server.
+     * The key is kept and checked once against geekybot.com's License Manager.
+     */
+    public static function maybe_upgrade_legacy_binding() {
+        if (wp_doing_ajax() || !current_user_can('manage_options')) {
+            return;
         }
 
-        if (self::public_key_configured()) {
-            $claims = self::stored_signed_claims($data);
-            if (is_wp_error($claims) || empty($claims['_signature_verified'])) {
-                return false;
+        $data = self::data();
+        if (empty($data['license_key']) || (string) $data['binding_version'] === self::BINDING_VERSION) {
+            return;
+        }
+
+        if (get_transient(self::LEGACY_BINDING_ATTEMPT_TRANSIENT)) {
+            return;
+        }
+
+        set_transient(self::LEGACY_BINDING_ATTEMPT_TRANSIENT, 1, 5 * MINUTE_IN_SECONDS);
+        self::refresh();
+    }
+
+    /**
+     * The claims of a statement geekybot.com signed, or null.
+     *
+     * @param mixed $signed {alg, kid, payload (base64 JSON), signature (base64)}.
+     * @return array|null
+     */
+    private static function verified_claims($signed) {
+        if (!is_array($signed) || empty($signed['payload']) || empty($signed['signature']) || ($signed['alg'] ?? '') !== 'Ed25519') {
+            return null;
+        }
+        $public = base64_decode((string) self::public_key(), true);
+        $payload = base64_decode((string) $signed['payload'], true);
+        $signature = base64_decode((string) $signed['signature'], true);
+        if (!$public || !$payload || !$signature || !function_exists('sodium_crypto_sign_verify_detached')) {
+            return null;
+        }
+        try {
+            if (!sodium_crypto_sign_verify_detached($signature, $payload, $public)) {
+                return null;
             }
+        } catch (\Throwable $e) {
+            return null;
         }
+        $claims = json_decode($payload, true);
+        return is_array($claims) ? $claims : null;
+    }
 
-        return true;
+    /**
+     * geekybot.com's public signing key (base64), from includes/license-public-key.php.
+     */
+    private static function public_key() {
+        static $key = null;
+        if ($key === null) {
+            $file = GEEKYBOT_PATH . 'includes/license-public-key.php';
+            $data = is_readable($file) ? include $file : array();
+            $key = is_array($data) ? (string) ($data['public_key'] ?? '') : '';
+        }
+        return $key;
     }
 
     private static function normalized_site_url() {
         return esc_url_raw(home_url('/'));
+    }
+
+    /**
+     * Host without "www." plus path, lower case: http/https and www never matter.
+     */
+    private static function normalize_url($url) {
+        $parts = wp_parse_url((string) $url);
+        $host = strtolower((string) ($parts['host'] ?? ''));
+        $host = preg_replace('/^www\./', '', $host);
+        $path = isset($parts['path']) ? untrailingslashit(strtolower((string) $parts['path'])) : '';
+        return $host . $path;
+    }
+
+    /**
+     * The licence key's fingerprint, as geekybot.com signs it.
+     */
+    private static function key_fingerprint($key) {
+        return hash('sha256', strtoupper((string) preg_replace('/[^A-Za-z0-9]/', '', (string) $key)));
     }
 
     private static function site_domain() {
@@ -1328,9 +1568,19 @@ class LicenseService {
         return sanitize_text_field(strtolower((string) $host));
     }
 
+    private static function is_local_host($host) {
+        $host = strtolower((string) $host);
+        return in_array($host, array('localhost', '127.0.0.1', '::1', '[::1]'), true)
+            || (bool) preg_match('/\.(test|local|localhost)$/', $host);
+    }
+
+    private static function is_local_site() {
+        return self::is_local_host(self::site_domain());
+    }
+
     private static function is_staging_site() {
         $host = self::site_domain();
-        if ($host === '' || $host === 'localhost' || $host === '127.0.0.1') {
+        if ($host === '' || self::is_local_host($host)) {
             return true;
         }
 
@@ -1339,9 +1589,6 @@ class LicenseService {
             '/(^|\.)stage\./',
             '/(^|\.)dev\./',
             '/(^|\.)test\./',
-            '/\.test$/',
-            '/\.local$/',
-            '/\.localhost$/',
             '/\.dev$/',
             '/\.wpengine\.com$/',
             '/\.kinsta\.cloud$/',
@@ -1359,212 +1606,17 @@ class LicenseService {
         return false;
     }
 
+    /**
+     * Downloads come only from the licence server itself.
+     */
     private static function is_allowed_package_url($url) {
-        $url = esc_url_raw((string) $url, array('https'));
-        if ($url === '') {
+        $parts = wp_parse_url((string) $url);
+        $server = wp_parse_url(self::server_url());
+        if (!is_array($parts) || !is_array($server) || empty($parts['host'])) {
             return false;
         }
-        $host = wp_parse_url($url, PHP_URL_HOST);
-        $server_host = wp_parse_url(self::server_url(), PHP_URL_HOST);
-        $allowed_hosts = array($server_host, 'geekybot.com', 'www.geekybot.com');
-        if (defined('GEEKYBOT_LICENSE_PACKAGE_HOSTS') && GEEKYBOT_LICENSE_PACKAGE_HOSTS) {
-            $allowed_hosts = array_merge($allowed_hosts, preg_split('/[\s,]+/', (string) GEEKYBOT_LICENSE_PACKAGE_HOSTS));
-        }
-        $allowed_hosts = array_filter(array_map('strtolower', array_map('sanitize_text_field', (array) $allowed_hosts)));
-        return $host && in_array(strtolower((string) $host), $allowed_hosts, true);
-    }
-
-    private static function entitlement_data($data) {
-        $data = is_array($data) ? $data : array();
-        if (!self::public_key_configured()) {
-            return $data;
-        }
-
-        $claims = self::stored_signed_claims($data);
-        if (is_wp_error($claims) || !is_array($claims)) {
-            return array();
-        }
-
-        return !empty($claims['license']) && is_array($claims['license']) ? $claims['license'] : $claims;
-    }
-
-    private static function stored_signed_claims($data) {
-        return self::verified_signed_response(array(
-            'signed_payload' => isset($data['signed_payload']) ? $data['signed_payload'] : '',
-            'signature' => isset($data['signed_payload_signature']) ? $data['signed_payload_signature'] : '',
-        ), false);
-    }
-
-    /**
-     * Upgrade a pre-binding license only after the license server verifies the
-     * current site. This prevents database search/replace tools from turning a
-     * copied legacy entitlement into a locally trusted activation.
-     */
-    public static function maybe_upgrade_legacy_binding() {
-        if (wp_doing_ajax() || !current_user_can('manage_options')) {
-            return;
-        }
-
-        $data = self::data();
-        if (empty($data['license_key'])) {
-            return;
-        }
-
-        if (!empty($data['installation_id'])
-            && !empty($data['site_fingerprint'])
-            && (string) $data['binding_version'] === self::BINDING_VERSION) {
-            return;
-        }
-
-        if (get_transient(self::LEGACY_BINDING_ATTEMPT_TRANSIENT)) {
-            return;
-        }
-
-        set_transient(self::LEGACY_BINDING_ATTEMPT_TRANSIENT, 1, 5 * MINUTE_IN_SECONDS);
-        self::refresh();
-    }
-
-    private static function verified_signed_response($response, $require_fresh_response = true) {
-        if (!self::public_key_configured()) {
-            return array('_signature_verified' => false);
-        }
-
-        $payload = isset($response['signed_payload']) ? trim((string) $response['signed_payload']) : '';
-        $signature = isset($response['signature']) ? trim((string) $response['signature']) : '';
-        if ($payload === '' || $signature === '') {
-            return new WP_Error('geekybot_license_signature_missing', __('The license server response could not be verified.', 'geeky-bot'));
-        }
-
-        if (!function_exists('openssl_verify')) {
-            return new WP_Error('geekybot_license_signature_runtime_missing', __('This server cannot verify the Commerce Pro entitlement signature. Enable the PHP OpenSSL extension.', 'geeky-bot'));
-        }
-
-        $decoded_signature = self::base64url_decode($signature);
-        if (!is_string($decoded_signature) || $decoded_signature === '') {
-            return new WP_Error('geekybot_license_signature_invalid', __('The Commerce Pro entitlement signature is invalid.', 'geeky-bot'));
-        }
-
-        $verified = false;
-        foreach (self::license_public_keys() as $public_key_pem) {
-            $public_key = openssl_pkey_get_public($public_key_pem);
-            if (!$public_key) {
-                continue;
-            }
-            if (openssl_verify($payload, $decoded_signature, $public_key, OPENSSL_ALGO_SHA256) === 1) {
-                $verified = true;
-                break;
-            }
-        }
-        if (!$verified) {
-            return new WP_Error('geekybot_license_signature_invalid', __('The Commerce Pro entitlement signature is invalid.', 'geeky-bot'));
-        }
-
-        $json = self::base64url_decode($payload);
-        if ($json === '') {
-            $json = $payload;
-        }
-        $claims = json_decode($json, true);
-        if (!is_array($claims)) {
-            return new WP_Error('geekybot_license_claims_invalid', __('The Commerce Pro entitlement claims are invalid.', 'geeky-bot'));
-        }
-
-        $claim_product = isset($claims['product']) ? sanitize_key((string) $claims['product']) : '';
-        $claim_url = isset($claims['site_url']) ? untrailingslashit(esc_url_raw((string) $claims['site_url'])) : '';
-        $claim_domain = isset($claims['domain']) ? strtolower(sanitize_text_field((string) $claims['domain'])) : '';
-        $claim_installation = isset($claims['installation_id']) ? sanitize_text_field((string) $claims['installation_id']) : '';
-        $claim_fingerprint = isset($claims['site_fingerprint']) ? sanitize_text_field((string) $claims['site_fingerprint']) : '';
-        $claim_binding_version = isset($claims['binding_version']) ? sanitize_text_field((string) $claims['binding_version']) : '';
-
-        if ($claim_product !== self::PRODUCT
-            || $claim_url !== untrailingslashit(self::normalized_site_url())
-            || $claim_domain !== self::site_domain()
-            || $claim_binding_version !== self::BINDING_VERSION
-            || !hash_equals(self::installation_id(), $claim_installation)
-            || !hash_equals(self::current_site_fingerprint(), $claim_fingerprint)) {
-            return new WP_Error('geekybot_license_claims_mismatch', __('This Commerce Pro entitlement belongs to a different site.', 'geeky-bot'));
-        }
-
-        if ($require_fresh_response) {
-            $issued_at = !empty($claims['issued_at']) ? absint($claims['issued_at']) : 0;
-            $response_expires_at = !empty($claims['response_expires_at']) ? absint($claims['response_expires_at']) : 0;
-            $claim_request_id = !empty($claims['request_id']) ? sanitize_text_field((string) $claims['request_id']) : '';
-            $expected_request_id = !empty($response['_request_id']) ? sanitize_text_field((string) $response['_request_id']) : '';
-
-            if (!$issued_at || !$response_expires_at || !$expected_request_id || !$claim_request_id) {
-                return new WP_Error('geekybot_license_claims_incomplete', __('The Commerce Pro entitlement response is incomplete.', 'geeky-bot'));
-            }
-            if (abs(time() - $issued_at) > 10 * MINUTE_IN_SECONDS) {
-                return new WP_Error('geekybot_license_claims_stale', __('The Commerce Pro entitlement response is stale. Please refresh the license.', 'geeky-bot'));
-            }
-            if (!hash_equals($expected_request_id, $claim_request_id)) {
-                return new WP_Error('geekybot_license_request_mismatch', __('The Commerce Pro entitlement response does not match this request.', 'geeky-bot'));
-            }
-        }
-
-        if (empty($claims['response_expires_at']) || absint($claims['response_expires_at']) < time()) {
-            return new WP_Error('geekybot_license_claims_expired', __('The Commerce Pro entitlement response has expired. Please refresh the license.', 'geeky-bot'));
-        }
-
-        $claims['_signature_verified'] = true;
-        return $claims;
-    }
-
-    private static function public_key_configured() {
-        return !empty(self::license_public_keys());
-    }
-
-    /**
-     * Return a bounded constant/file-based public-key set. Supporting more than
-     * one public key allows a controlled signing-key rotation without a period
-     * where legitimate customer sites cannot verify responses.
-     *
-     * @return string[]
-     */
-    private static function license_public_keys() {
-        $keys = array();
-
-        if (defined('GEEKYBOT_LICENSE_PUBLIC_KEY_FILE') && GEEKYBOT_LICENSE_PUBLIC_KEY_FILE) {
-            $path = (string) GEEKYBOT_LICENSE_PUBLIC_KEY_FILE;
-            if (is_readable($path) && filesize($path) <= 65536) {
-                $keys[] = (string) file_get_contents($path);
-            }
-        }
-
-        if (defined('GEEKYBOT_LICENSE_PUBLIC_KEY') && GEEKYBOT_LICENSE_PUBLIC_KEY) {
-            $keys[] = (string) GEEKYBOT_LICENSE_PUBLIC_KEY;
-        }
-
-        if (defined('GEEKYBOT_LICENSE_PUBLIC_KEYS') && is_array(GEEKYBOT_LICENSE_PUBLIC_KEYS)) {
-            foreach (array_slice(GEEKYBOT_LICENSE_PUBLIC_KEYS, 0, 5) as $key) {
-                if (is_string($key)) {
-                    $keys[] = $key;
-                }
-            }
-        }
-
-        $clean = array();
-        foreach ($keys as $key) {
-            $key = trim((string) $key);
-            if ($key !== '' && strlen($key) <= 65536 && strpos($key, 'BEGIN PUBLIC KEY') !== false) {
-                $clean[] = $key;
-            }
-        }
-
-        return array_values(array_unique($clean));
-    }
-
-    private static function base64url_decode($value) {
-        $value = trim((string) $value);
-        if ($value === '') {
-            return '';
-        }
-        $value = strtr($value, '-_', '+/');
-        $padding = strlen($value) % 4;
-        if ($padding) {
-            $value .= str_repeat('=', 4 - $padding);
-        }
-        $decoded = base64_decode($value, true);
-        return is_string($decoded) ? $decoded : '';
+        return strtolower((string) $parts['host']) === strtolower((string) ($server['host'] ?? ''))
+            && ($parts['scheme'] ?? '') === ($server['scheme'] ?? '');
     }
 
     private static function sanitize_license_data($data) {
@@ -1573,23 +1625,27 @@ class LicenseService {
             if (!array_key_exists($key, $data)) {
                 continue;
             }
-            if (in_array($key, array('allowed_sites', 'allowed_staging_sites', 'activation_count'), true)) {
+            if (in_array($key, array('allowed_sites', 'allowed_staging_sites', 'activation_count', 'next_check', 'token_expires'), true)) {
                 $clean[$key] = absint($data[$key]);
-            } elseif (in_array($key, array('expires_at', 'valid_until', 'grace_until', 'last_checked_at', 'last_successful_check_at'), true)) {
+            } elseif (in_array($key, array('expires_at', 'valid_until', 'last_checked_at', 'last_successful_check_at'), true)) {
                 $clean[$key] = self::sanitize_datetime((string) $data[$key]);
             } elseif ($key === 'license_key') {
                 $clean[$key] = self::sanitize_license_key($data[$key]);
             } elseif ($key === 'license_key_encrypted') {
                 $clean[$key] = substr(preg_replace('/[^A-Za-z0-9:+\/=_-]/', '', (string) $data[$key]), 0, 2048);
-            } elseif ($key === 'signed_payload') {
-                $clean[$key] = substr(trim((string) $data[$key]), 0, 16384);
-            } elseif ($key === 'signed_payload_signature') {
-                $clean[$key] = substr(preg_replace('/[^A-Za-z0-9+\/=_.-]/', '', (string) $data[$key]), 0, 4096);
+            } elseif ($key === 'token') {
+                $clean[$key] = substr(preg_replace('/[^A-Za-z0-9._~+\/=-]/', '', (string) $data[$key]), 0, 4096);
+            } elseif ($key === 'signed') {
+                $signed = is_array($data[$key]) ? $data[$key] : array();
+                $clean[$key] = array();
+                foreach (array('alg', 'kid', 'payload', 'signature') as $part) {
+                    if (isset($signed[$part]) && is_string($signed[$part])) {
+                        $clean[$key][$part] = substr(preg_replace('/[^A-Za-z0-9+\/=_-]/', '', $signed[$part]), 0, 16384);
+                    }
+                }
             } elseif ($key === 'server_url' || $key === 'site_url') {
                 $clean[$key] = esc_url_raw((string) $data[$key]);
-            } elseif ($key === 'customer_email') {
-                $clean[$key] = sanitize_email((string) $data[$key]);
-            } elseif ($key === 'is_staging' || in_array($key, array('runtime_allowed', 'updates_allowed', 'downloads_allowed', 'new_activations_allowed', 'support_allowed', 'signature_verified'), true)) {
+            } elseif (in_array($key, array('is_staging', 'grace', 'updates_allowed'), true)) {
                 $clean[$key] = self::truthy($data[$key]) ? 'yes' : 'no';
             } else {
                 $clean[$key] = sanitize_text_field((string) $data[$key]);
@@ -1610,19 +1666,11 @@ class LicenseService {
         if ($key === '') {
             return '';
         }
-        $last = substr($key, -4);
-        return 'GB-****-****-' . $last;
+        return substr($key, 0, 5) . '-•••••-•••••-•••••-' . substr($key, -5);
     }
 
     private static function truthy($value) {
         return $value === true || $value === 1 || $value === '1' || $value === 'yes' || $value === 'true';
-    }
-
-    private static function entitlement_value($license, $key, $default) {
-        if (isset($license[$key])) {
-            return self::truthy($license[$key]) ? 'yes' : 'no';
-        }
-        return $default ? 'yes' : 'no';
     }
 
     private static function sanitize_datetime($value) {
@@ -1630,7 +1678,7 @@ class LicenseService {
         if ($value === '') {
             return '';
         }
-        $timestamp = strtotime($value);
+        $timestamp = strtotime($value . (preg_match('/[zZ]|[+-]\d\d:?\d\d$|UTC$/', $value) ? '' : ' UTC'));
         return $timestamp ? gmdate('Y-m-d H:i:s', $timestamp) : '';
     }
 
@@ -1646,14 +1694,14 @@ class LicenseService {
     public static function status_label($status) {
         $labels = array(
             'active' => __('Active', 'geeky-bot'),
-            'trial' => __('Trial', 'geeky-bot'),
             'inactive' => __('Not activated', 'geeky-bot'),
             'expired' => __('Expired', 'geeky-bot'),
-            'cancelled' => __('Cancelled', 'geeky-bot'),
-            'refunded' => __('Refunded', 'geeky-bot'),
+            'suspended' => __('Payment on hold', 'geeky-bot'),
+            'revoked' => __('Refunded', 'geeky-bot'),
+            'invalid' => __('Key not recognised', 'geeky-bot'),
+            'replaced' => __('Key replaced', 'geeky-bot'),
             'disabled' => __('Disabled', 'geeky-bot'),
             'activation_limit_reached' => __('Activation limit reached', 'geeky-bot'),
-            'domain_mismatch' => __('Domain mismatch', 'geeky-bot'),
             'grace' => __('Grace period', 'geeky-bot'),
         );
         $status = sanitize_key((string) $status);

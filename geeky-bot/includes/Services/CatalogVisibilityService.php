@@ -45,7 +45,7 @@ final class CatalogVisibilityService {
 
         // Variations are never shown as standalone catalog products. Product
         // Expert reads child variation facts only through a visible parent.
-        if (method_exists($product, 'is_type') && $product->is_type('variation')) {
+        if (method_exists($product, 'is_type') && ($product instanceof \WC_Product_Variation)) {
             return false;
         }
 
