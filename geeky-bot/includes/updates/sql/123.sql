@@ -1,1 +1,0 @@
-REPLACE INTO `#__geekybot_config` (`configname`, `configvalue`, `configfor`) VALUES ('versioncode','1.2.3','default');
