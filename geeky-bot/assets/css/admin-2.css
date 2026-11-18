@@ -3238,3 +3238,198 @@
 	line-height: 1.45;
 	color: var(--gb2-faint);
 }
+
+/* Zywrap sign-up and connection (AI & Privacy) */
+.gb2-zywrap {
+	max-width: 560px;
+	margin-top: 14px;
+	padding: 14px 16px;
+	background: var(--gb2-surface-2);
+	border: 1px solid var(--gb2-line);
+	border-radius: var(--gb2-r-md);
+}
+
+.gb2-zywrap:empty {
+	display: none;
+}
+
+.gb2-zywrap h3 {
+	margin: 0 0 var(--gb2-s3);
+	font-size: var(--gb2-t-md);
+	color: var(--gb2-ink);
+}
+
+.gb2-zywrap label {
+	display: block;
+	margin: var(--gb2-s3) 0 4px;
+	font-size: var(--gb2-t-sm);
+	font-weight: 600;
+	color: var(--gb2-ink);
+}
+
+.gb2-zywrap input[type="email"],
+.gb2-zywrap input[type="text"] {
+	width: 100%;
+	max-width: 100%;
+	padding: 7px 10px;
+	font-family: inherit;
+	font-size: var(--gb2-t-md);
+	color: var(--gb2-ink);
+	background: var(--gb2-surface);
+	border: 1px solid #d3d6de;
+	border-radius: var(--gb2-r-sm);
+	box-sizing: border-box;
+}
+
+.gb2-zywrap #gb-zywrap-code {
+	width: 10em;
+	font-size: 20px;
+	letter-spacing: 4px;
+	text-align: center;
+}
+
+.gb2-zywrap .gb2-zywrap__accept {
+	display: flex;
+	gap: var(--gb2-s2);
+	align-items: flex-start;
+	margin: var(--gb2-s3) 0;
+	font-weight: 400;
+	line-height: 1.5;
+	color: var(--gb2-mute);
+}
+
+.gb2-zywrap__accept input {
+	flex: none;
+	margin-top: 3px;
+}
+
+.gb2-zywrap__row,
+.gb2-zywrap__links {
+	display: flex;
+	flex-wrap: wrap;
+	gap: var(--gb2-s3);
+	align-items: center;
+	margin-top: var(--gb2-s3);
+}
+
+.gb2-zywrap__hint,
+.gb2-zywrap__status span {
+	margin: var(--gb2-s2) 0 0;
+	font-size: var(--gb2-t-sm);
+	line-height: 1.5;
+	color: var(--gb2-faint);
+}
+
+.gb2-zywrap__status {
+	margin: 0;
+}
+
+.gb2-zywrap__status span {
+	display: block;
+}
+
+.gb2-zywrap__message {
+	margin-top: var(--gb2-s2);
+	font-size: var(--gb2-t-sm);
+	color: var(--gb2-mute);
+}
+
+.gb2-zywrap__message.is-error {
+	color: var(--gb2-crit);
+}
+
+.gb2-zywrap .notice.inline {
+	margin: 0 0 var(--gb2-s3);
+}
+
+/* Merchant answers (2.2.0): the "Write the answer" form on review cards and the
+   "Answers you wrote" list on Store Knowledge. */
+.gb2-review__answer {
+	margin: var(--gb2-s2) 0 0;
+	padding: var(--gb2-s2) var(--gb2-s3);
+	font-size: var(--gb2-t-sm);
+	line-height: 1.55;
+	color: var(--gb2-ink);
+	background: var(--gb2-accent-soft);
+	border-radius: var(--gb2-r-sm);
+}
+
+.gb2-answer {
+	margin-top: var(--gb2-s2);
+}
+
+.gb2-answer > summary {
+	list-style: none;
+}
+
+.gb2-answer > summary::-webkit-details-marker {
+	display: none;
+}
+
+.gb2-answer[open] > summary {
+	margin-bottom: var(--gb2-s2);
+}
+
+.gb2-answer__form {
+	display: grid;
+	gap: var(--gb2-s2);
+	justify-items: start;
+	max-width: 640px;
+}
+
+.gb2-answer__form .gb2-sfield {
+	width: 100%;
+}
+
+.gb2-answer__form textarea {
+	width: 100%;
+	min-height: 72px;
+	font: inherit;
+}
+
+.gb2-answers__list {
+	display: grid;
+	gap: var(--gb2-s2);
+	margin-bottom: var(--gb2-s3);
+}
+
+.gb2-answers__item {
+	display: flex;
+	gap: var(--gb2-s3);
+	align-items: flex-start;
+	justify-content: space-between;
+	padding: var(--gb2-s2) var(--gb2-s3);
+	border: 1px solid var(--gb2-line);
+	border-radius: var(--gb2-r-md);
+}
+
+.gb2-answers__text {
+	display: grid;
+	gap: 2px;
+	min-width: 0;
+	font-size: var(--gb2-t-sm);
+	line-height: 1.5;
+}
+
+.gb2-answers__text em {
+	font-style: normal;
+	font-size: var(--gb2-t-xs);
+	color: var(--gb2-faint);
+}
+
+.gb2-answers__actions {
+	display: flex;
+	gap: var(--gb2-s2);
+	align-items: flex-start;
+	flex: none;
+}
+
+.gb2-answers__actions .gb2-answer {
+	margin-top: 0;
+}
+
+@media (max-width: 782px) {
+	.gb2-answers__item {
+		flex-direction: column;
+	}
+}

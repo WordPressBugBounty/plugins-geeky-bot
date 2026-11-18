@@ -3,7 +3,7 @@
  * Plugin Name: Geeky Bot
  * Plugin URI: https://geekybot.com/
  * Description: AI Sales Assistant for WooCommerce. Helps shoppers find products, understand options, and move toward purchase from a lightweight storefront widget.
- * Version: 2.1.2
+ * Version: 2.2.0
  * Author: Geeky Bot
  * Author URI: https://geekybot.com/
  * Text Domain: geeky-bot
@@ -19,8 +19,8 @@ if (!defined('ABSPATH')) {
     exit;
 }
 
-define('GEEKYBOT_VERSION', '2.1.2');
-define('GEEKYBOT_DB_VERSION', '2.1.1');
+define('GEEKYBOT_VERSION', '2.2.0');
+define('GEEKYBOT_DB_VERSION', '2.2.0');
 define('GEEKYBOT_FILE', __FILE__);
 define('GEEKYBOT_PATH', plugin_dir_path(__FILE__));
 define('GEEKYBOT_URL', plugin_dir_url(__FILE__));
@@ -62,6 +62,7 @@ require_once GEEKYBOT_PATH . 'includes/ProductExpert/ProductExpertService.php';
 require_once GEEKYBOT_PATH . 'includes/Services/SearchLanguageService.php';
 require_once GEEKYBOT_PATH . 'includes/Services/ProductIndexService.php';
 require_once GEEKYBOT_PATH . 'includes/Services/SmartCatalogService.php';
+require_once GEEKYBOT_PATH . 'includes/Services/ZywrapConnectService.php';
 require_once GEEKYBOT_PATH . 'includes/Services/SearchRescueService.php';
 require_once GEEKYBOT_PATH . 'includes/Services/SearchLearningService.php';
 require_once GEEKYBOT_PATH . 'includes/Services/ProductService.php';
@@ -71,6 +72,8 @@ require_once GEEKYBOT_PATH . 'includes/Services/PolicyIntentService.php';
 require_once GEEKYBOT_PATH . 'includes/Services/KnowledgeIndexService.php';
 require_once GEEKYBOT_PATH . 'includes/Services/KnowledgeService.php';
 require_once GEEKYBOT_PATH . 'includes/Services/AiBudgetService.php';
+require_once GEEKYBOT_PATH . 'includes/Services/AiClient.php';
+require_once GEEKYBOT_PATH . 'includes/Services/AnswerService.php';
 require_once GEEKYBOT_PATH . 'includes/Services/PromptSafetyService.php';
 require_once GEEKYBOT_PATH . 'includes/Services/AiService.php';
 require_once GEEKYBOT_PATH . 'includes/Services/ChatService.php';

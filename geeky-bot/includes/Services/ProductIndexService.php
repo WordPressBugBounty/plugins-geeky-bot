@@ -1086,6 +1086,30 @@ class ProductIndexService {
         update_option(self::SEARCH_CACHE_VERSION_OPTION, self::search_cache_version() + 1, false);
     }
 
+    /**
+     * Whether the database can run the FULLTEXT product search.
+     *
+     * SQLite (WordPress Playground, the WordPress.org plugin preview,
+     * WordPress Studio) has no MATCH ... AGAINST, so the query could only fail
+     * there and report the store as degraded. Search goes straight to the
+     * word-matching pass instead.
+     *
+     * @return bool
+     */
+    public static function fulltext_supported() {
+        global $wpdb;
+
+        // The SQLite Database Integration loads only when DB_ENGINE is 'sqlite'.
+        $sqlite = (defined('DB_ENGINE') && DB_ENGINE === 'sqlite') || $wpdb instanceof \WP_SQLite_DB;
+
+        /**
+         * Whether product search may use the database's FULLTEXT index.
+         *
+         * @param bool $supported False on SQLite.
+         */
+        return (bool) apply_filters('geekybot_fulltext_supported', !$sqlite);
+    }
+
     public function analyze_query($query) {
         $language = $this->search_language();
         $clean = $this->clean_query($query);
@@ -1468,7 +1492,7 @@ class ProductIndexService {
         $where_sql = implode(' AND ', $where);
         $boolean = $analysis['boolean'];
 
-        if ($boolean !== '') {
+        if ($boolean !== '' && self::fulltext_supported()) {
             $order_sql = $this->candidate_order_sql($analysis, true);
             $sql = "SELECT *, MATCH(title, sku, categories, tags, attributes, color_terms, size_terms, search_text, stem_text) AGAINST (%s IN BOOLEAN MODE) AS ft_score FROM {$table} WHERE {$where_sql} AND MATCH(title, sku, categories, tags, attributes, color_terms, size_terms, search_text, stem_text) AGAINST (%s IN BOOLEAN MODE) ORDER BY {$order_sql} LIMIT %d";
             $params_for_fulltext = array_merge(array($boolean), $params, array($boolean, absint($limit)));

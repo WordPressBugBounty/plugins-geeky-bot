@@ -107,7 +107,12 @@ class RateLimiter {
         $remote_addr = isset($_SERVER['REMOTE_ADDR']) ? sanitize_text_field(wp_unslash($_SERVER['REMOTE_ADDR'])) : '';
         $local_hosts = array('127.0.0.1', '::1');
 
-        if (in_array($remote_addr, $local_hosts, true)) {
+        // A loopback address with forwarding headers is a proxy on the same
+        // server (nginx in front of Apache, Varnish, a CDN tunnel), not a
+        // developer: every visitor would arrive from 127.0.0.1 and skip all
+        // limits, paid AI calls included.
+        $forwarded = !empty($_SERVER['HTTP_X_FORWARDED_FOR']) || !empty($_SERVER['HTTP_X_REAL_IP']) || !empty($_SERVER['HTTP_FORWARDED']) || !empty($_SERVER['HTTP_CF_CONNECTING_IP']);
+        if (in_array($remote_addr, $local_hosts, true) && !$forwarded) {
             return true;
         }
 

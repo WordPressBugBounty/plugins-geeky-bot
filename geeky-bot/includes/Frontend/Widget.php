@@ -66,6 +66,8 @@ class Widget {
                 'you' => __('You', 'geeky-bot'),
                 'placeholder' => __('Ask about products, size, color, price, or use case…', 'geeky-bot'),
                 'send' => __('Send', 'geeky-bot'),
+                'inputLabel' => __('Your question', 'geeky-bot'),
+                'privacyPolicy' => __('Privacy policy', 'geeky-bot'),
                 'viewProduct' => __('View product', 'geeky-bot'),
                 'chooseOptions' => __('Choose options', 'geeky-bot'),
                 'thinking' => __('Let me check that', 'geeky-bot'),

@@ -12,6 +12,8 @@ use GeekyBot\Services\KnowledgeIndexService;
 use GeekyBot\Services\KnowledgeService;
 use GeekyBot\Services\LicenseService;
 use GeekyBot\Services\TranslationService;
+use GeekyBot\Services\AiClient;
+use GeekyBot\Services\AnswerService;
 use GeekyBot\Services\ConversationInsightsService;
 use GeekyBot\Services\AnalyticsEventService;
 use GeekyBot\Services\GuidedDemoService;
@@ -20,6 +22,7 @@ use GeekyBot\Services\AiBudgetService;
 use GeekyBot\Services\SmartCatalogService;
 use GeekyBot\Services\SearchRescueService;
 use GeekyBot\Services\SearchLearningService;
+use GeekyBot\Services\ZywrapConnectService;
 
 class Menu {
     public function hooks() {
@@ -34,6 +37,8 @@ class Menu {
         add_action('admin_post_geekybot_refresh_guided_demo', array($this, 'handle_refresh_guided_demo'));
         add_action('admin_post_geekybot_onboarding_action', array($this, 'handle_onboarding_action'));
         add_action('admin_post_geekybot_review_action', array($this, 'handle_review_action'));
+        add_action('admin_post_geekybot_answer_save', array($this, 'handle_answer_save'));
+        add_action('admin_post_geekybot_answer_delete', array($this, 'handle_answer_delete'));
         add_action('admin_post_geekybot_export_conversations', array($this, 'handle_export_conversations'));
         add_action('admin_post_geekybot_delete_conversation', array($this, 'handle_delete_conversation'));
         add_action('admin_post_geekybot_delete_all_conversations', array($this, 'handle_delete_all_conversations'));
@@ -132,6 +137,17 @@ class Menu {
      * @param string $relative_path Path relative to the plugin root.
      * @return string
      */
+    /**
+     * Which Geeky Bot screen sent the admin to AI & Privacy, for the UTM
+     * content of a Zywrap sign-up started there.
+     *
+     * @return string
+     */
+    private static function zywrap_from() {
+        // phpcs:ignore WordPress.Security.NonceVerification.Recommended -- A label, checked against a fixed list.
+        return ZywrapConnectService::source(isset($_GET['zywrap_from']) ? sanitize_key(wp_unslash($_GET['zywrap_from'])) : '');
+    }
+
     private static function asset_version($relative_path) {
         $file = GEEKYBOT_PATH . ltrim($relative_path, '/');
         $stamp = file_exists($file) ? filemtime($file) : 0;
@@ -159,6 +175,11 @@ class Menu {
         // repeating them: they are translated there, and an admin working in
         // German should not be shown an English preview of their own store.
         $defaults = Settings::defaults();
+
+        // phpcs:ignore WordPress.Security.NonceVerification.Recommended -- Which admin page is open; nothing is changed.
+        if (isset($_GET['page']) && $_GET['page'] === 'geekybot-settings') {
+            ZywrapConnectService::enqueue(self::asset_version('assets/js/zywrap-connect.js'), self::zywrap_from());
+        }
 
         wp_localize_script('geekybot-admin', 'GeekyBotAdmin', array(
             'mediaTitle' => __('Choose widget image', 'geeky-bot'),
@@ -1297,7 +1318,7 @@ class Menu {
         );
         $provider_detail = sprintf(
             /* translators: %s: active answer-provider mode. */
-            __('Current mode: %s. Local grounded mode is the default and calls no language model — answers are built from store data. OpenAI is optional and adds generated wording.', 'geeky-bot'),
+            __('Current mode: %s. Local grounded mode is the default and calls no language model — answers are built from store data. OpenAI or Zywrap is optional and adds generated wording.', 'geeky-bot'),
             $this->provider_label($ctx['settings'])
         );
         $index_detail = $ctx['wc_ready']
@@ -1352,7 +1373,7 @@ class Menu {
                         <ul class="gb2-tasks">
                             <?php
                             $this->setup_task_card(__('Store system check', 'geeky-bot'), $readiness['steps']['system'], __('Confirm WooCommerce, WordPress, PHP and the local REST runtime before configuring shopper features.', 'geeky-bot'), $ctx['wc_ready'] ? admin_url('admin.php?page=geekybot-setup#gb-system-checks') : $woocommerce_action['url'], $ctx['wc_ready'] ? __('Review system', 'geeky-bot') : $woocommerce_action['label'], '01');
-                            $this->setup_task_card(__('Answer mode', 'geeky-bot'), $readiness['steps']['provider'], $provider_detail, admin_url('admin.php?page=geekybot-settings#gb-settings-ai'), __('Review answer mode', 'geeky-bot'), '02');
+                            $this->setup_task_card(__('Answer mode', 'geeky-bot'), $readiness['steps']['provider'], $provider_detail, admin_url('admin.php?page=geekybot-settings&zywrap_from=setup#gb-settings-ai'), __('Review answer mode', 'geeky-bot'), '02');
                             $this->setup_task_card(__('Product search index', 'geeky-bot'), $readiness['steps']['index'], $index_detail, $product_action_url, $product_action_label, '03');
                             $this->setup_task_card(__('Store knowledge', 'geeky-bot'), $readiness['steps']['knowledge'], __('Approve public shipping, returns, refunds, payment or warranty pages. Optional for product discovery — missing information stays unanswered rather than invented.', 'geeky-bot'), admin_url('admin.php?page=geekybot-store-knowledge'), __('Select policy pages', 'geeky-bot'), '04');
                             $this->setup_task_card(__('Storefront widget', 'geeky-bot'), $readiness['steps']['widget'], __('Confirm the assistant name, welcome copy, launcher, mobile position and product-card volume.', 'geeky-bot'), admin_url('admin.php?page=geekybot-widget'), __('Configure widget', 'geeky-bot'), '05');
@@ -1646,7 +1667,7 @@ class Menu {
                             })),
                         ),
                         array(
-                            'label' => __('Commerce Pro: cart, variations and checkout', 'geeky-bot'),
+                            'label' => __('Commerce Pro: cart, checkout and comparison', 'geeky-bot'),
                             'items' => array_values(array_filter($examples, function ($example) {
                                 return $example['tier'] === 'pro';
                             })),
@@ -2288,6 +2309,10 @@ class Menu {
                         </div>
                     </div>
                 </form>
+
+                <?php Components::rule(__('Your answers', 'geeky-bot')); ?>
+
+                <?php $this->render_answers_card(); ?>
 
                 <?php Components::rule(__('Index maintenance', 'geeky-bot')); ?>
 
@@ -3087,6 +3112,27 @@ class Menu {
                                         <strong style="color:var(--gb2-ink)"><?php esc_html_e('Recommended action', 'geeky-bot'); ?></strong><br>
                                         <?php echo esc_html($handled_now ? __('Retest only if this still fails in the storefront widget.', 'geeky-bot') : $meta['action']); ?>
                                     </p>
+                                    <?php $saved_answer = AnswerService::for_question($question->question); ?>
+                                    <?php if ($saved_answer) : ?>
+                                        <p class="gb2-review__answer"><strong><?php esc_html_e('Your answer', 'geeky-bot'); ?></strong> <?php echo esc_html(wp_trim_words($saved_answer->answer, 40)); ?></p>
+                                    <?php endif; ?>
+                                    <?php if (!$is_ignored) : ?>
+                                        <details class="gb2-answer">
+                                            <summary class="gb2-btn<?php echo $saved_answer ? '' : ' gb2-btn--primary'; ?>"><?php echo esc_html($saved_answer ? __('Edit your answer', 'geeky-bot') : __('Write the answer', 'geeky-bot')); ?></summary>
+                                            <form method="post" action="<?php echo esc_url(admin_url('admin-post.php')); ?>" class="gb2-answer__form">
+                                                <?php wp_nonce_field('geekybot_answer_save'); ?>
+                                                <input type="hidden" name="action" value="geekybot_answer_save" />
+                                                <input type="hidden" name="answer_return" value="review" />
+                                                <input type="hidden" name="answer_id" value="<?php echo esc_attr($saved_answer ? absint($saved_answer->id) : 0); ?>" />
+                                                <input type="hidden" name="question" value="<?php echo esc_attr($question->question); ?>" />
+                                                <input type="hidden" name="review_hash" value="<?php echo esc_attr($question->gb_hash); ?>" />
+                                                <input type="hidden" name="legacy_review_hash" value="<?php echo esc_attr($question->gb_legacy_hash); ?>" />
+                                                <?php echo $redirect_hidden; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- Values are escaped above. ?>
+                                                <label class="gb2-sfield gb2-sfield--wide"><span><?php esc_html_e('Answer shoppers will get', 'geeky-bot'); ?></span><textarea name="answer" rows="3" maxlength="<?php echo esc_attr(AnswerService::MAX_ANSWER_LENGTH); ?>" required><?php echo esc_textarea($saved_answer ? $saved_answer->answer : ''); ?></textarea><em><?php esc_html_e('Sent word for word, in every answer mode, when a shopper asks this question or a close rewording of it. Saving marks this question handled.', 'geeky-bot'); ?></em></label>
+                                                <button type="submit" class="gb2-btn gb2-btn--primary"><?php esc_html_e('Save answer', 'geeky-bot'); ?></button>
+                                            </form>
+                                        </details>
+                                    <?php endif; ?>
                                 </div>
                                 <div class="gb2-review__actions">
                                     <?php if (!$handled_now && !$is_ignored) : ?>
@@ -3225,6 +3271,148 @@ class Menu {
         $redirect_args['gb_review_notice'] = $notice;
         wp_safe_redirect(add_query_arg($redirect_args, admin_url('admin.php')));
         exit;
+    }
+
+    /**
+     * Save a merchant answer, from a Needs review card or from Store
+     * Knowledge. From a review card, the question is also marked handled.
+     */
+    public function handle_answer_save() {
+        if (!current_user_can('manage_options')) {
+            wp_die(esc_html__('You do not have permission to change Geeky Bot answers.', 'geeky-bot'));
+        }
+        check_admin_referer('geekybot_answer_save');
+
+        $question = isset($_POST['question']) ? sanitize_text_field(wp_unslash($_POST['question'])) : '';
+        $answer = isset($_POST['answer']) ? sanitize_textarea_field(wp_unslash($_POST['answer'])) : '';
+        $answer_id = isset($_POST['answer_id']) ? absint($_POST['answer_id']) : 0;
+        $from_review = isset($_POST['answer_return']) && sanitize_key(wp_unslash($_POST['answer_return'])) === 'review';
+        $saved = AnswerService::save($question, $answer, $answer_id);
+
+        if ($from_review) {
+            $hash = isset($_POST['review_hash']) ? sanitize_key(wp_unslash($_POST['review_hash'])) : '';
+            $legacy_hash = isset($_POST['legacy_review_hash']) ? sanitize_key(wp_unslash($_POST['legacy_review_hash'])) : '';
+            if (!is_wp_error($saved) && $hash) {
+                $manual_handled = array_fill_keys(array_map('sanitize_key', (array) get_option('geekybot_review_manual_handled', array())), true);
+                $manual_handled[$hash] = true;
+                unset($manual_handled[$legacy_hash]);
+                update_option('geekybot_review_manual_handled', array_keys($manual_handled), false);
+            }
+            $redirect_status = isset($_POST['redirect_status']) ? sanitize_key(wp_unslash($_POST['redirect_status'])) : 'needs-review';
+            $args = array(
+                'page' => 'geekybot-conversations',
+                'gb_view' => 'review',
+                'gb_review_status' => in_array($redirect_status, array('needs-review', 'handled', 'ignored', 'all'), true) ? $redirect_status : 'needs-review',
+                'gb_review_page' => isset($_POST['redirect_page']) ? max(1, absint($_POST['redirect_page'])) : 1,
+                'gb_review_notice' => is_wp_error($saved) ? 'answer_error' : 'answered',
+            );
+            $search = isset($_POST['redirect_search']) ? sanitize_text_field(wp_unslash($_POST['redirect_search'])) : '';
+            if ($search !== '') {
+                $args['gb_review_search'] = $search;
+            }
+            wp_safe_redirect(add_query_arg($args, admin_url('admin.php')));
+            exit;
+        }
+
+        wp_safe_redirect(add_query_arg(array(
+            'page' => 'geekybot-store-knowledge',
+            'gb_answer_notice' => is_wp_error($saved) ? $saved->get_error_code() : 'saved',
+        ), admin_url('admin.php')) . '#gb-answers');
+        exit;
+    }
+
+    public function handle_answer_delete() {
+        if (!current_user_can('manage_options')) {
+            wp_die(esc_html__('You do not have permission to change Geeky Bot answers.', 'geeky-bot'));
+        }
+        check_admin_referer('geekybot_answer_delete');
+        AnswerService::delete(isset($_POST['answer_id']) ? absint($_POST['answer_id']) : 0);
+        wp_safe_redirect(add_query_arg(array('page' => 'geekybot-store-knowledge', 'gb_answer_notice' => 'deleted'), admin_url('admin.php')) . '#gb-answers');
+        exit;
+    }
+
+    /**
+     * "Your answers" on Store Knowledge: every saved answer, editable, and a
+     * form to add one by hand.
+     */
+    private function render_answers_card() {
+        $answers = AnswerService::all();
+        // phpcs:ignore WordPress.Security.NonceVerification.Recommended -- Only picks which result notice to show.
+        $notice = isset($_GET['gb_answer_notice']) ? sanitize_key(wp_unslash($_GET['gb_answer_notice'])) : '';
+        $notices = array(
+            'saved' => array('success', __('Answer saved.', 'geeky-bot')),
+            'deleted' => array('success', __('Answer deleted.', 'geeky-bot')),
+            'geekybot_answer_empty' => array('error', __('Write both the question and the answer.', 'geeky-bot')),
+            'geekybot_answer_limit' => array('error', __('You have reached the maximum number of answers. Delete one you no longer need first.', 'geeky-bot')),
+            'geekybot_answer_save' => array('error', __('The answer could not be saved.', 'geeky-bot')),
+        );
+        Components::card_open(
+            __('Answers you wrote', 'geeky-bot'),
+            /* translators: %s: number of saved answers. */
+            sprintf(_n('%s answer', '%s answers', count($answers), 'geeky-bot'), number_format_i18n(count($answers))),
+            false,
+            'gb2-answers'
+        );
+        ?>
+            <div id="gb-answers"></div>
+            <?php if (isset($notices[$notice])) : ?>
+                <div class="notice notice-<?php echo esc_attr($notices[$notice][0]); ?> inline"><p><?php echo esc_html($notices[$notice][1]); ?></p></div>
+            <?php endif; ?>
+            <p style="margin:0 0 12px;font-size:var(--gb2-t-sm);line-height:1.55;color:var(--gb2-mute)"><?php
+                printf(
+                    /* translators: %s: link to the Needs review list. */
+                    esc_html__('When a shopper asks one of these questions, or a close rewording of it, the chat sends your answer word for word, in every answer mode. Write answers straight from %s, or add one here.', 'geeky-bot'),
+                    '<a href="' . esc_url(admin_url('admin.php?page=geekybot-conversations&gb_view=review')) . '">' . esc_html__('Needs review', 'geeky-bot') . '</a>'
+                ); ?></p>
+            <?php if ($answers) : ?>
+                <div class="gb2-answers__list">
+                    <?php foreach ($answers as $row) : ?>
+                        <div class="gb2-answers__item">
+                            <div class="gb2-answers__text">
+                                <strong><?php echo esc_html($row->question); ?></strong>
+                                <span><?php echo esc_html(wp_trim_words($row->answer, 30)); ?></span>
+                                <em><?php echo esc_html(sprintf(
+                                    /* translators: %s: number of times the answer was sent. */
+                                    _n('Sent %s time', 'Sent %s times', absint($row->hits), 'geeky-bot'),
+                                    number_format_i18n(absint($row->hits))
+                                )); ?></em>
+                            </div>
+                            <div class="gb2-answers__actions">
+                                <details class="gb2-answer">
+                                    <summary class="gb2-btn"><?php esc_html_e('Edit', 'geeky-bot'); ?></summary>
+                                    <form method="post" action="<?php echo esc_url(admin_url('admin-post.php')); ?>" class="gb2-answer__form">
+                                        <?php wp_nonce_field('geekybot_answer_save'); ?>
+                                        <input type="hidden" name="action" value="geekybot_answer_save" />
+                                        <input type="hidden" name="answer_id" value="<?php echo esc_attr(absint($row->id)); ?>" />
+                                        <label class="gb2-sfield gb2-sfield--wide"><span><?php esc_html_e('Question', 'geeky-bot'); ?></span><input type="text" name="question" value="<?php echo esc_attr($row->question); ?>" required /></label>
+                                        <label class="gb2-sfield gb2-sfield--wide"><span><?php esc_html_e('Answer shoppers will get', 'geeky-bot'); ?></span><textarea name="answer" rows="3" maxlength="<?php echo esc_attr(AnswerService::MAX_ANSWER_LENGTH); ?>" required><?php echo esc_textarea($row->answer); ?></textarea></label>
+                                        <button type="submit" class="gb2-btn gb2-btn--primary"><?php esc_html_e('Save answer', 'geeky-bot'); ?></button>
+                                    </form>
+                                </details>
+                                <form method="post" action="<?php echo esc_url(admin_url('admin-post.php')); ?>">
+                                    <?php wp_nonce_field('geekybot_answer_delete'); ?>
+                                    <input type="hidden" name="action" value="geekybot_answer_delete" />
+                                    <input type="hidden" name="answer_id" value="<?php echo esc_attr(absint($row->id)); ?>" />
+                                    <button type="submit" class="gb2-btn gb2-btn--ghost"><?php esc_html_e('Delete', 'geeky-bot'); ?></button>
+                                </form>
+                            </div>
+                        </div>
+                    <?php endforeach; ?>
+                </div>
+            <?php endif; ?>
+            <details class="gb2-answer gb2-answer--add">
+                <summary class="gb2-btn<?php echo $answers ? '' : ' gb2-btn--primary'; ?>"><?php esc_html_e('Add an answer', 'geeky-bot'); ?></summary>
+                <form method="post" action="<?php echo esc_url(admin_url('admin-post.php')); ?>" class="gb2-answer__form">
+                    <?php wp_nonce_field('geekybot_answer_save'); ?>
+                    <input type="hidden" name="action" value="geekybot_answer_save" />
+                    <input type="hidden" name="answer_id" value="0" />
+                    <label class="gb2-sfield gb2-sfield--wide"><span><?php esc_html_e('Question', 'geeky-bot'); ?></span><input type="text" name="question" placeholder="<?php esc_attr_e('Do you ship to Canada?', 'geeky-bot'); ?>" required /></label>
+                    <label class="gb2-sfield gb2-sfield--wide"><span><?php esc_html_e('Answer shoppers will get', 'geeky-bot'); ?></span><textarea name="answer" rows="3" maxlength="<?php echo esc_attr(AnswerService::MAX_ANSWER_LENGTH); ?>" required></textarea></label>
+                    <button type="submit" class="gb2-btn gb2-btn--primary"><?php esc_html_e('Save answer', 'geeky-bot'); ?></button>
+                </form>
+            </details>
+        <?php
+        Components::card_close();
     }
 
     public function handle_export_conversations() {
@@ -4200,16 +4388,21 @@ class Menu {
                                 <span><?php
                                     printf(
                                         /* translators: %s: link to the Settings page. */
-                                        esc_html__('Save an OpenAI key in %s. Chat answers can stay in local mode.', 'geeky-bot'),
-                                        '<a href="' . esc_url(admin_url('admin.php?page=geekybot-settings')) . '">' . esc_html__('Settings', 'geeky-bot') . '</a>'
+                                        esc_html__('Save an OpenAI or Zywrap key in %s. Chat answers can stay in local mode.', 'geeky-bot'),
+                                        '<a href="' . esc_url(admin_url('admin.php?page=geekybot-settings&zywrap_from=smart-catalog#gb-settings-ai')) . '">' . esc_html__('Settings', 'geeky-bot') . '</a>'
                                     ); ?></span>
                             <?php endif; ?>
                         </div>
 
                         <?php if ($connection !== null && $connection['provider'] === 'openai') : ?>
                             <label class="gb2-sfield" style="display:block;margin-top:14px"><span><?php esc_html_e('OpenAI model for search words', 'geeky-bot'); ?></span>
-                                <input id="search_ai_model" name="search_ai_model" type="text" value="<?php echo esc_attr(isset($settings['search_ai_model']) ? $settings['search_ai_model'] : ''); ?>" placeholder="<?php echo esc_attr(isset($settings['openai_model']) ? $settings['openai_model'] : 'gpt-4o-mini'); ?>" />
-                                <em><?php esc_html_e('Blank uses your chat model. gpt-4o-mini gave the best search words in testing; smaller models such as gpt-4.1-nano cost about the same overall because they write more, weaker words.', 'geeky-bot'); ?></em>
+                                <input id="search_ai_model" name="search_ai_model" type="text" value="<?php echo esc_attr(isset($settings['search_ai_model']) ? $settings['search_ai_model'] : ''); ?>" placeholder="<?php echo esc_attr(isset($settings['openai_model']) ? $settings['openai_model'] : AiClient::DEFAULT_MODEL); ?>" />
+                                <em><?php
+                                    printf(
+                                        /* translators: %s: default model ID. */
+                                        esc_html__('Blank uses your chat model. %s, the default, writes good search words at low cost. Retired models are switched to their replacement automatically.', 'geeky-bot'),
+                                        esc_html(AiClient::DEFAULT_MODEL)
+                                    ); ?></em>
                             </label>
                         <?php endif; ?>
 
@@ -4448,7 +4641,7 @@ class Menu {
                             $active
                                 ? __('Missed searches are checked once a day. New suggestions appear here for your approval.', 'geeky-bot')
                                 : (SmartCatalogService::connection() === null
-                                    ? __('Save an OpenAI key in AI & Privacy to check missed searches.', 'geeky-bot')
+                                    ? __('Save an OpenAI or Zywrap key in AI & Privacy to check missed searches.', 'geeky-bot')
                                     : __('Choose Smart Catalog or Smart Catalog + Rescue under Search level to check missed searches.', 'geeky-bot'))
                         ); ?>
                     <?php else : ?>
@@ -4740,13 +4933,16 @@ class Menu {
             <?php endif; ?>
             <label class="gb2-radio <?php echo esc_attr($settings['provider_mode'] === 'openai' ? 'is-selected' : ''); ?>"><input type="radio" name="provider_mode" value="openai" <?php checked($settings['provider_mode'], 'openai'); ?> /><span><strong><?php esc_html_e('OpenAI BYOK', 'geeky-bot'); ?></strong><em><?php esc_html_e('Optional bring-your-own-key grounded answer mode.', 'geeky-bot'); ?></em><em class="gb2-radio__status<?php echo $openai_ready ? ' is-ok' : ''; ?>"><?php echo esc_html($openai_ready ? __('Key saved', 'geeky-bot') : __('Needs an API key', 'geeky-bot')); ?></em></span></label>
         </div>
+        <?php if (Settings::zywrap_visible()) : ?>
+            <?php ZywrapConnectService::render_box(self::zywrap_from(), $settings['provider_mode'] === 'openai' && $openai_ready); ?>
+        <?php endif; ?>
         <div class="gb2-sgrid">
             <?php if (Settings::zywrap_visible()) : ?>
-            <label class="gb2-sfield gb2-sfield--wide"><span><?php esc_html_e('Zywrap endpoint', 'geeky-bot'); ?></span><input id="zywrap_endpoint" name="zywrap_endpoint" type="url" value="<?php echo esc_attr($settings['zywrap_endpoint']); ?>" placeholder="https://api.example.com/..." /><em><?php esc_html_e('Only used when Zywrap mode is selected.', 'geeky-bot'); ?></em></label>
+            <label class="gb2-sfield gb2-sfield--wide"><span><?php esc_html_e('Zywrap endpoint', 'geeky-bot'); ?></span><input id="zywrap_endpoint" name="zywrap_endpoint" type="url" value="<?php echo esc_attr($settings['zywrap_endpoint'] !== '' ? $settings['zywrap_endpoint'] : Settings::ZYWRAP_ENDPOINT); ?>" placeholder="<?php echo esc_attr(Settings::ZYWRAP_ENDPOINT); ?>" /><em><?php esc_html_e('Only used when Zywrap mode is selected.', 'geeky-bot'); ?></em></label>
             <label class="gb2-sfield"><span><?php esc_html_e('Zywrap API key', 'geeky-bot'); ?></span><input id="zywrap_api_key" name="zywrap_api_key" type="password" value="<?php echo esc_attr($settings['zywrap_api_key'] ? '••••••••' : ''); ?>" autocomplete="new-password" /><em><?php esc_html_e('Saved secret is not displayed after save.', 'geeky-bot'); ?></em></label>
             <?php endif; ?>
             <label class="gb2-sfield"><span><?php esc_html_e('OpenAI API key', 'geeky-bot'); ?></span><input id="openai_api_key" name="openai_api_key" type="password" value="<?php echo esc_attr($settings['openai_api_key'] ? '••••••••' : ''); ?>" autocomplete="new-password" /><em><?php esc_html_e('Saved secret is not displayed after save.', 'geeky-bot'); ?></em></label>
-            <label class="gb2-sfield"><span><?php esc_html_e('OpenAI model', 'geeky-bot'); ?></span><input id="openai_model" name="openai_model" type="text" value="<?php echo esc_attr($settings['openai_model']); ?>" /><em><?php esc_html_e('Used only in OpenAI BYOK mode.', 'geeky-bot'); ?></em></label>
+            <label class="gb2-sfield"><span><?php esc_html_e('OpenAI model', 'geeky-bot'); ?></span><input id="openai_model" name="openai_model" type="text" value="<?php echo esc_attr($settings['openai_model']); ?>" placeholder="<?php echo esc_attr(AiClient::DEFAULT_MODEL); ?>" /><em><?php esc_html_e('Used only in OpenAI BYOK mode.', 'geeky-bot'); ?></em></label>
             <label class="gb2-sfield"><span><?php esc_html_e('AI answer token limit', 'geeky-bot'); ?></span><input id="ai_max_tokens" name="ai_max_tokens" type="number" min="120" max="1200" value="<?php echo esc_attr(absint($settings['ai_max_tokens'])); ?>" /><em><?php esc_html_e('Keeps generated answers short and controlled.', 'geeky-bot'); ?></em></label>
             <label class="gb2-sfield"><span><?php esc_html_e('Daily AI call budget', 'geeky-bot'); ?></span><input id="ai_daily_call_cap" name="ai_daily_call_cap" type="number" min="<?php echo esc_attr(AiBudgetService::DAILY_MIN); ?>" max="<?php echo esc_attr(AiBudgetService::DAILY_MAX); ?>" value="<?php echo esc_attr(AiBudgetService::daily_cap()); ?>" /><em><?php esc_html_e('Site-wide limit on paid AI calls per day, staff included.', 'geeky-bot'); ?></em></label>
             <label class="gb2-sfield"><span><?php esc_html_e('Monthly AI call cap', 'geeky-bot'); ?></span><input id="ai_monthly_call_cap" name="ai_monthly_call_cap" type="number" min="<?php echo esc_attr(AiBudgetService::MONTHLY_MIN); ?>" max="<?php echo esc_attr(AiBudgetService::MONTHLY_MAX); ?>" value="<?php echo esc_attr(AiBudgetService::monthly_cap()); ?>" /><em><?php esc_html_e('Hard stop for the month. After it, shoppers get local answers.', 'geeky-bot'); ?></em></label>
@@ -4810,8 +5006,24 @@ class Menu {
         }
     }
 
-    private function settings_table_privacy($settings) { ?>
+    private function settings_table_privacy($settings) {
+        $notice_default = Settings::ai_answers_active()
+            ? __('You are chatting with an AI assistant. Answers can contain mistakes.', 'geeky-bot')
+            : __('You are chatting with an automated assistant, not a person.', 'geeky-bot');
+        ?>
         <div class="gb2-sgrid">
+            <label class="gb2-stoggle"><input type="hidden" name="ai_notice_enabled" value="no" /><input type="checkbox" name="ai_notice_enabled" value="yes" <?php checked(isset($settings['ai_notice_enabled']) ? $settings['ai_notice_enabled'] : 'yes', 'yes'); ?> /> <span><strong><?php esc_html_e('Tell shoppers they are chatting with an AI', 'geeky-bot'); ?></strong><em><?php esc_html_e('A short line next to the chat input, with a link to your privacy policy. EU law (AI Act, Article 50) and several US states require it; keep it on unless you show your own notice.', 'geeky-bot'); ?></em></span></label>
+            <label class="gb2-sfield gb2-sfield--wide"><span><?php esc_html_e('Notice text', 'geeky-bot'); ?></span><input id="ai_notice_text" name="ai_notice_text" type="text" maxlength="200" value="<?php echo esc_attr(isset($settings['ai_notice_text']) ? $settings['ai_notice_text'] : ''); ?>" placeholder="<?php echo esc_attr($notice_default); ?>" /><em><?php
+                if (get_privacy_policy_url() === '') {
+                    printf(
+                        /* translators: %s: link to Settings > Privacy. */
+                        esc_html__('Blank uses the text shown. No privacy policy page is set, so no link is shown: choose one under %s.', 'geeky-bot'),
+                        '<a href="' . esc_url(admin_url('options-privacy.php')) . '">' . esc_html__('Settings > Privacy', 'geeky-bot') . '</a>'
+                    );
+                } else {
+                    esc_html_e('Blank uses the text shown, which changes with the answer mode.', 'geeky-bot');
+                }
+            ?></em></label>
             <label class="gb2-stoggle"><input type="hidden" name="chat_history_enabled" value="no" /><input type="checkbox" name="chat_history_enabled" value="yes" <?php checked($settings['chat_history_enabled'], 'yes'); ?> /> <span><strong><?php esc_html_e('Save conversation history', 'geeky-bot'); ?></strong><em><?php esc_html_e('Needed for analytics and the unanswered-question review.', 'geeky-bot'); ?></em></span></label>
             <label class="gb2-stoggle"><input type="hidden" name="allow_guest_sessions" value="no" /><input type="checkbox" name="allow_guest_sessions" value="yes" <?php checked($settings['allow_guest_sessions'], 'yes'); ?> /> <span><strong><?php esc_html_e('Save guest conversations', 'geeky-bot'); ?></strong><em><?php esc_html_e('When off, guests can still chat, but nothing they send is stored.', 'geeky-bot'); ?></em></span></label>
             <label class="gb2-sfield"><span><?php esc_html_e('Retention days', 'geeky-bot'); ?></span><input id="retention_days" name="retention_days" type="number" min="1" max="365" value="<?php echo esc_attr(absint($settings['retention_days'])); ?>" /><em><?php esc_html_e('Older conversations are deleted automatically.', 'geeky-bot'); ?></em></label>
@@ -5427,10 +5639,18 @@ class Menu {
         // phpcs:disable WordPress.DB.DirectDatabaseQuery.DirectQuery,WordPress.DB.DirectDatabaseQuery.NoCaching -- Dashboard counters must reflect current custom-table data.
         // phpcs:disable WordPress.DB.PreparedSQL.InterpolatedNotPrepared,PluginCheck.Security.DirectDB.UnescapedDBParameter -- These are fixed plugin-owned table names derived from $wpdb->prefix.
         if ($this->table_exists($unanswered)) {
-            $questions = $wpdb->get_col("SELECT question FROM {$unanswered}");
-            $unanswered_count = count($questions);
-            foreach ($questions as $question) {
-                if ($this->is_now_handled_question($question)) {
+            $unanswered_count = absint($wpdb->get_var("SELECT COUNT(*) FROM {$unanswered}"));
+            // The same unique questions and states the Review screen shows,
+            // so the dashboard and the queue agree.
+            $manual_handled = array_fill_keys(array_map('sanitize_key', (array) get_option('geekybot_review_manual_handled', array())), true);
+            $ignored = array_fill_keys(array_map('sanitize_key', (array) get_option('geekybot_review_ignored', array())), true);
+            foreach ((new ConversationInsightsService())->grouped_unanswered(2000) as $question) {
+                $hash = $this->review_hash($question->question);
+                $legacy_hash = $this->legacy_review_hash($question->question, $question->reason);
+                if (isset($ignored[$hash]) || isset($ignored[$legacy_hash])) {
+                    continue;
+                }
+                if (isset($manual_handled[$hash]) || isset($manual_handled[$legacy_hash]) || $this->is_now_handled_question($question->question)) {
                     $handled_now++;
                 } else {
                     $review_needed++;
@@ -5450,7 +5670,30 @@ class Menu {
 
         return $stats;
     }
-    private function is_now_handled_question($question) { $query = strtolower(trim((string) $question)); $handled_patterns = array('cart', 'show my cart', 'view my cart', 'what is in my cart', 'how my cart', 'remove all items', 'my orders', 'recent orders', 'order history', 'track my order', 'where is my order', 'checkout', 'hoodie xl', 'discounted hoodie', 'hoodies on sale', 'looking for belts', 'belt under', 'blue shirt on sale'); foreach ($handled_patterns as $pattern) { if (strpos($query, $pattern) !== false) { return true; } } return false; }
+    /**
+     * Cart and order requests logged before Commerce Pro answered them.
+     *
+     * Only with Commerce Pro active: without it these questions really are
+     * unanswered and belong in the queue. Until 2.2.0 this also matched any
+     * question containing "cart" or "checkout" on every site, and a few phrases
+     * from the developers' test store, which hid real questions.
+     *
+     * @param string $question Shopper question.
+     * @return bool
+     */
+    private function is_now_handled_question($question) {
+        if (!defined('GBCP_VERSION')) {
+            return false;
+        }
+        $query = strtolower(trim((string) $question));
+        foreach (array('show my cart', 'view my cart', 'what is in my cart', "what's in my cart", 'remove all items', 'my orders', 'recent orders', 'order history', 'track my order', 'where is my order', 'go to checkout') as $pattern) {
+            if (strpos($query, $pattern) !== false) {
+                return true;
+            }
+        }
+
+        return false;
+    }
     private function review_hint_for_question($question, $reason) {
         $query = strtolower((string) $question);
         $reason_text = strtolower((string) $reason);
@@ -5486,6 +5729,10 @@ class Menu {
             $message = __('Review issue ignored.', 'geeky-bot');
         } elseif ($notice === 'restored') {
             $message = __('Review issue restored to review.', 'geeky-bot');
+        } elseif ($notice === 'answered') {
+            $message = __('Answer saved. The chat now sends it when shoppers ask this question.', 'geeky-bot');
+        } elseif ($notice === 'answer_error') {
+            $message = __('The answer was not saved. Write an answer and try again.', 'geeky-bot');
         }
         ?>
         <div class="notice notice-success is-dismissible"><p><?php echo esc_html($message); ?></p></div>

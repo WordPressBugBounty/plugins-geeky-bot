@@ -29,8 +29,6 @@ class ChatService {
     }
 
     public function reply($message, $session_key = '') {
-        Installer::maybe_cleanup_history();
-
         $message = $this->clean_message($message);
         $session_id = $this->ensure_session($session_key);
 
@@ -41,6 +39,26 @@ class ChatService {
         }
 
         $this->save_message($session_id, 'user', $message, null);
+
+        // An answer the merchant wrote for this question in Needs review, sent
+        // word for word. Checked first: the merchant answered it on purpose,
+        // and their text is not rewritten by the AI.
+        $merchant_answer = AnswerService::find($message);
+        if ($merchant_answer) {
+            AnswerService::record_hit($merchant_answer->id);
+            $response = $this->response((string) $merchant_answer->answer, array(), 'merchant_answer', $session_id, $session_key, array());
+            $this->save_message($session_id, 'bot', $response['message'], $response);
+            return $response;
+        }
+
+        // "Are you a bot?" always gets a straight answer (EU AI Act Art. 50,
+        // and the US states that require disclosure when asked).
+        $identity = $this->assistant_identity_reply($message);
+        if ($identity !== '') {
+            $response = $this->response($identity, array(), 'assistant_identity', $session_id, $session_key, array());
+            $this->save_message($session_id, 'bot', $identity, $response);
+            return $response;
+        }
 
         // "add the Trek 32L to my cart" used to be rewritten into a bare
         // search for "the Trek 32L", because there was nowhere to send a cart
@@ -1274,6 +1292,44 @@ class ChatService {
         }
 
         return __("I understood that, but I can't carry it out from here.", 'geeky-bot');
+    }
+
+    /**
+     * The reply to "are you a human / a bot?", or '' for any other message.
+     *
+     * English plus the five European languages the query layer understands
+     * best; the reply itself is in the store's language.
+     *
+     * @param string $message Shopper message.
+     * @return string
+     */
+    private function assistant_identity_reply($message) {
+        $text = function_exists('mb_strtolower') ? mb_strtolower((string) $message, 'UTF-8') : strtolower((string) $message);
+        if (strlen($text) > 120) {
+            return '';
+        }
+        $start = '(?:^|[^\p{L}])';
+        $end = '(?=$|[^\p{L}])';
+        $patterns = array(
+            $start . '(?:are|r)\s+(?:you|u)\s+(?:a\s+|an\s+)?(?:real\s+)?(?:human|person|bot|robot|ai|machine|computer|chatbot)' . $end,
+            $start . '(?:am\s+i|i\s+am|im)\s+(?:talking|chatting|speaking|writing)\s+(?:to|with)\s+(?:a\s+|an\s+)?(?:real\s+)?(?:human|person|bot|robot|ai|machine|chatbot)' . $end,
+            $start . 'is\s+this\s+(?:a\s+|an\s+)?(?:real\s+)?(?:human|person|bot|robot|ai|chatbot)' . $end,
+            $start . '(?:eres|es\s+usted)\s+(?:un\s+|una\s+)?(?:humano|humana|persona|bot|robot|ia)' . $end,
+            $start . '(?:es[\s-]tu|êtes[\s-]vous|etes[\s-]vous)\s+(?:un\s+|une\s+)?(?:humain|humaine|personne|bot|robot|ia)' . $end,
+            $start . '(?:bist\s+du|sind\s+sie)\s+(?:ein\s+|eine\s+)?(?:mensch|person|bot|roboter|ki)' . $end,
+            $start . '(?:voc[eê]\s+[eé]|[eé]s)\s+(?:um\s+|uma\s+)?(?:humano|humana|pessoa|bot|rob[oô]|ia)' . $end,
+            $start . 'sei\s+(?:un\s+|una\s+)?(?:umano|umana|persona|bot|robot)' . $end,
+            $start . 'ben\s+je\s+(?:een\s+)?(?:mens|persoon|bot|robot)' . $end,
+        );
+        foreach ($patterns as $pattern) {
+            if (preg_match('/' . $pattern . '/u', $text)) {
+                return Settings::ai_answers_active()
+                    ? __("I am an AI assistant for this store, not a person. I answer from the store's own product and policy information.", 'geeky-bot')
+                    : __("I am an automated assistant for this store, not a person. I answer from the store's own product and policy information.", 'geeky-bot');
+            }
+        }
+
+        return '';
     }
 
     private function response($message, $products, $intent, $session_id, $session_key, $knowledge_matches, $search_context = array(), $extra = array()) {

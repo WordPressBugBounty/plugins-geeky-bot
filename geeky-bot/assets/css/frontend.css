@@ -445,6 +445,39 @@
   background: var(--gb-bg, #fff);
 }
 
+/* "You are chatting with an AI assistant": always visible next to the input. */
+#geekybot-sales-assistant .gb-ai-notice {
+  margin: 0;
+  padding: 8px 14px 0;
+  border-top: 1px solid var(--gb-border);
+  background: var(--gb-bg, #fff);
+  color: var(--gb-muted);
+  font-size: 12px;
+  line-height: 1.45;
+}
+
+#geekybot-sales-assistant .gb-ai-notice + .gb-form {
+  border-top: 0;
+  padding-top: 8px;
+}
+
+#geekybot-sales-assistant .gb-ai-notice a {
+  color: inherit;
+  text-decoration: underline;
+}
+
+#geekybot-sales-assistant .gb-visually-hidden {
+  position: absolute !important;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
 #geekybot-sales-assistant .gb-input {
   flex: 1;
   min-width: 0;

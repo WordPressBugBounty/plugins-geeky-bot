@@ -177,19 +177,7 @@ class SmartCatalogService {
     public static function model() {
         $model = (string) Settings::get('search_ai_model', '');
 
-        return $model !== '' ? $model : (string) Settings::get('openai_model', 'gpt-4o-mini');
-    }
-
-    /**
-     * Reasoning models (gpt-5 family, o-series) reject `temperature` and
-     * `max_tokens` and spend hidden reasoning tokens, so they need
-     * `max_completion_tokens` with room for that reasoning.
-     *
-     * @param string $model Model ID.
-     * @return bool
-     */
-    private static function is_reasoning_model($model) {
-        return (bool) preg_match('/^(gpt-5|o\d)/', (string) $model);
+        return AiClient::effective_model($model !== '' ? $model : (string) Settings::get('openai_model', AiClient::DEFAULT_MODEL));
     }
 
     /**
@@ -759,64 +747,42 @@ class SmartCatalogService {
      * @return array|\WP_Error Decoded JSON object.
      */
     public static function request_json($provider, $system, $user, $wrapper_code, $max_tokens, $timeout, $usage_key = 'usage') {
+        if (AiClient::paused()) {
+            return new \WP_Error('geekybot_smart_catalog_paused', __('AI calls are paused after an error the provider will keep returning.', 'geeky-bot'));
+        }
         if (is_wp_error(AiBudgetService::reserve())) {
             return new \WP_Error('geekybot_smart_catalog_budget', __('The AI call limit was reached.', 'geeky-bot'));
         }
 
+        $purpose = $usage_key === 'rescue_usage' ? 'rescue' : ($wrapper_code === 'wc_search_learning' ? 'learning' : 'catalog');
         if ($provider === 'zywrap') {
-            $endpoint = esc_url_raw(Settings::get('zywrap_endpoint', ''));
-            $response = wp_remote_post($endpoint, array(
-                'timeout' => $timeout,
-                'headers' => array(
-                    'Authorization' => 'Bearer ' . Settings::secret('zywrap_api_key'),
-                    'Content-Type' => 'application/json',
-                ),
-                'body' => wp_json_encode(array(
-                    'wrapper_code' => $wrapper_code,
-                    'system' => $system,
-                    'message' => $user,
-                )),
-            ));
+            $result = AiClient::zywrap_post(esc_url_raw(Settings::get('zywrap_endpoint', '')), array(
+                'wrapper_code' => $wrapper_code,
+                'system' => $system,
+                'message' => $user,
+            ), $timeout, $purpose);
         } else {
-            $model = self::model();
-            $request = array(
-                'model' => $model,
-                'response_format' => array('type' => 'json_object'),
+            $result = AiClient::openai_chat(array(
+                'model' => self::model(),
+                'json' => true,
+                'temperature' => 0.3,
+                // A 20-product reply measured ~2,400 tokens; the headroom keeps
+                // a wordier batch from being cut off mid-JSON. Reasoning models
+                // get room for hidden reasoning on top.
+                'max_tokens' => absint($max_tokens),
+                'reasoning_room' => 16000,
                 'messages' => array(
                     array('role' => 'system', 'content' => $system),
                     array('role' => 'user', 'content' => $user),
                 ),
-            );
-            if (self::is_reasoning_model($model)) {
-                $request['max_completion_tokens'] = 16000;
-                $request['reasoning_effort'] = 'minimal';
-            } else {
-                $request['temperature'] = 0.3;
-                // A 20-product reply measured ~2,400 tokens; the headroom keeps
-                // a wordier batch from being cut off mid-JSON.
-                $request['max_tokens'] = absint($max_tokens);
-            }
-
-            $response = wp_remote_post('https://api.openai.com/v1/chat/completions', array(
-                'timeout' => $timeout,
-                'headers' => array(
-                    'Authorization' => 'Bearer ' . Settings::secret('openai_api_key'),
-                    'Content-Type' => 'application/json',
-                ),
-                'body' => wp_json_encode($request),
-            ));
+            ), $timeout, $purpose);
         }
 
-        if (is_wp_error($response)) {
-            return $response;
+        if (!$result['ok']) {
+            AiBudgetService::release();
+            return new \WP_Error('geekybot_smart_catalog_http', sanitize_text_field($result['message']));
         }
-
-        $code = absint(wp_remote_retrieve_response_code($response));
-        $body = json_decode(wp_remote_retrieve_body($response), true);
-        if ($code < 200 || $code >= 300) {
-            $message = is_array($body) && !empty($body['error']['message']) ? (string) $body['error']['message'] : sprintf('HTTP %d', $code);
-            return new \WP_Error('geekybot_smart_catalog_http', sanitize_text_field($message));
-        }
+        $body = $result['data'];
 
         // Running totals, so the admin screen can show what Smart Catalog has
         // actually used rather than an estimate.

@@ -97,6 +97,11 @@ class HealthService {
 
         $checks[] = $this->check_assistant_reachable();
 
+        $ai = $this->check_ai_connection();
+        if ($ai !== null) {
+            $checks[] = $ai;
+        }
+
         return $checks;
     }
 
@@ -158,6 +163,17 @@ class HealthService {
 
     private function check_fulltext_index() {
         global $wpdb;
+
+        // Nothing to check or repair where the database has no FULLTEXT search:
+        // the word-matching pass is how search works there, not a fallback.
+        if (!ProductIndexService::fulltext_supported()) {
+            return $this->result(
+                'product_index_fulltext',
+                __('Product search index', 'geeky-bot'),
+                'ok',
+                __('This site\'s database has no full-text search (as on SQLite, which WordPress Playground and WordPress Studio use), so Geeky Bot finds products by simpler word matching. Product search works, with simpler ranking than on MySQL or MariaDB.', 'geeky-bot')
+            );
+        }
 
         $table = $wpdb->prefix . 'geekybot_product_index';
         $expected = self::expected_fulltext_columns();
@@ -395,6 +411,57 @@ class HealthService {
             'ok',
             __('The storefront assistant is enabled and WooCommerce is active.', 'geeky-bot')
         );
+    }
+
+    /**
+     * Whether AI answers are working, from the outcome of the last calls.
+     * No line at all in Local mode with no key: there is nothing to check.
+     *
+     * @return array<string,string>|null
+     */
+    private function check_ai_connection() {
+        $mode = Settings::get('provider_mode', 'local');
+        if ($mode === 'local' && !Settings::has_secret('openai_api_key')) {
+            return null;
+        }
+
+        $label = __('AI connection', 'geeky-bot');
+        $health = AiClient::health();
+        $error = is_array($health['error']) ? $health['error'] : null;
+
+        if ($error && time() - (int) $error['at'] < DAY_IN_SECONDS) {
+            // A warning, not critical: shoppers still get answers from store
+            // data, and the AI failure has its own admin notice. Critical here
+            // also raised the "degraded state" banner meant for search.
+            return $this->result('ai_connection', $label, 'warning', AiClient::explain($error['class'], $error['provider']) . ' ' . sprintf(
+                /* translators: 1: provider message, 2: how long ago. */
+                __('Last error: "%1$s", %2$s ago.', 'geeky-bot'),
+                $error['message'],
+                human_time_diff((int) $error['at'])
+            ));
+        }
+
+        $retiring = AiClient::retiring_models();
+        if ($retiring) {
+            $first = reset($retiring);
+            return $this->result('ai_connection', $label, 'warning', sprintf(
+                /* translators: 1: model, 2: date, 3: replacement model. */
+                __('OpenAI shuts down %1$s on %2$s. Switch to %3$s under AI & Privacy.', 'geeky-bot'),
+                $first['model'],
+                date_i18n(get_option('date_format'), strtotime($first['date'] . ' 12:00:00')),
+                $first['replacement']
+            ));
+        }
+
+        if ((int) $health['last_ok'] > 0) {
+            return $this->result('ai_connection', $label, 'ok', sprintf(
+                /* translators: %s: how long ago. */
+                __('AI answers are working. Last successful call %s ago.', 'geeky-bot'),
+                human_time_diff((int) $health['last_ok'])
+            ));
+        }
+
+        return $this->result('ai_connection', $label, 'ok', __('No AI call has been made yet. The result of the first one will show here.', 'geeky-bot'));
     }
 
     private function result($id, $label, $status, $message) {

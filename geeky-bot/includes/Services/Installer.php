@@ -15,6 +15,8 @@ if (!defined('ABSPATH')) {
 // phpcs:disable WordPress.DB.PreparedSQLPlaceholders.UnfinishedPrepare,PluginCheck.Security.DirectDB.UnescapedDBParameter
 
 class Installer {
+    const CLEANUP_HOOK = 'geekybot_daily_cleanup';
+
     public static function activate() {
         $is_new_install = !get_option(Settings::OPTION);
         if (!DatabaseMigrator::migrate()) {
@@ -117,6 +119,7 @@ class Installer {
             ProductIndexService::VOCABULARY_REFRESH_HOOK,
             SmartCatalogService::BATCH_HOOK,
             SearchLearningService::HOOK,
+            self::CLEANUP_HOOK,
         );
         foreach ($hooks as $hook) {
             wp_clear_scheduled_hook($hook);
@@ -182,6 +185,7 @@ class Installer {
         ProductIndexService::create_table();
         KnowledgeIndexService::create_table();
         AnalyticsEventService::create_table();
+        AnswerService::create_table();
 
         if (!$context_ready) {
             return false;
@@ -205,6 +209,7 @@ class Installer {
             $wpdb->prefix . 'geekybot_product_index',
             $wpdb->prefix . 'geekybot_knowledge_index',
             $wpdb->prefix . 'geekybot_events',
+            $wpdb->prefix . AnswerService::TABLE,
         );
     }
 
@@ -337,11 +342,28 @@ class Installer {
         return preg_match('/^[A-Za-z0-9_]+$/', $table) ? $table : '';
     }
 
-    public static function maybe_cleanup_history() {
-        if (Settings::get('chat_history_enabled', 'yes') !== 'yes') {
-            return;
+    /**
+     * Keep the daily retention purge scheduled.
+     *
+     * @return void
+     */
+    public static function schedule_cleanup() {
+        if (!wp_next_scheduled(self::CLEANUP_HOOK)) {
+            wp_schedule_event(time() + HOUR_IN_SECONDS, 'daily', self::CLEANUP_HOOK);
         }
+    }
 
+    /**
+     * Delete conversations and unanswered questions older than the retention
+     * period, at most once a day.
+     *
+     * Runs from its own daily event since 2.2.0. It used to run only inside a
+     * shopper's chat request and only while chat history was on, so turning
+     * history off kept the older conversations forever.
+     *
+     * @return void
+     */
+    public static function maybe_cleanup_history() {
         $last = get_option('geekybot_last_cleanup', 0);
         if ($last && (time() - absint($last)) < DAY_IN_SECONDS) {
             return;

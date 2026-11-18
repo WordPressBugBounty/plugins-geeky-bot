@@ -171,6 +171,7 @@ class DatabaseMigrator {
             '2.0.4' => array(__CLASS__, 'migrate_204_encrypt_provider_secrets'),
             '2.1.0' => array(__CLASS__, 'migrate_210_product_index_facet_text'),
             '2.1.1' => array(__CLASS__, 'migrate_211_product_index_ai_terms'),
+            '2.2.0' => array(__CLASS__, 'migrate_220_answers_table'),
         );
     }
 
@@ -183,6 +184,15 @@ class DatabaseMigrator {
      *
      * @return bool
      */
+    /**
+     * Add the table for answers merchants write from Needs review.
+     *
+     * @return bool
+     */
+    public static function migrate_220_answers_table() {
+        return AnswerService::create_table();
+    }
+
     public static function migrate_211_product_index_ai_terms() {
         global $wpdb;
 

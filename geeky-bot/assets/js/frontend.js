@@ -19,6 +19,7 @@
   }
 
   let isSending = false;
+  let focusWasInChat = false;
   let isRestoringHistory = false;
   let historySaveTimer = null;
   let invitationTimer = null;
@@ -52,13 +53,16 @@
       '<button class="gb-shopper-invitation__open" type="button">' + escapeHtml(settings.shopperInvitationMessage || 'Need help choosing? Ask me about products, prices, or options.') + '</button>' +
       '<button class="gb-shopper-invitation__dismiss" type="button" aria-label="' + escapeAttr(i18n.dismissInvitation || 'Dismiss shopping assistant invitation') + '">×</button>' +
     '</aside>' +
-    '<button class="gb-launcher" type="button" aria-label="' + escapeHtml(i18n.open || 'Open assistant') + '">' +
+    '<button class="gb-launcher" type="button" aria-label="' + escapeHtml(i18n.open || 'Open assistant') + '" aria-controls="geekybot-window" aria-expanded="false">' +
       '<span class="gb-launcher__icon">' + launcherMark + '</span>' +
       '<span class="gb-launcher__text">' + escapeHtml(settings.launcherText || 'Ask about products') + '</span>' +
     '</button>' +
-    '<section class="gb-window" aria-live="polite" aria-hidden="true">' +
+    // A dialog named by the assistant's name. Only the message log announces
+    // new messages; the whole window used to be a live region, so screen
+    // readers could re-read the header and buttons with every reply.
+    '<section class="gb-window" id="geekybot-window" role="dialog" aria-labelledby="geekybot-window-title" aria-hidden="true">' +
       '<header class="gb-window__header">' +
-        '<div class="gb-window__brand">' + headerLogo + '<div><strong>' + escapeHtml(settings.assistantName || 'Geeky Bot') + '</strong><span>' + escapeHtml(settings.assistantSubtitle || 'WooCommerce shopping assistant') + '</span></div></div>' +
+        '<div class="gb-window__brand">' + headerLogo + '<div><strong id="geekybot-window-title">' + escapeHtml(settings.assistantName || 'Geeky Bot') + '</strong><span>' + escapeHtml(settings.assistantSubtitle || 'WooCommerce shopping assistant') + '</span></div></div>' +
         '<div class="gb-window__header-actions">' +
           '<details class="gb-window__menu">' +
             '<summary aria-label="' + escapeHtml(i18n.moreActions || 'More actions') + '">•••</summary>' +
@@ -69,9 +73,11 @@
           '<button class="gb-close" type="button" aria-label="' + escapeHtml(i18n.close || 'Close') + '">×</button>' +
         '</div>' +
       '</header>' +
-      '<div class="gb-messages" role="log"></div>' +
+      '<div class="gb-messages" role="log" aria-live="polite" aria-relevant="additions"></div>' +
+      aiNoticeHtml() +
       '<form class="gb-form">' +
-        '<input class="gb-input" type="text" dir="auto" autocomplete="off" maxlength="1000" placeholder="' + escapeHtml(i18n.placeholder || 'Ask about products…') + '" />' +
+        '<label class="gb-visually-hidden" for="geekybot-input">' + escapeHtml(i18n.inputLabel || 'Your question') + '</label>' +
+        '<input class="gb-input" id="geekybot-input" type="text" dir="auto" autocomplete="off" maxlength="1000" placeholder="' + escapeHtml(i18n.placeholder || 'Ask about products…') + '"' + (settings.aiNotice ? ' aria-describedby="geekybot-ai-notice"' : '') + ' />' +
         '<button class="gb-send" type="submit">' + escapeHtml(i18n.send || 'Send') + '</button>' +
       '</form>' +
     '</section>';
@@ -109,6 +115,24 @@
   // screen-reader users expect of a chat window. An open menu -- the header's
   // "More actions" or a product card's -- closes first, on its own Escape.
   windowEl.addEventListener('keydown', function (event) {
+    if (event.key === 'Tab' && root.classList.contains('gb-widget--open') && window.matchMedia && window.matchMedia('(max-width: 480px)').matches) {
+      var focusable = Array.prototype.filter.call(
+        windowEl.querySelectorAll('a[href], button:not([disabled]), input:not([disabled]), summary, [tabindex]:not([tabindex="-1"])'),
+        function (el) { return el.offsetParent !== null; }
+      );
+      if (focusable.length) {
+        var first = focusable[0];
+        var last = focusable[focusable.length - 1];
+        if (event.shiftKey && document.activeElement === first) {
+          event.preventDefault();
+          last.focus();
+        } else if (!event.shiftKey && document.activeElement === last) {
+          event.preventDefault();
+          first.focus();
+        }
+      }
+      return;
+    }
     if (event.key !== 'Escape' || !root.classList.contains('gb-widget--open')) {
       return;
     }
@@ -142,8 +166,7 @@
 
   function openWidget() {
     hideShopperInvitation(true);
-    root.classList.add('gb-widget--open');
-    windowEl.setAttribute('aria-hidden', 'false');
+    setOpenState(true);
     saveWidgetOpenState(true);
     setTimeout(function () { input.focus(); }, 50);
   }
@@ -239,10 +262,31 @@
   }
 
   function closeWidget() {
-    root.classList.remove('gb-widget--open');
-    windowEl.setAttribute('aria-hidden', 'true');
+    setOpenState(false);
     saveWidgetOpenState(false);
     launcher.focus();
+  }
+
+  // The launcher is invisible while the chat is open, so it also leaves the
+  // tab order then, and tells assistive technology whether the chat is open.
+  function setOpenState(open) {
+    root.classList.toggle('gb-widget--open', open);
+    windowEl.setAttribute('aria-hidden', open ? 'false' : 'true');
+    launcher.setAttribute('aria-expanded', open ? 'true' : 'false');
+    launcher.tabIndex = open ? -1 : 0;
+  }
+
+  // The persistent notice next to the input: the shopper is talking to an AI
+  // or an automated assistant (EU AI Act Art. 50 and similar US state laws),
+  // with the store's privacy policy one click away.
+  function aiNoticeHtml() {
+    if (!settings.aiNotice) {
+      return '';
+    }
+    var link = settings.privacyUrl
+      ? ' <a href="' + escapeAttr(settings.privacyUrl) + '" target="_blank" rel="noopener">' + escapeHtml(i18n.privacyPolicy || 'Privacy policy') + '</a>'
+      : '';
+    return '<p class="gb-ai-notice" id="geekybot-ai-notice" dir="auto">' + escapeHtml(settings.aiNotice) + link + '</p>';
   }
 
   function scheduleShopperInvitation() {
@@ -741,8 +785,7 @@
     }
     try {
       if (localStorage.getItem(storageKeys.open) === '1') {
-        root.classList.add('gb-widget--open');
-        windowEl.setAttribute('aria-hidden', 'false');
+        setOpenState(true);
       }
     } catch (error) {}
   }
@@ -757,8 +800,7 @@
         if (shouldOpen) {
           hideShopperInvitation(true);
         }
-        root.classList.toggle('gb-widget--open', shouldOpen);
-        windowEl.setAttribute('aria-hidden', shouldOpen ? 'false' : 'true');
+        setOpenState(shouldOpen);
       }
       if (event.key === storageKeys.history && event.newValue === null) {
         isRestoringHistory = true;
@@ -772,9 +814,20 @@
   }
 
   function setSending(value) {
+    // A disabled field drops keyboard focus to the page, after which Escape
+    // and typing the next question no longer reach the chat. Remember
+    // whether the shopper was in the chat and put them back when the reply
+    // has arrived.
+    if (value) {
+      focusWasInChat = !!(document.activeElement && windowEl.contains(document.activeElement));
+    }
     isSending = value;
     input.disabled = value;
     root.querySelector('.gb-send').disabled = value;
+    if (!value && focusWasInChat && root.classList.contains('gb-widget--open')
+      && (!document.activeElement || document.activeElement === document.body)) {
+      input.focus();
+    }
   }
 
   function addUserMessage(text) {

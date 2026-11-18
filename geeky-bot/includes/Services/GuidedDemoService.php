@@ -19,8 +19,12 @@ class GuidedDemoService {
      */
     const MAX_EXAMPLES = 15;
 
-    /** Paid prompts are the upsell, so they get a reserved share of the board. */
-    const MAX_PRO_EXAMPLES = 5;
+    /**
+     * Paid prompts are the upsell, so they get a reserved share of the board:
+     * five buying actions, and the three questions across the products shown
+     * (two comparisons and one detail), which Commerce Pro answers.
+     */
+    const MAX_PRO_EXAMPLES = 8;
 
     public function refresh() {
         $seed = absint(get_option(self::SEED_OPTION, 0));
@@ -86,22 +90,25 @@ class GuidedDemoService {
 
             $this->add_example($examples, $used_queries, $this->product_example(array(
                 'id' => 'compare-positions',
-                'tier' => 'free',
+                // Comparison is answered by Commerce Pro; without it the chat
+                // says comparison isn't available.
+                'tier' => 'pro',
                 'feature' => __('Comparison', 'geeky-bot'),
                 'title' => __('Compare by position, not by name', 'geeky-bot'),
                 'steps' => array($browse, __('compare the first and second', 'geeky-bot')),
                 'description' => __('Shoppers point at what they can see instead of retyping two product names.', 'geeky-bot'),
-                'locked' => false,
+                'locked' => empty($pro_state['active']),
             ), $group['row']));
 
             $this->add_example($examples, $used_queries, $this->product_example(array(
                 'id' => 'grounded-detail',
-                'tier' => 'free',
+                // Answered by Commerce Pro's comparison across the products shown.
+                'tier' => 'pro',
                 'feature' => __('Grounded answers', 'geeky-bot'),
                 'title' => __('Ask a detail across the whole result set', 'geeky-bot'),
                 'steps' => array($browse, __('what material are they?', 'geeky-bot')),
                 'description' => __('Answered from stored product data for every result at once, naming any product the catalog does not record it for.', 'geeky-bot'),
-                'locked' => false,
+                'locked' => empty($pro_state['active']),
             ), $group['row']));
         }
 
@@ -140,7 +147,7 @@ class GuidedDemoService {
             $this->mark_row_used($pair[0], $used_products, $used_families);
             $this->add_example($examples, $used_queries, $this->product_example(array(
                 'id' => 'compare-names',
-                'tier' => 'free',
+                'tier' => 'pro',
                 'feature' => __('Comparison', 'geeky-bot'),
                 'title' => __('Put two real products side by side', 'geeky-bot'),
                 'query' => sprintf(
@@ -150,7 +157,7 @@ class GuidedDemoService {
                     $pair[1]['title']
                 ),
                 'description' => __('Both products, and every value compared, come from this catalog.', 'geeky-bot'),
-                'locked' => false,
+                'locked' => empty($pro_state['active']),
             ), $pair[0]));
         }
 
@@ -461,15 +468,21 @@ class GuidedDemoService {
         // Pro is built last, so a flat truncation spent every slot on free
         // prompts and cut the paid tier off the board entirely. Each tier gets
         // its own budget, and free reclaims whatever Pro does not use.
+        // Buying actions lead the Pro group; questions across the products
+        // shown follow them.
         $free = array();
         $pro = array();
+        $pro_comparisons = array();
         foreach ($examples as $example) {
-            if (($example['tier'] ?? 'free') === 'pro') {
-                $pro[] = $example;
-            } else {
+            if (($example['tier'] ?? 'free') !== 'pro') {
                 $free[] = $example;
+            } elseif (in_array($example['id'] ?? '', array('compare-positions', 'grounded-detail', 'compare-names'), true)) {
+                $pro_comparisons[] = $example;
+            } else {
+                $pro[] = $example;
             }
         }
+        $pro = array_merge($pro, $pro_comparisons);
 
         $pro = array_slice($pro, 0, self::MAX_PRO_EXAMPLES);
         $free = array_slice($free, 0, self::MAX_EXAMPLES - count($pro));

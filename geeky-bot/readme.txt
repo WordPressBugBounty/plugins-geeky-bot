@@ -4,7 +4,7 @@ Tags: woocommerce, product search, product recommendations, ai chatbot, ecommerc
 Requires at least: 6.0
 Tested up to: 7.1
 Requires PHP: 7.4
-Stable tag: 2.1.2
+Stable tag: 2.2.0
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -64,9 +64,19 @@ The guided setup checks WooCommerce, builds the product index, selects policy pa
 
 Store owners can review conversations, group unanswered questions, see products opened from chat, export data to CSV, delete stored conversations, configure guest storage and retention, and use WordPress personal-data export and erasure tools.
 
+= Answers you can correct =
+
+When the chat cannot answer a question, it appears under Needs review with the reason. Write the answer there once, and the chat sends your answer, word for word, whenever a shopper asks that question or a close rewording of it. Your answers are listed under Store Knowledge, where you can edit, delete or add more.
+
+= Honest about being an AI =
+
+A short notice next to the chat input tells shoppers they are chatting with an AI assistant (or an automated assistant in local mode), with a link to your privacy policy, as the EU AI Act and several US states require. It is on by default and the text can be changed. Asked "are you a bot?", the assistant always says what it is.
+
 = Local mode and optional AI services =
 
-Core discovery and grounded routing can run locally. Zywrap and OpenAI are optional.
+Core discovery and grounded routing can run locally. AI-written answers are optional, with your own OpenAI key (stores already set up with Zywrap keep using it).
+
+When OpenAI retires the model you use, Geeky Bot switches to OpenAI's replacement instead of stopping. If AI answers fail, for example because a key is rejected or the account has no credit, you see why on the dashboard and under Site Health, and shoppers keep getting answers from your store data.
 
 API keys are not exposed to storefront JavaScript or displayed again after saving.
 
@@ -101,6 +111,14 @@ WooCommerce is required for product discovery and shopping assistance. Geeky Bot
 
 No. Local grounded product discovery and policy routing can work without an external AI provider. OpenAI is optional, for AI-written answers and for the Smart Catalog and Rescue search levels; each is off until you choose it.
 
+= Does Geeky Bot tell shoppers they are chatting with an AI? =
+
+Yes. A notice next to the chat input says so, with a link to your privacy policy if one is set under Settings > Privacy. It reads "You are chatting with an AI assistant. Answers can contain mistakes." when AI writes the answers, and "You are chatting with an automated assistant, not a person." in local mode. Change the text, or switch it off if you show your own notice, under Geeky Bot > AI & Privacy.
+
+= Can I fix an answer the assistant got wrong or could not give? =
+
+Yes. Open Geeky Bot > Conversations > Needs review, choose "Write the answer" on the question, and save. From then on the chat sends your answer for that question and close rewordings of it. You can also add answers under Geeky Bot > Store Knowledge.
+
 = What information can Geeky Bot use? =
 
 Geeky Bot uses visible WooCommerce catalog data and published policy pages explicitly selected by an administrator. It does not crawl arbitrary URLs.
@@ -119,7 +137,7 @@ Yes. Browser-side conversation history can persist across page loads and tabs on
 
 = Does Geeky Bot work with WPML or Polylang? =
 
-Yes. When either plugin is active Geeky Bot takes the shopper's language from it rather than guessing from the characters they typed. Each translation of a product is its own post in WPML and Polylang, so translations are indexed and searched separately with no extra setup — a Spanish product is found by a Spanish query. Buyer intent, not just the words, is understood in English, Spanish and Arabic; other languages still search by term and fall back to English intent. Cart and checkout commands are English-only in this release.
+Yes. When either plugin is active Geeky Bot takes the shopper's language from it rather than guessing from the characters they typed. Each translation of a product is its own post in WPML and Polylang, so translations are indexed and searched separately with no extra setup — a Spanish product is found by a Spanish query. Buyer intent, not just the words, is understood in Arabic, Chinese, Dutch, English, French, German, Italian, Japanese, Korean, Portuguese, Russian and Spanish; other languages still search by term and fall back to English intent. Cart and checkout commands are English-only in this release.
 
 = Can Geeky Bot run on a WordPress multisite network? =
 
@@ -148,7 +166,7 @@ Geeky Bot can operate in local grounded mode without sending shopper questions t
 
 = OpenAI =
 
-When OpenAI mode is selected and an API key is saved, Geeky Bot sends the shopper's question, a grounding instruction, relevant visible-product summaries, and relevant excerpts from approved policy pages to the OpenAI API to generate the requested answer.
+When OpenAI mode is selected and an API key is saved, Geeky Bot sends the shopper's question, a grounding instruction and relevant visible-product summaries to the OpenAI API to generate the requested answer, using the model chosen under Geeky Bot → AI & Privacy (gpt-6-luna by default). Questions about store policies are answered from the selected pages without AI. Answers the store owner wrote under Needs review are sent as written, without AI.
 
 The product search levels also use the OpenAI API with the saved key. Each is off until the administrator selects it under Geeky Bot → Product Search, and the Standard level makes no external requests.
 
@@ -166,9 +184,15 @@ Privacy: https://openai.com/policies/privacy-policy/
 
 = Zywrap =
 
-When Zywrap mode is selected, Geeky Bot sends the shopper's question, a grounding instruction, relevant visible-product context, and relevant approved policy-page context to the configured Zywrap HTTPS endpoint to generate the requested answer.
+When Zywrap mode is selected and a Zywrap key is saved, Geeky Bot sends the shopper's question, a grounding instruction and relevant visible-product context to Zywrap to generate the requested answer. The address is https://api.zywrap.com/v1/proxy unless the administrator enters another one under Geeky Bot → AI & Privacy.
 
-No shopper question is sent to Zywrap when local mode is selected.
+Zywrap runs in the United States and passes each request to the AI model provider it uses for these answers, currently OpenAI (gpt-6-luna), which writes the reply. Zywrap's privacy policy describes what is stored and for how long.
+
+With a Zywrap key saved, the Smart Catalog, Rescue and learning-from-missed-searches levels described under OpenAI use Zywrap instead of OpenAI when Zywrap is the answer mode or no OpenAI key is saved. They send Zywrap the same information listed there, and the same daily and monthly limit on AI calls applies.
+
+In local mode no shopper question is sent to Zywrap for an answer; only the Rescue and learning levels, when switched on, send the wording of searches that found nothing.
+
+Creating or connecting a Zywrap account: where Zywrap is offered as an AI connection, under Geeky Bot → AI & Privacy an administrator can create a free Zywrap account, or connect an existing one, without leaving WordPress. Nothing is sent until the administrator ticks the consent box and clicks "Email me a code" or "Sign in on zywrap.com". Geeky Bot then sends Zywrap (https://api.zywrap.com/v1/connect/wordpress/) the email address and the optional name entered there, the site's address and name, a name for the key ("Geeky Bot – " and the site's domain), and where the sign-up came from: that it is Geeky Bot, its version, and UTM tags (utm_source=geeky-bot, utm_medium=wordpress-plugin, a campaign name and the Geeky Bot screen it started on). Zywrap emails a 6-digit code, and the code is traded for an API key, which is stored encrypted on the site. "Sign in on zywrap.com" opens zywrap.com with the same details in the address. Links from Geeky Bot to zywrap.com carry the same UTM tags.
 
 Service: https://www.zywrap.com/
 
@@ -198,8 +222,58 @@ Privacy: https://geekybot.com/privacy-policy/
 
 == Changelog ==
 
+= 2.2.0 =
+
+Answers you can correct
+
+* Write the answer from Needs review: on any unanswered question, choose "Write the answer" and save. The chat then sends your answer, word for word, in every answer mode, whenever a shopper asks that question or a close rewording of it, in any language. Saving marks the question handled.
+* Store Knowledge lists the answers you wrote, how often each was sent, and lets you edit, delete or add answers.
+
+Honest about being an AI
+
+* A short notice next to the chat input tells shoppers they are chatting with an AI assistant, or an automated assistant in local mode, with a link to your privacy policy. The EU AI Act (Article 50, in force since 2 August 2026) and several US states require this. It is on by default; change the text or switch it off under AI & Privacy.
+* "Are you a bot?" and "am I talking to a person?" always get a straight answer, in English, Spanish, French, German, Portuguese, Italian and Dutch.
+
+AI answers that keep working
+
+* OpenAI shuts down gpt-4o-mini, the previous default model, together with gpt-4o, gpt-4.1 and gpt-4.1-mini, on 14 January 2027, and gpt-5-nano and gpt-5-mini on 11 December 2026. New sites now default to gpt-6-luna, OpenAI's replacement, which also costs less. A store set to a retiring model is told in advance and can switch with one click; when the model stops working, Geeky Bot uses gpt-6-luna instead of failing.
+* Requests now work with newer OpenAI models, including gpt-6 and reasoning models, which reject some of the settings older models used. A setting a model refuses is left out and the request retried.
+* When AI answers fail, you are told why: an admin notice and a new "AI connection" line in Site Health explain whether the key was rejected, the account has no credit, the country is not served or the model is not available. Before, answers fell back to store data with no sign anything was wrong.
+* After an error that would repeat, AI calls pause for 10 minutes, so shoppers get an instant answer from store data instead of waiting. Saving new AI settings lifts the pause.
+* Failed AI calls no longer count against the daily and monthly AI call limits.
+* The geekybot_ai_error action fires when an AI call fails, for logging or alerts.
+
+Accessibility
+
+* The chat window is announced as a dialog named after the assistant, the message box has a label, only new messages are read out (not the whole window), the chat button says whether the chat is open and leaves the tab order while it is, and on phones Tab stays inside the chat.
+
+Fixes
+
+* Needs review no longer hides real questions. Any question containing "cart" or "checkout", and a few phrases from our test store, were automatically marked "Handled now". Cart and order requests are now treated as handled only when Commerce Pro answers them.
+* The dashboard's question counts now match Needs review, including questions you marked handled or ignored.
+* Conversations older than the retention period are deleted by a daily background task, also when chat history is switched off. Before, they were deleted only during a shopper's chat, and never while history was off.
+* Visitors behind a proxy on the same server (such as Varnish, or nginx in front of Apache) all appeared to come from 127.0.0.1 and skipped the rate limits. They are now limited like everyone else.
+* The readme said AI providers receive policy-page excerpts. Policy questions are answered from your pages without AI, and External services now says so.
+
+Also in this release
+
+* Smart Catalog, Rescue and learning from missed searches can use a saved Zywrap key as well as an OpenAI key, on sites that use Zywrap. External services lists what they send.
+* Sites whose database is SQLite, such as WordPress Playground, the WordPress.org preview and WordPress Studio: product search uses word matching straight away instead of first trying a full-text query SQLite cannot run, and the admin no longer shows a "degraded state" error there.
+* Guided Demo: the two comparison examples and "what material are they?" are listed under Commerce Pro, which answers them, instead of under Free.
+* Adds one database table, for the answers you write.
+
 = 2.1.2 =
 
+Commerce Pro license
+
+* Commerce Pro licenses now come from geekybot.com's new license server. Keys are five groups of five characters, as shown in your account on geekybot.com.
+* Commerce Pro runs only on a license statement signed by geekybot.com for this key and this site. A copied database, or a status written into the database by hand, no longer unlocks it.
+* Installing and updating Commerce Pro use a one-time download link, and the download is checked against its published SHA-256 before it is installed.
+* An expired license keeps the installed Commerce Pro working on a site that was already activated; updates, downloads, support and new activations need a renewal. A renewal payment on hold keeps it working too.
+* If geekybot.com cannot be reached, Commerce Pro keeps running on its last confirmed check for up to 30 days.
+* Staging and development copies of a site no longer use one of the license's sites.
+* The License page shows dates in your site's format and says whether this site uses one of the license's sites.
+* Commerce Pro update checks no longer read a release file from cdn.geekybot.com.
 
 Languages
 
@@ -356,6 +430,10 @@ Widget
 * Added support for the separate Geeky Bot Commerce Pro add-on.
 
 == Upgrade Notice ==
+
+= 2.2.0 =
+
+OpenAI shuts down gpt-4o-mini, Geeky Bot's previous default model, on 14 January 2027. Update so AI answers switch to gpt-6-luna instead of stopping. Adds a short AI notice next to the chat input (on by default; see AI & Privacy) and one database table.
 
 = 2.1.2 =
 

@@ -8,6 +8,9 @@ if (!defined('ABSPATH')) {
 class Settings {
     const OPTION = 'geekybot_v2_settings';
 
+    /** Zywrap's address for Geeky Bot, filled in on AI & Privacy when none is saved. */
+    const ZYWRAP_ENDPOINT = 'https://api.zywrap.com/v1/proxy';
+
     /**
      * Reasons a submitted secret was refused during the current request.
      *
@@ -156,6 +159,8 @@ class Settings {
             'launcher_shape' => 'round',
             'max_products' => 4,
             'chat_history_enabled' => 'yes',
+            'ai_notice_enabled' => 'yes',
+            'ai_notice_text' => '',
             'retention_days' => 30,
             'policy_page_ids' => array(),
             'allow_guest_sessions' => 'yes',
@@ -163,7 +168,7 @@ class Settings {
             'zywrap_endpoint' => '',
             'zywrap_api_key' => '',
             'openai_api_key' => '',
-            'openai_model' => 'gpt-4o-mini',
+            'openai_model' => AiClient::DEFAULT_MODEL,
             'ai_max_tokens' => 450,
             'rate_limit_messages' => 120,
             'rate_limit_window_minutes' => 5,
@@ -312,6 +317,11 @@ trainers = sneakers, shoes",
         $clean['header_style'] = isset($input['header_style']) && in_array($input['header_style'], array('gradient', 'solid'), true) ? $input['header_style'] : $current['header_style'];
         $clean['max_products'] = isset($input['max_products']) ? max(1, min(8, absint($input['max_products']))) : 4;
         $clean['chat_history_enabled'] = isset($input['chat_history_enabled']) && $input['chat_history_enabled'] === 'yes' ? 'yes' : 'no';
+        // On unless switched off on purpose: a form that does not carry the
+        // field must not turn the notice off.
+        $clean['ai_notice_enabled'] = isset($input['ai_notice_enabled']) ? ($input['ai_notice_enabled'] === 'no' ? 'no' : 'yes') : (isset($current['ai_notice_enabled']) ? $current['ai_notice_enabled'] : 'yes');
+        $clean['ai_notice_text'] = isset($input['ai_notice_text']) ? sanitize_text_field($input['ai_notice_text']) : (isset($current['ai_notice_text']) ? $current['ai_notice_text'] : '');
+        $clean['ai_notice_text'] = function_exists('mb_substr') ? mb_substr($clean['ai_notice_text'], 0, 200) : substr($clean['ai_notice_text'], 0, 200);
         $clean['retention_days'] = isset($input['retention_days']) ? max(1, min(365, absint($input['retention_days']))) : 30;
         $clean['allow_guest_sessions'] = isset($input['allow_guest_sessions']) && $input['allow_guest_sessions'] === 'yes' ? 'yes' : 'no';
         $clean['provider_mode'] = isset($input['provider_mode']) && in_array($input['provider_mode'], array('local', 'zywrap', 'openai'), true) ? $input['provider_mode'] : 'local';
@@ -370,6 +380,15 @@ trainers = sneakers, shoes",
         $clean['last_updated'] = current_time('mysql');
 
         update_option(self::OPTION, $clean, false);
+
+        // New AI settings deserve a fresh try: lift a pause left by an error
+        // such as a rejected key.
+        foreach (array('provider_mode', 'openai_api_key', 'openai_model', 'zywrap_api_key', 'zywrap_endpoint', 'search_ai_model') as $ai_key) {
+            if (!isset($current[$ai_key]) || $current[$ai_key] !== $clean[$ai_key]) {
+                AiClient::clear_pause();
+                break;
+            }
+        }
 
         // Ranking boosts and match mode are part of the ranking cache key, but
         // custom synonyms change the analysed query itself, so any search
@@ -633,15 +652,62 @@ trainers = sneakers, shoes",
             'allowGuestSessions' => $settings['allow_guest_sessions'],
             'retentionDays' => absint($settings['retention_days']),
             'hasPolicySources' => !empty(array_filter(array_map('absint', (array) $settings['policy_page_ids']))),
+            'aiNotice' => self::ai_notice_text(),
+            'privacyUrl' => self::ai_notice_text() !== '' ? esc_url_raw(get_privacy_policy_url()) : '',
         );
+    }
+
+    /**
+     * Whether chat answers are written by an AI provider right now.
+     *
+     * @return bool
+     */
+    public static function ai_answers_active() {
+        $mode = self::get('provider_mode', 'local');
+        if ($mode === 'openai') {
+            return self::has_secret('openai_api_key');
+        }
+        if ($mode === 'zywrap') {
+            return self::has_secret('zywrap_api_key') && self::get('zywrap_endpoint', '') !== '';
+        }
+
+        return false;
+    }
+
+    /**
+     * The notice shown next to the chat input, or '' when switched off.
+     *
+     * The EU AI Act (Art. 50, applying since 2 Aug 2026) requires telling
+     * people they are interacting with an AI system, at the latest at the
+     * first interaction, and the Commission's guidelines put that on whoever
+     * provides the chatbot. Local mode is not AI, but it is automated, so it
+     * says that instead.
+     *
+     * @return string
+     */
+    public static function ai_notice_text() {
+        if (self::get('ai_notice_enabled', 'yes') === 'no') {
+            return '';
+        }
+        $custom = trim((string) self::get('ai_notice_text', ''));
+        if ($custom !== '') {
+            return $custom;
+        }
+
+        return self::ai_answers_active()
+            ? __('You are chatting with an AI assistant. Answers can contain mistakes.', 'geeky-bot')
+            : __('You are chatting with an automated assistant, not a person.', 'geeky-bot');
     }
 
     /**
      * Whether Zywrap is offered as an AI connection.
      *
-     * Hidden for now: the hosted wrappers it needs are not published yet. A
-     * site already answering through Zywrap keeps seeing it, so hiding it can
-     * never silently change how that store answers. The integration code stays.
+     * Only where it is the saved answer mode or a Zywrap key is saved, so a
+     * store that switched away can switch back. As in 2.1.0-2.1.2, the
+     * in-admin sign-up and the wrappers are ready, but Zywrap is not offered
+     * to every site until its privacy policy names the AI provider it uses.
+     * A site already answering through Zywrap keeps seeing it, so this can
+     * never silently change how a store answers.
      *
      * @return bool
      */
@@ -649,9 +715,12 @@ trainers = sneakers, shoes",
         /**
          * Show Zywrap as an AI connection.
          *
-         * @param bool $visible True only while Zywrap is the saved answer mode.
+         * False hides it on AI & Privacy and keeps Smart Catalog from using
+         * it. Chat answers still go to Zywrap while it is the saved answer mode.
+         *
+         * @param bool $visible True while Zywrap is the saved answer mode or a key is saved.
          */
-        return (bool) apply_filters('geekybot_zywrap_enabled', self::get('provider_mode', 'local') === 'zywrap');
+        return (bool) apply_filters('geekybot_zywrap_enabled', self::get('provider_mode', 'local') === 'zywrap' || self::has_secret('zywrap_api_key'));
     }
 
     public static function has_secret($key) {

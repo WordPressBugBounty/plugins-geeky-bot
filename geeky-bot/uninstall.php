@@ -12,6 +12,7 @@ wp_clear_scheduled_hook('geekybot_smart_catalog_batch');
 wp_clear_scheduled_hook('geekybot_search_learning_run');
 wp_clear_scheduled_hook('geekybot_translations_daily');
 wp_clear_scheduled_hook('geekybot_translations_soon');
+wp_clear_scheduled_hook('geekybot_daily_cleanup');
 
 $geekybot_delete_data = get_option('geekybot_delete_data_on_uninstall', 'no');
 if ($geekybot_delete_data !== 'yes') {
@@ -30,6 +31,7 @@ $geekybot_tables = array(
     $wpdb->prefix . 'geekybot_product_index_new',
     $wpdb->prefix . 'geekybot_product_index_old',
     $wpdb->prefix . 'geekybot_knowledge_index',
+    $wpdb->prefix . 'geekybot_answers',
 );
 
 foreach ($geekybot_tables as $geekybot_table) {

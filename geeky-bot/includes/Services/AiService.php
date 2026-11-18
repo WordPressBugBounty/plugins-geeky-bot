@@ -73,8 +73,8 @@ class AiService {
             return '';
         }
 
-        $payload = array(
-            'model' => Settings::get('openai_model', 'gpt-4o-mini'),
+        $spec = array(
+            'model' => AiClient::effective_model(Settings::get('openai_model', AiClient::DEFAULT_MODEL)),
             'temperature' => 0.2,
             'max_tokens' => absint(Settings::get('ai_max_tokens', 450)),
             'messages' => array(
@@ -85,26 +85,24 @@ class AiService {
 
         // Checked before the budget is touched: a cache hit is not a provider
         // call and must not be charged as one.
-        $signature = 'openai|' . wp_json_encode($payload);
+        $signature = 'openai|' . wp_json_encode($spec);
         $cached = $this->cached_answer($signature);
         if ($cached !== '') {
             return $cached;
         }
 
-        if (is_wp_error(AiBudgetService::reserve())) {
+        // A paused connection answers locally at once instead of making every
+        // shopper wait for a call that will fail the same way.
+        if (AiClient::paused() || is_wp_error(AiBudgetService::reserve())) {
             return '';
         }
 
-        $response = wp_remote_post('https://api.openai.com/v1/chat/completions', array(
-            'timeout' => 20,
-            'headers' => array(
-                'Authorization' => 'Bearer ' . $key,
-                'Content-Type' => 'application/json',
-            ),
-            'body' => wp_json_encode($payload),
-        ));
-
-        $answer = $this->extract_openai_text($response);
+        $result = AiClient::openai_chat($spec, 20, 'chat');
+        $answer = $result['ok'] ? $this->extract_openai_text($result['data']) : '';
+        if (!$result['ok']) {
+            // Nothing billable came back.
+            AiBudgetService::release();
+        }
         $this->remember_answer($signature, $answer);
 
         return $answer;
@@ -134,20 +132,15 @@ class AiService {
             return $cached;
         }
 
-        if (is_wp_error(AiBudgetService::reserve())) {
+        if (AiClient::paused() || is_wp_error(AiBudgetService::reserve())) {
             return '';
         }
 
-        $response = wp_remote_post($endpoint, array(
-            'timeout' => 20,
-            'headers' => array(
-                'Authorization' => 'Bearer ' . $key,
-                'Content-Type' => 'application/json',
-            ),
-            'body' => wp_json_encode($body),
-        ));
-
-        $answer = $this->extract_generic_text($response);
+        $result = AiClient::zywrap_post($endpoint, $body, 20, 'chat');
+        $answer = $result['ok'] ? $this->extract_generic_text($result['data']) : '';
+        if (!$result['ok']) {
+            AiBudgetService::release();
+        }
         $this->remember_answer($signature, $answer);
 
         return $answer;
@@ -302,30 +295,22 @@ class AiService {
         return (array) apply_filters('geekybot_ai_context_array', $context, $products, $knowledge_matches);
     }
 
-    private function extract_openai_text($response) {
-        if (is_wp_error($response)) {
-            return '';
-        }
-        $code = absint(wp_remote_retrieve_response_code($response));
-        if ($code < 200 || $code >= 300) {
-            return '';
-        }
-        $data = json_decode(wp_remote_retrieve_body($response), true);
+    /**
+     * @param array $data Decoded Chat Completions reply.
+     * @return string
+     */
+    private function extract_openai_text($data) {
         if (!is_array($data) || empty($data['choices'][0]['message']['content'])) {
             return '';
         }
         return $this->clean_ai_text($data['choices'][0]['message']['content']);
     }
 
-    private function extract_generic_text($response) {
-        if (is_wp_error($response)) {
-            return '';
-        }
-        $code = absint(wp_remote_retrieve_response_code($response));
-        if ($code < 200 || $code >= 300) {
-            return '';
-        }
-        $data = json_decode(wp_remote_retrieve_body($response), true);
+    /**
+     * @param array $data Decoded Zywrap reply.
+     * @return string
+     */
+    private function extract_generic_text($data) {
         if (!is_array($data)) {
             return '';
         }

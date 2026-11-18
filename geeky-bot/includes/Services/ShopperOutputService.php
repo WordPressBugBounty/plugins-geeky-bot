@@ -151,6 +151,12 @@ class ShopperOutputService {
         if (!empty($lead_form)) {
             $public['leadForm'] = $lead_form;
         }
+        $whatsapp = $this->public_whatsapp(isset($payload['whatsapp'])
+            ? $payload['whatsapp']
+            : (isset($payload['commerce']['whatsapp']) ? $payload['commerce']['whatsapp'] : null));
+        if (!empty($whatsapp)) {
+            $public['whatsapp'] = $whatsapp;
+        }
 
         /**
          * Allows trusted extensions to adjust display-only public fields.
@@ -194,6 +200,10 @@ class ShopperOutputService {
         if (!empty($lead_form)) {
             $safe['leadForm'] = $lead_form;
         }
+        $whatsapp = $this->public_whatsapp(isset($filtered['whatsapp']) ? $filtered['whatsapp'] : null);
+        if (!empty($whatsapp)) {
+            $safe['whatsapp'] = $whatsapp;
+        }
 
         return $safe;
     }
@@ -209,6 +219,22 @@ class ShopperOutputService {
      * @param mixed $lead_form Internal value.
      * @return array Empty, or {message: string}.
      */
+    /**
+     * A "message the store on WhatsApp" link from Commerce Pro: only a wa.me
+     * address with a phone number passes, so nothing else can be linked.
+     *
+     * @param mixed $whatsapp {url}.
+     * @return array
+     */
+    private function public_whatsapp($whatsapp) {
+        $url = is_array($whatsapp) && isset($whatsapp['url']) ? (string) $whatsapp['url'] : '';
+        if (!preg_match('#^https://wa\.me/\d{7,15}(\?text=[^\s<>"\']*)?$#', $url)) {
+            return array();
+        }
+
+        return array('url' => esc_url_raw($url));
+    }
+
     private function public_lead_form($lead_form) {
         // Internal shape {show, message}, or this method's own public output
         // {message} when the response is rebuilt after the filter.

@@ -8,6 +8,7 @@ if (!defined('ABSPATH')) {
 use GeekyBot\Admin\Menu;
 use GeekyBot\Frontend\Widget;
 use GeekyBot\REST\Api;
+use GeekyBot\Services\AiClient;
 use GeekyBot\Services\HealthService;
 use GeekyBot\Services\Installer;
 use GeekyBot\Services\KnowledgeIndexService;
@@ -19,6 +20,7 @@ use GeekyBot\Services\ShopperOutputService;
 use GeekyBot\Services\SmartCatalogService;
 use GeekyBot\Services\SearchLearningService;
 use GeekyBot\Services\TranslationService;
+use GeekyBot\Services\ZywrapConnectService;
 
 final class Plugin {
     private static $instance = null;
@@ -59,6 +61,8 @@ final class Plugin {
         if (is_admin()) {
             (new Menu())->hooks();
             (new HealthService())->hooks();
+            (new ZywrapConnectService())->hooks();
+            (new AiClient())->hooks();
         }
 
         (new Widget())->hooks();
@@ -70,6 +74,9 @@ final class Plugin {
         (new KnowledgeIndexService())->hooks();
         (new PrivacyService())->hooks();
         (new OnboardingService())->hooks();
+
+        add_action(Installer::CLEANUP_HOOK, array(Installer::class, 'maybe_cleanup_history'));
+        add_action('init', array(Installer::class, 'schedule_cleanup'));
 
 
         /**
